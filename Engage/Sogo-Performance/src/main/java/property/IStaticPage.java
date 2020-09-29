@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import utility.WebPageElements;
 
-public interface ILoginPage {
+public interface IStaticPage {
 
 	String USER_NAME = "//input[contains(@name,'txtUserId')]";
 	WebPageElements user_name = new WebPageElements("User Name", "xpath", USER_NAME);

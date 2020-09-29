@@ -19,11 +19,10 @@ import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
 
-
-import property.ILoginPage;
+import property.IStaticPage;
 import utility.SeleniumUtils;
 
-public class LoginPage extends SeleniumUtils implements ILoginPage {
+public class StaticPage extends SeleniumUtils implements IStaticPage {
 	public double finish, start;
 	public double end;
 	

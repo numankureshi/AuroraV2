@@ -32,7 +32,7 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.sogo.performance.SogoPerformance_TC;
 
-import pageobjects.LoginPage;
+import pageobjects.StaticPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
 import utility.FetchExcelDataSet;
@@ -60,7 +60,7 @@ public class SuiteBase {
 	public String DeleteCasePass = null;
 	public static ExtentReports extent = null;
 	static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
-	public LoginPage loginPage = new LoginPage();
+	public StaticPage staticPage = new StaticPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

@@ -77,7 +77,7 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = loginPage.navigateToSogoStatic(getDriver(), param, URLs.get(key), test);
+				double totalTime = staticPage.navigateToSogoStatic(getDriver(), param, URLs.get(key), test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -115,7 +115,7 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = loginPage.navigateToSogoLoginPage(getDriver(), param, URLs.get(key), test);
+				double totalTime = staticPage.navigateToSogoLoginPage(getDriver(), param, URLs.get(key), test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -153,7 +153,7 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -162,7 +162,7 @@ public class SogoPerformance_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Static", alwaysRun = true)
 	public void Performance_TC4(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -191,7 +191,7 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = loginPage.navigateToSogoProducts(getDriver(), param, URLs.get(key), test);
+				double totalTime = staticPage.navigateToSogoProducts(getDriver(), param, URLs.get(key), test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -200,7 +200,7 @@ public class SogoPerformance_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Static", alwaysRun = true)
 	public void Performance_TC5(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -229,7 +229,7 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = loginPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				double totalTime = staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -237,45 +237,6 @@ public class SogoPerformance_TC extends SuiteBase {
 		}
 
 	}
-	
-	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
-	public void Performance_TC6(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				double totalTime = loginPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
-				String totaltime = df.format(totalTime);
-				System.out.println("total time :"+ totaltime);
-				LoadTime.put(TestCaseName, totaltime);
-			}
-		}
-
-	}
-	
 	
 
 	@AfterMethod(alwaysRun = true)
