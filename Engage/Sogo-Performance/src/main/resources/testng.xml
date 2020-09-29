@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SogoPerformance" parallel="tests" thread-count="1">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener
+			class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+
+	<test name="Platform">
+		<groups>
+			<run>
+				<include name="Platform" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.performance.SogoPerformance_TC" />
+		</classes>
+	</test>
+	
+	<test name="Static">
+		<groups>
+			<run>
+				<include name="Static" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.performance.SogoPerformance_TC" />
+		</classes>
+	</test>
+
+</suite>

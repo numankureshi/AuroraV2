@@ -1,0 +1,6 @@
+2020-07-01 20:27:07,075 - rootLogger - INFO - Excel file initialized successfully.
+2020-07-01 20:27:07,078 - rootLogger - INFO - Config.properties file Loaded successfully.
+2020-07-01 20:27:11,849 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2020-07-01 20:27:20,818 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-07-01 20:27:20,899 - rootLogger - INFO - Successfully waited for Suvey Page to be present on page.
+2020-07-01 20:27:20,902 - rootLogger - INFO - Smoke_TC1 is PASSED.

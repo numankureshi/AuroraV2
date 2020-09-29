@@ -1,0 +1,7 @@
+2020-09-29 20:31:36,743 - rootLogger - INFO - Excel file initialized successfully.
+2020-09-29 20:31:36,747 - rootLogger - INFO - Config.properties file Loaded successfully.
+2020-09-29 20:31:41,116 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2020-09-29 20:31:45,104 - rootLogger - INFO - Successfully waited for Pricing on Static to be present on page.
+2020-09-29 20:31:45,754 - rootLogger - INFO - Successfully clicked on Pricing on Static element.
+2020-09-29 20:31:47,024 - rootLogger - INFO - Successfully waited for Compare and choose a plan that is right for you. to be present on page.
+2020-09-29 20:31:47,032 - rootLogger - INFO - Performance_TC5 is PASSED.
