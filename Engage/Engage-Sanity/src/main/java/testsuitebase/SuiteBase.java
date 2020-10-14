@@ -32,6 +32,8 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.engage.sanity.surveypage.SurveyPage_TC;
 
+import pageobjects.SMXPage;
+import pageobjects.StaticPage;
 import pageobjects.SurveyPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
@@ -61,6 +63,8 @@ public class SuiteBase {
 	public static ExtentReports extent = null;
 	static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	public SurveyPage sp = new SurveyPage();
+	public StaticPage staticPage = new StaticPage();
+	public SMXPage smxPage = new SMXPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	
