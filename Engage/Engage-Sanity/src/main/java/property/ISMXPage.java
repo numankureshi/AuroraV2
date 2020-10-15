@@ -31,7 +31,34 @@ public interface ISMXPage {
 	String PRIMARY_LANGUAGE_DD = "//select[@name='ddlPrimaryLang']";
 	WebPageElements primary_lanugage_dd = new WebPageElements("Primary Langugage Drop down", "xpath", PRIMARY_LANGUAGE_DD);
 	
+	String SECONDARY_LANGUAGE_DD = "//div[@class='SecondaryHolder']";
+	WebPageElements secondary_lanugage_dd = new WebPageElements("Secondary Langugage Drop down", "xpath", SECONDARY_LANGUAGE_DD);
+	
+	String SECONDARY_LANGUAGE_DD_SEARCH = "//input[@class='SearchInput']";
+	WebPageElements secondary_lanugage_dd_search = new WebPageElements("Secondary Langugage Drop down Search", "xpath", SECONDARY_LANGUAGE_DD_SEARCH);
+	
 	String START_BUTTON = "(//input[@value='Start'])[1]";
 	WebPageElements start_button = new WebPageElements("Start Button", "xpath", START_BUTTON);
+	
+	String SECONDARY_LANGUAGE_SWITCH = "//input[@id='rdOtherLangYes']";
+	WebPageElements secondary_language_switch = new WebPageElements("Secondary Language Switch", "xpath", SECONDARY_LANGUAGE_SWITCH);
+	
+	String DESCRIPTION_BUTTON = "//div[contains(text(),'Descriptive Text')]/parent::div[@id='dvcom']";
+	WebPageElements description_button = new WebPageElements("Description Button", "xpath", DESCRIPTION_BUTTON);
+	
+	String NET_PROMOTER_BUTTON = "//div[contains(text(),'Net Promoter')]/parent::div[@id='dvrat_NPS']";
+	WebPageElements net_promoter_score_button = new WebPageElements("Net Promoter Button", "xpath", NET_PROMOTER_BUTTON);
+	
+	String TEXT_BOX_BUTTON = "//div[contains(text(),'Text Box')]/parent::div[@id='dvtb']";
+	WebPageElements text_box_button = new WebPageElements("Text Box Button", "xpath", TEXT_BOX_BUTTON);
+	
+	String IFRAME_BUTTON = "//iframe[@class='cke_wysiwyg_frame cke_reset']";
+	WebPageElements iframe_button = new WebPageElements("Iframe Button", "xpath", IFRAME_BUTTON);
+	
+	String DESCRIPTION_TEXT = "//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']";
+	WebPageElements description_text = new WebPageElements("Description Text Input", "xpath", DESCRIPTION_TEXT);
+	
+	String SAVE_BUTTON = "//input[@name='btnSaveQuestionAnswer']";
+	WebPageElements save_button = new WebPageElements("Save Button", "xpath", SAVE_BUTTON);
 	
 }

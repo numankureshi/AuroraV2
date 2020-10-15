@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -47,6 +48,25 @@ public class SeleniumUtils {
 				TestResultStatus.TestFail = true;
 				Assert.fail();
 			}
+		}
+	}
+	
+	public void doubleClick(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
+		WebElement element = null;
+		Actions action = new Actions(driver);
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			action.doubleClick(element);
+			test.log(Status.INFO, "Successfully double clicked on "+ ele.getName() +" element.");
+			Add_Log.info("Successfully double clicked on "+ ele.getName() +" element.");
+			Reporter.log("Successfully double clicked on "+ ele.getName() +" element.");
+		} catch (Exception e) {
+				test.log(Status.FAIL, "Not able to click on "+ ele.getName() +" element.");
+				Add_Log.info("Not able to double click on "+ ele.getName() +" element.");
+				Reporter.log("Not able to double click on "+ ele.getName() +" element.");
+				TestResultStatus.failureReason.add(testcaseName + "| Not able to double click on "+ ele.getName() +" element.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
 		}
 	}
 	
