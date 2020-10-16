@@ -59,6 +59,9 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("secondarylanguage", getData(data, "secondarylanguage"));
 		param.put("description", getData(data, "description"));
 		param.put("textbox", getData(data, "textbox"));
+		param.put("radiobutton", getData(data, "radiobutton"));
+		param.put("AnswerOptions", getData(data, "AnswerOptions"));
+		param.put("checkbox", getData(data, "checkbox"));
 
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");

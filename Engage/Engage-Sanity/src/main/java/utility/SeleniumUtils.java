@@ -56,7 +56,7 @@ public class SeleniumUtils {
 		Actions action = new Actions(driver);
 		try {
 			element = getWebElement(driver, testcaseName, ele, test);
-			action.doubleClick(element);
+			action.doubleClick(element).build().perform();
 			test.log(Status.INFO, "Successfully double clicked on "+ ele.getName() +" element.");
 			Add_Log.info("Successfully double clicked on "+ ele.getName() +" element.");
 			Reporter.log("Successfully double clicked on "+ ele.getName() +" element.");

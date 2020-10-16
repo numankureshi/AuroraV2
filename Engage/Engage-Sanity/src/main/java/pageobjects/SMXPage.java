@@ -32,6 +32,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterDescription(driver, param, test);
 		enterNetPromoter(driver, param, test);
 		enterTextBox(driver, param, test);
+		enterRadioButton(driver, param, test);
+		enterCheckBoxButton(driver, param, test);
 	}
 
 	public void selectCreateProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -103,14 +105,17 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void selectSecondaryLanugage(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, secondary_language_switch, test);
-		click(driver, testcaseName, secondary_language_switch, test);
+//		waitforElemPresent(driver, testcaseName, 30, secondary_language_switch, test);
+		click(driver, testcaseName, secondary_language_switch,test);
+		waitforElemPresent(driver, testcaseName, 30, secondary_lanugage_dd, test);
+		click(driver, testcaseName, secondary_lanugage_dd,test);
 		waitforElemPresent(driver, testcaseName, 30, secondary_lanugage_dd_search, test);
 		setText(driver, testcaseName, secondary_lanugage_dd_search, param.get("secondarylanguage"), test);
-		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[contains(text(),'"+ param.get("secondarylanguage") +"')]/preceding-sibling::input"), param.get("secondarylanguage"), test);
-		click(driver, testcaseName, By.xpath("//label[contains(text(),'"+ param.get("secondarylanguage") +"')]/preceding-sibling::input"), param.get("secondarylanguage"), test);
-		Select select = new Select(driver.findElement(By.xpath(PRIMARY_LANGUAGE_DD)));
-		select.selectByVisibleText(param.get("primarylanguage"));
+		Thread.sleep(2000);
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		click(driver, testcaseName, By.xpath("//label[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+//		Select select = new Select(driver.findElement(By.xpath(PRIMARY_LANGUAGE_DD)));
+//		select.selectByVisibleText(param.get("primarylanguage"));
 		
 	}
 	
@@ -134,8 +139,11 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, net_promoter_score_button, test);
 		doubleClick(driver, testcaseName, net_promoter_score_button, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		String netPromoterLabel = getText(driver, testcaseName, description_text, test);
+		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 10, save_button, test);
 		click(driver, testcaseName, save_button, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ netPromoterLabel +"']"), "Net Promoter Label Added "+ netPromoterLabel, test);
@@ -157,4 +165,59 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("textbox") +"']"), "Text Box Label Added "+ param.get("textbox"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("textbox") +"']/parent::div/following-sibling::div//input"), "Text Box Added "+ param.get("textbox"), test);
 	}
+	
+	public void enterRadioButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, radio_button, test);
+		doubleClick(driver, testcaseName, radio_button, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("radiobutton"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, other_checkbox, test);
+		click(driver, testcaseName, other_checkbox, test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("radiobutton") +"']"), "Radio Buttons Label Added "+ param.get("radiobutton"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("radiobutton") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Radio Buttons Added "+ param.get("radiobutton"), test);
+	}
+	
+	public void enterCheckBoxButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, check_box_button, test);
+		doubleClick(driver, testcaseName, check_box_button, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("checkbox"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, none_of_above, test);
+		click(driver, testcaseName, none_of_above, test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("checkbox") +"']"), "Check Box Label Added "+ param.get("checkbox"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("checkbox") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Check Box Added "+ param.get("checkbox"), test);
+	}
+	
+	public void answersLibrary(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 10, answers_library, test);
+		click(driver, testcaseName, answers_library, test);
+		waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
+		click(driver, testcaseName, get_answer_options_library, test);
+		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS)));
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		click(driver, testcaseName, By.xpath("//label[text()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
+		click(driver, testcaseName, use_this_list_button, test);
+		driver.switchTo().defaultContent();
+		}
 }
