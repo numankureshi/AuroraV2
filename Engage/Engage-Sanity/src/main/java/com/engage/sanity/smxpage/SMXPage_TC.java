@@ -62,6 +62,28 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("radiobutton", getData(data, "radiobutton"));
 		param.put("AnswerOptions", getData(data, "AnswerOptions"));
 		param.put("checkbox", getData(data, "checkbox"));
+		param.put("imagechoice", getData(data, "imagechoice"));
+		param.put("reportingvalue", getData(data, "reportingvalue"));
+		param.put("images", getData(data, "images"));
+		param.put("date", getData(data, "date"));
+		param.put("likedislike", getData(data, "likedislike"));
+		param.put("ratingscale", getData(data, "ratingscale"));
+		param.put("dropdown", getData(data, "dropdown"));
+		param.put("ranking", getData(data, "ranking"));
+		param.put("multitextbox", getData(data, "multitextbox"));
+		param.put("textbox1", getData(data, "textbox1"));
+		param.put("textbox2", getData(data, "textbox2"));
+		param.put("multidropdown", getData(data, "multidropdown"));
+		param.put("dropdown1", getData(data, "dropdown1"));
+		param.put("dropdown2", getData(data, "dropdown2"));
+		param.put("multiradio", getData(data, "multiradio"));
+		param.put("QuestionOptions", getData(data, "QuestionOptions"));
+		param.put("multicheckbox", getData(data, "multicheckbox"));
+		param.put("ratingradio", getData(data, "ratingradio"));	
+		param.put("ratingdropdown", getData(data, "ratingdropdown"));
+		param.put("ratingscalegrid", getData(data, "ratingscalegrid"));
+		param.put("matrixgrid", getData(data, "matrixgrid"));
+		
 
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");

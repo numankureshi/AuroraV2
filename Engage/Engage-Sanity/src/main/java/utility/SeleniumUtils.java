@@ -434,6 +434,8 @@ public class SeleniumUtils {
 		}
 	}
 	
+	
+	
 	public void waitForLoad2(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
