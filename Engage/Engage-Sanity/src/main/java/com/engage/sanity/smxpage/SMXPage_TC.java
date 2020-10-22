@@ -83,8 +83,13 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("ratingdropdown", getData(data, "ratingdropdown"));
 		param.put("ratingscalegrid", getData(data, "ratingscalegrid"));
 		param.put("matrixgrid", getData(data, "matrixgrid"));
+		param.put("horizontalradiobutton", getData(data, "horizontalradiobutton"));
+		param.put("numericallocations", getData(data, "numericallocations"));
+		param.put("attachments", getData(data, "attachments"));
+		param.put("ratingradiobutton", getData(data, "ratingradiobutton"));	
+		param.put("ratingdropdownbutton", getData(data, "ratingdropdownbutton"));
+		param.put("listbox", getData(data, "listbox"));
 		
-
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
 			testSkip = true;

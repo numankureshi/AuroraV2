@@ -55,6 +55,15 @@ public interface ISMXPage {
 	String RADIO_BUTTON = "//div[contains(text(),'Radio Button')]/parent::div[@id='dvrb']";
 	WebPageElements radio_button = new WebPageElements("Radio Button", "xpath", RADIO_BUTTON);
 	
+	String HORIZONTAL_RADIO_BUTTON = "//div[contains(text(),'Horizontal Radio')]/parent::div[@id='dvHRB']";
+	WebPageElements horizontal_radio_button = new WebPageElements("Hoorizontal Radio Button", "xpath", HORIZONTAL_RADIO_BUTTON);
+	
+	String RATING_RADIO2_BUTTON = "//div[contains(text(),'Rating Radio Button')]/parent::div[@id='dvrrb']";
+	WebPageElements rating_radio2_button = new WebPageElements("Rating Radio Button", "xpath", RATING_RADIO2_BUTTON);
+	
+	String RATING_DROPDOWN_BUTTON = "//div[contains(text(),'Rating Drop Down')]/parent::div[@id='dvratdd']";
+	WebPageElements rating_dropdown_button = new WebPageElements("Rating Drop Down Button", "xpath", RATING_DROPDOWN_BUTTON);
+	
 	String CHECK_BOX_BUTTON = "//div[contains(text(),'Check Box')]/parent::div[@id='dvmscb']";
 	WebPageElements check_box_button = new WebPageElements("Check Box Button", "xpath", CHECK_BOX_BUTTON);
 	
@@ -73,8 +82,17 @@ public interface ISMXPage {
 	String IMAGE_CHOICE_BUTTON = "//div[contains(text(),'Image Choice')]/parent::div[@id='dvIMC']";
 	WebPageElements image_choice_button = new WebPageElements("Image Choice Button", "xpath", IMAGE_CHOICE_BUTTON);
 	
+	String CAPTCHA_BUTTON = "//div[contains(text(),'Captcha')]/parent::div[@id='dvcaptcha']";
+	WebPageElements captcha_button = new WebPageElements("Captcha Button", "xpath", CAPTCHA_BUTTON);
+	
 	String RANKING_QUESTION_BUTTON = "//div[contains(text(),'Ranking')]/parent::div[@id='dvrk']";
 	WebPageElements ranking_question_button = new WebPageElements("Ranking Button", "xpath", RANKING_QUESTION_BUTTON);
+	
+	String NUMERIC_ALLOCATIONS_BUTTON = "//div[contains(text(),'Numeric Allocation')]/parent::div[@id='dvNumeric']";
+	WebPageElements numeric_allocations_button = new WebPageElements("Numeric Allocations Button", "xpath", NUMERIC_ALLOCATIONS_BUTTON);
+	
+	String ATTATHCMENTS_BUTTON = "//div[contains(text(),'Attachment')]/parent::div[@id='dvatt']";
+	WebPageElements attachments_button = new WebPageElements("Attachments Button", "xpath", ATTATHCMENTS_BUTTON);
 	
 	String MULTIPLE_TEXTBOX_BUTTON = "//div[contains(text(),'Multiple Text Box')]/parent::div[@id='dvmtb']";
 	WebPageElements multiple_textbox_button = new WebPageElements("Multiple Textbox Button", "xpath", MULTIPLE_TEXTBOX_BUTTON);
@@ -87,6 +105,9 @@ public interface ISMXPage {
 	
 	String MULTIPLE_CHECKBOX_BUTTON = "//div[contains(text(),'Check Box Grid')]/parent::div[@id='dvcbg']";
 	WebPageElements multiple_checkbox_button = new WebPageElements("Multiple Check Box Button", "xpath", MULTIPLE_CHECKBOX_BUTTON);
+	
+	String LISTBOX_BUTTON = "//div[contains(text(),'List Box')]/parent::div[@id='dvmslb']";
+	WebPageElements listbox_button = new WebPageElements("List Box Button", "xpath", LISTBOX_BUTTON);
 	
 	String RATING_RADIO_BUTTON = "//div[contains(text(),'Rating Radio Grid')]/parent::div[@id='dvrrg']";
 	WebPageElements rating_radio_button = new WebPageElements("Rating Radio Grid Button", "xpath", RATING_RADIO_BUTTON);
@@ -111,6 +132,9 @@ public interface ISMXPage {
 	
 	String IFRAME_ANSWER_OPTIONS2 = "//iframe[contains(@src,'PresetList_Grid.aspx?GridType')]";
 	WebPageElements iframe_answer_options2 = new WebPageElements("Iframe Answer Options", "xpath", IFRAME_ANSWER_OPTIONS2);
+	
+	String IFRAME_ANSWER_OPTIONS3 = "//iframe[contains(@src,'PresetList_Use.aspx')]";
+	WebPageElements iframe_answer_options3 = new WebPageElements("Iframe Questions Options", "xpath", IFRAME_ANSWER_OPTIONS3);
 	 
 	String DESCRIPTION_TEXT = "//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']";
 	WebPageElements description_text = new WebPageElements("Description Text Input", "xpath", DESCRIPTION_TEXT);
@@ -157,6 +181,12 @@ public interface ISMXPage {
 	String QUESTIONS_LIBRARY2 = "(//li[contains(text(),'Question Library')])[1]";
 	WebPageElements questions_library2 = new WebPageElements("Questions Library Button", "xpath", QUESTIONS_LIBRARY2);
 	
+	String QUESTIONS_LIBRARY3 = "(//div[contains(text(),'Attachment Properties')]/following::a[contains(text(),'Question Library') and @class='qmultiple_library'])[1]";
+	WebPageElements questions_library3 = new WebPageElements("Questions Library Button", "xpath", QUESTIONS_LIBRARY3);
+	
+	String GET_QUESTIONS_QUESTIONS_LIBRARY = "(//div[contains(text(),'Attachment Properties')]/following::a[text()='Get questions from Question Library'])[1]";
+	WebPageElements get_questions_questions_library = new WebPageElements("Questions Library Button", "xpath", GET_QUESTIONS_QUESTIONS_LIBRARY);
+	
 	String GET_ANSWER_OPTIONS_LIBRARY = "//a[text()='Get Answer Options from Answer Library']";
 	WebPageElements get_answer_options_library = new WebPageElements("Get Answer Options from Answer Library Button", "xpath", GET_ANSWER_OPTIONS_LIBRARY);
 	
@@ -168,6 +198,9 @@ public interface ISMXPage {
 	
 	String OTHER_CHCKBOX = "//input[@id='CHK_Other_CheckBox']/following-sibling::label[text()='Include \"Other\" text responses']";
 	WebPageElements other_checkbox = new WebPageElements("Other checkbox", "xpath", OTHER_CHCKBOX);
+	
+	String OTHER_CHCKBOX2 = "//input[@id='CHK_Other']/following-sibling::label[text()='Include \"Other\" text responses']";
+	WebPageElements other_checkbox2 = new WebPageElements("Other checkbox", "xpath", OTHER_CHCKBOX2);
 	
 	String NONE_OF_ABOVE = "//label[text()='Include \"None of the above\" ']";
 	WebPageElements none_of_above = new WebPageElements("None of Above", "xpath", NONE_OF_ABOVE);

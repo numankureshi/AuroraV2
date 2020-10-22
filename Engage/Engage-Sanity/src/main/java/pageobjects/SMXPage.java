@@ -48,6 +48,12 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterRatingDropDownGridButton(driver, param, test);
 		enterRatingScaleGridButton(driver, param, test);
 		enterMatrixGridButton(driver, param, test);
+		enterHorizontalRadioButton(driver, param, test);
+		enterAttachmentButton(driver, param, test);
+		enterRatingRadioButton(driver, param, test);
+		enterRatingDropDownButton(driver, param, test);
+		enterListBoxButton(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
 	}
 
 	public void selectCreateProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -283,6 +289,27 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 //		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
+		click(driver, testcaseName, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
+		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
+		click(driver, testcaseName, use_this_list_button, test);
+		driver.switchTo().defaultContent();
+		}
+	
+	public void questionsLibrary2(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		
+		waitforElemPresent(driver, testcaseName, 10, questions_library3, test);
+		click(driver, testcaseName, questions_library3, test);
+		
+		waitforElemPresent(driver, testcaseName, 10, get_questions_questions_library, test);
+		click(driver, testcaseName, get_questions_questions_library, test);
+		
+//		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options3, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS3)));
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
 		click(driver, testcaseName, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
 		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
@@ -716,6 +743,142 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("matrixgrid") +"']"), "Matrix Grid Added "+ param.get("matrixgrid"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("matrixgrid") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "Matrix Grid Added "+ param.get("matrixgrid"), test);
+		
+	}
+	
+	public void enterHorizontalRadioButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, horizontal_radio_button, test);
+		doubleClick(driver, testcaseName, horizontal_radio_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("horizontalradiobutton"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		waitforElemPresent(driver, testcaseName, 30, other_checkbox, test);
+		click(driver, testcaseName, other_checkbox, test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("horizontalradiobutton") +"']"), "Horizontal Radio Buttons Label Added "+ param.get("horizontalradiobutton"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("horizontalradiobutton") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Horizontal Radio Buttons Added "+ param.get("horizontalradiobutton"), test);
+	}
+	
+	public void enterNumericAllocationsButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, numeric_allocations_button, test);
+		doubleClick(driver, testcaseName, numeric_allocations_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("numericallocations"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, param.get("AnswerOptions1"), test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("numericallocations") +"']"), "Numeric Allocations Added "+ param.get("numericallocations"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("numericallocations") +"']/parent::div/following-sibling::div//table[@class='minColTable']"), "Numeric Allocations Added "+ param.get("numericallocations"), test);
+	}
+	
+	public void enterAttachmentButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, attachments_button, test);
+		doubleClick(driver, testcaseName, attachments_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("attachments"), test);
+		driver.switchTo().defaultContent();
+		questionsLibrary2(driver, param, param.get("QuestionOptions"), test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("attachments") +"']"), "Attachments Added "+ param.get("attachments"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("attachments") +"']/parent::div/following-sibling::div//table[@class='minColTable ']"), "Attachments Added "+ param.get("attachments"), test);
+	}
+	
+	public void enterRatingRadioButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, rating_radio2_button, test);
+		doubleClick(driver, testcaseName, rating_radio2_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("ratingradiobutton"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, param.get("AnswerOptions1"), test);
+		
+		for(int i = 1; i <= 10; i++) {
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='rating_weight"+ i +"']"), "Weight "+i, test);
+			setText(driver, testcaseName, By.xpath("//input[@name='rating_weight"+ i +"']"), Integer.toString((i - 1)), "Weight "+i, test);
+			Thread.sleep(1000);
+		}
+		
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingradiobutton") +"']"), "Rating Radio Buttons "+ param.get("ratingradiobutton"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingradiobutton") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Rating Radio Buttons Added "+ param.get("ratingradiobutton"), test);
+	}
+	
+	public void enterRatingDropDownButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, rating_dropdown_button, test);
+		doubleClick(driver, testcaseName, rating_dropdown_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("ratingdropdownbutton"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, param.get("AnswerOptions1"), test);
+		
+		for(int i = 1; i <= 10; i++) {
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='rating_weight"+ i +"']"), "Weight "+i, test);
+			setText(driver, testcaseName, By.xpath("//input[@name='rating_weight"+ i +"']"), Integer.toString((i - 1)), "Weight "+i, test);
+			Thread.sleep(1000);
+		}
+		
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingdropdownbutton") +"']"), "Rating Drop Down "+ param.get("ratingdropdownbutton"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingdropdownbutton") +"']/parent::div/following-sibling::div/div[@class='Search-DD-Container ControlColorsDD']"), "Rating Drop Down Buttons Added "+ param.get("ratingdropdownbutton"), test);
+	}
+	
+	public void enterListBoxButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, listbox_button, test);
+		doubleClick(driver, testcaseName, listbox_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("listbox"), test);
+		driver.switchTo().defaultContent();
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		waitforElemPresent(driver, testcaseName, 10, other_checkbox2, test);
+		click(driver, testcaseName, other_checkbox2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		
+		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
+		click(driver, testcaseName, save_button_return, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("listbox") +"']"), "Listbox Added "+ param.get("listbox"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("listbox") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Listbox Added "+ param.get("listbox"), test);
 		
 	}
 }
