@@ -1,5 +1,6 @@
 package utility;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -8,9 +9,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -175,6 +178,57 @@ public class SeleniumUtils {
 			Assert.fail();
 		}
 	}
+	
+	
+	public void waitForElementToBeVisible(WebDriver driver, String testcaseName, WebPageElements ele, int timeOutInSeconds, int pollingEveryInMilliSec, ExtentTest test) {
+		WebElement element = null;
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			Wait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(timeOutInSeconds))
+					.pollingEvery(Duration.ofMillis(pollingEveryInMilliSec)).ignoring(NoSuchElementException.class);
+			fWait.until(ExpectedConditions.visibilityOf(element));
+			test.log(Status.INFO, "Successfully waited for " + ele.getName() + " to be present on page.");
+			Add_Log.info("Successfully waited for " + ele.getName() + " to be present on page.");
+			Reporter.log("Successfully waited for " + ele.getName() + " to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, ele.getName() + "is not present on page.");
+			Add_Log.info(ele.getName() + "is not present on page.");
+			Reporter.log(ele.getName() + "is not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| " + ele.getName() + "is not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+
+		}
+	}
+	
+	
+	public void waitUntilReqAttribute(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele,
+			final String attribute, final String attributeValue, ExtentTest test) {
+		try {
+		WebElement element = getWebElement(driver, testcaseName, ele, test);
+		long startTime = System.currentTimeMillis();
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		wait.until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return element.getAttribute(attribute).contains(attributeValue);
+			}
+		});
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;  //Get total wait in milliseconds
+		test.log(Status.INFO, "Successfully waited for "+ele.getName()+" to change it's "+attribute+ " attribute value to "+attributeValue+" is "+totalTime+" milliseconds");
+		Add_Log.info("Successfully waited for "+ele.getName()+" to change it's "+attribute+ " attribute value to "+attributeValue+" is "+totalTime+" milliseconds");
+		Reporter.log("Successfully waited for "+ele.getName()+" to change it's "+attribute+ " attribute value to "+attributeValue+" is "+totalTime+" milliseconds");
+		}catch(Exception e) {
+			test.log(Status.FAIL, "Attribute value of " + ele.getName() + "is not changed");
+			Add_Log.info("Attribute value of " + ele.getName() + "is not changed");
+			Reporter.log("Attribute value of " + ele.getName() + "is not changed");
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Attribute value of " + ele.getName() + "is not changed");
+			TestResultStatus.TestFail = true;
+			Assert.fail();		
+		}
+	}
+	
+	
 	
 	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, By by, String name, ExtentTest test) {
 		try {
@@ -357,6 +411,20 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void scrollIntoCenter(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
+		try {
+			WebElement element = getWebElement(driver, testcaseName, ele, test);
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to scrolling on element "+ ele.getName());
+			Add_Log.info("Failed to scrolling on element "+ ele.getName());
+			Reporter.log("Failed to scrolling on element "+ ele.getName());
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ ele.getName());
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
 	public void scrollIntoView(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {
 		WebElement element = driver.findElement(by);
 		try {
@@ -442,6 +510,8 @@ public class SeleniumUtils {
 		}
 	}
 	
+
+	
 	
 	public boolean waitForJStoLoad(WebDriver driver, long timeOutInSeconds) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
@@ -467,6 +537,28 @@ public class SeleniumUtils {
 			}
 		};
 		return wait.until(jQueryLoad) && wait.until(jsLoad);
+	}
+	
+	
+	public void clickAtOffset(WebDriver driver, String testcaseName, WebPageElements ele, int x, int y, ExtentTest test) {
+		
+		WebElement element = null;
+		try {
+			Actions act = new Actions(driver);
+			element = getWebElement(driver, testcaseName, ele, test);
+			act.moveToElement(element, x, y).click().build().perform();
+			Add_Log.info("Click on element at offset " + element);
+			test.log(Status.INFO, "Click on element at offset " + element);
+			Reporter.log("Click on element at offset " + element);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
+			Add_Log.info("Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
+			Reporter.log("Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+		
 	}
 
 }
