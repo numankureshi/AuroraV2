@@ -70,8 +70,14 @@ public interface ISMXPage {
 	String DROP_DOWN_BUTTON = "//div[contains(text(),'Drop Down')]/parent::div[@id='dvdd']";
 	WebPageElements drop_down_button = new WebPageElements("Drop Down Button", "xpath", DROP_DOWN_BUTTON);
 	
+	String DEMOGRAPHICS_BUTTON = "//div[contains(text(),'Demographics')]/parent::div[@id='dvdemo']";
+	WebPageElements demographics_button = new WebPageElements("Demographics Button", "xpath", DEMOGRAPHICS_BUTTON);
+	
 	String RATING_SCALE_BUTTON = "//div[contains(text(),'Drop Down')]/parent::div[@id='dvdd']";
 	WebPageElements rating_scale_button = new WebPageElements("Rating Scale Button", "xpath", RATING_SCALE_BUTTON);
+	
+	String SYMBOL_RATING_SCALE_BUTTON = "//div[contains(text(),'Symbol Rating Scale')]/parent::div[@id='dvGQ']";
+	WebPageElements symbol_rating_scale_button = new WebPageElements("Symbol Rating Scale Button", "xpath", SYMBOL_RATING_SCALE_BUTTON);
 	
 	String LIKE_DISLIKE_BUTTON = "//div[contains(text(),'Like/Dislike')]/parent::div[@id='dvLikeDislike']";
 	WebPageElements like_dislike_button = new WebPageElements("Like/Dislike Button", "xpath", LIKE_DISLIKE_BUTTON);
@@ -154,6 +160,9 @@ public interface ISMXPage {
 	String SHOW_NA_OPTION = "//label[text()='Show N/A option']";
 	WebPageElements show_na_option = new WebPageElements("Show N/A option", "xpath", SHOW_NA_OPTION);
 	
+	String NUMBER_SUBQUESTION = "//select[@name='DdlTotalControls_GQ']";
+	WebPageElements number_subquestion = new WebPageElements("Number of Sub Questions", "xpath", NUMBER_SUBQUESTION);
+	
 	String SHOW_SCALE_IN_REVERSE = "//label[text()='Show scale in reverse order']";
 	WebPageElements show_scale_in_reverse_order = new WebPageElements("Show scale in reverse order", "xpath", SHOW_SCALE_IN_REVERSE);
 	
@@ -211,12 +220,76 @@ public interface ISMXPage {
 	String ADD_IMAGE_ICON2 = "//div[@class='add_dv']/div[contains(@class,'addbtn')][1]";
 	WebPageElements add_image_icon2 = new WebPageElements("Add Image", "xpath", ADD_IMAGE_ICON2);
 	
-
+	String REPORTING_VALUE = "//input[@name='txtRepVal']";
+	WebPageElements reporting_value = new WebPageElements("Reporting Value", "xpath", REPORTING_VALUE);
 	
 	String BROWSE_BUTTON = "//input[@class='button_upload']";
 	WebPageElements browse_button = new WebPageElements("Browse Button", "xpath", BROWSE_BUTTON);
 	
-	String REPORTING_VALUE = "//input[@name='txtRepVal']";
-	WebPageElements reporting_value = new WebPageElements("Reporting Value", "xpath", REPORTING_VALUE);
+	String NAME_EXPAND = "//a[text()='Name']";
+	WebPageElements name_expand = new WebPageElements("Demographics Name", "xpath", NAME_EXPAND);
+	
+	String ADDRESS_EXPAND = "//a[text()='Address']";
+	WebPageElements address_expand = new WebPageElements("Demographics Address", "xpath", ADDRESS_EXPAND);
+	
+	String TELEPHONE_EXPAND = "//a[text()='Telephone/Fax']";
+	WebPageElements telephone_expand = new WebPageElements("Demographics Telephone/FAX", "xpath", TELEPHONE_EXPAND);
+	
+	String NAME_TITLE = "//label[text()='Title']";
+	WebPageElements name_title = new WebPageElements("Demographics Name: Title", "xpath", NAME_TITLE);
+	
+	String NAME_FULL_NAME = "//label[text()='Full Name']";
+	WebPageElements name_full_name = new WebPageElements("Demographics Name: Full Name", "xpath", NAME_FULL_NAME);
+	
+	String NAME_FIRST_NAME = "//label[text()='First Name ']";
+	WebPageElements name_first_name = new WebPageElements("Demographics Name: First Name", "xpath", NAME_FIRST_NAME);
+	
+	String NAME_MIDDLE_NAME = "//label[text()='Middle Name/Initial']";
+	WebPageElements name_middle_name = new WebPageElements("Demographics Name: Middle Name", "xpath", NAME_MIDDLE_NAME);
+	
+	String NAME_LAST_NAME = "//label[text()='Last Name']";
+	WebPageElements name_last_name = new WebPageElements("Demographics Name: Last Name", "xpath", NAME_LAST_NAME);
+	
+	String GENDER = "//label[text()='Gender']";
+	WebPageElements gender = new WebPageElements("Demographics Gender", "xpath", GENDER);
+	
+	String DOB = "//label[text()='Date of Birth  ']";
+	WebPageElements dob = new WebPageElements("Demographics Date of Birth", "xpath", DOB);
+	
+	String ADDRESS_STREET1 = "//label[text()='Street 1']";
+	WebPageElements address_street1 = new WebPageElements("Demographics Address: Street 1", "xpath", ADDRESS_STREET1);
+	
+	String ADDRESS_STREET2 = "//label[text()='Street 2']";
+	WebPageElements address_street2 = new WebPageElements("Demographics Address: Street 2", "xpath", ADDRESS_STREET2);
+	
+	String ADDRESS_CITY = "//label[text()='City']";
+	WebPageElements address_city = new WebPageElements("Demographics Address: City", "xpath", ADDRESS_CITY);
+	
+	String ADDRESS_COUNTRY = "//label[text()='Country']";
+	WebPageElements address_country = new WebPageElements("Demographics Address: Country", "xpath", ADDRESS_COUNTRY);
+	
+	String ADDRESS_STATE = "//label[text()='State']";
+	WebPageElements address_state = new WebPageElements("Demographics Address: State", "xpath", ADDRESS_STATE);
+	
+	String ADDRESS_ZIP = "//label[text()='ZIP']";
+	WebPageElements address_zip = new WebPageElements("Demographics Address: ZIP", "xpath", ADDRESS_ZIP);
+	
+	String ADDRESS_ZIPPLUS4 = "//label[text()='ZIP+4']";
+	WebPageElements address_zipplus4 = new WebPageElements("Demographics Address: ZIP+4", "xpath", ADDRESS_ZIPPLUS4);
+	
+	String TELEPHONE_TELEPHONE = "//label[text()='Telephone']";
+	WebPageElements telephone_telephone = new WebPageElements("Demographics Telephone/FAX: Telephone", "xpath", TELEPHONE_TELEPHONE);
+	
+	String TELEPHONE_EXTENSION = "//label[text()='Extension']";
+	WebPageElements telephone_extension = new WebPageElements("Demographics Telephone/FAX: Extension", "xpath", TELEPHONE_EXTENSION);
+	
+	String TELEPHONE_FAX = "//label[text()='Fax']";
+	WebPageElements telephone_fax = new WebPageElements("Demographics Telephone/FAX: Fax", "xpath", TELEPHONE_FAX);
+	
+	String EMAIL_ADDRESS = "//label[text()='Email Address']";
+	WebPageElements email_address = new WebPageElements("Demographics Email Address", "xpath", EMAIL_ADDRESS);
+	
+	String REENTER_EMAIL_ADDRESS = "//label[text()='Require to re-enter email address.']";
+	WebPageElements reenter_email_address = new WebPageElements("Demographics Require to re-enter email address", "xpath", REENTER_EMAIL_ADDRESS);
 	
 }

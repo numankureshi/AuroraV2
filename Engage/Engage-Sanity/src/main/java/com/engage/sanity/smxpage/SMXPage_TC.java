@@ -89,6 +89,9 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("ratingradiobutton", getData(data, "ratingradiobutton"));	
 		param.put("ratingdropdownbutton", getData(data, "ratingdropdownbutton"));
 		param.put("listbox", getData(data, "listbox"));
+		param.put("demographics", getData(data, "demographics"));
+		param.put("subquestions", getData(data, "subquestions"));
+		param.put("symbolratingscale", getData(data, "symbolratingscale"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");

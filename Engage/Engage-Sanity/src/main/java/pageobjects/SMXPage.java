@@ -35,7 +35,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterRadioButton(driver, param, test);
 		enterCheckBoxButton(driver, param, test);
 		enterDropDownButton(driver, param, test);
+		enterDemographicsButton(driver, param, test);
 		enterRatingScaleButton(driver, param, test);
+		enterSymbolRatingScaleButton(driver, param, test);
 		enterLikeDislikeButton(driver, param, test);
 		enterRankingQuestionButton(driver, param, test);
 		enterDateButton(driver, param, test);
@@ -338,6 +340,71 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("dropdown") +"']/parent::div/following-sibling::div/div[@class='clsEdit ControlColorsDD']"), "Drop Down Added "+ param.get("dropdown"), test);
 	}
 	
+	public void enterDemographicsButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, demographics_button, test);
+		doubleClick(driver, testcaseName, demographics_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("demographics"), test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, name_expand, test);
+		click(driver, testcaseName, name_expand, test);
+		waitforElemPresent(driver, testcaseName, 30, name_title, test);
+		click(driver, testcaseName, name_title, test);
+//		waitforElemPresent(driver, testcaseName, 30, name_full_name, test);
+//		click(driver, testcaseName, name_full_name, test);
+		waitforElemPresent(driver, testcaseName, 30, name_first_name, test);
+		click(driver, testcaseName, name_first_name, test);
+		waitforElemPresent(driver, testcaseName, 30, name_middle_name, test);
+		click(driver, testcaseName, name_middle_name, test);
+		waitforElemPresent(driver, testcaseName, 30, name_last_name, test);
+		click(driver, testcaseName, name_last_name, test);
+		waitforElemPresent(driver, testcaseName, 30, gender, test);
+		click(driver, testcaseName, gender, test);
+		waitforElemPresent(driver, testcaseName, 30, dob, test);
+		click(driver, testcaseName, dob, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, address_expand, test);
+		click(driver, testcaseName, address_expand, test);
+		waitforElemPresent(driver, testcaseName, 30, address_street1, test);
+		click(driver, testcaseName, address_street1, test);
+		waitforElemPresent(driver, testcaseName, 30, address_street2, test);
+		click(driver, testcaseName, address_street2, test);
+		waitforElemPresent(driver, testcaseName, 30, address_city, test);
+		click(driver, testcaseName, address_city, test);
+		waitforElemPresent(driver, testcaseName, 30, address_country, test);
+		click(driver, testcaseName, address_country, test);
+		waitforElemPresent(driver, testcaseName, 30, address_state, test);
+		click(driver, testcaseName, address_state, test);
+		waitforElemPresent(driver, testcaseName, 30, address_zip, test);
+		click(driver, testcaseName, address_zip, test);
+//		waitforElemPresent(driver, testcaseName, 30, address_zipplus4, test);
+//		click(driver, testcaseName, address_zipplus4, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, telephone_expand, test);
+		click(driver, testcaseName, telephone_expand, test);
+		waitforElemPresent(driver, testcaseName, 30, telephone_telephone, test);
+		click(driver, testcaseName, telephone_telephone, test);
+		waitforElemPresent(driver, testcaseName, 30, telephone_extension, test);
+		click(driver, testcaseName, telephone_extension, test);
+		waitforElemPresent(driver, testcaseName, 30, telephone_fax, test);
+		click(driver, testcaseName, telephone_fax, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, email_address, test);
+		click(driver, testcaseName, email_address, test);
+		waitforElemPresent(driver, testcaseName, 30, reenter_email_address, test);
+		click(driver, testcaseName, reenter_email_address, test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("demographics") +"']"), "Demographics Label Added "+ param.get("demographics"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("demographics") +"']/parent::div/following-sibling::div//table[@class='minColTable']"), "Demographics Added "+ param.get("demographics"), test);
+	}
+	
 	public void enterRatingScaleButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -363,6 +430,78 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']"), "Rating Scale Added "+ param.get("ratingscale"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-slider-horizontal')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
+	}
+	
+	public void enterSymbolRatingScaleButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String[] subQuestions = param.get("subquestions").split(";");
+		waitforElemPresent(driver, testcaseName, 30, symbol_rating_scale_button, test);
+		doubleClick(driver, testcaseName, symbol_rating_scale_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		waitforElemPresent(driver, testcaseName, 30, description_text, test);
+		setText(driver, testcaseName, description_text, param.get("symbolratingscale"), test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, number_subquestion, test);
+		Select select = new Select(driver.findElement(By.xpath(NUMBER_SUBQUESTION)));
+		select.selectByVisibleText("6");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption1']"), "Sub Question 1", test);
+		setText(driver, testcaseName, By.xpath("//input[@name='GQoption1']"), subQuestions[0], "Sub Question 1", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@name='ddlGQGrid_0_1']"), "Sub Question 1 Scale", test);
+		Select selectSubquestion1 = new Select(driver.findElement(By.xpath("//select[@name='ddlGQGrid_0_1']")));
+		selectSubquestion1.selectByVisibleText("Star");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption2']"), "Sub Question 2", test);
+		setText(driver, testcaseName, By.xpath("//input[@name='GQoption2']"), subQuestions[1], "Sub Question 2", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@name='ddlGQGrid_0_2']"), "Sub Question 2 Scale", test);
+		Select selectSubquestion2 = new Select(driver.findElement(By.xpath("//select[@name='ddlGQGrid_0_2']")));
+		selectSubquestion2.selectByVisibleText("Thumb up");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption3']"), "Sub Question 3", test);
+		setText(driver, testcaseName, By.xpath("//input[@name='GQoption3']"), subQuestions[2], "Sub Question 3", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@name='ddlGQGrid_0_3']"), "Sub Question 3 Scale", test);
+		Select selectSubquestion3 = new Select(driver.findElement(By.xpath("//select[@name='ddlGQGrid_0_3']")));
+		selectSubquestion3.selectByVisibleText("Heart");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption4']"), "Sub Question 4", test);
+		setText(driver, testcaseName, By.xpath("//input[@name='GQoption4']"), subQuestions[3], "Sub Question 4", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@name='ddlGQGrid_0_4']"), "Sub Question 4 Scale", test);
+		Select selectSubquestion4 = new Select(driver.findElement(By.xpath("//select[@name='ddlGQGrid_0_4']")));
+		selectSubquestion4.selectByVisibleText("Check mark");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption5']"), "Sub Question 5", test);
+		setText(driver, testcaseName, By.xpath("//input[@name='GQoption5']"), subQuestions[4], "Sub Question 5", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@name='ddlGQGrid_0_5']"), "Sub Question 5 Scale", test);
+		Select selectSubquestion5 = new Select(driver.findElement(By.xpath("//select[@name='ddlGQGrid_0_5']")));
+		selectSubquestion5.selectByVisibleText("Dollar sign");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption6']"), "Sub Question 6", test);
+		setText(driver, testcaseName, By.xpath("//input[@name='GQoption6']"), subQuestions[5], "Sub Question 6", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@name='ddlGQGrid_0_6']"), "Sub Question 6 Scale", test);
+		Select selectSubquestion6 = new Select(driver.findElement(By.xpath("//select[@name='ddlGQGrid_0_6']")));
+		selectSubquestion6.selectByVisibleText("Person");
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("symbolratingscale") +"']"), "Symbol Rating Scale Added "+ param.get("symbolratingscale"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("symbolratingscale") +"']/parent::div/following-sibling::div//table[@class='minColTable ']"), "Symbol Rating Scale Added "+ param.get("symbolratingscale"), test);
 	}
 	
 	public void enterLikeDislikeButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
