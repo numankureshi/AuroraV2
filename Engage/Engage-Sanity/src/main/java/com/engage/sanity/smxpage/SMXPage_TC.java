@@ -61,6 +61,7 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("textbox", getData(data, "textbox"));
 		param.put("radiobutton", getData(data, "radiobutton"));
 		param.put("AnswerOptions", getData(data, "AnswerOptions"));
+		param.put("AnswerOptions1", getData(data, "AnswerOptions1"));
 		param.put("checkbox", getData(data, "checkbox"));
 		param.put("imagechoice", getData(data, "imagechoice"));
 		param.put("reportingvalue", getData(data, "reportingvalue"));

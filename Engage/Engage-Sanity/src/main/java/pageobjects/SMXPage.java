@@ -260,6 +260,23 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		driver.switchTo().defaultContent();
 		}
 	
+	public void answersLibraryGrid(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 10, answers_library, test);
+		click(driver, testcaseName, answers_library, test);
+		waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
+		click(driver, testcaseName, get_answer_options_library, test);
+		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS_GRID)));
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
+		click(driver, testcaseName, use_this_list_button, test);
+		driver.switchTo().defaultContent();
+		}
+	
 	public void answersLibrary2(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -276,7 +293,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
 		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
 		click(driver, testcaseName, use_this_list_button, test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		}
 	
 	public void questionsLibrary(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
@@ -291,11 +308,13 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 //		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
+		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
 		click(driver, testcaseName, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
+		Thread.sleep(3000);
 		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
 		click(driver, testcaseName, use_this_list_button, test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		}
 	
 	public void questionsLibrary2(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
@@ -416,6 +435,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("ratingscale"), test);
 		driver.switchTo().defaultContent();
+		scrollIntoView(driver, testcaseName, show_na_option, test);
+		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, show_na_option, test);
 		click(driver, testcaseName, show_na_option, test);
 		Thread.sleep(500);
@@ -562,6 +583,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterImageChoiceButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		scrollIntoView(driver, testcaseName, image_choice_button, test);
+		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, image_choice_button, test);
 		doubleClick(driver, testcaseName, image_choice_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -576,27 +599,29 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			if(i == 0){
 				waitforElemPresent(driver, testcaseName, 10, add_image_icon, test);
 				click(driver, testcaseName, add_image_icon, test);
+				waitforElemPresent(driver, testcaseName, 10, iframe_answer_options4, test);
+				driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS4)));
 			} else {
 				waitforElemPresent(driver, testcaseName, 10, add_image_icon2, test);
 				click(driver, testcaseName, add_image_icon2, test);
 			}
 			
 			waitForLoad(driver, testcaseName, 30, test);
-//			waitforElemPresent(driver, testcaseName, 10, browse_button, test);
-//			setText(driver, testcaseName, browse_button, images[i], test);
+
 			driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
 					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\" + images[i]);
 			Thread.sleep(1000);
-			waitForLoad(driver, testcaseName, 30, test);
+			waitForLoad(driver, testcaseName, 60, test);
 			waitforElemPresent(driver, testcaseName, 10, reporting_value, test);
 			setText(driver, testcaseName, reporting_value, reportingValue[i], test);
 		}
 		waitforElemPresent(driver, testcaseName, 10, save_button_ind, test);
 		click(driver, testcaseName, save_button_ind, test);
 		waitForLoad(driver, testcaseName, 30, test);
-		
+		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 10, save_button, test);
 		click(driver, testcaseName, save_button, test);
+		
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("imagechoice") +"']"), "Image Choice Added "+ param.get("imagechoice"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("imagechoice") +"']/parent::div/following-sibling::div//li[@class='ng-scope']"), "Image Choice Added "+ param.get("imagechoice"), test);
@@ -649,7 +674,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("multidropdown"), test);
 		driver.switchTo().defaultContent();
-		answersLibrary(driver, param, param.get("AnswerOptions1"), test);
+		answersLibraryGrid(driver, param, param.get("AnswerOptions1"), test);
 		
 		waitforElemPresent(driver, testcaseName, 30, multi_dropdown1, test);
 		setText(driver, testcaseName, multi_dropdown1, param.get("dropdown1"), test);
@@ -674,18 +699,26 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, multiple_radio_button, test);
 		doubleClick(driver, testcaseName, multiple_radio_button, test);
+		Thread.sleep(2000);
 		waitForLoad(driver, testcaseName, 30, test);
+		Thread.sleep(2000);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_GRID)));
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		
+		
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("multiradio"), test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		answersLibrary2(driver, param, param.get("AnswerOptions"), test);
 		questionsLibrary(driver, param, param.get("QuestionOptions"), test);
 		
 		
 		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
 		click(driver, testcaseName, save_button_return, test);
+//		driver.switchTo().defaultContent();
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("multiradio") +"']"), "Radio Grid Added "+ param.get("multiradio"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("multiradio") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "Radio Grid Added "+ param.get("multiradio"), test);
@@ -698,17 +731,20 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, multiple_checkbox_button, test);
 		doubleClick(driver, testcaseName, multiple_checkbox_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_GRID)));
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("multicheckbox"), test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		answersLibrary2(driver, param, param.get("AnswerOptions"), test);
 		questionsLibrary(driver, param, param.get("QuestionOptions"), test);
 		
 		
 		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
 		click(driver, testcaseName, save_button_return, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("multicheckbox") +"']"), "CheckBox Grid Added "+ param.get("multicheckbox"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("multicheckbox") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "CheckBox Grid Added "+ param.get("multicheckbox"), test);
@@ -721,11 +757,14 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, rating_radio_button, test);
 		doubleClick(driver, testcaseName, rating_radio_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_GRID)));
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("ratingradio"), test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
+		
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='Choice 1']"), "Choice 1", test);
 		setText(driver, testcaseName, By.xpath("//input[@value='Choice 1']"), "Yes", "Choice 1", test);
@@ -750,6 +789,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
 		click(driver, testcaseName, save_button_return, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingradio") +"']"), "Rating Radio Grid Added "+ param.get("ratingradio"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingradio") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "Rating Radio Grid Added "+ param.get("ratingradio"), test);
@@ -762,15 +802,17 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, rating_drop_down_button, test);
 		doubleClick(driver, testcaseName, rating_drop_down_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_GRID)));
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("ratingdropdown"), test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[text()='Add/Edit Options']"), "Add/Edit Options", test);
 		click(driver, testcaseName, By.xpath("//a[text()='Add/Edit Options']"), "Add/Edit Options", test);
-		
+		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_add_manually, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ADD_MANUALLY)));
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtChoice_0']"), "Choice 2", test);
@@ -792,13 +834,13 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		setText(driver, testcaseName, By.xpath("//input[@name='txtWeight_2']"), "0", "Weight 3", test);
 		waitforElemPresent(driver, testcaseName, 10, save_button_manual, test);
 		click(driver, testcaseName, save_button_manual, test);
-		
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		questionsLibrary(driver, param, param.get("QuestionOptions"), test);
 		
 		
 		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
 		click(driver, testcaseName, save_button_return, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingdropdown") +"']"), "Rating Drop Down Grid Added "+ param.get("ratingdropdown"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingdropdown") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "Rating Drop Down Grid Added "+ param.get("ratingdropdown"), test);
@@ -811,11 +853,13 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, rating_scale_grid_button, test);
 		doubleClick(driver, testcaseName, rating_scale_grid_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_GRID)));
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("ratingscalegrid"), test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-plus']"), "Weight Highest", test);
@@ -823,8 +867,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']"), "Weight Middle", test);
 		click(driver, testcaseName, By.xpath("//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']"), "Weight Middle", test);
-		
+		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtNA_0']"), "Weight NA", test);
+		click(driver, testcaseName, By.xpath("//input[@name='txtNA_0']"), "Weight NA", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtNA_0']"), "NA", "Weight NA", test);
 
 		questionsLibrary(driver, param, param.get("QuestionOptions"), test);
@@ -832,6 +877,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
 		click(driver, testcaseName, save_button_return, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscalegrid") +"']"), "Rating Scale Grid Added "+ param.get("ratingscalegrid"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscalegrid") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "Rating Scale Grid Added "+ param.get("ratingscalegrid"), test);
@@ -844,41 +890,52 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, matrix_grid_button, test);
 		doubleClick(driver, testcaseName, matrix_grid_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, iframe_answer_grid, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_GRID)));
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("matrixgrid"), test);
-		driver.switchTo().defaultContent();
+		driver.switchTo().parentFrame();
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_0_Header']"), "Radio Grid Header", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_0_Header']"), "Radio Grid Header", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_0_Header']"), param.get("multiradio"), "Radio Grid Header", test);
 
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_1_Header']"), "Checkbox Grid Header", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_1_Header']"), "Radio Grid Header", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_1_Header']"), param.get("multicheckbox"), "Checkbox Grid Header", test);
 
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_0_0_Choice']"), "Radio Choice 1", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_0_0_Choice']"), "Radio Choice 1", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_0_0_Choice']"), "Yes", "Radio Choice 1", test);
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_0_1_Choice']"), "Radio Choice 2", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_0_1_Choice']"), "Radio Choice 2", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_0_1_Choice']"), "No", "Radio Choice 2", test);
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_0_2_Choice']"), "Radio Choice 3", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_0_2_Choice']"), "Radio Choice 3", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_0_2_Choice']"), "NA", "Radio Choice 3", test);
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_1_0_Choice']"), "Checkbox Choice 1", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_1_0_Choice']"), "Checkbox Choice 1", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_1_0_Choice']"), "Yes", "Checkbox Choice 1", test);
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_1_1_Choice']"), "Checkbox Choice 2", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_1_1_Choice']"), "Checkbox Choice 2", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_1_1_Choice']"), "No", "Checkbox Choice 2", test);
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtGrid_1_2_Choice']"), "Checkbox Choice 3", test);
+		click(driver, testcaseName,  By.xpath("//input[@name='txtGrid_1_2_Choice']"), "Checkbox Choice 3", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtGrid_1_2_Choice']"), "NA", "Checkbox Choice 3", test);
-
+Thread.sleep(1000);
 		questionsLibrary(driver, param, param.get("QuestionOptions"), test);
 		
 		
 		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
 		click(driver, testcaseName, save_button_return, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("matrixgrid") +"']"), "Matrix Grid Added "+ param.get("matrixgrid"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("matrixgrid") +"']/parent::div/following-sibling::div//table[contains(@class,'minColTable')]"), "Matrix Grid Added "+ param.get("matrixgrid"), test);
@@ -888,6 +945,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterHorizontalRadioButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		scrollIntoView(driver, testcaseName, horizontal_radio_button, test);
+		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, horizontal_radio_button, test);
 		doubleClick(driver, testcaseName, horizontal_radio_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -1013,8 +1072,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		
 		
-		waitforElemPresent(driver, testcaseName, 10, save_button_return, test);
-		click(driver, testcaseName, save_button_return, test);
+		waitforElemPresent(driver, testcaseName, 10, save_button, test);
+		click(driver, testcaseName, save_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("listbox") +"']"), "Listbox Added "+ param.get("listbox"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("listbox") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Listbox Added "+ param.get("listbox"), test);

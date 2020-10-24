@@ -73,7 +73,7 @@ public interface ISMXPage {
 	String DEMOGRAPHICS_BUTTON = "//div[contains(text(),'Demographics')]/parent::div[@id='dvdemo']";
 	WebPageElements demographics_button = new WebPageElements("Demographics Button", "xpath", DEMOGRAPHICS_BUTTON);
 	
-	String RATING_SCALE_BUTTON = "//div[contains(text(),'Drop Down')]/parent::div[@id='dvdd']";
+	String RATING_SCALE_BUTTON = "//div[contains(text(),'Rating Scale')]/parent::div[@id='dvrat']";
 	WebPageElements rating_scale_button = new WebPageElements("Rating Scale Button", "xpath", RATING_SCALE_BUTTON);
 	
 	String SYMBOL_RATING_SCALE_BUTTON = "//div[contains(text(),'Symbol Rating Scale')]/parent::div[@id='dvGQ']";
@@ -136,11 +136,20 @@ public interface ISMXPage {
 	String IFRAME_ANSWER_OPTIONS = "//iframe[contains(@src,'PresetList_Use.aspx?CreateEditFlg')]";
 	WebPageElements iframe_answer_options = new WebPageElements("Iframe Answer Options", "xpath", IFRAME_ANSWER_OPTIONS);
 	
+	String IFRAME_ANSWER_OPTIONS_GRID = "//iframe[contains(@src,'PresetList_Grid.aspx?')]";
+	WebPageElements iframe_answer_options_grid = new WebPageElements("Iframe Answer Options", "xpath", IFRAME_ANSWER_OPTIONS_GRID);
+	
 	String IFRAME_ANSWER_OPTIONS2 = "//iframe[contains(@src,'PresetList_Grid.aspx?GridType')]";
 	WebPageElements iframe_answer_options2 = new WebPageElements("Iframe Answer Options", "xpath", IFRAME_ANSWER_OPTIONS2);
 	
 	String IFRAME_ANSWER_OPTIONS3 = "//iframe[contains(@src,'PresetList_Use.aspx')]";
 	WebPageElements iframe_answer_options3 = new WebPageElements("Iframe Questions Options", "xpath", IFRAME_ANSWER_OPTIONS3);
+	
+	String IFRAME_ANSWER_OPTIONS4 = "//iframe[contains(@src,'imgChoiceAnswers.aspx')]";
+	WebPageElements iframe_answer_options4 = new WebPageElements("Iframe Questions Options", "xpath", IFRAME_ANSWER_OPTIONS4);
+	
+	String IFRAME_ANSWER_GRID = "//iframe[contains(@src,'gridmatrix_qm.aspx?')]";
+	WebPageElements iframe_answer_grid = new WebPageElements("Iframe Questions Options", "xpath", IFRAME_ANSWER_GRID);
 	 
 	String DESCRIPTION_TEXT = "//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']";
 	WebPageElements description_text = new WebPageElements("Description Text Input", "xpath", DESCRIPTION_TEXT);
@@ -223,7 +232,7 @@ public interface ISMXPage {
 	String REPORTING_VALUE = "//input[@name='txtRepVal']";
 	WebPageElements reporting_value = new WebPageElements("Reporting Value", "xpath", REPORTING_VALUE);
 	
-	String BROWSE_BUTTON = "//input[@class='button_upload']";
+	String BROWSE_BUTTON = "//input[@class='myAjaxUpload']";
 	WebPageElements browse_button = new WebPageElements("Browse Button", "xpath", BROWSE_BUTTON);
 	
 	String NAME_EXPAND = "//a[text()='Name']";
@@ -265,7 +274,7 @@ public interface ISMXPage {
 	String ADDRESS_CITY = "//label[text()='City']";
 	WebPageElements address_city = new WebPageElements("Demographics Address: City", "xpath", ADDRESS_CITY);
 	
-	String ADDRESS_COUNTRY = "//label[text()='Country']";
+	String ADDRESS_COUNTRY = "//label[text()='County']";
 	WebPageElements address_country = new WebPageElements("Demographics Address: Country", "xpath", ADDRESS_COUNTRY);
 	
 	String ADDRESS_STATE = "//label[text()='State']";
