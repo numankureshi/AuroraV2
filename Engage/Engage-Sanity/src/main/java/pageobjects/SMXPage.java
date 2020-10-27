@@ -265,6 +265,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 10, answers_library, test);
 		click(driver, testcaseName, answers_library, test);
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
 		click(driver, testcaseName, get_answer_options_library, test);
 		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
@@ -285,7 +286,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 10, answers_library2, test);
 		click(driver, testcaseName, answers_library2, test);
-		
+		waitForLoad(driver, testcaseName, 60, test);
 //		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
@@ -304,7 +305,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 10, questions_library2, test);
 		click(driver, testcaseName, questions_library2, test);
-		
+		waitForLoad(driver, testcaseName, 60, test);
 //		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
@@ -446,6 +447,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, show_participant_rating_field, test);
 		click(driver, testcaseName, show_participant_rating_field, test);
 		Thread.sleep(500);
+		scrollIntoView(driver, testcaseName, save_button, test);
+		Thread.sleep(500);
 		waitforElemPresent(driver, testcaseName, 10, save_button, test);
 		click(driver, testcaseName, save_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -538,7 +541,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 10, save_button, test);
 		click(driver, testcaseName, save_button, test);
-		waitForLoad(driver, testcaseName, 30, test);
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("likedislike") +"']"), "Like/Dislike Added "+ param.get("likedislike"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("likedislike") +"']/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Like/Dislike Added "+ param.get("likedislike"), test);
 	}
