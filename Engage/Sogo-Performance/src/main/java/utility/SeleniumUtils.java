@@ -1,12 +1,14 @@
 package utility;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -282,6 +284,39 @@ public class SeleniumUtils {
 		return element;
 	}
 	
+	
+	public List<WebElement> getWebElements(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
+		List<WebElement> element = null;
+		try {
+			if(ele.getLocator().equalsIgnoreCase("xpath")) {
+				element = driver.findElements(By.xpath(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("id")) {
+				element = driver.findElements(By.id(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("name")) {
+				element = driver.findElements(By.name(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("classname")) {
+				element = driver.findElements(By.className(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("linktext")) {
+				element = driver.findElements(By.linkText(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("partiallinktext")) {
+				element = driver.findElements(By.partialLinkText(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("css")) {
+				element = driver.findElements(By.cssSelector(ele.getValue()));
+			} else if(ele.getLocator().equalsIgnoreCase("tagname")) {
+				element = driver.findElements(By.tagName(ele.getValue()));
+			}
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to find element "+ ele.getName() +" on page.");
+			Add_Log.info("Not able to find element "+ ele.getName() +" on page.");
+			Reporter.log("Not able to find element "+ ele.getName() +" on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to find element "+ ele.getName() +" on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+		return element;
+	}
+	
+	
 	public String getText(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		String text = null;
 		WebElement element = null;
@@ -547,9 +582,9 @@ public class SeleniumUtils {
 			Actions act = new Actions(driver);
 			element = getWebElement(driver, testcaseName, ele, test);
 			act.moveToElement(element, x, y).click().build().perform();
-			Add_Log.info("Click on element at offset " + element);
-			test.log(Status.INFO, "Click on element at offset " + element);
-			Reporter.log("Click on element at offset " + element);
+			Add_Log.info("Successfully click on " + ele.getName() +"by offset of (" +x +"\",\"" +y +")");
+			test.log(Status.INFO, "Successfully click on " + ele.getName() +"by offset of (" +x +"\",\"" +y +")");
+			Reporter.log("Successfully click on " + ele.getName() +"by offset of (" +x +"\",\"" +y +")");
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
 			Add_Log.info("Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
@@ -560,5 +595,133 @@ public class SeleniumUtils {
 		}
 		
 	}
+	
+	
+	public void switchToIframe(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
+		WebElement element = null;
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			driver.switchTo().frame(element);
+			Add_Log.info("Successfully switch to " + ele.getName());
+			test.log(Status.INFO, "Successfully switch to " + ele.getName());
+			Reporter.log("Successfully switch to " + ele.getName());
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to switch to "+ ele.getName());
+			Add_Log.info("Not able to switch to "+ ele.getName());
+			Reporter.log("Not able to switch to "+ ele.getName());
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to switch to "+ ele.getName());
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+
+	}
+	
+	
+	public void dragAndDropAction(WebDriver driver, String testcaseName, WebPageElements source, WebPageElements target, ExtentTest test) {		
+		WebElement source_element = null;
+		WebElement target_element = null;
+		try {
+			Actions act = new Actions(driver);
+			source_element = getWebElement(driver, testcaseName, source, test);
+			target_element = getWebElement(driver, testcaseName, target, test);			
+			act.dragAndDrop(source_element, target_element).perform();
+			Add_Log.info("Successfully moved " + source.getName() +" to " +target.getName());
+			test.log(Status.INFO, "Successfully moved " + source.getName() +" to " +target.getName());
+			Reporter.log("Successfully moved " + source.getName() +" to " +target.getName());
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to move "+ source.getName() +"to " +target.getName());
+			Add_Log.info("Not able to move "+ source.getName() +"to " +target.getName());
+			Reporter.log("Not able to move "+ source.getName() +"to " +target.getName());
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to move "+ source.getName() +"to " +target.getName());
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}	
+	}
+	
+	public void dragAndDropAction2(WebDriver driver, String testcaseName, WebPageElements source, WebElement target, ExtentTest test) {		
+		WebElement source_element = null;
+		try {
+			Actions act = new Actions(driver);
+			source_element = getWebElement(driver, testcaseName, source, test);
+			act.dragAndDrop(source_element, target).perform();
+			Add_Log.info("Successfully moved " + source.getName() +" to target");
+			test.log(Status.INFO, "Successfully moved " + source.getName() +" to target");
+			Reporter.log("Successfully moved " + source.getName() +" to target");
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to move "+ source.getName() +"to target");
+			Add_Log.info("Not able to move "+ source.getName() +"to target");
+			Reporter.log("Not able to move "+ source.getName() +"to target");
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to move "+ source.getName() +"to target");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}	
+	}
+	
+	
+	public void hoverAction(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {		
+		WebElement element = null;
+		try {
+			Actions act = new Actions(driver);
+			element = getWebElement(driver, testcaseName, ele, test);
+			act.moveToElement(element).perform();
+			Add_Log.info("Successfully move on to " + ele.getName());
+			test.log(Status.INFO, "Successfully move on to " + ele.getName());
+			Reporter.log("Successfully move on to " + ele.getName());
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to move to "+ ele.getName());
+			Add_Log.info("Not able to move to "+ ele.getName());
+			Reporter.log("Not able to move to "+ ele.getName());
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to move to "+ ele.getName());
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}	
+	}
+	
+	
+	
+	
+	
+	public Object executeScript(WebDriver driver, String testcaseName, String script, ExtentTest test) {
+		Object result = null;
+		try {
+			JavascriptExecutor exe = (JavascriptExecutor) driver;
+			result = exe.executeScript(script);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to execute script :" + script);
+			Add_Log.info("Failed to execute script :" + script);
+			Reporter.log("Failed to execute script :" + script);
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to execute script :" + script);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+
+		}
+		return result;
+	}
+	
+	
+	public void waitForElementToBePresentOnDOM(WebDriver driver, String testcaseName, int timeOutInSeconds,
+			WebPageElements ele, ExtentTest test) {
+		List<WebElement> element = getWebElements(driver, testcaseName, ele, test);
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+			wait.until(new ExpectedCondition<Boolean>() {
+				public Boolean apply(WebDriver driver) {
+					return element.size() > 0;
+				}
+			});
+			Add_Log.info("Successfully waited for " + ele.getName() + " to be appear on DOM");
+			test.log(Status.INFO, "Successfully waited for " + ele.getName() + " to be appear on DOM");
+			Reporter.log("Successfully waited for " + ele.getName() + " to be appear on DOM");
+		} catch (Exception e) {
+			test.log(Status.FAIL, ele.getName() + " did not appear on DOM");
+			Add_Log.info(ele.getName() + " did not appear on DOM");
+			Reporter.log(ele.getName() + " did not appear on DOM");
+			TestResultStatus.failureReason.add(testcaseName + "| " + ele.getName() + " did not appear on DOM");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+
+	}
+	
 
 }
