@@ -238,6 +238,97 @@ public class SogoPerformance_TC extends SuiteBase {
 
 	}
 	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Static", alwaysRun = true)
+	public void Performance_TC6(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				double totalTime = staticPage.navigateToSoGoRegistration(getDriver(), param, URLs.get(key), test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	
+	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Static", alwaysRun = true)
+	public void Performance_TC7(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] regDetails = TestData.split(",");
+		String firstName = regDetails[0];
+		String lastName = regDetails[1];
+		String userID = regDetails[2];
+		String password = regDetails[3];
+		String emailId = regDetails[4];
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				double totalTime = staticPage.navigateToSoGoBilling(getDriver(), param, URLs.get(key), test, firstName, lastName, userID, password, emailId);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	
+	
+	
+	
 
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
