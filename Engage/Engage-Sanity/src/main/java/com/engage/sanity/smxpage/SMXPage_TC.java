@@ -51,6 +51,7 @@ public class SMXPage_TC extends SuiteBase {
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
 		//test
+		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
 		param.put("surveyname", getData(data, "surveyname"));
