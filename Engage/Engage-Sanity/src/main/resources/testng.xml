@@ -28,6 +28,17 @@
 			<class name="com.engage.sanity.smxpage.SMXPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="dmxpage">
+		<groups>
+			<run>
+				<include name="dmxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.engage.sanity.dmxpage.DMXPage_TC" />
+		</classes>
+	</test>
 
 
 </suite>
