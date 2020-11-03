@@ -80,6 +80,14 @@ public interface IStaticPage {
 	
 	String BILLING_ADDRESS_FIELD= "//input[@id='ctl00_ContentPlaceHolder1_txtAddress']";
 	WebPageElements billing_address_field = new WebPageElements("Billing - Address field", "xpath", BILLING_ADDRESS_FIELD);
+	
+	String ACCOUNT_SETTINGS= "//div[contains(@id,'dvAccountSettings')]";
+	WebPageElements account_settings = new WebPageElements("Account settings", "xpath", ACCOUNT_SETTINGS);
+	
+	String LOGOUT_POPUP_OPTION= "//div[contains(text(),'Logout')]";
+	WebPageElements logout_popup_option = new WebPageElements("Logout - Popup Option", "xpath", LOGOUT_POPUP_OPTION);
+	
+	
 			
 	
 	
