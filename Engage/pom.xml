@@ -10,6 +10,8 @@
 		<module>Engage-Smoke</module>
 		<module>Engage-Sanity</module>
 		<module>Sogo-Performance</module>
+		<module>Engage-Performance</module>
+		<module>K12-Performance</module>
 	</modules>
 
 

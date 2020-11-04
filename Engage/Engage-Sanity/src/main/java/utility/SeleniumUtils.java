@@ -8,6 +8,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -46,6 +48,25 @@ public class SeleniumUtils {
 				TestResultStatus.TestFail = true;
 				Assert.fail();
 			}
+		}
+	}
+	
+	public void doubleClick(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
+		WebElement element = null;
+		Actions action = new Actions(driver);
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			action.doubleClick(element).build().perform();
+			test.log(Status.INFO, "Successfully double clicked on "+ ele.getName() +" element.");
+			Add_Log.info("Successfully double clicked on "+ ele.getName() +" element.");
+			Reporter.log("Successfully double clicked on "+ ele.getName() +" element.");
+		} catch (Exception e) {
+				test.log(Status.FAIL, "Not able to click on "+ ele.getName() +" element.");
+				Add_Log.info("Not able to double click on "+ ele.getName() +" element.");
+				Reporter.log("Not able to double click on "+ ele.getName() +" element.");
+				TestResultStatus.failureReason.add(testcaseName + "| Not able to double click on "+ ele.getName() +" element.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
 		}
 	}
 	
@@ -413,6 +434,36 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+		try {
+			try {
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='attachedLoader']")));
+			} catch (Exception e) {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			} finally {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			}
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Loader did not disappear.");
+			Add_Log.info("Loader did not disappear.");
+			Reporter.log("Loader did not disappear.");
+			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	
+	
 	public void waitForLoad2(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
@@ -440,4 +491,31 @@ public class SeleniumUtils {
 			Assert.fail();
 		}
 	}
+	
+	public boolean waitForJStoLoad(WebDriver driver, long timeOutInSeconds) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		Thread.sleep(1000);
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {
+					return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+				} catch (Exception e) {
+					return true;
+				}
+			}
+		};
+
+		ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+						.equals("complete");
+			}
+		};
+		return wait.until(jQueryLoad) && wait.until(jsLoad);
+	}
+
 }
