@@ -1,0 +1,12 @@
+2020-11-03 20:34:58,673 - rootLogger - INFO - Excel file initialized successfully.
+2020-11-03 20:34:58,676 - rootLogger - INFO - Config.properties file Loaded successfully.
+2020-11-03 20:35:03,313 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2020-11-03 20:35:13,554 - rootLogger - INFO - Successfully waited for Login Button Static to be present on page.
+2020-11-03 20:35:15,918 - rootLogger - INFO - Successfully clicked on Login Button Static element.
+2020-11-03 20:35:17,036 - rootLogger - INFO - Successfully waited for Login Image Static to be present on page.
+2020-11-03 20:35:17,096 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2020-11-03 20:35:17,200 - rootLogger - INFO - Successfully entered sogo_jk_enterprise in User Name textbox.
+2020-11-03 20:35:17,300 - rootLogger - INFO - Successfully entered SoGo@NS3196 in User Password textbox.
+2020-11-03 20:35:25,444 - rootLogger - INFO - Successfully clicked on Login element.
+2020-11-03 20:35:26,624 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2020-11-03 20:35:26,627 - rootLogger - INFO - Performance_TC1 is PASSED.
