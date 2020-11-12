@@ -32,6 +32,9 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.sogo.performance.SogoPerformance_TC;
 
+import pageobjects.DMxPage;
+import pageobjects.RMxPage;
+import pageobjects.SMxPage;
 import pageobjects.StaticPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
@@ -61,6 +64,9 @@ public class SuiteBase {
 	public static ExtentReports extent = null;
 	static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	public StaticPage staticPage = new StaticPage();
+	public SMxPage smxPage = new SMxPage();
+	public DMxPage dmxPage = new DMxPage();
+	public RMxPage rmxPage = new RMxPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	
