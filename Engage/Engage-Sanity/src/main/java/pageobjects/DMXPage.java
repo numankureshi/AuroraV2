@@ -57,6 +57,109 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		sendOrSchedule(driver, param, test);
 	}
 	
+	public void publishSurveyPasswords(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectDistributeProject(driver, param, test);	
+		waitforElemPresent(driver, testcaseName, 100, survey_passwords, test);
+		click(driver, testcaseName, survey_passwords, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, single_use_pwd, test);
+		click(driver, testcaseName, single_use_pwd, test);
+		waitForLoad(driver, testcaseName, 60, test);	
+		
+		prePopulation2(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
+		click(driver, testcaseName, generate_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, successfully_generated, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_password, test);
+		click(driver, testcaseName, generate_password, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		//file download
+	}
+	
+	public void createContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectDistributeProject(driver, param, test);	
+		waitforElemPresent(driver, testcaseName, 100, create_contact, test);
+		click(driver, testcaseName, create_contact, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, create_new, test);
+		click(driver, testcaseName, create_new, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, create_new_list, test);
+		click(driver, testcaseName, create_new_list, test);
+		enterListName(driver, param, test);
+		importFromFile2(driver, param, test);
+		importColName(driver, param, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, done_button2, test);
+		click(driver, testcaseName, done_button2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, success_msg, test);
+		waitforElemPresent(driver, testcaseName, 30, search_list, test);
+		setText(driver, testcaseName, search_list, param.get("listname"), test);
+		waitForLoad(driver, testcaseName, 30, test);
+		driver.findElement(By.xpath(SEARCH_LIST)).sendKeys(Keys.RETURN);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[text()='"+ param.get("listname") +"']"), param.get("listname"), test);
+		deleteContactList(driver, param, test);
+	}
+	
+	public void deleteContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+//		waitforElemPresent(driver, testcaseName, 100, list_checkbox, test);
+		click(driver, testcaseName, By.xpath("//td[text()='"+ param.get("listname") +"']"), param.get("listname"), test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, delete_button, test);
+		click(driver, testcaseName, delete_button, test);
+		waitForLoad(driver, testcaseName, 60, test);
+//		driver.switchTo().alert().accept();
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
+	}
+	
+	public void enterListName(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, list_name, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		setText(driver, testcaseName, list_name, "DP List - "+strDate, test);
+		param.put("listname", "DP List - "+strDate);
+		waitforElemPresent(driver, testcaseName, 30, continue_button3, test);
+		click(driver, testcaseName, continue_button3, test);
+		waitForLoad(driver, testcaseName, 60, test);
+	}
+	
+	public void publishSmsInvitation(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectDistributeProject(driver, param, test);	
+		waitforElemPresent(driver, testcaseName, 100, sms_invitation, test);
+		click(driver, testcaseName, sms_invitation, test);
+		waitForLoad(driver, testcaseName, 60, test);
+//		selectEmailTemplate(driver, param, test);
+		importFromFile(driver, param, test);
+		try {
+			driver.findElement(By.xpath("//div[contains(text(),'duplicate mobile number(s) found in the list of invitees.')]")).isDisplayed();
+			waitforElemPresent(driver, testcaseName, 30, send_unique, test);
+			click(driver, testcaseName, send_unique, test);
+			waitForLoad(driver, testcaseName, 60, test);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		click(driver, testcaseName, done_editing_button, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 60, invitation_sent, test);
+	}
+	
 	public void publishSingleUseLinkexe(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -204,6 +307,75 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		
 	}
 	
+	public void selectFromAList2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, use_existing_list, test);
+		click(driver, testcaseName, use_existing_list, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, select_list2, test);
+		Select select = new Select(driver.findElement(By.xpath(SELECT_LIST2)));
+		select.selectByVisibleText(param.get("selectlist"));
+		Thread.sleep(1000);
+		
+		try {
+			driver.findElement(By.xpath(PRE_POP_SURVEY_INPUT2)).isSelected();
+		} catch (Exception e) {
+			waitforElemPresent(driver, testcaseName, 30, pre_pop_responses, test);
+			click(driver, testcaseName, pre_pop_responses, test);
+			waitForLoad(driver, testcaseName, 60, test);
+		}
+		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
+		click(driver, testcaseName, continue_button1, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void importFromFile(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, import_from_file, test);
+		click(driver, testcaseName, import_from_file, test);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, browse_button1, test);
+		driver.findElement(By.xpath(BROWSE_BUTTON1)).sendKeys(System.getProperty("user.dir")
+				+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\" + param.get("file"));
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[text()='"+ param.get("file") +"']"), param.get("file"), test);
+		click(driver, testcaseName, header_switch,test);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		click(driver, testcaseName, done_editing_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void importFromFile2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, import_from_file2, test);
+		click(driver, testcaseName, import_from_file2, test);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, browse_button1, test);
+		driver.findElement(By.xpath(BROWSE_BUTTON1)).sendKeys(System.getProperty("user.dir")
+				+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\" + param.get("file"));
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[text()='"+ param.get("file") +"']"), param.get("file"), test);
+		click(driver, testcaseName, header_switch2,test);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+		click(driver, testcaseName, allow_duplicate, test);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button3, test);
+		click(driver, testcaseName, continue_button3, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
 	public void mailMerge(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		String mailmergedd[] = param.get("mailmergedd").split(";");
@@ -255,6 +427,42 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 	}
 	
+	public void prePopulation2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, map_answers, test);
+		waitforElemPresent(driver, testcaseName, 60, pre_pop_dd2, test);
+		Select select = new Select(driver.findElement(By.xpath(PRE_POP_DD2)));
+		select.selectByVisibleText(param.get("prepopdd"));
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		click(driver, testcaseName, done_editing_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void importColName(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String[] fields = param.get("prepopdd").split(";");
+		waitforElemPresent(driver, testcaseName, 30, map_fields, test);
+		clearText(driver, testcaseName, map_fields, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, map_fields, fields[0], test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, map_fields2, test);
+		clearText(driver, testcaseName, map_fields2, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, map_fields2, fields[1], test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, map_fields3, test);
+		clearText(driver, testcaseName, map_fields3, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, map_fields3, fields[2], test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='"+ fields[0] +"']//ancestor::tr[@class='withInLimit']"), fields[0], test);
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(By.xpath("//input[@value='"+ fields[0] +"']//ancestor::tr[@class='withInLimit']"))).build().perform();
+		click(driver, testcaseName, By.xpath("(//div[@class='lock-icon'])[1]"), "Lock Icon", test);
+	}
+	
 	public void reviewData(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, review_data, test);
@@ -304,9 +512,39 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		sendOrSchedule(driver, param, test);
 	}
 	
+	public void sendSMSReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 60, reminders, test);
+		click(driver, testcaseName, reminders, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, sms_invites_reminder, test);
+		click(driver, testcaseName, sms_invites_reminder, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, original_invitation_date_filter, test);
+		click(driver, testcaseName, original_invitation_date_filter, test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 60, on_date, test);
+		click(driver, testcaseName, on_date, test);
+		selectCalendar(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, done_button3, test);
+		click(driver, testcaseName, done_button3, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, schedule_reminder, test);
+		click(driver, testcaseName, schedule_reminder, test);
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		waitForLoad(driver, testcaseName, 30, test);
+//		selectEmailTemplateReminder(driver, param, test);
+//		sendOrSchedule(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		click(driver, testcaseName, done_editing_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, invitation_sent, test);
+	}
+	
 	public void selectCalendar(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		SimpleDateFormat formatter = new SimpleDateFormat("dd.MMM.yyyy");  
+		SimpleDateFormat formatter = new SimpleDateFormat("d.MMM.yyyy");  
 		Date date = new Date();  
 		System.out.println(formatter.format(date));  
 		String today = formatter.format(date);
