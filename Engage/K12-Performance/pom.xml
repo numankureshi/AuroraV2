@@ -98,7 +98,7 @@
 
 	</build>
 	
-	<!-- <dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>Engage</groupId>
     		<artifactId>Engage-Sanity</artifactId>
@@ -106,5 +106,5 @@
 			<scope>system</scope>
 			<systemPath>${basedir}\..\Engage-Sanity\target\Engage-Sanity-0.0.1-SNAPSHOT.jar</systemPath>
 		</dependency>	
-	</dependencies> -->
+ 	</dependencies> 
 </project>

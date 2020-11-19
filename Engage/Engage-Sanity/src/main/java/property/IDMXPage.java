@@ -127,6 +127,10 @@ public interface IDMXPage {
 	String SCHEDULE_REMINDER = "//input[@name='btnSendReminderNew']";
 	WebPageElements schedule_reminder = new WebPageElements("Schedule Reminder Button", "xpath", SCHEDULE_REMINDER);
 	
+	String QUICK_SEND = "//div[@id='inviteddl_divQuickSend']";
+	WebPageElements quick_send = new WebPageElements("Quick send button", "xpath", QUICK_SEND);
+
+	
 }
 
 

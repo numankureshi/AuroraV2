@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -19,10 +20,11 @@ import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
 
+import property.IHomePage;
 import property.IStaticPage;
 import utility.SeleniumUtils;
 
-public class StaticPage extends SeleniumUtils implements IStaticPage {
+public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage {
 	public double finish, start;
 	public double end;
 	
@@ -60,7 +62,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage {
 			start = System.currentTimeMillis();
 			click(driver, testcaseName, login_button_static, test);			
 			waitForJStoLoad(driver, 60);
-			waitforElemPresent(driver, testcaseName, 60, login_img_static, test);
+			waitforElemPresent(driver, testcaseName, 60, sogo_login_img_static, test);
 			end = System.currentTimeMillis();
 			double totalTime = ((end - start)) / 1000;
 			return totalTime;
@@ -93,5 +95,81 @@ public class StaticPage extends SeleniumUtils implements IStaticPage {
 			double totalTime = ((end - start)) / 1000;
 			return totalTime;
 		}
+		
+		
+		public double navigateToSoGoRegistration(WebDriver driver, HashMap<String, String> param, String URL,
+				ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			navigateToSogoPricing(driver, param, URL, test);
+			scrollIntoCenter(driver, testcaseName, pricing_buy_plus_package, test);
+			waitforElemPresent(driver, testcaseName, 60, pricing_buy_plus_package, test);
+			Calendar calandar = Calendar.getInstance();
+			int hours = calandar.get(Calendar.HOUR_OF_DAY);
+
+			start = System.currentTimeMillis();
+			// Rotate click on package in every hour
+			switch (hours % 3) {
+			case 0:
+				click(driver, testcaseName, pricing_buy_plus_package, test);
+				break;
+			case 1:
+				click(driver, testcaseName, pricing_buy_pro_package, test);
+				break;
+			case 2:
+				click(driver, testcaseName, pricing_buy_premium_package, test);
+				break;
+			default:
+				break;
+			}
+			waitForJStoLoad(driver, 60);
+			waitforElemPresent(driver, testcaseName, 60, registration_first_name, test);
+			end = System.currentTimeMillis();
+
+			double totalTime = ((end - start)) / 1000;
+			return totalTime;
+		}
+
+		public double navigateToSoGoBilling(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test,
+				String firstName, String lastName, String userID, String password, String emailID)
+				throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			navigateToSoGoRegistration(driver, param, URL, test);
+			setText(driver, testcaseName, registration_first_name, firstName, test);
+			setText(driver, testcaseName, registration_last_name, lastName, test);
+			setText(driver, testcaseName, registration_userid, userID, test);
+			setText(driver, testcaseName, registration_password, password, test);
+			waitUntilReqAttribute(driver, testcaseName, 30, registration_validate_userinfo, "style", "display: block;",
+					test);
+			setText(driver, testcaseName, registration_reenter_password, password, test);
+			setText(driver, testcaseName, registration_email_id, emailID, test);
+			clickAtOffset(driver, testcaseName, registration_disclaimer_checkbox, -50, 0, test);
+			Thread.sleep(1000);
+
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, registration_create_acc, test);
+			waitForJStoLoad(driver, 60);
+			waitforElemPresent(driver, testcaseName, 60, billing_address_field, test);
+			end = System.currentTimeMillis();
+
+			double totalTime = ((end - start)) / 1000;
+			return totalTime;
+
+		}
+
+//		public double logout(WebDriver driver, HashMap<String, String> param, String URL, String username, String password,
+//				ExtentTest test) throws InterruptedException {
+//			String testcaseName = param.get("TestCaseName");
+//			login(driver, param, username, password, URL, test);
+//			click(driver, testcaseName, account_settings, test);
+//
+//			start = System.currentTimeMillis();
+//			click(driver, testcaseName, logout_popup_option, test);
+//			waitForJStoLoad(driver, 60);
+//			waitforElemPresent(driver, testcaseName, 60, login_img_static, test);
+//			end = System.currentTimeMillis();
+//
+//			double totalTime = ((end - start)) / 1000;
+//			return totalTime;
+//		}
 	
 }

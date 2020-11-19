@@ -11,6 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
@@ -19,11 +20,14 @@ import org.testng.Reporter;
 import com.aventstack.extentreports.ExtentTest;
 
 import property.IDMXPage;
+import property.IHomePage;
 import property.ISMXPage;
 import property.ISurveyPage;
 import utility.SeleniumUtils;
 
 public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
+	public double finish, start;
+	public double end;
 	
 
 	public void selectDistributeProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -321,5 +325,30 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
 		click(driver, testcaseName, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
 		Thread.sleep(1000);
+	}
+	
+	public double goToDistributePage(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		//new StaticPage().login(driver, param, username, password, URL, test);
+		click(driver, testcaseName, IHomePage.all_projects, test);
+		waitForJStoLoad(driver, 60);
+		waitForLoad(driver, testcaseName, 60, test);
+		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
+		click(driver, testcaseName, IHomePage.search_icon, test);
+		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
+		new Actions(driver).moveToElement(survey).perform();
+		waitForElementToBeVisible(driver, testcaseName, IHomePage.publish_icon, 10, 100, test);
+		
+		start = System.currentTimeMillis();		
+		click(driver, testcaseName, IHomePage.publish_icon, test);
+		waitForJStoLoad(driver, 60);
+		waitforElemPresent(driver, testcaseName, 60, quick_send, test);
+		end = System.currentTimeMillis();
+		
+		driver.switchTo().defaultContent();		
+		double totalTime = ((end - start)) / 1000;
+		return totalTime;
 	}
 }

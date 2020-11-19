@@ -6,6 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
+import pageobjects.SoGoStaticPage;
 import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
@@ -360,7 +361,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = smxPage.goToDesignerPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = smxPage.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -403,7 +405,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				smxPage.goToDesignerPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smxPage.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
 				double totalTime = smxPage.depositeQuestionToQuestionBank(getDriver(), param, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
@@ -447,7 +450,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				smxPage.goToDesignerPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smxPage.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
 				double totalTime = smxPage.addComment(getDriver(), param, descrText, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
@@ -491,7 +495,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				smxPage.goToDesignerPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smxPage.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
 				double totalTime = smxPage.deleteComment(getDriver(), param, descrText, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
@@ -534,7 +539,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				smxPage.goToDesignerPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smxPage.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
 				double totalTime = smxPage.movePage(getDriver(), param, pageNo, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
@@ -577,7 +583,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				smxPage.goToDesignerPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smxPage.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
 				double totalTime = smxPage.moveMatrixGrid(getDriver(), param, SID, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
@@ -621,7 +628,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = dmxPage.goToDistributePage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = dmxPage.goToDistributePage(getDriver(), param, surveyTitle, SID, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -666,7 +674,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = rmxPage.goToReportPage(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = rmxPage.goToReportPage(getDriver(), param, surveyTitle, SID, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -708,7 +717,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = rmxPage.loadOMNIReport(getDriver(), param, username, encPassword, URLs.get(key), surveyTitle, SID, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = rmxPage.loadOMNIReport(getDriver(), param, surveyTitle, SID, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -747,7 +757,8 @@ public class SogoPerformance_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				double totalTime = staticPage.logout(getDriver(), param, URLs.get(key), username, encPassword, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = homePage.logout(getDriver(), param, test);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
