@@ -1,13 +1,19 @@
 package pageobjects;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -77,6 +83,90 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, generate_password, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
+		downloadFile(driver, param, test);
+	}
+	
+	public void downloadFile(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String downloadFilePath = System.getProperty("user.dir") +"\\src\\main\\resources\\excelfiles";
+		String fileSystem = "SurveyFiles";
+		long beforeCount = 0;
+		try {
+			beforeCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+			System.out.println(beforeCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			long afterCount = beforeCount;
+			int i = 0;
+			while (beforeCount >= afterCount && i < 180) {
+				afterCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+				i++;
+			}
+			if(i == 180) {
+				reportFail(testcaseName,
+						"The excel was not downloaded.", test);
+			}
+			System.out.println(afterCount);
+			String fileName = latestFileName();
+			while(fileName.contains("tmp") || fileName.contains("crdownload")) {
+				Thread.sleep(500);
+				fileName = latestFileName();
+			}
+			
+		} catch (Exception e) {
+			reportFail(testcaseName,
+					"The excel was not downloaded.", test);
+		}
+		
+		File theDir = new File("./src/main/resources/excelfiles/"+ fileSystem);
+		if(!theDir.exists()) {
+			theDir.mkdir();
+		}
+		int r = RandomNumber();
+		String fileName = latestFileName("xls");
+		String latestFile = fileName + "_" + r;
+		System.out.println(latestFile);
+		File file = new File(fileName);
+		File file2 = new File("./src/main/resources/excelfiles/"+latestFile.trim()+".xls");
+		
+		file.renameTo(file2);
+		String path = "./src/main/resources/excelfiles/"+fileSystem+"/"+latestFile.trim()+".xls";
+		
+		file2.renameTo(new File("./src/main/resources/excelfiles/"+fileSystem+"/"+latestFile.trim()+".xls"));
+		System.out.println("File path is: "+path);
+	}
+	
+	public int RandomNumber() {
+		Random rand = new Random();
+		int n = rand.nextInt(10000) + 1;
+		return n;
+	}
+	
+	public String latestFileName() {
+		File theNewFile = null;
+		File dir = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\excelfiles");
+		FileFilter fileFilter = new WildcardFileFilter("*.*");
+		File[] files = dir.listFiles(fileFilter);
+		if(files.length > 0) {
+			Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+			theNewFile = files[0];
+		}
+		return theNewFile.toString();
+	}
+	
+	public String latestFileName(String extension) {
+		File theNewFile = null;
+		File dir = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\excelfiles");
+		FileFilter fileFilter = new WildcardFileFilter("*."+extension);
+		File[] files = dir.listFiles(fileFilter);
+		if(files.length > 0) {
+			Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+			theNewFile = files[0];
+		}
+		return theNewFile.toString();
 	}
 	
 	public void createContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)
