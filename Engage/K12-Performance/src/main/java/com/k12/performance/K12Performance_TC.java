@@ -13,10 +13,14 @@ import utility.Read_XLS;
 import utility.SuiteUtility;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import org.testng.Assert;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -546,6 +550,14 @@ public class K12Performance_TC extends SuiteBase {
 			Add_Log.info(Result.getName() + " is FAILED.");
 			TestResultTL.put(Result.getName(), "FAIL");
 			test.fail(Result.getName() + " is FAILED.", (MediaEntityBuilder.createScreenCaptureFromPath(takescreenshots(getDriver())).build()));
+			
+			String errorPage = getErrorPage(getDriver());
+			URL errorURL = new URL(errorPage);
+			
+			StringWriter errors = new StringWriter();
+			Result.getThrowable().printStackTrace(new PrintWriter(errors));
+			String subject = errorURL.getHost() +" : Error in Performance Suite";
+			sendHtmlFormatMail(subject, errorPage, errorURL.getPath(), errorURL.getQuery(), getIpAddress(), errors.toString());
 //			String path = captureScreenShot(Result, "FAIL", getDriver());
 //			if (!(getDriver() == null)) {
 //				closeWebBrowser();
