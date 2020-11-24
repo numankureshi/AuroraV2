@@ -1,0 +1,357 @@
+2020-11-24 21:12:52,107 - rootLogger - INFO - Excel file initialized successfully.
+2020-11-24 21:12:52,111 - rootLogger - INFO - Config.properties file Loaded successfully.
+2020-11-24 21:12:52,308 - rootLogger - INFO - Smoke_TC1 is SKIPPED.
+2020-11-24 21:12:52,406 - rootLogger - INFO - Excel file initialized successfully.
+2020-11-24 21:12:52,406 - rootLogger - INFO - Config.properties file Loaded successfully.
+2020-11-24 21:12:56,919 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2020-11-24 21:13:01,751 - rootLogger - INFO - Successfully waited for Login Button Static to be present on page.
+2020-11-24 21:13:03,996 - rootLogger - INFO - Successfully clicked on Login Button Static element.
+2020-11-24 21:13:05,109 - rootLogger - INFO - Successfully waited for SoGo Static Login Image to be present on page.
+2020-11-24 21:13:05,182 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2020-11-24 21:13:05,276 - rootLogger - INFO - Successfully entered sogo_gmail110 in User Name textbox.
+2020-11-24 21:13:05,363 - rootLogger - INFO - Successfully entered Eighth8# in User Password textbox.
+2020-11-24 21:13:15,634 - rootLogger - INFO - Successfully clicked on Login element.
+2020-11-24 21:13:16,750 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2020-11-24 21:13:16,828 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2020-11-24 21:13:17,039 - rootLogger - INFO - Successfully clicked on Create Project Button element.
+2020-11-24 21:13:19,483 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:19,573 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:19,637 - rootLogger - INFO - Successfully waited for Where would you like to begin? to be present on page.
+2020-11-24 21:13:19,685 - rootLogger - INFO - Successfully waited for Iframe to be present on page.
+2020-11-24 21:13:20,816 - rootLogger - INFO - Successfully waited for Survey Button to be present on page.
+2020-11-24 21:13:20,945 - rootLogger - INFO - Successfully clicked on Survey Button element.
+2020-11-24 21:13:22,070 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:22,131 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:22,190 - rootLogger - INFO - Successfully waited for Start with a Blank Survey Button to be present on page.
+2020-11-24 21:13:22,287 - rootLogger - INFO - Successfully clicked on Start with a Blank Survey Button element.
+2020-11-24 21:13:23,398 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:23,479 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:23,550 - rootLogger - INFO - Successfully waited for Continue Button to be present on page.
+2020-11-24 21:13:24,611 - rootLogger - INFO - Successfully clicked on Continue Button element.
+2020-11-24 21:13:28,859 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:29,026 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:29,102 - rootLogger - INFO - Successfully waited for Create New Survey Label to be present on page.
+2020-11-24 21:13:29,162 - rootLogger - INFO - Successfully waited for Survey Name to be present on page.
+2020-11-24 21:13:29,268 - rootLogger - INFO - Successfully entered SMx DP - 24-Nov-2020 21:13:29 in Survey Name textbox.
+2020-11-24 21:13:29,334 - rootLogger - INFO - Successfully waited for Select Folder to be present on page.
+2020-11-24 21:13:29,419 - rootLogger - INFO - Successfully clicked on Select Folder element.
+2020-11-24 21:13:29,482 - rootLogger - INFO - Successfully waited for Main to be present on page.
+2020-11-24 21:13:29,781 - rootLogger - INFO - Successfully clicked on Main element.
+2020-11-24 21:13:29,888 - rootLogger - INFO - Successfully waited for Primary Langugage Drop down to be present on page.
+2020-11-24 21:13:31,169 - rootLogger - INFO - Successfully clicked on Secondary Language Switch element.
+2020-11-24 21:13:31,242 - rootLogger - INFO - Successfully waited for Secondary Langugage Drop down to be present on page.
+2020-11-24 21:13:31,353 - rootLogger - INFO - Successfully clicked on Secondary Langugage Drop down element.
+2020-11-24 21:13:31,428 - rootLogger - INFO - Successfully waited for Secondary Langugage Drop down Search to be present on page.
+2020-11-24 21:13:31,653 - rootLogger - INFO - Successfully entered Spanish in Secondary Langugage Drop down Search textbox.
+2020-11-24 21:13:33,758 - rootLogger - INFO - Successfully waited for Spanish to be present on page.
+2020-11-24 21:13:33,891 - rootLogger - INFO - Successfully clicked on Spanish element.
+2020-11-24 21:13:33,964 - rootLogger - INFO - Successfully waited for Start Button to be present on page.
+2020-11-24 21:13:34,055 - rootLogger - INFO - Successfully clicked on Start Button element.
+2020-11-24 21:13:44,468 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:44,525 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:44,577 - rootLogger - INFO - Successfully waited for SMx DP - 24-Nov-2020 21:13:29 to be present on page.
+2020-11-24 21:13:44,633 - rootLogger - INFO - Successfully waited for Description Button to be present on page.
+2020-11-24 21:13:44,982 - rootLogger - INFO - Successfully double clicked on Description Button element.
+2020-11-24 21:13:46,362 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:47,702 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:13:47,857 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:13:48,140 - rootLogger - INFO - Successfully entered This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. in Description Text Input textbox.
+2020-11-24 21:13:48,297 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:13:48,449 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:13:49,633 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:49,678 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:49,757 - rootLogger - INFO - Successfully waited for Description Added This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. to be present on page.
+2020-11-24 21:13:49,815 - rootLogger - INFO - Successfully waited for Net Promoter Button to be present on page.
+2020-11-24 21:13:50,104 - rootLogger - INFO - Successfully double clicked on Net Promoter Button element.
+2020-11-24 21:13:51,623 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:51,955 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:13:52,241 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:13:52,286 - rootLogger - INFO - Successfully fetched text How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? from Description Text Input
+2020-11-24 21:13:52,385 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:13:52,551 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:13:53,950 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:54,009 - rootLogger - INFO - Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.
+2020-11-24 21:13:54,072 - rootLogger - INFO - Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.
+2020-11-24 21:13:54,163 - rootLogger - INFO - Successfully waited for Text Box Button to be present on page.
+2020-11-24 21:13:54,408 - rootLogger - INFO - Successfully double clicked on Text Box Button element.
+2020-11-24 21:13:55,688 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:56,093 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:13:56,242 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:13:56,395 - rootLogger - INFO - Successfully entered What are the specific details of the product / service. in Description Text Input textbox.
+2020-11-24 21:13:56,495 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:13:56,638 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:13:58,028 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:13:58,102 - rootLogger - INFO - Successfully waited for Text Box Label Added What are the specific details of the product / service. to be present on page.
+2020-11-24 21:13:58,155 - rootLogger - INFO - Successfully waited for Text Box Added What are the specific details of the product / service. to be present on page.
+2020-11-24 21:13:58,247 - rootLogger - INFO - Successfully waited for Radio Button to be present on page.
+2020-11-24 21:13:58,494 - rootLogger - INFO - Successfully double clicked on Radio Button element.
+2020-11-24 21:14:01,352 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:01,736 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:14:01,880 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:14:02,050 - rootLogger - INFO - Successfully entered Where did you last purchase THE PRODUCT? in Description Text Input textbox.
+2020-11-24 21:14:02,147 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
+2020-11-24 21:14:02,247 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
+2020-11-24 21:14:02,322 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
+2020-11-24 21:14:04,673 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
+2020-11-24 21:14:04,803 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
+2020-11-24 21:14:04,931 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
+2020-11-24 21:14:05,125 - rootLogger - INFO - Successfully waited for Endorsement to be present on page.
+2020-11-24 21:14:05,242 - rootLogger - INFO - Successfully clicked on Endorsement element.
+2020-11-24 21:14:05,309 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
+2020-11-24 21:14:05,660 - rootLogger - INFO - Successfully clicked on Use this list Button element.
+2020-11-24 21:14:05,765 - rootLogger - INFO - Successfully waited for Other checkbox to be present on page.
+2020-11-24 21:14:05,947 - rootLogger - INFO - Successfully clicked on Other checkbox element.
+2020-11-24 21:14:06,009 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:14:06,137 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:14:07,671 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:07,735 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:07,821 - rootLogger - INFO - Successfully waited for Radio Buttons Label Added Where did you last purchase THE PRODUCT? to be present on page.
+2020-11-24 21:14:07,872 - rootLogger - INFO - Successfully waited for Radio Buttons Added Where did you last purchase THE PRODUCT? to be present on page.
+2020-11-24 21:14:07,944 - rootLogger - INFO - Successfully waited for Check Box Button to be present on page.
+2020-11-24 21:14:08,174 - rootLogger - INFO - Successfully double clicked on Check Box Button element.
+2020-11-24 21:14:10,061 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:10,512 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:14:10,644 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:14:10,776 - rootLogger - INFO - Successfully entered Please select your choices from the list in Description Text Input textbox.
+2020-11-24 21:14:10,870 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
+2020-11-24 21:14:10,985 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
+2020-11-24 21:14:11,058 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
+2020-11-24 21:14:13,037 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
+2020-11-24 21:14:13,128 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
+2020-11-24 21:14:13,215 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
+2020-11-24 21:14:13,423 - rootLogger - INFO - Successfully waited for Endorsement to be present on page.
+2020-11-24 21:14:13,539 - rootLogger - INFO - Successfully clicked on Endorsement element.
+2020-11-24 21:14:13,595 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
+2020-11-24 21:14:13,956 - rootLogger - INFO - Successfully clicked on Use this list Button element.
+2020-11-24 21:14:14,071 - rootLogger - INFO - Successfully waited for None of Above to be present on page.
+2020-11-24 21:14:14,251 - rootLogger - INFO - Successfully clicked on None of Above element.
+2020-11-24 21:14:14,302 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:14:14,478 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:14:16,074 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:16,127 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:16,178 - rootLogger - INFO - Successfully waited for Check Box Label Added Please select your choices from the list to be present on page.
+2020-11-24 21:14:16,226 - rootLogger - INFO - Successfully waited for Check Box Added Please select your choices from the list to be present on page.
+2020-11-24 21:14:16,281 - rootLogger - INFO - Successfully waited for Drop Down Button to be present on page.
+2020-11-24 21:14:16,532 - rootLogger - INFO - Successfully double clicked on Drop Down Button element.
+2020-11-24 21:14:17,337 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:17,762 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:14:17,909 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:14:18,063 - rootLogger - INFO - Successfully entered How long have you been our customer? in Description Text Input textbox.
+2020-11-24 21:14:18,162 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
+2020-11-24 21:14:18,288 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
+2020-11-24 21:14:18,366 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
+2020-11-24 21:14:19,189 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
+2020-11-24 21:14:19,274 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
+2020-11-24 21:14:19,355 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
+2020-11-24 21:14:19,513 - rootLogger - INFO - Successfully waited for Endorsement to be present on page.
+2020-11-24 21:14:19,801 - rootLogger - INFO - Successfully clicked on Endorsement element.
+2020-11-24 21:14:19,881 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
+2020-11-24 21:14:20,259 - rootLogger - INFO - Successfully clicked on Use this list Button element.
+2020-11-24 21:14:20,366 - rootLogger - INFO - Successfully waited for Other checkbox to be present on page.
+2020-11-24 21:14:20,573 - rootLogger - INFO - Successfully clicked on Other checkbox element.
+2020-11-24 21:14:20,645 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:14:20,785 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:14:22,345 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:22,409 - rootLogger - INFO - Successfully waited for Drop Down Label Added How long have you been our customer? to be present on page.
+2020-11-24 21:14:22,456 - rootLogger - INFO - Successfully waited for Drop Down Added How long have you been our customer? to be present on page.
+2020-11-24 21:14:22,514 - rootLogger - INFO - Successfully waited for Demographics Button to be present on page.
+2020-11-24 21:14:23,975 - rootLogger - INFO - Successfully double clicked on Demographics Button element.
+2020-11-24 21:14:24,766 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:25,137 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:14:25,236 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:14:25,358 - rootLogger - INFO - Successfully entered Please fill below information. in Description Text Input textbox.
+2020-11-24 21:14:25,445 - rootLogger - INFO - Successfully waited for Demographics Name to be present on page.
+2020-11-24 21:14:25,736 - rootLogger - INFO - Successfully clicked on Demographics Name element.
+2020-11-24 21:14:25,821 - rootLogger - INFO - Successfully waited for Demographics Name: Title to be present on page.
+2020-11-24 21:14:26,029 - rootLogger - INFO - Successfully clicked on Demographics Name: Title element.
+2020-11-24 21:14:26,125 - rootLogger - INFO - Successfully waited for Demographics Name: First Name to be present on page.
+2020-11-24 21:14:26,438 - rootLogger - INFO - Successfully clicked on Demographics Name: First Name element.
+2020-11-24 21:14:26,525 - rootLogger - INFO - Successfully waited for Demographics Name: Middle Name to be present on page.
+2020-11-24 21:14:26,689 - rootLogger - INFO - Successfully clicked on Demographics Name: Middle Name element.
+2020-11-24 21:14:26,791 - rootLogger - INFO - Successfully waited for Demographics Name: Last Name to be present on page.
+2020-11-24 21:14:26,955 - rootLogger - INFO - Successfully clicked on Demographics Name: Last Name element.
+2020-11-24 21:14:27,026 - rootLogger - INFO - Successfully waited for Demographics Gender to be present on page.
+2020-11-24 21:14:27,258 - rootLogger - INFO - Successfully clicked on Demographics Gender element.
+2020-11-24 21:14:27,317 - rootLogger - INFO - Successfully waited for Demographics Date of Birth to be present on page.
+2020-11-24 21:14:27,521 - rootLogger - INFO - Successfully clicked on Demographics Date of Birth element.
+2020-11-24 21:14:27,583 - rootLogger - INFO - Successfully waited for Demographics Address to be present on page.
+2020-11-24 21:14:27,708 - rootLogger - INFO - Successfully clicked on Demographics Address element.
+2020-11-24 21:14:27,790 - rootLogger - INFO - Successfully waited for Demographics Address: Street 1 to be present on page.
+2020-11-24 21:14:27,953 - rootLogger - INFO - Successfully clicked on Demographics Address: Street 1 element.
+2020-11-24 21:14:28,021 - rootLogger - INFO - Successfully waited for Demographics Address: Street 2 to be present on page.
+2020-11-24 21:14:28,178 - rootLogger - INFO - Successfully clicked on Demographics Address: Street 2 element.
+2020-11-24 21:14:28,248 - rootLogger - INFO - Successfully waited for Demographics Address: City to be present on page.
+2020-11-24 21:14:28,414 - rootLogger - INFO - Successfully clicked on Demographics Address: City element.
+2020-11-24 21:14:28,474 - rootLogger - INFO - Successfully waited for Demographics Address: Country to be present on page.
+2020-11-24 21:14:28,639 - rootLogger - INFO - Successfully clicked on Demographics Address: Country element.
+2020-11-24 21:14:28,772 - rootLogger - INFO - Successfully waited for Demographics Address: State to be present on page.
+2020-11-24 21:14:28,964 - rootLogger - INFO - Successfully clicked on Demographics Address: State element.
+2020-11-24 21:14:29,037 - rootLogger - INFO - Successfully waited for Demographics Address: ZIP to be present on page.
+2020-11-24 21:14:29,224 - rootLogger - INFO - Successfully clicked on Demographics Address: ZIP element.
+2020-11-24 21:14:29,286 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX to be present on page.
+2020-11-24 21:14:29,408 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX element.
+2020-11-24 21:14:29,474 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX: Telephone to be present on page.
+2020-11-24 21:14:29,654 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX: Telephone element.
+2020-11-24 21:14:29,723 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX: Extension to be present on page.
+2020-11-24 21:14:29,948 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX: Extension element.
+2020-11-24 21:14:30,024 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX: Fax to be present on page.
+2020-11-24 21:14:30,218 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX: Fax element.
+2020-11-24 21:14:30,288 - rootLogger - INFO - Successfully waited for Demographics Email Address to be present on page.
+2020-11-24 21:14:30,446 - rootLogger - INFO - Successfully clicked on Demographics Email Address element.
+2020-11-24 21:14:30,538 - rootLogger - INFO - Successfully waited for Demographics Require to re-enter email address to be present on page.
+2020-11-24 21:14:30,709 - rootLogger - INFO - Successfully clicked on Demographics Require to re-enter email address element.
+2020-11-24 21:14:30,767 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:14:31,037 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:14:33,555 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:33,606 - rootLogger - INFO - Successfully waited for Demographics Label Added Please fill below information. to be present on page.
+2020-11-24 21:14:33,678 - rootLogger - INFO - Successfully waited for Demographics Added Please fill below information. to be present on page.
+2020-11-24 21:14:33,751 - rootLogger - INFO - Successfully waited for Rating Scale Button to be present on page.
+2020-11-24 21:14:39,027 - rootLogger - INFO - Successfully double clicked on Rating Scale Button element.
+2020-11-24 21:14:40,887 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:41,097 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:14:41,201 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:14:41,399 - rootLogger - INFO - Successfully entered How likely is it that you would recommend our company to a friend or colleague? in Description Text Input textbox.
+2020-11-24 21:14:42,547 - rootLogger - INFO - Successfully waited for Show N/A option to be present on page.
+2020-11-24 21:14:42,717 - rootLogger - INFO - Successfully clicked on Show N/A option element.
+2020-11-24 21:14:43,293 - rootLogger - INFO - Successfully waited for Show scale in reverse order to be present on page.
+2020-11-24 21:14:43,444 - rootLogger - INFO - Successfully clicked on Show scale in reverse order element.
+2020-11-24 21:14:44,071 - rootLogger - INFO - Successfully waited for Show participant rating field to be present on page.
+2020-11-24 21:14:44,235 - rootLogger - INFO - Successfully clicked on Show participant rating field element.
+2020-11-24 21:14:45,452 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:14:45,581 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:14:47,326 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:47,399 - rootLogger - INFO - Successfully waited for Rating Scale Added How likely is it that you would recommend our company to a friend or colleague? to be present on page.
+2020-11-24 21:14:47,446 - rootLogger - INFO - Successfully waited for Rating Scale Added How likely is it that you would recommend our company to a friend or colleague? to be present on page.
+2020-11-24 21:14:47,502 - rootLogger - INFO - Successfully waited for Symbol Rating Scale Button to be present on page.
+2020-11-24 21:14:47,849 - rootLogger - INFO - Successfully double clicked on Symbol Rating Scale Button element.
+2020-11-24 21:14:54,684 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:14:54,840 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:14:54,980 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:14:55,144 - rootLogger - INFO - Successfully entered Please indicate the extent to which you agree with the following statements. in Description Text Input textbox.
+2020-11-24 21:14:55,342 - rootLogger - INFO - Successfully waited for Number of Sub Questions to be present on page.
+2020-11-24 21:14:56,343 - rootLogger - INFO - Successfully waited for Sub Question 1 to be present on page.
+2020-11-24 21:14:56,595 - rootLogger - INFO - Successfully entered The company clearly conveys its mission to its employees. in Sub Question 1 textbox.
+2020-11-24 21:14:57,217 - rootLogger - INFO - Successfully waited for Sub Question 1 Scale to be present on page.
+2020-11-24 21:14:57,891 - rootLogger - INFO - Successfully waited for Sub Question 2 to be present on page.
+2020-11-24 21:14:58,118 - rootLogger - INFO - Successfully entered There is good communication from managers to employees. in Sub Question 2 textbox.
+2020-11-24 21:14:58,765 - rootLogger - INFO - Successfully waited for Sub Question 2 Scale to be present on page.
+2020-11-24 21:14:59,806 - rootLogger - INFO - Successfully waited for Sub Question 3 to be present on page.
+2020-11-24 21:15:00,025 - rootLogger - INFO - Successfully entered I have the tools and resources I need to do my job.  in Sub Question 3 textbox.
+2020-11-24 21:15:00,656 - rootLogger - INFO - Successfully waited for Sub Question 3 Scale to be present on page.
+2020-11-24 21:15:01,686 - rootLogger - INFO - Successfully waited for Sub Question 4 to be present on page.
+2020-11-24 21:15:01,886 - rootLogger - INFO - Successfully entered I have the training I need to do my job.  in Sub Question 4 textbox.
+2020-11-24 21:15:02,506 - rootLogger - INFO - Successfully waited for Sub Question 4 Scale to be present on page.
+2020-11-24 21:15:03,555 - rootLogger - INFO - Successfully waited for Sub Question 5 to be present on page.
+2020-11-24 21:15:03,762 - rootLogger - INFO - Successfully entered I feel underutilized in my job.  in Sub Question 5 textbox.
+2020-11-24 21:15:04,398 - rootLogger - INFO - Successfully waited for Sub Question 5 Scale to be present on page.
+2020-11-24 21:15:05,396 - rootLogger - INFO - Successfully waited for Sub Question 6 to be present on page.
+2020-11-24 21:15:05,615 - rootLogger - INFO - Successfully entered The amount of work expected of me is reasonable.  in Sub Question 6 textbox.
+2020-11-24 21:15:06,222 - rootLogger - INFO - Successfully waited for Sub Question 6 Scale to be present on page.
+2020-11-24 21:15:07,245 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:15:07,702 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:15:09,939 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:09,990 - rootLogger - INFO - Successfully waited for Symbol Rating Scale Added Please indicate the extent to which you agree with the following statements. to be present on page.
+2020-11-24 21:15:10,051 - rootLogger - INFO - Successfully waited for Symbol Rating Scale Added Please indicate the extent to which you agree with the following statements. to be present on page.
+2020-11-24 21:15:10,106 - rootLogger - INFO - Successfully waited for Like/Dislike Button to be present on page.
+2020-11-24 21:15:10,361 - rootLogger - INFO - Successfully double clicked on Like/Dislike Button element.
+2020-11-24 21:15:11,595 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:11,977 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:15:12,092 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:15:12,390 - rootLogger - INFO - Successfully entered Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? in Description Text Input textbox.
+2020-11-24 21:15:12,516 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:15:12,722 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:15:15,007 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:15,098 - rootLogger - INFO - Successfully waited for Like/Dislike Added Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? to be present on page.
+2020-11-24 21:15:15,160 - rootLogger - INFO - Successfully waited for Like/Dislike Added Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? to be present on page.
+2020-11-24 21:15:15,218 - rootLogger - INFO - Successfully waited for Ranking Button to be present on page.
+2020-11-24 21:15:15,464 - rootLogger - INFO - Successfully double clicked on Ranking Button element.
+2020-11-24 21:15:17,633 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:18,115 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:15:18,226 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:15:18,440 - rootLogger - INFO - Successfully entered Which Product/Service type do you want to provide your feedback about in Description Text Input textbox.
+2020-11-24 21:15:18,555 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
+2020-11-24 21:15:18,671 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
+2020-11-24 21:15:18,735 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
+2020-11-24 21:15:19,560 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
+2020-11-24 21:15:19,722 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
+2020-11-24 21:15:19,900 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
+2020-11-24 21:15:20,086 - rootLogger - INFO - Successfully waited for Qualification to be present on page.
+2020-11-24 21:15:20,223 - rootLogger - INFO - Successfully clicked on Qualification element.
+2020-11-24 21:15:20,302 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
+2020-11-24 21:15:20,689 - rootLogger - INFO - Successfully clicked on Use this list Button element.
+2020-11-24 21:15:20,804 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:15:20,995 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:15:22,999 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:23,077 - rootLogger - INFO - Successfully waited for Ranking Added Which Product/Service type do you want to provide your feedback about to be present on page.
+2020-11-24 21:15:23,139 - rootLogger - INFO - Successfully waited for Ranking Added Which Product/Service type do you want to provide your feedback about to be present on page.
+2020-11-24 21:15:23,210 - rootLogger - INFO - Successfully waited for Date Button to be present on page.
+2020-11-24 21:15:23,500 - rootLogger - INFO - Successfully double clicked on Date Button element.
+2020-11-24 21:15:24,557 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:24,906 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:15:25,004 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:15:25,158 - rootLogger - INFO - Successfully entered Please enter the date of birth in Description Text Input textbox.
+2020-11-24 21:15:25,266 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:15:25,446 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:15:26,954 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:27,017 - rootLogger - INFO - Successfully waited for Date Added Please enter the date of birth to be present on page.
+2020-11-24 21:15:27,079 - rootLogger - INFO - Successfully waited for Date Added Please enter the date of birth to be present on page.
+2020-11-24 21:15:28,207 - rootLogger - INFO - Successfully waited for Image Choice Button to be present on page.
+2020-11-24 21:15:28,470 - rootLogger - INFO - Successfully double clicked on Image Choice Button element.
+2020-11-24 21:15:29,521 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:29,863 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:15:30,012 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:15:30,162 - rootLogger - INFO - Successfully entered Where you like to travel from the below place in Description Text Input textbox.
+2020-11-24 21:15:30,253 - rootLogger - INFO - Successfully waited for Add Image to be present on page.
+2020-11-24 21:15:30,475 - rootLogger - INFO - Successfully clicked on Add Image element.
+2020-11-24 21:15:30,556 - rootLogger - INFO - Successfully waited for Iframe Questions Options to be present on page.
+2020-11-24 21:15:32,478 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:32,523 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:38,120 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:38,208 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:15:38,270 - rootLogger - INFO - Successfully waited for Reporting Value to be present on page.
+2020-11-24 21:15:38,345 - rootLogger - INFO - Successfully entered 6 in Reporting Value textbox.
+2020-11-24 21:15:38,416 - rootLogger - INFO - Successfully waited for Add Image to be present on page.
+2020-11-24 21:16:37,523 - rootLogger - INFO - Successfully clicked on Add Image element.
+2020-11-24 21:16:38,662 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:38,708 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:41,015 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:41,076 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:41,119 - rootLogger - INFO - Successfully waited for Reporting Value to be present on page.
+2020-11-24 21:16:41,202 - rootLogger - INFO - Successfully entered 7 in Reporting Value textbox.
+2020-11-24 21:16:41,260 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:16:42,492 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:16:43,570 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:43,601 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:43,722 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:16:43,909 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:16:46,069 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:46,123 - rootLogger - INFO - Successfully waited for Image Choice Added Where you like to travel from the below place to be present on page.
+2020-11-24 21:16:46,170 - rootLogger - INFO - Successfully waited for Image Choice Added Where you like to travel from the below place to be present on page.
+2020-11-24 21:16:46,202 - rootLogger - INFO - Image choice options added in the survey
+2020-11-24 21:16:46,280 - rootLogger - INFO - Successfully waited for Multiple Textbox Button to be present on page.
+2020-11-24 21:16:46,542 - rootLogger - INFO - Successfully double clicked on Multiple Textbox Button element.
+2020-11-24 21:16:49,599 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:50,358 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:16:50,614 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:16:50,758 - rootLogger - INFO - Successfully entered Please enter your qualification details below in Description Text Input textbox.
+2020-11-24 21:16:50,882 - rootLogger - INFO - Successfully waited for Multi Textbox 1 Input to be present on page.
+2020-11-24 21:16:51,067 - rootLogger - INFO - Successfully entered PHD in Multi Textbox 1 Input textbox.
+2020-11-24 21:16:51,149 - rootLogger - INFO - Successfully waited for Multi Textbox 2 Input to be present on page.
+2020-11-24 21:16:51,394 - rootLogger - INFO - Successfully entered Degree in Multi Textbox 2 Input textbox.
+2020-11-24 21:16:51,477 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2020-11-24 21:16:51,856 - rootLogger - INFO - Successfully clicked on Save Button element.
+2020-11-24 21:16:53,344 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:53,402 - rootLogger - INFO - Successfully waited for Multi Text Box Added Please enter your qualification details below to be present on page.
+2020-11-24 21:16:53,467 - rootLogger - INFO - Successfully waited for Multi Text Box Added Please enter your qualification details below to be present on page.
+2020-11-24 21:16:53,499 - rootLogger - INFO - Multi Text Box options added in the survey
+2020-11-24 21:16:53,569 - rootLogger - INFO - Successfully waited for Multiple DropDown Button to be present on page.
+2020-11-24 21:16:53,821 - rootLogger - INFO - Successfully double clicked on Multiple DropDown Button element.
+2020-11-24 21:16:57,136 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:16:57,761 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2020-11-24 21:16:58,029 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2020-11-24 21:16:58,218 - rootLogger - INFO - Successfully entered To what extent do you think that THE PRODUCT is worth the price? in Description Text Input textbox.
+2020-11-24 21:16:58,363 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
+2020-11-24 21:17:56,870 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
+2020-11-24 21:17:58,121 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:17:58,244 - rootLogger - INFO - Successfully waited for loader to disappear.
+2020-11-24 21:18:08,330 - rootLogger - INFO - Get Answer Options from Answer Library Button not present on page.

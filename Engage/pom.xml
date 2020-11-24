@@ -12,6 +12,7 @@
 		<module>Sogo-Performance</module>
 		<module>Engage-Performance</module>
 		<module>K12-Performance</module>
+		<module>Sogo-Smoke</module>
 	</modules>
 
 

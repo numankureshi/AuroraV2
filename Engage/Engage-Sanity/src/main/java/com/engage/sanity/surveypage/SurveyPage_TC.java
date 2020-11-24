@@ -97,7 +97,7 @@ public class SurveyPage_TC extends SuiteBase {
 				param.put("URL", participationURLs.get(key));
 				
 				loadBrowser();
-				sp.surveyParticipation(getDriver(), param, test);
+//				sp.surveyParticipation(getDriver(), param, test);
 			}
 		}
 

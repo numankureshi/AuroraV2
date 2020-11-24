@@ -18,4 +18,15 @@
 		</classes>
 	</test>
 
+	<test name="smxpage">
+		<groups>
+			<run>
+				<include name="smxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.engage.smoke.smxpage.SMXPage_TC" />
+		</classes>
+	</test>
+
 </suite>

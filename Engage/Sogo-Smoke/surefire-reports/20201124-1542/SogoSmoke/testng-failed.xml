@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [SogoSmoke]" parallel="tests">
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test thread-count="1" verbose="0" name="surveyform(failed)" parallel="tests">
+    <groups>
+      <run>
+        <include name="surveyform"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.sogo.smoke.surveypage.SurveyPage_TC">
+        <methods>
+          <include name="reporterDataResults"/>
+          <include name="setUp"/>
+          <include name="afterSuite"/>
+          <include name="Smoke_TC1" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.sogo.smoke.surveypage.SurveyPage_TC -->
+    </classes>
+  </test> <!-- surveyform(failed) -->
+  <test thread-count="1" verbose="0" name="smxpage(failed)" parallel="tests">
+    <groups>
+      <run>
+        <include name="smxpage"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.sogo.smoke.smxpage.SMXPage_TC">
+        <methods>
+          <include name="setUp"/>
+          <include name="reporterDataResults"/>
+          <include name="Smoke_TC2" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.sogo.smoke.smxpage.SMXPage_TC -->
+    </classes>
+  </test> <!-- smxpage(failed) -->
+</suite> <!-- Failed suite [SogoSmoke] -->

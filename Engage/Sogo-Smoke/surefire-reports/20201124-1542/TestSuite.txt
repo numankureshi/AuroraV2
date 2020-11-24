@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 2, Errors: 0, Skipped: 1, Time elapsed: 379.552 s <<< FAILURE! - in TestSuite
+Smoke_TC2(com.sogo.smoke.smxpage.SMXPage_TC)  Time elapsed: 315.839 s  <<< FAILURE!
+java.lang.AssertionError: null
+	at com.sogo.smoke.smxpage.SMXPage_TC.Smoke_TC2(SMXPage_TC.java:116)
+
+reporterDataResults(com.sogo.smoke.smxpage.SMXPage_TC)  Time elapsed: 376.251 s  <<< FAILURE!
+org.openqa.selenium.TimeoutException: 
+timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=87.0.4280.66)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'SANKET-PC', ip: '192.168.1.18', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_144'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 87.0.4280.66, chrome: {chromedriverVersion: 87.0.4280.20 (c99e81631faa0..., userDataDir: C:\Users\Shanks\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:19776}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: accept, webauthn:virtualAuthenticators: true}
+Session ID: 7e5edabd0df25860381d57edc11d503e
+	at com.sogo.smoke.smxpage.SMXPage_TC.reporterDataResults(SMXPage_TC.java:133)
+
