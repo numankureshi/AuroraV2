@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="ResearchSmoke" parallel="tests" thread-count="1">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener
+			class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+
+	<test name="surveyform">
+		<groups>
+			<run>
+				<include name="surveyform" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.research.smoke.surveypage.SurveyPage_TC" />
+		</classes>
+	</test>
+
+	<test name="smxpage">
+		<groups>
+			<run>
+				<include name="smxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.research.smoke.smxpage.SMXPage_TC" />
+		</classes>
+	</test>
+
+</suite>

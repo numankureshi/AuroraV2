@@ -13,6 +13,7 @@
 		<module>Engage-Performance</module>
 		<module>K12-Performance</module>
 		<module>Sogo-Smoke</module>
+		<module>Research-Smoke</module>
 	</modules>
 
 
@@ -101,6 +102,14 @@
 			<artifactId>extentreports</artifactId>
 			<version>3.1.5</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.5</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

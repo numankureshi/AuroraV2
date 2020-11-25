@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-ResearchSmoke">
+              <span class="suite-name border-failed">ResearchSmoke</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-ResearchSmoke">
+                    <span>C:\Users\Shanks\git\Engage\Engage\Research-Smoke\src\main\resources\testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-ResearchSmoke">
+                    <span class="test-stats">2 tests</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-ResearchSmoke">
+                    <span>2 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-ResearchSmoke">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-ResearchSmoke">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-ResearchSmoke">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-ResearchSmoke">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">2 methods, 1 failed,  1 skipped,  </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-ResearchSmoke" class="hide-methods failed suite-ResearchSmoke"> (hide)</a> <!-- hide-methods failed suite-ResearchSmoke -->
+                      <a href="#" panel-name="suite-ResearchSmoke" class="show-methods failed suite-ResearchSmoke"> (show)</a> <!-- show-methods failed suite-ResearchSmoke -->
+                    </span>
+                    <div class="method-list-content failed suite-ResearchSmoke">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-ResearchSmoke" title="com.research.smoke.smxpage.SMXPage_TC" hash-for-method="Smoke_TC2({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX su...)">Smoke_TC2({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX su...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-ResearchSmoke -->
+                  </li>
+                  <li>
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-ResearchSmoke" class="hide-methods skipped suite-ResearchSmoke"> (hide)</a> <!-- hide-methods skipped suite-ResearchSmoke -->
+                      <a href="#" panel-name="suite-ResearchSmoke" class="show-methods skipped suite-ResearchSmoke"> (show)</a> <!-- show-methods skipped suite-ResearchSmoke -->
+                    </span>
+                    <div class="method-list-content skipped suite-ResearchSmoke">
+                      <span>
+                        <img width="3%" src="skipped.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-ResearchSmoke" title="com.research.smoke.surveypage.SurveyPage_TC" hash-for-method="Smoke_TC1({TestCaseName=Smoke_TC1, CaseToRun=N, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Verify the su...)">Smoke_TC1({TestCaseName=Smoke_TC1, CaseToRun=N, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Verify the su...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content skipped suite-ResearchSmoke -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-ResearchSmoke" class="panel ResearchSmoke">
+          <div class="suite-ResearchSmoke-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.research.smoke.smxpage.SMXPage_TC</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Smoke_TC2({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX su...)">
+                  </a> <!-- Smoke_TC2({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX su...) -->
+                  <span class="method-name">Smoke_TC2</span>
+                  <span class="parameters">({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX survey, Test_Description=, ExpectedResult=survey should be created, Pass/Fail/Skip=, Failure Reason=, Expected=, Expected2=, Expected3=, Header=, TextBox=, RadioButton=, RadioButton2=, CheckBox=, DropDown=, Gender=, Grade=, DOB=, Email=, Ratings=, Like=, Slider=, MultiDropDown=, ImageRadio=, RatingNumber=, MTB=, MTB2=, MDD=, RDDG=, RG=, RRG=, RSG=, CBG=, MG1=, MG2=, RRB=, RDD=, LB=, Attachments=, DrillDown=, ThanksMsg=, surveyname=SMx DP, foldername=Main, primarylanguage=English, secondarylanguage=Spanish, description=This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product., textbox=What are the specific details of the product / service., radiobutton=Where did you last purchase THE PRODUCT?, AnswerOptions=Endorsement, AnswerOptions1=Qualification, checkbox=Please select your choices from the list, imagechoice=Where you like to travel from the below place, reportingvalue=6;7, images=image of mountain.jpg;harley-davidson-logo-vector.png, date=Please enter the date of birth, likedislike=Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED?, ratingscale=How likely is it that you would recommend our company to a friend or colleague?, dropdown=How long have you been our customer?, ranking=Which Product/Service type do you want to provide your feedback about, multitextbox=Please enter your qualification details below, textbox1=PHD, textbox2=Degree, multidropdown=To what extent do you think that THE PRODUCT is worth the price?, dropdown1=Where do you usually purchase THE PRODUCT?, dropdown2=Where do you usually sell the product, multiradio=How would you rate our company in the following areas?, QuestionOptions=Intensity, multicheckbox=Please select all the applicable things you like, ratingradio=Rate your skills, ratingdropdown=Rate the importance of things you value, ratingscalegrid=PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED?, matrixgrid=What is the highest level of education you completed?, horizontalradiobutton=For how many years have you been using THE PRODUCT?, numericallocations=Are you the principal shopper in your household?, attachments=Upload your documents, ratingradiobutton=Would you recommend the product to others?, ratingdropdownbutton=The morale in my department is high., listbox=How did you first learn about THE PRODUCT?, demographics=Please fill below information., subquestions=The company clearly conveys its mission to its employees.;There is good communication from managers to employees.;I have the tools and resources I need to do my job. ;I have the training I need to do my job. ;I feel underutilized in my job. ;The amount of work expected of me is reasonable. , symbolratingscale=Please indicate the extent to which you agree with the following statements., surveyid=, emailtemplate=, selectlist=, mailmergedd=, mailmergetxt=, prepopdd=, emailtemplatere=})</span>
+                  <div class="stack-trace">java.lang.AssertionError: null
+	at utility.SeleniumUtils.click(SeleniumUtils.java:96)
+	at pageobjects.SMXPage.enterRatingScaleGridButton(SMXPage.java:884)
+	at pageobjects.SMXPage.createSurvey(SMXPage.java:63)
+	at com.research.smoke.smxpage.SMXPage_TC.Smoke_TC2(SMXPage_TC.java:116)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+... Removed 18 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ResearchSmoke-class-failed -->
+          <div class="suite-ResearchSmoke-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">com.research.smoke.surveypage.SurveyPage_TC</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Smoke_TC1({TestCaseName=Smoke_TC1, CaseToRun=N, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Verify the su...)">
+                  </a> <!-- Smoke_TC1({TestCaseName=Smoke_TC1, CaseToRun=N, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Verify the su...) -->
+                  <span class="method-name">Smoke_TC1</span>
+                  <span class="parameters">({TestCaseName=Smoke_TC1, CaseToRun=N, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Verify the survey participation is launched, Test_Description=, ExpectedResult=Survey Participation page should be launched, Pass/Fail/Skip=, Failure Reason=, Expected=Big Problem, Expected2=, Expected3=, Header=, TextBox=, RadioButton=, RadioButton2=, CheckBox=, DropDown=, Gender=, Grade=, DOB=, Email=, Ratings=, Like=, Slider=, MultiDropDown=, ImageRadio=, RatingNumber=, MTB=, MTB2=, MDD=, RDDG=, RG=, RRG=, RSG=, CBG=, MG1=, MG2=, RRB=, RDD=, LB=, Attachments=, DrillDown=, ThanksMsg=, surveyname=, foldername=, primarylanguage=, secondarylanguage=, description=, textbox=, radiobutton=, AnswerOptions=, AnswerOptions1=, checkbox=, imagechoice=, reportingvalue=, images=, date=, likedislike=, ratingscale=, dropdown=, ranking=, multitextbox=, textbox1=, textbox2=, multidropdown=, dropdown1=, dropdown2=, multiradio=, QuestionOptions=, multicheckbox=, ratingradio=, ratingdropdown=, ratingscalegrid=, matrixgrid=, horizontalradiobutton=, numericallocations=, attachments=, ratingradiobutton=, ratingdropdownbutton=, listbox=, demographics=, subquestions=, symbolratingscale=, surveyid=, emailtemplate=, selectlist=, mailmergedd=, mailmergetxt=, prepopdd=, emailtemplatere=})</span>
+                  <div class="stack-trace">org.testng.SkipException: CaseToRun = N for Smoke_TC1So skipping Exceution.
+	at com.research.smoke.surveypage.SurveyPage_TC.Smoke_TC1(SurveyPage_TC.java:62)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+... Removed 16 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ResearchSmoke-class-skipped -->
+        </div> <!-- panel ResearchSmoke -->
+        <div panel-name="test-xml-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\Shanks\git\Engage\Engage\Research-Smoke\src\main\resources\testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite thread-count=&quot;1&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot; name=&quot;ResearchSmoke&quot; parallel=&quot;tests&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;org.uncommons.reportng.HTMLReporter&quot;/&gt;
+    &lt;listener class-name=&quot;org.uncommons.reportng.JUnitXMLReporter&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;1&quot; verbose=&quot;0&quot; name=&quot;surveyform&quot; parallel=&quot;tests&quot;&gt;
+    &lt;groups&gt;
+      &lt;run&gt;
+        &lt;include name=&quot;surveyform&quot;/&gt;
+      &lt;/run&gt;
+    &lt;/groups&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.research.smoke.surveypage.SurveyPage_TC&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- surveyform --&gt;
+  &lt;test thread-count=&quot;1&quot; verbose=&quot;0&quot; name=&quot;smxpage&quot; parallel=&quot;tests&quot;&gt;
+    &lt;groups&gt;
+      &lt;run&gt;
+        &lt;include name=&quot;smxpage&quot;/&gt;
+      &lt;/run&gt;
+    &lt;/groups&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.research.smoke.smxpage.SMXPage_TC&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- smxpage --&gt;
+&lt;/suite&gt; &lt;!-- ResearchSmoke --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for ResearchSmoke</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">surveyform (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">smxpage (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for ResearchSmoke</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">smxpage</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">Smoke_TC2</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">surveyform</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">Smoke_TC1</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for ResearchSmoke</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_ResearchSmoke');
+function tableData_ResearchSmoke() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(2);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'Smoke_TC2')
+data.setCell(0, 2, 'com.research.smoke.smxpage.SMXPage_TC')
+data.setCell(0, 3, 284911);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'Smoke_TC1')
+data.setCell(1, 2, 'com.research.smoke.surveypage.SurveyPage_TC')
+data.setCell(1, 3, 14);
+window.suiteTableData['ResearchSmoke']= { tableData: data, tableDiv: 'times-div-ResearchSmoke'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
+              <div id="times-div-ResearchSmoke">
+              </div> <!-- times-div-ResearchSmoke -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for ResearchSmoke</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">Smoke_TC2({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX su...)</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output">Successfully waited for User Name to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered gjoy_test in User Name textbox.</span>
+                <span class="reporter-method-output">Successfully entered Eighth8# in User Password textbox.</span>
+                <span class="reporter-method-output">Successfully clicked on Login element.</span>
+                <span class="reporter-method-output">Successfully waited for Sogo Account to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Create Project Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Create Project Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Where would you like to begin? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Survey Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Survey Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Start with a Blank Survey Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Start with a Blank Survey Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Continue Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Continue Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Create New Survey Label to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Survey Name to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered SMx DP - 25-Nov-2020 20:15:51 in Survey Name textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Select Folder to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Select Folder element.</span>
+                <span class="reporter-method-output">Successfully waited for Main to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Main element.</span>
+                <span class="reporter-method-output">Successfully waited for Primary Langugage Drop down to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Secondary Language Switch element.</span>
+                <span class="reporter-method-output">Successfully waited for Secondary Langugage Drop down to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Secondary Langugage Drop down element.</span>
+                <span class="reporter-method-output">Successfully waited for Secondary Langugage Drop down Search to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Spanish in Secondary Langugage Drop down Search textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Spanish to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Spanish element.</span>
+                <span class="reporter-method-output">Successfully waited for Start Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Start Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for SMx DP - 25-Nov-2020 20:15:51 to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Description Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Description Added This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Net Promoter Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Net Promoter Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully fetched text How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? from Description Text Input</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Text Box Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Text Box Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered What are the specific details of the product / service. in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Text Box Label Added What are the specific details of the product / service. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Text Box Added What are the specific details of the product / service. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Radio Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Radio Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Where did you last purchase THE PRODUCT? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Get Answer Options from Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Get Answer Options from Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Ansers Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Endorsement to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Endorsement element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Other checkbox to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Other checkbox element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Radio Buttons Label Added Where did you last purchase THE PRODUCT? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Radio Buttons Added Where did you last purchase THE PRODUCT? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Check Box Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Check Box Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Please select your choices from the list in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Get Answer Options from Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Get Answer Options from Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Ansers Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Endorsement to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Endorsement element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for None of Above to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on None of Above element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Check Box Label Added Please select your choices from the list to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Check Box Added Please select your choices from the list to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Drop Down Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Drop Down Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered How long have you been our customer? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Get Answer Options from Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Get Answer Options from Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Ansers Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Endorsement to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Endorsement element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Other checkbox to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Other checkbox element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Drop Down Label Added How long have you been our customer? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Drop Down Added How long have you been our customer? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Demographics Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Please fill below information. in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Name to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Name element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Name: Title to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Name: Title element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Name: First Name to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Name: First Name element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Name: Middle Name to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Name: Middle Name element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Name: Last Name to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Name: Last Name element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Gender to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Gender element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Date of Birth to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Date of Birth element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address: Street 1 to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address: Street 1 element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address: Street 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address: Street 2 element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address: City to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address: City element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address: Country to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address: Country element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address: State to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address: State element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Address: ZIP to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Address: ZIP element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Telephone/FAX to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Telephone/FAX element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Telephone/FAX: Telephone to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Telephone/FAX: Telephone element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Telephone/FAX: Extension to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Telephone/FAX: Extension element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Telephone/FAX: Fax to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Telephone/FAX: Fax element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Email Address to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Email Address element.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Require to re-enter email address to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Demographics Require to re-enter email address element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Label Added Please fill below information. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Demographics Added Please fill below information. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Scale Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Rating Scale Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered How likely is it that you would recommend our company to a friend or colleague? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Show N/A option to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Show N/A option element.</span>
+                <span class="reporter-method-output">Successfully waited for Show scale in reverse order to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Show scale in reverse order element.</span>
+                <span class="reporter-method-output">Successfully waited for Show participant rating field to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Show participant rating field element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Scale Added How likely is it that you would recommend our company to a friend or colleague? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Scale Added How likely is it that you would recommend our company to a friend or colleague? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Symbol Rating Scale Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Symbol Rating Scale Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Please indicate the extent to which you agree with the following statements. in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Number of Sub Questions to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 1 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered The company clearly conveys its mission to its employees. in Sub Question 1 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 1 Scale to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered There is good communication from managers to employees. in Sub Question 2 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 2 Scale to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 3 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered I have the tools and resources I need to do my job.  in Sub Question 3 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 3 Scale to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 4 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered I have the training I need to do my job.  in Sub Question 4 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 4 Scale to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 5 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered I feel underutilized in my job.  in Sub Question 5 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 5 Scale to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 6 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered The amount of work expected of me is reasonable.  in Sub Question 6 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Sub Question 6 Scale to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Symbol Rating Scale Added Please indicate the extent to which you agree with the following statements. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Symbol Rating Scale Added Please indicate the extent to which you agree with the following statements. to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Like/Dislike Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Like/Dislike Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Like/Dislike Added Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Like/Dislike Added Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Ranking Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Ranking Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Which Product/Service type do you want to provide your feedback about in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Get Answer Options from Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Get Answer Options from Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Ansers Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Qualification to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Qualification element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Ranking Added Which Product/Service type do you want to provide your feedback about to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Ranking Added Which Product/Service type do you want to provide your feedback about to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Date Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Date Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Please enter the date of birth in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Date Added Please enter the date of birth to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Date Added Please enter the date of birth to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Image Choice Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Image Choice Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Where you like to travel from the below place in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Add Image to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Add Image element.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Questions Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Reporting Value to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 6 in Reporting Value textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Add Image to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Add Image element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Reporting Value to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 7 in Reporting Value textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Image Choice Added Where you like to travel from the below place to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Image Choice Added Where you like to travel from the below place to be present on page.</span>
+                <span class="reporter-method-output">Image choice options added in the survey</span>
+                <span class="reporter-method-output">Successfully waited for Multiple Textbox Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Multiple Textbox Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Please enter your qualification details below in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Textbox 1 Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered PHD in Multi Textbox 1 Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Textbox 2 Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Degree in Multi Textbox 2 Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Text Box Added Please enter your qualification details below to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Text Box Added Please enter your qualification details below to be present on page.</span>
+                <span class="reporter-method-output">Multi Text Box options added in the survey</span>
+                <span class="reporter-method-output">Successfully waited for Multiple DropDown Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Multiple DropDown Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered To what extent do you think that THE PRODUCT is worth the price? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Get Answer Options from Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Get Answer Options from Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Ansers Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Qualification to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Qualification element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Dropdown 1 Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Where do you usually purchase THE PRODUCT? in Multi Dropdown 1 Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Dropdown 2 Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Where do you usually sell the product in Multi Dropdown 2 Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Drop Down Added To what extent do you think that THE PRODUCT is worth the price? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Multi Drop Down Added To what extent do you think that THE PRODUCT is worth the price? to be present on page.</span>
+                <span class="reporter-method-output">Multi Drop Down options added in the survey</span>
+                <span class="reporter-method-output">Successfully waited for Multiple Radio Grid Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Multiple Radio Grid Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Questions Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered How would you rate our company in the following areas? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for More to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on More element.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Endorsement to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Endorsement element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for More to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on More element.</span>
+                <span class="reporter-method-output">Successfully waited for Questions Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Questions Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Intensity to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Intensity element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button Return to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button Return element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Radio Grid Added How would you rate our company in the following areas? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Radio Grid Added How would you rate our company in the following areas? to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Multiple Check Box Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Multiple Check Box Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Questions Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Please select all the applicable things you like in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for More to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on More element.</span>
+                <span class="reporter-method-output">Successfully waited for Answer Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Answer Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Endorsement to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Endorsement element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for More to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on More element.</span>
+                <span class="reporter-method-output">Successfully waited for Questions Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Questions Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Intensity to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Intensity element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button Return to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button Return element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for CheckBox Grid Added Please select all the applicable things you like to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for CheckBox Grid Added Please select all the applicable things you like to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Radio Grid Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Rating Radio Grid Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Questions Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Rate your skills in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Choice 1 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Yes in Choice 1 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Choice 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered No in Choice 2 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Choice 3 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered NA in Choice 3 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight 1 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 2 in Weight 1 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 1 in Weight 2 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight 3 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 0 in Weight 3 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for More to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on More element.</span>
+                <span class="reporter-method-output">Successfully waited for Questions Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Questions Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Intensity to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Intensity element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button Return to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button Return element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Radio Grid Added Rate your skills to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Radio Grid Added Rate your skills to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Drop Down Grid Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Rating Drop Down Grid Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Questions Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Rate the importance of things you value in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Add/Edit Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Add/Edit Options element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Choice 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered Yes in Choice 2 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Choice 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered No in Choice 2 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Choice 3 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered NA in Choice 3 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight 1 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 2 in Weight 1 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight 2 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 1 in Weight 2 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight 3 to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered 0 in Weight 3 textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button element.</span>
+                <span class="reporter-method-output">Successfully waited for More to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on More element.</span>
+                <span class="reporter-method-output">Successfully waited for Questions Library Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Questions Library Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Answer Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Intensity to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Intensity element.</span>
+                <span class="reporter-method-output">Successfully waited for Use this list Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Use this list Button element.</span>
+                <span class="reporter-method-output">Successfully waited for Save Button Return to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Save Button Return element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Drop Down Grid Added Rate the importance of things you value to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Drop Down Grid Added Rate the importance of things you value to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Rating Scale Grid Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully double clicked on Rating Scale Grid Button element.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for loader to disappear.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Questions Options to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Iframe Button to be present on page.</span>
+                <span class="reporter-method-output">Successfully waited for Description Text Input to be present on page.</span>
+                <span class="reporter-method-output">Successfully entered PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? in Description Text Input textbox.</span>
+                <span class="reporter-method-output">Successfully waited for Weight Highest to be present on page.</span>
+                <span class="reporter-method-output">Successfully clicked on Weight Highest element.</span>
+                <span class="reporter-method-output">Successfully waited for Weight Middle to be present on page.</span>
+                <span class="reporter-method-output">Not able to click on Weight Middle element.</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-ResearchSmoke" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.research.smoke.surveypage.SurveyPage_TC</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">Smoke_TC1({TestCaseName=Smoke_TC1, CaseToRun=N, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Verify the su...)</span>
+                <span class="method-start">1085 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">reporterDataResults([TestResult name=Smoke_TC1 status=SKIP method=SurveyPage_TC.Smoke_TC1(java.util.LinkedHashMap)[pri:0...)</span>
+                <span class="method-start">1100 ms</span>
+              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.research.smoke.smxpage.SMXPage_TC</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">1126 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">Smoke_TC2({TestCaseName=Smoke_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=Admin, Test_Name=Create SMX su...)</span>
+                <span class="method-start">1313 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">reporterDataResults([TestResult name=Smoke_TC2 status=FAILURE method=SMXPage_TC.Smoke_TC2(java.util.LinkedHashMap)[pri:0...)</span>
+                <span class="method-start">286250 ms</span>
+              </div> <!-- configuration-method after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.research.smoke.surveypage.SurveyPage_TC</div> <!-- chronological-class-name -->
+              <div class="configuration-suite after">
+                <span class="method-name">afterSuite</span>
+                <span class="method-start">291442 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>
