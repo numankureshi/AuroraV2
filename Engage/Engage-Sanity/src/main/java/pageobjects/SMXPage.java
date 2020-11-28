@@ -42,6 +42,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		selectBlankSurvey(driver, param, test);
 		createNewSurvey(driver, param, test);
 		enterDescription(driver, param, test);
+
 		enterNetPromoter(driver, param, test);
 		enterTextBox(driver, param, test);
 		enterRadioButton(driver, param, test);
@@ -53,6 +54,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterLikeDislikeButton(driver, param, test);
 		enterRankingQuestionButton(driver, param, test);
 		enterDateButton(driver, param, test);
+
 		enterImageChoiceButton(driver, param, test);
 		enterMultipleTextBoxButton(driver, param, test);
 		enterMultiDropDownButton(driver, param, test);
@@ -640,6 +642,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("imagechoice") +"']"), "Image Choice Added "+ param.get("imagechoice"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("imagechoice") +"']/parent::div/following-sibling::div//li[@class='ng-scope']"), "Image Choice Added "+ param.get("imagechoice"), test);
+		Thread.sleep(1000);
 		int size = driver.findElements(By.xpath("//span[text()='"+ param.get("imagechoice") +"']/parent::div/following-sibling::div//li[@class='ng-scope']")).size();
 		if(size == images.length) {
 			reportPass("Image choice options added in the survey", test);

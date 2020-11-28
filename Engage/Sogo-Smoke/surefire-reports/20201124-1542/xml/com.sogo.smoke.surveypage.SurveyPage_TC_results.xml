@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="surveyform"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="1"
+           time="0.015">
+  <properties />
+  
+            <testcase name="Smoke_TC1" time="0.0" classname="com.sogo.smoke.surveypage.SurveyPage_TC">
+          <skipped />
+    </testcase>
+  
+  
+</testsuite>
