@@ -32,6 +32,8 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.engage.smoke.surveypage.SurveyPage_TC;
 
+import pageobjects.DMXPage;
+import pageobjects.DMXPageEngage;
 import pageobjects.LoginPage;
 import pageobjects.SMXPage;
 import pageobjects.SurveyPage;
@@ -65,6 +67,8 @@ public class SuiteBase {
 	public SurveyPage sp = new SurveyPage();
 	public LoginPage loginPage = new LoginPage();
 	public SMXPage smxPage = new SMXPage();
+	public DMXPage dmxPage = new DMXPage();
+	public DMXPageEngage dmxPage2 = new DMXPageEngage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

@@ -28,5 +28,16 @@
 			<class name="com.engage.smoke.smxpage.SMXPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="dmxpage">
+		<groups>
+			<run>
+				<include name="dmxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.engage.smoke.dmxpage.DMXPage_TC" />
+		</classes>
+	</test>
 
 </suite>
