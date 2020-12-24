@@ -30,6 +30,7 @@ import property.IHomePage;
 import property.ISMXPage;
 import property.ISurveyPage;
 import utility.SeleniumUtils;
+import utility.WebPageElements;
 
 public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	public double finish, start;
@@ -73,20 +74,20 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, single_use_pwd, test);
 		click(driver, testcaseName, single_use_pwd, test);
 		waitForLoad(driver, testcaseName, 60, test);	
-		
+		selectFromAList2(driver, param, test);
 		prePopulation2(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
 		click(driver, testcaseName, generate_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 60, successfully_generated, test);
-		waitforElemPresent(driver, testcaseName, 30, generate_password, test);
-		click(driver, testcaseName, generate_password, test);
+//		waitforElemPresent(driver, testcaseName, 30, generate_password, test);
+//		click(driver, testcaseName, generate_password, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
-		downloadFile(driver, param, test);
+		downloadFile(driver, param, generate_password, test);
 	}
 	
-	public void downloadFile(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+	public void downloadFile(WebDriver driver, HashMap<String, String> param, WebPageElements button, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		String downloadFilePath = System.getProperty("user.dir") +"\\src\\main\\resources\\excelfiles";
 		String fileSystem = "SurveyFiles";
@@ -101,8 +102,11 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		try {
 			long afterCount = beforeCount;
 			int i = 0;
+			waitforElemPresent(driver, testcaseName, 30, button, test);
+			click(driver, testcaseName, button, test);
 			while (beforeCount >= afterCount && i < 180) {
 				afterCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+				Thread.sleep(1000);
 				i++;
 			}
 			if(i == 180) {
@@ -181,6 +185,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, create_new_list, test);
 		click(driver, testcaseName, create_new_list, test);
+		waitForLoad(driver, testcaseName, 60, test);
 		enterListName(driver, param, test);
 		importFromFile2(driver, param, test);
 		importColName(driver, param, test);
@@ -259,6 +264,13 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 60, test);
 		selectEmailTemplate(driver, param, test);
 		selectFromAList(driver, param, test);
+		try {
+			driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
+			click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
+			waitForLoad(driver, testcaseName, 30, test);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		mailMerge(driver, param, test);
 		prePopulation(driver, param, test);
 		reviewData(driver, param, test);

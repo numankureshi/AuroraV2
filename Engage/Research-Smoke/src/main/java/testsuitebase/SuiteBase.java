@@ -31,6 +31,8 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentReports;
 
+import pageobjects.DMXPage;
+import pageobjects.DMXPageResearch;
 import pageobjects.LoginPage;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
@@ -65,6 +67,8 @@ public class SuiteBase {
 	public SurveyPage sp = new SurveyPage();
 	public LoginPage loginPage = new LoginPage();
 	public SMXPage smxPage = new SMXPage();
+	public DMXPage dmxPage = new DMXPage();
+	public DMXPageResearch dmxPage2 = new DMXPageResearch();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

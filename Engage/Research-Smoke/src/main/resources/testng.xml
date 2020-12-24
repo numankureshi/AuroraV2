@@ -28,5 +28,16 @@
 			<class name="com.research.smoke.smxpage.SMXPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="dmxpage">
+		<groups>
+			<run>
+				<include name="dmxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.research.smoke.dmxpage.DMXPage_TC" />
+		</classes>
+	</test>
 
 </suite>

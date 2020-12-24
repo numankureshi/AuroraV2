@@ -70,6 +70,9 @@ public interface IDMXPage {
 	String DONE_EDITING = "//input[@name='btnNext']";
 	WebPageElements done_editing_button = new WebPageElements("Done Editing Button", "xpath", DONE_EDITING);
 	
+	String GENERATE_NEW_URL = "//a[text()='Generate New URL']";
+	WebPageElements generate_new_url = new WebPageElements("Generate New URL", "xpath", GENERATE_NEW_URL);
+	
 	String ALLOW_DUPLICATE = "//input[contains(@name,'chkDuplicateFile')]";
 	WebPageElements allow_duplicate = new WebPageElements("Allow duplicate email addresses", "xpath", ALLOW_DUPLICATE);
 	
