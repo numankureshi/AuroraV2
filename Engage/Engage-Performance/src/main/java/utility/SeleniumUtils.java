@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -55,8 +54,51 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void doubleClick(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
+		WebElement element = null;
+		Actions action = new Actions(driver);
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			action.doubleClick(element).build().perform();
+			test.log(Status.INFO, "Successfully double clicked on "+ ele.getName() +" element.");
+			Add_Log.info("Successfully double clicked on "+ ele.getName() +" element.");
+			Reporter.log("Successfully double clicked on "+ ele.getName() +" element.");
+		} catch (Exception e) {
+				test.log(Status.FAIL, "Not able to click on "+ ele.getName() +" element.");
+				Add_Log.info("Not able to double click on "+ ele.getName() +" element.");
+				Reporter.log("Not able to double click on "+ ele.getName() +" element.");
+				TestResultStatus.failureReason.add(testcaseName + "| Not able to double click on "+ ele.getName() +" element.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+		}
+	}
+	
 	public void click(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {
 		WebElement element = driver.findElement(by);
+		try {
+			element.click();
+			test.log(Status.INFO, "Successfully clicked on "+ name +" element.");
+			Add_Log.info("Successfully clicked on "+ name +" element.");
+			Reporter.log("Successfully clicked on "+ name +" element.");
+		} catch (Exception e) {
+			try {
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();", element);
+				test.log(Status.INFO, "Successfully clicked on "+ name +" element.");
+				Add_Log.info("Successfully clicked on "+ name +" element.");
+				Reporter.log("Successfully clicked on "+ name +" element.");
+			} catch (Exception e2) {
+				test.log(Status.FAIL, "Not able to click on "+ name +" element.");
+				Add_Log.info("Not able to click on "+ name +" element.");
+				Reporter.log("Not able to click on "+ name +" element.");
+				TestResultStatus.failureReason.add(testcaseName + "| Not able to click on "+ name +" element.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+			}
+		}
+	}
+	
+	public void click(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
 		try {
 			element.click();
 			test.log(Status.INFO, "Successfully clicked on "+ name +" element.");
@@ -181,6 +223,51 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void waitforElemNotVisible(WebDriver driver, String testcaseName, int seconds, WebPageElements ele, ExtentTest test) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			if(ele.getLocator().equalsIgnoreCase("xpath")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(ele.getValue())));
+			} else if(ele.getLocator().equalsIgnoreCase("id")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id(ele.getValue())));
+			} else if(ele.getLocator().equalsIgnoreCase("name")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.name(ele.getValue())));
+			} else if(ele.getLocator().equalsIgnoreCase("classname")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className(ele.getValue())));
+			} else if(ele.getLocator().equalsIgnoreCase("linktext")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.linkText(ele.getValue())));
+			} else if(ele.getLocator().equalsIgnoreCase("css")) {
+				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(ele.getValue())));
+			}
+			test.log(Status.INFO, "Successfully waited for "+ ele.getName() +" to be disappear on page.");
+			Add_Log.info("Successfully waited for "+ ele.getName() +" to be disappear on page.");
+			Reporter.log("Successfully waited for "+ ele.getName() +" to be disappear on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, ele.getName() +" is still present on page.");
+			Add_Log.info(ele.getName() +" is stillot present on page.");
+			Reporter.log(ele.getName() +" is still present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ ele.getName() +" is still present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, By by, String name, ExtentTest test) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
+			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
+			Reporter.log("Successfully waited for "+ name +" to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, name +" not present on page.");
+			Add_Log.info(name +" not present on page.");
+			Reporter.log(name +" not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
 	
 	public void waitForElementToBeVisible(WebDriver driver, String testcaseName, WebPageElements ele, int timeOutInSeconds, int pollingEveryInMilliSec, ExtentTest test) {
 		WebElement element = null;
@@ -230,24 +317,32 @@ public class SeleniumUtils {
 		}
 	}
 	
-	
-	
-	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, By by, String name, ExtentTest test) {
+	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele,
+			final String cssAttribute, final String cssValue, ExtentTest test) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, seconds);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
-			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
-			Reporter.log("Successfully waited for "+ name +" to be present on page.");
-		} catch (Exception e) {
-			test.log(Status.FAIL, name +" not present on page.");
-			Add_Log.info(name +" not present on page.");
-			Reporter.log(name +" not present on page.");
-			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
+		WebElement element = getWebElement(driver, testcaseName, ele, test);
+		long startTime = System.currentTimeMillis();
+		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		wait.until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return element.getCssValue(cssAttribute).contains(cssValue);
+			}
+		});
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;  //Get total wait in milliseconds
+		test.log(Status.INFO, "Successfully waited for "+ele.getName()+" to change it's "+cssAttribute+ " attribute value to "+cssValue+" is "+totalTime+" milliseconds");
+		Add_Log.info("Successfully waited for "+ele.getName()+" to change it's "+cssAttribute+ " attribute value to "+cssValue+" is "+totalTime+" milliseconds");
+		Reporter.log("Successfully waited for "+ele.getName()+" to change it's "+cssAttribute+ " attribute value to "+cssValue+" is "+totalTime+" milliseconds");
+		}catch(Exception e) {
+			test.log(Status.FAIL, "Attribute value of " + ele.getName() + "is not changed");
+			Add_Log.info("Attribute value of " + ele.getName() + "is not changed");
+			Reporter.log("Attribute value of " + ele.getName() + "is not changed");
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Attribute value of " + ele.getName() + "is not changed");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail();		
 		}
 	}
+	
 	
 	public WebElement getWebElement(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		WebElement element = null;
@@ -284,7 +379,6 @@ public class SeleniumUtils {
 		return element;
 	}
 	
-	
 	public List<WebElement> getWebElements(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		List<WebElement> element = null;
 		try {
@@ -315,7 +409,6 @@ public class SeleniumUtils {
 		}
 		return element;
 	}
-	
 	
 	public String getText(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		String text = null;
@@ -446,6 +539,33 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void scrollIntoView(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {
+		WebElement element = driver.findElement(by);
+		try {
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
+			Add_Log.info("Failed to scrolling on element "+ name);
+			Reporter.log("Failed to scrolling on element "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void scrollIntoView(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
+		try {
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
+			Add_Log.info("Failed to scrolling on element "+ name);
+			Reporter.log("Failed to scrolling on element "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
 	public void scrollIntoCenter(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		try {
 			WebElement element = getWebElement(driver, testcaseName, ele, test);
@@ -460,10 +580,12 @@ public class SeleniumUtils {
 		}
 	}
 	
-	public void scrollIntoView(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {
-		WebElement element = driver.findElement(by);
+	public void scrollIntoCenter(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
 		try {
-			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			test.log(Status.INFO, "Successfully move to :" +name);
+			Add_Log.info("Successfully move to :" +name);
+			Reporter.log("Successfully move to :" +name);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
@@ -517,7 +639,7 @@ public class SeleniumUtils {
 		}
 	}
 	
-	public void waitForLoad2(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
 				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
@@ -545,8 +667,35 @@ public class SeleniumUtils {
 		}
 	}
 	
-
 	
+	
+	public void waitForLoad2(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+		try {
+			try {
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='attachedLoader']")));
+			} catch (Exception e) {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			} finally {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			}
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Loader did not disappear.");
+			Add_Log.info("Loader did not disappear.");
+			Reporter.log("Loader did not disappear.");
+			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
 	
 	public boolean waitForJStoLoad(WebDriver driver, long timeOutInSeconds) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
@@ -677,6 +826,43 @@ public class SeleniumUtils {
 		}	
 	}
 	
+	public void hoverAction(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {		
+		WebElement element = null;
+		try {
+			Actions act = new Actions(driver);
+			element = driver.findElement(by);
+			act.moveToElement(element).perform();
+			Add_Log.info("Successfully move on to " + name);
+			test.log(Status.INFO, "Successfully move on to " + name);
+			Reporter.log("Successfully move on to " + name);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to move to "+ name);
+			Add_Log.info("Not able to move to "+ name);
+			Reporter.log("Not able to move to "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to move to "+ name);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}	
+	}
+	
+	
+	public void hoverAction(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {		
+		try {
+			Actions act = new Actions(driver);
+			act.moveToElement(element).perform();
+			Add_Log.info("Successfully hover on to " + name);
+			test.log(Status.INFO, "Successfully hover on to " + name);
+			Reporter.log("Successfully hover on to " + name);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Not able to hover to "+ name);
+			Add_Log.info("Not able to hover to "+ name);
+			Reporter.log("Not able to hover to "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to hover to "+ name);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}	
+	}
+	
 	
 	
 	
@@ -686,6 +872,25 @@ public class SeleniumUtils {
 		try {
 			JavascriptExecutor exe = (JavascriptExecutor) driver;
 			result = exe.executeScript(script);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to execute script :" + script);
+			Add_Log.info("Failed to execute script :" + script);
+			Reporter.log("Failed to execute script :" + script);
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to execute script :" + script);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+
+		}
+		return result;
+	}
+	
+	public Object executeScript(WebDriver driver, String testcaseName, String script, WebPageElements ele, ExtentTest test) {
+		Object result = null;
+		WebElement element = null;
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			JavascriptExecutor exe = (JavascriptExecutor) driver;
+			result = exe.executeScript(script,element);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to execute script :" + script);
 			Add_Log.info("Failed to execute script :" + script);
@@ -722,6 +927,5 @@ public class SeleniumUtils {
 		}
 
 	}
-	
 
 }

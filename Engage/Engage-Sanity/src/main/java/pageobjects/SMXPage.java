@@ -1195,27 +1195,45 @@ Thread.sleep(1000);
 		}
 	}
 	
+
+	
+	
 	public double depositeQuestionToQuestionBank(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		ArrayList<String> zarcaQIDs = new ArrayList<String>();
+		String placeholderText = null;
 		zarcaQIDs = getZarcaQIDs(driver,param,test); // Store all zarca qids in a array
-		WebElement firstQue_WebElement = driver.findElement(By.xpath("//div[contains(@id,'qted_" + zarcaQIDs.get(0) + "')]"));
-		new Actions(driver).moveToElement(firstQue_WebElement).perform();
-		waitForElementToBePresentOnDOM(driver, testcaseName, 60, question_menu, test);
-		click(driver, testcaseName, question_menu_more_options, test);
-		click(driver, testcaseName, deposite_to_question_bank_option, test);
-		waitforElemPresent(driver, testcaseName, 60, deposite_to_question_bank_modal, test);
-		//waitUntilReqCSSValue(driver, testcaseName, 60, deposite_to_question_bank_modal, "width", "363px", test);
-		String width = getWebElement(driver, testcaseName, deposite_to_question_bank_modal, test).getCssValue("width");
-		System.out.println("Width = "+width);
-		
-		selectCategoryFromQBList(driver, param, test);
-		String placeholderText = getWebElement(driver, testcaseName, drop_down_of_select_category_placeholder, test).getAttribute("innerText");
-		
-		start = System.currentTimeMillis();
-		click(driver, testcaseName, deposite_button, test);
-		waitforElemPresent(driver, testcaseName, 60, toaster_msg_of_deposite_to_question_bank, test);
-		end = System.currentTimeMillis();
+		for(int i=0; i<100; i++) {	
+			waitForLoad(driver, testcaseName, 60, test);
+			WebElement firstQue_WebElement = driver.findElement(By.xpath("//div[contains(@id,'qted_" + zarcaQIDs.get(0) + "')]"));
+			new Actions(driver).moveToElement(firstQue_WebElement).build().perform();
+			waitForElementToBePresentOnDOM(driver, testcaseName, 60, question_menu, test);
+			click(driver, testcaseName, question_menu_more_options, test);
+			click(driver, testcaseName, deposite_to_question_bank_option, test);
+			waitforElemPresent(driver, testcaseName, 60, deposite_to_question_bank_modal, test);
+			//waitUntilReqCSSValue(driver, testcaseName, 60, deposite_to_question_bank_modal, "width", "363px", test);
+			String width = getWebElement(driver, testcaseName, deposite_to_question_bank_modal, test).getCssValue("width");
+			System.out.println("Width = "+width);
+			
+			selectCategoryFromQBList(driver, param, test);
+			placeholderText = getWebElement(driver, testcaseName, drop_down_of_select_category_placeholder, test).getAttribute("innerHTML");
+			
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, deposite_button, test);
+			waitforElemPresent(driver, testcaseName, 60, toaster_msg, test);
+			end = System.currentTimeMillis();
+			
+			Thread.sleep(1000);
+			System.out.println(getWebElement(driver, testcaseName, toaster_msg, test).getAttribute("innerHTML"));
+			if(getWebElement(driver, testcaseName, toaster_msg, test).getAttribute("innerHTML").contains("Question deposited to Question Bank")) {
+				break;
+			}
+			
+			test.log(Status.INFO, "Limit has been exhausted for "+ placeholderText + " category");
+			Add_Log.info("Limit has been exhausted for "+ placeholderText + " category");
+			Reporter.log("Limit has been exhausted for "+ placeholderText + " category");
+			
+		}
 		
 		test.log(Status.INFO, "Question is deposited under "+ placeholderText + " category");
 		Add_Log.info("Question is deposited under "+ placeholderText + " category");
@@ -1224,6 +1242,8 @@ Thread.sleep(1000);
 		return totalTime;
 		
 	}
+	
+	
 	
 	
 	
@@ -1242,13 +1262,6 @@ Thread.sleep(1000);
 		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 10, save_button, test);
 		
-//		waitforElemPresent(driver, testcaseName, 60, question_text_content, test);
-//		waitforElemPresent(driver, testcaseName, 60, iframe_descriptive_text, test);
-//		switchToIframe(driver, testcaseName, iframe_descriptive_text, test);
-//		waitforElemPresent(driver, testcaseName, 60, question_descriptive_text_input_field, test);
-//		executeScript(driver, testcaseName, "arguments[0].innerHTML='" +descrText +"'" , question_descriptive_text_input_field, test);
-//		driver.switchTo().defaultContent();
-		
 		start = System.currentTimeMillis();
 		click(driver, testcaseName, save_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -1260,13 +1273,15 @@ Thread.sleep(1000);
 		return totalTime;
 	}
 	
-
+	
 	public double deleteComment(WebDriver driver, HashMap<String, String> param, String descrText, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		Boolean isDescipTextFound = false;
-		List<WebElement> questionList = initQuestionList(driver, param, test);
-		int qustionListCount = questionList.size();
-		for (int i= 0; i<qustionListCount; i++) {
+		long totalQuestions = (Long) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion.length;", test);
+		int totalUniqueQuestions = Integer.parseInt((String) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion[" +(totalQuestions-1) +"].uniqueqno;", test));
+		
+		for (int i= 0; i<totalUniqueQuestions; i++) {
+			List<WebElement> questionList = getWebElements(driver, testcaseName, list_of_question_in_survey, test);
 			WebElement question = questionList.get(i);
 			scrollIntoView(driver, testcaseName, question, "Question number "+question.getAttribute("qno"), test);
 			// Check qno attribute for each element, for comment question type qno = 'Ci', where, i=1,2,3....n.
@@ -1288,8 +1303,6 @@ Thread.sleep(1000);
 			}
 			waitforElemNotVisible(driver, testcaseName, 60, question_page_loader, test);
 			Thread.sleep(600);
-			questionList = initQuestionList(driver, param, test); //Initialize webelement list after every loop to handle async question loading.
-			qustionListCount = questionList.size();
 				
 		}			
 		if (isDescipTextFound == false) {
@@ -1320,12 +1333,8 @@ Thread.sleep(1000);
 		click(driver, testcaseName, page_number_drop_down, test);
 		waitforElemPresent(driver, testcaseName, 60, go_to_page_list, test);
 		List<WebElement> surveyPages = getWebElements(driver, testcaseName, list_of_survey_pages, test);
-		System.out.println(surveyPages.get(pageNo-1).getAttribute("innerHTML"));
-		try {
+		
 		click(driver, testcaseName, surveyPages.get(pageNo-1), "Page "+pageNo, test);
-		}catch(Exception e) {
-			e.printStackTrace();		
-		}
 		waitforElemPresent(driver, testcaseName, 60, page_actions, test);
 		click(driver, testcaseName, page_actions, test);
 		click(driver, testcaseName, move_page, test);		
@@ -1341,36 +1350,21 @@ Thread.sleep(1000);
 		return totalTime;
 	}
 	
-	private List<WebElement> initQuestionList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
-		String testcaseName = param.get("TestCaseName");
-		List<WebElement> questionList = getWebElements(driver, testcaseName, list_of_question_in_survey, test);
-		return questionList;
-	}
-	
 	
 	public double moveMatrixGrid(WebDriver driver, HashMap<String, String> param, String SID, ExtentTest test) throws InterruptedException {
+		
 		String testcaseName = param.get("TestCaseName");
 		Boolean isMatrixGridFound = false;
-		ArrayList<String> zarcaQIDs = getZarcaQIDs(driver, param, test);
-		int n = zarcaQIDs.size();
-		String qid = null;
-		String commonQtype = null;
-		Long qno = 0L;
-		String qTitle = null;
+		long totalQuestions = (Long) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion.length;", test);
+		int totalUniqueQuestions = Integer.parseInt((String) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion[" +(totalQuestions-1) +"].uniqueqno;", test));
 		
-		do {
+		for(int i=0; i<totalUniqueQuestions; i++) {
+			List<WebElement> questions = getWebElements(driver, testcaseName, question_title, test);
+			String qtitle = questions.get(i).getAttribute("qtitle");
 			
-			Actions act = new Actions(driver);
-			act.sendKeys(Keys.SPACE).build().perform(); // Scroll down the page which will retrive currentQuestionJSON 
-			executeScript(driver, testcaseName, "window.scrollTo(0, 0);", test); // Scroll top to the page
-			qid = (String) executeScript(driver, testcaseName, "return currentQuestionJSON.qid;", test);
-			qno = (Long) executeScript(driver, testcaseName, "return currentQuestionJSON.qno;", test);
-			qTitle = (String) executeScript(driver, testcaseName, "return currentQuestionJSON.qtitle;", test);
-			commonQtype = (String) executeScript(driver, testcaseName, "return currentQuestionJSON.commonQtype;", test);
-			if (commonQtype.equalsIgnoreCase("MG")) {
-				WebElement MG_question = driver.findElement(By.xpath("//div[@qid='" + qid + "']"));
-				scrollIntoCenter(driver, testcaseName, MG_question, "Question number " + qno, test);
-				hoverAction(driver, testcaseName, MG_question, "Question number " + qno, test);
+			if(questions.get(i).getAttribute("bind-html-compile").contains("matrix")) {
+				scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + qtitle, test);
+				hoverAction(driver, testcaseName, questions.get(i), "Question : " + qtitle, test);
 				waitForElementToBePresentOnDOM(driver, testcaseName, 60, question_menu, test);
 				click(driver, testcaseName, question_menu_more_options, test);
 				click(driver, testcaseName, move_question, test);
@@ -1383,17 +1377,18 @@ Thread.sleep(1000);
 				waitForLoad(driver, testcaseName, 60, test);
 				waitforElemPresent(driver, testcaseName, 60, designer_button, test);
 				end = System.currentTimeMillis();
-
-				test.log(Status.INFO, "Successfully moved Matrix grid question " + qTitle + " to " + moveTo);
-				Add_Log.info("Successfully moved Matrix grid question " + qTitle + " to " + moveTo);
-				Reporter.log("Successfully moved Matrix grid question " + qTitle + " to " + moveTo);
-
+				
+				test.log(Status.INFO, "Successfully moved Matrix grid question " + qtitle + " to " + moveTo);
+				Add_Log.info("Successfully moved Matrix grid question " + qtitle + " to " + moveTo);
+				Reporter.log("Successfully moved Matrix grid question " + qtitle + " to " + moveTo);
+				
 				isMatrixGridFound = true;
 				break;
+			} else {
+				scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + questions.get(i).getAttribute("qtitle"), test);
 			}
-			executeScript(driver, testcaseName, "window.scrollBy(0,100)", test);
 			Thread.sleep(600);
-		} while (!zarcaQIDs.get(n - 1).equals(qid));
+		}
 		
 		if (isMatrixGridFound == false) {
 			test.log(Status.INFO, "Matrix grid question is not found in survey SID : " + SID);
@@ -1403,7 +1398,7 @@ Thread.sleep(1000);
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 		}
-				
+		
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
 		

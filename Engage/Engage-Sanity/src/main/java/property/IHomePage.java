@@ -19,6 +19,9 @@ public interface IHomePage {
 	String PUBLISH_ICON = "//div[@id='OverDivPublish']/span";
 	WebPageElements publish_icon = new WebPageElements("Publish Icon", "xpath", PUBLISH_ICON);
 	
+	String TRACK_SURVEY_ICON = "//div[@id='OverDivTrack']/span";
+	WebPageElements track_survey_icon = new WebPageElements("Track Survey Icon", "xpath", TRACK_SURVEY_ICON);
+	
 	String DATA_ICON = "//div[@id='OverDivData']/span";
 	WebPageElements data_icon = new WebPageElements("Data Icon", "xpath", DATA_ICON);
 	

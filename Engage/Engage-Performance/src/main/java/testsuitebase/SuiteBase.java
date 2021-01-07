@@ -32,7 +32,12 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.engage.performance.EngagePerformance_TC;
 
+import pageobjects.DMXPage;
+import pageobjects.HomePage;
+import pageobjects.RMXPage;
+import pageobjects.SMXPage;
 import pageobjects.StaticPage;
+import pageobjects.ZarcaStaticPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
 import utility.FetchExcelDataSet;
@@ -60,7 +65,11 @@ public class SuiteBase {
 	public String DeleteCasePass = null;
 	public static ExtentReports extent = null;
 	static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
-	public StaticPage staticPage = new StaticPage();
+	public ZarcaStaticPage staticPage = new ZarcaStaticPage();
+	public SMXPage smx = new SMXPage();
+	public DMXPage dmx = new DMXPage();
+	public RMXPage rmx = new RMXPage();
+	public HomePage home = new HomePage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

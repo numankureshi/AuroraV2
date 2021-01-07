@@ -88,6 +88,443 @@ public class EngagePerformance_TC extends SuiteBase {
 
 	}
 	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC2(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = smx.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC3(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
+				double totalTime = smx.depositeQuestionToQuestionBank(getDriver(), param, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC4(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+		String descrText = surveyDetails[2];
+		System.out.println(descrText);
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
+				double totalTime = smx.addComment(getDriver(), param, descrText, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC5(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+		String descrText = surveyDetails[2];
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
+				double totalTime = smx.deleteComment(getDriver(), param, descrText, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC6(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+		int pageNo =  Integer.parseInt(surveyDetails[2]);
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
+				double totalTime = smx.movePage(getDriver(), param, pageNo, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC7(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.goToDesignerPage(getDriver(), param, surveyTitle, SID, test);
+				double totalTime = smx.moveMatrixGrid(getDriver(), param, SID, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+
+		}
+	}
+	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC8(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = dmx.goToDistributePage(getDriver(), param, surveyTitle, SID, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+
+		}
+	}
+	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC9(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+
+		}
+	}
+	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC10(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String TestData = getData(data, "TestData");
+		String[] surveyDetails = TestData.split(",");
+		String surveyTitle = surveyDetails[0];
+		String SID = surveyDetails[1];
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = rmx.loadOMNIReport(getDriver(), param, surveyTitle, SID, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+
+		}
+	}
+	
+	
+	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Platform", alwaysRun = true)
+	public void Performance_TC11(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				double totalTime = home.logout(getDriver(), param, test);
+				String totaltime = df.format(totalTime);
+				System.out.println("total time :"+ totaltime);
+				LoadTime.put(TestCaseName, totaltime);
+			}
+
+		}
+	}
+	
 
 
 	@AfterMethod(alwaysRun = true)

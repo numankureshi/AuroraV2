@@ -235,8 +235,43 @@ public interface IDMXPage {
 	WebPageElements schedule_reminder = new WebPageElements("Schedule Reminder Button", "xpath", SCHEDULE_REMINDER);
 	
 	String QUICK_SEND = "//div[@id='inviteddl_divQuickSend']";
-	WebPageElements quick_send = new WebPageElements("Quick send button", "xpath", QUICK_SEND);
+	WebPageElements quick_send = new WebPageElements("Quick send button", "xpath", QUICK_SEND);	
+	
+	String EMAIL_TEMPLATE = "//div[@id='btnEmailManager']";
+	WebPageElements email_template = new WebPageElements("Email Templates", "xpath", EMAIL_TEMPLATE);
+	
+	String EMAIL_FIELD = "//span[@class='ts-email-addr']";
+	WebPageElements email_field = new WebPageElements("Email Field", "xpath", EMAIL_FIELD);
+	
+	String STATUS_FILED = "//td[contains(@id,'tdStatus_')]/span";
+	WebPageElements status_field = new WebPageElements("Status Field", "xpath", STATUS_FILED);
+	
+	String INVITATION_DATE_FILED = "//td[contains(@id,'tdInvitationDate')]";
+	WebPageElements invitation_date_field = new WebPageElements("Invitation date field", "xpath", INVITATION_DATE_FILED);
 
+	String URL_EXPIRY_FILED = "//td[contains(@id,'tdURLExpiry_')]";
+	WebPageElements url_expiry_field = new WebPageElements("URL Expiry field", "xpath", URL_EXPIRY_FILED);
+	
+	String REMINDER_COLUMN_FILTER = "//div[@id='divReminderFilter']";
+	WebPageElements reminder_column_filter = new WebPageElements("Reminder columns filter", "xpath", REMINDER_COLUMN_FILTER);
+	
+	String FIRST_REMINDER_FILTER = "//label[contains(text(),'First Reminder')][@for='chk_dvCol_Reminder1']";
+	WebPageElements first_reminder_filter = new WebPageElements("First reminder filter", "xpath", FIRST_REMINDER_FILTER);
+	
+	String REMINDER_COLUMN_FILTER_SAVE_BUTTON = "//input[@id='btnColSave']";
+	WebPageElements reminder_column_filter_save_button = new WebPageElements("Reminder columns filter - Save button", "xpath", REMINDER_COLUMN_FILTER_SAVE_BUTTON);
+	
+	String REMINDER_EMAIL_FIELD = "//td[(starts-with(@id,'rptReminderList_ctl') and contains(@id,'td_item_email')) and @style = 'text-align: left']";
+	WebPageElements reminder_email_field = new WebPageElements("Reminder - Email Field", "xpath", REMINDER_EMAIL_FIELD);
+	
+	String REMINDER_ORIGINAL_INVITATION_FIELD = "//td[starts-with(@id,'rptReminderList_ctl') and contains(@id,'td_item_date') and contains(@style, 'text-align: left;')]";
+	WebPageElements reminder_original_invitation_field = new WebPageElements("Reminder - Original Invitation Date Field", "xpath", REMINDER_ORIGINAL_INVITATION_FIELD);
+	
+	String NUMBER_OF_REMINDERS_SENT = "//td[starts-with(@id,'rptReminderList_ctl') and contains(@id,'td_item_reminder') and contains(@style, 'text-align: left;')]";
+	WebPageElements number_of_reminders_sent = new WebPageElements("Reminder - Number of Reminder sent", "xpath", NUMBER_OF_REMINDERS_SENT);
+	
+	String FIRST_REMINDER_SENT_DATE = "//td[starts-with(@id,'rptReminderList_ctl') and contains(@id,'td_item_reminder1_date')]";
+	WebPageElements first_reminder_sent_date = new WebPageElements("Reminder - First Reminder Sent Date", "xpath", FIRST_REMINDER_SENT_DATE);
 	
 }
 

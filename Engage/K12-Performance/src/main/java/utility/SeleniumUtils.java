@@ -583,6 +583,9 @@ public class SeleniumUtils {
 	public void scrollIntoCenter(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
 		try {
 			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			test.log(Status.INFO, "Successfully move to :" +name);
+			Add_Log.info("Successfully move to :" +name);
+			Reporter.log("Successfully move to :" +name);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
@@ -847,14 +850,14 @@ public class SeleniumUtils {
 		try {
 			Actions act = new Actions(driver);
 			act.moveToElement(element).perform();
-			Add_Log.info("Successfully move on to " + name);
-			test.log(Status.INFO, "Successfully move on to " + name);
-			Reporter.log("Successfully move on to " + name);
+			Add_Log.info("Successfully hover on to " + name);
+			test.log(Status.INFO, "Successfully hover on to " + name);
+			Reporter.log("Successfully hover on to " + name);
 		} catch (Exception e) {
-			test.log(Status.FAIL, "Not able to move to "+ name);
-			Add_Log.info("Not able to move to "+ name);
-			Reporter.log("Not able to move to "+ name);
-			TestResultStatus.failureReason.add(testcaseName + "| Not able to move to "+ name);
+			test.log(Status.FAIL, "Not able to hover to "+ name);
+			Add_Log.info("Not able to hover to "+ name);
+			Reporter.log("Not able to hover to "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to hover to "+ name);
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 		}	
