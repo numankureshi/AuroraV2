@@ -1387,7 +1387,7 @@ Thread.sleep(1000);
 			} else {
 				scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + questions.get(i).getAttribute("qtitle"), test);
 			}
-			Thread.sleep(600);
+			Thread.sleep(1000);
 		}
 		
 		if (isMatrixGridFound == false) {

@@ -1,8 +1,10 @@
 package testsuitebase;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,8 +15,12 @@ import java.util.LinkedHashMap;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.log4j.Logger;
 import org.apache.velocity.texen.util.FileUtil;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -193,4 +199,66 @@ public class SuiteBase {
 		}
 		return FilePath2;
 	}
+	
+	public void sendHtmlFormatMail(String subject, String errorPage, String path, String queryString, String ipAddress, String errors, File file) {
+		Add_Log.info("===============Email generation started================");
+		// Create the email message
+		HtmlEmail email = new HtmlEmail();
+		email.setHostName("smtp.gmail.com");
+		email.setSmtpPort(465);
+		/*
+		 * To avoid javax.mail.AuthenticationFailedException, 
+		 * First, make sure you have turned off 2-way authentication of google account 
+		 * Second, allow access for less secure apps- https://myaccount.google.com/lesssecureapps
+		 */
+		email.setAuthenticator(new DefaultAuthenticator(Config.getProperty("authenticatorEmailId"), Config.getProperty("authenticatorPassword")));
+		email.setSSLOnConnect(true);
+
+		try {
+			email.addTo(Config.getProperty("addToEmail"));
+			email.addCc(Config.getProperty("addCcEmail"));
+			email.setFrom(Config.getProperty("setFromEmail"), Config.getProperty("setFromName"));
+			email.setSubject(subject);
+
+			// set the html message
+			email.setHtmlMsg("<html> Error occured on page : " + errorPage +" <br> Path : " + path +" <br> Query String : " + queryString +" <br> IP Address : " + ipAddress +" <br> <br> <strong> ***************Error Description **************** </strong> <br> "+ errors);
+
+			// set the alternative message
+			email.setTextMsg("Your email client does not support HTML messages");
+			
+			//Attach file
+			email.attach(file);
+
+			// send the email
+			email.send();
+		} catch (EmailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Add_Log.info("===============Email sent================");
+	}
+	
+	public String getIpAddress() {
+		URL myIp;
+		try {
+			myIp = new URL("http://myip.dnsomatic.com/");
+			BufferedReader in = new BufferedReader(new InputStreamReader(myIp.openStream()));
+			return in.readLine();
+		}catch (Exception e1) {
+			try {
+			myIp = new URL("http://icanhazip.com/");
+			BufferedReader in = new BufferedReader(new InputStreamReader(myIp.openStream()));
+			return in.readLine();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public String getErrorPage(WebDriver driver) {
+		return (String) ((JavascriptExecutor)driver).executeScript("return window.location.href");		 
+	}
+	
 }

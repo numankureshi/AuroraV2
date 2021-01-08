@@ -12,11 +12,16 @@ import utility.FetchExcelDataSet;
 import utility.Read_XLS;
 import utility.SuiteUtility;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import org.testng.Assert;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -538,12 +543,20 @@ public class EngagePerformance_TC extends SuiteBase {
 		} else if (Result.getStatus() == ITestResult.FAILURE) {
 			LoadTime.put(Result.getName(), "0");
 			String path = captureScreenShot(Result, "FAIL", getDriver());
+			File screenshot = new File(path);
 			
 			Reporter.log(Result.getName() + " is FAILED.");
 			Add_Log.info(Result.getName() + " is FAILED.");
 			TestResultTL.put(Result.getName(), "FAIL");
 			test.fail(Result.getName() + " is FAILED.", (MediaEntityBuilder.createScreenCaptureFromPath(takescreenshots(getDriver())).build()));
-//			String path = captureScreenShot(Result, "FAIL", getDriver());
+			
+			String errorPage = getErrorPage(getDriver());
+			URL errorURL = new URL(errorPage);	
+			StringWriter errors = new StringWriter();
+			Result.getThrowable().printStackTrace(new PrintWriter(errors));
+			String subject = errorURL.getHost().replace("http://","").replace("http:// www.","").replace("www.","").replace(".com", "") +" : Error in Performance Suite";
+			sendHtmlFormatMail(subject, errorPage, errorURL.getPath(), errorURL.getQuery(), getIpAddress(), errors.toString(), screenshot);
+			
 			if (!(getDriver() == null)) {
 				closeWebBrowser();
 			}
