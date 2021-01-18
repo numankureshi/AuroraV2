@@ -266,6 +266,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, get_answer_options_library, test);
 		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options, test);
+		waitForLoad(driver, testcaseName,60, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS)));
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
 		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
@@ -285,6 +286,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options_grid, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS_GRID)));
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
 		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
 		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
@@ -346,6 +348,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 //		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options3, test);
 		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS3)));
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
 		click(driver, testcaseName, By.xpath("//label[text()='"+ questionOption +"']"), questionOption, test);
 		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
@@ -1107,6 +1110,7 @@ Thread.sleep(1000);
 		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
 		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
 		click(driver, testcaseName, IHomePage.search_icon, test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@sid='"+SID+"']"), "Survey ID "+SID, test);
 		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
 		new Actions(driver).moveToElement(survey).perform();
 		waitForElementToBeVisible(driver, testcaseName, IHomePage.edit_icon, 10, 100, test);
