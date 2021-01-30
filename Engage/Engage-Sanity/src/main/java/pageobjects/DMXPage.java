@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.io.FilenameUtils;
@@ -24,11 +25,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import property.IDMXPage;
 import property.IHomePage;
 import property.ISMXPage;
 import property.ISurveyPage;
+import utility.JSONUtility;
 import utility.SeleniumUtils;
 import utility.WebPageElements;
 
@@ -669,7 +673,6 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 	public double goToDistributePage(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
-		//new StaticPage().login(driver, param, username, password, URL, test);
 		click(driver, testcaseName, IHomePage.all_projects, test);
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -691,4 +694,331 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
 	}
+	
+	public double goToTrackSurvey(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, IHomePage.all_projects, test);
+		waitForJStoLoad(driver, 60);
+		waitForLoad(driver, testcaseName, 60, test);
+		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
+		click(driver, testcaseName, IHomePage.search_icon, test);
+		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
+		new Actions(driver).moveToElement(survey).perform();
+		waitForElementToBeVisible(driver, testcaseName, IHomePage.track_survey_icon, 10, 100, test);
+		
+		start = System.currentTimeMillis();		
+		click(driver, testcaseName, IHomePage.track_survey_icon, test);
+		waitForJStoLoad(driver, 60);
+		waitforElemPresent(driver, testcaseName, 60, email_template, test);
+		end = System.currentTimeMillis();
+		
+		driver.switchTo().defaultContent();		
+		double totalTime = ((end - start)) / 1000;
+		return totalTime;
+	}
+	
+	public ArrayList<String> getEmailList(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> emailList = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, email_field, test);
+		for(WebElement ele : emailList_locator) {
+			emailList.add(ele.getAttribute("innerHTML"));
+		}
+		return emailList;
+	}
+	
+	public ArrayList<String> getParticipationStatusList(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> participationStatusList = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, status_field, test);
+		for(WebElement ele : emailList_locator) {
+			participationStatusList.add(ele.getAttribute("innerHTML"));
+		}
+		return participationStatusList;
+	}
+	
+	public ArrayList<String> getInvitationDateList(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> invitationDateList = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, invitation_date_field, test);
+		for(WebElement ele : emailList_locator) {
+			invitationDateList.add(ele.getAttribute("innerHTML"));
+		}
+		return invitationDateList;
+	}
+	
+	public ArrayList<String> getURLExpiryList(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> urlExpiryList = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, url_expiry_field, test);
+		for(WebElement ele : emailList_locator) {
+			urlExpiryList.add(ele.getAttribute("innerHTML"));
+		}
+		return urlExpiryList;
+	}
+	
+	public JsonObject jsonTrackSurveyData(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> emailList = getEmailList(driver, param, test);
+		ArrayList<String> participationStatusList = getParticipationStatusList(driver, param, test);
+		ArrayList<String> invitationDateList = getInvitationDateList(driver, param, test);
+		ArrayList<String> urlExpiryList = getURLExpiryList(driver, param, test);
+		JsonObject json = new JsonObject();
+		JsonArray jArray = new JsonArray();
+		
+		
+			for(int j=0; j<emailList.size(); j++ ) {
+				JsonObject innerJson = new JsonObject();
+				innerJson.addProperty("Email", emailList.get(j));
+				innerJson.addProperty("Status", participationStatusList.get(j));
+				innerJson.addProperty("Invitation Date", invitationDateList.get(j));
+				innerJson.addProperty("URL Expiry", urlExpiryList.get(j));
+				jArray.add(innerJson);
+			}			
+		
+		json.add("Table", jArray);
+		new JSONUtility().writeJSONToFIle(testcaseName, json, "\\src\\main\\resources\\jsonFiles\\jsonTrackSurveyData.json", test);
+		return json;		
+	}
+	
+	public void goToReminderPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 60, reminders, test);
+		click(driver, testcaseName, reminders, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, original_invitation_date_filter, test);
+		
+	}
+	
+	public void applyFirstReminderFilter(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 60, reminder_column_filter, test);
+		click(driver, testcaseName, reminder_column_filter, test);
+		waitforElemPresent(driver, testcaseName, 60, first_reminder_filter, test);
+		click(driver, testcaseName, first_reminder_filter, test);
+		scrollIntoCenter(driver, testcaseName, reminder_column_filter_save_button, test);
+		waitforElemPresent(driver, testcaseName, 60, reminder_column_filter_save_button, test);
+		click(driver, testcaseName, reminder_column_filter_save_button, test);			
+	}
+	
+	public ArrayList<String> getEmailListFromReminderPage(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> emailList = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, reminder_email_field, test);
+		for(WebElement ele : emailList_locator) {
+			emailList.add(ele.getAttribute("innerHTML"));
+		}
+		return emailList;
+	}
+	
+	public ArrayList<String> getOriginalInvitationDateFromReminderPage(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> invitationDateList = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, reminder_original_invitation_field, test);
+		for(WebElement ele : emailList_locator) {
+			invitationDateList.add(ele.getAttribute("innerHTML"));
+		}
+		return invitationDateList;
+	}
+	
+	public ArrayList<String> getNumberOfRemindersSent(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> reminderSentCount = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, number_of_reminders_sent, test);
+		for(WebElement ele : emailList_locator) {
+			reminderSentCount.add(ele.getAttribute("innerHTML"));
+		}
+		return reminderSentCount;
+	}
+	
+	public ArrayList<String> getFirstReminderSentDate(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> sentDate = new ArrayList<String> ();
+		List<WebElement> emailList_locator = getWebElements(driver, testcaseName, first_reminder_sent_date, test);
+		for(WebElement ele : emailList_locator) {
+			sentDate.add(ele.getAttribute("innerHTML"));
+		}
+		return sentDate;
+	}
+	
+	public JsonObject jsonReminderData(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> emailList = getEmailListFromReminderPage(driver, param, test);
+		ArrayList<String> originalInvitationDate = getOriginalInvitationDateFromReminderPage(driver, param, test);
+		ArrayList<String> numberOfRemindersSent = getNumberOfRemindersSent(driver, param, test);
+		ArrayList<String> firstReminderSentDate = getFirstReminderSentDate(driver, param, test);
+		JsonObject json = new JsonObject();
+		JsonArray jArray = new JsonArray();
+			
+		
+			for(int j=0; j<emailList.size(); j++ ) {
+				JsonObject innerJson = new JsonObject();
+				innerJson.addProperty("Email", emailList.get(j));
+				innerJson.addProperty("Original Invitation Date", originalInvitationDate.get(j));
+				innerJson.addProperty("Number of Reminders Sent", numberOfRemindersSent.get(j));
+				innerJson.addProperty("First Reminder Sent Date", firstReminderSentDate.get(j));
+				jArray.add(innerJson);
+			}			
+		
+		json.add("Table", jArray);
+		new JSONUtility().writeJSONToFIle(testcaseName, json, "\\src\\main\\resources\\jsonFiles\\jsonReiminderData.json", test);	
+		return json;		
+	}
+	
+	public void goToSurveyPasswordsInTrackSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String surveyTitle = param.get("surveyTitle");
+		String SID = param.get("surveyNo");
+		goToTrackSurvey(driver, param, surveyTitle, SID, test);
+		click(driver, testcaseName, select_channel_dropdown, test);
+		waitforElemPresent(driver, testcaseName, 10, channel_list, test);
+		click(driver, testcaseName, channel_survey_passwords, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public ArrayList<String> getPasswordList(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> passwordList = new ArrayList<String> ();
+		List<WebElement> password_field = getWebElements(driver, testcaseName, sap_password_field, test);
+		for(WebElement ele : password_field) {
+			passwordList.add(ele.getAttribute("innerHTML"));
+		}
+		return passwordList;
+	}
+	
+	public ArrayList<String> getSurveyLoginURLs(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> urls = new ArrayList<String> ();
+		List<WebElement> surveyLoginUrls = getWebElements(driver, testcaseName, sap_survey_login_url_field, test);
+		for(WebElement ele : surveyLoginUrls) {
+			urls.add(ele.getAttribute("innerHTML"));
+		}
+		return urls;
+	}
+	
+	public ArrayList<String> getSAPStatusdata(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> statusData = new ArrayList<String> ();
+		List<WebElement> statusField = getWebElements(driver, testcaseName, sap_status_field, test);
+		for(WebElement ele : statusField) {
+			statusData.add(ele.getAttribute("innerHTML"));
+		}
+		return statusData;
+	}
+	
+	public ArrayList<String> getSAPGeneratedOnData(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> generatedOnData = new ArrayList<String> ();
+		List<WebElement> generatedOnField = getWebElements(driver, testcaseName, sap_generated_on_field, test);
+		for(WebElement ele : generatedOnField) {
+			generatedOnData.add(ele.getAttribute("innerHTML"));
+		}
+		return generatedOnData;
+	}
+	
+	public JsonObject getSAPDataFromTrackSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<String> passwordList = getPasswordList(driver, param, test);
+		ArrayList<String> urls = getSurveyLoginURLs(driver, param, test);
+		ArrayList<String> status = getSAPStatusdata(driver, param, test);
+		ArrayList<String> generatedOn = getSAPGeneratedOnData(driver, param, test);
+		JsonObject json = new JsonObject();
+		JsonArray jArray = new JsonArray();
+			
+		
+			for(int i=0; i<passwordList.size(); i++ ) {
+				JsonObject innerJson = new JsonObject();
+				innerJson.addProperty("Password", passwordList.get(i));
+				innerJson.addProperty("Survey Login URL", urls.get(i));
+				innerJson.addProperty("Status", status.get(i));
+				innerJson.addProperty("Generated On", generatedOn.get(i));
+				jArray.add(innerJson);
+			}			
+		
+		json.add("Table", jArray);
+		
+		new JSONUtility().writeJSONToFIle(testcaseName, json, "\\src\\main\\resources\\jsonFiles\\jsonSAPData.json", test);	
+		return json;		
+		
+	}
+	
+	public void goToContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 100, create_contact, test);
+		click(driver, testcaseName, create_contact, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, create_new, test);
+	}
+	
+	public void selectContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String listName = param.get("listname");
+		setText(driver, testcaseName, search_contact_list, listName, test);
+		click(driver, testcaseName, search_contact_list_icon, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[text()= '"+listName+"']"), listName, test);
+		click(driver, testcaseName, By.xpath("//td[text()= '"+listName+"']"), listName, test);
+		click(driver, testcaseName, view_modify_contact_list, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, total_record_field, test);
+		selectContactListPage(driver, param, test);
+		
+	}
+	
+	public void selectContactListPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		int totRecord = Integer.parseInt(getWebElement(driver, testcaseName, total_record_field, test).getAttribute("innerHTML"));
+		
+		Select select = new Select(getWebElement(driver, testcaseName, contact_list_drop_down, test));
+		int selectIndex = totRecord/100;
+		select.selectByIndex(selectIndex);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public JsonObject getContactListDetailsJson(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		List<WebElement> contactListRow = getWebElements(driver, testcaseName, contact_list_row, test);
+		List<WebElement> headerFields = getWebElements(driver, testcaseName, contact_list_header_fields, test);
+		headerFields.remove(1);		// Remove Status field
+		JsonObject jTable = new JsonObject();
+		JsonArray jArray = new JsonArray();
+		for(int i=0; i<contactListRow.size(); i++) {
+			List<WebElement> rowData = driver.findElements(By.xpath("//td[contains(@id,'td_"+(i+2)+"_')]"));	
+			rowData.remove(1);		// Remove Status field
+			JsonObject json = new JsonObject();
+			for(int j=0; j<rowData.size(); j++) {
+				json.addProperty(headerFields.get(j).getAttribute("innerHTML"), rowData.get(j).getAttribute("innerHTML"));
+			}
+			jArray.add(json);
+		}
+		jTable.add("Table", jArray);
+		new JSONUtility().writeJSONToFIle(testcaseName, jTable, "\\src\\main\\resources\\jsonFiles\\jsonContactListData.json", test);
+		return jTable;
+	}
+	
+	public JsonObject getContactListDetailsJsonOfInsertedData(WebDriver driver, HashMap<String, String> param, ExtentTest test){
+		String testcaseName = param.get("TestCaseName");
+		int numberOfContact = Integer.parseInt(param.get("numberOfContact"));
+		List<WebElement> contactListRow = getWebElements(driver, testcaseName, contact_list_row, test);
+		List<WebElement> headerFields = getWebElements(driver, testcaseName, contact_list_header_fields, test);
+		headerFields.remove(1);		// Remove Status field
+		JsonObject jTable = new JsonObject();
+		JsonArray jArray = new JsonArray();
+		for(int i=(contactListRow.size()-numberOfContact); i<contactListRow.size(); i++) {
+			List<WebElement> rowData = driver.findElements(By.xpath("//td[contains(@id,'td_"+(i+2)+"_')]"));	
+			rowData.remove(1);		// Remove Status field
+			JsonObject json = new JsonObject();
+			for(int j=0; j<rowData.size(); j++) {
+				json.addProperty(headerFields.get(j).getAttribute("innerHTML"), rowData.get(j).getAttribute("innerHTML"));
+			}
+			jArray.add(json);
+		}
+		jTable.add("Table", jArray);
+		new JSONUtility().writeJSONToFIle(testcaseName, jTable, "\\src\\main\\resources\\jsonFiles\\jsonContactListData.json", test);
+		return jTable;
+	}
+	
+	
 }

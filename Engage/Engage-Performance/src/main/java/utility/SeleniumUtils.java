@@ -317,10 +317,13 @@ public class SeleniumUtils {
 		}
 	}
 	
-	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele,
+	
+	
+	
+	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele, int elementNo,
 			final String cssAttribute, final String cssValue, ExtentTest test) {
 		try {
-		WebElement element = getWebElement(driver, testcaseName, ele, test);
+		WebElement element = getWebElements(driver, testcaseName, ele, test).get(elementNo);
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(new ExpectedCondition<Boolean>() {
@@ -638,6 +641,7 @@ public class SeleniumUtils {
 			Assert.fail();
 		}
 	}
+	
 	
 	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {

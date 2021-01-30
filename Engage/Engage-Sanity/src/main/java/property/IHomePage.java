@@ -39,6 +39,9 @@ public interface IHomePage {
 	
 	String LOGOUT_POPUP_OPTION= "//div[contains(text(),'Logout')]";
 	WebPageElements logout_popup_option = new WebPageElements("Logout - Popup Option", "xpath", LOGOUT_POPUP_OPTION);
+	
+	String MAIN_LOADER= "//div[@class='loader']";
+	WebPageElements main_loader = new WebPageElements("Loader", "xpath", MAIN_LOADER);
 
 	
 }

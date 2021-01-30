@@ -223,6 +223,8 @@ public class SeleniumUtils {
 		}
 	}
 	
+
+	
 	public void waitforElemNotVisible(WebDriver driver, String testcaseName, int seconds, WebPageElements ele, ExtentTest test) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, seconds);
@@ -256,6 +258,23 @@ public class SeleniumUtils {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, seconds);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
+			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
+			Reporter.log("Successfully waited for "+ name +" to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, name +" not present on page.");
+			Add_Log.info(name +" not present on page.");
+			Reporter.log(name +" not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, WebElement element, String name, ExtentTest test) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			wait.until(ExpectedConditions.elementToBeClickable(element));
 			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
 			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
 			Reporter.log("Successfully waited for "+ name +" to be present on page.");
@@ -317,10 +336,11 @@ public class SeleniumUtils {
 		}
 	}
 	
-	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele,
+	
+	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele, int elementNo,
 			final String cssAttribute, final String cssValue, ExtentTest test) {
 		try {
-		WebElement element = getWebElement(driver, testcaseName, ele, test);
+		WebElement element = getWebElements(driver, testcaseName, ele, test).get(elementNo);
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(new ExpectedCondition<Boolean>() {
@@ -409,6 +429,7 @@ public class SeleniumUtils {
 		}
 		return element;
 	}
+	
 	
 	public String getText(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		String text = null;
@@ -638,6 +659,8 @@ public class SeleniumUtils {
 			Assert.fail();
 		}
 	}
+	
+
 	
 	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {

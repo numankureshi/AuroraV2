@@ -16,6 +16,30 @@ public interface IDMXPage {
 	String CREATE_CONTACT = "//a[text()='Contact Lists']";
 	WebPageElements create_contact = new WebPageElements("Contact Lists", "xpath", CREATE_CONTACT);
 	
+	String SEARCH_CONTACT_LIST = "//input[@id='txtContactSearch']";
+	WebPageElements search_contact_list = new WebPageElements("Search Contact Lists", "xpath", SEARCH_CONTACT_LIST);
+	
+	String SEARCH_CONTACT_LIST_ICON = "//div[@class='contact-list-btn']";
+	WebPageElements search_contact_list_icon = new WebPageElements("Search Contact Lists Icon", "xpath", SEARCH_CONTACT_LIST);
+	
+	String VIEW_MODIFY_CONTACT_LIST = "(//input[@value= 'View / Modify'])[1]";
+	WebPageElements view_modify_contact_list = new WebPageElements("View/Modify Contact Lists Button", "xpath", VIEW_MODIFY_CONTACT_LIST);
+	
+	String TOTAL_RECORD_FIELD = "//span[@id='ctl00_ctl00_cphMain_cphBody_ModifyList_lblsummaryTotalRecordsValue']";
+	WebPageElements total_record_field = new WebPageElements("Contact Lists - Total Record Field", "xpath", TOTAL_RECORD_FIELD);
+	
+	String CONTACT_LIST_FIELDS = "//a[contains(@id,'Gv_ListDetails')]";
+	WebPageElements contact_list_fields = new WebPageElements("Contact Lists - Fields ", "xpath", CONTACT_LIST_FIELDS);
+	
+	String CONTACT_LIST_HEADER_FIELDS = "//th//a[contains(@href,'Gv_ListDetails')][2]";
+	WebPageElements contact_list_header_fields = new WebPageElements("Contact Lists -Header Fields ", "xpath", CONTACT_LIST_HEADER_FIELDS);
+	
+	String CONTACT_LIST_ROW = "//tr[contains(@onclick,'ListDetails__ctl')]";
+	WebPageElements contact_list_row = new WebPageElements("Contact Lists - Row ", "xpath", CONTACT_LIST_ROW);
+	
+	String CONTACT_LIST_DROP_DOWN = "//select[contains(@id,'ModifyList_gridrecords')]";
+	WebPageElements contact_list_drop_down = new WebPageElements("Contact Lists - Page Drop Down ", "xpath", CONTACT_LIST_DROP_DOWN);
+	
 	String LIST_CHCKBOX = "//input[@type='checkbox' and contains(@name,'chk_ListId')]";
 	WebPageElements list_checkbox = new WebPageElements("Contact Lists Checkbox", "xpath", LIST_CHCKBOX);
 	
@@ -272,6 +296,27 @@ public interface IDMXPage {
 	
 	String FIRST_REMINDER_SENT_DATE = "//td[starts-with(@id,'rptReminderList_ctl') and contains(@id,'td_item_reminder1_date')]";
 	WebPageElements first_reminder_sent_date = new WebPageElements("Reminder - First Reminder Sent Date", "xpath", FIRST_REMINDER_SENT_DATE);
+	
+	String SELECT_CHANNEL_DROPDOWN = "//div[contains(@class,'ts-header-title fl')]";
+	WebPageElements select_channel_dropdown = new WebPageElements("Track Survey - Select channel dropdown", "xpath", SELECT_CHANNEL_DROPDOWN);
+	
+	String CHANNEL_LIST = "//ul[contains(@class,'ts-links-cont')]";
+	WebPageElements channel_list = new WebPageElements("Track Survey - Channel list", "xpath", CHANNEL_LIST);
+	
+	String CHANNEL_SURVEY_PASSWORDS = "//li[@id='li_SurveyPasswords']";
+	WebPageElements channel_survey_passwords = new WebPageElements("Track Survey - Survey Password channel", "xpath", CHANNEL_SURVEY_PASSWORDS);
+	
+	String SAP_PASSWORD_FIELD = "//td[contains(@id,'tdPassword_')]";
+	WebPageElements sap_password_field = new WebPageElements("Password Field", "xpath", SAP_PASSWORD_FIELD);
+	
+	String SAP_SURVEY_LOGIN_URL_FIELD = "//td[contains(@id,'tdSurveyLoginURL_')]";
+	WebPageElements sap_survey_login_url_field = new WebPageElements("Survey Login URL Field", "xpath", SAP_SURVEY_LOGIN_URL_FIELD);
+	
+	String SAP_STATUS_FIELD = "//td[contains(@id,'tdStatus_')]/span";
+	WebPageElements sap_status_field = new WebPageElements("Survey Password - Status Field", "xpath", SAP_STATUS_FIELD);
+	
+	String SAP_GENERATED_ON_FIELD = "//td[contains(@id,'tdGeneratedOn_')]";
+	WebPageElements sap_generated_on_field = new WebPageElements("Survey Password - Generated On Field", "xpath", SAP_GENERATED_ON_FIELD);
 	
 }
 
