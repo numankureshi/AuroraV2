@@ -35,6 +35,7 @@ import com.engage.smoke.surveypage.SurveyPage_TC;
 import pageobjects.DMXPage;
 import pageobjects.DMXPageEngage;
 import pageobjects.LoginPage;
+import pageobjects.RMXPage;
 import pageobjects.SMXPage;
 import pageobjects.SurveyPage;
 import utility.DecryptPassword;
@@ -69,6 +70,7 @@ public class SuiteBase {
 	public SMXPage smxPage = new SMXPage();
 	public DMXPage dmxPage = new DMXPage();
 	public DMXPageEngage dmxPage2 = new DMXPageEngage();
+	public RMXPage rmxPage = new RMXPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

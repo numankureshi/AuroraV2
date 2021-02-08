@@ -223,6 +223,8 @@ public class SeleniumUtils {
 		}
 	}
 	
+
+	
 	public void waitforElemNotVisible(WebDriver driver, String testcaseName, int seconds, WebPageElements ele, ExtentTest test) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, seconds);
@@ -256,6 +258,23 @@ public class SeleniumUtils {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, seconds);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
+			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
+			Reporter.log("Successfully waited for "+ name +" to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, name +" not present on page.");
+			Add_Log.info(name +" not present on page.");
+			Reporter.log(name +" not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, WebElement element, String name, ExtentTest test) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			wait.until(ExpectedConditions.elementToBeClickable(element));
 			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
 			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
 			Reporter.log("Successfully waited for "+ name +" to be present on page.");
@@ -317,10 +336,11 @@ public class SeleniumUtils {
 		}
 	}
 	
-	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele,
+	
+	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele, int elementNo,
 			final String cssAttribute, final String cssValue, ExtentTest test) {
 		try {
-		WebElement element = getWebElement(driver, testcaseName, ele, test);
+		WebElement element = getWebElements(driver, testcaseName, ele, test).get(elementNo);
 		long startTime = System.currentTimeMillis();
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 		wait.until(new ExpectedCondition<Boolean>() {
@@ -409,6 +429,7 @@ public class SeleniumUtils {
 		}
 		return element;
 	}
+	
 	
 	public String getText(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		String text = null;
@@ -583,6 +604,9 @@ public class SeleniumUtils {
 	public void scrollIntoCenter(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
 		try {
 			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			test.log(Status.INFO, "Successfully move to :" +name);
+			Add_Log.info("Successfully move to :" +name);
+			Reporter.log("Successfully move to :" +name);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
@@ -635,6 +659,8 @@ public class SeleniumUtils {
 			Assert.fail();
 		}
 	}
+	
+
 	
 	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
@@ -847,14 +873,14 @@ public class SeleniumUtils {
 		try {
 			Actions act = new Actions(driver);
 			act.moveToElement(element).perform();
-			Add_Log.info("Successfully move on to " + name);
-			test.log(Status.INFO, "Successfully move on to " + name);
-			Reporter.log("Successfully move on to " + name);
+			Add_Log.info("Successfully hover on to " + name);
+			test.log(Status.INFO, "Successfully hover on to " + name);
+			Reporter.log("Successfully hover on to " + name);
 		} catch (Exception e) {
-			test.log(Status.FAIL, "Not able to move to "+ name);
-			Add_Log.info("Not able to move to "+ name);
-			Reporter.log("Not able to move to "+ name);
-			TestResultStatus.failureReason.add(testcaseName + "| Not able to move to "+ name);
+			test.log(Status.FAIL, "Not able to hover to "+ name);
+			Add_Log.info("Not able to hover to "+ name);
+			Reporter.log("Not able to hover to "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Not able to hover to "+ name);
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 		}	

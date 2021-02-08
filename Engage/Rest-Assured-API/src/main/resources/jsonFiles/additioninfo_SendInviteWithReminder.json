@@ -1,0 +1,28 @@
+{
+		"Attributes": [{
+			"Email": "tguru3196@gmail.com",
+			"Attribute1": "Gaurav",
+			"Attribute2": "Golatkar",
+			"Attribute3": "tguru3196@gmail.com"
+		}, {
+			"Email": "testing_gg@outlook.com",
+			"Attribute1": "Gaurav",
+			"Attribute2": "Golatkar",
+			"Attribute3": "testing_gg@outlook.com"
+		}],
+		"Mapping": {
+			"isPrepop": "true",
+			"Map_Attribute3_to": "1"
+		},
+		"MailMergeMapping": {
+			"isMailMerge": "true",
+			"Map_MailMerge_Attribute1_to": "1",
+			"Map_MailMerge_Attribute2_to": "2"
+		},
+		"EmailTemplate": {
+			"TemplateName": "Gaurav - Automation (Email Template)"
+		},
+		"InvitationExpiry": {
+			"Days": "10"
+		}
+	}

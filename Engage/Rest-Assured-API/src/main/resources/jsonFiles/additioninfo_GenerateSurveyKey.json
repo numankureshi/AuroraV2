@@ -1,0 +1,13 @@
+{
+ 		"Attributes": [{
+ 			"Password": "000000001",
+ 			"Attribute1": "ggolatkar@zarca.com"
+ 		}, {
+ 			"Password": "000000002",
+ 			"Attribute1": "tguru3196@gmail.com"
+ 		}],
+ 		"Mapping": {
+ 			"isPrepop": "true",
+ 			"Map_Attribute1_to": "1"
+ 		}
+ 	}

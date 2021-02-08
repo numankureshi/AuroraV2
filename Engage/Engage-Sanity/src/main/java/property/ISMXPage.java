@@ -335,7 +335,10 @@ public interface ISMXPage {
 	String SAVE_CATEGORY_NAME = "//a[@id='lnkAddCat']";
 	WebPageElements save_category_name = new WebPageElements("Save Category Name", "xpath", SAVE_CATEGORY_NAME);
 	
-	String DROP_DOWN_OF_SELECT_CATEGORY_PLACEHOLDER = "//span[contains(@class,'clsCategoryText')]";
+//	String DROP_DOWN_OF_SELECT_CATEGORY_PLACEHOLDER = "//span[contains(@class,'clsCategoryText')]";
+//	WebPageElements drop_down_of_select_category_placeholder = new WebPageElements("Placeholder field of select category drop down", "xpath", DROP_DOWN_OF_SELECT_CATEGORY_PLACEHOLDER);
+	
+	String DROP_DOWN_OF_SELECT_CATEGORY_PLACEHOLDER = "//span[contains(@class,'SecondPlaceholder')]";
 	WebPageElements drop_down_of_select_category_placeholder = new WebPageElements("Placeholder field of select category drop down", "xpath", DROP_DOWN_OF_SELECT_CATEGORY_PLACEHOLDER);
 	
 	String DEPOSITE_BUTTON = "//input[contains(@value,'Deposit')]";
@@ -344,6 +347,12 @@ public interface ISMXPage {
 	String TOASTER_MSG_OF_DEPOSITE_TO_QUESTION_BANK = "//span[contains(@id,'spnMsg')][contains(text(),'Question deposited to Question Bank')]";
 	WebPageElements toaster_msg_of_deposite_to_question_bank = new WebPageElements("Toaster message - Question deposited to Question Bank", "xpath", TOASTER_MSG_OF_DEPOSITE_TO_QUESTION_BANK);
 	
+	String TOASTER_MSG_OF_EXHUSTED_LIMIT = "//span[contains(@id,'spnMsg')][contains(text(),'You have exhausted the maximum limit of 100 questions for this group. Please Select another Group from the Question Bank page or reduce the number of questions.')]";
+	WebPageElements toaster_msg_of_exhausted_limit = new WebPageElements("Toaster message - Limit exhausted of question bank category", "xpath", TOASTER_MSG_OF_EXHUSTED_LIMIT);
+	
+	String TOASTER_MSG = "//span[contains(@id,'spnMsg')]";
+	WebPageElements toaster_msg = new WebPageElements("Toaster message", "xpath", TOASTER_MSG);
+		
 	String TOASTER_MSG_OF_CATEGORY_ADDED = "//span[contains(@id,'spnMsg')][contains(text(),'Category added successfully.')]";
 	WebPageElements toaster_msg_of_category_added = new WebPageElements("Toaster message - Category added successfully.", "xpath", TOASTER_MSG_OF_CATEGORY_ADDED);
 	
@@ -388,6 +397,9 @@ public interface ISMXPage {
 	
 	String LIST_OF_QUESTION_IN_SURVEY = "//div[contains(@class,'ui-sortable-handle')][@content='item']";
 	WebPageElements list_of_question_in_survey = new WebPageElements("Total Questions in Survey", "xpath", LIST_OF_QUESTION_IN_SURVEY);
+	
+	String QUESTION_TITLE = "//span[contains(@id,'Qtitle_')]";
+	WebPageElements question_title = new WebPageElements("Question title", "xpath", QUESTION_TITLE);
 	
 	String QUESTION_PAGE_LOADER = "//div[@id='smallloaderfull']";
 	WebPageElements question_page_loader = new WebPageElements("Question Page Loader", "xpath", QUESTION_PAGE_LOADER);

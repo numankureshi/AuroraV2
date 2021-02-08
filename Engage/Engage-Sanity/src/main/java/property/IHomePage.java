@@ -19,6 +19,9 @@ public interface IHomePage {
 	String PUBLISH_ICON = "//div[@id='OverDivPublish']/span";
 	WebPageElements publish_icon = new WebPageElements("Publish Icon", "xpath", PUBLISH_ICON);
 	
+	String TRACK_SURVEY_ICON = "//div[@id='OverDivTrack']/span";
+	WebPageElements track_survey_icon = new WebPageElements("Track Survey Icon", "xpath", TRACK_SURVEY_ICON);
+	
 	String DATA_ICON = "//div[@id='OverDivData']/span";
 	WebPageElements data_icon = new WebPageElements("Data Icon", "xpath", DATA_ICON);
 	
@@ -36,6 +39,9 @@ public interface IHomePage {
 	
 	String LOGOUT_POPUP_OPTION= "//div[contains(text(),'Logout')]";
 	WebPageElements logout_popup_option = new WebPageElements("Logout - Popup Option", "xpath", LOGOUT_POPUP_OPTION);
+	
+	String MAIN_LOADER= "//div[@class='loader']";
+	WebPageElements main_loader = new WebPageElements("Loader", "xpath", MAIN_LOADER);
 
 	
 }

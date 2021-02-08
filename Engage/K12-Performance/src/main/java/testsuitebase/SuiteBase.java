@@ -200,7 +200,7 @@ public class SuiteBase {
 		return FilePath2;
 	}
 	
-	public void sendHtmlFormatMail(String subject, String errorPage, String path, String queryString, String ipAddress, String errors) {
+	public void sendHtmlFormatMail(String subject, String errorPage, String path, String queryString, String ipAddress, String errors, File file) {
 		Add_Log.info("===============Email generation started================");
 		// Create the email message
 		HtmlEmail email = new HtmlEmail();
@@ -225,6 +225,9 @@ public class SuiteBase {
 
 			// set the alternative message
 			email.setTextMsg("Your email client does not support HTML messages");
+			
+			//Attach file
+			email.attach(file);
 
 			// send the email
 			email.send();

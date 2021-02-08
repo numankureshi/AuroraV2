@@ -33,6 +33,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.engage.sanity.surveypage.SurveyPage_TC;
 
 import pageobjects.DMXPage;
+import pageobjects.RMXPage;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
 import pageobjects.SurveyPage;
@@ -67,6 +68,8 @@ public class SuiteBase {
 	public StaticPage staticPage = new StaticPage();
 	public SMXPage smxPage = new SMXPage();
 	public DMXPage dmxPage = new DMXPage();
+	public RMXPage rmxPage = new RMXPage();
+	public StaticPage staticpage = new StaticPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

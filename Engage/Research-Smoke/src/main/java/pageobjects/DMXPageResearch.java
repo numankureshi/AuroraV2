@@ -153,6 +153,59 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		dmxPage.sendOrSchedule(driver, param, test);
 	}
 	
+	public void selectEmailTemplate(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+//		waitforElemPresent(driver, testcaseName, 30, select_email_message, test);
+		waitforElemPresent(driver, testcaseName, 10, search_email, test);
+		setText(driver, testcaseName, search_email, param.get("emailtemplate"), test);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath(SEARCH_EMAIL)).sendKeys(Keys.RETURN);
+		waitForLoadAttach(driver, testcaseName, 60, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]"), param.get("emailtemplate"), test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]/following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(By.xpath("(//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]/following::div[@class='middle-content'])[1]"))).build().perform();
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, edit_button, test);
+		click(driver, testcaseName, edit_button, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='"+ param.get("emailtemplate") +"']"), "Edit template: "+param.get("emailtemplate"), test);
+		Thread.sleep(2000);
+		waitforElemPresent(driver, testcaseName, 60, iframe_email_template, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_EMAIL_TEMPLATE)));
+		waitforElemPresent(driver, testcaseName, 30, edit_subject_hover, test);
+//		action.moveToElement(driver.findElement(By.xpath(EDIT_SUBJECT_HOVER))).build().perform();
+//		Thread.sleep(1000);
+//		waitforElemPresent(driver, testcaseName, 30, edit_subject_icon, test);
+//		click(driver, testcaseName, edit_subject_icon, test);
+//		Thread.sleep(1000);
+//		Date date = new Date();
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+//		String strDate = formatter.format(date);
+//		setText(driver, testcaseName, edit_subject, "DP Email Template - "+strDate, test);
+//		Thread.sleep(1000);
+//		waitforElemPresent(driver, testcaseName, 30, edit_subject_save, test);
+//		click(driver, testcaseName, edit_subject_save, test);
+//		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		click(driver, testcaseName, done_editing_button, test);
+		Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 60, test);
+	//	waitforElemPresent(driver, testcaseName, 30, save_overwrite_button, test);
+	//	click(driver, testcaseName, save_overwrite_button, test);
+	//	Thread.sleep(1000);
+	//	waitforElemPresent(driver, testcaseName, 30, done_button, test);
+	//	click(driver, testcaseName, done_button, test);
+	//	Thread.sleep(1000);
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, source_email, test);
+		
+		
+	}
+	
 	public void selectFromAList(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, from_a_list, test);
@@ -230,5 +283,28 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		dmxPage.downloadFile(driver, param, generate_password , test);
 	}
 
-	
+	public void selectTestDropDown(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+			click(driver, testcaseName, test_dd, test);	
+			waitforElemPresent(driver, testcaseName, 60, test_invite, test);
+			click(driver, testcaseName, test_invite, test);
+			waitforElemPresent(driver, testcaseName, 60, test_single, test);
+			click(driver, testcaseName, test_single,test);
+			waitForLoad(driver, testcaseName, 60, test);
+			selectEmailTemplate(driver, param, test);
+			selectFromAList(driver, param, test);
+			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+			click(driver, testcaseName, done_editing_button, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+			click(driver, testcaseName, done_editing_button, test);
+			waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+			click(driver, testcaseName, test_send, test);
+			click(driver, testcaseName, send_now, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 60, track_survey, test);
+			
+	}
 }
+	
+
