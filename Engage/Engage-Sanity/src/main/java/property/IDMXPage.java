@@ -160,7 +160,6 @@ public interface IDMXPage {
 	
 	String MAP_ANSWERS = "//a[contains(text(),'Map Answers')]";
 	WebPageElements map_answers = new WebPageElements("Map Answers", "xpath", MAP_ANSWERS);
-	
 
 	String MAP_FIELDS = "//input[@id='txtAttributes1']";
 	WebPageElements map_fields = new WebPageElements("Map Answers 1", "xpath", MAP_FIELDS);
@@ -237,7 +236,36 @@ public interface IDMXPage {
 	String QUICK_SEND = "//div[@id='inviteddl_divQuickSend']";
 	WebPageElements quick_send = new WebPageElements("Quick send button", "xpath", QUICK_SEND);
 
+	String TEST_DD = "//div[@id='btn_SendTestInvitation']";
+	WebPageElements test_dd = new WebPageElements("Test Invite Dropdown", "xpath", TEST_DD);
+	
+	String TEST_URL = "//div[@id='anhGenTestURL']";
+	WebPageElements test_url = new WebPageElements("Test Invite URL", "xpath", TEST_URL);
+	
+	String TEST_INVITE = "//div[@id='anhSendTestInvite']";
+	WebPageElements test_invite = new WebPageElements("Test Invite", "xpath", TEST_INVITE);
+	
+	String TEST_CB = "//div[@name='DmTool$chkGenTestURLIAgree']";
+	WebPageElements test_cb = new WebPageElements("Test Invite CB", "xpath", TEST_CB);
+	
+	String TEST_DONE = "//div[@class='btn-next smallnext']";
+	WebPageElements test_done = new WebPageElements("Test Invite Done", "xpath", TEST_DONE);
+	
+	String TEST_SINGLE = "(//span[contains(text(),'Single-Use Link')])[2]";
+	WebPageElements test_single = new WebPageElements("Test Single Use Link", "xpath", TEST_SINGLE); 
+
+	String TEST_SEND = "//input[@id='sub1']";
+	WebPageElements test_send = new WebPageElements("Test Send Link", "xpath", TEST_SEND); 
+	
+	String TRACK_SURVEY = "//input[@id='btnTrackSurvey']";
+	WebPageElements track_survey = new WebPageElements("Go To TrackSurvey", "xpath", TRACK_SURVEY);
+
+
+	
 	
 }
+
+
+
 
 

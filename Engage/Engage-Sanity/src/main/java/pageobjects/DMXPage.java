@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
@@ -24,6 +25,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import property.IDMXPage;
 import property.IHomePage;
@@ -317,12 +319,12 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, done_editing_button, test);
 		Thread.sleep(1000);
 		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, 30, save_overwrite_button, test);
-		click(driver, testcaseName, save_overwrite_button, test);
-		Thread.sleep(1000);
-		waitforElemPresent(driver, testcaseName, 30, done_button, test);
-		click(driver, testcaseName, done_button, test);
-		Thread.sleep(1000);
+	//	waitforElemPresent(driver, testcaseName, 30, save_overwrite_button, test);
+	//	click(driver, testcaseName, save_overwrite_button, test);
+	//	Thread.sleep(1000);
+	//	waitforElemPresent(driver, testcaseName, 30, done_button, test);
+	//	click(driver, testcaseName, done_button, test);
+	//	Thread.sleep(1000);
 		waitForLoad(driver, testcaseName, 60, test);
 		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 30, source_email, test);
@@ -429,6 +431,28 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		}
 		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
 		click(driver, testcaseName, continue_button1, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectFromATestList(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, from_a_list, test);
+		click(driver, testcaseName, from_a_list, test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, select_list, test);
+		Select select = new Select(driver.findElement(By.xpath(SELECT_LIST)));
+		select.selectByVisibleText(param.get("selectlist"));
+		Thread.sleep(1000);
+		try {
+			driver.findElement(By.xpath(PRE_POP_SURVEY_INPUT)).isSelected();
+		} catch (Exception e) {
+			waitforElemPresent(driver, testcaseName, 30, pre_pop_survey, test);
+			click(driver, testcaseName, pre_pop_survey, test);
+			waitForLoad(driver, testcaseName, 60, test);
+		}
+		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -690,5 +714,28 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		driver.switchTo().defaultContent();		
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
+	}
+	public void selectTestDropDown(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+			click(driver, testcaseName, test_dd, test);	
+			waitforElemPresent(driver, testcaseName, 60, test_invite, test);
+			click(driver, testcaseName, test_invite, test);
+			waitforElemPresent(driver, testcaseName, 60, test_single, test);
+			click(driver, testcaseName, test_single,test);
+			waitForLoad(driver, testcaseName, 60, test);
+			selectEmailTemplate(driver, param, test);
+			selectFromATestList(driver, param, test);
+			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+			click(driver, testcaseName, done_editing_button, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+			click(driver, testcaseName, done_editing_button, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+			click(driver, testcaseName, test_send, test);
+			click(driver, testcaseName, send_now, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 60, track_survey, test);
+			
 	}
 }
