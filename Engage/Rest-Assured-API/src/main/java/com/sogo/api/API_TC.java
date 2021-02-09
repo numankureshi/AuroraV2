@@ -500,11 +500,11 @@ public class API_TC extends SuiteBase {
 				headers.put(TestCaseName, responseData.get("headerList").toString());
 				
 				//Validate URL Expiry from tracksurvey Data
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				dmx.goToTrackSurvey(getDriver(), param, getData(data, "surveyTitle"), getData(data, "surveyNo"), test);
-				dmx.jsonTrackSurveyData(getDriver(), param, test);
-				api.validateExpiryDateFromTrackSurvey(param, (ArrayList<String>) responseData.get("emailList"), test);
+//				loadBrowser();
+//				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+//				dmx.goToTrackSurvey(getDriver(), param, getData(data, "surveyTitle"), getData(data, "surveyNo"), test);
+//				dmx.jsonTrackSurveyData(getDriver(), param, test);
+//				api.validateExpiryDateFromTrackSurvey(param, (ArrayList<String>) responseData.get("emailList"), test);
 				
 			}
 		}
@@ -967,7 +967,7 @@ public class API_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				responseData = api.sendSurveyInviteWithReminder(param, URLs.get(key), apiToken, test);
+				responseData = api.sendSurveyReminder(param, URLs.get(key), apiToken, test);
 				statusCode.put(TestCaseName, responseData.get("statusCode").toString());
 				respData.put(TestCaseName, responseData.get("respData").toString());
 				headers.put(TestCaseName, responseData.get("headerList").toString());
@@ -1019,7 +1019,7 @@ public class API_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				responseData = api.sendSurveyInviteWithReminder(param, URLs.get(key), apiToken, test);
+				responseData = api.sendSurveyReminder(param, URLs.get(key), apiToken, test);
 				statusCode.put(TestCaseName, responseData.get("statusCode").toString());
 				respData.put(TestCaseName, responseData.get("respData").toString());
 				headers.put(TestCaseName, responseData.get("headerList").toString());
@@ -1071,7 +1071,7 @@ public class API_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				responseData = api.sendSurveyInviteWithReminder(param, URLs.get(key), apiToken, test);
+				responseData = api.sendSurveyReminder(param, URLs.get(key), apiToken, test);
 				statusCode.put(TestCaseName, responseData.get("statusCode").toString());
 				respData.put(TestCaseName, responseData.get("respData").toString());
 				headers.put(TestCaseName, responseData.get("headerList").toString());
@@ -1123,7 +1123,7 @@ public class API_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				responseData = api.sendSurveyInviteWithReminder(param, URLs.get(key), apiToken, test);
+				responseData = api.sendSurveyReminder(param, URLs.get(key), apiToken, test);
 				statusCode.put(TestCaseName, responseData.get("statusCode").toString());
 				respData.put(TestCaseName, responseData.get("respData").toString());
 				headers.put(TestCaseName, responseData.get("headerList").toString());
@@ -1905,7 +1905,7 @@ public class API_TC extends SuiteBase {
 	}
 		
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC35(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -1990,9 +1990,8 @@ public class API_TC extends SuiteBase {
 
 	}
 	
-	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC36(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2077,9 +2076,8 @@ public class API_TC extends SuiteBase {
 
 	}
 	
-	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC37(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2165,7 +2163,7 @@ public class API_TC extends SuiteBase {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC38(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2251,7 +2249,7 @@ public class API_TC extends SuiteBase {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC39(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2338,7 +2336,7 @@ public class API_TC extends SuiteBase {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC40(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2425,7 +2423,7 @@ public class API_TC extends SuiteBase {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC41(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2511,7 +2509,7 @@ public class API_TC extends SuiteBase {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC42(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2597,7 +2595,7 @@ public class API_TC extends SuiteBase {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC43(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2683,7 +2681,7 @@ public class API_TC extends SuiteBase {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC44(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2768,7 +2766,7 @@ public class API_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC45(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2836,7 +2834,7 @@ public class API_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getParticipationStatusInfo API", alwaysRun = true)
 	public void API_TC46(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -2904,7 +2902,7 @@ public class API_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "Participation Status", alwaysRun = true)
+	@Test(dataProvider = "SoGo API", dataProviderClass = utility.XLSDataProvider.class, groups = "getSurveyList API", alwaysRun = true)
 	public void API_TC47(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");

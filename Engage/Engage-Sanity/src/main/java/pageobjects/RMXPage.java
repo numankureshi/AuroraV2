@@ -63,7 +63,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage{
 		return totalTime;
 	}
 	
-<<<<<<< HEAD
+
 	public void loadDARReport(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		goToReportPage(driver, param, surveyTitle, SID, test);
@@ -125,9 +125,6 @@ public class RMXPage extends SeleniumUtils implements IRMXPage{
 		
 		
 		
-	}
-		
-=======
 	public void goToIndividualReport(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		goToReportPage(driver, param, surveyTitle, SID, test);
@@ -334,6 +331,5 @@ public class RMXPage extends SeleniumUtils implements IRMXPage{
 	
 	}
 
->>>>>>> refs/remotes/origin/master
 
 

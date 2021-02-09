@@ -106,7 +106,7 @@
     		<artifactId>Engage-Sanity</artifactId>
     		<version>0.0.1-SNAPSHOT</version>
 			<scope>system</scope>
-			<systemPath>E:\Automation\Git\engage\Engage\Engage-Sanity\target\Engage-Sanity-0.0.1-SNAPSHOT.jar</systemPath>
+			<systemPath>${basedir}\..\Engage-Sanity\target\Engage-Sanity-0.0.1-SNAPSHOT.jar</systemPath>
 		</dependency>	
 	</dependencies>
 </project>

@@ -272,7 +272,6 @@ public interface IDMXPage {
 	String INVITATION_DATE_FILED = "//td[contains(@id,'tdInvitationDate')]";
 	WebPageElements invitation_date_field = new WebPageElements("Invitation date field", "xpath", INVITATION_DATE_FILED);
 
-<<<<<<< HEAD
 	String TEST_DD = "//div[@id='btn_SendTestInvitation']";
 	WebPageElements test_dd = new WebPageElements("Test Invite Dropdown", "xpath", TEST_DD);
 	
@@ -299,7 +298,6 @@ public interface IDMXPage {
 
 
 	
-=======
 	String URL_EXPIRY_FILED = "//td[contains(@id,'tdURLExpiry_')]";
 	WebPageElements url_expiry_field = new WebPageElements("URL Expiry field", "xpath", URL_EXPIRY_FILED);
 	
@@ -344,7 +342,6 @@ public interface IDMXPage {
 	
 	String SAP_GENERATED_ON_FIELD = "//td[contains(@id,'tdGeneratedOn_')]";
 	WebPageElements sap_generated_on_field = new WebPageElements("Survey Password - Generated On Field", "xpath", SAP_GENERATED_ON_FIELD);
->>>>>>> refs/remotes/origin/master
 	
 }
 

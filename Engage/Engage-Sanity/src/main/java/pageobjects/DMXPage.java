@@ -26,12 +26,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
-<<<<<<< HEAD
 import com.aventstack.extentreports.Status;
-=======
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
->>>>>>> refs/remotes/origin/master
 
 import property.IDMXPage;
 import property.IHomePage;
@@ -721,7 +718,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
 	}
-<<<<<<< HEAD
+	
 	public void selectTestDropDown(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 			click(driver, testcaseName, test_dd, test);	
@@ -745,7 +742,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			waitforElemPresent(driver, testcaseName, 60, track_survey, test);
 			
 	}
-=======
+
 	
 	public double goToTrackSurvey(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
@@ -1073,5 +1070,4 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	}
 	
 	
->>>>>>> refs/remotes/origin/master
 }

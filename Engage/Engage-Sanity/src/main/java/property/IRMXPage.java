@@ -13,7 +13,6 @@ public interface IRMXPage {
 	String OMNI_MODIFY_REPORT = "//span[contains(text(),'Modify Report')]";
 	WebPageElements omni_modify_report = new WebPageElements("Modify Report - OMNI", "xpath", OMNI_MODIFY_REPORT);
 	
-<<<<<<< HEAD
 	String TEXT_ANALYSIS = "//a[@id='btnSentimentAnalysis']";
 	WebPageElements text_analysis = new WebPageElements("Text Analysis", "xpath", TEXT_ANALYSIS);
 	
@@ -38,8 +37,8 @@ public interface IRMXPage {
 	String ADV_PIV = "//a[@id='liadvPivot']";
 	WebPageElements adv_piv = new WebPageElements("ADV PIV", "xpath", ADV_PIV );
 	
-	String RAW_DATA = "//a[@id='btnIndividual']";
-	WebPageElements raw_data = new WebPageElements("Raw Data", "xpath", RAW_DATA );
+//	String RAW_DATA = "//a[@id='btnIndividual']";
+//	WebPageElements raw_data = new WebPageElements("Raw Data", "xpath", RAW_DATA );
 	
 	String INDIVIDUAL = "//a[@id='ddindividual']";
 	WebPageElements individual = new WebPageElements("Individual", "xpath", INDIVIDUAL );
@@ -246,9 +245,6 @@ public interface IRMXPage {
 	WebPageElements email_report = new WebPageElements("Email Report", "xpath", EMAIL_REPORT);
 
 	
-
-} 
-=======
 	String RAW_DATA = "//div[@id='btnIndividual']/span";
 	WebPageElements raw_data = new WebPageElements("Raw Data", "xpath", RAW_DATA);
 	
@@ -305,5 +301,5 @@ public interface IRMXPage {
 	
 	String RESPONSE_TB_ANSWER_FIELD = "//td[@class='responsetd']";
 	WebPageElements response_table_answer_field = new WebPageElements("Response Table Report - Answer field", "xpath", RESPONSE_TB_ANSWER_FIELD);
->>>>>>> refs/remotes/origin/master
 
+}
