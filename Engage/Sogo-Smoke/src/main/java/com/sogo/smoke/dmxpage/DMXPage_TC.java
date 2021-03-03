@@ -46,7 +46,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Sanity_TC3(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC3(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -82,14 +82,14 @@ public class DMXPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dmxPage.publishSingleUseLinkexe(getDriver(), param, test);
-				dmxPage.sendReminders(getDriver(), param, test);
+				dmxPage.sendRemindersEXE(getDriver(), param, test);
 			}
 		}
 
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Sanity_TC4(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC4(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -133,7 +133,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Sanity_TC5(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC5(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -178,7 +178,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Sanity_TC6(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC6(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -213,7 +213,7 @@ public class DMXPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				dmxPage.publishSurveyPasswords(getDriver(), param, test);
+				dmxPageSogo.publishSurveyPasswords(getDriver(), param, test);
 				
 			}
 		}
@@ -221,7 +221,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Sanity_TC7(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC7(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -274,7 +274,6 @@ public class DMXPage_TC extends SuiteBase {
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
 		param.put("surveyid", getData(data, "surveyid"));
-		param.put("surveyname", getData(data, "surveyname"));
 		param.put("emailtemplate", getData(data, "emailtemplate"));
 		param.put("selectlist", getData(data, "selectlist"));
 		param.put("mailmergedd", getData(data, "mailmergedd"));
@@ -300,8 +299,12 @@ public class DMXPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				dmxPage.goToDistributePage(getDriver(), param,  getData(data,"surveyname"), getData(data, "surveyid"), test);
-				dmxPage.selectTestDropDown(getDriver(), param, test);
+				dmxPageSogo.publishTestInvites(getDriver(), param, test);
+				/*
+				 * dmxPage.goToDistributePage(getDriver(), param, getData(data,"surveyname"),
+				 * getData(data, "surveyid"), test); dmxPage.selectTestDropDown(getDriver(),
+				 * param, test);
+				 */
 				
 				
 			}

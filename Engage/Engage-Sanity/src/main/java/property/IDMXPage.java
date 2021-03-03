@@ -73,6 +73,9 @@ public interface IDMXPage {
 	String SEARCH_EMAIL = "(//input[contains(@class,'searchText ui-autocomplete-input')])[1]";
 	WebPageElements search_email = new WebPageElements("Search Email", "xpath", SEARCH_EMAIL);
 	
+	String ATTRIBUTE = "//input[@name='txtBlankAttribute']";
+	WebPageElements attribute = new WebPageElements("Attribute", "xpath", ATTRIBUTE);
+	
 	String EDIT_BUTTON = "//span[text()='Edit ']";
 	WebPageElements edit_button = new WebPageElements("Edit Button", "xpath", EDIT_BUTTON);
 	
@@ -138,6 +141,10 @@ public interface IDMXPage {
 	
 	String SELECT_LIST = "//select[@name='ddSelectList']";
 	WebPageElements select_list = new WebPageElements("Select List", "xpath", SELECT_LIST);
+	
+	String ATTRIBUTES_LIST = "//select[@name='ddlAttributes']";
+	WebPageElements attributes_list = new WebPageElements("Attributes List", "xpath", ATTRIBUTES_LIST);
+	
 	
 	String SELECT_LIST2 = "//select[@id='ddSelectList']";
 	WebPageElements select_list2 = new WebPageElements("Select List", "xpath", SELECT_LIST2);
@@ -232,6 +239,10 @@ public interface IDMXPage {
 	
 	String INVITATION_SENT_EXE = "//font[contains(text(),'invitation(s) have been queued for delivery. You will be notified via email')]";
 	WebPageElements invitation_sent_exe = new WebPageElements("have been queued for delivery ", "xpath", INVITATION_SENT_EXE);
+	
+	String REMINDERS_SENT_EXE = "//font[contains(text(),'reminder(s) have been queued for delivery. You will be notified via email')]";
+	WebPageElements reminders_sent_exe = new WebPageElements("have been queued for delivery ", "xpath", REMINDERS_SENT_EXE);
+	
 	
 	String REMINDERS = "(//span[contains(text(),'Reminders')])[1]";
 	WebPageElements reminders = new WebPageElements("Reminders", "xpath", REMINDERS);

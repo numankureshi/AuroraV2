@@ -149,6 +149,26 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		System.out.println("File path is: "+path);
 	}
 	
+	public void publishTestInvites(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectDistributeProject(driver, param, test);	
+		selectTestDropDown(driver, param, test);
+		/*
+		 * waitforElemPresent(driver, testcaseName, 100, single_use_link_button, test);
+		 * click(driver, testcaseName, single_use_link_button, test);
+		 * waitForLoad(driver, testcaseName, 60, test);
+		 * dmxPage.selectEmailTemplate(driver, param, test); selectFromAList(driver,
+		 * param, test); try {
+		 * driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
+		 * click(driver, testcaseName, By.xpath("//input[@value='Continue']"),
+		 * "Continue", test); waitForLoad(driver, testcaseName, 30, test); } catch
+		 * (Exception e) { // TODO: handle exception } mailMerge2(driver, param, test);
+		 * // dmxPage.prePopulation(driver, param, test); // dmxPage.reviewData(driver,
+		 * param, test); dmxPage.sendOrSchedule(driver, param, test);
+		 */
+	}
+	
 	public int RandomNumber() {
 		Random rand = new Random();
 		int n = rand.nextInt(10000) + 1;
@@ -271,12 +291,16 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		selectEmailTemplate(driver, param, test);
 		selectFromAList(driver, param, test);
 		try {
-			driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
-			click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
+			driver.findElement(By.xpath("//input[@name='btnSendUnique']")).isDisplayed();
+			click(driver, testcaseName, By.xpath("//input[@name='btnSendUnique']"), "Continue", test);
 			waitForLoad(driver, testcaseName, 30, test);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+
+//        Invitations will not be sent to the addresses below.
+    
 		mailMerge(driver, param, test);
 		prePopulation(driver, param, test);
 		reviewData(driver, param, test);
@@ -293,13 +317,15 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		driver.findElement(By.xpath(SEARCH_EMAIL)).sendKeys(Keys.RETURN);
 		waitForLoadAttach(driver, testcaseName, 60, test);
 		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]"), param.get("emailtemplate"), test);
-		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]/following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@title = '"+ param.get("emailtemplate") +"']"), param.get("emailtemplate"), test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
 		Actions action = new Actions(driver);
-		action.moveToElement(driver.findElement(By.xpath("(//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]/following::div[@class='middle-content'])[1]"))).build().perform();
+		action.moveToElement(driver.findElement(By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"))).build().perform();
 		Thread.sleep(1000);
-		waitforElemPresent(driver, testcaseName, 30, edit_button, test);
-		click(driver, testcaseName, edit_button, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::span[text()='Edit '])[1]"), param.get("emailtemplate") +" Edit", test);
+		 
+		click(driver, testcaseName, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::span[text()='Edit '])[1]"), param.get("emailtemplate") +" Edit", test);
+		 
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='"+ param.get("emailtemplate") +"']"), "Edit template: "+param.get("emailtemplate"), test);
 		Thread.sleep(2000);
@@ -323,12 +349,12 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, done_editing_button, test);
 		Thread.sleep(1000);
 		waitForLoad(driver, testcaseName, 60, test);
-	//	waitforElemPresent(driver, testcaseName, 30, save_overwrite_button, test);
-	//	click(driver, testcaseName, save_overwrite_button, test);
-	//	Thread.sleep(1000);
-	//	waitforElemPresent(driver, testcaseName, 30, done_button, test);
-	//	click(driver, testcaseName, done_button, test);
-	//	Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, save_overwrite_button, test);
+		click(driver, testcaseName, save_overwrite_button, test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, done_button, test);
+		click(driver, testcaseName, done_button, test);
+		Thread.sleep(1000);
 		waitForLoad(driver, testcaseName, 60, test);
 		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 30, source_email, test);
@@ -341,7 +367,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 //		waitforElemPresent(driver, testcaseName, 30, select_email_message, test);
 		waitforElemPresent(driver, testcaseName, 10, search_email, test);
-		setText(driver, testcaseName, search_email, param.get("emailtemplate"), test);
+		setText(driver, testcaseName, search_email, param.get("emailtemplatere"), test);
 		Thread.sleep(2000);
 		driver.findElement(By.xpath(SEARCH_EMAIL)).sendKeys(Keys.RETURN);
 		waitForLoadAttach(driver, testcaseName, 60, test);
@@ -610,6 +636,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 60, invitation_sent, test);
 	}
 	
+	
+	
 	public void sendOrScheduleexe(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
@@ -617,6 +645,15 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, send_now, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 60, invitation_sent_exe, test);
+	}
+	
+	public void sendOrScheduleReminderexe(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+		waitforElemPresent(driver, testcaseName, 30, send_now, test);
+		click(driver, testcaseName, send_now, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, reminders_sent_exe, test);
 	}
 	
 	public void sendReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -640,6 +677,29 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		selectEmailTemplateReminder(driver, param, test);
 		sendOrSchedule(driver, param, test);
+	}
+	
+	public void sendRemindersEXE(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 60, reminders, test);
+		click(driver, testcaseName, reminders, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, original_invitation_date_filter, test);
+		click(driver, testcaseName, original_invitation_date_filter, test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 60, on_date, test);
+		click(driver, testcaseName, on_date, test);
+		selectCalendar(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, done_button3, test);
+		click(driver, testcaseName, done_button3, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, schedule_reminder, test);
+		click(driver, testcaseName, schedule_reminder, test);
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		waitForLoad(driver, testcaseName, 30, test);
+		selectEmailTemplateReminder(driver, param, test);
+		sendOrScheduleReminderexe(driver, param, test);
 	}
 	
 	public void sendSMSReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -721,6 +781,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 	public void selectTestDropDown(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 60, test_dd, test);
 			click(driver, testcaseName, test_dd, test);	
 			waitforElemPresent(driver, testcaseName, 60, test_invite, test);
 			click(driver, testcaseName, test_invite, test);

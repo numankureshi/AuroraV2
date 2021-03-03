@@ -81,7 +81,7 @@ public class DMXPage_TC extends SuiteBase {
 				loadBrowser();
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dmxPage2.publishSingleUseLinkexe(getDriver(), param, test);
-				dmxPage.sendReminders(getDriver(), param, test);
+				dmxPage.sendRemindersEXE(getDriver(), param, test);
 			}
 		}
 
@@ -273,7 +273,6 @@ public class DMXPage_TC extends SuiteBase {
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
 		param.put("surveyid", getData(data, "surveyid"));
-		param.put("surveyname", getData(data, "surveyname"));
 		param.put("emailtemplate", getData(data, "emailtemplate"));
 		param.put("selectlist", getData(data, "selectlist"));
 		param.put("mailmergedd", getData(data, "mailmergedd"));
@@ -299,8 +298,12 @@ public class DMXPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				dmxPage.goToDistributePage(getDriver(), param,  getData(data,"surveyname"), getData(data, "surveyid"), test);
-				dmxPage.selectTestDropDown(getDriver(), param, test);
+				dmxPage2.publishTestInvites(getDriver(), param, test);
+				/*
+				 * dmxPage.goToDistributePage(getDriver(), param, getData(data,"surveyname"),
+				 * getData(data, "surveyid"), test); dmxPage.selectTestDropDown(getDriver(),
+				 * param, test);
+				 */
 				
 				
 			}

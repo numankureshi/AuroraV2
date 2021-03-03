@@ -132,11 +132,12 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		mailMerge(driver, param, test);
+//		mailMerge(driver, param, test);
 		dmxPage.prePopulation(driver, param, test);
-//		dmxPage.reviewData(driver, param, test);
+		dmxPage.reviewData(driver, param, test);
 		dmxPage.sendOrScheduleexe(driver, param, test);
 	}
+	
 	
 	public void publishSingleUseLink(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -147,10 +148,37 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		waitForLoad(driver, testcaseName, 60, test);
 		dmxPage.selectEmailTemplate(driver, param, test);
 		selectFromAList(driver, param, test);
+		try {
+			driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
+			click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
+			waitForLoad(driver, testcaseName, 30, test);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		mailMerge2(driver, param, test);
-		dmxPage.prePopulation(driver, param, test);
+//		dmxPage.prePopulation(driver, param, test);
 //		dmxPage.reviewData(driver, param, test);
 		dmxPage.sendOrSchedule(driver, param, test);
+	}
+	
+	public void publishTestInvites(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		dmxPage.selectDistributeProject(driver, param, test);	
+		selectTestDropDown(driver, param, test);
+		/*
+		 * waitforElemPresent(driver, testcaseName, 100, single_use_link_button, test);
+		 * click(driver, testcaseName, single_use_link_button, test);
+		 * waitForLoad(driver, testcaseName, 60, test);
+		 * dmxPage.selectEmailTemplate(driver, param, test); selectFromAList(driver,
+		 * param, test); try {
+		 * driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
+		 * click(driver, testcaseName, By.xpath("//input[@value='Continue']"),
+		 * "Continue", test); waitForLoad(driver, testcaseName, 30, test); } catch
+		 * (Exception e) { // TODO: handle exception } mailMerge2(driver, param, test);
+		 * // dmxPage.prePopulation(driver, param, test); // dmxPage.reviewData(driver,
+		 * param, test); dmxPage.sendOrSchedule(driver, param, test);
+		 */
 	}
 	
 	public void selectEmailTemplate(WebDriver driver, HashMap<String, String> param, ExtentTest test)
