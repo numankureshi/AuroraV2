@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -26,7 +27,7 @@ import property.IRMXPage;
 import utility.JSONUtility;
 import utility.SeleniumUtils;
 
-public class RMXPage extends SeleniumUtils implements IRMXPage{
+public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 
 	public double finish, start;
@@ -62,6 +63,10 @@ public class RMXPage extends SeleniumUtils implements IRMXPage{
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
 	}
+
+	
+	
+
 	
 
 	public void loadDARReport(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
@@ -327,6 +332,607 @@ public class RMXPage extends SeleniumUtils implements IRMXPage{
 		rawData.add("Raw Data", table);
 		new JSONUtility().writeJSONToFIle(testcaseName, rawData, "\\src\\main\\resources\\jsonFiles\\getResponseTbDataJson.json",test);
 		}
+	
+
+	
+	
+	
+	public void goToReportsPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		//new StaticPage().login(driver, param, username, password, URL, test);
+		click(driver, testcaseName, all_projects, test);
+		waitForJStoLoad(driver, 60);
+		waitForLoad(driver, testcaseName, 60, test);
+		switchToIframe(driver, testcaseName, all_project_dashboard_iframe, test);
+		waitForElementToBeVisible(driver, testcaseName, main_folder, 30, 100, test);
+		setText(driver, testcaseName, search_bar, param.get("surveyTitle"), test);
+		click(driver, testcaseName, search_icon, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
+		new Actions(driver).moveToElement(survey).perform();
+		waitForElementToBeVisible(driver, testcaseName, report_icon2, 10, 100, test);
+	
+		click(driver, testcaseName, report_icon2, test);
+		waitForJStoLoad(driver, 60);
+		waitforElemPresent(driver, testcaseName, 60, omni_report, test);
+		
+		driver.switchTo().defaultContent();	
+	}
+	
+	public void generateOmniReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		slideShowEmail(driver, param, test);
+		saveReport(driver, param, test);
+		emailReport(driver, param, test);
+	}
+	
+	public void generateAdvancedFrequencyReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		selectFrequencyReport(driver, param, test);
+		selectAllQuestions(driver, param, test);
+		reorderQuestions(driver, param, test);
+		propertiesPage(driver, param, test);
+		dataSources(driver, param, test);
+		slideShowEmail(driver, param, test);
+		saveReport2(driver, param, test);
+		emailReport(driver, param, test);
+	}
+	
+	public void generateIndividualReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		selectIndividualReport(driver, param, test);
+		selectAllQuestions2(driver, param, test);
+		propertiesPage2(driver, param, test);
+		dataSources2(driver, param, test);
+		saveReport3(driver, param, test);
+		emailReport(driver, param, test);
+	}
+	
+	public void generateResponseTableReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		selectResponseTableReport(driver, param, test);
+		selectAllQuestions2(driver, param, test);
+		propertiesPage2(driver, param, test);
+		dataSources2(driver, param, test);
+		saveReport3(driver, param, test);
+		emailReport(driver, param, test);
+	}
+	
+	public void generateSegmentationReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		selectSegmentationReport(driver, param, test);
+		selectSegmentationQuestion(driver, param, test);
+		
+		selectAllQuestions3(driver, param, test);
+		propertiesPage3(driver, param, test);
+		comparisonSegmentationPage(driver, param, test);
+		comparisonCustomizeCoverPage(driver, param, test);
+		
+		emailReport2(driver, param, test);
+	}
+	
+	public void generateEngagementReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		selectEngagementReport(driver, param, test);
+		participationDetailsPage(driver, param, test);
+		selectAllQuestions4(driver, param, test);
+		selectDriverQuestions(driver, param, test);
+		selectAdditionalQuestions(driver, param, test);
+		selectCompositionAnalysis(driver, param, test);
+		selectSegmentationReportPage(driver, param, test);
+		dataSources3(driver, param, test);
+		
+	}
+	
+	public void selectAllQuestions(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, survey_questions_page, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions, test);
+		click(driver, testcaseName, all_questions, test);
+		Thread.sleep(2000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
+		click(driver, testcaseName, continue_button1, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectAllQuestions2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, survey_questions_page2, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions2, test);
+		click(driver, testcaseName, all_questions2, test);
+		Thread.sleep(2000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
+		click(driver, testcaseName, continue_button1, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectAllQuestions3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, survey_questions_page2, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions3, test);
+		click(driver, testcaseName, all_questions3, test);
+		Thread.sleep(2000);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button4, test);
+		click(driver, testcaseName, continue_button4, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectAllQuestions4(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, engagement_questions_page, test);
+		String questions[] = param.get("questions").split(",");
+		
+		for(int i = 0; i < questions.length; i++) {
+			scrollIntoView(driver, testcaseName, By.xpath("(//span[text()='"+ questions[i] +"']/parent::label)[1]"), "Question "+questions[i], test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//span[text()='"+ questions[i] +"']/parent::label)[1]"), "Question "+questions[i], test);
+			click(driver, testcaseName, By.xpath("(//span[text()='"+ questions[i] +"']/parent::label)[1]"), "Question "+questions[i], test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+		}
+		waitforElemPresent(driver, testcaseName, 30, continue_button4, test);
+		click(driver, testcaseName, continue_button4, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectDriverQuestions(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, drivers_questions_page, test);
+		
+			scrollIntoView(driver, testcaseName, By.xpath("(//span[text()='"+ param.get("driver") +"']/parent::label)[2]"), "Question "+param.get("driver"), test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//span[text()='"+ param.get("driver") +"']/parent::label)[2]"), "Question "+param.get("driver"), test);
+			click(driver, testcaseName, By.xpath("(//span[text()='"+ param.get("driver") +"']/parent::label)[2]"), "Question "+param.get("driver"), test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+	
+		waitforElemPresent(driver, testcaseName, 30, continue_button44, test);
+		click(driver, testcaseName, continue_button44, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectAdditionalQuestions(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, additional_questions_page, test);
+		
+			
+			click(driver, testcaseName, additional_questions_switch, test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+			scrollIntoView(driver, testcaseName, By.xpath("(//span[text()='"+ param.get("additional") +"']/parent::label)[1]"), "Question "+param.get("additional"), test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//span[text()='"+ param.get("additional") +"']/parent::label)[1]"), "Question "+param.get("additional"), test);
+			click(driver, testcaseName, By.xpath("(//span[text()='"+ param.get("additional") +"']/parent::label)[1]"), "Question "+param.get("additional"), test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
+		click(driver, testcaseName, continue_button5, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+
+	public void selectCompositionAnalysis(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, compositional_analysis_page, test);
+		
+			
+			click(driver, testcaseName, compostion_analysis_switch, test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, compostion_report_dd, test);
+			Select select = new Select(driver.findElement(By.xpath(COMPOSITION_REPORT_DD)));
+//			select.selectByVisibleText(param.get("composition"));
+			select.selectByIndex(Integer.parseInt(param.get("composition")));
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
+		click(driver, testcaseName, continue_button6, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectSegmentationReportPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, segementation_report_page, test);
+		
+			
+			click(driver, testcaseName, segmentation_report_switch, test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, segment_input_switch, test);
+			setText(driver, testcaseName, segment_input_switch, param.get("segment"), test);
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			
+			waitforElemPresent(driver, testcaseName, 30, segment_dd, test);
+			Select select = new Select(driver.findElement(By.xpath(SEGMENT_DD)));
+//			select2.selectByVisibleText(param.get("segmentation"));
+			select.selectByIndex(Integer.parseInt(param.get("segmentation")));
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, add_more, test);
+			click(driver, testcaseName, add_more, test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, segment_input_switch1, test);
+			setText(driver, testcaseName, segment_input_switch1, param.get("segment2"), test);
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			
+			waitforElemPresent(driver, testcaseName, 30, segment_dd1, test);
+			Select select2 = new Select(driver.findElement(By.xpath(SEGMENT_DD1)));
+//			select2.selectByVisibleText(param.get("segmentation1"));
+			select2.selectByIndex(Integer.parseInt(param.get("segmentation1")));
+			waitForLoad(driver, testcaseName, 30, test);
+			
+		waitforElemPresent(driver, testcaseName, 30, continue_button7, test);
+		click(driver, testcaseName, continue_button7, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void dataSources(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, data_sources_page, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
+		click(driver, testcaseName, generate_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, modify_report_button, test);
+	}
+	
+	public void dataSources2(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, data_sources_page2, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
+		click(driver, testcaseName, generate_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, modify_report_button, test);
+	}
+	
+	public void dataSources3(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, data_sources_page2, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
+		click(driver, testcaseName, generate_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		//randome code to be written
+		randomGen(1, 3);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@id='dvGenerateCheck']//a)[1]"), "Report# "+1, test);
+		click(driver, testcaseName, By.xpath("(//div[@id='dvGenerateCheck']//a)[1]"), "Report# "+1, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, email_engagement_report, test);
+		clearText(driver, testcaseName, email_engagement_report, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, email_engagement_report, param.get("emailto"), test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 60, send_email, test);
+		click(driver, testcaseName, send_email, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		Thread.sleep(1000);
+		/*
+		 * String text = driver.switchTo().alert().getText();
+		 * if(text.equals(param.get("expected"))) {
+		 * reportPass("Alert message is displayed on Submiting the report", test); }
+		 * else { reportFail(testcaseName,
+		 * "Alert message is not displayed on Submiting the report", test); }
+		 */
+//		driver.switchTo().alert().accept();
+	}
+	
+	public static void randomGen(int min, int max) {
+		System.out.println("Random value of type double between " + min + " to " + max + ":");
+		double a = Math.random() * (max - min + 1) + min;
+		System.out.println(a);
+		System.out.println("Random value of type int between " + min + " to " + max + ":");
+		int b = (int) (Math.random() * (max - min + 1) + min);
+		System.out.println(b);
+	}
+	
+	public void emailReport2(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, email_report, test);
+		waitforElemPresent(driver, testcaseName, 30, email_segmentation_report, test);
+		clearText(driver, testcaseName, email_segmentation_report, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, email_segmentation_report, param.get("emailto"), test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, word_zip, test);
+		click(driver, testcaseName, word_zip, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, word_seperate, test);
+		click(driver, testcaseName, word_seperate, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
+		click(driver, testcaseName, generate_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, request_received, test);
+	}
+
+	public void propertiesPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, properties_page, test);
+		waitforElemPresent(driver, testcaseName, 30, display_report_with_tables, test);
+		click(driver, testcaseName, display_report_with_tables, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, display_question_names, test);
+		click(driver, testcaseName, display_question_names, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, display_weighted_score, test);
+		click(driver, testcaseName, display_weighted_score, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button3, test);
+		click(driver, testcaseName, continue_button3, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void propertiesPage2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, properties_page2, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button3, test);
+		click(driver, testcaseName, continue_button3, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void propertiesPage3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, properties_page2, test);
+		waitforElemPresent(driver, testcaseName, 30, display_question_names, test);
+		click(driver, testcaseName, display_question_names, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, display_table, test);
+		click(driver, testcaseName, display_table, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, display_weighted_score, test);
+		click(driver, testcaseName, display_weighted_score, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
+		click(driver, testcaseName, continue_button5, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void comparisonSegmentationPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, comparison_segmentation, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
+		click(driver, testcaseName, continue_button6, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void comparisonCustomizeCoverPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, customize_cover_page, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button7, test);
+		click(driver, testcaseName, continue_button7, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void reorderQuestions(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, reorder_questions_page, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dv2']"), "2nd Question", test);
+		Actions action = new Actions(driver);
+		action.clickAndHold(driver.findElement(By.xpath("//div[@id='dv2']"))).moveToElement(driver.findElement(By.xpath("//div[@id='dv1']"))).release(driver.findElement(By.xpath("//div[@id='dv2']"))).build().perform();
+		Thread.sleep(2000);
+		waitforElemPresent(driver, testcaseName, 30, continue_button2, test);
+		click(driver, testcaseName, continue_button2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectFrequencyReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, frequency_report, test);
+		click(driver, testcaseName, frequency_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, advanced_frequency_report, test);
+		click(driver, testcaseName, advanced_frequency_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void selectIndividualReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, raw_report, test);
+		click(driver, testcaseName, raw_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, individual_report, test);
+		click(driver, testcaseName, individual_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void selectResponseTableReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, raw_report, test);
+		click(driver, testcaseName, raw_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, response_table_report, test);
+		click(driver, testcaseName, response_table_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void selectSegmentationReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, segmentation_report, test);
+		click(driver, testcaseName, segmentation_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void selectEngagementReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, special_report, test);
+		click(driver, testcaseName, special_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, engagement_report, test);
+		click(driver, testcaseName, engagement_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void selectSegmentationQuestion(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, segmentation_question_dd, test);
+		Select select = new Select(driver.findElement(By.xpath(SEGMENTATION_QUESTION_DD)));
+		select.selectByVisibleText(param.get("question"));
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+		click(driver, testcaseName, select_all_options, test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
+		click(driver, testcaseName, continue_button1, test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		
+	}
+	
+	public void participationDetailsPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, participation_details, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		String reportName = param.get("rName")+" - " + strDate;
+		param.put("reportName", reportName);
+		waitforElemPresent(driver, testcaseName, 30, participation_details2, test);
+		setText(driver, testcaseName, participation_details2, reportName, test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		waitforElemPresent(driver, testcaseName, 30, nmax, test);
+		setText(driver, testcaseName, nmax, param.get("nmax"), test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		waitforElemPresent(driver, testcaseName, 30, continue_button22, test);
+		click(driver, testcaseName, continue_button22, test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		
+	}
+	
+	
+	public void slideShowEmail(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, slideshow_icon, test);
+		click(driver, testcaseName, slideshow_icon, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, slideshow_email, test);
+		click(driver, testcaseName, slideshow_email, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, slideshow_email_to, test);
+		setText(driver, testcaseName, slideshow_email_to, param.get("emailto"), test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, slideshow_email_send, test);
+		click(driver, testcaseName, slideshow_email_send, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='Your report has been emailed successfully.']"), "Your report has been emailed successfully.", test);
+		waitforElemPresent(driver, testcaseName, 30, slideshow_close, test);
+		click(driver, testcaseName, slideshow_close, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void saveReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, save_report_icon, test);
+		click(driver, testcaseName, save_report_icon, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		waitforElemPresent(driver, testcaseName, 30, save_report_name, test);
+		String reportName = param.get("rName")+" - " + strDate;
+		param.put("reportName", reportName);
+		setText(driver, testcaseName, save_report_name, reportName, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'This report has been saved as ')]"), "This report has been saved as ", test);
+		
+	}
+	
+	public void saveReport2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, save_report_icon, test);
+		click(driver, testcaseName, save_report_icon, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		waitforElemPresent(driver, testcaseName, 30, save_report_name2, test);
+		String reportName = param.get("rName")+" - " + strDate;
+		param.put("reportName", reportName);
+		clearText(driver, testcaseName, save_report_name2, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, save_report_name2, reportName, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'This report has been saved as ')]"), "This report has been saved as ", test);
+		
+	}
+	
+	public void saveReport3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, save_report_icon, test);
+		click(driver, testcaseName, save_report_icon, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		waitforElemPresent(driver, testcaseName, 30, save_report_name3, test);
+		String reportName = param.get("rName")+" - " + strDate;
+		param.put("reportName", reportName);
+		clearText(driver, testcaseName, save_report_name3, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, save_report_name3, reportName, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button, test);
+		click(driver, testcaseName, save_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'This report has been saved as ')]"), "This report has been saved as ", test);
+		
+	}
+	
+	public void emailReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, share_email, test);
+		click(driver, testcaseName, share_email, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		String reportNameTitle = param.get("rName")+" - " + strDate;
+		param.put("reportNameTitle", reportNameTitle);
+		waitforElemPresent(driver, testcaseName, 30, share_email_title, test);
+		setText(driver, testcaseName, share_email_title, reportNameTitle, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, share_email_to, test);
+		setText(driver, testcaseName, share_email_to, param.get("emailto"), test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, continue_button, test);
+		click(driver, testcaseName, continue_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, share_email_send, test);
+		click(driver, testcaseName, share_email_send, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='Your report has been emailed to:']"), "Your report has been emailed to:", test);
+
+	}
 	
 	
 	}

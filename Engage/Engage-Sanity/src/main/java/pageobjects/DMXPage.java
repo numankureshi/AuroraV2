@@ -658,6 +658,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 	public void sendReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		Thread.sleep(20000);
 		waitforElemPresent(driver, testcaseName, 60, reminders, test);
 		click(driver, testcaseName, reminders, test);
 		waitForLoad(driver, testcaseName, 30, test);
