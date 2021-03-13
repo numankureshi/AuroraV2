@@ -2,16 +2,18 @@ package property;
 
 import utility.WebPageElements;
 
-public interface IRMXPage {
+public interface IRMXPageResearch {
 	
-	String REPORT_TAB = "//a[@id='Inner_header1_ctl00_arm']";
-	WebPageElements report_tab = new WebPageElements("Report Tab", "xpath", REPORT_TAB);
+//	String REPORT_TAB = "//a[@id='Inner_header1_ctl00_arm']";
+//	WebPageElements report_tab = new WebPageElements("Report Tab", "xpath", REPORT_TAB);
+//	
+//	
 	
-	String OMNI_REPORT = "//div[@id='btnOmniReport']/span";
-	WebPageElements omni_report = new WebPageElements("OMNI Report Button", "xpath", OMNI_REPORT);
+	String OMNI_REPORT1 = "//div[@id='btnOmniReport']/span";
+	WebPageElements omni_report1 = new WebPageElements("OMNI Report Button", "xpath", OMNI_REPORT1);
 	
-	String OMNI_MODIFY_REPORT = "//span[contains(text(),'Modify Report')]";
-	WebPageElements omni_modify_report = new WebPageElements("Modify Report - OMNI", "xpath", OMNI_MODIFY_REPORT);
+//	String OMNI_MODIFY_REPORT = "//span[contains(text(),'Modify Report')]";
+//	WebPageElements omni_modify_report = new WebPageElements("Modify Report - OMNI", "xpath", OMNI_MODIFY_REPORT);
 	
 	String TEXT_ANALYSIS = "//a[@id='btnSentimentAnalysis']";
 	WebPageElements text_analysis = new WebPageElements("Text Analysis", "xpath", TEXT_ANALYSIS);
@@ -58,8 +60,8 @@ public interface IRMXPage {
 	String SPECIAL_REPORTS = "//a[@id='btnSpecial']";
 	WebPageElements special_reports = new WebPageElements("Special Reports", "xpath", SPECIAL_REPORTS );
 	
-	String ENGAGEMENT = "//a[@id='btnEnagagementReport']";
-	WebPageElements engagement = new WebPageElements("ENGAGEMENT", "xpath", ENGAGEMENT );
+//	String ENGAGEMENT = "//a[@id='btnEnagagementReport']";
+//	WebPageElements engagement = new WebPageElements("ENGAGEMENT", "xpath", ENGAGEMENT );
 	
 	String DIMENSIONAL_ANALYSIS = "//a[@id='btnClimateReport']";
 	WebPageElements dimensional_analysis = new WebPageElements("Dimensional Analysis", "xpath", DIMENSIONAL_ANALYSIS );
@@ -300,6 +302,8 @@ public interface IRMXPage {
 	
 	String COMPOSITION_PPT = "(//a[text()='Export to PPT'])";
 	WebPageElements composition_ppt = new WebPageElements("Composition PPT Report", "xpath", COMPOSITION_PPT);
+	
+	
 
 } 
 

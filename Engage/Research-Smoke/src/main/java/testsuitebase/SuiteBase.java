@@ -34,6 +34,8 @@ import com.aventstack.extentreports.ExtentReports;
 import pageobjects.DMXPage;
 import pageobjects.DMXPageResearch;
 import pageobjects.LoginPage;
+import pageobjects.RMXPage;
+import pageobjects.RMXPageResearch;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
 import pageobjects.SurveyPage;
@@ -71,6 +73,9 @@ public class SuiteBase {
 	public DMXPageResearch dmxPage2 = new DMXPageResearch();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
+	public RMXPage rmxPage = new RMXPage();
+	
+	public RMXPageResearch rmxPageResearch = new RMXPageResearch();
 	
 	public WebDriver getDriver() {
 		return driver.get();
