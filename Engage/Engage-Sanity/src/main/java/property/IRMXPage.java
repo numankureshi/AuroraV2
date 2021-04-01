@@ -135,6 +135,16 @@ public interface IRMXPage {
 	
 	String GENERATE_REPORT = "//input[@id='btnGenerate']";
 	WebPageElements generate_report = new WebPageElements("Report Generated", "xpath", GENERATE_REPORT);
+	
+	
+	String REPORT_TITLE = "//input[@id='txtRtitle']";
+	WebPageElements report_title = new WebPageElements("Report Title", "xpath", REPORT_TITLE);
+	
+	String REPORT_DESC = "//input[@id='txtDescription']";
+	WebPageElements report_desc = new WebPageElements("Report Description", "xpath", REPORT_DESC);
+	
+	String SEGMENT_ICON = "//div[@title='Segment']";
+	WebPageElements segment_icon = new WebPageElements("Segment Icon", "xpath", SEGMENT_ICON);
 
 	String DAR_1DD = "(//div[@id='divCYearP'])";
 	WebPageElements dar_1dd = new WebPageElements("DAR DD1", "xpath", DAR_1DD);
@@ -223,6 +233,15 @@ public interface IRMXPage {
 	String REPORT_CANVAS = "(//div[@id='tabCanvas'])";
 	WebPageElements report_canvas = new WebPageElements("Report Canvas", "xpath", REPORT_CANVAS);
 	
+	String SEGMENTATION_SURVEY = "//select[@name='SurveyListddl']";
+	WebPageElements segmentation_survey = new WebPageElements("Segmentation Survey", "xpath", SEGMENTATION_SURVEY);
+	
+	String SEGMENTATION_QUESTION = "//select[@id='ddlSiteQuestions']";
+	WebPageElements segmentation_question = new WebPageElements("Segmentation Question", "xpath", SEGMENTATION_QUESTION);
+	
+	String EMAIL_REPORT_TO = "//input[@id='txtSendFromType']";
+	WebPageElements email_report_to = new WebPageElements("Email Report To", "xpath", EMAIL_REPORT_TO);
+	
 	String CANVAS_TITLE = "(//input[@id='txtRtitle')";
 	WebPageElements canvas_title = new WebPageElements("Canvas Title", "xpath", CANVAS_TITLE);
 	
@@ -241,9 +260,11 @@ public interface IRMXPage {
 	String SEGMENT_ANSWERCB = "(//input[@id='chkall'])";
 	WebPageElements segment_answercb = new WebPageElements("Segment answer check box", "xpath", SEGMENT_ANSWERCB);
 	
-//	String EMAIL_REPORT = "(//input[@name='ctl04'])";
-//	WebPageElements email_report = new WebPageElements("Email Report", "xpath", EMAIL_REPORT);
-
+	String EMAIL_REPORT2 = "//input[@value='Email Report']";
+	WebPageElements email_report2 = new WebPageElements("Email Report", "xpath", EMAIL_REPORT2);
+	
+	String SELECT_ALL = "//label[text()=' Select All']";
+	WebPageElements select_all = new WebPageElements("Select All", "xpath", SELECT_ALL);
 	
 	String RAW_DATA = "//div[@id='btnIndividual']/span";
 	WebPageElements raw_data = new WebPageElements("Raw Data", "xpath", RAW_DATA);
@@ -404,6 +425,9 @@ public interface IRMXPage {
 	String ENGAGEMENT_REPORT = "//a[contains(text(),'Engagement')]";
 	WebPageElements engagement_report = new WebPageElements("Engagement Report", "xpath", ENGAGEMENT_REPORT);
 	
+	String DAR_REPORT = "//a[contains(text(),'Dimensional Analysis')]";
+	WebPageElements dar_report = new WebPageElements("Dimensional Analysis Report", "xpath", DAR_REPORT); 
+	
 	String SURVEY_QUESTIONS_PAGE = "//span[text()='Please select the questions that would be displayed in this report. ']";
 	WebPageElements survey_questions_page = new WebPageElements("Survey Questions Page", "xpath", SURVEY_QUESTIONS_PAGE);
 	
@@ -494,6 +518,11 @@ public interface IRMXPage {
 	String PARTICIPATION_DETAILS = "//span[text()='Define participation details.']";
 	WebPageElements participation_details = new WebPageElements("Participation Details Page", "xpath", PARTICIPATION_DETAILS);
 	
+	String TP1TG1 = "//div[@class='col2 row1']";
+	WebPageElements tp1tg1 = new WebPageElements("Target Period 1 Target Group 1", "xpath", TP1TG1);
+	
+	String TP2TG1 = "//div[@class='col3']";
+	WebPageElements tp2tg1 = new WebPageElements("Target Period 2 Target Group 1", "xpath", TP2TG1);
 	
 	String CUSTOMIZE_COVER_PAGE = "//span[text()='Customize your Segmentation Report cover page.']";
 	WebPageElements customize_cover_page = new WebPageElements("Customize Cover Page", "xpath", CUSTOMIZE_COVER_PAGE);

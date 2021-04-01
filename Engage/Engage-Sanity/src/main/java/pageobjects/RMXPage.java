@@ -12,6 +12,7 @@ import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -430,6 +431,23 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		
 	}
 	
+	public void generateDarReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		goToReportsPage(driver, param, test);
+		selectDarReport(driver, param, test);
+		selectProjectsPage(driver, param, test); 
+		selectDARPage(driver, param, test); 
+		reportCanvas(driver, param, test);
+				 /*
+				 * * selectAllQuestions4(driver, param, test); selectDriverQuestions(driver, param, test);
+		 * selectAdditionalQuestions(driver, param, test);
+		 * selectCompositionAnalysis(driver, param, test);
+		 * selectSegmentationReportPage(driver, param, test); dataSources3(driver,
+		 * param, test);
+		 */
+		
+	}
+	
 	public void selectAllQuestions(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, survey_questions_page, test);
@@ -782,6 +800,16 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitForLoad(driver, testcaseName, 30, test);
 	}
 	
+	public void selectDarReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, special_report, test);
+		click(driver, testcaseName, special_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, dar_report, test);
+		click(driver, testcaseName, dar_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
 	public void selectSegmentationQuestion(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, segmentation_question_dd, test);
@@ -817,6 +845,263 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitForLoad(driver, testcaseName, 30, test);	
 		
 	}
+	
+	public void selectProjectsPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String[] folders = param.get("folder").split(",");
+		String testcaseName = param.get("TestCaseName");
+		
+		waitforElemPresent(driver, testcaseName, 30, tp1tg1, test);
+		click(driver, testcaseName, tp1tg1, test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//li[contains(@class,'OpenDropDown')]//a/span[text()='"+ folders[0] +"']"), folders[0], test);
+		click(driver, testcaseName, By.xpath("//li[contains(@class,'OpenDropDown')]//a/span[text()='"+ folders[0] +"']"), folders[0], test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//li[contains(@class,'OpenDropDown')]//a[text()='"+ folders[1] +"']"), folders[1], test);
+		click(driver, testcaseName, By.xpath("//li[contains(@class,'OpenDropDown')]//a[text()='"+ folders[1] +"']"), folders[1], test);
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, tp2tg1, test);
+		click(driver, testcaseName, tp2tg1, test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='col3']//li[contains(@class,'OpenDropDown')]//a/span[text()='"+ folders[2] +"']"), folders[2], test);
+		click(driver, testcaseName, By.xpath("//div[@class='col3']//li[contains(@class,'OpenDropDown')]//a/span[text()='"+ folders[2] +"']"), folders[2], test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='col3']//li[contains(@class,'OpenDropDown')]//a[text()='"+ folders[3] +"']"), folders[3], test);
+		click(driver, testcaseName, By.xpath("//div[@class='col3']//li[contains(@class,'OpenDropDown')]//a[text()='"+ folders[3] +"']"), folders[3], test);
+		Thread.sleep(500);
+		
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, generate_report, test);
+		click(driver, testcaseName, generate_report, test);
+		waitForLoad(driver, testcaseName, 60, test);	
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='Dimensional Analysis Report']"), "Dimensional Analysis Report", test);
+		
+	}
+	
+	public void reportCanvas(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String[] folders = param.get("folder").split(",");
+		String testcaseName = param.get("TestCaseName");
+		
+		waitforElemPresent(driver, testcaseName, 30, report_canvas, test);
+		click(driver, testcaseName, report_canvas, test);
+		Thread.sleep(500);
+		waitForLoad(driver, testcaseName, 60, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		waitforElemPresent(driver, testcaseName, 30, report_title, test);
+//		String reportName = param.get("rName")+" - " + strDate;
+		param.put("reportName", param.get("rName"));
+		setText(driver, testcaseName, report_title, param.get("rName"), test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, report_desc, test);
+		String reportDesc = param.get("rName")+" - " + strDate;
+		param.put("reportDesc", reportDesc);
+		setText(driver, testcaseName, report_desc, reportDesc, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		reportSegmentation(driver, param, test);
+	}
+	
+	public void reportSegmentation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		
+		String testcaseName = param.get("TestCaseName");
+		
+
+		waitforElemPresent(driver, testcaseName, 30, segment_icon, test);
+		click(driver, testcaseName, segment_icon, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		Thread.sleep(500);
+//		waitforElemPresent(driver, testcaseName, 30, segmentation_survey, test);
+		
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'SiteLevelReport.aspx?')]")));
+		Select select = new Select(driver.findElement(By.xpath(SEGMENTATION_SURVEY)));
+		select.selectByVisibleText(param.get("surveyTitle"));
+		waitForLoad(driver, testcaseName, 30, test);
+		Thread.sleep(500);
+		
+//		waitforElemPresent(driver, testcaseName, 30, segmentation_question, test);
+		Select select2 = new Select(driver.findElement(By.xpath(SEGMENTATION_QUESTION)));
+		select2.selectByValue(param.get("driver"));
+		waitForLoad(driver, testcaseName, 30, test);
+		Thread.sleep(500);
+		
+		waitforElemPresent(driver, testcaseName, 30, select_all, test);
+		click(driver, testcaseName, select_all, test);
+		Thread.sleep(500);
+		waitForLoad(driver, testcaseName, 60, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, email_report_to, test);
+		setText(driver, testcaseName, email_report_to, param.get("emailto"), test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		driver.findElement(By.xpath(EMAIL_REPORT_TO)).sendKeys(Keys.TAB);
+		
+		waitforElemPresent(driver, testcaseName, 30, email_report2, test);
+		click(driver, testcaseName, email_report2, test);
+		Thread.sleep(500);
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
+	}
+	
+	public void selectDARPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String[] folders = param.get("folder").split(",");
+		String testcaseName = param.get("TestCaseName");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_1001']//div[@class='StarInActive GraphStar']"), "Overall Score", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_1001']//div[@class='StarInActive GraphStar']"), "Overall Score", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1001']//div[text()='Show Table'])[1]"), "Overall Score Data Table", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1001']//div[text()='Show Table'])[1]"), "Overall Score Data Table", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1001']//div[@class='StarInActive'])[1]"), "Overall Score Data Table", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1001']//div[@class='StarInActive'])[1]"), "Overall Score Data Table", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_1001']//div[text()='Comparison Over Time']"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_1001']//div[text()='Comparison Over Time']"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1001']//div[text()='Comparison Over Time']/following::div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1001']//div[text()='Comparison Over Time']/following::div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1001']//div[text()='Show Table'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1001']//div[text()='Show Table'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1001']//div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1001']//div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_1002']//span[text()='Dimension Scores']"), "Dimension Scores", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_1002']//span[text()='Dimension Scores']"), "Dimension Scores", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1002']//span[text()='Dimension Scores']/following::div[@class='StarInActive GraphStar'])[1]"), "Dimension Scores", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1002']//span[text()='Dimension Scores']/following::div[@class='StarInActive GraphStar'])[1]"), "Dimension Scores", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1002']//div[text()='Show Table'])[1]"), "Dimension Scores", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1002']//div[text()='Show Table'])[1]"), "Dimension Scores", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1002']//div[@class='StarInActive'])[1]"), "Dimension Scores", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1002']//div[@class='StarInActive'])[1]"), "Dimension Scores", test);
+		Thread.sleep(500);
+		
+
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_1002']//div[text()='Comparison Over Time']"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_1002']//div[text()='Comparison Over Time']"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1002']//div[text()='Comparison Over Time']/following::div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1002']//div[text()='Comparison Over Time']/following::div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1002']//div[text()='Show Table'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1002']//div[text()='Show Table'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1002']//div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1002']//div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_5']//span[text()='Rules and Regulations']"), "Rules and Regulations", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_5']//span[text()='Rules and Regulations']"), "Rules and Regulations", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_5']//span[text()='Rules and Regulations']/following::div[@class='StarInActive GraphStar'])[1]"), "Rules and Regulations", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_5']//span[text()='Rules and Regulations']/following::div[@class='StarInActive GraphStar'])[1]"), "Rules and Regulations", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_5']//div[text()='Show Table'])[1]"), "Rules and Regulations", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_5']//div[text()='Show Table'])[1]"), "Rules and Regulations", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_5']//div[@class='StarInActive'])[1]"), "Rules and Regulations", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_5']//div[@class='StarInActive'])[1]"), "Rules and Regulations", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_5']//div[text()='Comparison Over Time']"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_5']//div[text()='Comparison Over Time']"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_5']//div[text()='Comparison Over Time']/following::div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_5']//div[text()='Comparison Over Time']/following::div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_5']//div[text()='Show Table'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_5']//div[text()='Show Table'])[1]"), "Comparison Over Time", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_5']//div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_5']//div[@class='StarInActive'])[1]"), "Comparison Over Time", test);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_1003']//span[text()='Highest Ranking Indicators']"), "Highest Ranking Indicators", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_1003']//span[text()='Highest Ranking Indicators']"), "Highest Ranking Indicators", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1003']//span[text()='Highest Ranking Indicators']/following::div[@class='StarInActive'])[1]"), "Highest Ranking Indicators", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1003']//span[text()='Highest Ranking Indicators']/following::div[@class='StarInActive'])[1]"), "Highest Ranking Indicators", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_1004']//span[text()='Lowest Ranking Indicators']"), "Lowest Ranking Indicators", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_1004']//span[text()='Lowest Ranking Indicators']"), "Lowest Ranking Indicators", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_1004']//span[text()='Lowest Ranking Indicators']/following::div[@class='StarInActive'])[1]"), "Lowest Ranking Indicators", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_1004']//span[text()='Lowest Ranking Indicators']/following::div[@class='StarInActive'])[1]"), "Lowest Ranking Indicators", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_3']//span[text()='What is your ethnic group?']"), "What is your ethnic group?", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_3']//span[text()='What is your ethnic group?']"), "What is your ethnic group?", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_3']//span[text()='What is your ethnic group?']/following::div[@class='StarInActive GraphStar'])[1]"), "What is your ethnic group?", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_3']//span[text()='What is your ethnic group?']/following::div[@class='StarInActive GraphStar'])[1]"), "What is your ethnic group?", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_3']//div[text()='Show Table'])[1]"), "What is your ethnic group?", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_3']//div[text()='Show Table'])[1]"), "What is your ethnic group?", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_3']//div[@class='StarInActive'])[1]"), "What is your ethnic group?", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_3']//div[@class='StarInActive'])[1]"), "What is your ethnic group?", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_6']//span[text()='Please respond to the following statements.']"), "Please respond to the following statements.", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_6']//span[text()='Please respond to the following statements.']"), "Please respond to the following statements.", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_6']//span[text()='Please respond to the following statements.']/following::div[@class='StarInActive GraphStar'])[1]"), "Please respond to the following statements.", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_6']//span[text()='Please respond to the following statements.']/following::div[@class='StarInActive GraphStar'])[1]"), "Please respond to the following statements.", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_6']//div[text()='Show Table'])[1]"), "Please respond to the following statements.", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_6']//div[text()='Show Table'])[1]"), "Please respond to the following statements.", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_6']//div[@class='StarInActive'])[1]"), "Please respond to the following statements.", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_6']//div[@class='StarInActive'])[1]"), "Please respond to the following statements.", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_2001']//span[text()='Response Rate']"), "Response Rate", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_2001']//span[text()='Response Rate']"), "Response Rate", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_2001']//span[text()='Response Rate']/following::div[@class='StarInActive GraphStar'])[1]"), "Response Rate", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_2001']//span[text()='Response Rate']/following::div[@class='StarInActive GraphStar'])[1]"), "Response Rate", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_2001']//div[text()='Show Table'])[1]"), "Response Rate", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_2001']//div[text()='Show Table'])[1]"), "Response Rate", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_2001']//div[@class='StarInActive'])[1]"), "Response Rate", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_2001']//div[@class='StarInActive'])[1]"), "Response Rate", test);
+		Thread.sleep(500);
+		
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='ClimateScore_1_2002']//span[text()='Response Source']"), "Response Source", test);
+		click(driver, testcaseName, By.xpath("//div[@class='ClimateScore_1_2002']//span[text()='Response Source']"), "Response Source", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_2002']//span[text()='Response Source']/following::div[@class='StarInActive GraphStar'])[1]"), "Response Source", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_2002']//span[text()='Response Source']/following::div[@class='StarInActive GraphStar'])[1]"), "Response Source", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_2002']//div[text()='Show Table'])[1]"), "Response Source", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_2002']//div[text()='Show Table'])[1]"), "Response Source", test);
+		Thread.sleep(500);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@class='ClimateScore_1_2002']//div[@class='StarInActive'])[1]"), "Response Source", test);
+		click(driver, testcaseName, By.xpath("(//div[@class='ClimateScore_1_2002']//div[@class='StarInActive'])[1]"), "Response Source", test);
+		Thread.sleep(500);
+		
+	}
+	
 	
 	
 	public void slideShowEmail(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
