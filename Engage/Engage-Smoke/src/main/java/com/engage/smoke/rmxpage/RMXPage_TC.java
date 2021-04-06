@@ -289,20 +289,30 @@ public class RMXPage_TC extends SuiteBase {
 		}
 
 	}
-	
-	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "rmxPage", alwaysRun = true)
-	public void Sanity_TC10(LinkedHashMap<String, String> data) throws Exception {
+
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "rmxpage", alwaysRun = true)
+	public void Smoke_TC15(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
+		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
-		param.put("surveyid", getData(data, "surveyid"));
-		param.put("surveyname", getData(data, "surveyname"));
-		param.put("canvas_title", getData(data,"canvastitle"));
-		param.put("canvas_description", getData(data,"canvasdescription"));
+		param.put("SID", getData(data, "surveyid"));
+		param.put("surveyTitle", getData(data, "surveyTitle"));
+		param.put("emailto", getData(data, "Email"));
+		param.put("folder", getData(data, "Expected2"));
+		param.put("rName", getData(data, "Expected"));
+		param.put("driver", getData(data, "Expected3"));
+		param.put("nmax", getData(data, "TextBox"));
+		param.put("additional", getData(data, "RadioButton"));
+		param.put("composition", getData(data, "RadioButton2"));
+		param.put("segmentation", getData(data, "CheckBox"));
+		param.put("segmentation1", getData(data, "DropDown"));
+		param.put("segment", getData(data, "Gender"));
+		param.put("segment2", getData(data, "Grade"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -318,58 +328,86 @@ public class RMXPage_TC extends SuiteBase {
 					username = users.get("username");
 					encPassword = users.get("password");
 				}
-		
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmxPageEngage.generateDarReport(getDriver(), param, test);
+			}
+		}
 
-		loadBrowser();
-		loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-		rmxPage.goToReportPage(getDriver(), param, "Dimensional Report 1", "91", test);
-//		rmxPageEngage.loadDARReport(getDriver(), param, getData(data, "surveyname"), getData(data, "surveyid"), test);
-	}
-}
-		
-		
-	
 	}
 	
-	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "rmxPage", alwaysRun = true)
-	public void Sanity_TC9(LinkedHashMap<String, String> data) throws Exception {
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("surveyid", getData(data, "surveyid"));
-		param.put("surveyname", getData(data, "surveyname"));
-		param.put("canvas_title", getData(data,"canvastitle"));
-		param.put("canvas_description", getData(data,"canvasdescription"));
-		
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-		
-
-		loadBrowser();
-		loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-		rmxPage.goToReportPage(getDriver(), param, "Dimensional Report 1", "91", test);
-		rmxPage.loadOMNIReport(getDriver(), param, "Dimensional Report 1", "91", test);
-		rmxPageEngage.loadEngagementReport(getDriver(), param, "Dimensional Report 1" , "91", test);
-	}
-}
-
-	}
+	/*
+	 * @Test(dataProvider = "SurveyPage", dataProviderClass =
+	 * utility.XLSDataProvider.class, groups = "rmxPage", alwaysRun = true) public
+	 * void Sanity_TC10(LinkedHashMap<String, String> data) throws Exception {
+	 * TestCaseName = getData(data, "TestCaseName"); test =
+	 * extent.createTest(TestCaseName); CaseToRun = getData(data, "CaseToRun");
+	 * String Role = getData(data, "Role");
+	 * 
+	 * HashMap<String, String> param = new HashMap<String, String>();
+	 * param.put("TestCaseName", TestCaseName); param.put("surveyid", getData(data,
+	 * "surveyid")); param.put("surveyname", getData(data, "surveyname"));
+	 * param.put("canvas_title", getData(data,"canvastitle"));
+	 * param.put("canvas_description", getData(data,"canvasdescription"));
+	 * 
+	 * if (CaseToRun.equalsIgnoreCase("N")) {
+	 * System.out.println("CaseToRun = N for " + TestCaseName +
+	 * "So skipping Exceution."); testSkip = true; test.skip("CaseToRun = N for " +
+	 * TestCaseName + "So skipping Exceution."); throw new
+	 * SkipException("CaseToRun = N for " + TestCaseName +
+	 * "So skipping Exceution."); } else { for (String key : URLs.keySet()) {
+	 * System.out.println(URLs.get(key)); credentials =
+	 * TestFile.getLoginCredentials("Users", Role); for (int i = 0; i <
+	 * credentials.size(); i++) { users = credentials.get(i); username =
+	 * users.get("username"); encPassword = users.get("password"); }
+	 * 
+	 * 
+	 * loadBrowser(); loginPage.login(getDriver(), param, username, encPassword,
+	 * URLs.get(key), test); rmxPage.goToReportPage(getDriver(), param,
+	 * "Dimensional Report 1", "91", test); //
+	 * rmxPageEngage.loadDARReport(getDriver(), param, getData(data, "surveyname"),
+	 * getData(data, "surveyid"), test); } }
+	 * 
+	 * 
+	 * 
+	 * }
+	 * 
+	 * @Test(dataProvider = "SurveyPage", dataProviderClass =
+	 * utility.XLSDataProvider.class, groups = "rmxPage", alwaysRun = true) public
+	 * void Sanity_TC9(LinkedHashMap<String, String> data) throws Exception {
+	 * TestCaseName = getData(data, "TestCaseName"); test =
+	 * extent.createTest(TestCaseName); CaseToRun = getData(data, "CaseToRun");
+	 * String Role = getData(data, "Role");
+	 * 
+	 * HashMap<String, String> param = new HashMap<String, String>();
+	 * param.put("TestCaseName", TestCaseName); param.put("surveyid", getData(data,
+	 * "surveyid")); param.put("surveyname", getData(data, "surveyname"));
+	 * param.put("canvas_title", getData(data,"canvastitle"));
+	 * param.put("canvas_description", getData(data,"canvasdescription"));
+	 * 
+	 * if (CaseToRun.equalsIgnoreCase("N")) {
+	 * System.out.println("CaseToRun = N for " + TestCaseName +
+	 * "So skipping Exceution."); testSkip = true; test.skip("CaseToRun = N for " +
+	 * TestCaseName + "So skipping Exceution."); throw new
+	 * SkipException("CaseToRun = N for " + TestCaseName +
+	 * "So skipping Exceution."); } else { for (String key : URLs.keySet()) {
+	 * System.out.println(URLs.get(key)); credentials =
+	 * TestFile.getLoginCredentials("Users", Role); for (int i = 0; i <
+	 * credentials.size(); i++) { users = credentials.get(i); username =
+	 * users.get("username"); encPassword = users.get("password"); }
+	 * 
+	 * 
+	 * loadBrowser(); loginPage.login(getDriver(), param, username, encPassword,
+	 * URLs.get(key), test); rmxPage.goToReportPage(getDriver(), param,
+	 * "Dimensional Report 1", "91", test); rmxPage.loadOMNIReport(getDriver(),
+	 * param, "Dimensional Report 1", "91", test);
+	 * rmxPageEngage.loadEngagementReport(getDriver(), param, "Dimensional Report 1"
+	 * , "91", test); } }
+	 * 
+	 * }
+	 */
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
 		if (Result.getStatus() == ITestResult.SKIP) {
