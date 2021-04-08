@@ -265,7 +265,8 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("segmentation1", getData(data, "DropDown"));
 		param.put("segment", getData(data, "Gender"));
 		param.put("segment2", getData(data, "Grade"));
-		
+		param.put("header", getData(data, "Header"));
+		param.put("compositionby", getData(data, "DOB"));
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
 			testSkip = true;
@@ -284,7 +285,7 @@ public class RMXPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPage.generateEngagementReport(getDriver(), param, test);
+				rmxPageEngage.generateEngagementReport(getDriver(), param, test);
 			}
 		}
 

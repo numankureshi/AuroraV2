@@ -470,6 +470,9 @@ public interface IRMXPage {
 	String CONTINUE_BUTTON2 = "//input[@id='btnStep2Next']";
 	WebPageElements continue_button2 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON2);
 	
+	String CONTINUE_BUTTON11 = "(//input[@value='Continue'])[1]";
+	WebPageElements continue_button11 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON11);
+	
 	String CONTINUE_BUTTON22 = "(//input[@value='Continue'])[2]";
 	WebPageElements continue_button22 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON22);
 	

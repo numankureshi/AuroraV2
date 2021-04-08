@@ -1,5 +1,7 @@
 package pageobjects;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.openqa.selenium.By;
@@ -417,6 +419,90 @@ public class RMXPageEngage extends SeleniumUtils implements IRMXPageEngage, IRMX
 		 */
 		
 	}
+	
+	public void generateEngagementReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		RMXPage rmxPage = new RMXPage();
+		rmxPage.goToReportsPage(driver, param, test);
+		rmxPage.selectEngagementReport(driver, param, test);
+		participationDetailsPage(driver, param, test);
+		rmxPage.selectAllQuestions4(driver, param, test);
+		rmxPage.selectDriverQuestions(driver, param, test);
+		rmxPage.selectAdditionalQuestions(driver, param, test);
+		selectCompositionAnalysis(driver, param, test);
+		selectSegmentationReportPage(driver, param, test);
+		rmxPage.dataSources3(driver, param, test);
+		
+	}
+	
+	public void participationDetailsPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, report_type, test);
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		String reportName = param.get("header");
+		param.put("reportName", reportName);
+		waitforElemPresent(driver, testcaseName, 30, select_report_type, test);
+		Select select = new Select(driver.findElement(By.xpath(SELECT_REPORT_TYPE)));
+		select.selectByVisibleText(reportName);
+		waitForLoad(driver, testcaseName, 30, test);	
+		waitforElemPresent(driver, testcaseName, 30, nmax, test);
+		setText(driver, testcaseName, nmax, param.get("nmax"), test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		waitforElemPresent(driver, testcaseName, 30, continue_button11, test);
+		click(driver, testcaseName, continue_button11, test);
+		waitForLoad(driver, testcaseName, 30, test);	
+		
+	}
+	
+	public void selectCompositionAnalysis(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, compositional_analysis_page2, test);
+		
+			
+			click(driver, testcaseName, compostion_analysis_switch, test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[text()='"+ param.get("compositionby") +"']"), param.get("compositionby"), test);
+			click(driver, testcaseName, By.xpath("//label[text()='"+ param.get("compositionby") +"']"), param.get("compositionby"), test);
+			Select select = new Select(driver.findElement(By.xpath(COMPOSITION_REPORT_DD2)));
+//			select.selectByVisibleText(param.get("composition"));
+			select.selectByIndex(Integer.parseInt(param.get("composition")));
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
+		click(driver, testcaseName, continue_button5, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	public void selectSegmentationReportPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, segementation_report_page2, test);
+		
+			
+			click(driver, testcaseName, segmentation_report_switch, test);
+			Thread.sleep(1000);
+			waitForLoad(driver, testcaseName, 30, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ param.get("segment") +"'])[2]"), param.get("segment"), test);
+			click(driver, testcaseName, By.xpath("(//label[text()='"+ param.get("segment") +"'])[2]"), param.get("segment"), test);
+			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd2, test);
+			Select select = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD2)));
+			
+//			select2.selectByVisibleText(param.get("segmentation"));
+			select.selectByIndex(Integer.parseInt(param.get("segment2")));
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			
+		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
+		click(driver, testcaseName, continue_button6, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	
 }
 		
 

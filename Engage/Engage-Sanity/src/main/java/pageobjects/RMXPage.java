@@ -481,8 +481,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		click(driver, testcaseName, all_questions3, test);
 		Thread.sleep(2000);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button4, test);
-		click(driver, testcaseName, continue_button4, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button22, test);
+		click(driver, testcaseName, continue_button22, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -499,8 +499,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			Thread.sleep(1000);
 			waitForLoad(driver, testcaseName, 30, test);
 		}
-		waitforElemPresent(driver, testcaseName, 30, continue_button4, test);
-		click(driver, testcaseName, continue_button4, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button22, test);
+		click(driver, testcaseName, continue_button22, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -515,8 +515,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			Thread.sleep(1000);
 			waitForLoad(driver, testcaseName, 30, test);
 	
-		waitforElemPresent(driver, testcaseName, 30, continue_button44, test);
-		click(driver, testcaseName, continue_button44, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button4, test);
+		click(driver, testcaseName, continue_button4, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -534,8 +534,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			click(driver, testcaseName, By.xpath("(//span[text()='"+ param.get("additional") +"']/parent::label)[1]"), "Question "+param.get("additional"), test);
 			Thread.sleep(1000);
 			waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
-		click(driver, testcaseName, continue_button5, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button44, test);
+		click(driver, testcaseName, continue_button44, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -555,8 +555,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			select.selectByIndex(Integer.parseInt(param.get("composition")));
 			Thread.sleep(1000);
 			waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
-		click(driver, testcaseName, continue_button6, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
+		click(driver, testcaseName, continue_button5, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -595,8 +595,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			select2.selectByIndex(Integer.parseInt(param.get("segmentation1")));
 			waitForLoad(driver, testcaseName, 30, test);
 			
-		waitforElemPresent(driver, testcaseName, 30, continue_button7, test);
-		click(driver, testcaseName, continue_button7, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
+		click(driver, testcaseName, continue_button6, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		
 	}
@@ -719,24 +719,24 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitforElemPresent(driver, testcaseName, 30, display_weighted_score, test);
 		click(driver, testcaseName, display_weighted_score, test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
-		click(driver, testcaseName, continue_button5, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button44, test);
+		click(driver, testcaseName, continue_button44, test);
 		waitForLoad(driver, testcaseName, 30, test);
 	}
 	
 	public void comparisonSegmentationPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, comparison_segmentation, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
-		click(driver, testcaseName, continue_button6, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button5, test);
+		click(driver, testcaseName, continue_button5, test);
 		waitForLoad(driver, testcaseName, 30, test);
 	}
 	
 	public void comparisonCustomizeCoverPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, customize_cover_page, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button7, test);
-		click(driver, testcaseName, continue_button7, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button6, test);
+		click(driver, testcaseName, continue_button6, test);
 		waitForLoad(driver, testcaseName, 30, test);
 	}
 	
@@ -840,8 +840,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitforElemPresent(driver, testcaseName, 30, nmax, test);
 		setText(driver, testcaseName, nmax, param.get("nmax"), test);
 		waitForLoad(driver, testcaseName, 30, test);	
-		waitforElemPresent(driver, testcaseName, 30, continue_button22, test);
-		click(driver, testcaseName, continue_button22, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button11, test);
+		click(driver, testcaseName, continue_button11, test);
 		waitForLoad(driver, testcaseName, 30, test);	
 		
 	}
@@ -1171,19 +1171,23 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public void saveReport3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, save_report_icon, test);
+		Thread.sleep(2000);
+//		waitforElemPresent(driver, testcaseName, 30, save_report_icon, test);
 		click(driver, testcaseName, save_report_icon, test);
+		Thread.sleep(1000);
 		waitForLoad(driver, testcaseName, 30, test);
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 		String strDate = formatter.format(date);
 		
-		waitforElemPresent(driver, testcaseName, 30, save_report_name3, test);
+	
 		String reportName = param.get("rName")+" - " + strDate;
 		param.put("reportName", reportName);
+		waitforElemPresent(driver, testcaseName, 30, save_report_name3, test);
 		clearText(driver, testcaseName, save_report_name3, test);
 		Thread.sleep(1000);
 		setText(driver, testcaseName, save_report_name3, reportName, test);
+		Thread.sleep(1000);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, save_button, test);
 		click(driver, testcaseName, save_button, test);

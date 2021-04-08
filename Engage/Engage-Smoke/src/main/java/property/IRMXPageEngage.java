@@ -8,7 +8,14 @@ public interface IRMXPageEngage {
 //	WebPageElements report_tab = new WebPageElements("Report Tab", "xpath", REPORT_TAB);
 //	
 //	
-
+	String REPORT_TYPE = "//span[text()='Select Report Type from the drop down menu.']";
+	WebPageElements report_type = new WebPageElements("Select Report Type from the drop down menu.", "xpath", REPORT_TYPE);
+	
+	String SELECT_REPORT_TYPE = "//select[@id='cmbReportType']";
+	WebPageElements select_report_type = new WebPageElements("Select Report Type", "xpath", SELECT_REPORT_TYPE);
+	
+	String CONTINUE_BUTTON11 = "(//input[@value='Continue'])[1]";
+	WebPageElements continue_button11 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON11);
 	
 	String OMNI_REPORT1 = "//div[@id='btnOmniReport']/span";
 	WebPageElements omni_report1 = new WebPageElements("OMNI Report Button", "xpath", OMNI_REPORT1);
@@ -18,6 +25,20 @@ public interface IRMXPageEngage {
 	
 	String TEXT_ANALYSIS = "//a[@id='btnSentimentAnalysis']";
 	WebPageElements text_analysis = new WebPageElements("Text Analysis", "xpath", TEXT_ANALYSIS);
+	
+	String COMPOSITION_ANALYSIS_PAGE2 = "//span[contains(text(),'Select your Composition Analysis settings below.')]";
+	WebPageElements compositional_analysis_page2 = new WebPageElements("Composition Analysis Page", "xpath", COMPOSITION_ANALYSIS_PAGE2);
+	
+	
+	
+	String COMPOSITION_REPORT_DD2 = "//select[@name='DDL_ST']";
+	WebPageElements compostion_report_dd2= new WebPageElements("Segmentation Question", "xpath", COMPOSITION_REPORT_DD2);
+	
+	String SEGMENTATION_REPORT_DD2 = "//select[@name='DDLSeg_DE']";
+	WebPageElements segmentation_report_dd2= new WebPageElements("Segmentation Question", "xpath", SEGMENTATION_REPORT_DD2);
+	
+	String SEGMENTATION_REPORT_PAGE2 = "//span[contains(text(),'Segmentation Report')]";
+	WebPageElements segementation_report_page2 = new WebPageElements("Segmentation Report Page", "xpath", SEGMENTATION_REPORT_PAGE2);
 	
 	String FREQ_DD = "//a[@class='hd-btn hd-dd-btn mar-l fl bor-left-rad bor-right-rad  hd-active']";
 	WebPageElements freq_dd = new WebPageElements("Frequency DD", "xpath", FREQ_DD );
