@@ -368,6 +368,45 @@ public interface IRMXPage {
 	String SHARE_EMAIL = "//a[@class='shareNormal']";
 	WebPageElements share_email = new WebPageElements("Share Email Icon", "xpath", SHARE_EMAIL);
 	
+	String DOWNLOAD_REPORT2 = "//a[@class='downloadNormal']";
+	WebPageElements download_report2 = new WebPageElements("Download Icon", "xpath", DOWNLOAD_REPORT2);
+	
+	String DOWNLOAD_EXCEL = "//span[@title='Excel']/parent::div";
+	WebPageElements download_excel = new WebPageElements("Download Excel", "xpath", DOWNLOAD_EXCEL);
+	
+	String DOWNLOAD_EXCEL2 = "//span[text()='Excel1']/parent::li";
+	WebPageElements download_excel2 = new WebPageElements("Download Excel 1", "xpath", DOWNLOAD_EXCEL2);
+	
+	String DOWNLOAD_EXCEL3 = "//span[text()='Excel2']/parent::li";
+	WebPageElements download_excel3 = new WebPageElements("Download Excel 2", "xpath", DOWNLOAD_EXCEL3);
+	
+	String DOWNLOAD_EXCEL4 = "//span[text()='Excel']/parent::li";
+	WebPageElements download_excel4 = new WebPageElements("Download Excel", "xpath", DOWNLOAD_EXCEL4);
+	
+	String DOWNLOAD_WORD = "//span[text()='Word']/parent::li";
+	WebPageElements download_word = new WebPageElements("Download Word", "xpath", DOWNLOAD_WORD);
+	
+	String EXPORT_PPT = "//a[text()='Export to PPT']/parent::li";
+	WebPageElements export_ppt = new WebPageElements("Export to PPT", "xpath", EXPORT_PPT);
+	
+	String EXPORT_EXCEL = "//a[text()='Export to Excel']/parent::li";
+	WebPageElements export_excel = new WebPageElements("Export to Excel", "xpath", EXPORT_EXCEL);
+	
+	String DOWNLOAD_WORD_ALL = "(//a[text()='Export all responses'])[1]";
+	WebPageElements download_word_all = new WebPageElements("Download Word All resonses", "xpath", DOWNLOAD_WORD_ALL);
+	
+	String DOWNLOAD_EXCEL_ALL = "(//a[text()='Export all responses'])[2]";
+	WebPageElements download_excel_all = new WebPageElements("Download Excel All resonses", "xpath", DOWNLOAD_EXCEL_ALL);
+	
+	String DOWNLOAD_PPT2 = "//span[text()='PowerPoint1']/parent::li";
+	WebPageElements download_ppt2 = new WebPageElements("Download PowerPoint 1", "xpath", DOWNLOAD_PPT2);
+	
+	String DOWNLOAD_PPT3 = "//span[text()='PowerPoint2']/parent::li";
+	WebPageElements download_ppt3 = new WebPageElements("Download PowerPoint 2", "xpath", DOWNLOAD_PPT3);
+	
+	String DOWNLOAD_PPT = "//span[@title='PowerPoint']/parent::div";
+	WebPageElements download_ppt = new WebPageElements("Download PowerPoint", "xpath", DOWNLOAD_PPT);
+	
 	String SHARE_EMAIL_TITLE = "//input[@name='TxtReportName']";
 	WebPageElements share_email_title = new WebPageElements("Share Email Title", "xpath", SHARE_EMAIL_TITLE);
 	

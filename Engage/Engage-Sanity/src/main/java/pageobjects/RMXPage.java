@@ -1,7 +1,12 @@
 package pageobjects;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,6 +32,7 @@ import property.IHomePage;
 import property.IRMXPage;
 import utility.JSONUtility;
 import utility.SeleniumUtils;
+import utility.WebPageElements;
 
 public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
@@ -365,6 +371,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		goToReportsPage(driver, param, test);
 		slideShowEmail(driver, param, test);
 		saveReport(driver, param, test);
+		downloadReport(driver, param, test);
 		emailReport(driver, param, test);
 	}
 	
@@ -378,6 +385,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		dataSources(driver, param, test);
 		slideShowEmail(driver, param, test);
 		saveReport2(driver, param, test);
+		downloadReportAdvance(driver, param, test);
 		emailReport(driver, param, test);
 	}
 	
@@ -389,6 +397,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		propertiesPage2(driver, param, test);
 		dataSources2(driver, param, test);
 		saveReport3(driver, param, test);
+		downloadReportIndividual(driver, param, test);
 		emailReport(driver, param, test);
 	}
 	
@@ -400,6 +409,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		propertiesPage2(driver, param, test);
 		dataSources2(driver, param, test);
 		saveReport3(driver, param, test);
+		downloadReportResponseTable(driver, param, test);
 		emailReport(driver, param, test);
 	}
 	
@@ -629,9 +639,71 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		click(driver, testcaseName, generate_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		//randome code to be written
-		randomGen(1, 3);
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@id='dvGenerateCheck']//a)[1]"), "Report# "+1, test);
-		click(driver, testcaseName, By.xpath("(//div[@id='dvGenerateCheck']//a)[1]"), "Report# "+1, test);
+//		randomGen(1, 2);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@id='dvGenerateCheck']//a)[1]"), "Report# "+1, test);
+//		click(driver, testcaseName, By.xpath("(//div[@id='dvGenerateCheck']//a)[1]"), "Report# "+1, test);
+		
+		
+		LocalDate date = LocalDate.now();  
+		DayOfWeek day = date.getDayOfWeek();
+		int noDay = day.getValue();
+	        String format = null;
+	        WebPageElements download_report = null;
+	        Actions action = new Actions(driver);
+	        switch(noDay)
+	        {
+	            case 1:
+	                System.out.println("Monday");
+	                waitforElemPresent(driver, testcaseName, 30, export_ppt, test);
+	        		click(driver, testcaseName, export_ppt, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+//	        		format = "docx";
+//	        		download_report = download_word_all;
+	                break;
+	            case 2:
+	                System.out.println("Tuesday");
+	                waitforElemPresent(driver, testcaseName, 30, export_excel, test);
+	        		click(driver, testcaseName, export_excel, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+//	        		format = "docx";
+//	        		download_report = download_word_all;
+	                break;
+	            case 3:
+	                System.out.println("Wednesday");
+	                waitforElemPresent(driver, testcaseName, 30, export_ppt, test);
+	        		click(driver, testcaseName, export_ppt, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+//	        		format = "docx";
+//	        		download_report = download_word_all;
+	                break;
+	            case 4:
+	                System.out.println("Thursday");
+	                waitforElemPresent(driver, testcaseName, 30, export_excel, test);
+	        		click(driver, testcaseName, export_excel, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+//	        		format = "docx";
+//	        		download_report = download_word_all;
+	                break;
+	            case 5:
+	                System.out.println("Friday");
+	                waitforElemPresent(driver, testcaseName, 30, export_ppt, test);
+	        		click(driver, testcaseName, export_ppt, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+//	        		format = "docx";
+//	        		download_report = download_word_all;
+	                break;
+	            default:
+	                System.out.println("Weekend");
+	                waitforElemPresent(driver, testcaseName, 30, export_excel, test);
+	        		click(driver, testcaseName, export_excel, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+//	        		format = "docx";
+//	        		download_report = download_word_all;
+	                break;
+	        }
+		
+		
+		///
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, email_engagement_report, test);
 		clearText(driver, testcaseName, email_engagement_report, test);
@@ -1140,7 +1212,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, save_button, test);
 		click(driver, testcaseName, save_button, test);
-		Thread.sleep(1000);
+//		Thread.sleep(1000);
+//		
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'This report has been saved as ')]"), "This report has been saved as ", test);
 		
@@ -1222,6 +1295,297 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='Your report has been emailed to:']"), "Your report has been emailed to:", test);
 
+	}
+	
+	public void downloadReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, download_report2, test);
+		click(driver, testcaseName, download_report2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[contains(text(),'Export Report')]"), "Export Report", test);
+		LocalDate date = LocalDate.now();  
+		DayOfWeek day = date.getDayOfWeek();
+		int noDay = day.getValue();
+	        String format = null;
+	        switch(noDay)
+	        {
+	            case 1:
+	                System.out.println("Monday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
+	        		click(driver, testcaseName, download_excel, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xlsx";
+	                break;
+	            case 2:
+	                System.out.println("Tuesday");
+	                waitforElemPresent(driver, testcaseName, 30, download_ppt, test);
+	        		click(driver, testcaseName, download_ppt, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "pptx";
+	                break;
+	            case 3:
+	                System.out.println("Wednesday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
+	        		click(driver, testcaseName, download_excel, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xlsx";
+	                break;
+	            case 4:
+	                System.out.println("Thursday");
+	                waitforElemPresent(driver, testcaseName, 30, download_ppt, test);
+	        		click(driver, testcaseName, download_ppt, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "pptx";
+	                break;
+	            case 5:
+	                System.out.println("Friday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
+	        		click(driver, testcaseName, download_excel, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xlsx";
+	                break;
+	            default:
+	                System.out.println("Weekend");
+	                waitforElemPresent(driver, testcaseName, 30, download_ppt, test);
+	        		click(driver, testcaseName, download_ppt, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "pptx";
+	                break;
+	        }
+	        int size = driver.findElements(By.xpath("//a[text()='Export']")).size();
+	        waitforElemPresent(driver, testcaseName, 30, By.xpath("(//a[text()='Export'])["+ size +"]"), "Export", test);
+//    		click(driver, testcaseName, By.xpath("(//a[text()='Export'])["+ size +"]"), "Export", test);
+    		waitForLoad(driver, testcaseName, 30, test);
+    		String DOWNLOAD_REPORT = "(//a[text()='Export'])["+ size +"]";
+    		WebPageElements download_report = new WebPageElements("Download Report", "xpath", DOWNLOAD_REPORT);
+    		downloadFile(driver, param, download_report, format, test);
+	}
+	
+	public void downloadReportAdvance(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, download_report2, test);
+		click(driver, testcaseName, download_report2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[contains(text(),'Export Report')]"), "Export Report", test);
+		LocalDate date = LocalDate.now();  
+		DayOfWeek day = date.getDayOfWeek();
+		int noDay = day.getValue();
+	        String format = null;
+	        WebPageElements download_report = null;
+	        switch(noDay)
+	        {
+	            case 1:
+	                System.out.println("Monday");
+	                waitforElemPresent(driver, testcaseName, 30, download_word, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "docx";
+	        		download_report = download_word;
+	                break;
+	            case 2:
+	                System.out.println("Tuesday");
+	                waitforElemPresent(driver, testcaseName, 30, download_ppt2, test);
+//	        		click(driver, testcaseName, download_ppt2, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "pptx";
+	        		download_report = download_ppt2;
+	                break;
+	            case 3:
+	                System.out.println("Wednesday");
+	                waitforElemPresent(driver, testcaseName, 30, download_ppt3, test);
+//	        		click(driver, testcaseName, download_ppt3, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "pptx";
+	        		download_report = download_ppt3;
+	                break;
+	            case 4:
+	                System.out.println("Thursday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel2, test);
+//	        		click(driver, testcaseName, download_excel2, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xls";
+	        		download_report = download_excel2;
+	                break;
+	            case 5:
+	                System.out.println("Friday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel3, test);
+//	        		click(driver, testcaseName, download_excel3, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xlsx";
+	        		download_report = download_excel3;
+	                break;
+	            default:
+	                System.out.println("Weekend");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel2, test);
+//	        		click(driver, testcaseName, download_excel2, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xls";
+	        		download_report = download_excel2;
+	                break;
+	        }
+	     
+    		
+    		downloadFile(driver, param, download_report, format, test);
+	}
+	
+	public void downloadReportIndividual(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, download_report2, test);
+		click(driver, testcaseName, download_report2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[contains(text(),'Export Report')]"), "Export Report", test);
+		LocalDate date = LocalDate.now();  
+		DayOfWeek day = date.getDayOfWeek();
+		int noDay = day.getValue();
+	        String format = null;
+	        WebPageElements download_report = null;
+	        Actions action = new Actions(driver);
+	        switch(noDay)
+	        {
+	            case 1:
+	                System.out.println("Monday");
+	                waitforElemPresent(driver, testcaseName, 30, download_word, test);
+	                action.moveToElement(driver.findElement(By.xpath(DOWNLOAD_WORD))).build().perform();
+	                waitforElemPresent(driver, testcaseName, 30, download_word_all, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "docx";
+	        		download_report = download_word_all;
+	                break;
+	            case 2:
+	                System.out.println("Tuesday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel4, test);
+	                action.moveToElement(driver.findElement(By.xpath(DOWNLOAD_EXCEL4))).build().perform();
+	                waitforElemPresent(driver, testcaseName, 30, download_excel_all, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xls";
+	        		download_report = download_excel_all;
+	                break;
+	            case 3:
+	                System.out.println("Wednesday");
+	                waitforElemPresent(driver, testcaseName, 30, download_word, test);
+	                action.moveToElement(driver.findElement(By.xpath(DOWNLOAD_WORD))).build().perform();
+	                waitforElemPresent(driver, testcaseName, 30, download_word_all, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "docx";
+	        		download_report = download_word_all;
+	                break;
+	            case 4:
+	                System.out.println("Thursday");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel4, test);
+	                action.moveToElement(driver.findElement(By.xpath(DOWNLOAD_EXCEL4))).build().perform();
+	                waitforElemPresent(driver, testcaseName, 30, download_excel_all, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xls";
+	        		download_report = download_excel_all;
+	                break;
+	            case 5:
+	                System.out.println("Friday");
+	                waitforElemPresent(driver, testcaseName, 30, download_word, test);
+	                action.moveToElement(driver.findElement(By.xpath(DOWNLOAD_WORD))).build().perform();
+	                waitforElemPresent(driver, testcaseName, 30, download_word_all, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "docx";
+	        		download_report = download_word_all;
+	                break;
+	            default:
+	                System.out.println("Weekend");
+	                waitforElemPresent(driver, testcaseName, 30, download_excel4, test);
+	                action.moveToElement(driver.findElement(By.xpath(DOWNLOAD_EXCEL4))).build().perform();
+	                waitforElemPresent(driver, testcaseName, 30, download_excel_all, test);
+//	        		click(driver, testcaseName, download_word, test);
+	        		waitForLoad(driver, testcaseName, 30, test);
+	        		format = "xls";
+	        		download_report = download_excel_all;
+	                break;
+	        }
+	     
+    		
+    		downloadFile(driver, param, download_report, format, test);
+	}
+	
+	public void downloadReportResponseTable(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, download_report2, test);
+		click(driver, testcaseName, download_report2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[contains(text(),'Export Report')]"), "Export Report", test);
+
+		String format = null;
+		WebPageElements download_report = null;
+
+		waitforElemPresent(driver, testcaseName, 30, download_excel4, test);
+//	        		click(driver, testcaseName, download_word, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		format = "xls";
+		download_report = download_excel4;
+
+		downloadFile(driver, param, download_report, format, test);
+	}
+	
+	public void downloadFile(WebDriver driver, HashMap<String, String> param, WebPageElements button, String format, ExtentTest test) {
+		DMXPage dmxPage = new DMXPage();
+		String testcaseName = param.get("TestCaseName");
+		String downloadFilePath = System.getProperty("user.dir") +"\\src\\main\\resources\\excelfiles";
+		String fileSystem = "ExportFiles";
+		long beforeCount = 0;
+		try {
+			beforeCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+			System.out.println(beforeCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			long afterCount = beforeCount;
+			int i = 0;
+//			waitforElemPresent(driver, testcaseName, 30, button, test);
+			click(driver, testcaseName, button, test);
+			while (beforeCount >= afterCount && i < 300) {
+				afterCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+				Thread.sleep(1000);
+				i++;
+			}
+			if(i == 300) {
+				reportFail(testcaseName,
+						"The excel was not downloaded.", test);
+			}
+			System.out.println(afterCount);
+//			Thread.sleep(2000);
+			String fileName = dmxPage.latestFileName();
+			while(fileName.contains("tmp") || fileName.contains("crdownload")) {
+				Thread.sleep(500);
+				fileName = dmxPage.latestFileName();
+			}
+			
+		} catch (Exception e) {
+			reportFail(testcaseName,
+					"The excel was not downloaded.", test);
+		}
+		
+		File theDir = new File("./src/main/resources/excelfiles/"+ fileSystem);
+		if(!theDir.exists()) {
+			theDir.mkdir();
+		}
+		int r = dmxPage.RandomNumber();
+		String fileName = dmxPage.latestFileName(format);
+		String[] filesNew2 = fileName.split("\\.");
+		String latestFile = filesNew2[0] + "_" + r;
+//		String latestFile = fileName;
+		System.out.println(latestFile);
+		File file = new File("./src/main/resources/excelfiles/"+latestFile.trim()+"."+format);
+		File file2 = new File("./src/main/resources/excelfiles/"+fileName);
+		
+		file2.renameTo(file);
+		String path = "./src/main/resources/excelfiles/"+fileSystem+"/"+latestFile.trim()+"."+format;
+		
+		file.renameTo(new File("./src/main/resources/excelfiles/"+fileSystem+"/"+latestFile.trim()+"."+format));
+		System.out.println("File path is: "+path);
 	}
 	
 	

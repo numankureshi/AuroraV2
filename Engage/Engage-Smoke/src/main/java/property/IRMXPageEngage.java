@@ -14,8 +14,8 @@ public interface IRMXPageEngage {
 	String SELECT_REPORT_TYPE = "//select[@id='cmbReportType']";
 	WebPageElements select_report_type = new WebPageElements("Select Report Type", "xpath", SELECT_REPORT_TYPE);
 	
-	String CONTINUE_BUTTON11 = "(//input[@value='Continue'])[1]";
-	WebPageElements continue_button11 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON11);
+//	String CONTINUE_BUTTON11 = "(//input[@value='Continue'])[1]";
+//	WebPageElements continue_button11 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON11);
 	
 	String OMNI_REPORT1 = "//div[@id='btnOmniReport']/span";
 	WebPageElements omni_report1 = new WebPageElements("OMNI Report Button", "xpath", OMNI_REPORT1);

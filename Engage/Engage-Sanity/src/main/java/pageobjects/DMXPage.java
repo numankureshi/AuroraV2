@@ -196,7 +196,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
 			theNewFile = files[0];
 		}
-		return theNewFile.toString();
+		//
+		String fileNew = theNewFile.getName().toString();
+	
+		return fileNew;
 	}
 	
 	public void createContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)

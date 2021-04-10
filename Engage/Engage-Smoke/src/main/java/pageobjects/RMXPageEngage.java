@@ -139,8 +139,11 @@ public class RMXPageEngage extends SeleniumUtils implements IRMXPageEngage, IRMX
 		selectOmniReport(driver, param, test);
 		rmxPage.slideShowEmail(driver, param, test);
 		rmxPage.saveReport(driver, param, test);
+		rmxPage.downloadReport(driver, param, test);
 		rmxPage.emailReport(driver, param, test);
 	}
+	
+	
 	
 	public void generateSegmentationReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");

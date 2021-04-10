@@ -137,6 +137,7 @@ public class RMXPageResearch extends SeleniumUtils implements IRMXPageResearch, 
 		selectOmniReport(driver, param, test);
 		rmxPage.slideShowEmail(driver, param, test);
 		rmxPage.saveReport(driver, param, test);
+		rmxPage.downloadReport(driver, param, test);
 		rmxPage.emailReport(driver, param, test);
 	}
 	
@@ -151,6 +152,7 @@ public class RMXPageResearch extends SeleniumUtils implements IRMXPageResearch, 
 		rmxPage.dataSources(driver, param, test);
 		rmxPage.slideShowEmail(driver, param, test);
 		rmxPage.saveReport2(driver, param, test);
+		rmxPage.downloadReportAdvance(driver, param, test);
 		rmxPage.emailReport(driver, param, test);
 	}
 	
