@@ -484,18 +484,54 @@ public class RMXPageEngage extends SeleniumUtils implements IRMXPageEngage, IRMX
 	public void selectSegmentationReportPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, segementation_report_page2, test);
-		
-			
+		String[] list = param.get("segment").split(",");
+		String[] list2 = param.get("segment2").split(",");	
 			click(driver, testcaseName, segmentation_report_switch, test);
 			Thread.sleep(1000);
 			waitForLoad(driver, testcaseName, 30, test);
-			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ param.get("segment") +"'])[2]"), param.get("segment"), test);
-			click(driver, testcaseName, By.xpath("(//label[text()='"+ param.get("segment") +"'])[2]"), param.get("segment"), test);
-			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd2, test);
-			Select select = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD2)));
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ list[0] +"'])[2]"), list[0], test);
+			click(driver, testcaseName, By.xpath("(//label[text()='"+ list[0] +"'])[2]"), list[0], test);
+			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd1, test);
+			Select select = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD1)));
 			
 //			select2.selectByVisibleText(param.get("segmentation"));
-			select.selectByIndex(Integer.parseInt(param.get("segment2")));
+			select.selectByIndex(Integer.parseInt(list2[0]));
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ list[1] +"'])[2]"), list[1], test);
+			click(driver, testcaseName, By.xpath("(//label[text()='"+ list[1] +"'])[2]"), list[1], test);
+			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd2, test);
+			Select select2 = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD2)));
+			
+//			select2.selectByVisibleText(param.get("segmentation"));
+			select2.selectByIndex(Integer.parseInt(list2[1]));
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ list[2] +"'])[2]"), list[2], test);
+			click(driver, testcaseName, By.xpath("(//label[text()='"+ list[2] +"'])[2]"), list[2], test);
+			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd3, test);
+			Select select3 = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD3)));
+			
+//			select2.selectByVisibleText(param.get("segmentation"));
+			select3.selectByIndex(Integer.parseInt(list2[2]));
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ list[3] +"'])[2]"), list[3], test);
+			click(driver, testcaseName, By.xpath("(//label[text()='"+ list[3] +"'])[2]"), list[3], test);
+			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd4, test);
+			Select select4 = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD4)));
+			
+//			select2.selectByVisibleText(param.get("segmentation"));
+			select4.selectByIndex(Integer.parseInt(list2[3]));
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("(//label[text()='"+ list[4] +"'])[2]"), list[4], test);
+			click(driver, testcaseName, By.xpath("(//label[text()='"+ list[4] +"'])[2]"), list[4], test);
+			waitforElemPresent(driver, testcaseName, 30, segmentation_report_dd5, test);
+			Select select5 = new Select(driver.findElement(By.xpath(SEGMENTATION_REPORT_DD5)));
+			
+//			select2.selectByVisibleText(param.get("segmentation"));
+			select5.selectByIndex(Integer.parseInt(list2[4]));
 			waitForLoad(driver, testcaseName, 30, test);
 			
 			

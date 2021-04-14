@@ -34,9 +34,21 @@ public interface IRMXPageEngage {
 	String COMPOSITION_REPORT_DD2 = "//select[@name='DDL_ST']";
 	WebPageElements compostion_report_dd2= new WebPageElements("Segmentation Question", "xpath", COMPOSITION_REPORT_DD2);
 	
-	String SEGMENTATION_REPORT_DD2 = "//select[@name='DDLSeg_DE']";
-	WebPageElements segmentation_report_dd2= new WebPageElements("Segmentation Question", "xpath", SEGMENTATION_REPORT_DD2);
+	String SEGMENTATION_REPORT_DD2 = "//select[@name='DDLSeg_ST']";
+	WebPageElements segmentation_report_dd2= new WebPageElements("Segmentation Question 2", "xpath", SEGMENTATION_REPORT_DD2);
 	
+	String SEGMENTATION_REPORT_DD1 = "//select[@name='DDLSeg_SS']";
+	WebPageElements segmentation_report_dd1= new WebPageElements("Segmentation Question 1", "xpath", SEGMENTATION_REPORT_DD1);
+
+	String SEGMENTATION_REPORT_DD3 = "//select[@name='DDLSeg_DE']";
+	WebPageElements segmentation_report_dd3= new WebPageElements("Segmentation Question 3", "xpath", SEGMENTATION_REPORT_DD3);
+	
+	String SEGMENTATION_REPORT_DD4 = "//select[@name='DDLSeg_GL']";
+	WebPageElements segmentation_report_dd4= new WebPageElements("Segmentation Question 4", "xpath", SEGMENTATION_REPORT_DD4);
+
+	String SEGMENTATION_REPORT_DD5 = "//select[@name='DDLSeg_GE']";
+	WebPageElements segmentation_report_dd5= new WebPageElements("Segmentation Question 5", "xpath", SEGMENTATION_REPORT_DD5);
+
 	String SEGMENTATION_REPORT_PAGE2 = "//span[contains(text(),'Segmentation Report')]";
 	WebPageElements segementation_report_page2 = new WebPageElements("Segmentation Report Page", "xpath", SEGMENTATION_REPORT_PAGE2);
 	
