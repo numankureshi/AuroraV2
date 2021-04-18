@@ -1,0 +1,1148 @@
+<html>
+<head>
+<title>TestNG:  Obtain response Data in JSON format</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Obtain response Data in JSON format</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>3/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Sun Jan 24 20:06:57 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>217 seconds (217494 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>getData API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC48()'><b>API_TC48</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC48, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=getData() API, Test_Description=getData() API - Validate API response for Survey ID 377., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": {
+        "Questions": [
+            {
+                "QuestionNum": "1",
+                "QuestionText": "Please provide your email address.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "2",
+                "QuestionText": "How are you feeling?",
+                "AnswerOption": [
+                    "Unwell",
+                    "Okay",
+                    "Good"
+                ]
+            },
+            {
+                "QuestionNum": "3(a)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Bluish lips or face",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(b)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Chest pain",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(c)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Difficulty breathing",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(d)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Dizziness or disorientation",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(e)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Seizures",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(f)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Other",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "4",
+                "QuestionText": "Please specify.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "5(a)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Fever or chills",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(b)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Cough",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(c)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Shortness of breath",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(d)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Fatigue",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(e)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Muscle aches",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(f)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Headache",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(g)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | New loss of taste or smell",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(h)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Sore throat",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(i)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Congestion or runny nose",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(j)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Nausea or vomiting",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(k)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Diarrhea",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(l)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Other",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "6",
+                "QuestionText": "Please specify.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "7",
+                "QuestionText": "Within the past two weeks, have you had contact with anyone diagnosed with COVID-19?",
+                "AnswerOption": [
+                    "Yes",
+                    "No",
+                    "I don't know"
+                ]
+            },
+            {
+                "QuestionNum": "8",
+                "QuestionText": "Please explain.",
+                "AnswerOption": [
+                    null
+                ]
+            }
+        ],
+        "Responses": [
+            {
+                "SrNO": "2",
+                "ResponseNum": "2",
+                "EmailID": "testsogo31@gmail.com",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "103.216.71.84",
+                "StartTime": "12/27/2020 04:22 PM",
+                "EndTime": "12/27/2020 04:22 PM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": "testsogo31@gmail.com"
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Unwell"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            },
+            {
+                "SrNO": "3",
+                "ResponseNum": "4",
+                "EmailID": "Public Access",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "103.216.71.65",
+                "StartTime": "1/17/2021 01:57 PM",
+                "EndTime": "1/17/2021 01:57 PM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Okay"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "I don't know"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 24 Jan 2021 14:05:24 GMT, Content-Length=1180], Failure Reason=, surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=2, intendno=3, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getData}<br/>
+<a href="#Output-293476172" onClick='toggleBox("Output-293476172", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-293476172" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-293476172">
+Test description : <b>getData() API - Validate API response for Survey ID 377.</b><br/>
+Responses have been retrived from <b>2</b> to <b>3</b> for survey id :<b>377</b>.<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully clicked on Report Tab element.<br/>
+Successfully waited for OMNI Report Button to be present on page.<br/>
+Successfully clicked on Raw Data element.<br/>
+Successfully waited for Raw Data Menu to be present on page.<br/>
+Successfully clicked on Response Table Report element.<br/>
+Successfully waited for Wizard Page Description to be present on page.<br/>
+Successfully clicked on All Questions element.<br/>
+Successfully clicked on Report Wizard - Step 1 Continue element.<br/>
+Successfully clicked on Report Wizard - Step 3 Continue element.<br/>
+Successfully clicked on Generate Now element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Survey Metric to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+</div>
+</td>
+<td></td>
+<td>60</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC49()'><b>API_TC49</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC49, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=getData() API, Test_Description=getData() API - Validate API response for Survey ID 381. (Check response for Annonymous survey)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": {
+        "Questions": [
+            {
+                "QuestionNum": "1",
+                "QuestionText": "Please provide your email address.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "2",
+                "QuestionText": "How are you feeling?",
+                "AnswerOption": [
+                    "Unwell",
+                    "Okay",
+                    "Good"
+                ]
+            },
+            {
+                "QuestionNum": "3(a)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Bluish lips or face",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(b)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Chest pain",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(c)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Difficulty breathing",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(d)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Dizziness or disorientation",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(e)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Seizures",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(f)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Other",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "4",
+                "QuestionText": "Please specify.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "5(a)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Fever or chills",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(b)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Cough",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(c)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Shortness of breath",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(d)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Fatigue",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(e)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Muscle aches",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(f)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Headache",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(g)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | New loss of taste or smell",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(h)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Sore throat",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(i)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Congestion or runny nose",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(j)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Nausea or vomiting",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(k)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Diarrhea",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(l)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Other",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "6",
+                "QuestionText": "Please specify.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "7",
+                "QuestionText": "Within the past two weeks, have you had contact with anyone diagnosed with COVID-19?",
+                "AnswerOption": [
+                    "Yes",
+                    "No",
+                    "I don't know"
+                ]
+            },
+            {
+                "QuestionNum": "8",
+                "QuestionText": "Please explain.",
+                "AnswerOption": [
+                    null
+                ]
+            }
+        ],
+        "Responses": [
+            {
+                "SrNO": "1",
+                "ResponseNum": "1",
+                "EmailID": "Anonymous",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "Anonymous",
+                "StartTime": "12/28/2020 09:31 AM",
+                "EndTime": "12/28/2020 09:33 AM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Okay"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            },
+            {
+                "SrNO": "2",
+                "ResponseNum": "2",
+                "EmailID": "Anonymous",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "Anonymous",
+                "StartTime": "12/28/2020 09:33 AM",
+                "EndTime": "12/28/2020 09:34 AM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Unwell"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            },
+            {
+                "SrNO": "3",
+                "ResponseNum": "3",
+                "EmailID": "Anonymous",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "Anonymous",
+                "StartTime": "12/28/2020 09:34 AM",
+                "EndTime": "12/28/2020 09:34 AM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Unwell"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "I don't know"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 24 Jan 2021 14:03:54 GMT, Content-Length=1140], Failure Reason=, surveyNo=381, surveyTitle=Anonymous Covid HealthCheck, isSurveyActive=, anonymous=Y, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=1, intendno=3, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getData}<br/>
+<a href="#Output-1431502997" onClick='toggleBox("Output-1431502997", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1431502997" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1431502997">
+Test description : <b>getData() API - Validate API response for Survey ID 381. (Check response for Annonymous survey).</b><br/>
+Responses have been retrived from <b>1</b> to <b>3</b> for survey id :<b>381</b>.<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Anonymous Covid HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully clicked on Report Tab element.<br/>
+Successfully waited for OMNI Report Button to be present on page.<br/>
+Successfully clicked on Raw Data element.<br/>
+Successfully waited for Raw Data Menu to be present on page.<br/>
+Successfully clicked on Response Table Report element.<br/>
+Successfully waited for Wizard Page Description to be present on page.<br/>
+Successfully clicked on All Questions element.<br/>
+Successfully clicked on Report Wizard - Step 1 Continue element.<br/>
+Successfully clicked on Report Wizard - Step 3 Continue element.<br/>
+Successfully clicked on Generate Now element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Survey Metric to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+</div>
+</td>
+<td></td>
+<td>56</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC50()'><b>API_TC50</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC50, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=getData() API, Test_Description=getData() API - Validate API response for Survey ID 399. (Validate bulk responses)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=The maximum length of cell contents (text) is 32,767 characters, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 24 Jan 2021 13:59:48 GMT, Content-Length=24962], Failure Reason= Assertion error occured : Mismatch occured in Answer responses of response number 1 actualanswer set from API : [SouthAfrica, Paulshof, TeachingStaff, NonManager, DendereFungayiFDendere, ApprenticeTeacher, 2019, 6, Ithinkthere'sstillalotofgrowthneededintermsofprovidingalittlepressuredworkingenvironment.There'saneedformorestaff., , , NeitherDisagreenorAgree, NeitherDisagreenorAgree, Agree, StronglyAgree, Agree, Agree, NeitherDisagreenorAgree, Yes, Yes, ThehighexpectationscanmakemefeellikeI'mlackingsomewhereasitrequiresmetogobeyondmeasureandsometimesIfeellikeI'mnotdeliveringorit'snotenoughanditcanbesomewhatemotionallydraining., It'sanorganizationthattakescareofit'speople.Theytrytheirmosttohearwhattherestoftheorganizationhastosaysothatwecanseebehappy!, Agree, Neutral, Disagree, Agree, Neutral, Neutral, , Sometimes, Often, Often, Often, 4Thumbsup, 4Hearts, ] whereas expected answer set found in response table report is : [South Africa, Paulshof, Teaching Staff, Non Manager, Dendere Fungayi F Dendere, Apprentice Teacher, 2019, 6, I think there's still a lot of growth needed in terms of providing a little pressured working environment. There's a need for more staff., , , Neither Disagree nor Agree, Neither Disagree nor Agree, Agree, Strongly Agree, Agree, Agree, Neither Disagree nor Agree, Yes, Yes, The high expectations can make me feel like I'm lacking somewhere as it requires me to go beyond measure and sometimes I feel like I'm not delivering or it's not enough and it can be somewhat emotionally draining., It's an organization that takes care of it's people. They try their most to hear what the rest of the organization has to say so that we can see be happy!, Agree, Neutral, Disagree, Agree, Neutral, Neutral, , Sometimes, Often, Often, Often, 4 Thumbs up, 4 Hearts, ] expected [true] but found [false], surveyNo=399, surveyTitle=Culture survey, T1 2020 FROM novapioneer FROM sogo_gauravg, isSurveyActive=, anonymous=N, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=1, intendno=50, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getData}<br/>
+<a href="#Output-91355941" onClick='toggleBox("Output-91355941", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-91355941" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-91355941">
+Test description : <b>getData() API - Validate API response for Survey ID 399. (Validate bulk responses).</b><br/>
+Responses have been retrived from <b>1</b> to <b>50</b> for survey id :<b>399</b>.<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Culture survey, T1 2020 FROM novapioneer FROM sogo_gauravg in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully clicked on Report Tab element.<br/>
+Successfully waited for OMNI Report Button to be present on page.<br/>
+Successfully clicked on Raw Data element.<br/>
+Successfully waited for Raw Data Menu to be present on page.<br/>
+Successfully clicked on Response Table Report element.<br/>
+Successfully waited for Wizard Page Description to be present on page.<br/>
+Successfully clicked on All Questions element.<br/>
+Successfully clicked on Report Wizard - Step 1 Continue element.<br/>
+Successfully clicked on Report Wizard - Step 3 Continue element.<br/>
+Successfully clicked on Generate Now element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Survey Metric to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+</div>
+</td>
+<td></td>
+<td>96</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+</table><p>
+</body>
+</html>

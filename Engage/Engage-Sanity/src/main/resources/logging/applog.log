@@ -1,2 +1,13 @@
-2020-09-26 10:41:13,788 - rootLogger - INFO - Excel file initialized successfully.
-2020-09-26 10:41:13,797 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-04-18 12:06:53,178 - rootLogger - INFO - Excel file initialized successfully.
+2021-04-18 12:06:53,183 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-04-18 12:06:53,337 - rootLogger - INFO - Sanity_TC1 is SKIPPED.
+2021-04-18 12:06:53,459 - rootLogger - INFO - Excel file initialized successfully.
+2021-04-18 12:06:53,460 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-04-18 12:06:53,548 - rootLogger - INFO - Sanity_TC2 is SKIPPED.
+2021-04-18 12:06:53,630 - rootLogger - INFO - Excel file initialized successfully.
+2021-04-18 12:06:53,631 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-04-18 12:06:53,702 - rootLogger - INFO - Sanity_TC3 is SKIPPED.
+2021-04-18 12:06:53,755 - rootLogger - INFO - Sanity_TC4 is SKIPPED.
+2021-04-18 12:06:53,813 - rootLogger - INFO - Sanity_TC5 is SKIPPED.
+2021-04-18 12:06:53,860 - rootLogger - INFO - Sanity_TC6 is SKIPPED.
+2021-04-18 12:06:53,906 - rootLogger - INFO - Sanity_TC7 is SKIPPED.

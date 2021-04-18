@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Nov 25 20:12:01 IST 2020</td>
+<td>Started on:</td><td>Fri Feb 12 12:14:05 IST 2021</td>
 </tr>
-<tr><td>Total time:</td><td>0 seconds (251 ms)</td>
+<tr><td>Total time:</td><td>110 seconds (110150 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -68,27 +68,57 @@ function toggleAllBoxes() {
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
 <table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.research.smoke.smxpage.SMXPage_TC.setUp()'><b>setUp</b><br>Test class: com.research.smoke.smxpage.SMXPage_TC</td>
-<td><div><pre>java.lang.NullPointerException
-	at com.research.smoke.smxpage.SMXPage_TC.setUp(SMXPage_TC.java:42)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
+<td title='com.research.smoke.dmxpage.DMXPage_TC.Sanity_TC4()'><b>Sanity_TC4</b><br>Test class: com.research.smoke.dmxpage.DMXPage_TC<br>Parameters: {TestCaseName=Sanity_TC4, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=DMX, Test_Name=To send Platfrom Invite & PF reminder, Test_Description=, ExpectedResult=survey should be distributed, Pass/Fail/Skip=SKIP, Failure Reason=, Expected=, Expected2=, Expected3=, Header=, TextBox=, RadioButton=, RadioButton2=, CheckBox=, DropDown=, Gender=, Grade=, DOB=, Email=, Ratings=, Like=, Slider=, MultiDropDown=, ImageRadio=, RatingNumber=, MTB=, MTB2=, MDD=, RDDG=, RG=, RRG=, RSG=, CBG=, MG1=, MG2=, RRB=, RDD=, LB=, Attachments=, DrillDown=, ThanksMsg=, surveyname=, foldername=, primarylanguage=, secondarylanguage=, description=, textbox=, radiobutton=, AnswerOptions=, AnswerOptions1=, checkbox=, imagechoice=, reportingvalue=, images=, date=, likedislike=, ratingscale=, dropdown=, ranking=, multitextbox=, textbox1=, textbox2=, multidropdown=, dropdown1=, dropdown2=, multiradio=, QuestionOptions=, multicheckbox=, ratingradio=, ratingdropdown=, ratingscalegrid=, matrixgrid=, horizontalradiobutton=, numericallocations=, attachments=, ratingradiobutton=, ratingdropdownbutton=, listbox=, demographics=, subquestions=, symbolratingscale=, surveyid=216, emailtemplate=Invitation with Platform, selectlist=DP PF list [5 records], mailmergedd=FN, mailmergetxt=Sanket, prepopdd=FN, emailtemplatere=DMx PF DP}<br/>
+<a href="#Output-1409978427" onClick='toggleBox("Output-1409978427", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1409978427" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1409978427">
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sabiya_test in User Name textbox.<br/>
+Successfully entered Test@1234 in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully waited for Create Project Button to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Publish Button to be present on page.<br/>
+Successfully waited for Single Use Link Button to be present on page.<br/>
+Successfully clicked on Single Use Link Button element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Search Email to be present on page.<br/>
+Successfully entered Invitation with Platform in Search Email textbox.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Invitation with Platform to be present on page.<br/>
+Invitation with Platform not present on page.<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.fail(Assert.java:103)
+	at utility.SeleniumUtils.waitforElemPresent(SeleniumUtils.java:270)
+	at pageobjects.DMXPage.selectEmailTemplate(DMXPage.java:297)
+	at pageobjects.DMXPageResearch.publishSingleUseLink(DMXPageResearch.java:148)
+	at com.research.smoke.dmxpage.DMXPage_TC.Sanity_TC4(DMXPage_TC.java:126)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
-	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:168)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:105)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
 	at org.testng.TestRunner.privateRun(TestRunner.java:648)
 	at org.testng.TestRunner.run(TestRunner.java:505)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
@@ -104,20 +134,24 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1282287470", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1282287470'><pre>java.lang.NullPointerException
-	at com.research.smoke.smxpage.SMXPage_TC.setUp(SMXPage_TC.java:42)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1409978427", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1409978427'><pre>java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.fail(Assert.java:103)
+	at utility.SeleniumUtils.waitforElemPresent(SeleniumUtils.java:270)
+	at pageobjects.DMXPage.selectEmailTemplate(DMXPage.java:297)
+	at pageobjects.DMXPageResearch.publishSingleUseLink(DMXPageResearch.java:148)
+	at com.research.smoke.dmxpage.DMXPage_TC.Sanity_TC4(DMXPage_TC.java:126)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
-	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:168)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:105)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
 	at org.testng.TestRunner.privateRun(TestRunner.java:648)
 	at org.testng.TestRunner.run(TestRunner.java:505)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
@@ -134,8 +168,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>0</td>
-<td>com.research.smoke.smxpage.SMXPage_TC@3d99d22e</td></tr>
+<td>104</td>
+<td>com.research.smoke.dmxpage.DMXPage_TC@60db1c0e</td></tr>
 </table><p>
 </body>
 </html>

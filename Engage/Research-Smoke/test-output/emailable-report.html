@@ -9,23 +9,27 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">251</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">110,150</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.research.smoke.smxpage.SMXPage_TC</td><td><a href="#m0">setUp</a></td><td rowspan="1">1606315321832</td><td rowspan="1">222</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.research.smoke.dmxpage.DMXPage_TC</td><td><a href="#m0">Sanity_TC4</a></td><td rowspan="1">1613112246131</td><td rowspan="1">104610</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">com.research.smoke.smxpage.SMXPage_TC#setUp</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException
-	at com.research.smoke.smxpage.SMXPage_TC.setUp(SMXPage_TC.java:42)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
+<h2>Default test</h2><h3 id="m0">com.research.smoke.dmxpage.DMXPage_TC#Sanity_TC4</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>{TestCaseName=Sanity_TC4, CaseToRun=Y, Lead=Nadeem, Owner=Sanket, Role=DMX, Test_Name=To send Platfrom Invite &amp; PF reminder, Test_Description=, ExpectedResult=survey should be distributed, Pass/Fail/Skip=SKIP, Failure Reason=, Expected=, Expected2=, Expected3=, Header=, TextBox=, RadioButton=, RadioButton2=, CheckBox=, DropDown=, Gender=, Grade=, DOB=, Email=, Ratings=, Like=, Slider=, MultiDropDown=, ImageRadio=, RatingNumber=, MTB=, MTB2=, MDD=, RDDG=, RG=, RRG=, RSG=, CBG=, MG1=, MG2=, RRB=, RDD=, LB=, Attachments=, DrillDown=, ThanksMsg=, surveyname=, foldername=, primarylanguage=, secondarylanguage=, description=, textbox=, radiobutton=, AnswerOptions=, AnswerOptions1=, checkbox=, imagechoice=, reportingvalue=, images=, date=, likedislike=, ratingscale=, dropdown=, ranking=, multitextbox=, textbox1=, textbox2=, multidropdown=, dropdown1=, dropdown2=, multiradio=, QuestionOptions=, multicheckbox=, ratingradio=, ratingdropdown=, ratingscalegrid=, matrixgrid=, horizontalradiobutton=, numericallocations=, attachments=, ratingradiobutton=, ratingdropdownbutton=, listbox=, demographics=, subquestions=, symbolratingscale=, surveyid=216, emailtemplate=Invitation with Platform, selectlist=DP PF list [5 records], mailmergedd=FN, mailmergetxt=Sanket, prepopdd=FN, emailtemplatere=DMx PF DP}</td></tr><tr><th>Messages</th></tr><tr><td><div class="messages">Successfully waited for User Name to be present on page.<br/>Successfully entered sabiya_test in User Name textbox.<br/>Successfully entered Test@1234 in User Password textbox.<br/>Successfully clicked on Login element.<br/>Successfully waited for Sogo Account to be present on page.<br/>Successfully waited for Create Project Button to be present on page.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for Publish Button to be present on page.<br/>Successfully waited for Single Use Link Button to be present on page.<br/>Successfully clicked on Single Use Link Button element.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for Search Email to be present on page.<br/>Successfully entered Invitation with Platform in Search Email textbox.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for loader to disappear.<br/>Successfully waited for Invitation with Platform to be present on page.<br/>Invitation with Platform not present on page.</div></td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.fail(Assert.java:103)
+	at utility.SeleniumUtils.waitforElemPresent(SeleniumUtils.java:270)
+	at pageobjects.DMXPage.selectEmailTemplate(DMXPage.java:297)
+	at pageobjects.DMXPageResearch.publishSingleUseLink(DMXPageResearch.java:148)
+	at com.research.smoke.dmxpage.DMXPage_TC.Sanity_TC4(DMXPage_TC.java:126)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-	at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
-	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:168)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:105)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
 	at org.testng.TestRunner.privateRun(TestRunner.java:648)
 	at org.testng.TestRunner.run(TestRunner.java:505)
 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)

@@ -1,0 +1,365 @@
+<html>
+<head>
+<title>TestNG:  Reopen-Survey Response Verb</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Reopen-Survey Response Verb</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>8/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Sun Jan 17 11:22:51 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>336 seconds (336062 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>reopenresponse API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC28()'><b>API_TC28</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC28, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for responses having completed (Edited) as participation status. (Provide email address of completed(edited) responses only)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "kabirtest11@bluwberry.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "kabirtest12@bluwberry.com",
+            "Status": "Success",
+            "Message": null
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:51:57 GMT, Content-Length=214], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=N, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=Completed(Edited), emailhost=bluwberry,bluwberry, stremailaddress=kabirtest11@bluwberry.com,kabirtest12@bluwberry.com, emailPassword=secured123,secured123, subject=Would you like to revisit your response?, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-489959194" onClick='toggleBox("Output-489959194", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-489959194" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-489959194">
+Test description : <b>reopenresponse() API - Validate API response for responses having completed (Edited) as participation status. (Provide email address of completed(edited) responses only).</b><br/>
+Survey ID <b>380</b> has been reopened for email address : <b>kabirtest11@bluwberry.com</b>.<br/>
+Survey ID <b>380</b> has been reopened for email address : <b>kabirtest12@bluwberry.com</b>.<br/>
+Expected mail with subject <b>119157 multi lingual German</b> is not received.<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: null
+	at pageobjects.APIs.readRecentEmail(APIs.java:616)
+	at pageobjects.APIs.getReopenURLFromEmail(APIs.java:648)
+	at com.sogo.api.API_TC.API_TC28(API_TC.java:2193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace489959194", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace489959194'><pre>java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.fail(Assert.java:103)
+	at pageobjects.APIs.readRecentEmail(APIs.java:616)
+	at pageobjects.APIs.getReopenURLFromEmail(APIs.java:648)
+	at com.sogo.api.API_TC.API_TC28(API_TC.java:2193)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:40)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:489)
+	at org.testng.internal.thread.ThreadUtil$1.call(ThreadUtil.java:52)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+</pre></div></td>
+<td>303</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC26()'><b>API_TC26</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC26, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Reopen the completed responses participated by single use link only.  (Provide email address of completed responses only)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "tguru3196@gmail.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "testing_gg@outlook.com",
+            "Status": "Success",
+            "Message": null
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:51:48 GMT, Content-Length=223], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=N, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=Completed, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Would you like to revisit your response?, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-469540711" onClick='toggleBox("Output-469540711", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-469540711" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-469540711">
+Test description : <b>reopenresponse() API - Reopen the completed responses participated by single use link only.  (Provide email address of completed responses only).</b><br/>
+Survey ID <b>380</b> has been reopened for email address : <b>tguru3196@gmail.com</b>.<br/>
+Survey ID <b>380</b> has been reopened for email address : <b>testing_gg@outlook.com</b>.<br/>
+Email has been received with Subject <b>Would you like to revisit your response?</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Sun Jan 17 11:22:57 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSXPsSTRWVPSYXsP</b>.<br/>
+Email has been received with Subject <b>Would you like to revisit your response?</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Sun Jan 17 11:22:57 IST 2021</b> and participation URL is : <b>>https://survey.sogosurvey.com/k/QsQTUQXTsSXPsSTRWVPTRVsP</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>22</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC27()'><b>API_TC27</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC27, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for incompleted responses. (Provide email address of incompleted responses only)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "testsogo31.3@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "testsogo31.4@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:51:55 GMT, Content-Length=248], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=N, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=Incomplete, emailhost=, stremailaddress=testsogo31.3@gmail.com,testsogo31.4@gmail.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-2064741281" onClick='toggleBox("Output-2064741281", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2064741281" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2064741281">
+Test description : <b>reopenresponse() API - Validate API response for incompleted responses. (Provide email address of incompleted responses only).</b><br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>testsogo31.3@gmail.com</b> as incomplete status has been recorded for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>testsogo31.4@gmail.com</b> as incomplete status has been recorded for same.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC29()'><b>API_TC29</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC29, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for responses having Incompleted (Edited) as participation status. (Provide email address of incompleted(edited) responses only)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "kabirtest13@bluwberry.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "kabirtest14@bluwberry.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:52:44 GMT, Content-Length=252], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=N, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=Incomplete (Edited), emailhost=, stremailaddress=kabirtest13@bluwberry.com,kabirtest14@bluwberry.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-639273012" onClick='toggleBox("Output-639273012", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-639273012" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-639273012">
+Test description : <b>reopenresponse() API - Validate API response for responses having Incompleted (Edited) as participation status. (Provide email address of incompleted(edited) responses only).</b><br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>kabirtest13@bluwberry.com</b> as incomplete (edited) status has been recorded for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>kabirtest14@bluwberry.com</b> as incomplete (edited) status has been recorded for same.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC30()'><b>API_TC30</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC30, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for responses having Email delivered/Not Read as participation status. (Provide email address having status Email delivered/Not Read only)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "testsogo31@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "bcctestg@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "qaprodtest3196@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "tguru3196@rediffmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:52:46 GMT, Content-Length=280], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=N, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=Email delivered/Not Read, emailhost=, stremailaddress=testsogo31@gmail.com,bcctestg@gmail.com,qaprodtest3196@gmail.com,tguru3196@rediffmail.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-2121237008" onClick='toggleBox("Output-2121237008", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2121237008" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2121237008">
+Test description : <b>reopenresponse() API - Validate API response for responses having Email delivered/Not Read as participation status. (Provide email address having status Email delivered/Not Read only).</b><br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>testsogo31@gmail.com</b> as Email delivered/Not Read status has been recorded for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>bcctestg@gmail.com</b> as Email delivered/Not Read status has been recorded for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>qaprodtest3196@gmail.com</b> as Email delivered/Not Read status has been recorded for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>tguru3196@rediffmail.com</b> as Email delivered/Not Read status has been recorded for same.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC31()'><b>API_TC31</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC31, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for responses having bounced as participation status. (Provide email address having status bounce only)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "bouncetest02@gmail02.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "bouncetest03@gmail03.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:52:47 GMT, Content-Length=252], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=N, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=Bounced, emailhost=, stremailaddress=bouncetest02@gmail02.com,bouncetest03@gmail03.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-264824692" onClick='toggleBox("Output-264824692", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-264824692" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-264824692">
+Test description : <b>reopenresponse() API - Validate API response for responses having bounced as participation status. (Provide email address having status bounce only).</b><br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>bouncetest02@gmail02.com</b> as Bounced status has been recorded for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>bouncetest03@gmail03.com</b> as Bounced status has been recorded for same.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC32()'><b>API_TC32</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC32, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for expired invitations. (Provide email address for which survey invitation is expired.), ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "kabirtest15@bluwberry.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "kabirtest16@bluwberry.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:52:48 GMT, Content-Length=252], Failure Reason=, surveyNo=380, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=N, isUniquePassword=, urlExpiry=Y, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=kabirtest15@bluwberry.com,kabirtest16@bluwberry.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-1404592769" onClick='toggleBox("Output-1404592769", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1404592769" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1404592769">
+Test description : <b>reopenresponse() API - Validate API response for expired invitations. (Provide email address for which survey invitation is expired.)</b><br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>kabirtest15@bluwberry.com</b> as Survey invitation has been expired for same.<br/>
+Survey ID <b>380</b> can not be reopened for email address : <b>kabirtest16@bluwberry.com</b> as Survey invitation has been expired for same.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC33()'><b>API_TC33</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC33, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for Anonymous survey. , ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Error",
+    "Description": "Responses to Anonymous or Semi-Anonymous projects cannot be reopened."
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:52:50 GMT, Content-Length=202], Failure Reason=, surveyNo=381, surveyTitle=, isSurveyActive=, anonymous=Y, semiAnonymous=N, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=tguru3196@gmail.com,bcctestg@gmail.com,ggolatkar@zarca.com,testsogo31@gmail.com,testing_gg@outlook.com,qaprodtest3196@gmail.com,testsogo31.3@gmail.com,testsogo31.4@gmail.com,testsogo31.2@gmail.com,tguru3196@rediffmail.com , emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-723225772" onClick='toggleBox("Output-723225772", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-723225772" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-723225772">
+Test description : <b>reopenresponse() API - Validate API response for Anonymous survey. </b><br/>
+Survey ID <b>381</b> is an <b> anonymous survey </b>, hence survey can not be reopen for given email addresses.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC34()'><b>API_TC34</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC34, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Validate API response for Semi-Anonymous survey., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Error",
+    "Description": "Responses to Anonymous or Semi-Anonymous projects cannot be reopened."
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 05:52:51 GMT, Content-Length=202], Failure Reason=, surveyNo=382, surveyTitle=, isSurveyActive=, anonymous=N, semiAnonymous=Y, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=tguru3196@gmail.com,bcctestg@gmail.com,ggolatkar@zarca.com,testsogo31@gmail.com,testing_gg@outlook.com,qaprodtest3196@gmail.com,testsogo31.3@gmail.com,testsogo31.4@gmail.com,testsogo31.2@gmail.com,tguru3196@rediffmail.com , emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-723887393" onClick='toggleBox("Output-723887393", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-723887393" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-723887393">
+Test description : <b>reopenresponse() API - Validate API response for Semi-Anonymous survey.</b><br/>
+Survey ID <b>382</b> is an <b> Semi-anonymous survey </b>, hence survey can not be reopen for given email addresses.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+</table><p>
+</body>
+</html>

@@ -1,6 +1,29 @@
-2020-07-01 20:27:07,075 - rootLogger - INFO - Excel file initialized successfully.
-2020-07-01 20:27:07,078 - rootLogger - INFO - Config.properties file Loaded successfully.
-2020-07-01 20:27:11,849 - rootLogger - INFO - Chrome Driver instance loaded successfully.
-2020-07-01 20:27:20,818 - rootLogger - INFO - Successfully waited for loader to disappear.
-2020-07-01 20:27:20,899 - rootLogger - INFO - Successfully waited for Suvey Page to be present on page.
-2020-07-01 20:27:20,902 - rootLogger - INFO - Smoke_TC1 is PASSED.
+2021-02-09 12:33:12,212 - rootLogger - INFO - Excel file initialized successfully.
+2021-02-09 12:33:12,223 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-02-09 12:33:17,258 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-02-09 12:33:40,319 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-02-09 12:33:40,471 - rootLogger - INFO - Successfully entered rkhandelwal_test in User Name textbox.
+2021-02-09 12:33:40,613 - rootLogger - INFO - Successfully entered K12_dmx_live in User Password textbox.
+2021-02-09 12:34:04,018 - rootLogger - INFO - Successfully clicked on Login element.
+2021-02-09 12:34:07,177 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-02-09 12:34:07,266 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-02-09 12:34:19,273 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:19,411 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:19,501 - rootLogger - INFO - Successfully waited for Publish Button to be present on page.
+2021-02-09 12:34:19,559 - rootLogger - INFO - Successfully waited for Single Use Link Button to be present on page.
+2021-02-09 12:34:19,635 - rootLogger - INFO - Successfully clicked on Single Use Link Button element.
+2021-02-09 12:34:45,510 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:45,553 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:45,630 - rootLogger - INFO - Successfully waited for Search Email to be present on page.
+2021-02-09 12:34:45,968 - rootLogger - INFO - Successfully entered DMx exe DP Most Recently Used11 in Search Email textbox.
+2021-02-09 12:34:51,661 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:52,818 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:52,864 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:34:52,929 - rootLogger - INFO - Successfully waited for DMx exe DP Most Recently Used11 to be present on page.
+2021-02-09 12:34:52,976 - rootLogger - INFO - Successfully waited for DMx exe DP Most Recently Used11 to be present on page.
+2021-02-09 12:34:54,224 - rootLogger - INFO - Successfully waited for Edit Button to be present on page.
+2021-02-09 12:34:54,344 - rootLogger - INFO - Successfully clicked on Edit Button element.
+2021-02-09 12:35:08,239 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:35:08,317 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-09 12:36:08,474 - rootLogger - INFO - Edit template: DMx exe DP Most Recently Used11 not present on page.
+2021-02-09 12:36:23,837 - rootLogger - INFO - Sanity_TC3 is FAILED.

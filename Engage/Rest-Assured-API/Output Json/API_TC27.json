@@ -1,0 +1,15 @@
+{
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "testsogo31.3@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "testsogo31.4@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}

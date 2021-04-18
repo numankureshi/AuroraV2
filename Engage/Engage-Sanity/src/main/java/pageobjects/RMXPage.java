@@ -1,13 +1,25 @@
 package pageobjects;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardWatchEventKinds;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.nio.file.WatchEvent.Kind;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
@@ -23,14 +35,94 @@ import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import property.IHomePage;
 import property.IRMXPage;
+import testsuitebase.SuiteBase;
 import utility.JSONUtility;
 import utility.SeleniumUtils;
+import utility.SuiteUtility;
 
 public class RMXPage extends SeleniumUtils implements IRMXPage{
 	
 
-	public double finish, start;
+	public double finish, start, totalTime;
 	public double end;
+	String strtotalTime= null;
+	public DecimalFormat df = new DecimalFormat("#.##");
+	
+	public String getDownloadedDocumentName(String downloadDir, String fileExtension)
+	{	
+		String downloadedFileName = null;
+		boolean valid = true;
+		boolean found = false;
+	
+		//default timeout in seconds
+		long timeOut = 20; 
+		try 
+		{					
+			Path downloadFolderPath = Paths.get(downloadDir);
+			WatchService watchService = FileSystems.getDefault().newWatchService();
+			downloadFolderPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
+			long startTime = System.currentTimeMillis();
+			do 
+			{
+				WatchKey watchKey;
+				watchKey = watchService.poll(timeOut,TimeUnit.SECONDS);
+				long currentTime = (System.currentTimeMillis()-startTime)/1000;
+				if(currentTime>timeOut)
+				{
+					System.out.println("Download operation timed out.. Expected file was not downloaded");
+					return downloadedFileName;
+				}
+				
+				for(WatchEvent<?> event : watchKey.pollEvents()) {
+					Kind<?> kind = event.kind();
+					if(kind.equals(StandardWatchEventKinds.ENTRY_CREATE)) {
+						String fileName = event.context().toString();
+						System.out.println("New File Created:" + fileName);
+						if(fileName.endsWith(fileExtension)) {
+							downloadedFileName = fileName;
+							System.out.println("Downloaded file found with extension " + fileExtension + ". File name is " +fileName);
+							System.out.println("File is downloaded in "+(System.currentTimeMillis()-startTime)/1000 +" seconds");
+							Thread.sleep(500);
+							found = true;
+							break;
+						}
+					}
+				}
+				
+				if(found)
+				{
+					return downloadedFileName;
+				}
+				else
+				{
+					currentTime = (System.currentTimeMillis()-startTime)/1000;
+					if(currentTime>timeOut)
+					{
+						System.out.println("Failed to download expected file");
+						return downloadedFileName;
+					}
+					valid = watchKey.reset();
+				}
+			} while (valid);
+		} 
+		
+		catch (InterruptedException e) 
+		{
+			System.out.println("Interrupted error - " + e.getMessage());
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) 
+		{
+			System.out.println("Download operation timed out.. Expected file was not downloaded");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error occured - " + e.getMessage());
+			e.printStackTrace();
+		}
+		return downloadedFileName;
+	}
+	
 	
 	public double goToReportPage(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
@@ -328,8 +420,1089 @@ public class RMXPage extends SeleniumUtils implements IRMXPage{
 		new JSONUtility().writeJSONToFIle(testcaseName, rawData, "\\src\\main\\resources\\jsonFiles\\getResponseTbDataJson.json",test);
 		}
 	
-	
+	public Map<String, String> getBarGraphReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		readingData.put(param.get("Step1"), goToBarGraphReport(driver, param, test));	
+		readingData.put(param.get("Step2"), getReorderQuestionReading(driver, param, test));
+		readingData.put(param.get("Step3"), getReportPropertyReading(driver, param, test));	
+		readingData.put(param.get("Step4"), getFilterStepReading(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getReportGenerationReading(driver, param, test));
+		readingData.put(param.get("Step6"), getMakeAllChartReading(driver, param, test));
+		
+		return readingData;
+		
 	}
+	
+	public Map<String, String> getResponseTableReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		readingData.put(param.get("Step1"), goToResponseTableReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReorderQuestionReading(driver, param, test));
+		readingData.put(param.get("Step3"), getReportPropertyReading(driver, param, test));	
+		readingData.put(param.get("Step4"), getFilterStepReading(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getReportGenerationReading(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public Map<String, String> getIndividualReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		readingData.put(param.get("Step1"), goToIndividualReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReorderQuestionReading(driver, param, test));
+		readingData.put(param.get("Step3"), getReportPropertyReading(driver, param, test));	
+		readingData.put(param.get("Step4"), getFilterStepReading(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getReportGenerationReading(driver, param, test));
+		
+		return readingData;
+
+	}
+	
+	public Map<String, String> getFreqTableReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		readingData.put(param.get("Step1"), goToFrequencyTableReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReorderQuestionReading(driver, param, test));
+		readingData.put(param.get("Step3"), getReportPropertyReading(driver, param, test));	
+		readingData.put(param.get("Step4"), getFilterStepReading(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getReportGenerationReading(driver, param, test));
+		
+		return readingData;
+
+	}
+	
+	
+	public Map<String, String> getConditionalReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (!(param.get("Comment").length() == 0)) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToConditionalReport(driver, param, test));
+		readingData.put(param.get("Step2"), getSelectSurveyQuestionReadingOfConditional(driver, param, test));
+		readingData.put(param.get("Step3"), getReorderQuestionReadingOfConditional(driver, param, test));	
+		readingData.put(param.get("Step4"), getReportPropertyReadingOfConditional(driver, param, test));
+		readingData.put(param.get("Step5"), getGenerateReadingOfConditional(driver, param, test));
+		
+		return readingData;
+
+	}
+	
+	public Map<String, String> get2LvlCrossTabReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (!(param.get("Comment").length() == 0)) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToCrossTabReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReportPropertyReadingOf2LvlCrossTab(driver, param, test));
+		readingData.put(param.get("Step3"), getFilterReadingOfCrossTab(driver, param, test));	
+		readingData.put(param.get("Step4"), getGenerateReadingOfCrossTab(driver, param, test));
+		
+		return readingData;
+
+	}
+	
+	public Map<String, String> get3LvlCrossTabReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (!(param.get("Comment").length() == 0)) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToCrossTabReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReportPropertyReadingOf3LvlCrossTab(driver, param, test));
+		readingData.put(param.get("Step3"), getFilterReadingOfCrossTab(driver, param, test));	
+		readingData.put(param.get("Step4"), getGenerateReadingOfCrossTab(driver, param, test));
+		
+		return readingData;
+
+	}
+	
+	public Map<String, String> getPivotReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (!(param.get("Comment").length() == 0)) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToCrossTabReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReportPropertyReadingOfPivot(driver, param, test));
+		readingData.put(param.get("Step3"), getFilterReadingOfCrossTab(driver, param, test));	
+		readingData.put(param.get("Step4"), getGenerateReadingOfCrossTab(driver, param, test));
+		
+		return readingData;
+
+	}
+	
+	public Map<String, String> getVerbatimReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (!(param.get("Comment").length() == 0)) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToVerbatimReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReorderQuestionReadingOfVerbatim(driver, param, test));
+		readingData.put(param.get("Step3"), getReportPropertyReadingOfVerbatim(driver, param, test));	
+		readingData.put(param.get("Step4"), getFilterStepReadingOfVerbatim(driver, param, test));
+		readingData.put(param.get("Step5"), getGroupingQuestionReadingOfVerbatim(driver, param, test));
+		readingData.put(param.get("Step6"), getReportGenerationReading(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public Map<String, String> getAssessmentSummaryReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		readingData.put(param.get("Step1"), goToAssessmentSummaryReport(driver, param, test));
+		readingData.put(param.get("Step2"), getReorderQuestionReading(driver, param, test));
+		readingData.put(param.get("Step3"), getReportPropertyReading(driver, param, test));	
+		readingData.put(param.get("Step4"), getFilterStepReading(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getReportGenerationReading(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public Map<String, String> getResponseTrendReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		
+		click(driver, testcaseName, legacy_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, legacy_reports_menu, test);
+		
+		//Capture page load time of Response Trend
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, response_trend, test);
+		waitforElemPresent(driver, testcaseName, 30, response_trend_header, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+
+		readingData.put(param.get("Step1"), strtotalTime);		
+		return readingData;
+	}
+	
+	public Map<String, String> getStatisticalReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToStatisticalReport(driver, param, test));
+		readingData.put(param.get("Step2"), getRedorderReadingOfStatistical(driver, param, test));
+		readingData.put(param.get("Step3"), getStatParameterReadingOfStatistical(driver, param, test));	
+		readingData.put(param.get("Step4"), getSegmentReadingOfStatistical(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getReportGenerationReadingOfStatistical(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public Map<String, String> getStatisticalReportReadingWithSegmentAnswserOption(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToStatisticalReport(driver, param, test));
+		readingData.put(param.get("Step2"), getRedorderReadingOfStatistical(driver, param, test));
+		readingData.put(param.get("Step3"), getStatParameterReadingOfStatistical(driver, param, test));	
+		readingData.put(param.get("Step4"), getSegmentReadingOfStatistical(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getStatReportGenReadingWithSegmentBased1Que(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public Map<String, String> getStatisticalReportReadingWithMoreThanOneSegQue(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToStatisticalReport(driver, param, test));
+		readingData.put(param.get("Step2"), getRedorderReadingOfStatistical(driver, param, test));
+		readingData.put(param.get("Step3"), getStatParameterReadingOfStatistical(driver, param, test));	
+		readingData.put(param.get("Step4"), getSegmentReadingOfStatistical(driver, param, test));
+		Thread.sleep(1000);
+		readingData.put(param.get("Step5"), getStatReportGenReadingWithSegmentBasedOnMoreThan1Que(driver, param, test));
+		
+		return readingData;
+	}
+	
+	
+	public String goToEngagementReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, special_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, special_reports_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, engagement, -50, 0, test);
+		waitforElemPresent(driver, testcaseName, 30, engagement_wizard_step1_page_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	
+	public String goToStatisticalReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, legacy_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, legacy_reports_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, statistical, -50, 0, test);
+		waitforElemPresent(driver, testcaseName, 30, statistical_page_1_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getRedorderReadingOfStatistical(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, all_questions, test);
+		//scrollIntoCenter(driver, testcaseName, statistical_page_1_continue, test);
+		Thread.sleep(1000);
+		waitForElementToBeVisible(driver, testcaseName, statistical_page_1_continue, 10, 200, test);
+
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, statistical_page_1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, statistical_page_2_descr, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getStatParameterReadingOfStatistical(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, statistical_page_2_continue, test);
+		Thread.sleep(1000);
+		waitForElementToBeVisible(driver, testcaseName, statistical_page_2_continue, 10, 200, test);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, statistical_page_2_continue, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//span[contains(text(),'Choose statistical parameters.')]"), 
+				"Statistical Report - Select Parameter Page Description", 30, 200, test);
+		waitForJStoLoad(driver, 30);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	public String getSegmentReadingOfStatistical(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+
+		waitForElementToBeVisible(driver, testcaseName, statistical_page_3_continue, 10, 200, test);
+
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, statistical_page_3_continue, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("(//span[contains(text(),'Segment Selection')])[1]"), 
+				"Statistical Report - Select Parameter Page Description", 30, 200, test);
+		waitForJStoLoad(driver, 30);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getReportGenerationReadingOfStatistical(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+				
+		// Capture page load time of Generate report
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, statistical_generate_button, test);
+
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 60, statistical_trend_header, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+
+		return strtotalTime;
+	}
+	
+	public String getStatReportGenReadingWithSegmentBased1Que(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		click(driver, testcaseName, statistical_based_on_one_question, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//select[@id='cmbOnesegQue']"), "Select Segment Question Drop down", 
+				30, 200, test);
+		
+		Select selSegmentque = new Select(getWebElement(driver, testcaseName, select_statistical_segment_question, test));
+		List<WebElement> listOfOptions = selSegmentque.getOptions();
+		String selValue = null;
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Segment question 1"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selSegmentque.selectByValue(selValue);
+		System.out.println(param.get("Segment question 1"));
+//		selectByVisibleText(driver, testcaseName, select_statistical_segment_question, param.get("Segment question 1"), test);
+		waitforElemPresent(driver, testcaseName, 30, statistical_segment_ans_options, test);
+		
+		scrollIntoCenter(driver, testcaseName, statistical_generate_now_button, test);
+		waitForElementToBeVisible(driver, testcaseName, statistical_generate_now_button, 30, 200, test);
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, statistical_generate_now_button, test);
+
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 60, statistical_trend_header, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getStatReportGenReadingWithSegmentBasedOnMoreThan1Que(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		click(driver, testcaseName, statistical_based_on_more_than_one_question, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@id='txtsegmentName1']"), "Segment 1 Text Box", 
+				30, 200, test);
+		setText(driver, testcaseName, By.xpath("//input[@id='txtsegmentName1']"),  param.get("Segment 1 name"), "Segment 1 Text Box", test);
+		
+		//Add first condition
+		click(driver, testcaseName, statistical_segment_1_drop_down, test);
+		WebElement segmentQue = driver
+				.findElement(By.xpath("//div[contains(text(),'" + param.get("Segment question 1") + "')]"));
+		scrollIntoCenter(driver, testcaseName, segmentQue, param.get("Segment question 1"), test);
+		Thread.sleep(1000);
+		click(driver, testcaseName, segmentQue, param.get("Segment question 1"), test);
+
+		waitforElemPresent(driver, testcaseName, 30, select_segment_1_operand, test);
+		selectByVisibleText(driver, testcaseName, select_segment_1_operand, param.get("Segment ques 1 operand"), test);
+		
+		waitforElemPresent(driver, testcaseName, 30, select_segment_1_answer, test);
+		selectByVisibleText(driver, testcaseName, select_segment_1_answer, param.get("Segment ques 1 answers"), test);
+
+		click(driver, testcaseName, statistical_add_condition_1, test);
+		
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td/div[contains(text(),'" + param.get("Segment question 1") + "')]"), 
+				"Show Condition -" +param.get("Segment question 1"), 30, 200, test);
+
+		scrollIntoCenter(driver, testcaseName, statistical_generate_button, test);
+		waitForElementToBeVisible(driver, testcaseName, statistical_generate_button, 30, 200, test);
+		
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, statistical_generate_button, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 60, statistical_trend_header, test);			
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		
+		return strtotalTime;
+	}
+	
+	
+	
+	
+	
+	
+	public String goToAssessmentSummaryReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		click(driver, testcaseName, raw_data, test);
+		waitforElemPresent(driver, testcaseName, 30, raw_data_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, assessment_summary, -50, 0, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, assessment_summary_page_1_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String goToVerbatimReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		click(driver, testcaseName, raw_data, test);
+		waitforElemPresent(driver, testcaseName, 30, raw_data_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, verbatim, -50, 0, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, verbatim_page_1_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String goToCrossTabReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, cross_dd, test);
+		waitforElemPresent(driver, testcaseName, 30, cross_tab_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, cross_tab, -50, 0, test);
+		waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String getReportPropertyReadingOf2LvlCrossTab(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String selValue = null;
+		
+		Select selStub = new Select(getWebElement(driver, testcaseName, select_stub, test));
+		List<WebElement> listOfOptions = selStub.getOptions();
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Stub"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selStub.selectByValue(selValue);
+		
+		Select selBanner = new Select(getWebElement(driver, testcaseName, select_banner, test));
+		listOfOptions = selBanner.getOptions();
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Banner"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selBanner.selectByValue(selValue);
+		
+		scrollIntoCenter(driver, testcaseName, wizard_step1_continue, test);
+		Thread.sleep(1000);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, wizard_step1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, cross_tab_step2_page_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String getReportPropertyReadingOf3LvlCrossTab(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String selValue = null;
+		
+		click(driver, testcaseName, cross_tab_3lvl, test);
+		waitforElemPresent(driver, testcaseName, 30, select_parent, test);
+		
+		Select selParent = new Select(getWebElement(driver, testcaseName, select_parent, test));
+		List<WebElement> listOfOptions = selParent.getOptions();
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Parent"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selParent.selectByValue(selValue);
+		
+		Select selStub = new Select(getWebElement(driver, testcaseName, select_stub, test));
+		listOfOptions = selStub.getOptions();
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Stub"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selStub.selectByValue(selValue);
+		
+		Select selBanner = new Select(getWebElement(driver, testcaseName, select_banner, test));
+		listOfOptions = selBanner.getOptions();
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Banner"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selBanner.selectByValue(selValue);
+		
+		scrollIntoCenter(driver, testcaseName, wizard_step1_continue, test);
+		Thread.sleep(1000);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, wizard_step1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, cross_tab_step2_page_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	
+	public String getReportPropertyReadingOfPivot(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String selValue = null;
+		
+		click(driver, testcaseName, pivot_table, test);
+		waitforElemPresent(driver, testcaseName, 30, pivot_table_questions, test);
+		
+		Select selStub = new Select(getWebElement(driver, testcaseName, select_pivot_stub, test));
+		List<WebElement> listOfOptions = selStub.getOptions();
+		for(WebElement option : listOfOptions) {
+			if(option.getAttribute("innerHTML").contains(param.get("Stub"))) {
+				selValue = option.getAttribute("value");
+				break;
+			}
+		}
+		selStub.selectByValue(selValue);
+		String[] reqQues = param.get("Banner").split("\\|");
+		List<WebElement> questionList = getWebElements(driver, testcaseName, pivot_table_questions_row, test);
+		
+		for(String strQue : reqQues) {
+			for(WebElement question : questionList) {
+				String qtext = Jsoup.parse(question.getAttribute("innerHTML")).text();
+				if (qtext.contains(strQue)) {
+					scrollIntoCenter(driver, testcaseName, question, qtext, test);
+					waitforElemPresent(driver, testcaseName, 30, question, qtext, test);
+					click(driver, testcaseName, question, qtext, test);
+					break;
+				}
+			}
+		}
+				
+		scrollIntoCenter(driver, testcaseName, wizard_step1_continue, test);
+		Thread.sleep(1000);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, wizard_step1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, cross_tab_step2_page_descr, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	
+	public String getFilterReadingOfCrossTab(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		scrollIntoCenter(driver, testcaseName, wizard_step2_continue_2, test);
+		Thread.sleep(1000);
+		
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, wizard_step2_continue_2, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_now_button_2, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String getGenerateReadingOfCrossTab(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, generate_now_button_2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, survey_metric, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	
+	
+	public String goToBarGraphReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, frequency, test);
+		waitforElemPresent(driver, testcaseName, 30, frequency_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, bar_graph, -50, 0, test);
+		waitforElemPresent(driver, testcaseName, 30, wizard_page_description, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	/*
+	 * Capture the load time of Make all chart similar
+	 */
+	public String getMakeAllChartReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		List<WebElement> chartDropdown = getWebElements(driver, testcaseName, bar_graph_chart_dropdown, test);
+		
+		if (chartDropdown.size() > 0) {
+			scrollIntoCenter(driver, testcaseName, chartDropdown.get(0), "Chart drop of first question", test);
+			Thread.sleep(1000);
+			click(driver, testcaseName, chartDropdown.get(0), "Chart drop of first question", test);
+			waitforElemPresent(driver, testcaseName, 10, bar_graph_chart_menu, test);
+			List<WebElement> advChart = getWebElements(driver, testcaseName, bar_graph_adv_chart_option, test);
+			click(driver, testcaseName, advChart.get(0), "Advance chart of first question", test);
+			waitforElemPresent(driver, testcaseName, 60, bar_graph_adv_chart, test);
+			
+			List<WebElement> makeAllChartSimilar = getWebElements(driver, testcaseName, bar_graph_make_all_chart_similar, test);
+			click(driver, testcaseName, makeAllChartSimilar.get(0), "Make all chart similar from first question", test);
+			start = System.currentTimeMillis();
+			driver.switchTo().alert().accept();
+			waitForLoad(driver, testcaseName, 60, test);
+			waitforElemPresent(driver, testcaseName, 30, survey_metric, test);
+			end = System.currentTimeMillis();
+			totalTime = ((end - start)) / 1000;
+			strtotalTime = df.format(totalTime);
+		}
+		return strtotalTime;	
+	}
+	
+	
+	public String goToResponseTableReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		click(driver, testcaseName, raw_data, test);
+		waitforElemPresent(driver, testcaseName, 30, raw_data_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, response_table_report, test);
+		waitforElemPresent(driver, testcaseName, 30, wizard_page_description, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	public String goToIndividualReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, raw_data, test);
+		waitforElemPresent(driver, testcaseName, 30, raw_data_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, individual_report, test);
+		waitforElemPresent(driver, testcaseName, 30, wizard_page_description, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	public String goToFrequencyTableReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, legacy_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, legacy_reports_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, frequency_table, test);
+		waitforElemPresent(driver, testcaseName, 30, wizard_page_description, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String goToConditionalReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, frequency, test);
+		waitforElemPresent(driver, testcaseName, 30, frequency_menu, test);
+		
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		clickAtOffset(driver, testcaseName, conditional, -50, 0, test);
+		waitForJStoLoad(driver, 30);
+		waitforElemPresent(driver, testcaseName, 30, conditional_question_dropdown, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	
+	
+	/**
+	 * Capture page load time of Reorder question step. This method can be use in Bar graph, Response table, Individual report, Frequency table report, Assessment Summary Report
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getReorderQuestionReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, all_questions, test);
+		scrollIntoCenter(driver, testcaseName, wizard_step1_continue, test);
+		Thread.sleep(1000);
+		if (driver.getTitle().contains("Bar Graph") || driver.getTitle().contains("Response Table") || driver.getTitle().contains("Individual") || driver.getTitle().contains("Assessment Summary")) {
+			scrollIntoCenter(driver, testcaseName, rearrange_toggle, test);
+			Thread.sleep(1000);
+			click(driver, testcaseName, rearrange_toggle, test);
+			Thread.sleep(1000);
+		}
+		//Capture page load time of Reorder question step
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, wizard_step1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, reorder_page_description, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture page load time of Reorder question step. This method can be use in Verbatim Report
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getReorderQuestionReadingOfVerbatim(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, all_questions, test);
+		Thread.sleep(1000);
+		scrollIntoCenter(driver, testcaseName, verbatim_page_1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, verbatim_page_1_continue, test);
+		
+		//Capture page load time of Reorder question step
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, verbatim_page_1_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, verbatim_page_2_descr, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture the page load time of Report property step. This method can be use in Bar graph, Response table , Individual report,  Frequency table report, Assessment Summary Report
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getReportPropertyReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		// scrollIntoCenter(driver, testcaseName, wizard_step2_continue, test);
+		executeScript(driver, testcaseName, "window.scrollTo(0,document.body.scrollHeight)", test);
+		Thread.sleep(1000);
+
+		// Capture page load time of Report Properties step
+		
+		if (driver.getTitle().contains("Bar Graph") || driver.getTitle().contains("Response Table") || driver.getTitle().contains("Individual")
+				|| driver.getTitle().contains("Assessment Summary")) {
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, wizard_step2_continue, test);
+		}else {
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, wizard_step2_continue_2, test);
+		}
+		waitforElemPresent(driver, testcaseName, 30, wizard_step3_continue, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture the page load time of Report property step. This method can be use in Verbatim Report
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getReportPropertyReadingOfVerbatim(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, verbatim_page_2_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, verbatim_page_2_continue, test);
+
+		// Capture page load time of Report Properties step
+		
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, verbatim_page_2_continue, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitForJStoLoad(driver, 30);
+		waitforElemPresent(driver, testcaseName, 30, verbatim_page_3_continue, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture page load time of Filter step. This method can be use in Bar graph, Response table  Individual report,  Frequency table report, Assessment Summary Report
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getFilterStepReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");	
+		//Capture page load time of Filter step
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, wizard_step3_continue, test);
+		if (driver.getTitle().contains("Bar Graph") || driver.getTitle().contains("Response Table") || driver.getTitle().contains("Individual")  
+				|| driver.getTitle().contains("Assessment Summary")) {
+			waitforElemPresent(driver, testcaseName, 30, generate_now_button, test);
+		}else {
+			waitforElemPresent(driver, testcaseName, 30, generate_now_button_2, test);
+		}
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture page load time of Filter step. This method can be use in Verbatim
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getFilterStepReadingOfVerbatim(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");	
+		//Capture page load time of Filter step
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, verbatim_page_3_continue, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, verbatim_page_4_continue, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture page load time of Grouping question step. This method can be use in Verbatim
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getGroupingQuestionReadingOfVerbatim(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		if (param.containsKey("Filter Name")) {
+			click(driver, testcaseName, verbatim_filter_toggle, test);
+			waitforElemPresent(driver, testcaseName, 30, select_verbatim_filter, test);
+			Select selFilter = new Select(getWebElement(driver, testcaseName, select_verbatim_filter, test));
+			selFilter.selectByVisibleText(param.get("Filter Name"));
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[text()='"+param.get("Filter Name")+"']"), param.get("Filter Name"), 30, 200, test);
+		}
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, verbatim_page_4_continue, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_now_button_2, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Capture the page load time of report generation. This method can be use in Bar graph, Response table, Individual report, Frequency table report, Verbatim Report.
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public String getReportGenerationReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		//Add Grouping Question in case of Verbatim Report.
+		if (driver.getTitle().contains("Verbatim")){
+			if (param.containsKey("Grouping question")) {
+				String selValue = null;
+				click(driver, testcaseName, verbatim_grouping_toggle, test);
+				waitforElemPresent(driver, testcaseName, 30, select_verbatim_grouping, test);
+				Select selGrouping = new Select(getWebElement(driver, testcaseName, select_verbatim_grouping, test));
+				List<WebElement> listOfOptions = selGrouping.getOptions();
+				for(WebElement option : listOfOptions) {
+					if(Jsoup.parse(option.getAttribute("innerHTML")).text().contains(param.get("Grouping question"))) {
+						selValue = option.getAttribute("value");
+						break;
+					}
+				}
+				selGrouping.selectByValue(selValue);
+			}
+		}
+			
+		//Capture page load time of Generate report
+		if (driver.getTitle().contains("Bar Graph") || driver.getTitle().contains("Response Table") || driver.getTitle().contains("Individual")
+				|| driver.getTitle().contains("Assessment Summary")) {
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, generate_now_button, test);
+		} else {
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, generate_now_button_2, test);
+		}
+		waitForLoad(driver, testcaseName, 120, test);
+		waitforElemPresent(driver, testcaseName, 120, survey_metric, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	public String getSelectSurveyQuestionReadingOfConditional(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		//Add first condition
+		click(driver, testcaseName, conditional_question_dropdown, test);
+		WebElement conditionalQue = driver.findElement(By.xpath("//div[contains(text(),'" + param.get("Condition que 1") + "')]"));
+		scrollIntoCenter(driver, testcaseName, conditionalQue, param.get("Condition que 1"), test);
+		Thread.sleep(1000);
+		click(driver, testcaseName, conditionalQue, param.get("Condition que 1"), test);
+		
+		waitforElemPresent(driver, testcaseName, 30, select_condition_operand, test);
+		Select selConditionOperand = new Select(getWebElement(driver, testcaseName, select_condition_operand, test));
+		selConditionOperand.selectByVisibleText(param.get("Condition que 1 operand"));
+		
+		waitforElemPresent(driver, testcaseName, 30, select_condition_operand, test);
+		Select selConditionAnswers = new Select(getWebElement(driver, testcaseName, select_condition_answers, test));
+		selConditionAnswers.selectByVisibleText(param.get("Condition que 1 answers"));
+		
+		click(driver, testcaseName, add_condition, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),'" + param.get("Condition que 1") + "')]"), "Show Condition -" +param.get("Condition que 1"), 30, 200, test);
+		
+		//Add 2nd condition
+		click(driver, testcaseName, conditional_question_dropdown, test);
+		conditionalQue = driver.findElement(By.xpath("//div[contains(text(),'" + param.get("Condition que 2") + "')]"));
+		scrollIntoCenter(driver, testcaseName, conditionalQue, param.get("Condition que 2"), test);
+		Thread.sleep(1000);
+		click(driver, testcaseName, conditionalQue, param.get("Condition que 2"), test);
+		
+		Thread.sleep(1000);
+		selConditionOperand = new Select(getWebElement(driver, testcaseName, select_condition_operand, test));
+		selConditionOperand.selectByVisibleText(param.get("Condition que 2 operand"));
+		
+		selConditionAnswers = new Select(getWebElement(driver, testcaseName, select_condition_answers, test));
+		selConditionAnswers.selectByVisibleText(param.get("Condition que 2 answers"));
+		
+		click(driver, testcaseName, add_condition, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),'" + param.get("Condition que 2") + "')]"), "Show Condition -" +param.get("Condition que 2"), 30, 200, test);
+		
+		if (param.get("Logic").contains("Any")) {
+			scrollIntoCenter(driver, testcaseName, conditional_match_any_condition, test);
+			Thread.sleep(1000);
+			click(driver, testcaseName, conditional_match_any_condition, test);
+		}
+		scrollIntoCenter(driver, testcaseName, conditional_report_step_1, test);
+		Thread.sleep(1000);
+		
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, conditional_report_step_1, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		
+		return strtotalTime;
+	}
+	
+	
+	public String getReorderQuestionReadingOfConditional(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		click(driver, testcaseName, all_questions, test);
+		Thread.sleep(1000);
+				
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, conditional_report_step_2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, reorder_page_description, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getReportPropertyReadingOfConditional(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		scrollIntoCenter(driver, testcaseName, conditional_report_step_3, test);
+		Thread.sleep(1000);
+				
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, conditional_report_step_3, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, conditional_generate_button, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getGenerateReadingOfConditional(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+				
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, conditional_generate_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, survey_metric, test);
+		end = System.currentTimeMillis();
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	
+	
+	
+}
 
 
 

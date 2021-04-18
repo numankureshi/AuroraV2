@@ -2,6 +2,8 @@ package pageobjects;
 
 import java.util.Calendar;
 import java.util.HashMap;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -133,8 +135,8 @@ public class SoGoStaticPage extends SeleniumUtils implements ISoGoStaticPage {
 		setText(driver, testcaseName, registration_email_id, emailID, test);
 		clickAtOffset(driver, testcaseName, registration_disclaimer_checkbox, -50, 0, test);
 		waitForElementToBeVisible(driver, testcaseName, registration_validation_msg, 60, 200, test);
-		//waitforElemNotVisible(driver, testcaseName, 60, registration_validate_userinfo, test);
-		
+		waitforElemNotVisible(driver, testcaseName, 60, registration_validate_userinfo, test);
+		//Thread.sleep(2000);
 		start = System.currentTimeMillis();
 		//click(driver, testcaseName, registration_create_acc, test);
 		//clickAtOffset(driver, testcaseName, registration_create_acc, 75, -15, test);

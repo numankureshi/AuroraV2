@@ -1,9 +1,360 @@
 {
   "Raw Data": [
     {
-      "Sr No": "101",
-      "Response No": "101",
-      "Email ID": "101",
+      "Sr No": "1",
+      "Response No": "1",
+      "Email ID": "1",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Paulshof"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Dendere Fungayi F Dendere"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "I think there\u0027s still a lot of growth needed in terms of providing a little pressured working environment. There\u0027s a need for more staff."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The high expectations can make me feel like I\u0027m lacking somewhere as it requires me to go beyond measure and sometimes I feel like I\u0027m not delivering or it\u0027s not enough and it can be somewhat emotionally draining."
+        },
+        {
+          "answer": "It\u0027s an organization that takes care of it\u0027s people. They try their most to hear what the rest of the organization has to say so that we can see be happy!"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "2",
+      "Response No": "2",
+      "Email ID": "2",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Lydia Brenda Ogutu"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "encourage more teammates activities"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "greater together and my manager encouragement"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "2 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "Sr No": "3",
+      "Response No": "3",
+      "Email ID": "3",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Midrand"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Jeanine Eleanor Kerr"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Salary"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Salary"
+        },
+        {
+          "answer": "Opportunities for growth and being exposed to a wide range of work."
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "4",
+      "Response No": "4",
+      "Email ID": "4",
       "Participation Time": "1/24/2021 06:35 PM",
       "IP Address": "--",
       "Answer": [
@@ -23,10 +374,127 @@
           "answer": "Jacob Laanyu Lekarsia"
         },
         {
-          "answer": "Laundry Hand Level 1"
+          "answer": "Grounds Generalist Level 2"
         },
         {
-          "answer": "2016"
+          "answer": "2017"
+        },
+        {
+          "answer": "5"
+        },
+        {
+          "answer": "N/E"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "N/E"
+        },
+        {
+          "answer": "N/E"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "N/E"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": "N/E"
+        }
+      ]
+    },
+    {
+      "Sr No": "5",
+      "Response No": "5",
+      "Email ID": "5",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Central"
+        },
+        {
+          "answer": "Finance"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Damany Elton Gibbs"
+        },
+        {
+          "answer": "Fellow Consultant"
+        },
+        {
+          "answer": "2019"
         },
         {
           "answer": "7"
@@ -41,6 +509,3636 @@
           "answer": ""
         },
         {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "the sense that we find it difficult to push ahead on important/strategic projects because we are constantly addressing \"fires\" / reactionary pieces of work"
+        },
+        {
+          "answer": "mission-oriented work"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "My feedback on our shared goals is that I would like to see a world in which they were all framed for the benefit of the student / delivering on our mission for students."
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "6",
+      "Response No": "6",
+      "Email ID": "6",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Sagao Clearance Agevi"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "5"
+        },
+        {
+          "answer": "Managers should support their reports ."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "partiality in support for employees"
+        },
+        {
+          "answer": "The students I teach."
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "On Trust and care, communications can change without any explanation or clarity."
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "2 Hearts"
+        },
+        {
+          "answer": "I feel left out in many communications involving the school sometimes getting it from 3rd parties. Communication from management is mostly harsh and confrontational rather than supportive."
+        }
+      ]
+    },
+    {
+      "Sr No": "7",
+      "Response No": "7",
+      "Email ID": "7",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Paulshof"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Claudia Pienaar"
+        },
+        {
+          "answer": "Grad Apprentice"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "7"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "onboarding should be at own campuses. Onboarding should comprise of the daily expectations at that specific campus. In most campuses a lot of new members felt like they were thrown in the deep end, and there was an assumption that they knew their roles."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Being expected to stay longer when I have no transportation to get home. There is a perception that everyone has cars and lives close to school or can afford to live close."
+        },
+        {
+          "answer": "The culture, support from the school leaders, the constant need to grow from your role and the positive feedback and areas of development after observations. I love it!"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "8",
+      "Response No": "8",
+      "Email ID": "8",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Network KE"
+        },
+        {
+          "answer": "Tribe Tembo"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Kathryn Danae Pauli"
+        },
+        {
+          "answer": "Growth and Expansion Manager"
+        },
+        {
+          "answer": "2016"
+        },
+        {
+          "answer": "2"
+        },
+        {
+          "answer": "Quite honestly, it would depend on the team you are joining at Nova Pioneer. Academic teams are the best, clearly defined structures and systems for planning out a long term career at NP. Central teams not so much - lots of stuff is still up in the air as we try to map out the growth of the org."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Indecision at top level - we take too long to make critical decisions. Using the available pool of data sometimes is all that is needed to make decisions."
+        },
+        {
+          "answer": "The people. They make it worth it."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Transparent is critical to a successful team - lack of it causes mistrust which can be detrimental to team success."
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "9",
+      "Response No": "9",
+      "Email ID": "9",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Midrand"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Jeanine Eleanor Kerr"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "NONE"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "NONE"
+        },
+        {
+          "answer": "The thing i like the most about the school are the professional development workshops. My manager always goes out of her way to make sure i get all the help and advice i need."
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "NONE"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": "NONE"
+        }
+      ]
+    },
+    {
+      "Sr No": "10",
+      "Response No": "10",
+      "Email ID": "10",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu City - Support"
+        },
+        {
+          "answer": "Ops-Security"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Lawrence Gitau Gituku"
+        },
+        {
+          "answer": "Security Guard Level 1"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "To some extent I can say at the beginning this people tell you more things about Nova but not that way"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Treatment of support staff not good"
+        },
+        {
+          "answer": "Equality treatment of the workers"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "Sr No": "11",
+      "Response No": "11",
+      "Email ID": "11",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Secondary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Annette Du Toit"
+        },
+        {
+          "answer": "Laboratory Associate"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "5"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "I do not feel financially appreciated"
+        },
+        {
+          "answer": "The people I work with are caring, supportive and share the same dream or passion as I do. They are like minded people"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "2 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "12",
+      "Response No": "12",
+      "Email ID": "12",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Eldoret Girls"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Matha Jepkemboi Tubei"
+        },
+        {
+          "answer": "Dean of Instruction and Learning"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "The teamwork and the willingness to help shown by most teammates"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The long working hours that spill into the weekends"
+        },
+        {
+          "answer": "The impact we are having and working within a team that stretches you proffesionally"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "13",
+      "Response No": "13",
+      "Email ID": "13",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Network KE"
+        },
+        {
+          "answer": "Tribe Tembo"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Kathryn Danae Pauli"
+        },
+        {
+          "answer": "Director of Schools"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "The people, the vision, the ability to do your best work and be your authentic self without being micro-managed."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "We do have quite a lot of meeting which makes it hard to find balance and not work from home."
+        },
+        {
+          "answer": "The mission and the people"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "14",
+      "Response No": "14",
+      "Email ID": "14",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Benson Kairu Kamau"
+        },
+        {
+          "answer": "Deputy Principal"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "9"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Care for the teammates\u0027 happiness Ability to gauge the students feelings through surveys which then informs the steps required for proper delivery. The endeavour to make teachers better through weekly PDs Teammate management, classroom observations and feedback to teachers."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "We are not yet there in proper student supervision, though we are working on it"
+        },
+        {
+          "answer": "Learner based approach to learning"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": "As it is at NPTB, innovation needs a revamp, something we are taking seriously, and are currently working on introducing a weekend program for it"
+        }
+      ]
+    },
+    {
+      "Sr No": "15",
+      "Response No": "15",
+      "Email ID": "15",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Girls"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Moses Ngige Wanjiku"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "9"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Unity of teammates"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "11hours working time, lack financial support for extra working hours for travel arrangements"
+        },
+        {
+          "answer": "Openness, good working environment"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "16",
+      "Response No": "16",
+      "Email ID": "16",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Primary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Christine Wango Muthui"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "3"
+        },
+        {
+          "answer": "The work load doesn\u0027t match the renumeration and as inflation hits the school and affects parents, the staff is in a glass house where inflation doesn\u0027t hit"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "the pay"
+        },
+        {
+          "answer": "the constant trainings"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "17",
+      "Response No": "17",
+      "Email ID": "17",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ruimsig"
+        },
+        {
+          "answer": "Operations"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Carla Samantha Hercules"
+        },
+        {
+          "answer": "Operations Senior Associate"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "3"
+        },
+        {
+          "answer": "Culture is used by some in leadership positions as a way to manipulate others. I.e. they want to pile more work onto your plate, and when you say that you do not have the capacity, they get \"offended\" and then you are not being \"greater together\". Leading on from the previous point I do not see the culture values lived out by some people in leadership roles. Thus, these values have become mere empty words for me. There is also very limited scope to grow, and I feel very undervalued."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "As stated in point one, the misuse of the culture principles by some in leadership positions. Me taking up an additional role and not having proper resources to execute and feeling that I am merely there to tick a box and nothing more. The way some school leaders treat their staff and almost seem to be untouchable without anything being done about it. As a result Nova is losing good workers and skill that we can ill afford to lose."
+        },
+        {
+          "answer": "Some great leaders, people that I can look up to and that make it work the while for me. Yes, leadership is the one crucial factor that can destroy culture or build it, drive talent away or develop it. I feel extremely strongly about leadership."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "These are all trademarks of good leadership. This is also where I think Nova can improve the most. Having said that, again I wish to state that there are some leaders that display most of these trates."
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "18",
+      "Response No": "18",
+      "Email ID": "18",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Global"
+        },
+        {
+          "answer": "ALT"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Rahel Wondwossen"
+        },
+        {
+          "answer": "Global Director Post School Success"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "7"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "In order to be transparent I would have to share, if asked, that the salary is not competitively high and that we are still in an unpredictable start-up environment in many areas. Not everyone is well suited in personality to such conditions. But I would also tell them that the team is very purpose-driven and fun to work with!"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "I struggle with having system issues preventing me from doing my work (e.g. internet failures or students not having access to laptops for my class)."
+        },
+        {
+          "answer": "The people!"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "I don\u0027t really understand the question. Is it asking whether I believe these elements are required for healthy teams? I have assumed so and answered accordingly. But If you\u0027re asking whether we do have these things in our teams across NP I would have some different answers."
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "19",
+      "Response No": "19",
+      "Email ID": "19",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Midrand"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Jeanine Eleanor Kerr"
+        },
+        {
+          "answer": "Dean of Academic and School Operations"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "2"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Disconnect between staff"
+        },
+        {
+          "answer": "Making a difference"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "20",
+      "Response No": "20",
+      "Email ID": "20",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Primary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Emily Njoki Ireri"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Meetings nearly every day of the week."
+        },
+        {
+          "answer": "Teaching methods are super."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "21",
+      "Response No": "21",
+      "Email ID": "21",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Global"
+        },
+        {
+          "answer": "ALT"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Rahel Wondwossen"
+        },
+        {
+          "answer": "Global Director Learning and Instructional Design"
+        },
+        {
+          "answer": "2016"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "I can tell we are making many steps in the right direction with prioritizing TVP and teammate happiness. A big part of that will be re-assessing just how much time we are asking of people in order to be considered a successful employee - as it stands now, there is more work to be done than working hours in the day."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "A lot of work, not a lot of respect for people\u0027s time and contributions. Feels more like a business and less like a school network every day."
+        },
+        {
+          "answer": "Being able to work with children and youth, and changing mindsets around education on the continent."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "This questions was tough- for some teams I am on, I feel most of these things. For other teams, not so much. Organizationally though, I do not feel we have much transparency on how decisions are made, leading to teammates feeling they are not getting the whole truth."
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "22",
+      "Response No": "22",
+      "Email ID": "22",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Secondary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Theuns Jan Opperman"
+        },
+        {
+          "answer": "Dean of School and Academic Operations"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "7"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "The lack of structures/processes and the fact that we are so slow in implementing these make me less likely to recommend. I love the company and I love being part of the growth and establishing of, but it feels like we are not learning from mistakes and merely repeating the same mistakes over and over."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "How hard it is to get ¨stuff¨ done. Lack of accountability."
+        },
+        {
+          "answer": "How much we value work/life balance. How we listen to each other. How much we care for each other."
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": "Although we try to, I do not think the Senior school students/parents have internalised the mission. And that there is a very strong culture of ¨no accountability¨ being fostered towards SS students (they are not taught to be accountable/take responsibility for their own growth and learning)."
+        }
+      ]
+    },
+    {
+      "Sr No": "23",
+      "Response No": "23",
+      "Email ID": "23",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Secondary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Theuns Jan Opperman"
+        },
+        {
+          "answer": "Science Senior Resident"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "7"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Uncertainty in salary progression"
+        },
+        {
+          "answer": "Consistent engagement with the senior managers"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "24",
+      "Response No": "24",
+      "Email ID": "24",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Boksburg"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Luciel Venesa Steele Morgan"
+        },
+        {
+          "answer": "Associate Dean of Instruction and Learning"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "9"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "The support and development of my own growth as a person and my career.Being valued for my contribution."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "At times, the amount of information/documents can seem overwhelming especially if they have not been unpacked/explained."
+        },
+        {
+          "answer": "Being part of a dynamic, driven organisation"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "25",
+      "Response No": "25",
+      "Email ID": "25",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Primary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Camagwini Dolweni"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "The no transparency and skin colour promotions. We don\u0027t have a balance on that matter."
+        },
+        {
+          "answer": "The high expectations set for a teacher."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "My team yes they support me not my manager."
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "26",
+      "Response No": "26",
+      "Email ID": "26",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Bernad Onyango Ongwae"
+        },
+        {
+          "answer": "School Operations Associate"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The segregation that other school-based teams face from the Academic Team especially in celebrating student and school success"
+        },
+        {
+          "answer": "Living out the culture principles, identifying and improving on failures and celebrating each other every so often."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "27",
+      "Response No": "27",
+      "Email ID": "27",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Athi River - Support"
+        },
+        {
+          "answer": "Ops-Transport"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Karl Machado"
+        },
+        {
+          "answer": "Driver Level 1"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Encourage other teammates to focus on culture principle to improve away of living in novapioneer"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Enjoy been part of the team"
+        },
+        {
+          "answer": "Interpret with others"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "1 Heart"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "28",
+      "Response No": "28",
+      "Email ID": "28",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Residential"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Stiffin Ndungu Kamande"
+        },
+        {
+          "answer": "School Counsellor"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "I try but always hit a wall when it comes to compensation, out there people believe we earn good salaries given the status of the school and organization, I never know what to say when asked about compensation, I shy away."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "It feels like the organization is disconnected with the reality of our challenges as staff, as much as they do listen, i sometimes wonder is it genuine or just to soothe us"
+        },
+        {
+          "answer": "i like the students, they are great....the fact that i get to be part of their journey in life makes me realise my purpose, they encourage me to give my best."
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "NA"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": "we are moving, but standards and quality should be maintained as we move"
+        }
+      ]
+    },
+    {
+      "Sr No": "29",
+      "Response No": "29",
+      "Email ID": "29",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "North Riding"
+        },
+        {
+          "answer": "Operations"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Paula Jeannette Gordon"
+        },
+        {
+          "answer": "Associate Operations"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "7"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Constant lack of clarity. Passing the buck (Lack of accountability from managers).Managers that constantly react to something negative and not acknowledge the little effort that is put ."
+        },
+        {
+          "answer": "Chinezi makes you believe in the dream. The team I work with."
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "30",
+      "Response No": "30",
+      "Email ID": "30",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Secondary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Theuns Jan Opperman"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "The amount of extra Admin"
+        },
+        {
+          "answer": "The teamwork and constant growth"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "31",
+      "Response No": "31",
+      "Email ID": "31",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Global"
+        },
+        {
+          "answer": "Talent"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Lucas Alexander Levine"
+        },
+        {
+          "answer": "Recruitment Associate"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "4"
+        },
+        {
+          "answer": "I do not think Nova Pioneer is for everyone - you need to be very resilient to work here. Not everything is as it seems on the outside."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "The inconsistencies especially around job growth (and everything else really) - if you are not a favourite you will not be given an opportunity to grow irrespective of how much you contribute to your team and the impact it has on the organisation. I also feel like a lot of decision at Nova Pioneer are motivated by what race you are in addition to who you know and have relationships with."
+        },
+        {
+          "answer": "I love the vision and the people. Most people at Nova Pioneer are generally here because they believe in the Nova Pioneer promise and a number of our staff send their children here because they believe that they make this place a great place and hence they trust the organisation and their colleagues with the future of their children."
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "32",
+      "Response No": "32",
+      "Email ID": "32",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Global"
+        },
+        {
+          "answer": "Talent"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Allen Njeri Wakairu"
+        },
+        {
+          "answer": "Senior Associate Talent"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Ensure culture is upheld across all teams, more so school teams."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The budget holds and hiring freeze"
+        },
+        {
+          "answer": "My work and my team"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "33",
+      "Response No": "33",
+      "Email ID": "33",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "School-Based Ops"
+        },
+        {
+          "answer": "Ops-IT"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Chanzu Lidaga Darlingtone"
+        },
+        {
+          "answer": "Associate IT"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "The Culture"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "34",
+      "Response No": "34",
+      "Email ID": "34",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Athi River - Support"
+        },
+        {
+          "answer": "Ops-Transport"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Karl Machado"
+        },
+        {
+          "answer": "Bus Assistant Level 1"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "3"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "No"
+        },
+        {
+          "answer": "Staff duties"
+        },
+        {
+          "answer": "Helps me in growing in my career"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Never"
+        },
+        {
+          "answer": "1 Thumb up"
+        },
+        {
+          "answer": "1 Heart"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "35",
+      "Response No": "35",
+      "Email ID": "35",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Girls"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Gladys Njeri Mwaura"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "The Nova culture because it is the driving force."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Nothing in precise."
+        },
+        {
+          "answer": "The growth and the good rapport with colleagues and learners."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "36",
+      "Response No": "36",
+      "Email ID": "36",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Secondary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Sizo Lungelo Chalufu"
+        },
+        {
+          "answer": "Senior Resident Teacher"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "Nova Pioneer is a great place to learn and grow for new teachers. The reason for the 6 is that there seems to be a disconnect between the people in the office and teachers, which puts a lot of extra and unnecessary pressure on teachers."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
           "answer": "Neither Disagree nor Agree"
         },
         {
@@ -59,22 +4157,958 @@
           "answer": "Neither Disagree nor Agree"
         },
         {
-          "answer": "Agree"
+          "answer": "Yes"
         },
         {
           "answer": "Not sure"
         },
         {
-          "answer": "Not sure"
+          "answer": "All the extra teacher admin which takes away valuable time to prepare for lessons and support students."
         },
         {
-          "answer": "The way they represent there culture"
-        },
-        {
-          "answer": "There so honest ad hospitality"
+          "answer": "The continues feedback and teacher development. And support from management."
         },
         {
           "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "3 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "37",
+      "Response No": "37",
+      "Email ID": "37",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "North Riding"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Paula Jeannette Gordon"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Greater together. Support structure is amazing."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The lack of more sports opportunitites for the learners."
+        },
+        {
+          "answer": "The support structure from my coach and school leader"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "38",
+      "Response No": "38",
+      "Email ID": "38",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Global"
+        },
+        {
+          "answer": "Systems and Analytics"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Nicola Jayne Hopwood"
+        },
+        {
+          "answer": "Associate Manager Global Systems and Analytics"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "9"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "The high calibre of person that I get to work with on a daily basis, the amount I am able to learn from them and how challenged I feel to always be growing."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Often there is this sense of impending doom and that many, if not all tasks are usually super time sensitive. I understand that the work we do is fast-paced and requires one to think on their feet but sometimes it would be nice to step back and take more time on each work piece."
+        },
+        {
+          "answer": "The culture, the people and the mission we are aspiring towards. I also feel a genuine sense of being developed and that the org truly cares about its people."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "I am pretty obsessed with my team :) I cannot imagine a group of people who I would get along with better. Our working styles are complementary and I very much enjoy working with them"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": "Meeting our mission is no easy task, I think we are getting there but there is much work to be done :)"
+        }
+      ]
+    },
+    {
+      "Sr No": "39",
+      "Response No": "39",
+      "Email ID": "39",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Girls"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Peruce Andeso Amukoa"
+        },
+        {
+          "answer": "Apprentice Teacher"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Team mates being able to live out the culture principles and working as a team!"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "It\u0027s a place that makes me be able to meet my professional needs"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "40",
+      "Response No": "40",
+      "Email ID": "40",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Sagao Clearance Agevi"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "GLOW: Students are engaging, curious and this makes teaching enjoyable. GROW: My opinion, The process of evaluating teachers\u0027 performance is not data and facts and some times don\u0027t reflect the actual performance."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Process of evaluating and validating teacher performance."
+        },
+        {
+          "answer": "Being in class with the students."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "41",
+      "Response No": "41",
+      "Email ID": "41",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Primary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Harun Wakhungu Nyongesa"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Compensate teammates extra time in school eg during field trip days and during weekend school events."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The shouts, as at times they make those who are not naturally vocal feel demeaned."
+        },
+        {
+          "answer": "Constant and clear communication about meetings, I also love the way principal Christine addresses the members of staff with lots of humility."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "42",
+      "Response No": "42",
+      "Email ID": "42",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu City - Support"
+        },
+        {
+          "answer": "Ops-House Keeping"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Jacob Laanyu Lekarsia"
+        },
+        {
+          "answer": "Assistant Caretaker Level 2"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "Interaction with other teams is not good hence you can greet someone but he or she does not reply because you are in housekeeping and he or she is ateacher or of higher rank than you."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "Culture"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Strongly Disagree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "N/A"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "Sr No": "43",
+      "Response No": "43",
+      "Email ID": "43",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Primary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Lorraine Vongai Dzingire"
+        },
+        {
+          "answer": "Resident"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "n/a"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "I love Nova"
+        },
+        {
+          "answer": "Culture, staff engagement"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "n/a"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": "n/a"
+        }
+      ]
+    },
+    {
+      "Sr No": "44",
+      "Response No": "44",
+      "Email ID": "44",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu City - Support"
+        },
+        {
+          "answer": "Ops-Catering"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Victor Kadenge"
+        },
+        {
+          "answer": "Chef Level 3"
+        },
+        {
+          "answer": "2016"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "I would kindly urge the operation manager to reach as individually.Thankyou."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Some of our request are not met."
+        },
+        {
+          "answer": "We have aunique way of greeting one another(feast bump)and the six culture principals."
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
         },
         {
           "answer": "Strongly Agree"
@@ -89,19 +5123,16 @@
           "answer": "Neutral"
         },
         {
-          "answer": "Strongly Agree"
-        },
-        {
-          "answer": "None"
-        },
-        {
-          "answer": "Often"
+          "answer": "My manager really works hard to support me ,which i feel it adds up value."
         },
         {
           "answer": "Always"
         },
         {
-          "answer": "Often"
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
         },
         {
           "answer": "Always"
@@ -110,10 +5141,712 @@
           "answer": "5 Thumbs up"
         },
         {
-          "answer": "3 Hearts"
+          "answer": "5 Hearts"
         },
         {
-          "answer": "None"
+          "answer": "majority are living the the nova culture."
+        }
+      ]
+    },
+    {
+      "Sr No": "45",
+      "Response No": "45",
+      "Email ID": "45",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Midrand"
+        },
+        {
+          "answer": "Administration"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Jeanine Eleanor Kerr"
+        },
+        {
+          "answer": "Front Office Senior Associate"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "5"
+        },
+        {
+          "answer": "It\u0027s a fair place to work at and the people genuinely want to be here."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "rather not say"
+        },
+        {
+          "answer": "being surrounded by children"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "no"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": "no thanks"
+        }
+      ]
+    },
+    {
+      "Sr No": "46",
+      "Response No": "46",
+      "Email ID": "46",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Ormonde Secondary"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Theuns Jan Opperman"
+        },
+        {
+          "answer": "Senior Resident Afrikaans Teacher"
+        },
+        {
+          "answer": "2018"
+        },
+        {
+          "answer": "8"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Not sure"
+        },
+        {
+          "answer": "I do think, which is something mentioned previously, that in the competitive nature of Private schools, remuneration does affect the turnover rates annually. I also feel we are overloaded with work, and I\u0027m always tired or feeling tired. Perhaps too much doubling up or overlapping of work"
+        },
+        {
+          "answer": "It is a place of growth for me, even though I have been teaching since 2011. It forces us to grow on a daily basis"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "47",
+      "Response No": "47",
+      "Email ID": "47",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu City - Support"
+        },
+        {
+          "answer": "Ops-Transport"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Karl Machado"
+        },
+        {
+          "answer": "Driver Level 1"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "10 - Extremely Likely"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Nova is a great platform for one to grow in his career life"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Nothing, all is good"
+        },
+        {
+          "answer": "It\u0027s a brand that really motivates one to grow in his/her career"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "So far so good,it\u0027s quite motivating"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "5 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": "We as the novanieers we are heading to the goals of achieving and developing in the future"
+        }
+      ]
+    },
+    {
+      "Sr No": "48",
+      "Response No": "48",
+      "Email ID": "48",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Tatu Boys"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Tobias Otieno Obura"
+        },
+        {
+          "answer": "Dorm Father"
+        },
+        {
+          "answer": "2019"
+        },
+        {
+          "answer": "6"
+        },
+        {
+          "answer": "The culture of the work place works with people if people do not want to embrace it then the people view teammates as sticks in the mud."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "The respect of the culture principles as working life principles not just theories to read and memorize"
+        },
+        {
+          "answer": "The open working space to express and unlock the potential of others and self."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Infrequently"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "49",
+      "Response No": "49",
+      "Email ID": "49",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "Kenya"
+        },
+        {
+          "answer": "Network KE"
+        },
+        {
+          "answer": "Ops-Transport"
+        },
+        {
+          "answer": "Manager"
+        },
+        {
+          "answer": "Antony Mwai Gatandi"
+        },
+        {
+          "answer": "Transport Manager"
+        },
+        {
+          "answer": "2017"
+        },
+        {
+          "answer": "9"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Strongly Agree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Some small things that need priority are overlooked. An example is property maintenance."
+        },
+        {
+          "answer": "I like that my manager has confidence in my functionality abilities and gives me room to work with minimal supervision while holding me to account."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Always"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "4 Thumbs up"
+        },
+        {
+          "answer": "5 Hearts"
+        },
+        {
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "Sr No": "50",
+      "Response No": "50",
+      "Email ID": "50",
+      "Participation Time": "1/24/2021 06:35 PM",
+      "IP Address": "--",
+      "Answer": [
+        {
+          "answer": "South Africa"
+        },
+        {
+          "answer": "Midrand"
+        },
+        {
+          "answer": "Teaching Staff"
+        },
+        {
+          "answer": "Non Manager"
+        },
+        {
+          "answer": "Jeanine Eleanor Kerr"
+        },
+        {
+          "answer": "Resident Teacher"
+        },
+        {
+          "answer": "2020"
+        },
+        {
+          "answer": "5"
+        },
+        {
+          "answer": "I think the only difficult part is being assessed by someone who victimizes you and constantly finds fault. You feel demotivated and undermined."
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": ""
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neither Disagree nor Agree"
+        },
+        {
+          "answer": "Disagree"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Yes"
+        },
+        {
+          "answer": "Being assessed by a manager who victimizes and undermines you. As well as, the extra admin, like weekly opportunities etc."
+        },
+        {
+          "answer": "The fun, the learners, the learning design assistance."
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Agree"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "Neutral"
+        },
+        {
+          "answer": "I enjoy the team I work with. My apprentice and co-teacher and I get along very well and work well together."
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Sometimes"
+        },
+        {
+          "answer": "Often"
+        },
+        {
+          "answer": "3 Thumbs up"
+        },
+        {
+          "answer": "4 Hearts"
+        },
+        {
+          "answer": "The culture principles are good guidelines for what is expected at the school."
         }
       ]
     }

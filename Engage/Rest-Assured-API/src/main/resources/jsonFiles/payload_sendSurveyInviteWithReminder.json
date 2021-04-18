@@ -1,0 +1,36 @@
+{
+  "token": "10102e31-b69e-4f66-a511-3d21f2241f09",
+  "intsurveyno": "378",
+  "additionalinfo": {
+    "Attributes": [
+      {
+        "Email": "tguru3196@gmail.com",
+        "Attribute1": "Gaurav",
+        "Attribute2": "Golatkar",
+        "Attribute3": "tguru3196@gmail.com"
+      },
+      {
+        "Email": "testing_gg@outlook.com",
+        "Attribute1": "Gaurav",
+        "Attribute2": "Golatkar",
+        "Attribute3": "testing_gg@outlook.com"
+      }
+    ],
+    "Mapping": {
+      "isPrepop": "true",
+      "Map_Attribute3_to": "1"
+    },
+    "MailMergeMapping": {
+      "isMailMerge": "true",
+      "Map_MailMerge_Attribute1_to": "1",
+      "Map_MailMerge_Attribute2_to": "2"
+    },
+    "EmailTemplate": {
+      "TemplateName": "Send Invite Via API"
+    },
+    "InvitationExpiry": {
+      "Days": "10"
+    }
+  },
+  "inthour": "1"
+}

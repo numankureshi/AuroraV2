@@ -27,6 +27,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -817,12 +818,20 @@ public class SogoPerformance_TC extends SuiteBase {
 		testSkip = false;
 	}
 
+	@AfterClass(alwaysRun = true)
+	public void afterClass() {
+		System.out.println("After Class Method");
+		SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
+		SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
+		SuiteUtility.WriteResultUtility2(filePath, sheetName, "TimeLoad", LoadTime);
+	}
+
 	@AfterSuite(alwaysRun = true)
 	public void afterSuite() {
 		
-			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
-			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
-			SuiteUtility.WriteResultUtility2(filePath, sheetName, "TimeLoad", LoadTime);
+//			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
+//			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
+//			SuiteUtility.WriteResultUtility2(filePath, sheetName, "TimeLoad", LoadTime);
 			extent.flush();
 			fetchExcelData.reportLog("Sogo_Performance", "Report", "xlsx");
 		

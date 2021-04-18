@@ -1,0 +1,25 @@
+{
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "testsogo31@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "bcctestg@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "qaprodtest3196@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "tguru3196@rediffmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}

@@ -1,32 +1,48 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="SogoPerformance" parallel="tests" thread-count="2">
+<suite name="SogoPerformance" parallel="tests" thread-count="1">
 	<listeners>
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 		<listener
 			class-name="org.uncommons.reportng.JUnitXMLReporter" />
 	</listeners>
 
-	<test name="Platform">
+<!-- 	<test name="Platform"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="Platform" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.performance.SogoPerformance_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Static"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="Static" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.performance.SogoPerformance_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+
+	<test name="Platform Readings">
 		<groups>
 			<run>
-				<include name="Platform" />
+				<include name="Reports" />
 			</run>
 		</groups>
 		<classes>
-			<class name="com.sogo.performance.SogoPerformance_TC" />
+			<class name="com.sogo.performance.SogoPlatformReadings_TC" />
+			<parameter name="PlatformReadings_TC1" value="Bar Graph Report"></parameter>
+			<parameter name="PlatformReadings_TC2" value="Response Table Report"></parameter>
+			<parameter name="PlatformReadings_TC3" value="Individual Report"></parameter>
 		</classes>
 	</test>
 	
-	<test name="Static">
-		<groups>
-			<run>
-				<include name="Static" />
-			</run>
-		</groups>
-		<classes>
-			<class name="com.sogo.performance.SogoPerformance_TC" />
-		</classes>
-	</test>
 
 </suite>

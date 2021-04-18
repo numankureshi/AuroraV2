@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" parallel="tests" name="Failed suite [SoGoAPI]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test thread-count="1" parallel="tests" name="Send email Reminders to non-participants.(failed)">
+    <groups>
+      <run>
+        <include name="sendSurveyReminder API"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.sogo.api.API_TC">
+        <methods>
+          <include name="API_TC17" invocation-numbers="0"/>
+          <include name="reporterDataResults"/>
+          <include name="API_TC19" invocation-numbers="0"/>
+          <include name="API_TC18" invocation-numbers="0"/>
+          <include name="setUp"/>
+          <include name="afterSuite"/>
+        </methods>
+      </class> <!-- com.sogo.api.API_TC -->
+    </classes>
+  </test> <!-- Send email Reminders to non-participants.(failed) -->
+</suite> <!-- Failed suite [SoGoAPI] -->

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -14,6 +15,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -303,6 +305,44 @@ public class SeleniumUtils {
 			Add_Log.info(ele.getName() + "is not present on page.");
 			Reporter.log(ele.getName() + "is not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| " + ele.getName() + "is not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+
+		}
+	}
+	
+	public void waitForElementToBeVisible(WebDriver driver, String testcaseName, WebElement element, String name, int timeOutInSeconds, int pollingEveryInMilliSec, ExtentTest test) {
+		try {
+			Wait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(timeOutInSeconds))
+					.pollingEvery(Duration.ofMillis(pollingEveryInMilliSec)).ignoring(NoSuchElementException.class);
+			fWait.until(ExpectedConditions.visibilityOf(element));
+			test.log(Status.INFO, "Successfully waited for " + name + " to be present on page.");
+			Add_Log.info("Successfully waited for " + name + " to be present on page.");
+			Reporter.log("Successfully waited for " + name + " to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, name + "is not present on page.");
+			Add_Log.info(name + "is not present on page.");
+			Reporter.log(name + "is not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| " + name + "is not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+
+		}
+	}
+	
+	public void waitForElementToBeVisible(WebDriver driver, String testcaseName, By by, String name, int timeOutInSeconds, int pollingEveryInMilliSec, ExtentTest test) {
+		try {
+			Wait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(timeOutInSeconds))
+					.pollingEvery(Duration.ofMillis(pollingEveryInMilliSec)).ignoring(NoSuchElementException.class);
+			fWait.until(ExpectedConditions.visibilityOfElementLocated(by));
+			test.log(Status.INFO, "Successfully waited for " + name + " to be present on page.");
+			Add_Log.info("Successfully waited for " + name + " to be present on page.");
+			Reporter.log("Successfully waited for " + name + " to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, name + "is not present on page.");
+			Add_Log.info(name + "is not present on page.");
+			Reporter.log(name + "is not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| " + name + "is not present on page.");
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 
@@ -950,5 +990,34 @@ public class SeleniumUtils {
 		}
 
 	}
+	
+	
+	public void selectByVisibleText(WebDriver driver, String testcaseName, WebPageElements ele, String visibleText,
+			ExtentTest test) {
+		Select select = new Select(getWebElement(driver, testcaseName, ele, test));
+		List<WebElement> listOfOptions = select.getOptions();
+		String selValue = null;
+		try {
+			for (WebElement option : listOfOptions) {
+				String optionText = Jsoup.parse(option.getAttribute("innerHTML")).text();
+				if (optionText.contains(visibleText)) {
+					selValue = option.getAttribute("value");
+					break;
+				}
+				select.selectByValue(selValue);
+				Add_Log.info("Successfully selected option containing text "+visibleText);
+				test.log(Status.INFO, "Successfully selected option containing text "+visibleText);
+				Reporter.log("Successfully selected option containing text "+visibleText);
+			}
+		} catch (NullPointerException e) {
+			test.log(Status.FAIL, "Did not find the option containing text "+visibleText);
+			Add_Log.info("Did not find the option containing text "+visibleText);
+			Reporter.log("Did not find the option containing text "+visibleText);
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+
 
 }

@@ -20,7 +20,7 @@
 			"Map_MailMerge_Attribute2_to": "2"
 		},
 		"EmailTemplate": {
-			"TemplateName": "Gaurav - Automation (Email Template)"
+			"TemplateName": "Send Invite Via API"
 		},
 		"InvitationExpiry": {
 			"Days": "10"

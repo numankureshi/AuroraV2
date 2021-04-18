@@ -1,11 +1,4 @@
-2020-09-29 21:03:54,427 - rootLogger - INFO - Excel file initialized successfully.
-2020-09-29 21:03:54,427 - rootLogger - INFO - Excel file initialized successfully.
-2020-09-29 21:03:54,430 - rootLogger - INFO - Config.properties file Loaded successfully.
-2020-09-29 21:03:54,431 - rootLogger - INFO - Config.properties file Loaded successfully.
-2020-09-29 21:03:54,573 - rootLogger - INFO - Performance_TC3 is SKIPPED.
-2020-09-29 21:03:58,755 - rootLogger - INFO - Chrome Driver instance loaded successfully.
-2020-09-29 21:04:04,296 - rootLogger - INFO - Successfully waited for Login Button Static to be present on page.
-2020-09-29 21:04:04,297 - rootLogger - INFO - Performance_TC1 is PASSED.
-2020-09-29 21:04:05,235 - rootLogger - INFO - Performance_TC2 is SKIPPED.
-2020-09-29 21:04:05,320 - rootLogger - INFO - Performance_TC4 is SKIPPED.
-2020-09-29 21:04:05,400 - rootLogger - INFO - Performance_TC5 is SKIPPED.
+2021-04-04 10:34:08,007 - rootLogger - INFO - Excel file initialized successfully.
+2021-04-04 10:34:08,009 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-04-04 10:34:08,284 - rootLogger - INFO - PlatformReadings_TC1 is SKIPPED.
+2021-04-04 10:34:08,465 - rootLogger - INFO - PlatformReadings_TC2 is SKIPPED.

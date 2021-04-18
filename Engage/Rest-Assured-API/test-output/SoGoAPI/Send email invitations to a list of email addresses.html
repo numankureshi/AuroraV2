@@ -1,0 +1,181 @@
+<html>
+<head>
+<title>TestNG:  Send email invitations to a list of email addresses</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Send email invitations to a list of email addresses</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>3/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Jan 26 13:13:40 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>225 seconds (225893 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>sendSurveyInvite API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC10()'><b>API_TC10</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC10, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInvite() API, Test_Description=sendSurveyInvite() API - Send invitation of active assessment., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=, Failure Reason=, surveyNo=378, surveyTitle=Quiz, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Automation sendsurvey invite template, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInvite}<br/>
+<a href="#Output-250032941" onClick='toggleBox("Output-250032941", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-250032941" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-250032941">
+Test description : <b>sendSurveyInvite() API - Send invitation of active assessment.</b><br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Tue Jan 26 13:13:46 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWXsSTXPXVPQRsP</b>.<br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Tue Jan 26 13:13:46 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWXsSTXPXVPQYsP</b>.<br/>
+Invitation of Survey ID 378 were sent successfully to  : '2' participants. They are as follows : <br/> <b>[testing_gg@outlook.com, tguru3196@gmail.com]</b><br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Quiz in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+</div>
+</td>
+<td></td>
+<td>70</td>
+<td>com.sogo.api.API_TC@6ab778a</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC11()'><b>API_TC11</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC11, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInvite() API, Test_Description=sendSurveyInvite() API - Send invitation of active CX survey, ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=, Failure Reason=, surveyNo=379, surveyTitle=Annual Customer Satisfaction Survey, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Automation sendsurvey invite template, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInvite}<br/>
+<a href="#Output-296429835" onClick='toggleBox("Output-296429835", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-296429835" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-296429835">
+Test description : <b>sendSurveyInvite() API - Send invitation of active CX survey</b><br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Tue Jan 26 13:14:56 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWYsSTXPXVPTPsP</b>.<br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Tue Jan 26 13:14:56 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWYsSTXPXVPTWsP</b>.<br/>
+Invitation of Survey ID 379 were sent successfully to  : '2' participants. They are as follows : <br/> <b>[testing_gg@outlook.com, tguru3196@gmail.com]</b><br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Annual Customer Satisfaction Survey in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+</div>
+</td>
+<td></td>
+<td>75</td>
+<td>com.sogo.api.API_TC@6ab778a</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC9()'><b>API_TC9</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC9, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInvite() API, Test_Description=sendSurveyInvite() API - Send invitation of active survey., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "Description": "2"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 07:22:52 GMT, Content-Length=155], Failure Reason= Assertion error occured in :Email invitation sent from API are not found in TrackSurvey!! expected [[testing_gg@outlook.com] but found [testing_gg@outlook.com], surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Automation sendsurvey invite template, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInvite}<br/>
+<a href="#Output-1125254621" onClick='toggleBox("Output-1125254621", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1125254621" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1125254621">
+Test description : <b>sendSurveyInvite() API - Send invitation of active survey.</b><br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Tue Jan 26 13:16:12 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWWsSTXPXVPVXsP</b>.<br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Tue Jan 26 13:16:12 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWWsSTXPXVPWUsP</b>.<br/>
+Invitation of Survey ID 377 were sent successfully to  : '2' participants. They are as follows : <br/> <b>[testing_gg@outlook.com, tguru3196@gmail.com]</b><br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+</div>
+</td>
+<td></td>
+<td>76</td>
+<td>com.sogo.api.API_TC@6ab778a</td></tr>
+</table><p>
+</body>
+</html>

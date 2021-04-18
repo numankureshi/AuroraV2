@@ -1,0 +1,15 @@
+{
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "tguru3196@gmail.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "testing_gg@outlook.com",
+            "Status": "Success",
+            "Message": null
+        }
+    ]
+}

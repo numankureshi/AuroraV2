@@ -1,0 +1,64 @@
+{
+  "Table": [
+    {
+      "Email": "tguru3196@gmail.com",
+      "Original Invitation Date": "26-1-2021 03:09 PM",
+      "Number of Reminders Sent": "1",
+      "First Reminder Sent Date": "26-1-2021 04:09 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Original Invitation Date": "26-1-2021 03:09 PM",
+      "Number of Reminders Sent": "1",
+      "First Reminder Sent Date": "26-1-2021 04:09 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Original Invitation Date": "26-1-2021 01:14 PM",
+      "Number of Reminders Sent": "0",
+      "First Reminder Sent Date": "--"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Original Invitation Date": "26-1-2021 01:14 PM",
+      "Number of Reminders Sent": "0",
+      "First Reminder Sent Date": "--"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Original Invitation Date": "26-1-2021 10:21 AM",
+      "Number of Reminders Sent": "0",
+      "First Reminder Sent Date": "--"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Original Invitation Date": "26-1-2021 10:21 AM",
+      "Number of Reminders Sent": "0",
+      "First Reminder Sent Date": "--"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Original Invitation Date": "16-1-2021 05:02 PM",
+      "Number of Reminders Sent": "2",
+      "First Reminder Sent Date": "16-1-2021 06:02 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Original Invitation Date": "16-1-2021 05:02 PM",
+      "Number of Reminders Sent": "2",
+      "First Reminder Sent Date": "16-1-2021 06:02 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Original Invitation Date": "16-1-2021 04:16 PM",
+      "Number of Reminders Sent": "0",
+      "First Reminder Sent Date": "--"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Original Invitation Date": "16-1-2021 04:16 PM",
+      "Number of Reminders Sent": "0",
+      "First Reminder Sent Date": "--"
+    }
+  ]
+}

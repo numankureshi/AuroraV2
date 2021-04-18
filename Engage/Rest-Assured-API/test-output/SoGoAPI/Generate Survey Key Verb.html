@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>TestNG:  Generate Survey Key Verb</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Generate Survey Key Verb</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>5/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Sun Jan 17 09:00:16 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>156 seconds (156898 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>generateSurveyKey API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC21()'><b>API_TC21</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC21, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=generateSurveyKey() API, Test_Description=generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an active survey., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sat, 16 Jan 2021 17:38:43 GMT, Content-Length=196], Failure Reason= Assertion error occured in :Survey password generated from API is not found in track survey!! expected [961521340] but found [144190863], surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=Y, isUniquePassword=Y, inthour=, surveyKeyURL=SoGoSurveyHealthCheckAndSurveyID377, passwordtype=single, expirydays=7, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/generateSurveyKey}<br/>
+<a href="#Output-984722724" onClick='toggleBox("Output-984722724", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-984722724" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-984722724">
+Test description : <b>generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an active survey.</b><br/>
+You have successfully generated 2 Survey Password(s). They are as follows <b>[936614403, 343200780]</b>.<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+Successfully clicked on Track Survey - Select channel dropdown element.<br/>
+Successfully waited for Track Survey - Channel list to be present on page.<br/>
+Successfully clicked on Track Survey - Survey Password channel element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+<b>936614403</b> has been validated from track survey which is generated on <b>17-1-2021 09:00 AM</b> with survey URL :<b>https://survey.sogosurvey.com/p/SoGoSurveyHealthCheckAndSurveyID377</b><br/>
+<b>343200780</b> has been validated from track survey which is generated on <b>17-1-2021 09:00 AM</b> with survey URL :<b>https://survey.sogosurvey.com/p/SoGoSurveyHealthCheckAndSurveyID377</b><br/>
+</div>
+</td>
+<td></td>
+<td>53</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC22()'><b>API_TC22</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC22, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=generateSurveyKey() API, Test_Description=generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an active assessment, ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 02:46:42 GMT, Content-Length=196], Failure Reason= Error received in API response : {
+    "Status": "Success",
+    "Description": "No password left after removing duplicates and existing password"
+}, surveyNo=378, surveyTitle=Quiz, isSurveyActive=Y, isUniquePassword=Y, inthour=, surveyKeyURL=QuizAndSurveyID378, passwordtype=single, expirydays=7, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/generateSurveyKey}<br/>
+<a href="#Output-800420839" onClick='toggleBox("Output-800420839", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-800420839" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-800420839">
+Test description : <b>generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an active assessment</b><br/>
+You have successfully generated 2 Survey Password(s). They are as follows <b>[130010230, 950115612]</b>.<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Quiz in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+Successfully clicked on Track Survey - Select channel dropdown element.<br/>
+Successfully waited for Track Survey - Channel list to be present on page.<br/>
+Successfully clicked on Track Survey - Survey Password channel element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+<b>130010230</b> has been validated from track survey which is generated on <b>17-1-2021 09:01 AM</b> with survey URL :<b>https://survey.sogosurvey.com/p/QuizAndSurveyID378</b><br/>
+<b>950115612</b> has been validated from track survey which is generated on <b>17-1-2021 09:01 AM</b> with survey URL :<b>https://survey.sogosurvey.com/p/QuizAndSurveyID378</b><br/>
+</div>
+</td>
+<td></td>
+<td>46</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC23()'><b>API_TC23</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC23, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=generateSurveyKey() API, Test_Description=generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an active CX survey., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sat, 16 Jan 2021 17:47:06 GMT, Content-Length=196], Failure Reason= Error received in API response : {
+    "Status": "Success",
+    "Description": "No password left after removing duplicates and existing password"
+}, surveyNo=379, surveyTitle=Annual Customer Satisfaction Survey, isSurveyActive=Y, isUniquePassword=Y, inthour=, surveyKeyURL=AnnualCustomerSatisfactionSurveyAndSurveyID379, passwordtype=single, expirydays=7, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/generateSurveyKey}<br/>
+<a href="#Output-561346984" onClick='toggleBox("Output-561346984", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-561346984" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-561346984">
+Test description : <b>generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an active CX survey.</b><br/>
+You have successfully generated 2 Survey Password(s). They are as follows <b>[410134553, 453948129]</b>.<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Annual Customer Satisfaction Survey in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+Successfully clicked on Track Survey - Select channel dropdown element.<br/>
+Successfully waited for Track Survey - Channel list to be present on page.<br/>
+Successfully clicked on Track Survey - Survey Password channel element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+<b>410134553</b> has been validated from track survey which is generated on <b>17-1-2021 09:02 AM</b> with survey URL :<b>https://survey.sogosurvey.com/p/AnnualCustomerSatisfactionSurveyAndSurveyID379</b><br/>
+<b>453948129</b> has been validated from track survey which is generated on <b>17-1-2021 09:02 AM</b> with survey URL :<b>https://survey.sogosurvey.com/p/AnnualCustomerSatisfactionSurveyAndSurveyID379</b><br/>
+</div>
+</td>
+<td></td>
+<td>50</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC24()'><b>API_TC24</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC24, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=generateSurveyKey() API, Test_Description=generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an expired survey., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "Description": "Survey Expired."
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 03:21:36 GMT, Content-Length=165], Failure Reason=, surveyNo=321, surveyTitle=Anonymous survey for API, isSurveyActive=N, isUniquePassword=Y, inthour=, surveyKeyURL=AnonymoussurveyforAPIAndSurveyID321, passwordtype=single, expirydays=7, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/generateSurveyKey}<br/>
+<a href="#Output-704276202" onClick='toggleBox("Output-704276202", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-704276202" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-704276202">
+Test description : <b>generateSurveyKey() API - Generate survey passwords required for accessing survey participation of an expired survey.</b><br/>
+Survey is expired. Hence, survey passwords can't be generated.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC25()'><b>API_TC25</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC25, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=generateSurveyKey() API, Test_Description=generateSurveyKey() API - Validate uniqueness survey password for an active survey., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "Description": "No password left after removing duplicates and existing password"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sun, 17 Jan 2021 03:26:14 GMT, Content-Length=200], Failure Reason= Error received in API response : {
+    "Status": "Success",
+    "Description": "No password left after removing duplicates and existing password"
+}, surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=Y, isUniquePassword=N, inthour=, surveyKeyURL=SoGoSurveyHealthCheckAndSurveyID377, passwordtype=single, expirydays=7, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/generateSurveyKey}<br/>
+<a href="#Output-1390068819" onClick='toggleBox("Output-1390068819", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1390068819" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1390068819">
+Test description : <b>generateSurveyKey() API - Validate uniqueness survey password for an active survey.</b><br/>
+Duplicate survey passwords found for given baseurl <b>SoGoSurveyHealthCheckAndSurveyID377</b>. <br/> And passwords used here are : <b>[000000002, 000000001]</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+</table><p>
+</body>
+</html>

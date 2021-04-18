@@ -294,9 +294,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoadAttach(driver, testcaseName, 60, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]"), param.get("emailtemplate"), test);
-		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]/following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@class='header' and text()='"+ param.get("emailtemplate") +"']/following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		WebElement emailTemplate = driver.findElement(By.xpath("(//div[@class='header' and text()='"+ param.get("emailtemplate") +"']/following::div[@class='middle-content'])[1]"));
 		Actions action = new Actions(driver);
-		action.moveToElement(driver.findElement(By.xpath("(//div[@class='header' and contains(text(),'"+ param.get("emailtemplate") +"')]/following::div[@class='middle-content'])[1]"))).build().perform();
+		action.moveToElement(driver.findElement(By.xpath("(//div[@class='header' and text()='"+ param.get("emailtemplate") +"']/following::div[@class='middle-content'])[1]"))).build().perform();
 		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, edit_button, test);
 		click(driver, testcaseName, edit_button, test);

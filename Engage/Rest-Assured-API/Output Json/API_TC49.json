@@ -1,0 +1,520 @@
+{
+    "Data": {
+        "Questions": [
+            {
+                "QuestionNum": "1",
+                "QuestionText": "Please provide your email address.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "2",
+                "QuestionText": "How are you feeling?",
+                "AnswerOption": [
+                    "Unwell",
+                    "Okay",
+                    "Good"
+                ]
+            },
+            {
+                "QuestionNum": "3(a)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Bluish lips or face",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(b)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Chest pain",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(c)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Difficulty breathing",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(d)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Dizziness or disorientation",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(e)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Seizures",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "3(f)",
+                "QuestionText": "Have you been experiencing any of the following severe symptoms? | Other",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "4",
+                "QuestionText": "Please specify.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "5(a)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Fever or chills",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(b)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Cough",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(c)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Shortness of breath",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(d)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Fatigue",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(e)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Muscle aches",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(f)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Headache",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(g)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | New loss of taste or smell",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(h)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Sore throat",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(i)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Congestion or runny nose",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(j)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Nausea or vomiting",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(k)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Diarrhea",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "5(l)",
+                "QuestionText": "Are you currently experiencing any of the following symptoms? | Other",
+                "AnswerOption": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            {
+                "QuestionNum": "6",
+                "QuestionText": "Please specify.",
+                "AnswerOption": [
+                    null
+                ]
+            },
+            {
+                "QuestionNum": "7",
+                "QuestionText": "Within the past two weeks, have you had contact with anyone diagnosed with COVID-19?",
+                "AnswerOption": [
+                    "Yes",
+                    "No",
+                    "I don't know"
+                ]
+            },
+            {
+                "QuestionNum": "8",
+                "QuestionText": "Please explain.",
+                "AnswerOption": [
+                    null
+                ]
+            }
+        ],
+        "Responses": [
+            {
+                "SrNO": "1",
+                "ResponseNum": "1",
+                "EmailID": "Anonymous",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "Anonymous",
+                "StartTime": "12/28/2020 09:31 AM",
+                "EndTime": "12/28/2020 09:33 AM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Okay"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "No"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            },
+            {
+                "SrNO": "2",
+                "ResponseNum": "2",
+                "EmailID": "Anonymous",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "Anonymous",
+                "StartTime": "12/28/2020 09:33 AM",
+                "EndTime": "12/28/2020 09:34 AM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Unwell"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "Yes"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            },
+            {
+                "SrNO": "3",
+                "ResponseNum": "3",
+                "EmailID": "Anonymous",
+                "ParticipationStatus": "Completed",
+                "IPAddress": "Anonymous",
+                "StartTime": "12/28/2020 09:34 AM",
+                "EndTime": "12/28/2020 09:34 AM",
+                "AnswerSet": [
+                    {
+                        "QuestionNum": "1",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "2",
+                        "answer": "Unwell"
+                    },
+                    {
+                        "QuestionNum": "3(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "3(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "4",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(a)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(b)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(c)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(d)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(e)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(f)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(g)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(h)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(i)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(j)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(k)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "5(l)",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "6",
+                        "answer": ""
+                    },
+                    {
+                        "QuestionNum": "7",
+                        "answer": "I don't know"
+                    },
+                    {
+                        "QuestionNum": "8",
+                        "answer": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "Status": "Success"
+}

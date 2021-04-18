@@ -1,0 +1,297 @@
+<html>
+<head>
+<title>TestNG:  Update and add new records within existing list.</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Update and add new records within existing list.</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Sat Jan 30 17:32:20 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>203 seconds (203309 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>updateContactList API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC51()'><b>API_TC51</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC51, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=updateContactList() API, Test_Description=updateContactList() API - Update contact list., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sat, 30 Jan 2021 08:57:06 GMT, Content-Length=168], Failure Reason=, surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=ggolatkar@zarca.com,testing_gg@outlook.com,bcctestg@gmail.com,ksingh@zarca.com,rkhandelwal@zarca.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=Gaurav - Automation Update Contact List, intoperationtype=2, numberOfContact=, isallowduplicate=FALSE, ContactListHeaderFields=Email Address,Salutation,First Name,Last Name, upsertAction=, path=serviceAPI/service/updateContactList}<br/>
+<a href="#Output-644301710" onClick='toggleBox("Output-644301710", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-644301710" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-644301710">
+Test description : <b>updateContactList() API - Update contact list.</b><br/>
+Records have been updated successfully<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully waited for Contact Lists to be present on page.<br/>
+Successfully clicked on Contact Lists element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Create New to be present on page.<br/>
+Successfully entered Gaurav - Automation Update Contact List in Search Contact Lists textbox.<br/>
+Successfully clicked on Search Contact Lists Icon element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Gaurav - Automation Update Contact List to be present on page.<br/>
+Successfully clicked on Gaurav - Automation Update Contact List element.<br/>
+Successfully clicked on View/Modify Contact Lists Button element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Contact Lists - Total Record Field to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Data has been successfully validated for Email Address : <b>ggolatkar@zarca.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>testing_gg@outlook.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>bcctestg@gmail.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>ksingh@zarca.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>rkhandelwal@zarca.com</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>54</td>
+<td>com.sogo.api.API_TC@1dac5ef</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC52()'><b>API_TC52</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC52, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=updateContactList() API, Test_Description=updateContactList() API - Insert Unique email address in contact list., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sat, 30 Jan 2021 10:01:47 GMT, Content-Length=169], Failure Reason=, surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=Gaurav - Automation Add Contact List, intoperationtype=1, numberOfContact=5, isallowduplicate=FALSE, ContactListHeaderFields=Email Address,Salutation,First Name,Last Name, upsertAction=, path=serviceAPI/service/updateContactList}<br/>
+<a href="#Output-244596089" onClick='toggleBox("Output-244596089", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-244596089" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-244596089">
+Test description : <b>updateContactList() API - Insert Unique email address in contact list.</b><br/>
+Records have been insered successfully<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully waited for Contact Lists to be present on page.<br/>
+Successfully clicked on Contact Lists element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Create New to be present on page.<br/>
+Successfully entered Gaurav - Automation Add Contact List in Search Contact Lists textbox.<br/>
+Successfully clicked on Search Contact Lists Icon element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Gaurav - Automation Add Contact List to be present on page.<br/>
+Successfully clicked on Gaurav - Automation Add Contact List element.<br/>
+Successfully clicked on View/Modify Contact Lists Button element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Contact Lists - Total Record Field to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Data has been successfully validated for Email Address : <b>zJUInNjOWk@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>gGqHS24tto@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>h73gNeeEKG@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>hzslFt9Mgy@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>OI3ZQhCFQY@email.com</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>49</td>
+<td>com.sogo.api.API_TC@1dac5ef</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC53()'><b>API_TC53</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC53, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=updateContactList() API, Test_Description=updateContactList() API - Update contact list using upsert., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "Description": "Upsert successful."
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sat, 30 Jan 2021 11:03:31 GMT, Content-Length=166], Failure Reason=, surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=ggolatkar@zarca.com,testing_gg@outlook.com,bcctestg@gmail.com,ksingh@zarca.com,rkhandelwal@zarca.com, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=Gaurav - Automation Update Contact List, intoperationtype=3, numberOfContact=, isallowduplicate=FALSE, ContactListHeaderFields=Email Address,Salutation,First Name,Last Name, upsertAction=Update, path=serviceAPI/service/updateContactList}<br/>
+<a href="#Output-1437085713" onClick='toggleBox("Output-1437085713", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1437085713" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1437085713">
+Test description : <b>updateContactList() API - Update contact list using upsert.</b><br/>
+Records have been updated successfully<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully waited for Contact Lists to be present on page.<br/>
+Successfully clicked on Contact Lists element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Create New to be present on page.<br/>
+Successfully entered Gaurav - Automation Update Contact List in Search Contact Lists textbox.<br/>
+Successfully clicked on Search Contact Lists Icon element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Gaurav - Automation Update Contact List to be present on page.<br/>
+Successfully clicked on Gaurav - Automation Update Contact List element.<br/>
+Successfully clicked on View/Modify Contact Lists Button element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Contact Lists - Total Record Field to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Data has been successfully validated for Email Address : <b>ggolatkar@zarca.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>testing_gg@outlook.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>bcctestg@gmail.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>ksingh@zarca.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>rkhandelwal@zarca.com</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>44</td>
+<td>com.sogo.api.API_TC@1dac5ef</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC54()'><b>API_TC54</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC54, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=updateContactList() API, Test_Description=updateContactList() API - Insert Unique email address in contact list by using upsert., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "Description": "Upsert successful."
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Sat, 30 Jan 2021 10:44:29 GMT, Content-Length=166], Failure Reason=, surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=Gaurav - Automation Add Contact List, intoperationtype=3, numberOfContact=5, isallowduplicate=FALSE, ContactListHeaderFields=Email Address,Salutation,First Name,Last Name, upsertAction=, path=serviceAPI/service/updateContactList}<br/>
+<a href="#Output-639064177" onClick='toggleBox("Output-639064177", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-639064177" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-639064177">
+Test description : <b>updateContactList() API - Insert Unique email address in contact list by using upsert.</b><br/>
+Records have been updated successfully<br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Publish Icon to be present on page.<br/>
+Successfully clicked on Publish Icon element.<br/>
+Successfully waited for Quick send button to be present on page.<br/>
+Successfully waited for Contact Lists to be present on page.<br/>
+Successfully clicked on Contact Lists element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Create New to be present on page.<br/>
+Successfully entered Gaurav - Automation Add Contact List in Search Contact Lists textbox.<br/>
+Successfully clicked on Search Contact Lists Icon element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Gaurav - Automation Add Contact List to be present on page.<br/>
+Successfully clicked on Gaurav - Automation Add Contact List element.<br/>
+Successfully clicked on View/Modify Contact Lists Button element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Contact Lists - Total Record Field to be present on page.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Data has been successfully validated for Email Address : <b>TNjcGPRiiE@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>MKGXrIVPKC@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>qdt4zr9xRX@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>zWlHrtwhaF@email.com</b>.<br/>
+Data has been successfully validated for Email Address : <b>SniTh3oB6m@email.com</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>51</td>
+<td>com.sogo.api.API_TC@1dac5ef</td></tr>
+</table><p>
+</body>
+</html>

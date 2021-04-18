@@ -8,8 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>Rest-Assured-API</artifactId>
-  <name>Rest-Assured-API</name>
-  <url>http://maven.apache.org</url>
+
   
   <properties>
 	<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>

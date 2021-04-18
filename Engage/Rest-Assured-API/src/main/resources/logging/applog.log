@@ -1,0 +1,7 @@
+2021-03-18 17:32:11,072 - rootLogger - INFO - Excel file initialized successfully.
+2021-03-18 17:32:11,076 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-03-18 17:32:15,161 - rootLogger - INFO - Unexpected error occured : {
+    "Status": "Error",
+    "Description": "Invalid Token"
+}
+2021-03-18 17:32:15,167 - rootLogger - INFO - API_TC50 is FAILED.

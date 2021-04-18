@@ -1,0 +1,245 @@
+<html>
+<head>
+<title>TestNG:  Obtain the multi-use link of a survey.</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Obtain the multi-use link of a survey.</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>7/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Jan 26 10:26:52 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>15 seconds (15643 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>getSurveyURL API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC4()'><b>API_TC4</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC4, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of a Poll., ExpectedResult=https://www.sogosurvey.com/poll/PQP.aspx?pollKey=PTYw808FE%2fDaaPnVjCte%2fg%3d%3d, Pass/Fail/Skip=FAIL, statusCode=--, respData=--, headerList=--, Failure Reason= Assertion error occured : Survye URL received in API is wrong expected [https://www.sogosurvey.com/poll/PQP.aspx?pollKey=PTYw808FE%2fDaaPnVjCte%2fg%3d%3d] but found [https://survey.sogosurvey.com/r/AzfvDW], surveyNo=6, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-1926145598" onClick='toggleBox("Output-1926145598", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1926145598" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1926145598">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of a Poll.</b><br/>
+Assertion error occured : Survye URL received in API is wrong expected [https://www.sogosurvey.com/poll/PQP.aspx?pollKey=PTYw808FE%2fDaaPnVjCte%2fg%3d%3d] but found [https://survey.sogosurvey.com/r/AzfvDW]<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: null
+	at pageobjects.APIs.getSurveyURL(APIs.java:113)
+	at com.sogo.api.API_TC.API_TC4(API_TC.java:256)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1926145598", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1926145598'><pre>java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.fail(Assert.java:103)
+	at pageobjects.APIs.getSurveyURL(APIs.java:113)
+	at com.sogo.api.API_TC.API_TC4(API_TC.java:256)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:40)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:489)
+	at org.testng.internal.thread.ThreadUtil$1.call(ThreadUtil.java:52)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+</pre></div></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC1()'><b>API_TC1</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC1, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of an active survey., ExpectedResult=https://survey.sogosurvey.com/r/XfytnQ, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/XfytnQ",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:43:32 GMT, Content-Length=179], Failure Reason= Assertion error occured : Survye URL received in API is wrong expected [https://survey.sogosurvey.com/r/XfytnQ] but found [null], surveyNo=277, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-247915613" onClick='toggleBox("Output-247915613", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-247915613" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-247915613">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of an active survey.</b><br/>
+Survey URL has been verified for Survey ID : 277 : 'https://survey.sogosurvey.com/r/XfytnQ'<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC2()'><b>API_TC2</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC2, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of an active Assessment, ExpectedResult=https://survey.sogosurvey.com/r/wckW79, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/wckW79",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:49:50 GMT, Content-Length=179], Failure Reason=, surveyNo=5, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-1091880003" onClick='toggleBox("Output-1091880003", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1091880003" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1091880003">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of an active Assessment</b><br/>
+Survey URL has been verified for Survey ID : 5 : 'https://survey.sogosurvey.com/r/wckW79'<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC3()'><b>API_TC3</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC3, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of an active CX survey., ExpectedResult=https://survey.sogosurvey.com/r/JvPtZk, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/JvPtZk",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:51:53 GMT, Content-Length=179], Failure Reason=, surveyNo=87, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-2001041459" onClick='toggleBox("Output-2001041459", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-2001041459" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-2001041459">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of an active CX survey.</b><br/>
+Survey URL has been verified for Survey ID : 87 : 'https://survey.sogosurvey.com/r/JvPtZk'<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC5()'><b>API_TC5</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC5, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of survey in edit state., ExpectedResult=https://survey.sogosurvey.com/r/CKdaWG, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/CKdaWG",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:52:27 GMT, Content-Length=179], Failure Reason=, surveyNo=267, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-1954467973" onClick='toggleBox("Output-1954467973", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1954467973" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1954467973">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of survey in edit state.</b><br/>
+Survey URL has been verified for Survey ID : 267 : 'https://survey.sogosurvey.com/r/CKdaWG'<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC6()'><b>API_TC6</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC6, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API -Obtain the multi-use link of survey in expire state, ExpectedResult=https://survey.sogosurvey.com/r/f34pe7, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/f34pe7",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:52:42 GMT, Content-Length=178], Failure Reason=, surveyNo=133, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-1812855698" onClick='toggleBox("Output-1812855698", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1812855698" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1812855698">
+Test description : <b>getSurveyURL() API -Obtain the multi-use link of survey in expire state</b><br/>
+Survey URL has been verified for Survey ID : 133 : 'https://survey.sogosurvey.com/r/f34pe7'<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC7()'><b>API_TC7</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC7, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of survey in expired mode due to switch invitations. , ExpectedResult=https://survey.sogosurvey.com/r/khe119, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/khe119",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:52:57 GMT, Content-Length=178], Failure Reason=, surveyNo=146, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-1237874048" onClick='toggleBox("Output-1237874048", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1237874048" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1237874048">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of survey in expired mode due to switch invitations. </b><br/>
+Survey URL has been verified for Survey ID : 146 : 'https://survey.sogosurvey.com/r/khe119'<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC8()'><b>API_TC8</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC8, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=getSurveyURL() API, Test_Description=getSurveyURL() API - Obtain the multi-use link of merged survey., ExpectedResult=https://survey.sogosurvey.com/r/LwZ5Ah, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Data": "https://survey.sogosurvey.com/r/LwZ5Ah",
+    "Status": "Success"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 04:53:11 GMT, Content-Length=179], Failure Reason=, surveyNo=162, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/getSurveyURL}<br/>
+<a href="#Output-1010173769" onClick='toggleBox("Output-1010173769", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1010173769" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1010173769">
+Test description : <b>getSurveyURL() API - Obtain the multi-use link of merged survey.</b><br/>
+Survey URL has been verified for Survey ID : 162 : 'https://survey.sogosurvey.com/r/LwZ5Ah'<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@63070bab</td></tr>
+</table><p>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<html>
+<head>
+<title>TestNG:  Send email invitation along with reminders to a list of email addresses.</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Send email invitation along with reminders to a list of email addresses.</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>3/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Jan 26 15:07:00 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>246 seconds (246892 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>sendSurveyInviteWithReminder API </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC16()'><b>API_TC16</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC16, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInviteWithReminder() API, Test_Description=sendSurveyInviteWithReminder() API - Send invitation of expired survey along with reminder., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=, Failure Reason=, surveyNo=321, surveyTitle=, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=1, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInviteWithReminder}<br/>
+<a href="#Output-346954936" onClick='toggleBox("Output-346954936", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-346954936" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-346954936">
+Test description : <b>sendSurveyInviteWithReminder() API - Send invitation of expired survey along with reminder.</b><br/>
+Error received in API response : {
+    "Status": "Error",
+    "Description": "Survey Expired"
+}<br/>
+</div>
+</td>
+<td><div><pre>java.lang.AssertionError: null
+	at pageobjects.APIs.sendSurveyInviteWithReminder(APIs.java:280)
+	at com.sogo.api.API_TC.API_TC16(API_TC.java:918)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+... Removed 18 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace346954936", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace346954936'><pre>java.lang.AssertionError: null
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.fail(Assert.java:103)
+	at pageobjects.APIs.sendSurveyInviteWithReminder(APIs.java:280)
+	at com.sogo.api.API_TC.API_TC16(API_TC.java:918)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.access$000(SuiteRunner.java:40)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:489)
+	at org.testng.internal.thread.ThreadUtil$1.call(ThreadUtil.java:52)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+</pre></div></td>
+<td>1</td>
+<td>com.sogo.api.API_TC@58ea606c</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC13()'><b>API_TC13</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC13, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInviteWithReminder() API, Test_Description=sendSurveyInviteWithReminder() API - Send invitation of active survey along with reminder., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "Description": "2"
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 26 Jan 2021 09:29:39 GMT, Content-Length=155], Failure Reason= Assertion error occured in :Email invitation sent from API are not found in TrackSurvey!! expected [testing_gg@outlook.com] but found [tguru3196@gmail.com], surveyNo=377, surveyTitle=SoGoSurvey HealthCheck, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=2, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Automation sendsurvey invite template, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInviteWithReminder}<br/>
+<a href="#Output-1150542435" onClick='toggleBox("Output-1150542435", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1150542435" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1150542435">
+Test description : <b>sendSurveyInviteWithReminder() API - Send invitation of active survey along with reminder.</b><br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Tue Jan 26 15:07:05 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWWsSTXQYSRTUsP</b>.<br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Tue Jan 26 15:07:05 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWWsSTXQYSRURsP</b>.<br/>
+Invitation of Survey ID 377 were sent successfully to  : '2' participants along with reminders.. They are as follows : <br/> <b>[testing_gg@outlook.com, tguru3196@gmail.com]</b><br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered SoGoSurvey HealthCheck in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+Successfully waited for Reminders to be present on page.<br/>
+Successfully clicked on Reminders element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Original Invitation Date to be present on page.<br/>
+Successfully waited for Reminder columns filter to be present on page.<br/>
+Successfully clicked on Reminder columns filter element.<br/>
+Successfully waited for First reminder filter to be present on page.<br/>
+Successfully clicked on First reminder filter element.<br/>
+Successfully waited for Reminder columns filter - Save button to be present on page.<br/>
+Successfully clicked on Reminder columns filter - Save button element.<br/>
+</div>
+</td>
+<td></td>
+<td>90</td>
+<td>com.sogo.api.API_TC@58ea606c</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC14()'><b>API_TC14</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC14, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInviteWithReminder() API, Test_Description=sendSurveyInviteWithReminder() API - Send invitation of active assessment along with reminder., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=, Failure Reason=, surveyNo=378, surveyTitle=Quiz, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=1, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Automation sendsurvey invite template, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInviteWithReminder}<br/>
+<a href="#Output-144454163" onClick='toggleBox("Output-144454163", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-144454163" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-144454163">
+Test description : <b>sendSurveyInviteWithReminder() API - Send invitation of active assessment along with reminder.</b><br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Tue Jan 26 15:08:35 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWXsSTXQYSRXWsP</b>.<br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Tue Jan 26 15:08:35 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWXsSTXQYSRYTsP</b>.<br/>
+Invitation of Survey ID 378 were sent successfully to  : '2' participants along with reminders.. They are as follows : <br/> <b>[testing_gg@outlook.com, tguru3196@gmail.com]</b><br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Quiz in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+Successfully waited for Reminders to be present on page.<br/>
+Successfully clicked on Reminders element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Original Invitation Date to be present on page.<br/>
+Successfully waited for Reminder columns filter to be present on page.<br/>
+Successfully clicked on Reminder columns filter element.<br/>
+Successfully waited for First reminder filter to be present on page.<br/>
+Successfully clicked on First reminder filter element.<br/>
+Successfully waited for Reminder columns filter - Save button to be present on page.<br/>
+Successfully clicked on Reminder columns filter - Save button element.<br/>
+</div>
+</td>
+<td></td>
+<td>68</td>
+<td>com.sogo.api.API_TC@58ea606c</td></tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC15()'><b>API_TC15</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC15, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=sendSurveyInviteWithReminder() API, Test_Description=sendSurveyInviteWithReminder() API - Send invitation of active CX survey along with reminder., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=, headerList=, Failure Reason=, surveyNo=379, surveyTitle=Annual Customer Satisfaction Survey, isSurveyActive=, anonymous=, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=1, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=gmail,outlook, stremailaddress=tguru3196@gmail.com,testing_gg@outlook.com, emailPassword=gvg3196@test,gvg3196@test,gvg3196@test, subject=Automation sendsurvey invite template, issurveyaccesscodes=, surveyData=, intstartno=, intendno=, listname=, intoperationtype=, isallowduplicate=, path=serviceAPI/service/sendSurveyInviteWithReminder}<br/>
+<a href="#Output-766856757" onClick='toggleBox("Output-766856757", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-766856757" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-766856757">
+Test description : <b>sendSurveyInviteWithReminder() API - Send invitation of active CX survey along with reminder.</b><br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>tguru3196@gmail.com</b> on <b>Tue Jan 26 15:09:44 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWYsSTXQYSSPXsP</b>.<br/>
+Email has been received with Subject <b>Automation sendsurvey invite template</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> to <b>testing_gg@outlook.com</b> on <b>Tue Jan 26 15:09:44 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSWYsSTXQYSSQUsP</b>.<br/>
+Invitation of Survey ID 379 were sent successfully to  : '2' participants along with reminders.. They are as follows : <br/> <b>[testing_gg@outlook.com, tguru3196@gmail.com]</b><br/>
+Successfully waited for Login Button Static to be present on page.<br/>
+Successfully clicked on Login Button Static element.<br/>
+Successfully waited for Login Image Static to be present on page.<br/>
+Successfully waited for User Name to be present on page.<br/>
+Successfully entered sogo_rkhandelwal in User Name textbox.<br/>
+Successfully entered Sogo_dmx_live in User Password textbox.<br/>
+Successfully clicked on Login element.<br/>
+Successfully waited for Sogo Account to be present on page.<br/>
+Successfully clicked on All Projects element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully switch to All project dashboard Iframe<br/>
+Successfully waited for Main Folder to be present on page.<br/>
+Successfully entered Annual Customer Satisfaction Survey in Search Bar textbox.<br/>
+Successfully clicked on Search Icon element.<br/>
+Successfully waited for Track Survey Icon to be present on page.<br/>
+Successfully clicked on Track Survey Icon element.<br/>
+Successfully waited for Email Templates to be present on page.<br/>
+Successfully waited for Reminders to be present on page.<br/>
+Successfully clicked on Reminders element.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for loader to disappear.<br/>
+Successfully waited for Original Invitation Date to be present on page.<br/>
+Successfully waited for Reminder columns filter to be present on page.<br/>
+Successfully clicked on Reminder columns filter element.<br/>
+Successfully waited for First reminder filter to be present on page.<br/>
+Successfully clicked on First reminder filter element.<br/>
+Successfully waited for Reminder columns filter - Save button to be present on page.<br/>
+Successfully clicked on Reminder columns filter - Save button element.<br/>
+</div>
+</td>
+<td></td>
+<td>83</td>
+<td>com.sogo.api.API_TC@58ea606c</td></tr>
+</table><p>
+</body>
+</html>

@@ -261,6 +261,8 @@ public class DMXPage_TC extends SuiteBase {
 		}
 
 	}
+	
+
 
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {

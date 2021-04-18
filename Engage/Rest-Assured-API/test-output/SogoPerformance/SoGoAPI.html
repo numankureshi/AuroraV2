@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>TestNG:  SoGoAPI</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>SoGoAPI</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Thu Jan 14 19:44:59 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>8 seconds (8975 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td>test </td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.sogo.api.API_TC.API_TC26()'><b>API_TC26</b><br>Test class: com.sogo.api.API_TC<br>Parameters: {TestCaseName=API_TC26, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Publish, Test_Name=reopenresponse() API, Test_Description=reopenresponse() API - Reopen the completed responses participated by single use link only., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData={
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "tguru3196@gmail.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "bcctestg@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "ggolatkar@zarca.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "testsogo31@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "testing_gg@outlook.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "qaprodtest3196@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "testsogo31.3@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "testsogo31.4@gmail.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "testsogo31.2@gmail.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "tguru3196@rediffmail.com ",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Thu, 14 Jan 2021 13:37:58 GMT, Content-Length=357], Failure Reason= No such email subject found. Actual subject is : Mailed from saved report page, surveyNo=380, surveyTitle=, inthour=, baseurl=, passwordtype=, expirydays=, stremailaddress=tguru3196@gmail.com,bcctestg@gmail.com,ggolatkar@zarca.com,testsogo31@gmail.com,testing_gg@outlook.com,qaprodtest3196@gmail.com,testsogo31.3@gmail.com,testsogo31.4@gmail.com,testsogo31.2@gmail.com,tguru3196@rediffmail.com , issurveyaccesscodes=, surveyData1=, path=serviceAPI/service/reopenresponse}<br/>
+<a href="#Output-1696283346" onClick='toggleBox("Output-1696283346", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1696283346" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1696283346">
+Test description : <b>reopenresponse() API - Reopen the completed responses participated by single use link only.</b><br/>
+Survey ID 380 is reopened for following email address : <br/>[tguru3196@gmail.com, ggolatkar@zarca.com, testing_gg@outlook.com, testsogo31.2@gmail.com].<br/>
+Email has been received with Subject <b>Would you like to revisit your response?</b> from <b> Rohank Khandelwal rohankhandelwal98@gmail.com</b> on <b> Thu Jan 14 19:43:29 IST 2021</b> and participation URL is : <b>https://survey.sogosurvey.com/k/QsQTUQXTsSXPsSTRWVPSYXsP</b>.<br/>
+</div>
+</td>
+<td></td>
+<td>8</td>
+<td>com.sogo.api.API_TC@77f80c04</td></tr>
+</table><p>
+</body>
+</html>

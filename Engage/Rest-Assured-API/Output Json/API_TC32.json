@@ -1,0 +1,15 @@
+{
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "kabirtest15@bluwberry.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        },
+        {
+            "EmailAddress": "kabirtest16@bluwberry.com",
+            "Status": "Fail",
+            "Message": "Only completed single-use links can be reopened."
+        }
+    ]
+}

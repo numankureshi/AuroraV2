@@ -1,12 +1,10 @@
-2020-11-03 20:24:29,519 - rootLogger - INFO - Excel file initialized successfully.
-2020-11-03 20:24:29,522 - rootLogger - INFO - Config.properties file Loaded successfully.
-2020-11-03 20:24:34,153 - rootLogger - INFO - Chrome Driver instance loaded successfully.
-2020-11-03 20:24:45,630 - rootLogger - INFO - Successfully waited for Login Button Static to be present on page.
-2020-11-03 20:24:48,267 - rootLogger - INFO - Successfully clicked on Login Button Static element.
-2020-11-03 20:24:50,559 - rootLogger - INFO - Successfully waited for Login Image Static to be present on page.
-2020-11-03 20:24:50,674 - rootLogger - INFO - Successfully waited for User Name to be present on page.
-2020-11-03 20:24:50,801 - rootLogger - INFO - Successfully entered sogo_jk_enterprise in User Name textbox.
-2020-11-03 20:24:50,967 - rootLogger - INFO - Successfully entered SoGo@NS3196 in User Password textbox.
-2020-11-03 20:25:06,966 - rootLogger - INFO - Successfully clicked on Login element.
-2020-11-03 20:25:08,153 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
-2020-11-03 20:25:08,158 - rootLogger - INFO - Performance_TC1 is PASSED.
+2021-03-16 14:33:31,460 - rootLogger - INFO - Excel file initialized successfully.
+2021-03-16 14:33:31,463 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-03-16 14:33:33,264 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-03-16 14:33:45,800 - rootLogger - INFO - Successfully waited for Login Image Static to be present on page.
+2021-03-16 14:33:45,892 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-03-16 14:33:46,020 - rootLogger - INFO - Successfully entered skumar_test in User Name textbox.
+2021-03-16 14:33:46,089 - rootLogger - INFO - Successfully entered GVG3196@K12ns in User Password textbox.
+2021-03-16 14:33:54,722 - rootLogger - INFO - Successfully clicked on Login element.
+2021-03-16 14:33:55,834 - rootLogger - INFO - Successfully waited for Account settings to be present on page.
+2021-03-16 14:33:55,839 - rootLogger - INFO - Performance_TC1 is PASSED.

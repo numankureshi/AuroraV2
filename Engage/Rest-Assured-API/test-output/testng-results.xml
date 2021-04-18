@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="53" total="54" passed="0" failed="1" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[Test description : <b>getData() API - Validate API response for Survey ID 399. (Validate bulk responses).</b>]]>
+    </line>
+    <line>
+      <![CDATA[Unexpected error occured : {
+    "Status": "Error",
+    "Description": "Invalid Token"
+}]]>
+    </line>
+    <line>
+      <![CDATA[API_TC50 is FAILED.]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2021-03-18T12:02:10Z" name="Default suite" finished-at="2021-03-18T12:02:15Z" duration-ms="4937">
+    <groups>
+      <group name="getData API">
+        <method signature="API_TC.API_TC50(java.util.LinkedHashMap)[pri:0, instance:com.sogo.api.API_TC@638ef7ed]" name="API_TC50" class="com.sogo.api.API_TC"/>
+      </group> <!-- getData API -->
+    </groups>
+    <test started-at="2021-03-18T12:02:10Z" name="Default test" finished-at="2021-03-18T12:02:15Z" duration-ms="4937">
+      <class name="com.sogo.api.API_TC">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.sogo.api.API_TC@638ef7ed]" started-at="2021-03-18T12:02:10Z" name="setUp" finished-at="2021-03-18T12:02:11Z" duration-ms="843" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="API_TC50(java.util.LinkedHashMap)[pri:0, instance:com.sogo.api.API_TC@638ef7ed]" started-at="2021-03-18T12:02:11Z" name="API_TC50" data-provider="SoGo API" finished-at="2021-03-18T12:02:15Z" duration-ms="3989" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{TestCaseName=API_TC50, CaseToRun=Y, Lead=Nadeem, Owner=Gaurav, Role=Admin, Module=Participation Status, Test_Name=getData() API, Test_Description=getData() API - Validate API response for Survey ID 399. (Validate bulk responses)., ExpectedResult=, Pass/Fail/Skip=PASS, statusCode=200, respData=The maximum length of cell contents (text) is 32,767 characters, headerList=[Cache-Control=no-cache, Pragma=no-cache, Content-Type=application/json; charset=utf-8, Content-Encoding=gzip, Expires=-1, Vary=Accept-Encoding, Server=Microsoft-IIS/8.5, X-Powered-By=UrlRewriter.NET 2.0.0, X-AspNet-Version=4.0.30319, X-Powered-By=ASP.NET, SET-COOKIE=;SameSite=None; secure, Date=Tue, 16 Mar 2021 15:15:42 GMT, Content-Length=21709], Failure Reason= Error received in API response : {
+    "Status": "Error",
+    "Description": "Invalid Token"
+}, surveyNo=399, surveyTitle=Culture survey, T1 2020 FROM novapioneer FROM sogo_gauravg, isSurveyActive=, anonymous=N, semiAnonymous=, isUniquePassword=, urlExpiry=, inthour=, surveyKeyURL=, passwordtype=, expirydays=, participationStatus=, emailhost=, stremailaddress=, emailPassword=, subject=, issurveyaccesscodes=, surveyData=, intstartno=1, intendno=50, listname=, intoperationtype=, numberOfContact=, isallowduplicate=, ContactListHeaderFields=, upsertAction=, path=serviceAPI/service/getData}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: null
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.fail(Assert.java:103)
+at pageobjects.APIs.getData(APIs.java:712)
+at com.sogo.api.API_TC.API_TC50(API_TC.java:3199)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+            <line>
+              <![CDATA[Test description : <b>getData() API - Validate API response for Survey ID 399. (Validate bulk responses).</b>]]>
+            </line>
+            <line>
+              <![CDATA[Unexpected error occured : {
+    "Status": "Error",
+    "Description": "Invalid Token"
+}]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- API_TC50 -->
+        <test-method is-config="true" signature="reporterDataResults(org.testng.ITestResult)[pri:0, instance:com.sogo.api.API_TC@638ef7ed]" started-at="2021-03-18T12:02:15Z" name="reporterDataResults" finished-at="2021-03-18T12:02:15Z" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=API_TC50 status=FAILURE method=API_TC.API_TC50(java.util.LinkedHashMap)[pri:0, instance:com.sogo.api.API_TC@638ef7ed] output=Test description : <b>getData() API - Validate API response for Survey ID 399. (Validate bulk responses).</b>]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[API_TC50 is FAILED.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- reporterDataResults -->
+        <test-method is-config="true" signature="afterSuite()[pri:0, instance:com.sogo.api.API_TC@638ef7ed]" started-at="2021-03-18T12:02:15Z" name="afterSuite" finished-at="2021-03-18T12:02:16Z" duration-ms="1199" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- com.sogo.api.API_TC -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

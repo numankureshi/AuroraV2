@@ -1,0 +1,328 @@
+{
+  "Table": [
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Sent for Delivery",
+      "Invitation Date": "8-2-2021 08:15 PM",
+      "URL Expiry": "18-2-2021 08:15 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Sent for Delivery",
+      "Invitation Date": "8-2-2021 08:15 PM",
+      "URL Expiry": "18-2-2021 08:15 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "4-2-2021 01:27 PM",
+      "URL Expiry": "14-2-2021 01:27 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "4-2-2021 01:27 PM",
+      "URL Expiry": "14-2-2021 01:27 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "3-2-2021 08:53 PM",
+      "URL Expiry": "13-2-2021 08:53 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "3-2-2021 08:53 PM",
+      "URL Expiry": "13-2-2021 08:53 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-1-2021 03:09 PM",
+      "URL Expiry": "5-2-2021 03:09 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-1-2021 03:09 PM",
+      "URL Expiry": "5-2-2021 03:09 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "26-1-2021 01:14 PM",
+      "URL Expiry": "5-2-2021 01:14 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "26-1-2021 01:14 PM",
+      "URL Expiry": "5-2-2021 01:14 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "26-1-2021 10:21 AM",
+      "URL Expiry": "5-2-2021 10:21 AM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "26-1-2021 10:21 AM",
+      "URL Expiry": "5-2-2021 10:21 AM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "16-1-2021 05:02 PM",
+      "URL Expiry": "26-1-2021 05:02 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "16-1-2021 05:02 PM",
+      "URL Expiry": "26-1-2021 05:02 PM"
+    },
+    {
+      "Email": "testing_gg@outlook.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "16-1-2021 04:16 PM",
+      "URL Expiry": "26-1-2021 04:16 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "16-1-2021 04:16 PM",
+      "URL Expiry": "26-1-2021 04:16 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "31-12-2020 01:32 PM",
+      "URL Expiry": "10-1-2021 01:32 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "31-12-2020 01:32 PM",
+      "URL Expiry": "10-1-2021 01:32 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "30-12-2020 07:56 PM",
+      "URL Expiry": "6-1-2021 07:56 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "30-12-2020 07:56 PM",
+      "URL Expiry": "6-1-2021 07:56 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "30-12-2020 11:18 AM",
+      "URL Expiry": "6-1-2021 11:18 AM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "30-12-2020 11:18 AM",
+      "URL Expiry": "6-1-2021 11:18 AM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "30-12-2020 11:18 AM",
+      "URL Expiry": "6-1-2021 11:18 AM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "30-12-2020 11:18 AM",
+      "URL Expiry": "6-1-2021 11:18 AM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 08:09 PM",
+      "URL Expiry": "5-1-2021 08:09 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 08:09 PM",
+      "URL Expiry": "5-1-2021 08:09 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 08:09 PM",
+      "URL Expiry": "5-1-2021 08:09 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 08:09 PM",
+      "URL Expiry": "5-1-2021 08:09 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 04:24 PM",
+      "URL Expiry": "5-1-2021 04:24 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 04:24 PM",
+      "URL Expiry": "5-1-2021 04:24 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 04:14 PM",
+      "URL Expiry": "5-1-2021 04:14 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "29-12-2020 04:14 PM",
+      "URL Expiry": "5-1-2021 04:14 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 06:03 PM",
+      "URL Expiry": "4-1-2021 06:03 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 06:03 PM",
+      "URL Expiry": "4-1-2021 06:03 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 05:52 PM",
+      "URL Expiry": "4-1-2021 05:52 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 05:52 PM",
+      "URL Expiry": "4-1-2021 05:52 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 04:59 PM",
+      "URL Expiry": "4-1-2021 04:59 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 04:59 PM",
+      "URL Expiry": "4-1-2021 04:59 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 04:59 PM",
+      "URL Expiry": "4-1-2021 04:59 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "28-12-2020 04:59 PM",
+      "URL Expiry": "4-1-2021 04:59 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "27-12-2020 09:49 PM",
+      "URL Expiry": "3-1-2021 09:49 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "27-12-2020 09:49 PM",
+      "URL Expiry": "3-1-2021 09:49 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "27-12-2020 09:49 PM",
+      "URL Expiry": "3-1-2021 09:49 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "27-12-2020 09:49 PM",
+      "URL Expiry": "3-1-2021 09:49 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "27-12-2020 03:57 PM",
+      "URL Expiry": "3-1-2021 03:57 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "27-12-2020 03:57 PM",
+      "URL Expiry": "3-1-2021 03:57 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "27-12-2020 03:57 PM",
+      "URL Expiry": "3-1-2021 03:57 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "27-12-2020 03:57 PM",
+      "URL Expiry": "3-1-2021 03:57 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-12-2020 08:39 PM",
+      "URL Expiry": "2-1-2021 08:39 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-12-2020 08:39 PM",
+      "URL Expiry": "2-1-2021 08:39 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Delivered / Not Read",
+      "Invitation Date": "26-12-2020 08:27 PM",
+      "URL Expiry": "2-1-2021 08:27 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-12-2020 08:27 PM",
+      "URL Expiry": "2-1-2021 08:27 PM"
+    },
+    {
+      "Email": "ggolatkar@zarca.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-12-2020 04:00 PM",
+      "URL Expiry": "2-1-2021 04:00 PM"
+    },
+    {
+      "Email": "tguru3196@gmail.com",
+      "Status": "Email Read / Not Participated",
+      "Invitation Date": "26-12-2020 04:00 PM",
+      "URL Expiry": "2-1-2021 04:00 PM"
+    }
+  ]
+}

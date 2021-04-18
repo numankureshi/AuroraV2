@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: TestSuite
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 1, Time elapsed: 298.143 s <<< FAILURE! - in TestSuite
-Smoke_TC2(com.research.smoke.smxpage.SMXPage_TC)  Time elapsed: 284.942 s  <<< FAILURE!
-java.lang.AssertionError: null
-	at com.research.smoke.smxpage.SMXPage_TC.Smoke_TC2(SMXPage_TC.java:116)
-

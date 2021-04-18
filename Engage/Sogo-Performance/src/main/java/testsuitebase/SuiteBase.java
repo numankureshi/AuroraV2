@@ -261,4 +261,6 @@ public class SuiteBase {
 		return (String) ((JavascriptExecutor)driver).executeScript("return window.location.href");		 
 	}
 	
+	
+	
 }

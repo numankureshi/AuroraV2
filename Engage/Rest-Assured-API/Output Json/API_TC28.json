@@ -1,0 +1,15 @@
+{
+    "Status": "Success",
+    "ReopenStatus": [
+        {
+            "EmailAddress": "kabirtest11@bluwberry.com",
+            "Status": "Success",
+            "Message": null
+        },
+        {
+            "EmailAddress": "kabirtest12@bluwberry.com",
+            "Status": "Success",
+            "Message": null
+        }
+    ]
+}

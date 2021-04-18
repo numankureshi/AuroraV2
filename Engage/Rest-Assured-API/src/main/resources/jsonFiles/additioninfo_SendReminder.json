@@ -5,6 +5,6 @@
 			"Email": "testing_gg@outlook.com"
 		}],
 		"EmailTemplate": {
-			"TemplateName": "Gaurav - Automation (Email Template) - Reminders"
+			"TemplateName": "Send Reminder Via API"
 		}
 	}
