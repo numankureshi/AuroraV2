@@ -36,6 +36,7 @@ import pageobjects.DMXPage;
 import pageobjects.DMXPageEngage;
 import pageobjects.LoginPage;
 import pageobjects.RMXPage;
+import pageobjects.RMXPageEngage;
 import pageobjects.SMXPage;
 import pageobjects.SurveyPage;
 import utility.DecryptPassword;
@@ -71,6 +72,7 @@ public class SuiteBase {
 	public DMXPage dmxPage = new DMXPage();
 	public DMXPageEngage dmxPage2 = new DMXPageEngage();
 	public RMXPage rmxPage = new RMXPage();
+	public RMXPageEngage rmxPageEngage = new RMXPageEngage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

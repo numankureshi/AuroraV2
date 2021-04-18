@@ -1,4 +1,4 @@
-package com.engage.smoke.rmxpage;
+package com.sogo.smoke.rmxpage;
 
 import org.testng.annotations.Test;
 
@@ -6,9 +6,6 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
-import pageobjects.LoginPage;
-import pageobjects.RMXPage;
-import pageobjects.StaticPage;
 import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
@@ -33,7 +30,7 @@ public class RMXPage_TC extends SuiteBase {
 	String Environment;
 	String TestCaseName = null;
 	public boolean testSkip = false;
-	String sheetName = "SmokeTC";
+	String sheetName = "SanityTC";
 	public ExtentTest test;
 	
 	@BeforeClass(alwaysRun = true)
@@ -46,7 +43,7 @@ public class RMXPage_TC extends SuiteBase {
 			Environment = env;
 		}
 	}
-	
+
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "rmxpage", alwaysRun = true)
 	public void Smoke_TC9(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
@@ -79,8 +76,8 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPageEngage.generateOmniReport(getDriver(), param, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmxPage.generateOmniReport(getDriver(), param, test);
 			}
 		}
 
@@ -118,7 +115,7 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateAdvancedFrequencyReport(getDriver(), param, test);
 			}
 		}
@@ -157,7 +154,7 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateIndividualReport(getDriver(), param, test);
 			}
 		}
@@ -196,7 +193,7 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateResponseTableReport(getDriver(), param, test);
 			}
 		}
@@ -235,8 +232,8 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPageEngage.generateSegmentationReport(getDriver(), param, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmxPage.generateSegmentationReport(getDriver(), param, test);
 			}
 		}
 
@@ -265,8 +262,7 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("segmentation1", getData(data, "DropDown"));
 		param.put("segment", getData(data, "Gender"));
 		param.put("segment2", getData(data, "Grade"));
-		param.put("header", getData(data, "Header"));
-		param.put("compositionby", getData(data, "DOB"));
+		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
 			testSkip = true;
@@ -284,13 +280,13 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPageEngage.generateEngagementReport(getDriver(), param, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmxPage.generateEngagementReport(getDriver(), param, test);
 			}
 		}
 
 	}
-
+	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "rmxpage", alwaysRun = true)
 	public void Smoke_TC15(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
@@ -332,83 +328,14 @@ public class RMXPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPageEngage.generateDarReport(getDriver(), param, test);
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmxPage.generateDarReport(getDriver(), param, test);
 			}
 		}
 
 	}
 	
-	/*
-	 * @Test(dataProvider = "SurveyPage", dataProviderClass =
-	 * utility.XLSDataProvider.class, groups = "rmxPage", alwaysRun = true) public
-	 * void Sanity_TC10(LinkedHashMap<String, String> data) throws Exception {
-	 * TestCaseName = getData(data, "TestCaseName"); test =
-	 * extent.createTest(TestCaseName); CaseToRun = getData(data, "CaseToRun");
-	 * String Role = getData(data, "Role");
-	 * 
-	 * HashMap<String, String> param = new HashMap<String, String>();
-	 * param.put("TestCaseName", TestCaseName); param.put("surveyid", getData(data,
-	 * "surveyid")); param.put("surveyname", getData(data, "surveyname"));
-	 * param.put("canvas_title", getData(data,"canvastitle"));
-	 * param.put("canvas_description", getData(data,"canvasdescription"));
-	 * 
-	 * if (CaseToRun.equalsIgnoreCase("N")) {
-	 * System.out.println("CaseToRun = N for " + TestCaseName +
-	 * "So skipping Exceution."); testSkip = true; test.skip("CaseToRun = N for " +
-	 * TestCaseName + "So skipping Exceution."); throw new
-	 * SkipException("CaseToRun = N for " + TestCaseName +
-	 * "So skipping Exceution."); } else { for (String key : URLs.keySet()) {
-	 * System.out.println(URLs.get(key)); credentials =
-	 * TestFile.getLoginCredentials("Users", Role); for (int i = 0; i <
-	 * credentials.size(); i++) { users = credentials.get(i); username =
-	 * users.get("username"); encPassword = users.get("password"); }
-	 * 
-	 * 
-	 * loadBrowser(); loginPage.login(getDriver(), param, username, encPassword,
-	 * URLs.get(key), test); rmxPage.goToReportPage(getDriver(), param,
-	 * "Dimensional Report 1", "91", test); //
-	 * rmxPageEngage.loadDARReport(getDriver(), param, getData(data, "surveyname"),
-	 * getData(data, "surveyid"), test); } }
-	 * 
-	 * 
-	 * 
-	 * }
-	 * 
-	 * @Test(dataProvider = "SurveyPage", dataProviderClass =
-	 * utility.XLSDataProvider.class, groups = "rmxPage", alwaysRun = true) public
-	 * void Sanity_TC9(LinkedHashMap<String, String> data) throws Exception {
-	 * TestCaseName = getData(data, "TestCaseName"); test =
-	 * extent.createTest(TestCaseName); CaseToRun = getData(data, "CaseToRun");
-	 * String Role = getData(data, "Role");
-	 * 
-	 * HashMap<String, String> param = new HashMap<String, String>();
-	 * param.put("TestCaseName", TestCaseName); param.put("surveyid", getData(data,
-	 * "surveyid")); param.put("surveyname", getData(data, "surveyname"));
-	 * param.put("canvas_title", getData(data,"canvastitle"));
-	 * param.put("canvas_description", getData(data,"canvasdescription"));
-	 * 
-	 * if (CaseToRun.equalsIgnoreCase("N")) {
-	 * System.out.println("CaseToRun = N for " + TestCaseName +
-	 * "So skipping Exceution."); testSkip = true; test.skip("CaseToRun = N for " +
-	 * TestCaseName + "So skipping Exceution."); throw new
-	 * SkipException("CaseToRun = N for " + TestCaseName +
-	 * "So skipping Exceution."); } else { for (String key : URLs.keySet()) {
-	 * System.out.println(URLs.get(key)); credentials =
-	 * TestFile.getLoginCredentials("Users", Role); for (int i = 0; i <
-	 * credentials.size(); i++) { users = credentials.get(i); username =
-	 * users.get("username"); encPassword = users.get("password"); }
-	 * 
-	 * 
-	 * loadBrowser(); loginPage.login(getDriver(), param, username, encPassword,
-	 * URLs.get(key), test); rmxPage.goToReportPage(getDriver(), param,
-	 * "Dimensional Report 1", "91", test); rmxPage.loadOMNIReport(getDriver(),
-	 * param, "Dimensional Report 1", "91", test);
-	 * rmxPageEngage.loadEngagementReport(getDriver(), param, "Dimensional Report 1"
-	 * , "91", test); } }
-	 * 
-	 * }
-	 */
+
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
 		if (Result.getStatus() == ITestResult.SKIP) {
@@ -441,17 +368,17 @@ public class RMXPage_TC extends SuiteBase {
 		testSkip = false;
 	}
 
-
 	/*
-	 * @AfterSuite(alwaysRun = true)
-	public void afterSuite() {
-		
-			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
-			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
-			extent.flush();
-			fetchExcelData.reportLog("Engage_Smoke", "Report", "xlsx");
-		
-	}
-	*/
-}
+	 * @AfterSuite(alwaysRun = true) public void afterSuite() {
+	 * 
+	 * SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip",
+	 * TestResultTL); SuiteUtility.WriteResultUtility1(filePath, sheetName,
+	 * "Failure Reason", TestResultStatus.failureReason); extent.flush();
+	 * fetchExcelData.reportLog("Engage_Sanity", "Report", "xlsx");
+	 * 
+	 * }
+	 */
 	
+	
+
+}

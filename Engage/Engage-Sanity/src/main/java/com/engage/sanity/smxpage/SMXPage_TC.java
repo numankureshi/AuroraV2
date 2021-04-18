@@ -113,7 +113,7 @@ public class SMXPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				smxPage.createSurvey(getDriver(), param, test);
+//				smxPage.createSurvey(getDriver(), param, test);
 				
 			}
 		}

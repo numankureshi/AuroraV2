@@ -9,7 +9,7 @@ public interface ILoginPage {
 	String USER_NAME = "//input[contains(@name,'txtUsername')]";
 	WebPageElements user_name = new WebPageElements("User Name", "xpath", USER_NAME);
 	
-	String USER_PASS = "//input[contains(@name,'txtPassword')]";
+	String USER_PASS = "//input[@type='password']";
 	WebPageElements user_pass = new WebPageElements("User Password", "xpath", USER_PASS);
 	
 	String LOGIN_BUTTON = "//input[@class='Loginbtn']";

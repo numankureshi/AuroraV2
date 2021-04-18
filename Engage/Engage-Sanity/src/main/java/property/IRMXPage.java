@@ -360,6 +360,16 @@ public interface IRMXPage {
 	
 	String GENERATE_REPORT = "//input[@id='btnGenerate']";
 	WebPageElements generate_report = new WebPageElements("Report Generated", "xpath", GENERATE_REPORT);
+	
+	
+	String REPORT_TITLE = "//input[@id='txtRtitle']";
+	WebPageElements report_title = new WebPageElements("Report Title", "xpath", REPORT_TITLE);
+	
+	String REPORT_DESC = "//input[@id='txtDescription']";
+	WebPageElements report_desc = new WebPageElements("Report Description", "xpath", REPORT_DESC);
+	
+	String SEGMENT_ICON = "//div[@title='Segment']";
+	WebPageElements segment_icon = new WebPageElements("Segment Icon", "xpath", SEGMENT_ICON);
 
 	String DAR_1DD = "(//div[@id='divCYearP'])";
 	WebPageElements dar_1dd = new WebPageElements("DAR DD1", "xpath", DAR_1DD);
@@ -448,6 +458,15 @@ public interface IRMXPage {
 	String REPORT_CANVAS = "(//div[@id='tabCanvas'])";
 	WebPageElements report_canvas = new WebPageElements("Report Canvas", "xpath", REPORT_CANVAS);
 	
+	String SEGMENTATION_SURVEY = "//select[@name='SurveyListddl']";
+	WebPageElements segmentation_survey = new WebPageElements("Segmentation Survey", "xpath", SEGMENTATION_SURVEY);
+	
+	String SEGMENTATION_QUESTION = "//select[@id='ddlSiteQuestions']";
+	WebPageElements segmentation_question = new WebPageElements("Segmentation Question", "xpath", SEGMENTATION_QUESTION);
+	
+	String EMAIL_REPORT_TO = "//input[@id='txtSendFromType']";
+	WebPageElements email_report_to = new WebPageElements("Email Report To", "xpath", EMAIL_REPORT_TO);
+	
 	String CANVAS_TITLE = "(//input[@id='txtRtitle')";
 	WebPageElements canvas_title = new WebPageElements("Canvas Title", "xpath", CANVAS_TITLE);
 	
@@ -466,9 +485,11 @@ public interface IRMXPage {
 	String SEGMENT_ANSWERCB = "(//input[@id='chkall'])";
 	WebPageElements segment_answercb = new WebPageElements("Segment answer check box", "xpath", SEGMENT_ANSWERCB);
 	
-	String EMAIL_REPORT = "(//input[@name='ctl04'])";
-	WebPageElements email_report = new WebPageElements("Email Report", "xpath", EMAIL_REPORT);
-
+	String EMAIL_REPORT2 = "//input[@value='Email Report']";
+	WebPageElements email_report2 = new WebPageElements("Email Report", "xpath", EMAIL_REPORT2);
+	
+	String SELECT_ALL = "//label[text()=' Select All']";
+	WebPageElements select_all = new WebPageElements("Select All", "xpath", SELECT_ALL);
 	
 	String RAW_DATA = "//div[@id='btnIndividual']/span";
 	WebPageElements raw_data = new WebPageElements("Raw Data", "xpath", RAW_DATA);
@@ -476,14 +497,14 @@ public interface IRMXPage {
 	String RAW_DATA_MENU = "//div[@id ='dvIndiviual']/ul";
 	WebPageElements raw_data_menu = new WebPageElements("Raw Data Menu", "xpath", RAW_DATA_MENU);
 	
-	String INDIVIDUAL_REPORT = "//li[@id='ddindividual']";
-	WebPageElements individual_report = new WebPageElements("Individual Report", "xpath", INDIVIDUAL_REPORT);
+//	String INDIVIDUAL_REPORT = "//li[@id='ddindividual']";
+//	WebPageElements individual_report = new WebPageElements("Individual Report", "xpath", INDIVIDUAL_REPORT);
 	
 	String WIZARD_PAGE_DESCRIPTION = "//div[contains(@class,'pageDescription')]/span";
 	WebPageElements wizard_page_description = new WebPageElements("Wizard Page Description", "xpath", WIZARD_PAGE_DESCRIPTION);
 	
 	String ALL_QUESTIONS = "(//label[text()='All Questions'])[1]";
-	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
+//	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
 	
 	String WIZARD_STEP1_CONTINUE = "//input[@id='btnstep1Next']";
 	WebPageElements wizard_step1_continue = new WebPageElements("Report Wizard - Step 1 Continue", "xpath", WIZARD_STEP1_CONTINUE);
@@ -529,13 +550,307 @@ public interface IRMXPage {
 	String INDIVIDUAL_REPORT_PREVIOUS_BUTTON = "//input[@name='ImgBtnPrevRec']";
 	WebPageElements individual_report_previous_button = new WebPageElements("Individual Report - Previous Button", "xpath", INDIVIDUAL_REPORT_PREVIOUS_BUTTON);
 	
-	String RESPONSE_TABLE_REPORT = "//li[@id='btnResponseTable']";
-	WebPageElements response_table_report = new WebPageElements("Response Table Report", "xpath", RESPONSE_TABLE_REPORT);
+//	String RESPONSE_TABLE_REPORT = "//li[@id='btnResponseTable']";
+//	WebPageElements response_table_report = new WebPageElements("Response Table Report", "xpath", RESPONSE_TABLE_REPORT);
 	
 	String RESPONSE_TB_SELECT_RESPONSE_DD = "//select[@id='cmbResponse']";
 	WebPageElements response_table_select_response_dd = new WebPageElements("Response Table Report - Select Page", "xpath", RESPONSE_TB_SELECT_RESPONSE_DD);
 	
 	String RESPONSE_TB_ANSWER_FIELD = "//td[@class='responsetd']";
 	WebPageElements response_table_answer_field = new WebPageElements("Response Table Report - Answer field", "xpath", RESPONSE_TB_ANSWER_FIELD);
+	
+//	String REPORT_TAB = "//a[@id='Inner_header1_ctl00_arm']";
+//	WebPageElements report_tab = new WebPageElements("Report Tab", "xpath", REPORT_TAB);
+//	
+//	String OMNI_REPORT = "//div[@id='btnOmniReport']/span";
+//	WebPageElements omni_report = new WebPageElements("OMNI Report Button", "xpath", OMNI_REPORT);
+//	
+//	String OMNI_MODIFY_REPORT = "//span[contains(text(),'Modify Report')]";
+//	WebPageElements omni_modify_report = new WebPageElements("Modify Report - OMNI", "xpath", OMNI_MODIFY_REPORT);
+	
+	String REPORT_ICON2 = "//span[@class='survey-option-icon report-option-icon']";
+	WebPageElements report_icon2 = new WebPageElements("Report Icon", "xpath", REPORT_ICON2);
+	
+	String SLIDESHOW_ICON = "//a[@class='slideshowNormal']";
+	WebPageElements slideshow_icon = new WebPageElements("Slide Show Icon", "xpath", SLIDESHOW_ICON);
+	
+	String SLIDESHOW_EMAIL = "//span[@id='slemail']";
+	WebPageElements slideshow_email = new WebPageElements("Slide Show Email", "xpath", SLIDESHOW_EMAIL);
+	
+	String SLIDESHOW_EMAIL_TO = "//input[@name='txtTo']";
+	WebPageElements slideshow_email_to = new WebPageElements("Slide Show Email TO", "xpath", SLIDESHOW_EMAIL_TO);
+	
+	String SLIDESHOW_EMAIL_SEND = "//input[@id='btnSendEmail']";
+	WebPageElements slideshow_email_send = new WebPageElements("Slide Show Email Send", "xpath", SLIDESHOW_EMAIL_SEND);
+	
+	String SLIDESHOW_CLOSE = "//span[@id='closeBTN']";
+	WebPageElements slideshow_close = new WebPageElements("Slide Show Close", "xpath", SLIDESHOW_CLOSE);
+
+	String SAVE_REPORT_ICON = "//a[@class='saveNormal']";
+	WebPageElements save_report_icon = new WebPageElements("Save Report Icon", "xpath", SAVE_REPORT_ICON);
+	
+	String SAVE_REPORT_NAME = "//input[@id='txtReportName']";
+	WebPageElements save_report_name = new WebPageElements("Save Report name", "xpath", SAVE_REPORT_NAME);
+	
+	String SAVE_REPORT_NAME2 = "//input[@id='txtNewconditionname']";
+	WebPageElements save_report_name2 = new WebPageElements("Save Report name", "xpath", SAVE_REPORT_NAME2);
+	
+	String SAVE_REPORT_NAME3 = "//input[@id='new_condition_name']";
+	WebPageElements save_report_name3 = new WebPageElements("Save Report name", "xpath", SAVE_REPORT_NAME3);
+	
+	String SAVE_BUTTON = "//input[@id='imgsave']";
+	WebPageElements save_button = new WebPageElements("Save Report Button", "xpath", SAVE_BUTTON);
+	
+	String SHARE_EMAIL = "//a[@class='shareNormal']";
+	WebPageElements share_email = new WebPageElements("Share Email Icon", "xpath", SHARE_EMAIL);
+	
+	String DOWNLOAD_REPORT2 = "//a[@class='downloadNormal']";
+	WebPageElements download_report2 = new WebPageElements("Download Icon", "xpath", DOWNLOAD_REPORT2);
+	
+	String DOWNLOAD_EXCEL = "//span[@title='Excel']/parent::div";
+	WebPageElements download_excel = new WebPageElements("Download Excel", "xpath", DOWNLOAD_EXCEL);
+	
+	String DOWNLOAD_EXCEL2 = "//span[text()='Excel1']/parent::li";
+	WebPageElements download_excel2 = new WebPageElements("Download Excel 1", "xpath", DOWNLOAD_EXCEL2);
+	
+	String DOWNLOAD_EXCEL3 = "//span[text()='Excel2']/parent::li";
+	WebPageElements download_excel3 = new WebPageElements("Download Excel 2", "xpath", DOWNLOAD_EXCEL3);
+	
+	String DOWNLOAD_EXCEL4 = "//span[text()='Excel']/parent::li";
+	WebPageElements download_excel4 = new WebPageElements("Download Excel", "xpath", DOWNLOAD_EXCEL4);
+	
+	String DOWNLOAD_WORD = "//span[text()='Word']/parent::li";
+	WebPageElements download_word = new WebPageElements("Download Word", "xpath", DOWNLOAD_WORD);
+	
+	String EXPORT_PPT = "//a[text()='Export to PPT']/parent::li";
+	WebPageElements export_ppt = new WebPageElements("Export to PPT", "xpath", EXPORT_PPT);
+	
+	String EXPORT_EXCEL = "//a[text()='Export to Excel']/parent::li";
+	WebPageElements export_excel = new WebPageElements("Export to Excel", "xpath", EXPORT_EXCEL);
+	
+	String DOWNLOAD_WORD_ALL = "(//a[text()='Export all responses'])[1]";
+	WebPageElements download_word_all = new WebPageElements("Download Word All resonses", "xpath", DOWNLOAD_WORD_ALL);
+	
+	String DOWNLOAD_EXCEL_ALL = "(//a[text()='Export all responses'])[2]";
+	WebPageElements download_excel_all = new WebPageElements("Download Excel All resonses", "xpath", DOWNLOAD_EXCEL_ALL);
+	
+	String DOWNLOAD_PPT2 = "//span[text()='PowerPoint1']/parent::li";
+	WebPageElements download_ppt2 = new WebPageElements("Download PowerPoint 1", "xpath", DOWNLOAD_PPT2);
+	
+	String DOWNLOAD_PPT3 = "//span[text()='PowerPoint2']/parent::li";
+	WebPageElements download_ppt3 = new WebPageElements("Download PowerPoint 2", "xpath", DOWNLOAD_PPT3);
+	
+	String DOWNLOAD_PPT = "//span[@title='PowerPoint']/parent::div";
+	WebPageElements download_ppt = new WebPageElements("Download PowerPoint", "xpath", DOWNLOAD_PPT);
+	
+	String SHARE_EMAIL_TITLE = "//input[@name='TxtReportName']";
+	WebPageElements share_email_title = new WebPageElements("Share Email Title", "xpath", SHARE_EMAIL_TITLE);
+	
+	String SHARE_EMAIL_TO = "//input[@name='TextToEmail']";
+	WebPageElements share_email_to = new WebPageElements("Share Email TO", "xpath", SHARE_EMAIL_TO);
+	
+	String CONTINUE_BUTTON = "//input[@id='StepNext']";
+	WebPageElements continue_button = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON);
+	
+	String SHARE_EMAIL_SEND = "//input[@id='btnSubmit']";
+	WebPageElements share_email_send = new WebPageElements("Share Email Send", "xpath", SHARE_EMAIL_SEND);
+	
+	String FREQUENCY_REPORT = "//span[text()='Frequency']";
+	WebPageElements frequency_report = new WebPageElements("Frequency Report", "xpath", FREQUENCY_REPORT);
+	
+	String ADVANCED_FREQUENCY_REPORT = "//a[contains(text(),'Advanced Frequency')]";
+	WebPageElements advanced_frequency_report = new WebPageElements("Frequency Report", "xpath", ADVANCED_FREQUENCY_REPORT);
+	
+	String RAW_REPORT = "//span[text()='Raw Data']";
+	WebPageElements raw_report = new WebPageElements("Raw Report", "xpath", RAW_REPORT);
+	
+	String SPECIAL_REPORT = "//span[text()='Special Reports']";
+	WebPageElements special_report = new WebPageElements("Special Report", "xpath", SPECIAL_REPORT);
+	
+	String SEGMENTATION_REPORT = "//span[text()='Segmentation']";
+	WebPageElements segmentation_report = new WebPageElements("Segmentation Report", "xpath", SEGMENTATION_REPORT);
+	
+	String SEGMENTATION_QUESTION_DD = "//select[@name='DDLQuestion']";
+	WebPageElements segmentation_question_dd = new WebPageElements("Segmentation Question", "xpath", SEGMENTATION_QUESTION_DD);
+	
+	String COMPOSITION_REPORT_DD = "//select[@name='DDL_Com']";
+	WebPageElements compostion_report_dd = new WebPageElements("Segmentation Question", "xpath", COMPOSITION_REPORT_DD);
+	
+	String SEGMENT_DD = "//select[@name='DDL_Seg']";
+	WebPageElements segment_dd = new WebPageElements("Segmentation DD", "xpath", SEGMENT_DD);
+	
+	String SEGMENT_DD1 = "//select[@name='DDL_Seg1']";
+	WebPageElements segment_dd1 = new WebPageElements("Segmentation DD", "xpath", SEGMENT_DD1);
+	
+	String SELECT_ALL_OPTIONS = "//label[contains(text(),'Select All Options')]";
+	WebPageElements select_all_options = new WebPageElements("Select All Options", "xpath", SELECT_ALL_OPTIONS);
+	
+	String PARTICIPATION_DETAILS2 = "//input[@id='txtReportType']";
+	WebPageElements participation_details2 = new WebPageElements("Participants in study", "xpath", PARTICIPATION_DETAILS2);
+	
+	String NMAX = "//input[@id='txtNmax']";
+	WebPageElements nmax = new WebPageElements("Nmax", "xpath", NMAX);
+	
+	String INDIVIDUAL_REPORT = "//a[contains(text(),'Individual')]";
+	WebPageElements individual_report = new WebPageElements("Individual Report", "xpath", INDIVIDUAL_REPORT);
+	
+	String RESPONSE_TABLE_REPORT = "//a[contains(text(),'Response Table')]";
+	WebPageElements response_table_report = new WebPageElements("Response Table Report", "xpath", RESPONSE_TABLE_REPORT);
+	
+	String ENGAGEMENT_REPORT = "//a[contains(text(),'Engagement')]";
+	WebPageElements engagement_report = new WebPageElements("Engagement Report", "xpath", ENGAGEMENT_REPORT);
+	
+	String DAR_REPORT = "//a[contains(text(),'Dimensional Analysis')]";
+	WebPageElements dar_report = new WebPageElements("Dimensional Analysis Report", "xpath", DAR_REPORT); 
+	
+	String SURVEY_QUESTIONS_PAGE = "//span[text()='Please select the questions that would be displayed in this report. ']";
+	WebPageElements survey_questions_page = new WebPageElements("Survey Questions Page", "xpath", SURVEY_QUESTIONS_PAGE);
+	
+	String SURVEY_QUESTIONS_PAGE2 = "//span[text()='Select the questions you would like to display in your report.']";
+	WebPageElements survey_questions_page2 = new WebPageElements("Survey Questions Page", "xpath", SURVEY_QUESTIONS_PAGE2);
+	
+	String ENGAGEMENT_QUESTIONS_PAGE = "//span[text()='Please select all engagement questions for this report.']";
+	WebPageElements engagement_questions_page = new WebPageElements("Engagement Questions Page", "xpath", ENGAGEMENT_QUESTIONS_PAGE);
+	
+	String DRIVER_QUESTIONS_PAGE = "//span[text()='Please select all driver questions for this report.']";
+	WebPageElements drivers_questions_page = new WebPageElements("Drivers Questions Page", "xpath", DRIVER_QUESTIONS_PAGE);
+	
+	String ADDITIONAL_QUESTIONS_PAGE = "//span[text()='Select additional questions.']";
+	WebPageElements additional_questions_page = new WebPageElements("Additional Questions Page", "xpath", ADDITIONAL_QUESTIONS_PAGE);
+	
+	String COMPOSITION_ANALYSIS_PAGE = "//span[contains(text(),'Choose whether to include a breakdown of participants by relevant groups.')]";
+	WebPageElements compositional_analysis_page = new WebPageElements("Composition Analysis Page", "xpath", COMPOSITION_ANALYSIS_PAGE);
+	
+	String SEGMENTATION_REPORT_PAGE = "//span[contains(text(),'Choose whether to generate segmentation reports by group.')]";
+	WebPageElements segementation_report_page = new WebPageElements("Segmentation Report Page", "xpath", SEGMENTATION_REPORT_PAGE);
+	
+	String ADD_MORE = "//a[text()='Add More']";
+	WebPageElements add_more = new WebPageElements("Add more", "xpath", ADD_MORE);
+	
+	String ALL_QUESTIONS = "//label[text()='All Questions' and @for='chkMain']";
+	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
+	
+	String ALL_QUESTIONS2 = "//label[text()='All Questions' and @for='WizardControl1_chkMain']";
+	WebPageElements all_questions2 = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS2);
+	
+	String ALL_QUESTIONS3 = "//label[text()='All Questions' and @for='chkMain']";
+	WebPageElements all_questions3 = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS3);
+	
+	String ALL_QUESTIONS4 = "//label[text()='All Questions' and @for='chkMain2']";
+	WebPageElements all_questions4 = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS4);
+	
+	String CONTINUE_BUTTON1 = "//input[@id='btnstep1Next']";
+	WebPageElements continue_button1 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON1);
+	
+	String CONTINUE_BUTTON2 = "//input[@id='btnStep2Next']";
+	WebPageElements continue_button2 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON2);
+	
+	String CONTINUE_BUTTON11 = "(//input[@value='Continue'])[1]";
+	WebPageElements continue_button11 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON11);
+	
+	String CONTINUE_BUTTON22 = "(//input[@value='Continue'])[2]";
+	WebPageElements continue_button22 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON22);
+	
+	String CONTINUE_BUTTON4 = "(//input[@value='Continue'])[3]";
+	WebPageElements continue_button4 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON4);
+	
+	String CONTINUE_BUTTON44 = "(//input[@value='Continue'])[4]";
+	WebPageElements continue_button44 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON44);
+	
+	String CONTINUE_BUTTON5 = "(//input[@value='Continue'])[5]";
+	WebPageElements continue_button5 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON5);
+	
+	String CONTINUE_BUTTON6 = "(//input[@value='Continue'])[6]";
+	WebPageElements continue_button6 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON6);
+	
+	String CONTINUE_BUTTON7 = "(//input[@value='Continue'])[7]";
+	WebPageElements continue_button7 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON7);
+	
+	String CONTINUE_BUTTON3 = "//input[@id='btnstep3Next']";
+	WebPageElements continue_button3 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON3);
+	
+	String REORDER_QUESTIONS_PAGE = "//span[text()='Indicate the order of questions (you can drag and drop a question to another location). ']";
+	WebPageElements reorder_questions_page = new WebPageElements("Reorder Questions Page", "xpath", REORDER_QUESTIONS_PAGE);
+	
+	String DISPLAY_REPORT_WITH_TABLES = "//label[text()='Display reports with data tables ']";
+	WebPageElements display_report_with_tables = new WebPageElements("Display reports with data tables ", "xpath", DISPLAY_REPORT_WITH_TABLES);
+	
+	String DISPLAY_QUESTION_NAMES = "//label[contains(text(),'Display Question Numbers')]";
+	WebPageElements display_question_names = new WebPageElements("Display Question Numbers ", "xpath", DISPLAY_QUESTION_NAMES);
+	
+	String DISPLAY_TABLE = "//label[contains(text(),'Display Table')]";
+	WebPageElements display_table = new WebPageElements("Display Table", "xpath", DISPLAY_TABLE);
+	
+	String DISPLAY_WEIGHTED_SCORE = "//label[contains(text(),'Display Weighted Score/Average for Rating Questions')]";
+	WebPageElements display_weighted_score = new WebPageElements("Display Weighted Score/Average for Rating Questions ", "xpath", DISPLAY_WEIGHTED_SCORE);
+	
+	String PROPERTIES_PAGE = "//span[text()='Select desired report properties. Please note that you will have an opportunity to change some of these settings even after the report is generated.']";
+	WebPageElements properties_page = new WebPageElements("Properties Page", "xpath", PROPERTIES_PAGE);
+	
+	String PROPERTIES_PAGE2 = "//span[text()='Select desired report properties. Please note that some properties can still be modified once the report is generated.']";
+	WebPageElements properties_page2 = new WebPageElements("Properties Page", "xpath", PROPERTIES_PAGE2);
+	
+	String COMPARISON_SEGMENTATION = "//span[text()='Would you like to compare your segments with other filtered data?']";
+	WebPageElements comparison_segmentation = new WebPageElements("Comparison Segmentation Page", "xpath", COMPARISON_SEGMENTATION);
+	
+	String PARTICIPATION_DETAILS = "//span[text()='Define participation details.']";
+	WebPageElements participation_details = new WebPageElements("Participation Details Page", "xpath", PARTICIPATION_DETAILS);
+	
+	String TP1TG1 = "//div[@class='col2 row1']";
+	WebPageElements tp1tg1 = new WebPageElements("Target Period 1 Target Group 1", "xpath", TP1TG1);
+	
+	String TP2TG1 = "//div[@class='col3']";
+	WebPageElements tp2tg1 = new WebPageElements("Target Period 2 Target Group 1", "xpath", TP2TG1);
+	
+	String CUSTOMIZE_COVER_PAGE = "//span[text()='Customize your Segmentation Report cover page.']";
+	WebPageElements customize_cover_page = new WebPageElements("Customize Cover Page", "xpath", CUSTOMIZE_COVER_PAGE);
+	
+	String DATA_SOURCES_PAGE = "//span[text()='Select various data sources for this report ']";
+	WebPageElements data_sources_page = new WebPageElements("Data Sources Page", "xpath", DATA_SOURCES_PAGE);
+	
+	String EMAIL_REPORT = "//span[text()='Select delivery options for your report.']";
+	WebPageElements email_report = new WebPageElements("Data Sources Page", "xpath", EMAIL_REPORT);
+	
+	String EMAIL_SEGMENTATION_REPORT = "//input[@name='TxtMailMe']";
+	WebPageElements email_segmentation_report = new WebPageElements("Email Segmentation Report", "xpath", EMAIL_SEGMENTATION_REPORT);
+	
+	String EMAIL_ENGAGEMENT_REPORT = "//input[@id='emailId']";
+	WebPageElements email_engagement_report = new WebPageElements("Email Engagement Report", "xpath", EMAIL_ENGAGEMENT_REPORT);
+	
+	String WORD_ZIP = "//label[text()='All segment reports as multiple Word documents in a zipped file.']";
+	WebPageElements word_zip = new WebPageElements("Word documents in a zipped file", "xpath", WORD_ZIP);
+	
+	String SEND_EMAIL = "//input[@name='sendEmail']";
+	WebPageElements send_email = new WebPageElements("Submit", "xpath", SEND_EMAIL);
+	
+	String WORD_SEPERATE = "//label[text()='Individual segment report in separate Word document.']";
+	WebPageElements word_seperate = new WebPageElements("separate Word document", "xpath", WORD_SEPERATE);
+	
+	String DATA_SOURCES_PAGE2 = "//span[text()='Select your desired filters.']";
+	WebPageElements data_sources_page2 = new WebPageElements("Data Sources Page", "xpath", DATA_SOURCES_PAGE2);
+
+	String GENERATE_BUTTON = "//input[@value='Generate']";
+	WebPageElements generate_button = new WebPageElements("Generate Button", "xpath", GENERATE_BUTTON);
+	
+	String MODIFY_REPORT_BUTTON = "//input[@value='Modify Report']";
+	WebPageElements modify_report_button = new WebPageElements("Modify Report Button", "xpath", MODIFY_REPORT_BUTTON);
+	
+	String REQUEST_RECEIVED = "//div[contains(text(),'Your request has been received, and your report is being processed. During this time, you may continue using other platform features.')]";
+	WebPageElements request_received = new WebPageElements("Your request has been received", "xpath", REQUEST_RECEIVED);
+	
+	String ADDITIONAL_QUESTIONS_SWITCH = "//input[@id='rdAYes']";
+	WebPageElements additional_questions_switch = new WebPageElements("Additional Questions Switch", "xpath", ADDITIONAL_QUESTIONS_SWITCH);
+	
+	String COMPOSITION_ANALYSIS_SWITCH = "//input[@id='rdIyes']";
+	WebPageElements compostion_analysis_switch = new WebPageElements("Composition Analysis Switch", "xpath", COMPOSITION_ANALYSIS_SWITCH);
+	
+	String SEGMENTATION_REPORT_SWITCH = "//input[@id='rdSeg_yes']";
+	WebPageElements segmentation_report_switch = new WebPageElements("Segmentation Report Switch", "xpath", SEGMENTATION_REPORT_SWITCH);
+	
+	String SEGMENT_INPUT = "//input[@id='txtSegment']";
+	WebPageElements segment_input_switch = new WebPageElements("Segment Input Switch", "xpath", SEGMENT_INPUT);
+	
+	String SEGMENT_INPUT1 = "//input[@id='txtSegment1']";
+	WebPageElements segment_input_switch1 = new WebPageElements("Segment Input Switch", "xpath", SEGMENT_INPUT1);
 
 }

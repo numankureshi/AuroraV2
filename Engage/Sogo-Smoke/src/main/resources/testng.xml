@@ -28,5 +28,27 @@
 			<class name="com.sogo.smoke.smxpage.SMXPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="rmxpage">
+		<groups>
+			<run>
+				<include name="rmxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.smoke.rmxpage.RMXPage_TC" />
+		</classes>
+	</test>
+	
+	<test name="dmxpage">
+		<groups>
+			<run>
+				<include name="dmxpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.smoke.dmxpage.DMXPage_TC" />
+		</classes>
+	</test>
 
 </suite>
