@@ -33,7 +33,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.AfterSuite;
 
-public class SogoPerformance_TC extends SuiteBase {
+public class SogoNSReading_TC extends SuiteBase {
 	Read_XLS filePath = null;
 	String Environment;
 	String TestCaseName = null;
@@ -42,6 +42,7 @@ public class SogoPerformance_TC extends SuiteBase {
 	public ExtentTest test;
 	public DecimalFormat df = new DecimalFormat("#.##");
 	public double finish, start;
+	public static HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	static public HashMap<String, String> LoadTime = new HashMap<String, String>();
 	
 	@BeforeClass(alwaysRun = true)
@@ -123,8 +124,6 @@ public class SogoPerformance_TC extends SuiteBase {
 				
 				loadBrowser();
 				double totalTime = staticPage.navigateToSogoLoginPage(getDriver(), param, URLs.get(key), test);
-				Assert.fail();
-
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
@@ -824,18 +823,20 @@ public class SogoPerformance_TC extends SuiteBase {
 		SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 		SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 		SuiteUtility.WriteResultUtility2(filePath, sheetName, "TimeLoad", LoadTime);
+		extent.flush();
+		fetchExcelData.reportLog("Sogo_NSReadings", "Report", "xlsx");
 	}
 
-	@AfterSuite(alwaysRun = true)
-	public void afterSuite() {
-		
+//	@AfterSuite(alwaysRun = true)
+//	public void afterSuite() {
+//		
 //			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 //			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 //			SuiteUtility.WriteResultUtility2(filePath, sheetName, "TimeLoad", LoadTime);
-			extent.flush();
-			fetchExcelData.reportLog("Sogo_Performance", "Report", "xlsx");
-		
-	}
+//			extent.flush();
+//			fetchExcelData.reportLog("Sogo_Performance", "Report", "xlsx");
+//		
+//	}
 	
 	
 	/*

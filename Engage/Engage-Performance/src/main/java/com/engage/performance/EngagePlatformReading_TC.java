@@ -931,6 +931,59 @@ public class EngagePlatformReading_TC extends SuiteBase {
 		}
 
 	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
+	public void PlatformReadings_TC19(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String surveyTitle = getData(data, "Survey Title");
+		String SID = getData(data, "SID");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Step5", getData(data, "Step 5"));
+		param.put("Step6", getData(data, "Step 6"));
+		param.put("Step7", getData(data, "Step 7"));
+		param.put("Step8", getData(data, "Step 8"));
+		param.put("Step9", getData(data, "Step 9"));
+		param.put("Nmax", getData(data, "Nmax"));
+		param.put("Engagement questions", getData(data, "Engagement questions"));
+		param.put("Driver questions", getData(data, "Driver questions"));
+
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
+				readingData = rmx.getEngagementReportReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
 
 	
 

@@ -55,80 +55,6 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	String strtotalTime= null;
 	public DecimalFormat df = new DecimalFormat("#.##");
 	
-	public String getDownloadedDocumentName(String downloadDir, String fileExtension)
-	{	
-		String downloadedFileName = null;
-		boolean valid = true;
-		boolean found = false;
-	
-		//default timeout in seconds
-		long timeOut = 20; 
-		try 
-		{					
-			Path downloadFolderPath = Paths.get(downloadDir);
-			WatchService watchService = FileSystems.getDefault().newWatchService();
-			downloadFolderPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
-			long startTime = System.currentTimeMillis();
-			do 
-			{
-				WatchKey watchKey;
-				watchKey = watchService.poll(timeOut,TimeUnit.SECONDS);
-				long currentTime = (System.currentTimeMillis()-startTime)/1000;
-				if(currentTime>timeOut)
-				{
-					System.out.println("Download operation timed out.. Expected file was not downloaded");
-					return downloadedFileName;
-				}
-				
-				for(WatchEvent<?> event : watchKey.pollEvents()) {
-					Kind<?> kind = event.kind();
-					if(kind.equals(StandardWatchEventKinds.ENTRY_CREATE)) {
-						String fileName = event.context().toString();
-						System.out.println("New File Created:" + fileName);
-						if(fileName.endsWith(fileExtension)) {
-							downloadedFileName = fileName;
-							System.out.println("Downloaded file found with extension " + fileExtension + ". File name is " +fileName);
-							System.out.println("File is downloaded in "+(System.currentTimeMillis()-startTime)/1000 +" seconds");
-							Thread.sleep(500);
-							found = true;
-							break;
-						}
-					}
-				}
-				
-				if(found)
-				{
-					return downloadedFileName;
-				}
-				else
-				{
-					currentTime = (System.currentTimeMillis()-startTime)/1000;
-					if(currentTime>timeOut)
-					{
-						System.out.println("Failed to download expected file");
-						return downloadedFileName;
-					}
-					valid = watchKey.reset();
-				}
-			} while (valid);
-		} 
-		
-		catch (InterruptedException e) 
-		{
-			System.out.println("Interrupted error - " + e.getMessage());
-			e.printStackTrace();
-		}
-		catch (NullPointerException e) 
-		{
-			System.out.println("Download operation timed out.. Expected file was not downloaded");
-		}
-		catch (Exception e)
-		{
-			System.out.println("Error occured - " + e.getMessage());
-			e.printStackTrace();
-		}
-		return downloadedFileName;
-	}
 	
 	
 	public double goToReportPage(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
@@ -1893,6 +1819,25 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		return readingData;
 	}
 	
+	public Map<String, String> getEngagementReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToEngagementReport(driver, param, test));
+		readingData.put(param.get("Step2"), getEngagementQueReading(driver, param, test));
+		readingData.put(param.get("Step3"), getDriverQueReading(driver, param, test));
+		readingData.put(param.get("Step4"), geAdditionalQueReading(driver, param, test));
+		readingData.put(param.get("Step5"), getCompositionAnalysisReading(driver, param, test));
+		readingData.put(param.get("Step6"), getSegmentRepReading(driver, param, test));
+		readingData.put(param.get("Step7"), getFilterReading(driver, param, test));
+		readingData.put(param.get("Step8"), getPPTExportReading(driver, param, test));
+		readingData.put(param.get("Step9"), getExcelExportReading(driver, param, test));
+		
+		
+		return readingData;
+	}
 	
 	public String goToEngagementReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -1909,6 +1854,219 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		
 		return strtotalTime;
 	}
+	
+	public String getEngagementQueReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		setText(driver, testcaseName, nmax, param.get("Nmax"), test);
+		
+		//Capture page load time of Engagement question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button11, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getDriverQueReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String[] arrayQuestion = param.get("Engagement questions").split(";");
+		
+		for(String strQuestion : arrayQuestion) {
+			scrollIntoCenter(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[1]"), strQuestion, test);
+			Thread.sleep(500);
+			click(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[1]"), strQuestion, test);
+		}
+		scrollIntoCenter(driver, testcaseName, continue_button22, test);
+		Thread.sleep(200);
+		//Capture page load time of Driver question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button22, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions5, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String geAdditionalQueReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String[] arrayQuestion = param.get("Driver questions").split(";");
+		
+		for(String strQuestion : arrayQuestion) {
+			scrollIntoCenter(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[2]"), strQuestion, test);
+			Thread.sleep(500);
+			click(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[2]"), strQuestion, test);
+		}
+		scrollIntoCenter(driver, testcaseName, continue_button4, test);
+		Thread.sleep(500);
+		//Capture page load time of Driver question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button4, test);
+		waitforElemPresent(driver, testcaseName, 30, engagement_additional_question, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	public String getCompositionAnalysisReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		//Capture page load time of Composition analysis question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button44, test);
+		waitforElemPresent(driver, testcaseName, 30, engagement_composition_question, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getSegmentRepReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		//Capture page load time of Segment question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button5, test);
+		waitforElemPresent(driver, testcaseName, 30, engagement_segment_question, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getFilterReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		//Capture page load time of Filter  question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button6, test);
+		waitforElemPresent(driver, testcaseName, 30, engagement_filter_question, test);
+		end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getPPTExportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, generate_now_button_2, test);
+		waitforElemPresent(driver, testcaseName, 30, export_to_PPT, test);
+		
+		//Capture load time of PPT export
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, export_to_PPT, test);
+		validateDownloadFile(System.getProperty("user.dir")+"\\src\\main\\resources\\downloadfiles\\", "pptx");
+		//end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public String getExcelExportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, generate_now_button_2, test);
+		waitforElemPresent(driver, testcaseName, 30, export_to_ecxel, test);
+		
+		//Capture load time of PPT export
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, export_to_ecxel, test);
+		validateDownloadFile(System.getProperty("user.dir")+"\\src\\main\\resources\\downloadfiles\\", "xlsx");
+		//end = System.currentTimeMillis();	
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+
+	private String validateDownloadFile(String downloadDir, String fileExtension)
+	{	
+		String downloadedFileName = null;
+		boolean valid = true;
+		boolean found = false;
+	
+		//default timeout in seconds
+		long timeOut = 300000; 
+		try 
+		{					
+			Path downloadFolderPath = Paths.get(downloadDir);
+			WatchService watchService = FileSystems.getDefault().newWatchService();
+			downloadFolderPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
+			long startTime = System.currentTimeMillis();
+			do 
+			{
+				WatchKey watchKey;
+				watchKey = watchService.poll(timeOut,TimeUnit.SECONDS);
+				long currentTime = (System.currentTimeMillis()-startTime)/1000;
+				if(currentTime>timeOut)
+				{
+					System.out.println("Download operation timed out.. Expected file was not downloaded");
+					return downloadedFileName;
+				}
+				
+				for(WatchEvent<?> event : watchKey.pollEvents()) {
+					Kind<?> kind = event.kind();
+					if(kind.equals(StandardWatchEventKinds.ENTRY_CREATE)) {
+						String fileName = event.context().toString();
+						System.out.println("New File Created:" + fileName);
+						if(fileName.endsWith(fileExtension)) {
+							downloadedFileName = fileName;
+							System.out.println("Downloaded file found with extension " + fileExtension + ". File name is " +fileName);
+							end = System.currentTimeMillis();
+							System.out.println("File is downloaded in "+(end-start)/1000 +" seconds");
+							Thread.sleep(100);
+							found = true;
+							break;
+						}
+					}
+				}
+				
+				if(found)
+				{
+					return downloadedFileName;
+				}
+				else
+				{
+					currentTime = (System.currentTimeMillis()-startTime)/1000;
+					if(currentTime>timeOut)
+					{
+						System.out.println("Failed to download expected file");
+						return downloadedFileName;
+					}
+					valid = watchKey.reset();
+				}
+			} while (valid);
+		} 
+		
+		catch (InterruptedException e) 
+		{
+			System.out.println("Interrupted error - " + e.getMessage());
+			e.printStackTrace();
+		}
+		catch (NullPointerException e) 
+		{
+			System.out.println("Download operation timed out.. Expected file was not downloaded");
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error occured - " + e.getMessage());
+			e.printStackTrace();
+		}
+		return downloadedFileName;
+	}
+
+	
 	
 	
 	

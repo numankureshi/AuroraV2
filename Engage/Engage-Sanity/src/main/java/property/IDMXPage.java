@@ -73,7 +73,7 @@ public interface IDMXPage {
 	String SEARCH_EMAIL = "(//input[contains(@class,'searchText ui-autocomplete-input')])[1]";
 	WebPageElements search_email = new WebPageElements("Search Email", "xpath", SEARCH_EMAIL);
 	
-	String ATTRIBUTE = "//input[@name='txtBlankAttribute']";
+	String ATTRIBUTE = "//input[@name='txtMailMerge0']";
 	WebPageElements attribute = new WebPageElements("Attribute", "xpath", ATTRIBUTE);
 	
 	String EDIT_BUTTON = "//span[text()='Edit ']";
@@ -96,6 +96,10 @@ public interface IDMXPage {
 	
 	String DONE_EDITING = "//input[@name='btnNext']";
 	WebPageElements done_editing_button = new WebPageElements("Done Editing Button", "xpath", DONE_EDITING);
+	
+	
+	String REVIEW_MISMATCH_DATA = "//div[@class='header-content']/a[contains(text(),'Review Data')]";
+	WebPageElements review_mismatch_data = new WebPageElements("Review Data", "xpath", REVIEW_MISMATCH_DATA);
 	
 	String GENERATE_NEW_URL = "//a[text()='Generate New URL']";
 	WebPageElements generate_new_url = new WebPageElements("Generate New URL", "xpath", GENERATE_NEW_URL);
@@ -124,8 +128,12 @@ public interface IDMXPage {
 	String FROM_A_LIST = "//div[text()='From a List']/ancestor::div[@id='divFromList']";
 	WebPageElements from_a_list = new WebPageElements("From A List", "xpath", FROM_A_LIST);
 	
-	String IMPORT_FROM_FILE = "//div[text()='Import from File']/ancestor::div[@class='source-option file-import']";
+//	String IMPORT_FROM_FILE = "//div[text()='Import from File']/ancestor::div[@class='source-option file-import']";
+//	WebPageElements import_from_file = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE);
+
+	String IMPORT_FROM_FILE = "//div[@class='source-option file-import']/div[@class='source-option-icon']";
 	WebPageElements import_from_file = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE);
+	
 	
 	String IMPORT_FROM_FILE2 = "//div[text()='Import from file']/ancestor::div[@class='source-option file-import']";
 	WebPageElements import_from_file2 = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE2);
@@ -142,7 +150,7 @@ public interface IDMXPage {
 	String SELECT_LIST = "//select[@name='ddSelectList']";
 	WebPageElements select_list = new WebPageElements("Select List", "xpath", SELECT_LIST);
 	
-	String ATTRIBUTES_LIST = "//select[@name='ddlAttributes']";
+	String ATTRIBUTES_LIST = "//select[@name='ddlAttributeNames0']";
 	WebPageElements attributes_list = new WebPageElements("Attributes List", "xpath", ATTRIBUTES_LIST);
 	
 	
@@ -198,7 +206,7 @@ public interface IDMXPage {
 	String DONE_BUTTON2 = "//input[@value='Done' and @type='submit']";
 	WebPageElements done_button2 = new WebPageElements("Done Button", "xpath", DONE_BUTTON2);
 	
-	String SUCCESS_MSG = "//span[text()='You have just created a new list.']";
+	String SUCCESS_MSG = "//span[text()='Your list has been created!']";
 	WebPageElements success_msg = new WebPageElements("You have just created a new list.", "xpath", SUCCESS_MSG);
 	
 	String SEARCH_LIST = "//input[@id='txtContactSearch']";
@@ -213,8 +221,19 @@ public interface IDMXPage {
 	String PRE_POP_DD = "//select[@name='ddOption_0']";
 	WebPageElements pre_pop_dd = new WebPageElements("Pre Pop DD", "xpath", PRE_POP_DD);
 	
+	
+	String PRE_POP_DD3 = "//select[contains(@name,'ddOption_')]";
+	WebPageElements pre_pop_dd3 = new WebPageElements("Pre Pop DD", "xpath", PRE_POP_DD3);
+	
+	String ERROR_MSG = "//span[@id='ErrorMessage_dgErrors_ctl02_lblError']";
+	WebPageElements error_msg = new WebPageElements("Toaster Messgage", "xpath", ERROR_MSG);
+	
 	String PRE_POP_DD2 = "//select[@id='ddOption_0']";
 	WebPageElements pre_pop_dd2 = new WebPageElements("Pre Pop DD", "xpath", PRE_POP_DD2);
+	
+	String PRE_POP_DD4 = "//select[contains(@id,'ddOption_')]";
+	WebPageElements pre_pop_dd4 = new WebPageElements("Pre Pop DD", "xpath", PRE_POP_DD4);
+	
 	
 	String REVIEW_DATE = "(//a[text()='Review Data'])[2]";
 	WebPageElements review_data = new WebPageElements("Review Data", "xpath", REVIEW_DATE);

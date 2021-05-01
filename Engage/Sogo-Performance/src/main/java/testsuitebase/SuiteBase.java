@@ -36,7 +36,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.sogo.performance.SogoPerformance_TC;
+import com.sogo.performance.SogoNSReading_TC;
 
 import pageobjects.DMXPage;
 import pageobjects.HomePage;
@@ -57,6 +57,7 @@ public class SuiteBase {
 	public WebDriver ExistingChromeBrowser;
 	public WebDriver ExistingIEBrowser;
 	public Read_XLS TestFile = null;
+	public Read_XLS platformReadingFile = null;
 	public HashMap<String, String> URLs = null;
 	public HashMap<String, String> participationURLs = null;
 	public String CaseToRun = null;
@@ -69,7 +70,7 @@ public class SuiteBase {
 	public String DeleteCaseURL = null;
 	public String DeleteCasePass = null;
 	public static ExtentReports extent = null;
-	static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
+	//static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	public SoGoStaticPage staticPage = new SoGoStaticPage();
 	public HomePage homePage = new HomePage();
 	public SMXPage smxPage = new SMXPage();
@@ -87,7 +88,8 @@ public class SuiteBase {
 		
 		Add_Log = Logger.getLogger("rootLogger");
 		extent = ExtentManager.getExtentInstance();
-		TestFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\Sogo_Performance.xlsx");
+		TestFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\Sogo_NSReadings.xlsx");
+		platformReadingFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\Sogo_PlatformReadings.xlsx");
 		Add_Log.info("Excel file initialized successfully.");
 		
 		Config = new Properties();

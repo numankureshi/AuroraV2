@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.io.FilenameUtils;
@@ -59,12 +60,19 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 //		select3.selectByVisibleText(mailmergedd[2]);
 //		Thread.sleep(1000);
 		
-		waitforElemPresent(driver, testcaseName, 30, mail_merge_txt1, test);
-		setText(driver, testcaseName, mail_merge_txt1, mailmergetxt[0], test);
+		
+		if(getWebElement(driver, testcaseName, mail_merge_txt1, test).isEnabled()) {
+			waitforElemPresent(driver, testcaseName, 30, mail_merge_txt1, test);
+			setText(driver, testcaseName, mail_merge_txt1, mailmergetxt[0], test);
+		}
 		Thread.sleep(1000);
 		
-		waitforElemPresent(driver, testcaseName, 30, mail_merge_txt2, test);
-		setText(driver, testcaseName, mail_merge_txt2, mailmergetxt[1], test);
+		
+		if(getWebElement(driver, testcaseName, mail_merge_txt2, test).isEnabled()) {
+			waitforElemPresent(driver, testcaseName, 30, mail_merge_txt2, test);
+			setText(driver, testcaseName, mail_merge_txt2, mailmergetxt[1], test);
+		}
+		
 		Thread.sleep(1000);
 		
 //		waitforElemPresent(driver, testcaseName, 30, mail_merge_txt3, test);
@@ -162,9 +170,9 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		Select select = new Select(driver.findElement(By.xpath(SELECT_LIST)));
 		select.selectByVisibleText(param.get("selectlist"));
 		Thread.sleep(1000);
-//		waitforElemPresent(driver, testcaseName, 50, By.xpath("//span[contains(text(),'This list includes duplicate email addresses. A single-use link will be generated for each.')]"), "List with duplicate email address", test);
-//		waitforElemPresent(driver, testcaseName, 30, invite_in_seperate_email, test);
-//		click(driver, testcaseName, invite_in_seperate_email, test);
+		waitforElemPresent(driver, testcaseName, 50, By.xpath("//span[contains(text(),'This list includes duplicate email addresses. A single-use link will be generated for each.')]"), "List with duplicate email address", test);
+		waitforElemPresent(driver, testcaseName, 30, invite_in_seperate_email, test);
+		click(driver, testcaseName, invite_in_seperate_email, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		try {
 			driver.findElement(By.xpath(PRE_POP_SURVEY_INPUT)).isSelected();
@@ -209,7 +217,7 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, single_use_pwd, test);
 		waitForLoad(driver, testcaseName, 60, test);	
 		selectFromAList2(driver, param, test);
-		prePopulation2(driver, param, test);
+		prePopulation(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
 		click(driver, testcaseName, generate_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -228,6 +236,61 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
 		dmxPage.downloadFile(driver, param, generate_password , test);
+	}
+	
+	public void prePopulation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, map_answers, test);
+		waitforElemPresent(driver, testcaseName, 60, pre_pop_dd2, test);
+//		Select select = new Select(driver.findElement(By.xpath(PRE_POP_DD)));
+//		select.selectByVisibleText(param.get("prepopdd"));
+		String prepopdd[] = param.get("prepopdd").split(";");
+		Thread.sleep(1000);	
+		//waitforElemNotVisible(driver, testcaseName, 30, error_msg, test);
+		List<WebElement> prepopDowns = getWebElements(driver, testcaseName, pre_pop_dd4, test);
+		//Run the for each on pre-pop drop down and if duplicate value found, then select None value
+		int j=0;
+		for(String strprepop : prepopdd) {
+			Select sel = new Select(prepopDowns.get(j));
+			sel.selectByVisibleText(strprepop);
+			j++;
+		}
+		ArrayList<String> duplicateStr = new ArrayList<String>();
+		for(int i=0; i<prepopDowns.size(); i++) {
+			Select sel = new Select(prepopDowns.get(i));
+			String selectedValue = sel.getFirstSelectedOption().getAttribute("innerHTML");
+			if(!selectedValue.equalsIgnoreCase("None")) {
+				if(duplicateStr.contains(selectedValue)) {
+					sel.selectByValue("None");
+				}
+				duplicateStr.add(selectedValue);
+			}
+		}
+		scrollIntoCenter(driver, testcaseName, continue_button1, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
+		Thread.sleep(1000);	
+		click(driver, testcaseName, continue_button1, test);
+		
+		waitForLoad(driver, testcaseName, 30, test);
+		//Click on Continue button of Review data if prepopulated data has any mismatch
+//		while(getWebElements(driver, testcaseName, review_mismatch_data, test).size()>0) {
+//			click(driver, testcaseName, continue_button3, test);
+//			waitForLoad(driver, testcaseName, 30, test);
+//			break;
+//		}
+//		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@class='header-content']/a[contains(text(),'Review Data')]"), 
+//				"Review Data", 5, 200, test);
+//		if(getWebElements(driver, testcaseName, review_mismatch_data, test).size()>0) {
+//			click(driver, testcaseName, continue_button3, test);
+//			waitForLoad(driver, testcaseName, 30, test);
+//		}
+		try {
+			driver.findElement(By.xpath("//div[@class='header-content']/a[contains(text(),'Review Data')]")).isDisplayed();
+			click(driver, testcaseName, continue_button3, test);
+			waitForLoad(driver, testcaseName, 30, test);
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	public void selectFromAList2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -308,8 +371,8 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 //			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 //			click(driver, testcaseName, done_editing_button, test);
 			waitForLoad(driver, testcaseName, 30, test);
-//			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
-//			click(driver, testcaseName, done_editing_button, test);
+			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+			click(driver, testcaseName, done_editing_button, test);
 			waitForLoad(driver, testcaseName, 30, test);
 			waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
 			click(driver, testcaseName, test_send, test);
@@ -390,6 +453,8 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			click(driver, testcaseName, pre_pop_survey, test);
 			waitForLoad(driver, testcaseName, 60, test);
 		}
+		waitForLoad(driver, testcaseName, 60, test);
+		click(driver, testcaseName, done_editing_button, test);
 		waitforElemPresent(driver, testcaseName, 30, attributes_list, test);
 		Select select1 = new Select(driver.findElement(By.xpath(ATTRIBUTES_LIST)));
 		select1.selectByVisibleText(param.get("mailmergedd"));

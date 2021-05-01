@@ -49,14 +49,15 @@ public class SogoPlatformReadings_TC extends SuiteBase {
 	public ExtentTest test;
 	public DecimalFormat df = new DecimalFormat("#.##");
 	public double finish, start;
+	public static HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	static public Map<String, String> readingData = new LinkedHashMap<String, String>();
 	
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
 		init();
-		filePath = TestFile;
-		URLs = TestFile.getEnvURL("Environment");
-		participationURLs = TestFile.getEnvURL("Participation");
+		filePath = platformReadingFile;
+		URLs = platformReadingFile.getEnvURL("Environment");
+		participationURLs = platformReadingFile.getEnvURL("Participation");
 		for (String env : URLs.keySet()) {
 			Environment = env;
 		}	
@@ -90,7 +91,7 @@ public class SogoPlatformReadings_TC extends SuiteBase {
 		} else {
 			for (String key : URLs.keySet()) {
 				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
 				for (int i = 0; i < credentials.size(); i++) {
 					users = credentials.get(i);
 					username = users.get("username");
@@ -136,7 +137,7 @@ public class SogoPlatformReadings_TC extends SuiteBase {
 		} else {
 			for (String key : URLs.keySet()) {
 				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
 				for (int i = 0; i < credentials.size(); i++) {
 					users = credentials.get(i);
 					username = users.get("username");
@@ -157,7 +158,7 @@ public class SogoPlatformReadings_TC extends SuiteBase {
 	
 	
 	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC3(LinkedHashMap<String, String> data, String reportName) throws Exception {
+	public void PlatformReadings_TC3(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
@@ -182,7 +183,7 @@ public class SogoPlatformReadings_TC extends SuiteBase {
 		} else {
 			for (String key : URLs.keySet()) {
 				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
 				for (int i = 0; i < credentials.size(); i++) {
 					users = credentials.get(i);
 					username = users.get("username");
@@ -251,6 +252,8 @@ public class SogoPlatformReadings_TC extends SuiteBase {
 	public void afterClass() {
 		SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 		SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
+		extent.flush();
+		fetchExcelData.reportLog("Sogo_PlatformReadings", "Report", "xlsx");
 	}
 
 

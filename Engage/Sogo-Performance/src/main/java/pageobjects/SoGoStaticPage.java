@@ -82,7 +82,7 @@ public class SoGoStaticPage extends SeleniumUtils implements ISoGoStaticPage {
 		start = System.currentTimeMillis();
 		click(driver, testcaseName, pricing_static, test);
 		waitForJStoLoad(driver, 60);
-		waitforElemPresent(driver, testcaseName, 60, pricing_static_text, test);
+		waitforElemPresent(driver, testcaseName, 60, all_packages, test);
 		end = System.currentTimeMillis();
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
@@ -135,13 +135,13 @@ public class SoGoStaticPage extends SeleniumUtils implements ISoGoStaticPage {
 		setText(driver, testcaseName, registration_email_id, emailID, test);
 		clickAtOffset(driver, testcaseName, registration_disclaimer_checkbox, -50, 0, test);
 		waitForElementToBeVisible(driver, testcaseName, registration_validation_msg, 60, 200, test);
-		waitforElemNotVisible(driver, testcaseName, 60, registration_validate_userinfo, test);
-		//Thread.sleep(2000);
+		waitforElemNotVisible(driver, testcaseName, 60, registration_validate_userinfo, test);		
+		click(driver, testcaseName, registration_create_acc, test);
+		waitForJStoLoad(driver, 10);
+		
 		start = System.currentTimeMillis();
-		//click(driver, testcaseName, registration_create_acc, test);
-		//clickAtOffset(driver, testcaseName, registration_create_acc, 75, -15, test);
-		new Actions(driver).moveToElement(getWebElement(driver, testcaseName, registration_create_acc, test)).click().build().perform();
-		waitForJStoLoad(driver, 60);
+		click(driver, testcaseName, registration_create_acc, test);
+		waitForLoad(driver, testcaseName, 60, test);		
 		waitforElemPresent(driver, testcaseName, 60, billing_address_field, test);
 		end = System.currentTimeMillis();
 

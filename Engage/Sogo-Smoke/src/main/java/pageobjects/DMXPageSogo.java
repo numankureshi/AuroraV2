@@ -104,13 +104,13 @@ public class DMXPageSogo extends SeleniumUtils implements IDMXPage, ISMXPage {
 			click(driver, testcaseName, pre_pop_survey, test);
 			waitForLoad(driver, testcaseName, 60, test);
 		}
-		waitforElemPresent(driver, testcaseName, 30, attributes_list, test);
-		Select select1 = new Select(driver.findElement(By.xpath(ATTRIBUTES_LIST)));
-		select1.selectByVisibleText(param.get("mailmergedd"));
-		Thread.sleep(1000);
-		waitforElemPresent(driver, testcaseName, 10, attribute, test);
-		setText(driver, testcaseName, attribute, param.get("mailmergetxt"), test);
-		Thread.sleep(2000);
+//		waitforElemPresent(driver, testcaseName, 30, attributes_list, test);
+//		Select select1 = new Select(driver.findElement(By.xpath(ATTRIBUTES_LIST)));
+//		select1.selectByVisibleText(param.get("mailmergedd"));
+//		Thread.sleep(1000);
+//		waitforElemPresent(driver, testcaseName, 10, attribute, test);
+//		setText(driver, testcaseName, attribute, param.get("mailmergetxt"), test);
+//		Thread.sleep(2000);
 		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -262,9 +262,18 @@ public class DMXPageSogo extends SeleniumUtils implements IDMXPage, ISMXPage {
 		Select select = new Select(driver.findElement(By.xpath(PRE_POP_DD2)));
 		select.selectByVisibleText(param.get("prepopdd"));
 		Thread.sleep(1000);
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//input[@value='Continue'])[2]"), "Continue", test);
-		click(driver, testcaseName, By.xpath("(//input[@value='Continue'])[2]"), "Continue", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='Continue']"), "Continue", test);
+		click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
+//		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='Continue']"), "Continue", test);
+//		click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
 		waitForLoad(driver, testcaseName, 30, test);
+		try {
+			driver.findElement(By.xpath("//div[@class='header-content']/a[contains(text(),'Review Data')]")).isDisplayed();
+			click(driver, testcaseName, continue_button3, test);
+			waitForLoad(driver, testcaseName, 30, test);
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	

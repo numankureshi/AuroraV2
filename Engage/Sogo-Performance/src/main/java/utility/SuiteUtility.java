@@ -21,7 +21,7 @@ public class SuiteUtility {
 	}
 	
 	public static String createPlatformreadingSheet(String fileName, String sheetName, String extension) {
-		return new Read_XLS().createPlatformreading(fileName, sheetName, extension);
+		return Read_XLS.createPlatformreading(fileName, sheetName, extension);
 	}
 	
 	public static boolean WriteResultUtility4(Read_XLS xls, String sheetName, ITestResult TestResultTL, Map<String,String> loadTime) {

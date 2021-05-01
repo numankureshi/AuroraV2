@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.io.FilenameUtils;
@@ -133,7 +134,7 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 			// TODO: handle exception
 		}
 //		mailMerge(driver, param, test);
-		dmxPage.prePopulation(driver, param, test);
+//		dmxPage.prePopulation(driver, param, test);
 		dmxPage.reviewData(driver, param, test);
 		dmxPage.sendOrScheduleexe(driver, param, test);
 	}
@@ -148,13 +149,13 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		waitForLoad(driver, testcaseName, 60, test);
 		dmxPage.selectEmailTemplate(driver, param, test);
 		selectFromAList(driver, param, test);
-		try {
-			driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
-			click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
-			waitForLoad(driver, testcaseName, 30, test);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+//		try {
+//			driver.findElement(By.xpath("//input[@value='Continue']")).isDisplayed();
+//			click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
+//			waitForLoad(driver, testcaseName, 30, test);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 		mailMerge2(driver, param, test);
 //		dmxPage.prePopulation(driver, param, test);
 //		dmxPage.reviewData(driver, param, test);
@@ -272,6 +273,23 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		waitForLoad(driver, testcaseName, 30, test);
 	}
 	
+	public void prePopulation3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, map_answers, test);
+		waitforElemPresent(driver, testcaseName, 60, pre_pop_dd2, test);
+		String prepopdd[] = param.get("prepopdd").split(";");
+		
+		List<WebElement> prepopDowns = getWebElements(driver, testcaseName, pre_pop_dd3, test);
+		for(int i = 0; i<prepopDowns.size(); i++) {
+			Select sel = new Select(prepopDowns.get(i));
+			sel.selectByVisibleText(prepopdd[i]);
+			Thread.sleep(1000);
+		}
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='Continue']"), "Continue", test);
+		click(driver, testcaseName, By.xpath("//input[@value='Continue']"), "Continue", test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
 	public void publishSurveyPasswords(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -290,7 +308,7 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		click(driver, testcaseName, single_use_pwd, test);
 		waitForLoad(driver, testcaseName, 60, test);	
 		dmxPage.selectFromAList2(driver, param, test);
-		prePopulation2(driver, param, test);
+		prePopulation3(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
 		click(driver, testcaseName, generate_button, test);
 		waitForLoad(driver, testcaseName, 30, test);

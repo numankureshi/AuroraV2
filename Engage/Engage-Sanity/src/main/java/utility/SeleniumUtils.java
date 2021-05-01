@@ -657,6 +657,23 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void scrollIntoCenter(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {
+		WebElement element = driver.findElement(by);
+		try {
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			test.log(Status.INFO, "Successfully move to :" +name);
+			Add_Log.info("Successfully move to :" +name);
+			Reporter.log("Successfully move to :" +name);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
+			Add_Log.info("Failed to scrolling on element "+ name);
+			Reporter.log("Failed to scrolling on element "+ name);
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
 	public void reportPass(String passMessage, ExtentTest test) {
 		Add_Log.info(passMessage);
 		Reporter.log(passMessage);
@@ -762,7 +779,7 @@ public class SeleniumUtils {
 	
 	public boolean waitForJStoLoad(WebDriver driver, long timeOutInSeconds) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 
 			@Override

@@ -214,6 +214,30 @@ public interface IRMXPage {
 	String ENGAGEMENT_WIZARD_STEP1_PAGE_DESCR = "//div[@class='pageDescription']/span[text()='Select Report Type from the drop down menu.']";
 	WebPageElements engagement_wizard_step1_page_descr = new WebPageElements("Engagement - Step 1 Page Description", "xpath", ENGAGEMENT_WIZARD_STEP1_PAGE_DESCR );
 	
+	String ENGAGEMENT_ADDITIONAL_QUESTION = "//div[contains(text(),'Do you want to include additional questions?')]";
+	WebPageElements engagement_additional_question = new WebPageElements("Engagement - Additional Question Description", "xpath", ENGAGEMENT_ADDITIONAL_QUESTION );
+	
+	String ENGAGEMENT_COMPOSITION_QUESTION = "//div[contains(text(),'Do you want a report by individual composition?')]";
+	WebPageElements engagement_composition_question = new WebPageElements("Engagement - Composition Question Description", "xpath", ENGAGEMENT_COMPOSITION_QUESTION );
+	
+	String ENGAGEMENT_SEGMENT_QUESTION = "//div[contains(text(),'Do you want a segmentation report for each department?')]";
+	WebPageElements engagement_segment_question = new WebPageElements("Engagement - Segment Question Description", "xpath", ENGAGEMENT_SEGMENT_QUESTION );
+	
+	String ENGAGEMENT_FILTER_QUESTION = "//span[contains(text(),'Do you want to apply a filter on this report?')]";
+	WebPageElements engagement_filter_question = new WebPageElements("Engagement - Filter Question Description", "xpath", ENGAGEMENT_FILTER_QUESTION );
+	
+	
+	String TOGGLE = "//input[@id='rdAYes']";
+	WebPageElements toggle = new WebPageElements("Engagement - Additional Question Toggle", "xpath", TOGGLE );
+	
+	String TOGGLE1 = "//input[@id='rdIyes']";
+	WebPageElements toggle1 = new WebPageElements("Engagement - Composition Analysis Toggle", "xpath", TOGGLE1 );
+	
+	String TOGGLE2 = "//input[@id='rdSeg_yes']";
+	WebPageElements toggle2 = new WebPageElements("Engagement - Segment Question Toggle", "xpath", TOGGLE2 );
+	
+	String TOGGLE3 = "//input[@id='fyes']";
+	WebPageElements toggle3 = new WebPageElements("Engagement - Filter Question Toggle", "xpath", TOGGLE3 );
 	
 	
 	
@@ -504,7 +528,7 @@ public interface IRMXPage {
 	WebPageElements wizard_page_description = new WebPageElements("Wizard Page Description", "xpath", WIZARD_PAGE_DESCRIPTION);
 	
 	String ALL_QUESTIONS = "(//label[text()='All Questions'])[1]";
-//	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
+	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
 	
 	String WIZARD_STEP1_CONTINUE = "//input[@id='btnstep1Next']";
 	WebPageElements wizard_step1_continue = new WebPageElements("Report Wizard - Step 1 Continue", "xpath", WIZARD_STEP1_CONTINUE);
@@ -724,11 +748,18 @@ public interface IRMXPage {
 	String SEGMENTATION_REPORT_PAGE = "//span[contains(text(),'Choose whether to generate segmentation reports by group.')]";
 	WebPageElements segementation_report_page = new WebPageElements("Segmentation Report Page", "xpath", SEGMENTATION_REPORT_PAGE);
 	
+	String EXPORT_TO_PPT = "//a[contains(text(),'Export to PPT')]";
+	WebPageElements export_to_PPT = new WebPageElements("Export to PPT", "xpath", EXPORT_TO_PPT);
+	
+	String EXPORT_TO_EXCEL = "//a[contains(text(),'Export to Excel')]";
+	WebPageElements export_to_ecxel = new WebPageElements("Export to Excel", "xpath", EXPORT_TO_EXCEL);
+	
+	
 	String ADD_MORE = "//a[text()='Add More']";
 	WebPageElements add_more = new WebPageElements("Add more", "xpath", ADD_MORE);
 	
-	String ALL_QUESTIONS = "//label[text()='All Questions' and @for='chkMain']";
-	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
+//	String ALL_QUESTIONS = "//label[text()='All Questions' and @for='chkMain']";
+//	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
 	
 	String ALL_QUESTIONS2 = "//label[text()='All Questions' and @for='WizardControl1_chkMain']";
 	WebPageElements all_questions2 = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS2);
@@ -738,6 +769,10 @@ public interface IRMXPage {
 	
 	String ALL_QUESTIONS4 = "//label[text()='All Questions' and @for='chkMain2']";
 	WebPageElements all_questions4 = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS4);
+	
+	String ALL_QUESTIONS5 = "//label[text()='All Questions' and @for='chkMain3']";
+	WebPageElements all_questions5 = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS5);
+	
 	
 	String CONTINUE_BUTTON1 = "//input[@id='btnstep1Next']";
 	WebPageElements continue_button1 = new WebPageElements("Continue", "xpath", CONTINUE_BUTTON1);

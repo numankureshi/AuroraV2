@@ -82,7 +82,7 @@ public class DMXPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dmxPage.publishSingleUseLinkexe(getDriver(), param, test);
-				dmxPage.sendRemindersEXE(getDriver(), param, test);
+				//dmxPage.sendRemindersEXE(getDriver(), param, test);
 			}
 		}
 
@@ -312,6 +312,44 @@ public class DMXPage_TC extends SuiteBase {
 
 	}
 
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
+	public void Smoke_TC16(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("surveyid", getData(data, "surveyid"));
+		param.put("emailtemplatere", getData(data, "emailtemplatere"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmxPage.selectDistributeProject(getDriver(), param, test);
+				dmxPage.sendRemindersEXE(getDriver(), param, test);
+			}
+		}
+
+	}
 
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
@@ -351,7 +389,7 @@ public class DMXPage_TC extends SuiteBase {
 			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 			extent.flush();
-			fetchExcelData.reportLog("Engage_Sanity", "Report", "xlsx");
+			fetchExcelData.reportLog("Sogo_Smoke", "Report", "xlsx");
 		
 	}
 	

@@ -66,7 +66,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		selectFromAList(driver, param, test);
 		mailMerge(driver, param, test);
 		prePopulation(driver, param, test);
-		reviewData(driver, param, test);
+		//reviewData(driver, param, test);
 		sendOrSchedule(driver, param, test);
 	}
 	
@@ -222,7 +222,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, done_button2, test);
 		click(driver, testcaseName, done_button2, test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, success_msg, test);
+		//waitforElemPresent(driver, testcaseName, 30, success_msg, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//span[text()='Your list has been created!']"), "Success Msg", 30, 200, test);
 		waitforElemPresent(driver, testcaseName, 30, search_list, test);
 		setText(driver, testcaseName, search_list, param.get("listname"), test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -278,6 +279,28 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		try {
+			driver.findElement(By.xpath("//span[@id='SmsInvSteps_lblPageSubTitle'][contains(text(),'Identify answers to be pre-filled.')]")).isDisplayed();
+			List<WebElement> prepopDowns = getWebElements(driver, testcaseName, pre_pop_dd3, test);
+			//Run the for each on pre-pop drop down and if duplicate value found, then select None value
+			ArrayList<String> duplicateStr = new ArrayList<String>();
+			for(WebElement ele : prepopDowns) {
+				Select sel = new Select(ele);
+				String selectedValue = sel.getFirstSelectedOption().getAttribute("innerHTML");
+				if(!selectedValue.equalsIgnoreCase("None")) {
+					if(duplicateStr.contains(selectedValue)) {
+						sel.selectByValue("None");
+					}
+					duplicateStr.add(selectedValue);
+				}
+			}
+			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+			click(driver, testcaseName, done_editing_button, test);
+			
+		}catch(Exception e) {
+			// TODO: handle exception
+		}
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -306,7 +329,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
     
 		mailMerge(driver, param, test);
 		prePopulation(driver, param, test);
-		reviewData(driver, param, test);
+		//reviewData(driver, param, test);
 		sendOrScheduleexe(driver, param, test);
 	}
 	
@@ -322,6 +345,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@title = '"+ param.get("emailtemplate") +"']"), param.get("emailtemplate"), test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		Thread.sleep(2000);
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"))).build().perform();
 		Thread.sleep(1000);
@@ -492,6 +516,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 	public void importFromFile(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		Thread.sleep(2000);
 		waitforElemPresent(driver, testcaseName, 30, import_from_file, test);
 		click(driver, testcaseName, import_from_file, test);
 		Thread.sleep(1000);
@@ -580,10 +605,46 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 60, pre_pop_dd, test);
 		Select select = new Select(driver.findElement(By.xpath(PRE_POP_DD)));
 		select.selectByVisibleText(param.get("prepopdd"));
-		Thread.sleep(1000);
+		Thread.sleep(1000);	
+		//waitforElemNotVisible(driver, testcaseName, 30, error_msg, test);
+		List<WebElement> prepopDowns = getWebElements(driver, testcaseName, pre_pop_dd3, test);
+		//Run the for each on pre-pop drop down and if duplicate value found, then select None value
+		ArrayList<String> duplicateStr = new ArrayList<String>();
+		for(WebElement ele : prepopDowns) {
+			Select sel = new Select(ele);
+			String selectedValue = sel.getFirstSelectedOption().getAttribute("innerHTML");
+			if(!selectedValue.equalsIgnoreCase("None")) {
+				if(duplicateStr.contains(selectedValue)) {
+					sel.selectByValue("None");
+				}
+				duplicateStr.add(selectedValue);
+			}
+		}
+		scrollIntoCenter(driver, testcaseName, done_editing_button, test);
 		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
+		Thread.sleep(1000);	
 		click(driver, testcaseName, done_editing_button, test);
+		
 		waitForLoad(driver, testcaseName, 30, test);
+		//Click on Continue button of Review data if prepopulated data has any mismatch
+//		while(getWebElements(driver, testcaseName, review_mismatch_data, test).size()>0) {
+//			click(driver, testcaseName, continue_button3, test);
+//			waitForLoad(driver, testcaseName, 30, test);
+//			break;
+//		}
+//		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@class='header-content']/a[contains(text(),'Review Data')]"), 
+//				"Review Data", 5, 200, test);
+//		if(getWebElements(driver, testcaseName, review_mismatch_data, test).size()>0) {
+//			click(driver, testcaseName, continue_button3, test);
+//			waitForLoad(driver, testcaseName, 30, test);
+//		}
+		try {
+			driver.findElement(By.xpath("//div[@class='header-content']/a[contains(text(),'Review Data')]")).isDisplayed();
+			click(driver, testcaseName, continue_button3, test);
+			waitForLoad(driver, testcaseName, 30, test);
+		}catch(Exception e) {
+			
+		}
 	}
 	
 	public void prePopulation2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -616,9 +677,11 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		Thread.sleep(1000);
 		setText(driver, testcaseName, map_fields3, fields[2], test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='"+ fields[0] +"']//ancestor::tr[@class='withInLimit']"), fields[0], test);
+		//waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='"+ fields[0] +"']//ancestor::tr[@class='withInLimit']"), fields[0], test);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='"+ fields[0] +"'][@type='text']"), fields[0], test);
 		Actions action = new Actions(driver);
-		action.moveToElement(driver.findElement(By.xpath("//input[@value='"+ fields[0] +"']//ancestor::tr[@class='withInLimit']"))).build().perform();
+		action.moveToElement(driver.findElement(By.xpath("//input[@value='"+ fields[0] +"'][@type='text']"))).build().perform();
 		click(driver, testcaseName, By.xpath("(//div[@class='lock-icon'])[1]"), "Lock Icon", test);
 	}
 	

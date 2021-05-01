@@ -56,8 +56,25 @@ public class Read_XLS {
 		}
 	}
 	
-	public Read_XLS() {
+	public static String createPlatformreading(String fileName, String sheetName, String extension) {
+		String filePath = null;
+		Workbook wb = new XSSFWorkbook();
+		Sheet sheet = wb.createSheet(sheetName);
+		OutputStream fileOut;
+		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
+		filePath = "\\PlatformReadings\\"+ fileName + " - " + dateFormat.format(new Date())+"." +extension;
+		try {
+			
+			fileOut = new FileOutputStream(new File(System.getProperty("user.dir") +filePath));
+			wb.write(fileOut);
+			wb.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		return filePath;
 	}
 	
 	public HashMap<String, String> getEnvURL(String wsName) {
@@ -423,25 +440,5 @@ public class Read_XLS {
 		return true;
 	}
 
-	public String createPlatformreading(String fileName, String sheetName, String extension) {
-		String filePath = null;
-		Workbook wb = new XSSFWorkbook();
-		Sheet sheet = wb.createSheet(sheetName);
-		OutputStream fileOut;
-		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
-		filePath = "\\PlatformReadings\\"+ fileName + " - " + dateFormat.format(new Date())+"." +extension;
-		try {
-			
-			fileOut = new FileOutputStream(new File(System.getProperty("user.dir") +filePath));
-			wb.write(fileOut);
-			wb.close();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return filePath;
-	}
 	
 }

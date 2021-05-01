@@ -33,13 +33,13 @@ public interface ISoGoStaticPage {
 	String PRICING_STATIC = "(//a[contains(text(),'Pricing')])[1]";
 	WebPageElements pricing_static = new WebPageElements("Pricing on Static", "xpath", PRICING_STATIC);
 	
-	String PRICING_STATIC_TEXT = "//h1[text()='Compare and choose a plan that is right for you.']";
-	WebPageElements pricing_static_text = new WebPageElements("Compare and choose a plan that is right for you.", "xpath", PRICING_STATIC_TEXT);
+	String ALL_PACKAGES = "//div[@class='pricing-section-package-wrapper']";
+	WebPageElements all_packages = new WebPageElements("All Packages", "xpath", ALL_PACKAGES);	
 	
 	String TAKE_A_TOUR = "(//span[text()='Take a Tour'])[1]";
 	WebPageElements take_a_tour = new WebPageElements("Take a Tour", "xpath", TAKE_A_TOUR);
 	
-	String TAKE_A_TOUR_REQUEST_DEMO = "//div[contains(@class,'buttons-main-sign-up')]/a[text()='Request a Demo']";
+	String TAKE_A_TOUR_REQUEST_DEMO = "//div[contains(@class,'sogo-inner-banner')]/a[text()='Request a Demo']";
 	WebPageElements take_a_tour_request_demo = new WebPageElements("Take a Tour - Request a Demo", "xpath", TAKE_A_TOUR_REQUEST_DEMO);
 	
 	String PRICING_BUY_PLUS_PACKAGE= "//a[contains(@id,'btnProfMonthly')]";
