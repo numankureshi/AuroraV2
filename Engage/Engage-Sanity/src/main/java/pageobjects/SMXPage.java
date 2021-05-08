@@ -1155,7 +1155,7 @@ Thread.sleep(1000);
 		for (int i =0; i<categoryList.size(); i++) {
 			WebElement category = categoryList.get(i);
 			// Remove the leading and trailing white space to prevent NumberFormatException, that is it will convert String " 81 " to "81" and then convert String to Integer
-			int questioncount = Integer.parseInt(category.getAttribute("questioncount")); 
+			int questioncount = Integer.parseInt(category.getAttribute("questioncount").strip()); 
 			//Check question count before depositing the question to prevent getting JS message of exhausted limit
 			if (questioncount<100) {
 				String categoryTitle = category.getAttribute("title");

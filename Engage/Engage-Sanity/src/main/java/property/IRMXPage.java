@@ -609,6 +609,10 @@ public interface IRMXPage {
 	
 	String SLIDESHOW_CLOSE = "//span[@id='closeBTN']";
 	WebPageElements slideshow_close = new WebPageElements("Slide Show Close", "xpath", SLIDESHOW_CLOSE);
+	
+	String TOASTER_CLOSE = "//div[@id='dvOmniMsg']/span[@class='closebtn']";
+	WebPageElements toaster_close = new WebPageElements("Toaster - Close", "xpath", TOASTER_CLOSE);
+	
 
 	String SAVE_REPORT_ICON = "//a[@class='saveNormal']";
 	WebPageElements save_report_icon = new WebPageElements("Save Report Icon", "xpath", SAVE_REPORT_ICON);
@@ -655,8 +659,14 @@ public interface IRMXPage {
 	String DOWNLOAD_WORD_ALL = "(//a[text()='Export all responses'])[1]";
 	WebPageElements download_word_all = new WebPageElements("Download Word All resonses", "xpath", DOWNLOAD_WORD_ALL);
 	
+	String DOWNLOAD_WORD_ONE = "//a[@id='expwordone']";
+	WebPageElements download_word_one = new WebPageElements("Download Word this resonses", "xpath", DOWNLOAD_WORD_ONE);
+	
 	String DOWNLOAD_EXCEL_ALL = "(//a[text()='Export all responses'])[2]";
 	WebPageElements download_excel_all = new WebPageElements("Download Excel All resonses", "xpath", DOWNLOAD_EXCEL_ALL);
+	
+	String DOWNLOAD_EXCEL_ONE = "//a[@id='expexcelone']";
+	WebPageElements download_excel_one = new WebPageElements("Download Excel this resonses", "xpath", DOWNLOAD_EXCEL_ONE);
 	
 	String DOWNLOAD_PPT2 = "//span[text()='PowerPoint1']/parent::li";
 	WebPageElements download_ppt2 = new WebPageElements("Download PowerPoint 1", "xpath", DOWNLOAD_PPT2);

@@ -136,15 +136,15 @@ public class SoGoStaticPage extends SeleniumUtils implements ISoGoStaticPage {
 		clickAtOffset(driver, testcaseName, registration_disclaimer_checkbox, -50, 0, test);
 		waitForElementToBeVisible(driver, testcaseName, registration_validation_msg, 60, 200, test);
 		waitforElemNotVisible(driver, testcaseName, 60, registration_validate_userinfo, test);		
-		click(driver, testcaseName, registration_create_acc, test);
-		waitForJStoLoad(driver, 10);
+//		click(driver, testcaseName, registration_create_acc, test);
+//		waitForJStoLoad(driver, 10);
 		
 		start = System.currentTimeMillis();
 		click(driver, testcaseName, registration_create_acc, test);
-		waitForLoad(driver, testcaseName, 60, test);		
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, billing_address_field, test);
 		end = System.currentTimeMillis();
-
+		
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
 
