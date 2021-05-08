@@ -134,8 +134,35 @@ public interface IRMXPage {
 	String CROSS_TAB_STEP2_PAGE_DESCR = "//span[@id='lblStep2Note']";
 	WebPageElements cross_tab_step2_page_descr = new WebPageElements("Cross Tab - Page 2 Description", "xpath", CROSS_TAB_STEP2_PAGE_DESCR);
 	
-	String ADV_PIV = "//a[@id='liadvPivot']";
-	WebPageElements adv_piv = new WebPageElements("ADV PIV", "xpath", ADV_PIV );
+	String ADV_PIV = "//li[@id='liadvPivot']/a";
+	WebPageElements adv_piv = new WebPageElements("Advance Pivot Report", "xpath", ADV_PIV );
+	
+	String ADV_PIVOT_PAGE_1_DESCR = "//div[@class='pageDescription']/span[contains(text(),'Select Segmentation Question')]";
+	WebPageElements adv_pivot_page_1_descr = new WebPageElements("Advance Pivot Report - Select Segment Question Page Description", "xpath", ADV_PIVOT_PAGE_1_DESCR );
+	
+	String ADV_PIVOT_PAGE_1_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepOneNext')]";
+	WebPageElements adv_pivot_page_1_continue = new WebPageElements("Advance Pivot Report - Select Segment Question Page Continue Button", "xpath", ADV_PIVOT_PAGE_1_CONTINUE );
+	
+	String ADV_PIVOT_PAGE_2_DESCR = "//div[@class='pageDescription']/span[contains(text(),'Select the questions you would like to display in your report.')]";
+	WebPageElements adv_pivot_page_2_descr = new WebPageElements("Advance Pivot Report - Select All Question Page Description", "xpath", ADV_PIVOT_PAGE_2_DESCR );
+	
+	String ADV_PIVOT_PAGE_2_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepTwoNext')]";
+	WebPageElements adv_pivot_page_2_continue = new WebPageElements("Advance Pivot Report - Select All Question Page Continue Button", "xpath", ADV_PIVOT_PAGE_2_CONTINUE );
+	
+	String ADV_PIVOT_PAGE_3_DESCR = "//div[@class='pageDescription']/span[contains(text(),'Merge answer options')]";
+	WebPageElements adv_pivot_page_3_descr = new WebPageElements("Advance Pivot Report - Merge answer options Page Description", "xpath", ADV_PIVOT_PAGE_3_DESCR );
+	
+	String ADV_PIVOT_PAGE_3_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepThreeNext')]";
+	WebPageElements adv_pivot_page_3_continue = new WebPageElements("Advance Pivot Report - Merge answer options Page Continue Button", "xpath", ADV_PIVOT_PAGE_3_CONTINUE );
+	
+	String ADV_PIVOT_PAGE_4_DESCR = "//span[contains(text(),'Please note that some properties can still be modified once the report is generated.')]";
+	WebPageElements adv_pivot_page_4_descr = new WebPageElements("Advance Pivot Report - Report Properties Page Description", "xpath", ADV_PIVOT_PAGE_4_DESCR );
+	
+	String ADV_PIVOT_PAGE_4_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepFourNext')]";
+	WebPageElements adv_pivot_page_4_continue = new WebPageElements("Advance Pivot Report - Report Properties Page Continue Button", "xpath", ADV_PIVOT_PAGE_4_CONTINUE );
+	
+	String ADV_PIVOT_PAGE_5_DESCR = "//span[contains(text(),'Select your desired filters.')]";
+	WebPageElements adv_pivot_page_5_descr = new WebPageElements("Advance Pivot Report - Filter Page Description", "xpath", ADV_PIVOT_PAGE_5_DESCR );
 	
 //	String RAW_DATA = "//a[@id='btnIndividual']";
 //	WebPageElements raw_data = new WebPageElements("Raw Data", "xpath", RAW_DATA );
@@ -253,8 +280,33 @@ public interface IRMXPage {
 	String FREQUENCY_TABLE = "//li[@id='ddfrequencyTable']/a";
 	WebPageElements frequency_table = new WebPageElements("Frequency Table", "xpath", FREQUENCY_TABLE );
 	
-	String COMPARISON = "//a[@id='ddComparison']";
+	String COMPARISON = "//li[@id='ddComparison']/a";
 	WebPageElements comparison = new WebPageElements("comparison", "xpath", COMPARISON );
+	
+	String  COMPARISON_PAGE_1_DESCR= "//span[contains(text(),'Select the questions you would like to display in your report.')]";
+	WebPageElements comparison_page_1_descr  = new WebPageElements("Comparison Report - Select Survey Question Page Description", "xpath", COMPARISON_PAGE_1_DESCR );
+	
+	String  COMPARISON_PAGE_1_CONTINUE= "//input[@id='btnstep3Next'][contains(@onclick,'Step1Next')]";
+	WebPageElements comparison_page_1_continue  = new WebPageElements("Comparison Report - Select Survey Question Page Continue Button", "xpath", COMPARISON_PAGE_1_CONTINUE );
+	
+	String  COMPARISON_PAGE_2_DESCR= "//span[contains(text(),'To rearrange, drag and drop the questions below into the desired order.')]";
+	WebPageElements comparison_page_2_descr  = new WebPageElements("Comparison Report - Reorder Question Page Description", "xpath", COMPARISON_PAGE_2_DESCR );
+	
+	String  COMPARISON_PAGE_2_CONTINUE= "//input[@id='btnStep2Next']";
+	WebPageElements comparison_page_2_continue  = new WebPageElements("Comparison Report - Reorder Question Page Continue Button", "xpath", COMPARISON_PAGE_2_CONTINUE );
+	
+	String  COMPARISON_PAGE_3_DESCR= "//span[contains(text(),'Select your desired data sets')]";
+	WebPageElements comparison_page_3_descr  = new WebPageElements("Comparison Report - Survey Dataset Page Description", "xpath", COMPARISON_PAGE_3_DESCR );
+	
+	String  SELECT_DATASET_COUNT= "//select[@id='cmbDatasetCount']";
+	WebPageElements select_dataset_count  = new WebPageElements("Comparison Report - Select Dataset Dropdown", "xpath", SELECT_DATASET_COUNT );
+	
+	String  COMPARISON_PAGE_3_CONTINUE= "//input[@id='btnstep3Next']";
+	WebPageElements comparison_page_3_continue  = new WebPageElements("Comparison Report - Survey Dataset Page Continue Button", "xpath", COMPARISON_PAGE_3_CONTINUE );
+	
+	String  COMPARISON_PAGE_4_DESCR= "//span[contains(text(),'Select desired report properties.')]";
+	WebPageElements comparison_page_4_descr  = new WebPageElements("Comparison Report - Report Properties Page Description", "xpath", COMPARISON_PAGE_4_DESCR );
+	
 	
 	String  STATISTICAL= "//li[@id='btnAdvStatistic']/a";
 	WebPageElements statistical  = new WebPageElements("Statistical", "xpath", STATISTICAL );
@@ -331,8 +383,30 @@ public interface IRMXPage {
 	WebPageElements response_trend_header = new WebPageElements("Response Trend Header", "xpath", RESPONSE_TREND_HEADER );
 	
 	
-	String BALLOT_BOX = "//a[@id='btnBallotBoxReport']";
+	String BALLOT_BOX = "//li[@id='btnBallotBoxReport']/a";
 	WebPageElements ballot_box = new WebPageElements("Ballot box", "xpath", BALLOT_BOX );
+	
+	String  BALLOT_PAGE_1_DESCR= "//span[contains(text(),'Enter the known max responses possible for each group.')]";
+	WebPageElements ballot_page_1_descr  = new WebPageElements("Ballot Box Report - Specify IP Address Page Description", "xpath", BALLOT_PAGE_1_DESCR );
+	
+	String BALLOT_PAGE_1_CONTINUE = "//input[@id='btnNext1']";
+	WebPageElements ballot_page_1_continue = new WebPageElements("Ballot Box Report - Specify IP Address Page Continue Button", "xpath", BALLOT_PAGE_1_CONTINUE );
+	
+	String  BALLOT_PAGE_2_DESCR= "//span[contains(text(),'Number of Duplicates Allowed.')]";
+	WebPageElements ballot_page_2_descr  = new WebPageElements("Ballot Box Report - Number of Duplicates Allowed Page Description", "xpath", BALLOT_PAGE_2_DESCR );
+	
+	String  DUPLICATE_ALLOWED_TB= "//input[@id='txtNumDuplicates']";
+	WebPageElements duplicate_allowed_tb  = new WebPageElements("Ballot Box Report - Number of Duplicates Allowed Textbox", "xpath", DUPLICATE_ALLOWED_TB );
+	
+	String BALLOT_PAGE_2_CONTINUE = "//input[@id='btnNext2']";
+	WebPageElements ballot_page_2_continue = new WebPageElements("Ballot Box Report - Number of Duplicates Allowed Page Continue Button", "xpath", BALLOT_PAGE_2_CONTINUE );
+	
+	String  BALLOT_PAGE_3_DESCR= "//span[contains(text(),'Select the questions to be reviewed to determine if multiple responses may be a result of ballot box stuffing.')]";
+	WebPageElements ballot_page_3_descr  = new WebPageElements("Ballot Box Report - Data Review Page Description", "xpath", BALLOT_PAGE_3_DESCR );
+	
+	String  BALLOT_BOX_IP_TABLE= "//div[@id='DvIpDetails']";
+	WebPageElements ballot_box_ip_table  = new WebPageElements("Ballot Box Report - IP Details Table", "xpath", BALLOT_BOX_IP_TABLE );
+	
 	
 	String SHARE_VIA_EMAIL = "//a[@id='ReportDetails_sharelnk']";
 	WebPageElements share_via_email = new WebPageElements("Share Email", "xpath", SHARE_VIA_EMAIL );
@@ -546,7 +620,7 @@ public interface IRMXPage {
 	String GENERATE_NOW_BUTTON = "//input[@id='btnstep4Next']";
 	WebPageElements generate_now_button = new WebPageElements("Generate Now", "xpath", GENERATE_NOW_BUTTON);
 	
-	//Use this generate btn for Frequency table report, Cross tab report, Verbatim Report
+	//Use this generate btn for Frequency table report, Cross tab report, Verbatim Report, Comparison report
 	String GENERATE_NOW_BUTTON_2 = "//input[@value='Generate']";
 	WebPageElements generate_now_button_2 = new WebPageElements("Generate Now", "xpath", GENERATE_NOW_BUTTON_2);
 	
@@ -706,6 +780,37 @@ public interface IRMXPage {
 	
 	String SEGMENTATION_QUESTION_DD = "//select[@name='DDLQuestion']";
 	WebPageElements segmentation_question_dd = new WebPageElements("Segmentation Question", "xpath", SEGMENTATION_QUESTION_DD);
+	
+	String SEGMENTATION_REPORT_PAGE_2_DESCR = "//span[text()='Select the questions you would like to display in your report.']";
+	WebPageElements segmentation_report_page_2_descr = new WebPageElements("Segmentation Report - Survey Question Page Description", "xpath", SEGMENTATION_REPORT_PAGE_2_DESCR);
+	
+	String SEGMENTATION_REPORT_PAGE_3_DESCR = "//span[text()='To rearrange, drag and drop the questions below into the desired order.']";
+	WebPageElements segmentation_report_page_3_descr = new WebPageElements("Segmentation Report - Reorder Page Description", "xpath", SEGMENTATION_REPORT_PAGE_3_DESCR);
+	
+	String SEGMENTATION_REPORT_PAGE_4_DESCR = "//span[contains(text(),'Select desired report properties.')]";
+	WebPageElements segmentation_report_page_4_descr = new WebPageElements("Segmentation Report - Report Properties Page Description", "xpath", SEGMENTATION_REPORT_PAGE_4_DESCR);
+	
+	String SEGMENTATION_REPORT_PAGE_5_DESCR = "//span[contains(text(),'Would you like to compare your segments with other filtered data?')]";
+	WebPageElements segmentation_report_page_5_descr = new WebPageElements("Segmentation Report - Comparison Segment Data Page Description", "xpath", SEGMENTATION_REPORT_PAGE_5_DESCR);
+	
+	String SEGMENTATION_REPORT_PAGE_6_DESCR = "//span[contains(text(),'Customize your Segmentation Report cover page.')]";
+	WebPageElements segmentation_report_page_6_descr = new WebPageElements("Segmentation Report - Customize Cover Page Description", "xpath", SEGMENTATION_REPORT_PAGE_6_DESCR);
+	
+	String SEGMENTATION_REPORT_PAGE_7_DESCR = "//span[contains(text(),'Select delivery options for your report.')]";
+	WebPageElements segmentation_report_page_7_descr = new WebPageElements("Segmentation Report - Customize Cover Page Description", "xpath", SEGMENTATION_REPORT_PAGE_7_DESCR);
+	
+	String SEGMENTATION_REPORT_PAGE_3_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepThreeNext')]";
+	WebPageElements segmentation_report_page_3_continue = new WebPageElements("Segmentation Report - Reorder Page Continue Button", "xpath", SEGMENTATION_REPORT_PAGE_3_CONTINUE);
+	
+	String SEGMENTATION_REPORT_PAGE_4_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepFourNext')]";
+	WebPageElements segmentation_report_page_4_continue = new WebPageElements("Segmentation Report - Report Properties Continue Button", "xpath", SEGMENTATION_REPORT_PAGE_4_CONTINUE);
+	
+	String SEGMENTATION_REPORT_PAGE_5_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepNewFifthNext')]";
+	WebPageElements segmentation_report_page_5_continue = new WebPageElements("Segmentation Report - Comparison Segment Data Continue Button", "xpath", SEGMENTATION_REPORT_PAGE_5_CONTINUE);
+	
+	String SEGMENTATION_REPORT_PAGE_6_CONTINUE = "//input[@value='Continue'][contains(@onclick,'StepSixthNext')]";
+	WebPageElements segmentation_report_page_6_continue = new WebPageElements("Segmentation Report - Customize Cover Continue Button", "xpath", SEGMENTATION_REPORT_PAGE_6_CONTINUE);
+	
 	
 	String COMPOSITION_REPORT_DD = "//select[@name='DDL_Com']";
 	WebPageElements compostion_report_dd = new WebPageElements("Segmentation Question", "xpath", COMPOSITION_REPORT_DD);

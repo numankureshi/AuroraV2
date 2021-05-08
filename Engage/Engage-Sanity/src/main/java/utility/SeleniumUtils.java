@@ -1019,14 +1019,42 @@ public class SeleniumUtils {
 				String optionText = Jsoup.parse(option.getAttribute("innerHTML")).text();
 				if (optionText.contains(visibleText)) {
 					selValue = option.getAttribute("value");
+					select.selectByValue(selValue);
+					Add_Log.info("Successfully selected option containing text "+visibleText);
+					test.log(Status.INFO, "Successfully selected option containing text "+visibleText);
+					Reporter.log("Successfully selected option containing text "+visibleText);
 					break;
 				}
-				select.selectByValue(selValue);
-				Add_Log.info("Successfully selected option containing text "+visibleText);
-				test.log(Status.INFO, "Successfully selected option containing text "+visibleText);
-				Reporter.log("Successfully selected option containing text "+visibleText);
+	
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Did not find the option containing text "+visibleText);
+			Add_Log.info("Did not find the option containing text "+visibleText);
+			Reporter.log("Did not find the option containing text "+visibleText);
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void selectByVisibleText(WebDriver driver, String testcaseName, By by, String visibleText,
+			ExtentTest test) {
+		Select select = new Select(driver.findElement(by));
+		List<WebElement> listOfOptions = select.getOptions();
+		String selValue = null;
+		try {
+			for (WebElement option : listOfOptions) {
+				String optionText = Jsoup.parse(option.getAttribute("innerHTML")).text();
+				if (optionText.contains(visibleText)) {
+					selValue = option.getAttribute("value");
+					select.selectByValue(selValue);
+					Add_Log.info("Successfully selected option containing text "+visibleText);
+					test.log(Status.INFO, "Successfully selected option containing text "+visibleText);
+					Reporter.log("Successfully selected option containing text "+visibleText);
+					break;
+				}	
+			}
+		} catch (Exception e) {
 			test.log(Status.FAIL, "Did not find the option containing text "+visibleText);
 			Add_Log.info("Did not find the option containing text "+visibleText);
 			Reporter.log("Did not find the option containing text "+visibleText);

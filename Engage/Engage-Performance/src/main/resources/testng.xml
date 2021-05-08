@@ -46,6 +46,11 @@
 			<parameter name="PlatformReadings_TC17" value="Statistical Report"></parameter>
 			<parameter name="PlatformReadings_TC18" value="Statistical Report"></parameter>
 			<parameter name="PlatformReadings_TC19" value="Engagement Report"></parameter>
+			<parameter name="PlatformReadings_TC20" value="Comparison Report"></parameter>
+			<parameter name="PlatformReadings_TC21" value="Comparison Report"></parameter>
+			<parameter name="PlatformReadings_TC22" value="Ballot Box Report"></parameter>
+			<parameter name="PlatformReadings_TC23" value="Advance Pivot Report"></parameter>
+			<parameter name="PlatformReadings_TC24" value="Segmentation Report"></parameter>
 			
 		</classes>
 	</test>
