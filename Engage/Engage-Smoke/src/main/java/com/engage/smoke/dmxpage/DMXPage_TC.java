@@ -81,7 +81,7 @@ public class DMXPage_TC extends SuiteBase {
 				loadBrowser();
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dmxPage2.publishSingleUseLinkexe(getDriver(), param, test);
-				dmxPage.sendReminders(getDriver(), param, test);
+				//dmxPage.sendReminders(getDriver(), param, test);
 			}
 		}
 
