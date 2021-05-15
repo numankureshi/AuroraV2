@@ -1234,9 +1234,11 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitforElemPresent(driver, testcaseName, 30, save_button, test);
 		click(driver, testcaseName, save_button, test);
 //		Thread.sleep(1000);
-//		
-		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'This report has been saved as ')]"), "This report has been saved as ", test);
+		
+//		waitForLoad(driver, testcaseName, 30, test);
+		waitForElementToBeVisible(driver, testcaseName,  By.xpath("//span[contains(text(),'This report has been saved as ')]"), 
+				"This report has been saved as ", 30, 100, test);
+		//waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'This report has been saved as ')]"), "This report has been saved as ", test);
 		
 	}
 	

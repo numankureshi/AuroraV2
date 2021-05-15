@@ -200,6 +200,7 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		waitforElemPresent(driver, testcaseName, 30, edit_button, test);
 		click(driver, testcaseName, edit_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().alert().accept();
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='"+ param.get("emailtemplate") +"']"), "Edit template: "+param.get("emailtemplate"), test);
 		Thread.sleep(2000);
 		waitforElemPresent(driver, testcaseName, 60, iframe_email_template, test);
@@ -344,7 +345,7 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 			waitForLoad(driver, testcaseName, 30, test);
 			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 			click(driver, testcaseName, done_editing_button, test);
-			waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+			waitforElemPresent(driver, testcaseName, 30, send_or_schedule2, test);
 			click(driver, testcaseName, test_send, test);
 			click(driver, testcaseName, send_now, test);
 			waitForLoad(driver, testcaseName, 30, test);

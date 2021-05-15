@@ -80,7 +80,7 @@ public class DMXPageSogo extends SeleniumUtils implements IDMXPage, ISMXPage {
 //			waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 //			click(driver, testcaseName, done_editing_button, test);
 			waitForLoad(driver, testcaseName, 30, test);
-			waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+			waitforElemPresent(driver, testcaseName, 30, send_or_schedule2, test);
 			click(driver, testcaseName, test_send, test);
 			click(driver, testcaseName, send_now, test);
 			waitForLoad(driver, testcaseName, 30, test);
@@ -135,7 +135,7 @@ public class DMXPageSogo extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::span[text()='Edit '])[1]"), param.get("emailtemplate") +" Edit", test);
 		 
 		click(driver, testcaseName, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::span[text()='Edit '])[1]"), param.get("emailtemplate") +" Edit", test);
-		 
+		driver.switchTo().alert().accept();
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='"+ param.get("emailtemplate") +"']"), "Edit template: "+param.get("emailtemplate"), test);
 		Thread.sleep(2000);

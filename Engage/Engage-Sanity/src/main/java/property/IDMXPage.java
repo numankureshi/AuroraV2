@@ -238,8 +238,12 @@ public interface IDMXPage {
 	String REVIEW_DATE = "(//a[text()='Review Data'])[2]";
 	WebPageElements review_data = new WebPageElements("Review Data", "xpath", REVIEW_DATE);
 	
-	String SEND_OR_SCHEDULE = "//a[contains(text(),'Send Or Schedule')]";
+	String SEND_OR_SCHEDULE = "//a[contains(text(),'Send or Schedule')]";
 	WebPageElements send_or_schedule = new WebPageElements("Send Or Schedule", "xpath", SEND_OR_SCHEDULE);
+	
+	String SEND_OR_SCHEDULE2 = "//a[contains(text(),'Send Or Schedule')]";
+	WebPageElements send_or_schedule2 = new WebPageElements("Send Or Schedule", "xpath", SEND_OR_SCHEDULE2);
+	
 	
 	String GENERATE_BUTTON = "//input[@value='Generate']";
 	WebPageElements generate_button = new WebPageElements("Gnerate Button", "xpath", GENERATE_BUTTON);
