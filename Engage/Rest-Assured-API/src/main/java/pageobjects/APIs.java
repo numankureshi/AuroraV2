@@ -295,7 +295,7 @@ public class APIs extends JSONUtility{
 	public void validateReminderPeriod(HashMap<String, String> param, ArrayList<String> emailList, ExtentTest test) throws ParseException {
 		String testcaseName = param.get("TestCaseName");
 		Collections.reverse(emailList);
-		JsonObject jsonReminderData = readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonFiles\\jsonReiminderData.json", test);
+		JsonObject jsonReminderData = readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonFiles\\jsonReminderData.json", test);
 		JsonObject payload = readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonFiles\\payload_sendSurveyInviteWithReminder.json", test);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm aaa", Locale.ENGLISH); //30-12-2020 06:56 PM
 		

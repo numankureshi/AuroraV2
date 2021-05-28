@@ -8,122 +8,18 @@
 	</listeners>
 
 	<test
-		name="Obtain the multi-use link of a survey.">
+		name="API DP Testcases">
 		<groups>
 			<run>
 				<include name="getSurveyURL API" />
-			</run>
-		</groups>
-
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>
-	</test>
-
-	<test
-		name="Send email invitations to a list of email addresses">
-		<groups>
-			<run>
 				<include name="sendSurveyInvite API" />
-			</run>
-		</groups>
-
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>
-	</test>
-
-	<test
-		name="Send email invitation along with reminders to a list of email addresses.">
-		<groups>
-			<run>
 				<include name="sendSurveyInviteWithReminder API" />
-			</run>
-		</groups>
-
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>
-	</test>
-	
-	<test
-		name="Send email Reminders to non-participants.">
-		<groups>
-			<run>
 				<include name="sendSurveyReminder API" />
-			</run>
-		</groups>
-
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>
-	</test>
-	
-	<test
-		name="Generate survey passwords required for accessing survey participation">
-		<groups>
-			<run>
 				<include name="generateSurveyKey API" />
-			</run>
-		</groups>
-
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>
-	</test>
-
-	<test name="Reopen a completed response only for Single-Use Links">
-		<groups>
-			<run>
 				<include name="reopenresponse API" />
-			</run>
-		</groups>
-		
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>		
-	</test>
-	
-	<test name="Obtain the survey list data along with meta data">
-		<groups>
-			<run>
 				<include name="getSurveyList API" />
-			</run>
-		</groups>
-		
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>		
-	</test>
-	
-	<test name="Obtain participation status of Single use link">
-		<groups>
-			<run>
 				<include name="getParticipationStatusInfo API" />
-			</run>
-		</groups>
-		
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>		
-	</test>
-		
-	<test name="Obtain response Data in JSON format">
-		<groups>
-			<run>
 				<include name="getData API" />
-			</run>
-		</groups>
-		
-		<classes>
-			<class name="com.sogo.api.API_TC" />
-		</classes>		
-	</test>
-
-	<test
-		name="Update and add new records within existing list.">
-		<groups>
-			<run>
 				<include name="updateContactList API" />
 			</run>
 		</groups>
@@ -132,5 +28,119 @@
 			<class name="com.sogo.api.API_TC" />
 		</classes>
 	</test>
+
+<!-- 	<test -->
+<!-- 		name="Send email invitations to a list of email addresses"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="sendSurveyInvite API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	<test -->
+<!-- 		name="Send email invitation along with reminders to a list of email addresses."> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="sendSurveyInviteWithReminder API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test -->
+<!-- 		name="Send email Reminders to non-participants."> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="sendSurveyReminder API" /> -->
+				
+<!-- 			</run> -->
+<!-- 		</groups> -->
+
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test -->
+<!-- 		name="Generate survey passwords required for accessing survey participation"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="generateSurveyKey API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	<test name="Reopen a completed response only for Single-Use Links"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="reopenresponse API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+		
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes>		 -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Obtain the survey list data along with meta data"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="getSurveyList API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+		
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes>		 -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Obtain participation status of Single use link"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="getParticipationStatusInfo API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+		
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes>		 -->
+<!-- 	</test> -->
+		
+<!-- 	<test name="Obtain response Data in JSON format"> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="getData API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+		
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes>		 -->
+<!-- 	</test> -->
+
+<!-- 	<test -->
+<!-- 		name="Update and add new records within existing list."> -->
+<!-- 		<groups> -->
+<!-- 			<run> -->
+<!-- 				<include name="updateContactList API" /> -->
+<!-- 			</run> -->
+<!-- 		</groups> -->
+
+<!-- 		<classes> -->
+<!-- 			<class name="com.sogo.api.API_TC" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
 
 </suite>

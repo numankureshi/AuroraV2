@@ -1040,7 +1040,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			}			
 		
 		json.add("Table", jArray);
-		new JSONUtility().writeJSONToFIle(testcaseName, json, "\\src\\main\\resources\\jsonFiles\\jsonReiminderData.json", test);	
+		new JSONUtility().writeJSONToFIle(testcaseName, json, "\\src\\main\\resources\\jsonFiles\\jsonReminderData.json", test);	
 		return json;		
 	}
 	

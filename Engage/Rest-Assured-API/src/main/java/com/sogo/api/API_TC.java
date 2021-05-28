@@ -44,6 +44,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -500,11 +501,11 @@ public class API_TC extends SuiteBase {
 				headers.put(TestCaseName, responseData.get("headerList").toString());
 				
 				//Validate URL Expiry from tracksurvey Data
-//				loadBrowser();
-//				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-//				dmx.goToTrackSurvey(getDriver(), param, getData(data, "surveyTitle"), getData(data, "surveyNo"), test);
-//				dmx.jsonTrackSurveyData(getDriver(), param, test);
-//				api.validateExpiryDateFromTrackSurvey(param, (ArrayList<String>) responseData.get("emailList"), test);
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToTrackSurvey(getDriver(), param, getData(data, "surveyTitle"), getData(data, "surveyNo"), test);
+				dmx.jsonTrackSurveyData(getDriver(), param, test);
+				api.validateExpiryDateFromTrackSurvey(param, (ArrayList<String>) responseData.get("emailList"), test);
 				
 			}
 		}
@@ -3488,6 +3489,7 @@ public class API_TC extends SuiteBase {
 		}
 		testSkip = false;
 	}
+	
 
 	@AfterSuite(alwaysRun = true)
 	public void afterSuite() {
