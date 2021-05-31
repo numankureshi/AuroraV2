@@ -410,6 +410,8 @@ public interface ISMXPage {
 	String MOVE_QUESTION_OPTIONS = "//ul[contains(@class,' MoveQues ps-container')]/li";
 	WebPageElements move_question_options = new WebPageElements("Select Move Question Options", "xpath", MOVE_QUESTION_OPTIONS);
 	
+	String INCREASE_SRS_SUBQUE = "//div[contains(@onclick,'fnIncreaseSRSSubQuestion') and @class='step-plus']";
+	WebPageElements increase_srs_subque = new WebPageElements("Increase SRS Question Button", "xpath", INCREASE_SRS_SUBQUE);
 	
 	
 	

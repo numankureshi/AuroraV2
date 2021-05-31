@@ -486,11 +486,15 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("symbolratingscale"), test);
 		driver.switchTo().defaultContent();
-		waitforElemPresent(driver, testcaseName, 30, number_subquestion, test);
-		Select select = new Select(driver.findElement(By.xpath(NUMBER_SUBQUESTION)));
-		select.selectByVisibleText("6");
-		Thread.sleep(500);
-		
+		waitforElemPresent(driver, testcaseName, 30, increase_srs_subque, test);
+//		Commenting as drop down UI is changed to up/down buttton UI		
+//		Select select = new Select(driver.findElement(By.xpath(NUMBER_SUBQUESTION)));
+//		select.selectByVisibleText("6");
+//		Thread.sleep(500);
+		for(int i=0; i<5; i++) {
+			click(driver, testcaseName, increase_srs_subque, test);
+			Thread.sleep(500);
+		}
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='GQoption1']"), "Sub Question 1", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='GQoption1']"), subQuestions[0], "Sub Question 1", test);
 		Thread.sleep(500);
