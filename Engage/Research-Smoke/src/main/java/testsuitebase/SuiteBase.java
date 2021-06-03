@@ -33,6 +33,7 @@ import com.aventstack.extentreports.ExtentReports;
 
 import pageobjects.DMXPage;
 import pageobjects.DMXPageResearch;
+import pageobjects.DataPage;
 import pageobjects.LoginPage;
 import pageobjects.RMXPage;
 import pageobjects.RMXPageResearch;
@@ -71,6 +72,7 @@ public class SuiteBase {
 	public SMXPage smxPage = new SMXPage();
 	public DMXPage dmxPage = new DMXPage();
 	public DMXPageResearch dmxPage2 = new DMXPageResearch();
+	public DataPage dataPage = new DataPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	public RMXPage rmxPage = new RMXPage();

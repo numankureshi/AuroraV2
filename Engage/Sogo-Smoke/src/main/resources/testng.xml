@@ -50,5 +50,16 @@
 			<class name="com.sogo.smoke.dmxpage.DMXPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="datapage">
+		<groups>
+			<run>
+				<include name="datapage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.smoke.datapage.DataPage_TC" />
+		</classes>
+	</test>
 
 </suite>

@@ -314,7 +314,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Smoke_TC17(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC16(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");

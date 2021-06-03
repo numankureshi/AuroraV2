@@ -25,10 +25,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -309,8 +312,10 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		String allFields[] = new String[totalFields];
 		System.out.println("------------------------------Adding data of "+requiredResponse +" responses in an array-----------------------------------");
 		for(int i=0; i<totalFields; i++) {
-			allFields[i] = Jsoup.parse(responseTbData.get(i).getAttribute("innerHTML")).text();
+			allFields[i] = Jsoup.parse(responseTbData.get(i).getAttribute("innerHTML")).text();	
 		}
+//		Stream<WebElement> respData = responseTbData.stream();
+//		List<String> tempData = respData.map(e->Jsoup.parse(e.getAttribute("innerHTML")).text()).collect(Collectors.toList());
 		System.out.println("------------------------------Adding data of "+requiredResponse +" responses is completed-----------------------------------");
 		
 		int fromIndex = 0;
@@ -3357,6 +3362,39 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		return strtotalTime;
 	}
 	
+	
+	public void excludeResponseFromIndividualReport(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		goToIndividualReport(driver, param, test);
+		getReorderQuestionReading(driver, param, test);
+		getReportPropertyReading(driver, param, test);
+		getFilterStepReading(driver, param, test);
+		getReportGenerationReading(driver, param, test);
+
+		scrollIntoCenter(driver, testcaseName, select_response_no, test);
+		selectByVisibleText(driver, testcaseName, select_response_no, param.get("responseNo"), test);
+		waitForJStoLoad(driver, 30);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@class='reportTable']/div[contains(text(),'Response No')]"), 
+				"Response No Field", 30, 200, test);
+
+		try {
+			if (driver.findElement(By.xpath(exclude_from_reports.getValue())).isDisplayed()) {
+				click(driver, testcaseName, exclude_from_reports, test);
+				waitforElemPresent(driver, testcaseName, 30, exclude_response_note, test);
+			}
+		} catch (NoSuchElementException e) {
+			System.out.println("Exlude button is not present");
+		}
+		try {
+			if (driver.findElement(By.xpath(include_in_reports.getValue())).isDisplayed()) {
+				click(driver, testcaseName, include_in_reports, test);
+				waitforElemNotVisible(driver, testcaseName, 30, exclude_from_reports, test);
+			}
+		} catch (NoSuchElementException e) {
+			System.out.println("Include button is not present");
+		}
+	}
 	
 	
 	

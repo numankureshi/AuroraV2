@@ -50,5 +50,16 @@
 			<class name="com.research.smoke.rmxpage.RMXPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="datapage">
+		<groups>
+			<run>
+				<include name="datapage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.research.smoke.datapage.DataPage_TC" />
+		</classes>
+	</test>
 
 </suite>

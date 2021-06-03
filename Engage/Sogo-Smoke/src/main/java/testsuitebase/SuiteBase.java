@@ -34,6 +34,7 @@ import com.sogo.smoke.surveypage.SurveyPage_TC;
 
 import pageobjects.DMXPage;
 import pageobjects.DMXPageSogo;
+import pageobjects.DataPage;
 import pageobjects.RMXPage;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
@@ -71,6 +72,7 @@ public class SuiteBase {
 	public DMXPage dmxPage = new DMXPage();
 	public DMXPageSogo dmxPageSogo = new DMXPageSogo();
 	public RMXPage rmxPage = new RMXPage();
+	public DataPage dataPage = new DataPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	

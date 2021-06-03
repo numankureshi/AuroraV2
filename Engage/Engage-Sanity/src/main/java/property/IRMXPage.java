@@ -1002,5 +1002,17 @@ public interface IRMXPage {
 	
 	String SEGMENT_INPUT1 = "//input[@id='txtSegment1']";
 	WebPageElements segment_input_switch1 = new WebPageElements("Segment Input Switch", "xpath", SEGMENT_INPUT1);
+	
+	String SELECT_RESPONSE_NO = "//select[@id='cmbPageSel']";
+	WebPageElements select_response_no = new WebPageElements("Response Drop Down", "xpath", SELECT_RESPONSE_NO);
 
+	String EXCLUDE_FROM_REPORTS = "//button[text()='Exclude from reports']";
+	WebPageElements exclude_from_reports = new WebPageElements("Exclude From Reports Button", "xpath", EXCLUDE_FROM_REPORTS);
+	
+	String EXCLUDE_RESPONSE_NOTE = "//span[@id='lblExcludeResponse']";
+	WebPageElements exclude_response_note = new WebPageElements("Exclude Response - Note", "xpath", EXCLUDE_RESPONSE_NOTE);
+	
+	String INCLUDE_IN_REPORTS = "//button[text()='Include in reports']";
+	WebPageElements include_in_reports = new WebPageElements("Include in Reports Button", "xpath", INCLUDE_IN_REPORTS);
+	
 }
