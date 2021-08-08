@@ -487,7 +487,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		setText(driver, testcaseName, description_text, param.get("symbolratingscale"), test);
 		driver.switchTo().defaultContent();
 		waitforElemPresent(driver, testcaseName, 30, increase_srs_subque, test);
-//		Commenting as drop down UI is changed to up/down buttton UI		
+//		Commenting as drop down UI is changed to up/down button UI		
 //		Select select = new Select(driver.findElement(By.xpath(NUMBER_SUBQUESTION)));
 //		select.selectByVisibleText("6");
 //		Thread.sleep(500);
@@ -1183,23 +1183,38 @@ Thread.sleep(1000);
 	public void selectCategoryFromQBList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		Boolean isCategoryFound = false;
+		waitForLoad(driver, testcaseName, 30, test);
 		click(driver, testcaseName, drop_down_of_select_category, test);
 		isCategoryFound = chooseCategory(driver, param, test);
 		if(isCategoryFound == false) {
 			Calendar calendar = Calendar.getInstance();
 			String newCategoryName = "Category : " + calendar.getTime();
 			click(driver, testcaseName, add_category, test);
-			setText(driver, testcaseName, add_category_input_field, newCategoryName, test);
-			click(driver, testcaseName, save_category_name, test);
-			waitForLoad(driver, testcaseName, 60, test);	
-			waitforElemPresent(driver, testcaseName, 60, toaster_msg_of_category_added, test);
-			click(driver, testcaseName, close_toaster_msg, test);
-			waitforElemNotVisible(driver, testcaseName, 60, toaster_msg_of_category_added, test);
-			test.log(Status.INFO, "Category "+ newCategoryName + " added");
-			Add_Log.info("Category "+ newCategoryName + " added");
-			Reporter.log("Category "+ newCategoryName + " added");
-			click(driver, testcaseName, drop_down_of_select_category, test);
-			chooseCategory(driver, param, test);
+			try {
+				//waitforElemPresent(driver, testcaseName, 30, toaster_msg, test);
+				if(driver.findElement(By.xpath(TOASTER_MSG)).getAttribute("innerHTML").
+						contains("You may create up to 50 custom Question Bank categories. Delete one or more to create new categories.")) {
+					test.log(Status.INFO, "More than 50 custom Question Bank categories found. Please delete one or more to create new categories.");
+					Add_Log.info("More than 50 custom Question Bank categories found. Please delete one or more to create new categories.");
+					Reporter.log("More than 50 custom Question Bank categories found. Please delete one or more to create new categories.");	
+					TestResultStatus.failureReason.add(testcaseName + "| More than 50 custom Question Bank categories found. Please delete one or more to create new categories.");
+					TestResultStatus.TestFail = true;
+					Assert.fail();
+					}
+				} catch(Exception e) {
+					
+				}		
+				setText(driver, testcaseName, add_category_input_field, newCategoryName, test);
+				click(driver, testcaseName, save_category_name, test);
+				waitForLoad(driver, testcaseName, 60, test);
+				waitforElemPresent(driver, testcaseName, 60, toaster_msg_of_category_added, test);
+				click(driver, testcaseName, close_toaster_msg, test);
+				waitforElemNotVisible(driver, testcaseName, 60, toaster_msg_of_category_added, test);
+				test.log(Status.INFO, "Category " + newCategoryName + " added");
+				Add_Log.info("Category " + newCategoryName + " added");
+				Reporter.log("Category " + newCategoryName + " added");
+				click(driver, testcaseName, drop_down_of_select_category, test);
+				chooseCategory(driver, param, test);
 			
 		}
 	}
@@ -1234,7 +1249,7 @@ Thread.sleep(1000);
 			
 			Thread.sleep(1000);
 			System.out.println(getWebElement(driver, testcaseName, toaster_msg, test).getAttribute("innerHTML"));
-			if(getWebElement(driver, testcaseName, toaster_msg, test).getAttribute("innerHTML").contains("Question deposited to Question Bank")) {
+			if(getWebElement(driver, testcaseName, toaster_msg, test).getAttribute("innerHTML").contains("Question deposited to ")) {
 				break;
 			}
 			
