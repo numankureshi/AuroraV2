@@ -1,4 +1,4 @@
-package com.engage.performance;
+package com.engage.performance.dmx;
 
 import org.testng.annotations.Test;
 
@@ -33,7 +33,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.AfterSuite;
 
-public class EngagePlatformReading_TC extends SuiteBase {
+public class DMXPlatformReading_TC extends SuiteBase {
 	Read_XLS filePath = null;
 	String Environment;
 	String TestCaseName = null;
@@ -61,215 +61,19 @@ public class EngagePlatformReading_TC extends SuiteBase {
 
 	
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC1(LinkedHashMap<String, String> data) throws Exception {
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC25(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
 		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Step6", getData(data, "Step 6"));
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getBarGraphReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC2(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getResponseTableReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC3(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getIndividualReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC4(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getFreqTableReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC5(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Condition que 1", getData(data, "Condition que 1"));
-		param.put("Condition que 1 operand", getData(data, "Condition que 1 operand"));
-		param.put("Condition que 1 answers", getData(data, "Condition que 1 answers"));
-		param.put("Condition que 2", getData(data, "Condition que 2"));
-		param.put("Condition que 2 operand", getData(data, "Condition que 2 operand"));
-		param.put("Condition que 2 answers", getData(data, "Condition que 2 answers"));
-		param.put("Logic", getData(data, "Logic"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
 		
 			
 		if (CaseToRun.equalsIgnoreCase("N")) {
@@ -290,8 +94,7 @@ public class EngagePlatformReading_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getConditionalReportReading(getDriver(), param, test);
+				readingData = dmx.getDMHomePageReading(getDriver(), param, test);
 				System.out.println(readingData);
 				
 			}
@@ -299,648 +102,13 @@ public class EngagePlatformReading_TC extends SuiteBase {
 
 	}
 	
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC6(LinkedHashMap<String, String> data) throws Exception {
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC26(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Condition que 1", getData(data, "Condition que 1"));
-		param.put("Condition que 1 operand", getData(data, "Condition que 1 operand"));
-		param.put("Condition que 1 answers", getData(data, "Condition que 1 answers"));
-		param.put("Condition que 2", getData(data, "Condition que 2"));
-		param.put("Condition que 2 operand", getData(data, "Condition que 2 operand"));
-		param.put("Condition que 2 answers", getData(data, "Condition que 2 answers"));
-		param.put("Logic", getData(data, "Logic"));
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getConditionalReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC7(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Stub", getData(data, "Stub"));
-		param.put("Banner", getData(data, "Banner"));
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.get2LvlCrossTabReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC8(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Stub", getData(data, "Stub"));
-		param.put("Banner", getData(data, "Banner"));
-		param.put("Parent", getData(data, "Parent"));
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.get3LvlCrossTabReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC9(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Stub", getData(data, "Stub"));
-		param.put("Banner", getData(data, "Banner"));
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getPivotReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC10(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Stub", getData(data, "Stub"));
-		param.put("Banner", getData(data, "Banner"));
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getPivotReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC11(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Step6", getData(data, "Step 6"));
-		param.put("Comment", getData(data, "Comment"));
-
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getVerbatimReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC12(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Step6", getData(data, "Step 6"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Filter Name", getData(data, "Filter Name"));
-
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getVerbatimReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC13(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Step6", getData(data, "Step 6"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Grouping question", getData(data, "Grouping question"));
-
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getVerbatimReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC14(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-
-
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getAssessmentSummaryReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC15(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		
-			
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getResponseTrendReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC16(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getStatisticalReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC17(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Segment question 1", getData(data, "Segment question 1"));
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getStatisticalReportReadingWithSegmentAnswserOption(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC18(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Segment 1 name", getData(data, "Segment 1 name"));
-		param.put("Segment question 1", getData(data, "Segment question 1"));
-		param.put("Segment ques 1 operand", getData(data, "Segment ques 1 operand"));
-		param.put("Segment ques 1 answers", getData(data, "Segment ques 1 answers"));
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getStatisticalReportReadingWithMoreThanOneSegQue(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC19(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -953,11 +121,13 @@ public class EngagePlatformReading_TC extends SuiteBase {
 		param.put("Step7", getData(data, "Step 7"));
 		param.put("Step8", getData(data, "Step 8"));
 		param.put("Step9", getData(data, "Step 9"));
-		param.put("Nmax", getData(data, "Nmax"));
-		param.put("Engagement questions", getData(data, "Engagement questions"));
-		param.put("Driver questions", getData(data, "Driver questions"));
-
-
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("selectlist", getData(data, "selectlist"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		
+			
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
 			testSkip = true;
@@ -976,59 +146,7 @@ public class EngagePlatformReading_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getEngagementReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC20(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Condition que 1", getData(data, "Condition que 1"));
-		param.put("Condition que 1 operand", getData(data, "Condition que 1 operand"));
-		param.put("Condition que 1 answers", getData(data, "Condition que 1 answers"));
-		param.put("datasetCount", getData(data, "datasetCount"));
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getComparisonReportReading(getDriver(), param, test);
+				readingData = dmx.getSingleUseInvByListReadings(getDriver(), param, test);
 				System.out.println(readingData);
 				
 			}
@@ -1036,161 +154,14 @@ public class EngagePlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC21(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Condition que 1", getData(data, "Condition que 1"));
-		param.put("Condition que 1 operand", getData(data, "Condition que 1 operand"));
-		param.put("Condition que 1 answers", getData(data, "Condition que 1 answers"));
-		param.put("datasetCount", getData(data, "datasetCount"));
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getComparisonReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC22(LinkedHashMap<String, String> data) throws Exception {
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC27(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Comment", getData(data, "Comment"));
-		param.put("Nmax", getData(data, "Nmax"));
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getBallotBoxReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC23(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("TestCaseName", TestCaseName);
-		param.put("Step1", getData(data, "Step 1"));
-		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		param.put("Step4", getData(data, "Step 4"));
-		param.put("Step5", getData(data, "Step 5"));
-		param.put("Step6", getData(data, "Step 6"));
-
-
-
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = platformReadingFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getAdvPivotReportReading(getDriver(), param, test);
-				System.out.println(readingData);
-				
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
-	public void PlatformReadings_TC24(LinkedHashMap<String, String> data) throws Exception {
-		
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		String surveyTitle = getData(data, "Survey Title");
-		String SID = getData(data, "SID");
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -1202,11 +173,13 @@ public class EngagePlatformReading_TC extends SuiteBase {
 		param.put("Step6", getData(data, "Step 6"));
 		param.put("Step7", getData(data, "Step 7"));
 		param.put("Step8", getData(data, "Step 8"));
-		param.put("Segment question 1", getData(data, "Segment question 1"));
-		param.put("toEmail", getData(data, "toEmail"));
-
-
-
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		
+			
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
 			testSkip = true;
@@ -1225,8 +198,7 @@ public class EngagePlatformReading_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
-				readingData = rmx.getSegmentationReportReading(getDriver(), param, test);
+				readingData = dmx.getSingleUseInvReadingsByFile(getDriver(), param, test);
 				System.out.println(readingData);
 				
 			}
@@ -1234,7 +206,995 @@ public class EngagePlatformReading_TC extends SuiteBase {
 
 	}
 	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC28(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Step5", getData(data, "Step 5"));
+		param.put("Step6", getData(data, "Step 6"));
+		param.put("Step7", getData(data, "Step 7"));
+		param.put("Step8", getData(data, "Step 8"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getSingleUseInvReadingsByManually(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
 
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC29(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("emailLang", getData(data, "language"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getQuickSendReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC30(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Step5", getData(data, "Step 5"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("mapValues", getData(data, "mapValues"));
+		param.put("file", getData(data, "file"));
+		param.put("emailaddcol", getData(data, "emailaddcol"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getListCreationReadingByFile(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC31(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("selectlist", getData(data, "selectlist"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getSAPReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC32(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getEmailTempCreationReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC33(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getDeleteEmailTempReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC34(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getDeleteEmailTempFromListReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC35(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getCopyEmailTemplateReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC36(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getCopyEmailTemplateFromListReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC37(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getPreviewEmailTemplateReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC38(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToDistributePage(getDriver(), param, test);
+				readingData = dmx.getPreviewEmailTemplateFromListReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC39(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("channel", getData(data, "channel"));
+		param.put("searchRec1", getData(data, "searchRec1"));
+		param.put("searchRec2", getData(data, "searchRec2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getTrackSurveyReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC40(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("channel", getData(data, "channel"));
+		param.put("delText", getData(data, "textBox1"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getTrackSurveyDeleteReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC41(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		param.put("dateFormat", getData(data, "dateFormat"));
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToAllProject(getDriver(), param, test);
+				readingData = dmx.getScheduledLaterByFileReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC42(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("selectlist", getData(data, "selectlist"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		param.put("dateFormat", getData(data, "dateFormat"));
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToAllProject(getDriver(), param, test);
+				readingData = dmx.getScheduledLaterByListReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC43(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		param.put("dateFormat", getData(data, "dateFormat"));
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmx.goToAllProject(getDriver(), param, test);
+				readingData = dmx.getScheduledLaterTypeManuallyReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC44(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Step5", getData(data, "Step 5"));
+		param.put("Step6", getData(data, "Step 6"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		param.put("dateFormat", getData(data, "dateFormat"));
+		param.put("count", getData(data, "Nmax"));
+		param.put("pages", getData(data, "textBox1"));
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.copySurvey(getDriver(), param, test);
+				readingData = dmx.getReminderWizReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC45(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+		param.put("file", getData(data, "file"));
+		param.put("prepopdd", getData(data, "prepopdd"));
+		param.put("dateFormat", getData(data, "dateFormat"));
+
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				smx.copySurvey(getDriver(), param, test);
+				readingData = dmx.getCancelRemindersReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC46(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getShareOnFbReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC47(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getShareOnTwitterReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC48(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getShareOnLinkedInReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
+	public void PlatformReadings_TC49(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Step5", getData(data, "Step 5"));
+		param.put("Step6", getData(data, "Step 6"));
+		param.put("Survey Title", getData(data, "Survey Title"));
+		param.put("SID", getData(data, "SID"));
+		param.put("file", getData(data, "file"));
+
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = dmx.getSMSInvReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
 
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {

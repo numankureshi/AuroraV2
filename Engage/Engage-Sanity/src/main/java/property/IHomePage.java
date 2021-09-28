@@ -26,7 +26,19 @@ public interface IHomePage {
 	WebPageElements data_icon = new WebPageElements("Data Icon", "xpath", DATA_ICON);
 	
 	String EDIT_ICON = "//div[@id='OverDivEdit']/span";
-	WebPageElements edit_icon = new WebPageElements("Edit Icon", "xpath", EDIT_ICON);	
+	WebPageElements edit_icon = new WebPageElements("Edit Icon", "xpath", EDIT_ICON);
+	
+	String COPY_ICON = "//div[@id='OverDivCopy']/span";
+	WebPageElements copy_icon = new WebPageElements("Copy Icon", "xpath", COPY_ICON);
+	
+	String COPY_DROP_DOWN = "//div[@id='dvMakeCopy']/ul[@id='qm-menu']";
+	WebPageElements copy_drop_down = new WebPageElements("Copy Drop Down", "xpath", COPY_DROP_DOWN);
+	
+	String COPY_IN_SAME_ACC = "//a[@id='SurveyGrid_lnkBtnCopyToSameAccount']";
+	WebPageElements copy_in_same_acc = new WebPageElements("Copy in Same Account Option", "xpath", COPY_IN_SAME_ACC);
+	
+	String FIRST_ROW = "(//div[@class='dRow'])[1]";
+	WebPageElements first_row = new WebPageElements("First Project From All Project", "xpath", FIRST_ROW);
 	
 	String SEARCH_BAR = "//input[@id='txtSearch']";
 	WebPageElements search_bar = new WebPageElements("Search Bar", "xpath", SEARCH_BAR);
@@ -42,6 +54,18 @@ public interface IHomePage {
 	
 	String MAIN_LOADER= "//div[@class='loader']";
 	WebPageElements main_loader = new WebPageElements("Loader", "xpath", MAIN_LOADER);
+	
+	String SURVEY_TITLE= "//div[contains(@class,'dContent')]";
+	WebPageElements survey_title = new WebPageElements("Survey Title", "xpath", SURVEY_TITLE);
+	
+	String EDIT_SURVEY_TITLE= "//input[@id='SurveyGrid_txtNewSurveyTitle']";
+	WebPageElements edit_survey_title = new WebPageElements("Edit Survey Title", "xpath", EDIT_SURVEY_TITLE);
+	
+	String SAVE_SURVEY_TITLE= "//input[contains(@id,'SurveyGrid_btnChangeTitle')]";
+	WebPageElements save_survey_title = new WebPageElements("Save Survey Title", "xpath", SAVE_SURVEY_TITLE);
+	
+	String SMALL_LOADER= "//img[contains(@id,'imgSmallLoader')]";
+	WebPageElements small_loader = new WebPageElements("Loader", "xpath", SMALL_LOADER);
 
 	
 }

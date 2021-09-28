@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -150,6 +151,28 @@ public class SeleniumUtils {
 	
 	public void setText(WebDriver driver, String testcaseName, By by, String text, String name, ExtentTest test) {
 		WebElement element = driver.findElement(by);
+		if(text != null) {
+			try {
+				element.sendKeys(text);
+				test.log(Status.INFO, "Successfully entered "+ text + " in "+ name +" textbox.");
+				Add_Log.info("Successfully entered "+ text + " in "+ name +" textbox.");
+				Reporter.log("Successfully entered "+ text + " in "+ name +" textbox.");
+			} catch (Exception e) {
+				test.log(Status.FAIL, text + " not entered in "+ name +" textbox.");
+				Add_Log.info(text + " not entered in "+ name +" textbox.");
+				Reporter.log(text + " not entered in "+ name +" textbox.");
+				TestResultStatus.failureReason.add(testcaseName + "| "+ text + " not entered in "+ name +" textbox.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+			}
+		} else {
+			test.log(Status.INFO, name +" value is blank.");
+			Add_Log.info(name +" value is blank.");
+			Reporter.log(name +" value is blank.");
+		}
+	}
+	
+	public void setText(WebDriver driver, String testcaseName, WebElement element, String text, String name, ExtentTest test) {
 		if(text != null) {
 			try {
 				element.sendKeys(text);
@@ -586,6 +609,23 @@ public class SeleniumUtils {
 		
 	}
 	
+	public void clearText(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
+			try {
+				element.clear();
+				test.log(Status.INFO, "Successfully cleared text from "+ name +" textbox");
+				Add_Log.info("Successfully cleared text from "+ name +" textbox");
+				Reporter.log("Successfully cleared text from "+ name +" textbox");
+			} catch (Exception e) {
+				test.log(Status.FAIL, "Text not cleared from "+ name +" textbox");
+				Add_Log.info("Text not cleared from "+ name +" textbox");
+				Reporter.log("Text not cleared from "+ name +" textbox");
+				TestResultStatus.failureReason.add(testcaseName + "| Text not cleared from "+ name +" textbox");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+			}
+		
+	}
+	
 	public void scrollIntoView(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		try {
 			WebElement element = getWebElement(driver, testcaseName, ele, test);
@@ -717,6 +757,33 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void waitForInsideLoad(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+		try {
+			try {
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='insideLoader']")));
+			} catch (Exception e) {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='insideLoader']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			} finally {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='insideLoader']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			}
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Loader did not disappear.");
+			Add_Log.info("Loader did not disappear.");
+			Reporter.log("Loader did not disappear.");
+			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
 
 	
 	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
@@ -1062,6 +1129,51 @@ public class SeleniumUtils {
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 		}
+	}
+	
+	public void selectByVisibleText(WebDriver driver, String testcaseName, WebElement element, String visibleText,
+			ExtentTest test) {
+		Select select = new Select(element);
+		List<WebElement> listOfOptions = select.getOptions();
+		String selValue = null;
+		try {
+			for (WebElement option : listOfOptions) {
+				String optionText = Jsoup.parse(option.getAttribute("innerHTML")).text();
+				if (optionText.contains(visibleText)) {
+					selValue = option.getAttribute("value");
+					select.selectByValue(selValue);
+					Add_Log.info("Successfully selected option containing text "+visibleText);
+					test.log(Status.INFO, "Successfully selected option containing text "+visibleText);
+					Reporter.log("Successfully selected option containing text "+visibleText);
+					break;
+				}	
+			}
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Did not find the option containing text "+visibleText);
+			Add_Log.info("Did not find the option containing text "+visibleText);
+			Reporter.log("Did not find the option containing text "+visibleText);
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void waitForAlert(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+			try {
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).ignoring(NoAlertPresentException.class).withTimeout(Duration.ofSeconds(seconds))
+						.pollingEvery(Duration.ofMillis(100));
+				fWait.until(ExpectedConditions.alertIsPresent());
+				Add_Log.info("Successfully waited for alert.");
+				test.log(Status.INFO, "Successfully waited for alert.");
+				Reporter.log("Successfully waited for alert.");
+			} catch (Exception e) {
+				test.log(Status.FAIL, "Did not find the alert.");
+				Add_Log.info("Did not find the alert.");
+				Reporter.log("Did not find the alert.");
+				TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the alert.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+			} 
 	}
 
 

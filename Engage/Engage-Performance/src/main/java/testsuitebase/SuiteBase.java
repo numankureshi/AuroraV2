@@ -42,6 +42,7 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.engage.performance.EngageNSReading_TC;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageobjects.DMXPage;
 import pageobjects.HomePage;
 import pageobjects.RMXPage;
@@ -127,41 +128,36 @@ public class SuiteBase {
 		}
 		
 		if(Config.getProperty("testBrowser").equalsIgnoreCase("Mozilla")) {
-			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\browserdrivers\\geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			driver.set(new FirefoxDriver());
 			Add_Log.info("Firefox Driver instance loaded successfully.");
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE")) {
-			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\browserdrivers\\IEDriverServer.exe");
+			WebDriverManager.iedriver().setup();
 			driver.set(new InternetExplorerDriver());
 			Add_Log.info("IE Driver instance loaded successfully.");
-		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
-			
-			  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
-			  + "\\src\\main\\resources\\browserdrivers\\chromedriver.exe");
-			  
-			  String downloadFilePath = System.getProperty("user.dir") +
-			  "\\src\\main\\resources\\downloadfiles\\";
-			  
-			  HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-			  chromePrefs.put("profile.default_content_settings.popups", 0);
-			  chromePrefs.put("download.default_directory", downloadFilePath);
-			  
-			  ChromeOptions options = new ChromeOptions();
-			  options.setExperimentalOption("prefs", chromePrefs);
-			  options.addArguments("--start-maximized");
-			  options.setExperimentalOption("useAutomationExtension", false);
-			  options.addArguments("disable-infobars");
-			  options.addArguments("--ignore-certificate-errors");
-			  
-			  DesiredCapabilities cap = DesiredCapabilities.chrome();
-			  cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			  cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,UnexpectedAlertBehaviour.ACCEPT); 
-			  cap.setCapability(ChromeOptions.CAPABILITY,options);
-			  
-			  driver.set(new ChromeDriver(cap));
-			  Add_Log.info("Chrome Driver instance loaded successfully.");
-			 
-			 
+		} else if (Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.default_directory", downloadFilePath);
+
+			ChromeOptions options = new ChromeOptions();
+			options.setExperimentalOption("prefs", chromePrefs);
+			options.addArguments("--start-maximized");
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.addArguments("disable-infobars");
+			options.addArguments("--ignore-certificate-errors");
+
+			DesiredCapabilities cap = DesiredCapabilities.chrome();
+			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+			cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+			driver.set(new ChromeDriver(cap));
+			Add_Log.info("Chrome Driver instance loaded successfully.");
+
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 		    
@@ -171,12 +167,16 @@ public class SuiteBase {
 		    caps.setCapability("browser_version", Config.getProperty("browser_version"));
 		    caps.setCapability("resolution", Config.getProperty("resolution"));
 		    caps.setCapability("browserstack.local", Config.getProperty("browserstack.local"));
+		    caps.setCapability("browserstack.networkLogs", Config.getProperty("browserstack.networkLogs"));
+		    caps.setCapability("browserstack.selenium_versions", Config.getProperty("browserstack.selenium_versions"));
+		    caps.setCapability("browserstack.console", Config.getProperty("browserstack.console"));
 			try {
 				driver.set(new RemoteWebDriver(new URL(URL), caps));
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 			Add_Log.info("Remote Driver instance loaded successfully.");
+			getDriver().manage().window().maximize();
 		}
 	}
 	

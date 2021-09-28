@@ -1,6 +1,7 @@
 package pageobjects;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.commons.lang.time.DateUtils;
+import org.apache.commons.lang3.time.CalendarUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +28,7 @@ import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.utils.DateUtil;
 
 import property.IHomePage;
 import property.ISMXPage;
@@ -1426,6 +1431,47 @@ Thread.sleep(1000);
 		double totalTime = ((end - start)) / 1000;
 		return totalTime;
 		
+	}
+	
+	
+	public void copySurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException  {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, IHomePage.all_projects, test);
+		waitForJStoLoad(driver, 60);
+		waitForLoad(driver, testcaseName, 60, test);
+		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+		setText(driver, testcaseName, IHomePage.search_bar, param.get("Survey Title"), test);
+		click(driver, testcaseName, IHomePage.search_icon, test);
+		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
+		new Actions(driver).moveToElement(survey).perform();
+		waitForElementToBeVisible(driver, testcaseName, IHomePage.copy_icon, 10, 100, test);
+		
+		click(driver, testcaseName, IHomePage.copy_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, IHomePage.copy_drop_down, test);
+		click(driver, testcaseName, IHomePage.copy_in_same_acc, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+		//Rename survey title of Copied Survey
+		click(driver, testcaseName, getWebElements(driver, testcaseName, IHomePage.survey_title, test).get(0), "Survey Title", test);
+		waitforElemPresent(driver, testcaseName, 30, IHomePage.edit_survey_title, test);
+		clearText(driver, testcaseName, IHomePage.edit_survey_title, test);
+		Thread.sleep(1000);
+		setText(driver, testcaseName, IHomePage.edit_survey_title, testcaseName +" -" + DateFormatUtils.format(System.currentTimeMillis(), "dd-MMM-yyyy HH:mm:ss") , test);
+		click(driver, testcaseName, IHomePage.save_survey_title, test);
+		waitforElemNotVisible(driver, testcaseName, 30, IHomePage.small_loader, test);
+		waitForJStoLoad(driver, 30);
+		
+		//Save Survey title and SID of Copied survey which always appears at first position
+		param.put("copiedSurveyTitle", driver.findElement(By.xpath(IHomePage.FIRST_ROW)).getAttribute("stitle"));
+		param.put("copiedSurveySID", driver.findElement(By.xpath(IHomePage.FIRST_ROW)).getAttribute("sid"));
+		
+		test.log(Status.INFO, "Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle") 
+		+" and " +param.get("copiedSurveySID") + " respectively.");
+		Add_Log.info("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
+		+" and " +param.get("copiedSurveySID") + " respectively.");
+		Reporter.log("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
+		+" and " +param.get("copiedSurveySID") + " respectively.");
 	}
 	
 	

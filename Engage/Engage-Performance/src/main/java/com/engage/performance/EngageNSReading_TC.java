@@ -1,6 +1,7 @@
 package com.engage.performance;
 
 import org.testng.annotations.Test;
+import org.testng.internal.annotations.ITest;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -10,6 +11,7 @@ import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
 import utility.Read_XLS;
+import utility.SeleniumUtils;
 import utility.SuiteUtility;
 
 import java.io.File;
@@ -22,6 +24,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -558,6 +561,21 @@ public class EngageNSReading_TC extends SuiteBase {
 			Result.getThrowable().printStackTrace(new PrintWriter(errors));
 			String subject = errorURL.getHost().replace("http://","").replace("http:// www.","").replace("www.","").replace(".com", "") +" : Error in Performance Suite";
 			sendHtmlFormatMail(subject, errorPage, errorURL.getPath(), errorURL.getQuery(), getIpAddress(), errors.toString(), screenshot);
+			
+			//Write the status of the test 	and failure reason when remote browser (browserstack) is used
+			if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {
+				
+				String bstestname = "browserstack_executor: {\"action\": \"setSessionName\", "
+						+ "\"arguments\": {\"name\":\""+Result.getName()+"\" }}";
+				
+				String bsfailurereason = "browserstack_executor: {\"action\": \"setSessionStatus\", "
+						+ "\"arguments\": {\"status\":\"failed\", \"reason\": \""+ Result.getThrowable().getMessage()+ "\"}"
+						+ "}";
+				
+				SeleniumUtils jse = new SeleniumUtils();
+				jse.executeScript(getDriver(), Result.getName(), bstestname, test);  //Setting a test name
+				jse.executeScript(getDriver(), Result.getName(), bsfailurereason, test);   //Setting the test status
+			}
 			
 			if (!(getDriver() == null)) {
 				closeWebBrowser();

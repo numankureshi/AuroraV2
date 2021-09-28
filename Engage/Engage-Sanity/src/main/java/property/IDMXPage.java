@@ -60,6 +60,12 @@ public interface IDMXPage {
 	
 	String SINGLE_USE_PWD = "//div[text()='Single-Use Passwords']/parent::div";
 	WebPageElements single_use_pwd = new WebPageElements("Survey Passwords", "xpath", SINGLE_USE_PWD);
+	
+	String SINGLE_USE_PWD2 = "//div[text()='Single-Use Passwords']";
+	WebPageElements single_use_pwd2 = new WebPageElements("Survey Passwords", "xpath", SINGLE_USE_PWD2);
+	
+	String GENERATE_NEW_URL_BTN = "(//a[text()='Generate New URL'])[1]";
+	WebPageElements generate_new_url_btn = new WebPageElements("Generate New URL Button", "xpath", GENERATE_NEW_URL_BTN);
 
 	String SMS_INVITATION = "(//span[text()='SMS Invitation ']/ancestor::div[@class='front-face'])[1]";
 	WebPageElements sms_invitation = new WebPageElements("SMS Invitation Button", "xpath", SMS_INVITATION);
@@ -97,6 +103,8 @@ public interface IDMXPage {
 	String DONE_EDITING = "//input[@name='btnNext']";
 	WebPageElements done_editing_button = new WebPageElements("Done Editing Button", "xpath", DONE_EDITING);
 	
+	String QUICK_LOOK_MODAL_HEADER = "//div[@id='myModalLabel'][text()='Quick Look']";
+	WebPageElements quick_look_modal_header = new WebPageElements("Quick Look - Modal Header", "xpath", QUICK_LOOK_MODAL_HEADER);
 	
 	String REVIEW_MISMATCH_DATA = "//div[@class='header-content']/a[contains(text(),'Review Data')]";
 	WebPageElements review_mismatch_data = new WebPageElements("Review Data", "xpath", REVIEW_MISMATCH_DATA);
@@ -122,6 +130,9 @@ public interface IDMXPage {
 	String DONE_BUTTON = "//input[@name='btnSave']";
 	WebPageElements done_button = new WebPageElements("Done Editing Button", "xpath", DONE_BUTTON);
 	
+	String TEMPLATE_NAME_TB = "//input[@name='txtTemplateName']";
+	WebPageElements template_name_tb = new WebPageElements("Template Name Text box", "xpath", TEMPLATE_NAME_TB);
+	
 	String SOURCE_EMAIL = "//a[contains(text(),'Select Source')]";
 	WebPageElements source_email = new WebPageElements("Select Source", "xpath", SOURCE_EMAIL);
 	
@@ -138,14 +149,26 @@ public interface IDMXPage {
 	String IMPORT_FROM_FILE2 = "//div[text()='Import from file']/ancestor::div[@class='source-option file-import']";
 	WebPageElements import_from_file2 = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE2);
 	
+	String IMPORT_FROM_FILE3 = "//div[@id='divFromFile']/div";
+	WebPageElements import_from_file3 = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE3);
+	
+	String CHOOSE_FILE = "//input[@id='btnFileUpload']";
+	WebPageElements choose_file = new WebPageElements("Choose file", "xpath", CHOOSE_FILE);
+	
 	String BROWSE_BUTTON1 = "//input[@name='MyFile']";
 	WebPageElements browse_button1 = new WebPageElements("Browse Button", "xpath", BROWSE_BUTTON1);
+	
+	String BROWSE_BUTTON1_OPT = "//div[@id='div_ctl00_ctl00_cphMain_cphBody_btnFileUpload']";
+	WebPageElements browse_button1_opt = new WebPageElements("Browse Button", "xpath", BROWSE_BUTTON1_OPT);
 	
 	String HEADER_SWITCH = "//input[@id='rbIgnoreFLineYes']";
 	WebPageElements header_switch = new WebPageElements("Header Switch", "xpath", HEADER_SWITCH);
 	
 	String HEADER_SWITCH2 = "//input[contains(@id,'chkIgnoreHeaderFile')]";
 	WebPageElements header_switch2 = new WebPageElements("Header Switch", "xpath", HEADER_SWITCH2);
+	
+	String HEADER_SWITCH3 = "(//span[@class='cross-tick'])[1]";
+	WebPageElements header_switch3 = new WebPageElements("Header Switch", "xpath", HEADER_SWITCH3);
 	
 	String SELECT_LIST = "//select[@name='ddSelectList']";
 	WebPageElements select_list = new WebPageElements("Select List", "xpath", SELECT_LIST);
@@ -157,8 +180,65 @@ public interface IDMXPage {
 	String SELECT_LIST2 = "//select[@id='ddSelectList']";
 	WebPageElements select_list2 = new WebPageElements("Select List", "xpath", SELECT_LIST2);
 	
+	String PRE_POP_CHECKBOX = "//input[@id='chkPrepop']";
+	WebPageElements pre_pop_checkbox = new WebPageElements("Pre pop checkbox", "xpath", PRE_POP_CHECKBOX);
+		
 	String IFRAME_EMAIL_TEMPLATE = "(//iframe[contains(@src,'/zDM/invitationEmailContent.aspx?')])[1]";
 	WebPageElements iframe_email_template = new WebPageElements("IFrame mail template", "xpath", IFRAME_EMAIL_TEMPLATE);
+	
+	String IFRAME_EDIT_TEMPLATE = "//iframe[contains(@src,'EditSelectedTemplate.aspx?')]";
+	WebPageElements iframe_edit_template = new WebPageElements("IFrame Edit Email template", "xpath", IFRAME_EDIT_TEMPLATE);
+	
+	String IFRAME_PREVIEW_TEMPLATE = "//iframe[@id='iframeTemplatePreview']";
+	WebPageElements iframe_preview_template = new WebPageElements("IFrame Email template preview", "xpath", IFRAME_PREVIEW_TEMPLATE);
+	
+	String WARN_TEXT = "//div[text()='This email preview does not allow participation.']";
+	WebPageElements warn_text = new WebPageElements("Warning Text of Participation", "xpath", WARN_TEXT);
+	
+	String DELETE_TEMPLATE = "//span[@title='Delete']";
+	WebPageElements delete_template = new WebPageElements("Delete Template Icon", "xpath", DELETE_TEMPLATE);
+	
+	String PREVIEW_TEMPLATE = "//a[@title='Preview']";
+	WebPageElements preview_template = new WebPageElements("Preview Template Icon", "xpath", PREVIEW_TEMPLATE);
+	
+	String DELETE_TOASTER_MSG = "//span[text()='1 Email Message(s) Deleted.']";
+	WebPageElements delete_toaster_msg = new WebPageElements("Delete Toaster Message", "xpath", DELETE_TOASTER_MSG);
+	
+	String MAIL_MERGE_COL_HEADER = "//th[text()='Mail Merge Used']";
+	WebPageElements mail_merge_col_header = new WebPageElements("Mail Merge Column Header", "xpath", MAIL_MERGE_COL_HEADER);
+	
+	String COPY_TEMP_ICON = "//li[@title='Copy Message']";
+	WebPageElements copy_temp_icon = new WebPageElements("Copy Icon", "xpath", COPY_TEMP_ICON);
+	
+	String COPY_TOOLTIP = "//div[@class='copypathcont']//div[text()=\"Here's your copy!\"]";
+	WebPageElements copy_tooltip = new WebPageElements("Copy ToolTip", "xpath", COPY_TOOLTIP);
+	
+	String COPIED_TEMPLATE_HEADER = "//div[@class='copypathcont']/following-sibling::div[@class='top-content']";
+	WebPageElements copied_template_header = new WebPageElements("Header of Copied Template", "xpath", COPIED_TEMPLATE_HEADER);
+	
+	String COPY_TOOLTIP_FOR_LIST = "//div[@class='copypathcont dgEmailManager']//div[text()=\"Here's your copy!\"]";
+	WebPageElements copy_tooltip_for_list = new WebPageElements("Copy ToolTip", "xpath", COPY_TOOLTIP_FOR_LIST);
+	
+	String COPIED_TEMPLATE_HEADER_FOR_LISTVIEW = "//div[@class='copypathcont dgEmailManager']/following-sibling::div[@class='edit-email-title-wrapper']/span";
+	WebPageElements copied_template_header_for_listview = new WebPageElements("Header of Copied Template in List View", "xpath", COPIED_TEMPLATE_HEADER_FOR_LISTVIEW);
+	
+	String QUICK_LOOK_BUTTON = "(//input[@value='Quick Look'])[1]";
+	WebPageElements quick_look_button = new WebPageElements("Quick Look Button", "xpath", QUICK_LOOK_BUTTON);
+	
+	String DELETE_TEMP_BUTTON = "(//input[@value='Delete'])[1]";
+	WebPageElements delete_temp_button = new WebPageElements("Delete Template Button", "xpath", DELETE_TEMP_BUTTON);
+	
+	String COPY_BUTTON = "(//input[@value='Copy'])[1]";
+	WebPageElements copy_button = new WebPageElements("Copy Template Button", "xpath", COPY_BUTTON);
+	
+	String SWITCH_VIEW = "//a[@id='btn-switch-view']";
+	WebPageElements switch_view = new WebPageElements("Switch View Button", "xpath", SWITCH_VIEW);
+	
+	String PREVIEW_EMAIL = "//input[@id='btnPreview1']";
+	WebPageElements preview_email = new WebPageElements("Preview Email", "xpath", PREVIEW_EMAIL);
+	
+	String SENDER_NAME_LABEL = "//span[text()='Sender Name']";
+	WebPageElements sender_name_label = new WebPageElements("Sender Name - Label", "xpath", SENDER_NAME_LABEL);
 	
 	String INVITE_IN_SEPERATE_EMAIL = "//label[text()='Send each invitation link in a separate email for every occurrence of email']";
 	WebPageElements invite_in_seperate_email = new WebPageElements("invitation link in a separate email", "xpath", INVITE_IN_SEPERATE_EMAIL);
@@ -199,9 +279,30 @@ public interface IDMXPage {
 	
 	String MAP_ANSWERS = "//a[contains(text(),'Map Answers')]";
 	WebPageElements map_answers = new WebPageElements("Map Answers", "xpath", MAP_ANSWERS);
+	
+	String MODIFY_MESSAGE = "//a[contains(text(),'Modify Message')]";
+	WebPageElements modify_message = new WebPageElements("Modify Message", "xpath", MODIFY_MESSAGE);
+	
+	String SMS_PREVIEW_LINK = "//span[text()='Preview']";
+	WebPageElements sms_preview_link = new WebPageElements("SMS Invitation Preview Link", "xpath", SMS_PREVIEW_LINK);
+	
+	String SMS_INV_PREVIEW = "//div[(text()='SMS Invitation Preview')]";
+	WebPageElements sms_inv_preview = new WebPageElements("SMS Invitation Preview", "xpath", SMS_INV_PREVIEW);
+	
+	String SMS_INV_PREVIEW_CLOSE = "//div[@class='close-mobilePreview']";
+	WebPageElements sms_inv_preview_close = new WebPageElements("SMS Invitation Preview Cross Icon", "xpath", SMS_INV_PREVIEW_CLOSE);
 
 	String MAP_FIELDS = "//input[@id='txtAttributes1']";
 	WebPageElements map_fields = new WebPageElements("Map Answers 1", "xpath", MAP_FIELDS);
+	
+	String ALL_PREPOP_DD = "//select[starts-with(@id,'ddOption_')]";
+	WebPageElements all_prepop_DD = new WebPageElements("All Prepop drop downs", "xpath", ALL_PREPOP_DD);
+	
+	String NO_OF_PASSWORDS = "//div[starts-with(text(),'Number of Passwords: ')]";
+	WebPageElements no_of_passwords = new WebPageElements("Number of Password - Label text", "xpath", NO_OF_PASSWORDS);
+	
+	String ALL_MAP_FIELDS = "//input[starts-with(@id,'txtAttributes')]";
+	WebPageElements all_map_fields = new WebPageElements("Map Answers", "xpath", ALL_MAP_FIELDS);
 	
 	String DONE_BUTTON2 = "//input[@value='Done' and @type='submit']";
 	WebPageElements done_button2 = new WebPageElements("Done Button", "xpath", DONE_BUTTON2);
@@ -251,6 +352,9 @@ public interface IDMXPage {
 	String SEND_NOW = "//input[@name='btnSubmit']";
 	WebPageElements send_now = new WebPageElements("Send Now", "xpath", SEND_NOW);
 	
+	String SCHEDULED_DELIVERY = "//input[@value='Schedule Delivery'][@name='btnSubmit']";
+	WebPageElements scheduled_delivery = new WebPageElements("Schedule Delivery", "xpath", SCHEDULED_DELIVERY);
+	
 	String INVITATION_SENT = "//font[contains(text(),'You have sent')]";
 	WebPageElements invitation_sent = new WebPageElements("You have sent", "xpath", INVITATION_SENT);
 	
@@ -269,6 +373,12 @@ public interface IDMXPage {
 	
 	String REMINDERS = "(//span[contains(text(),'Reminders')])[1]";
 	WebPageElements reminders = new WebPageElements("Reminders", "xpath", REMINDERS);
+	
+	String REMINDER_HISTORY_BAR = "//span[text()='View Reminder History']";
+	WebPageElements reminder_history_bar = new WebPageElements("View Reminder History", "xpath", REMINDER_HISTORY_BAR);
+	
+	String SEND_REMINDERS_TO_ALL = "//input[@id='btnSendReminderNew']";
+	WebPageElements send_reminders_to_all = new WebPageElements("Reminders to All", "xpath", SEND_REMINDERS_TO_ALL);
 	
 	String ORIGINAL_INVITATION_DATE_FILTER = "//span[text()='Original Invitation Date']/ancestor::th/img[@class='v-mid FilterImage']";
 	WebPageElements original_invitation_date_filter = new WebPageElements("Original Invitation Date", "xpath", ORIGINAL_INVITATION_DATE_FILTER);
@@ -294,11 +404,65 @@ public interface IDMXPage {
 	String QUICK_SEND = "//div[@id='inviteddl_divQuickSend']";
 	WebPageElements quick_send = new WebPageElements("Quick send button", "xpath", QUICK_SEND);	
 	
+	String QUICK_SEND_LEFT_PANNEL_TITLE = "//div[@class ='left-panel-title'][text()='Quick Send']";
+	WebPageElements quick_send_left_pannel_title = new WebPageElements("Quick send - Left Pannel Title", "xpath", QUICK_SEND_LEFT_PANNEL_TITLE);	
+	
+	String QUICK_SEND_SINGLE_USE_LINK = "//span[contains(text(),'Single-Use Link')][@class='header']";
+	WebPageElements quick_send_single_use_channel = new WebPageElements("Quick send - Single Use Invitation", "xpath", QUICK_SEND_SINGLE_USE_LINK);	
+	
+	String QUICK_SEND_EMAIL_LANG = "//select[@id='ddlLanguages']";
+	WebPageElements quick_send_email_lang = new WebPageElements("Quick send - Email Language", "xpath", QUICK_SEND_EMAIL_LANG);	
+	
+	String QUICK_SEND_EMAIL_MSG = "//select[@id='DDLEmailList']";
+	WebPageElements quick_send_email_msg = new WebPageElements("Quick send - Email Message", "xpath", QUICK_SEND_EMAIL_MSG);	
+	
+	String QUICK_SEND_NOW_BTN = "//input[@id='btnFromType']";
+	WebPageElements quick_send_now_btn = new WebPageElements("Send Now Button", "xpath", QUICK_SEND_NOW_BTN);	
+	
 	String EMAIL_TEMPLATE = "//div[@id='btnEmailManager']";
 	WebPageElements email_template = new WebPageElements("Email Templates", "xpath", EMAIL_TEMPLATE);
 	
+	String CREATE_NEW_MESSAGE = "//input[@id='EmailMessage1_btnCreate']";
+	WebPageElements create_new_message = new WebPageElements("Create New Message", "xpath", CREATE_NEW_MESSAGE);
+	
+	String CREATE_NEW_MESSAGE_TITLE = "//div[text()='To create a new message, click Select to customize one of the options below.']";
+	WebPageElements create_new_message_title = new WebPageElements("Create New Message - Title", "xpath", CREATE_NEW_MESSAGE_TITLE);
+	
+	String TIME_FILTER = "//div[@class='ts-select-time']";
+	WebPageElements time_filter = new WebPageElements("Time Filter", "xpath", TIME_FILTER);
+	
+	String SELECTED_CHANNEL = "//span[@id='lblSelectedChannel']";
+	WebPageElements selected_channel = new WebPageElements("Channel", "xpath", SELECTED_CHANNEL);
+	
+	String CHANNEL_MENU = "//div[@id='dvChannelMenu']";
+	WebPageElements channel_menu = new WebPageElements("Channel Menu", "xpath", CHANNEL_MENU);
+	
+	String SINGLE_USE_LINK_CHANNEL = "//li[@id='li_SingleUseLink']";
+	WebPageElements single_use_link_channel = new WebPageElements("Single-use Link Channel", "xpath", SINGLE_USE_LINK_CHANNEL);
+	
+	String MULTI_USE_LINK_CHANNEL = "//li[@id='li_MultiUseLink']";
+	WebPageElements multi_use_link_channel = new WebPageElements("Multi-use Link Channel", "xpath", MULTI_USE_LINK_CHANNEL);
+	
+	String SURVEY_PASSWORD_CHANNEL = "//li[@id='li_SurveyPasswords']";
+	WebPageElements survey_password_channel = new WebPageElements("Survey Password Channel", "xpath", SURVEY_PASSWORD_CHANNEL);
+	
+	String SMS_INVITES_CHANNEL = "//li[@id='li_SMSInvites']";
+	WebPageElements sms_invites_channel = new WebPageElements("SMS Invites Channel", "xpath", SMS_INVITES_CHANNEL);
+	
+	String DISTRIBUTE = "//a[text()='Distribute']";
+	WebPageElements distribute = new WebPageElements("Distribute", "xpath", DISTRIBUTE);
+	
+	String SEARCH_FIELD = "//input[@class='ts-search-bar']";
+	WebPageElements search_field = new WebPageElements("Search Field", "xpath", SEARCH_FIELD);
+	
+	String SEARCH_ICON = "//div[@id='dvSearchBarMain']";
+	WebPageElements search_icon = new WebPageElements("Search Icon", "xpath", SEARCH_ICON);
+	
 	String EMAIL_FIELD = "//span[@class='ts-email-addr']";
 	WebPageElements email_field = new WebPageElements("Email Field", "xpath", EMAIL_FIELD);
+	
+	String NO_RECORD_FOUND = "//span[text()='No Records Found']";
+	WebPageElements no_record_found = new WebPageElements("No Record Found", "xpath", NO_RECORD_FOUND);
 	
 	String STATUS_FILED = "//td[contains(@id,'tdStatus_')]/span";
 	WebPageElements status_field = new WebPageElements("Status Field", "xpath", STATUS_FILED);
@@ -330,8 +494,6 @@ public interface IDMXPage {
 	String TRACK_SURVEY = "//input[@id='btnTrackSurvey']";
 	WebPageElements track_survey = new WebPageElements("Go To TrackSurvey", "xpath", TRACK_SURVEY);
 
-
-	
 	String URL_EXPIRY_FILED = "//td[contains(@id,'tdURLExpiry_')]";
 	WebPageElements url_expiry_field = new WebPageElements("URL Expiry field", "xpath", URL_EXPIRY_FILED);
 	
@@ -377,8 +539,116 @@ public interface IDMXPage {
 	String SAP_GENERATED_ON_FIELD = "//td[contains(@id,'tdGeneratedOn_')]";
 	WebPageElements sap_generated_on_field = new WebPageElements("Survey Password - Generated On Field", "xpath", SAP_GENERATED_ON_FIELD);
 	
+	String SELECT_SAMPLE_SIZE = "//select[@id='ddSampleType']";
+	WebPageElements select_sample_size = new WebPageElements("Select Sample size - drop down", "xpath", SELECT_SAMPLE_SIZE);
+	
+	String TOUCH_RULE_INPUT = "//input[@name='chkTouchRule']";
+	WebPageElements touch_rule_input = new WebPageElements("Touch Rule checkbox", "xpath", TOUCH_RULE_INPUT);
+	
+	String TOUCH_RULES = "//label[text()='Touch Rules']";
+	WebPageElements touch_rules = new WebPageElements("Touch Rules", "xpath", TOUCH_RULES);
+	
+	String MAIL_MERGE_USED = "//span[contains(@id , 'lblMailMerge')]";
+	WebPageElements mail_merge_used = new WebPageElements("Mail Merge Variables Used in Content", "xpath", MAIL_MERGE_USED);
+	
+	String LIST_ATTRIBUTES = "//select[contains(@id , 'ddlAttributeNames')]";
+	WebPageElements list_attributes = new WebPageElements("List Attributes - Drop down", "xpath", LIST_ATTRIBUTES);
+	
+	String PRE_POP_QUES = "//span[contains(@style,'vertical-align:middle;')]";
+	WebPageElements pre_pop_ques = new WebPageElements("Pre-Pop Questions", "xpath", PRE_POP_QUES);
+	
+	String DATA_MISMATCH_TEXT = "//div[text()='Data Mismatch']";
+	WebPageElements data_mismatch_text = new WebPageElements("Data Mismatch Text", "xpath", DATA_MISMATCH_TEXT);
+	
+	String BLANK_DATA_TEXT = "//div[text()='Blank Fields']";
+	WebPageElements blank_data_text = new WebPageElements("Blank Data Text", "xpath", BLANK_DATA_TEXT);
+	
+	String SEND_NOW_INV = "//label[@id='lblSendNow']";
+	WebPageElements send_now_inv = new WebPageElements("Send Now Radio Button", "xpath", SEND_NOW_INV);
+	
+	String DUPLICATE_MODAL = "//div[@class='fbcNewmodalTitle'][text()='Caution']";
+	WebPageElements duplicate_modal = new WebPageElements("Caution Modal", "xpath", DUPLICATE_MODAL);
+	
+	String ENTER_EMAILIDS = "//input[@id='txtSendFromType']";
+	WebPageElements enter_emailids = new WebPageElements("Enter Email Address - Text box", "xpath", ENTER_EMAILIDS);
+	
+	String ENTER_MOBILE = "//input[@id='txtSendFromType']";
+	WebPageElements enter_mobile = new WebPageElements("Enter Mobile Numbers - Text box", "xpath", ENTER_MOBILE);
+	
+	String CHECK_ALL = "//input[@id='chk_All']";
+	WebPageElements check_all = new WebPageElements("Check all check box", "xpath", CHECK_ALL);
+	
+	String DELETE_BTN = "//a[@id='anhDelete']";
+	WebPageElements delete_btn = new WebPageElements("Delete Button", "xpath", DELETE_BTN);
+	
+	String OKAY_BTN = "//input[@id='btnDeletePopJS']";
+	WebPageElements okay_btn = new WebPageElements("OKAY Button", "xpath", OKAY_BTN);
+	
+	String DELETE_TEXT_BOX = "//input[@id='tbDelete']";
+	WebPageElements delete_text_box = new WebPageElements("Delete Text Box", "xpath", DELETE_TEXT_BOX);
+	
+	String DELETE_BTN_POP= "//input[@id='btnDeletePop']";
+	WebPageElements delete_btn_pop = new WebPageElements("Delete Button", "xpath", DELETE_BTN_POP);
+	
+	String INVITATION_SENT_COUNT= "//div[text()='Invitations Sent']/preceding-sibling::div";
+	WebPageElements inivitation_sent_count = new WebPageElements("Invitation Sent Count", "xpath", INVITATION_SENT_COUNT);
+	
+	String SCHEDULED_FOR_LATER = "//div[@id='dvSchedule']";
+	WebPageElements scheduled_for_later = new WebPageElements("Schedule for Later", "xpath", SCHEDULED_FOR_LATER);
+	
+	String INVITATION_DATE = "//input[@id='txtdtinvitationDate']";
+	WebPageElements invitation_date = new WebPageElements("Invitation Date", "xpath", INVITATION_DATE);
+	
+	String ALL_REMINDERS_CB = "//input[@id='rptReminderList_ctl00_chkreminder']";
+	WebPageElements all_reminders_cb = new WebPageElements("Select All Invites Check box", "xpath", ALL_REMINDERS_CB);
+	
+	String SEND_REMINDERS = "//input[@id='btn_SendReminder_top']";
+	WebPageElements send_reminders = new WebPageElements("Send Selected Reminders", "xpath", SEND_REMINDERS);
+	
+	String 	REMINDER_CHECK_BOX = "//input[contains(@id,'rptReminderList_ctl')]";
+	WebPageElements reminder_check_box = new WebPageElements("Individual Reminder Check box", "xpath", REMINDER_CHECK_BOX);
+	
+	String REMINDER_PAGE_DD = "//select[@id='Paging2_ddlPgNo']";
+	WebPageElements reminder_page_dd = new WebPageElements("Reminders Page Drop Down", "xpath", REMINDER_PAGE_DD);
+	
+	String CANCEL_REMINDERS = "//div[@title='Cancel Reminder(s)']";
+	WebPageElements cancel_reminders = new WebPageElements("Cancel Reminders", "xpath", CANCEL_REMINDERS);
+	
+	String FIRST_REMINDERS_TITLE = "//div[text()='First Reminder Details']";
+	WebPageElements first_reminder_title = new WebPageElements("First Reminder Title", "xpath", FIRST_REMINDERS_TITLE);
+	
+	String FACEBOOK = "//span[text()='Facebook']";
+	WebPageElements facebook = new WebPageElements("Facebook", "xpath", FACEBOOK);
+	
+	String FB_WIZARD_HEADER_1 = "//span[text()='Customize the post to be displayed on Facebook.']";
+	WebPageElements fb_wizard_header_1 = new WebPageElements("Facebook - First Wizard Header", "xpath", FB_WIZARD_HEADER_1);
+	
+	String FB_PUBLISH_BTN = "//input[@id='btnFbPublish']";
+	WebPageElements fb_publish_btn = new WebPageElements("Publish on FB", "xpath", FB_PUBLISH_BTN);
+	
+	String TWITTER = "//span[text()='Twitter']";
+	WebPageElements twitter = new WebPageElements("Twitter", "xpath", TWITTER);
+	
+	String TWITTER_WIZARD_HEADER_1 = "//span[text()='Authenticate survey participant by asking login details before participation.']";
+	WebPageElements twitter_wizard_header_1 = new WebPageElements("Twiiter - First Wizard Header", "xpath", TWITTER_WIZARD_HEADER_1);
+	
+	String TWITTER_PUBLISH_BTN = "//input[@value='Publish on Twitter']";
+	WebPageElements twitter_publish_btn = new WebPageElements("Publish on Twitter", "xpath", TWITTER_PUBLISH_BTN);
+	
+	String LINKEDIN = "//span[text()='LinkedIn']";
+	WebPageElements linkedin = new WebPageElements("LinkedIn", "xpath", LINKEDIN);
+	
+	String LINKEDIN_WIZARD_HEADER_1 = "//span[text()='Customize the post to be displayed on LinkedIn.']";
+	WebPageElements linkedin_wizard_header_1 = new WebPageElements("LinkedIn - First Wizard Header", "xpath", LINKEDIN_WIZARD_HEADER_1);
+	
+	String LINKEDIN_PUBLISH_BTN = "//input[@value='Publish On LinkedIn']";
+	WebPageElements linkedin_publish_btn = new WebPageElements("Publish on LinkedIn", "xpath", LINKEDIN_PUBLISH_BTN);
+	
+	String TYPE_MANUALLY_ICON = "//div[text()='Type Manually']/preceding::div[contains(@class,'source-option-icon')]";
+	WebPageElements type_manually_icon = new WebPageElements("Type Manually Icon", "xpath", TYPE_MANUALLY_ICON);
+	
 }
-
+	
 
 
 
