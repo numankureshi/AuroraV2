@@ -21,13 +21,16 @@ import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Comment;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.XSSFComment;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -55,6 +58,7 @@ public class Read_XLS {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public static String createPlatformreading(String fileName, String sheetName, String extension) {
 		String filePath = null;
@@ -342,6 +346,7 @@ public class Read_XLS {
 		return true;
 	}
 	
+	
 	public boolean writePlatformReadings(String sheetName, ITestResult TestResultTL, Map<String,String> readingData) {
 		int colNumber = 0;
 		try {
@@ -352,6 +357,7 @@ public class Read_XLS {
 			
 			if(rowNum>1) 
 				rowNum+=1;
+			
 			
 			XSSFFont fontStatus = book.createFont();
 			fontStatus.setColor(IndexedColors.BLACK.getIndex());
@@ -400,10 +406,19 @@ public class Read_XLS {
 			}else {
 				result = "SKIP";
 			}
-				XSSFRow row = sheet.createRow(rowNum);
-				XSSFCell cell = row.createCell(colNumber);
-				cell.setCellValue(reportName);
-				cell.setCellStyle(styleReportName);
+			XSSFRow row = sheet.createRow(rowNum);
+			XSSFCell cell = row.createCell(colNumber);
+			cell.setCellValue(reportName);
+			cell.setCellStyle(styleReportName);
+			if (result.equalsIgnoreCase("PASS")) {
+				if (readingData.containsKey("Comment")) {
+	
+					XSSFComment comment = sheet.createDrawingPatriarch().createCellComment(new XSSFClientAnchor());
+					comment.setString(readingData.get("Comment"));
+					cell.setCellComment(comment);
+					readingData.remove("Comment");
+				}
+			}
 				cell = row.createCell(colNumber + 1);
 				cell.setCellValue(result);
 				

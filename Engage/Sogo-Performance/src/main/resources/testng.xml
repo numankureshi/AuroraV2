@@ -7,27 +7,27 @@
 			class-name="org.uncommons.reportng.JUnitXMLReporter" />
 	</listeners>
 
-<!-- 	<test name="Platform"> -->
-<!-- 		<groups> -->
-<!-- 			<run> -->
-<!-- 				<include name="Platform" /> -->
-<!-- 			</run> -->
-<!-- 		</groups> -->
-<!-- 		<classes> -->
-<!-- 			<class name="com.sogo.performance.SogoPerformance_TC" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	<test name="Platform">
+		<groups>
+			<run>
+				<include name="Platform" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.performance.SogoNSReading_TC" />
+		</classes>
+	</test>
 	
-<!-- 	<test name="Static"> -->
-<!-- 		<groups> -->
-<!-- 			<run> -->
-<!-- 				<include name="Static" /> -->
-<!-- 			</run> -->
-<!-- 		</groups> -->
-<!-- 		<classes> -->
-<!-- 			<class name="com.sogo.performance.SogoPerformance_TC" /> -->
-<!-- 		</classes> -->
-<!-- 	</test> -->
+	<test name="Static">
+		<groups>
+			<run>
+				<include name="Static" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.performance.SogoNSReading_TC" />
+		</classes>
+	</test>
 
 
 	<test name="Platform Readings">
@@ -37,10 +37,56 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="com.sogo.performance.SogoPlatformReadings_TC" />
+			<class name="com.sogo.performance.rmx.RMXPlatformReading_TC" />
 			<parameter name="PlatformReadings_TC1" value="Bar Graph Report"></parameter>
 			<parameter name="PlatformReadings_TC2" value="Response Table Report"></parameter>
 			<parameter name="PlatformReadings_TC3" value="Individual Report"></parameter>
+			<parameter name="PlatformReadings_TC4" value="Frequency Table Report"></parameter>
+			<parameter name="PlatformReadings_TC5" value="Conditional Report"></parameter>
+			<parameter name="PlatformReadings_TC6" value="Conditional Report"></parameter>
+			<parameter name="PlatformReadings_TC7" value="Cross Tab Report - 2 Level"></parameter>
+			<parameter name="PlatformReadings_TC8" value="Cross Tab Report - 3 Level"></parameter>
+			<parameter name="PlatformReadings_TC9" value="Pivot Table"></parameter>
+			<parameter name="PlatformReadings_TC10" value="Pivot Table"></parameter>
+			<parameter name="PlatformReadings_TC11" value="Verbatim Report"></parameter>
+			<parameter name="PlatformReadings_TC12" value="Verbatim Report"></parameter>
+			<parameter name="PlatformReadings_TC13" value="Verbatim Report"></parameter>
+			<parameter name="PlatformReadings_TC14" value="Assessment Summary"></parameter>
+			<parameter name="PlatformReadings_TC15" value="Response Trend"></parameter>
+			<parameter name="PlatformReadings_TC16" value="Statistical Report"></parameter>
+			<parameter name="PlatformReadings_TC17" value="Statistical Report"></parameter>
+			<parameter name="PlatformReadings_TC18" value="Statistical Report"></parameter>
+			<parameter name="PlatformReadings_TC19" value="Engagement Report"></parameter>
+			<parameter name="PlatformReadings_TC20" value="Comparison Report"></parameter>
+			<parameter name="PlatformReadings_TC21" value="Comparison Report"></parameter>
+			<parameter name="PlatformReadings_TC22" value="Ballot Box Report"></parameter>
+			<parameter name="PlatformReadings_TC23" value="Advance Pivot Report"></parameter>
+			<parameter name="PlatformReadings_TC24" value="Segmentation Report"></parameter>
+			<parameter name="PlatformReadings_TC25" value="Home - DM page"></parameter>
+			<parameter name="PlatformReadings_TC26" value="IvE Wizard - Using List (1000)"></parameter>
+			<parameter name="PlatformReadings_TC27" value="IvE Wizard - Using File (1000)"></parameter>
+			<parameter name="PlatformReadings_TC28" value="IvE Wizard - Type Manually (1000)"></parameter>
+			<parameter name="PlatformReadings_TC29" value="Quick Send (999 Records)"></parameter>
+			<parameter name="PlatformReadings_TC30" value="List Creation"></parameter>
+			<parameter name="PlatformReadings_TC31" value="Offline invites for 999  records"></parameter>
+			<parameter name="PlatformReadings_TC32" value="Email Manager Tab wizard"></parameter>
+			<parameter name="PlatformReadings_TC33" value="Delete a Template Grid View"></parameter>
+			<parameter name="PlatformReadings_TC34" value="Delete a Template List View"></parameter>
+			<parameter name="PlatformReadings_TC35" value="Copy a Template Grid View"></parameter>
+			<parameter name="PlatformReadings_TC36" value="Copy a Template List View"></parameter>
+			<parameter name="PlatformReadings_TC37" value="Preview a Template Grid View"></parameter>
+			<parameter name="PlatformReadings_TC38" value="Preview a Template List View"></parameter>
+			<parameter name="PlatformReadings_TC39" value="Track survey Search 1 user"></parameter>
+			<parameter name="PlatformReadings_TC40" value="Track survey Delete 100 records per page"></parameter>
+			<parameter name="PlatformReadings_TC41" value="Schedule 999 records (Type File)"></parameter>
+			<parameter name="PlatformReadings_TC42" value="Schedule 999 records (By List)"></parameter>
+			<parameter name="PlatformReadings_TC43" value="Schedule 999 records (Type Manually)"></parameter>
+			<parameter name="PlatformReadings_TC44" value="Reminder Wizard (999 Invites in Surveys)"></parameter>
+			<parameter name="PlatformReadings_TC45" value="Cancel reminders(1000)"></parameter>
+			<parameter name="PlatformReadings_TC46" value="Publish on Facebook"></parameter>
+			<parameter name="PlatformReadings_TC47" value="Publish on Twitter"></parameter>
+			<parameter name="PlatformReadings_TC48" value="Publish on LinkedIn"></parameter>
+			<parameter name="PlatformReadings_TC49" value="Send SMS Invite wizard"></parameter>
 		</classes>
 	</test>
 	

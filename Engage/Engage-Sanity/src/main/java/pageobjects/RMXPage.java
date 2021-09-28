@@ -2293,7 +2293,11 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		//Capture page load time of All question
 		start = System.currentTimeMillis();	
 		clickAtOffset(driver, testcaseName, engagement, -50, 0, test);
-		waitforElemPresent(driver, testcaseName, 30, engagement_wizard_step1_page_descr, test);
+		if(driver.getCurrentUrl().toLowerCase().contains("sogo")) {
+			waitforElemPresent(driver, testcaseName, 30, sogo_engagement_wizard_step1_page_descr, test);
+		}else {
+			waitforElemPresent(driver, testcaseName, 30, engagement_wizard_step1_page_descr, test);
+		}
 		end = System.currentTimeMillis();	
 		totalTime = ((end - start)) / 1000;
 		strtotalTime = df.format(totalTime);
@@ -2303,6 +2307,9 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public String getEngagementQueReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		if(driver.getCurrentUrl().toLowerCase().contains("sogo")) {
+			setText(driver, testcaseName, engagement_report_type, "Engagement Report", test);
+		}
 		setText(driver, testcaseName, nmax, param.get("Nmax"), test);
 		
 		//Capture page load time of Engagement question
@@ -2318,12 +2325,12 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public String getDriverQueReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		String[] arrayQuestion = param.get("Engagement questions").split(";");
+		String[] arrayQuestion = param.get("Engagement questions").split("/~/");
 		
 		for(String strQuestion : arrayQuestion) {
-			scrollIntoCenter(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[1]"), strQuestion, test);
+			scrollIntoCenter(driver, testcaseName, By.xpath("(//label[contains(text(),\""+strQuestion+"\")])[1]"), strQuestion, test);
 			Thread.sleep(500);
-			click(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[1]"), strQuestion, test);
+			click(driver, testcaseName, By.xpath("(//label[contains(text(),\""+strQuestion+"\")])[1]"), strQuestion, test);
 		}
 		scrollIntoCenter(driver, testcaseName, continue_button22, test);
 		Thread.sleep(200);
@@ -2340,12 +2347,12 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public String geAdditionalQueReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		String[] arrayQuestion = param.get("Driver questions").split(";");
+		String[] arrayQuestion = param.get("Driver questions").split("/~/");
 		
 		for(String strQuestion : arrayQuestion) {
-			scrollIntoCenter(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[2]"), strQuestion, test);
+			scrollIntoCenter(driver, testcaseName, By.xpath("(//label[contains(text(),\""+strQuestion+"\")])[2]"), strQuestion, test);
 			Thread.sleep(500);
-			click(driver, testcaseName, By.xpath("(//label[contains(text(),'"+strQuestion+"')])[2]"), strQuestion, test);
+			click(driver, testcaseName, By.xpath("(//label[contains(text(),\""+strQuestion+"\")])[2]"), strQuestion, test);
 		}
 		scrollIntoCenter(driver, testcaseName, continue_button4, test);
 		Thread.sleep(500);
@@ -2367,7 +2374,11 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		//Capture page load time of Composition analysis question
 		start = System.currentTimeMillis();	
 		click(driver, testcaseName, continue_button44, test);
-		waitforElemPresent(driver, testcaseName, 30, engagement_composition_question, test);
+		if(driver.getCurrentUrl().toLowerCase().contains("sogo")) {
+			waitforElemPresent(driver, testcaseName, 30, sogo_engagement_composition_question, test);
+		}else {
+			waitforElemPresent(driver, testcaseName, 30, engagement_composition_question, test);
+		}
 		end = System.currentTimeMillis();	
 		totalTime = ((end - start)) / 1000;
 		strtotalTime = df.format(totalTime);
@@ -2381,7 +2392,11 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		//Capture page load time of Segment question
 		start = System.currentTimeMillis();	
 		click(driver, testcaseName, continue_button5, test);
-		waitforElemPresent(driver, testcaseName, 30, engagement_segment_question, test);
+		if(driver.getCurrentUrl().toLowerCase().contains("sogo")) {
+			waitforElemPresent(driver, testcaseName, 30, sogo_engagement_segment_question, test);
+		}else {
+			waitforElemPresent(driver, testcaseName, 30, engagement_segment_question, test);
+		}
 		end = System.currentTimeMillis();	
 		totalTime = ((end - start)) / 1000;
 		strtotalTime = df.format(totalTime);
@@ -2721,17 +2736,23 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public String goToCrossTabReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		click(driver, testcaseName, cross_dd, test);
-		waitforElemPresent(driver, testcaseName, 30, cross_tab_menu, test);
-		
-		//Capture page load time of All question
-		start = System.currentTimeMillis();	
-		clickAtOffset(driver, testcaseName, cross_tab, -50, 0, test);
-		waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
-		end = System.currentTimeMillis();	
+		if(driver.getCurrentUrl().toLowerCase().contains("sogo")) {
+			start = System.currentTimeMillis();	
+			click(driver, testcaseName, cross_tabulation, test);
+			waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
+			end = System.currentTimeMillis();
+		}else {
+			click(driver, testcaseName, cross_dd, test);
+			waitforElemPresent(driver, testcaseName, 30, cross_tab_menu, test);
+			
+			//Capture page load time of All question
+			start = System.currentTimeMillis();	
+			clickAtOffset(driver, testcaseName, cross_tab, -50, 0, test);
+			waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
+			end = System.currentTimeMillis();	
+		}
 		totalTime = ((end - start)) / 1000;
 		strtotalTime = df.format(totalTime);
-	
 		return strtotalTime;
 	}
 	
@@ -3261,7 +3282,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		
 		//Add first condition
 		click(driver, testcaseName, conditional_question_dropdown, test);
-		WebElement conditionalQue = driver.findElement(By.xpath("//div[contains(text(),'" + param.get("Condition que 1") + "')]"));
+		WebElement conditionalQue = driver.findElement(By.xpath("//div[contains(text(),\"" + param.get("Condition que 1") + "\")]"));
 		scrollIntoCenter(driver, testcaseName, conditionalQue, param.get("Condition que 1"), test);
 		Thread.sleep(1000);
 		click(driver, testcaseName, conditionalQue, param.get("Condition que 1"), test);
@@ -3271,15 +3292,16 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		selConditionOperand.selectByVisibleText(param.get("Condition que 1 operand"));
 		
 		waitforElemPresent(driver, testcaseName, 30, select_condition_operand, test);
-		Select selConditionAnswers = new Select(getWebElement(driver, testcaseName, select_condition_answers, test));
-		selConditionAnswers.selectByVisibleText(param.get("Condition que 1 answers"));
+//		Select selConditionAnswers = new Select(getWebElement(driver, testcaseName, select_condition_answers, test));
+//		selConditionAnswers.selectByVisibleText(param.get("Condition que 1 answers"));
+		selectByVisibleText(driver, testcaseName, select_condition_answers, param.get("Condition que 1 answers"), test);
 		
 		click(driver, testcaseName, add_condition, test);
-		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),'" + param.get("Condition que 1") + "')]"), "Show Condition -" +param.get("Condition que 1"), 30, 200, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),\"" + param.get("Condition que 1") + "\")]"), "Show Condition -" +param.get("Condition que 1"), 30, 200, test);
 		
 		//Add 2nd condition
 		click(driver, testcaseName, conditional_question_dropdown, test);
-		conditionalQue = driver.findElement(By.xpath("//div[contains(text(),'" + param.get("Condition que 2") + "')]"));
+		conditionalQue = driver.findElement(By.xpath("//div[contains(text(),\"" + param.get("Condition que 2") + "\")]"));
 		scrollIntoCenter(driver, testcaseName, conditionalQue, param.get("Condition que 2"), test);
 		Thread.sleep(1000);
 		click(driver, testcaseName, conditionalQue, param.get("Condition que 2"), test);
@@ -3288,11 +3310,12 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		selConditionOperand = new Select(getWebElement(driver, testcaseName, select_condition_operand, test));
 		selConditionOperand.selectByVisibleText(param.get("Condition que 2 operand"));
 		
-		selConditionAnswers = new Select(getWebElement(driver, testcaseName, select_condition_answers, test));
-		selConditionAnswers.selectByVisibleText(param.get("Condition que 2 answers"));
+		//selConditionAnswers = new Select(getWebElement(driver, testcaseName, select_condition_answers, test));
+		//selConditionAnswers.selectByVisibleText(param.get("Condition que 2 answers"));
+		selectByVisibleText(driver, testcaseName, select_condition_answers, param.get("Condition que 2 answers"), test);
 		
 		click(driver, testcaseName, add_condition, test);
-		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),'" + param.get("Condition que 2") + "')]"), "Show Condition -" +param.get("Condition que 2"), 30, 200, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),\"" + param.get("Condition que 2") + "\")]"), "Show Condition -" +param.get("Condition que 2"), 30, 200, test);
 		
 		if (param.get("Logic").contains("Any")) {
 			scrollIntoCenter(driver, testcaseName, conditional_match_any_condition, test);

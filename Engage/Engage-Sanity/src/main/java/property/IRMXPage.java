@@ -98,6 +98,9 @@ public interface IRMXPage {
 	String CROSS_DD = "//div[@id='btnPivot']//span[contains(text(),'Cross Tabulation')]";
 	WebPageElements cross_dd = new WebPageElements("Cross Tabulation - Drop Down", "xpath", CROSS_DD );
 	
+	String CROSS_TABULATION = "//div[@id='btnPivot1']/span";
+	WebPageElements cross_tabulation = new WebPageElements("Cross Tabulation", "xpath", CROSS_TABULATION );
+	
 	String CROSS_TAB_MENU = "//div[@id='dvPivotTable']";
 	WebPageElements cross_tab_menu = new WebPageElements("Cross Tabulation - Menu", "xpath", CROSS_TAB_MENU );
 	
@@ -241,14 +244,23 @@ public interface IRMXPage {
 	String ENGAGEMENT_WIZARD_STEP1_PAGE_DESCR = "//div[@class='pageDescription']/span[text()='Select Report Type from the drop down menu.']";
 	WebPageElements engagement_wizard_step1_page_descr = new WebPageElements("Engagement - Step 1 Page Description", "xpath", ENGAGEMENT_WIZARD_STEP1_PAGE_DESCR );
 	
+	String SOGO_ENGAGEMENT_WIZARD_STEP1_PAGE_DESCR = "//div[@class='pageDescription']/span[text()='Define participation details.']";
+	WebPageElements sogo_engagement_wizard_step1_page_descr = new WebPageElements("Engagement - Step 1 Page Description", "xpath", SOGO_ENGAGEMENT_WIZARD_STEP1_PAGE_DESCR );
+	
 	String ENGAGEMENT_ADDITIONAL_QUESTION = "//div[contains(text(),'Do you want to include additional questions?')]";
 	WebPageElements engagement_additional_question = new WebPageElements("Engagement - Additional Question Description", "xpath", ENGAGEMENT_ADDITIONAL_QUESTION );
 	
 	String ENGAGEMENT_COMPOSITION_QUESTION = "//div[contains(text(),'Do you want a report by individual composition?')]";
 	WebPageElements engagement_composition_question = new WebPageElements("Engagement - Composition Question Description", "xpath", ENGAGEMENT_COMPOSITION_QUESTION );
 	
+	String SOGO_ENGAGEMENT_COMPOSITION_QUESTION = "//div[contains(text(),'Do you want to review engagement results broken down by specific groups?')]";
+	WebPageElements sogo_engagement_composition_question = new WebPageElements("Engagement - Composition Question Description", "xpath", SOGO_ENGAGEMENT_COMPOSITION_QUESTION );
+	
 	String ENGAGEMENT_SEGMENT_QUESTION = "//div[contains(text(),'Do you want a segmentation report for each department?')]";
 	WebPageElements engagement_segment_question = new WebPageElements("Engagement - Segment Question Description", "xpath", ENGAGEMENT_SEGMENT_QUESTION );
+	
+	String SOGO_ENGAGEMENT_SEGMENT_QUESTION = "//div[contains(text(),'Do you want to generate group-specific reports?')]";
+	WebPageElements sogo_engagement_segment_question = new WebPageElements("Engagement - Segment Question Description", "xpath", SOGO_ENGAGEMENT_SEGMENT_QUESTION );
 	
 	String ENGAGEMENT_FILTER_QUESTION = "//span[contains(text(),'Do you want to apply a filter on this report?')]";
 	WebPageElements engagement_filter_question = new WebPageElements("Engagement - Filter Question Description", "xpath", ENGAGEMENT_FILTER_QUESTION );
@@ -775,7 +787,7 @@ public interface IRMXPage {
 	String SPECIAL_REPORT = "//span[text()='Special Reports']";
 	WebPageElements special_report = new WebPageElements("Special Report", "xpath", SPECIAL_REPORT);
 	
-	String SEGMENTATION_REPORT = "//span[text()='Segmentation']";
+	String SEGMENTATION_REPORT = "//div[@id='ddegmentation']/span";
 	WebPageElements segmentation_report = new WebPageElements("Segmentation Report", "xpath", SEGMENTATION_REPORT);
 	
 	String SEGMENTATION_QUESTION_DD = "//select[@name='DDLQuestion']";
@@ -829,6 +841,9 @@ public interface IRMXPage {
 	
 	String NMAX = "//input[@id='txtNmax']";
 	WebPageElements nmax = new WebPageElements("Nmax", "xpath", NMAX);
+	
+	String ENGAGEMENT_REPORT_TYPE = "//input[@id='txtReportType']";
+	WebPageElements engagement_report_type = new WebPageElements("Engagement Report Type", "xpath", ENGAGEMENT_REPORT_TYPE);
 	
 	String INDIVIDUAL_REPORT = "//a[contains(text(),'Individual')]";
 	WebPageElements individual_report = new WebPageElements("Individual Report", "xpath", INDIVIDUAL_REPORT);
