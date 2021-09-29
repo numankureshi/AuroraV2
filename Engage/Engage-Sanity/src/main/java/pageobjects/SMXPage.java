@@ -1249,7 +1249,8 @@ Thread.sleep(1000);
 			
 			start = System.currentTimeMillis();
 			click(driver, testcaseName, deposite_button, test);
-			waitforElemPresent(driver, testcaseName, 60, toaster_msg, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			//waitforElemPresent(driver, testcaseName, 60, toaster_msg, test);
 			end = System.currentTimeMillis();
 			
 			Thread.sleep(1000);
