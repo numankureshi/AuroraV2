@@ -601,7 +601,7 @@ public class EngageNSReading_TC extends SuiteBase {
 		SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 		SuiteUtility.WriteResultUtility2(filePath, sheetName, "TimeLoad", LoadTime);
 		extent.flush();
-		fetchExcelData.reportLog("Engage_NSReadings", "Report", "xlsx");
+		//fetchExcelData.reportLog("Engage_NSReadings", "Report", "xlsx");
 	}
 
 //	@AfterSuite(alwaysRun = true)

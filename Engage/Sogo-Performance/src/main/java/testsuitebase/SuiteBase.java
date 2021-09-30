@@ -34,6 +34,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.sogo.performance.SogoNSReading_TC;
@@ -259,5 +260,10 @@ public class SuiteBase {
 	}
 	
 	
-	
+	 @AfterSuite (alwaysRun = true)
+	 public void afterSuite() {
+		 fetchExcelData.reportLog("Sogo_NSReadings", "Sogo_NSReadings", "xlsx");
+		 fetchExcelData.reportLog("Sogo_PlatformReadings", "Sogo_PlatformReadings", "xlsx");
+	 }
+
 }

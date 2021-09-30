@@ -1285,9 +1285,9 @@ public class RMXPlatformReading_TC extends SuiteBase {
 		SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 		SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 		extent.flush();
-		fetchExcelData.reportLog("Engage_PlatformReadings", "Report", "xlsx");
+		//fetchExcelData.reportLog("Engage_PlatformReadings", "Report", "xlsx");
 	}
 	
-	 
+	
 
 }

@@ -38,6 +38,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.engage.performance.EngageNSReading_TC;
@@ -290,6 +291,10 @@ public class SuiteBase {
 	}
 	
 
-
+	 @AfterSuite (alwaysRun = true)
+	 public void afterSuite() {
+		 fetchExcelData.reportLog("Engage_PlatformReadings", "Engage_PlatformReadings", "xlsx");
+		 fetchExcelData.reportLog("Engage_NSReadings", "Engage_NSReadings", "xlsx");
+	 }
 	
 }
