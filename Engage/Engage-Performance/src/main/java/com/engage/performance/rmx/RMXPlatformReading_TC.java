@@ -56,7 +56,7 @@ public class RMXPlatformReading_TC extends SuiteBase {
 		for (String env : URLs.keySet()) {
 			Environment = env;
 		}
-		readingFilePath = SuiteUtility.createPlatformreadingSheet("Platform Reading", readingSheet, "xlsx");
+		readingFilePath = SuiteUtility.createPlatformreadingSheet("RMx Reading", readingSheet, "xlsx");
 	}
 
 	
