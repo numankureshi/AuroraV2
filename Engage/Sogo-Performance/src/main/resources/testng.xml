@@ -34,10 +34,12 @@
 		<groups>
 			<run>
 				<include name="Reports" />
+				<include name="DMX"/>
 			</run>
 		</groups>
 		<classes>
 			<class name="com.sogo.performance.rmx.RMXPlatformReading_TC" />
+			<class name="com.sogo.performance.dmx.DMXPlatformReading_TC" />
 			<parameter name="PlatformReadings_TC1" value="Bar Graph Report"></parameter>
 			<parameter name="PlatformReadings_TC2" value="Response Table Report"></parameter>
 			<parameter name="PlatformReadings_TC3" value="Individual Report"></parameter>
