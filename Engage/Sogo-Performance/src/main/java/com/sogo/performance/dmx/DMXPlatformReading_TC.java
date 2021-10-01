@@ -61,7 +61,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC25(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -102,7 +102,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC26(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -155,7 +155,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 	}
 	
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC27(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -206,7 +206,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC28(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -257,7 +257,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC29(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -302,7 +302,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 	}
 	
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC30(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -351,7 +351,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC31(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -398,7 +398,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC32(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -443,7 +443,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC33(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -486,7 +486,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC34(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -529,7 +529,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC35(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -572,7 +572,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC36(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -615,7 +615,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC37(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -658,7 +658,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC38(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -701,7 +701,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC39(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -747,7 +747,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC40(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -790,7 +790,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC41(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -835,7 +835,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC42(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -880,7 +880,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC43(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -925,7 +925,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC44(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -977,7 +977,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC45(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -1023,7 +1023,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC46(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -1065,7 +1065,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC47(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -1107,7 +1107,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC48(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
@@ -1149,7 +1149,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
-	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxPage", alwaysRun = true)
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "DMX", alwaysRun = true)
 	public void PlatformReadings_TC49(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
