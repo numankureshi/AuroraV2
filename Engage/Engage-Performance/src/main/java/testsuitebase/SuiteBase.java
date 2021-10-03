@@ -97,7 +97,6 @@ public class SuiteBase {
 	public void init() throws Exception {
 		System.out.println("Call Init.");
 		
-		
 		Add_Log = Logger.getLogger("rootLogger");
 		extent = ExtentManager.getExtentInstance();
 		TestFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\Engage_NSReadings.xlsx");
@@ -139,6 +138,10 @@ public class SuiteBase {
 		} else if (Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+			File theDir = new File(downloadFilePath);  // Create folder if not exists 
+			if (!theDir.exists()) {
+				theDir.mkdir();
+			}
 
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);

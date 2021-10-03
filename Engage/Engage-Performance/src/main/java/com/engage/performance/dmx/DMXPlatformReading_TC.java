@@ -1235,7 +1235,7 @@ public class DMXPlatformReading_TC extends SuiteBase {
 				closeWebBrowser();
 			}
 		}
-		SuiteUtility.WriteResultUtility4(new Read_XLS(System.getProperty("user.dir") + readingFilePath), readingSheet, Result, readingData);
+		SuiteUtility.WriteResultUtility4(new Read_XLS(readingFilePath), readingSheet, Result, readingData);
 		testSkip = false;
 	}
 
@@ -1245,7 +1245,6 @@ public class DMXPlatformReading_TC extends SuiteBase {
 		SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 		SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 		extent.flush();
-		//fetchExcelData.reportLog("Engage_PlatformReadings", "Report", "xlsx");
 	}
 	
 	 

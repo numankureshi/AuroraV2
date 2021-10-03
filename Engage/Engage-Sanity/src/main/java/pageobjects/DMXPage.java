@@ -868,8 +868,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
 		click(driver, testcaseName, IHomePage.search_icon, test);
 		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.publish_icon, 10, 100, test);
+		new Actions(driver).moveToElement(survey).build().perform();
+		waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
 		
 		start = System.currentTimeMillis();		
 		click(driver, testcaseName, IHomePage.publish_icon, test);
@@ -888,8 +888,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
 		click(driver, testcaseName, IHomePage.search_icon, test);
 		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.publish_icon, 10, 100, test);
+		new Actions(driver).moveToElement(survey).build().perform();
+		waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
 		
 		start = System.currentTimeMillis();		
 		click(driver, testcaseName, IHomePage.publish_icon, test);
@@ -912,8 +912,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		setText(driver, testcaseName, IHomePage.search_bar, param.get("Survey Title"), test);
 		click(driver, testcaseName, IHomePage.search_icon, test);
 		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.publish_icon, 10, 100, test);
+		new Actions(driver).moveToElement(survey).build().perform();
+		waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
 		
 		start = System.currentTimeMillis();		
 		click(driver, testcaseName, IHomePage.publish_icon, test);

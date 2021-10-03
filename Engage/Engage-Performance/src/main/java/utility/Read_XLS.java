@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,15 +63,20 @@ public class Read_XLS {
 	
 	
 	public static String createPlatformreading(String fileName, String sheetName, String extension) {
-		String filePath = null;
+		String filePath = System.getProperty("user.dir") + "\\PlatformReadings\\";
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet(sheetName);
 		OutputStream fileOut;
 		DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
-		filePath = "\\PlatformReadings\\"+ fileName + " - " + dateFormat.format(new Date())+"." +extension;
+		File theDir = new File(filePath);  // Create folder if not exists
+
+		if (!theDir.exists()) {
+			theDir.mkdir();
+		}
+		
+		filePath = filePath + fileName + " - " + dateFormat.format(new Date())+"." +extension;
 		try {
-			
-			fileOut = new FileOutputStream(new File(System.getProperty("user.dir") +filePath));
+			fileOut = new FileOutputStream(new File(filePath));
 			wb.write(fileOut);
 			wb.close();
 

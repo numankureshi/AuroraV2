@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,9 +35,10 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterSuite;
 
 import com.aventstack.extentreports.ExtentReports;
-import com.k12.performance.K12Performance_TC;
+import com.k12.performance.K12NSReading_TC;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageobjects.DMXPage;
@@ -57,7 +59,9 @@ public class SuiteBase {
 	public WebDriver ExistingMozillaBrowser;
 	public WebDriver ExistingChromeBrowser;
 	public WebDriver ExistingIEBrowser;
+	public WebDriver ExistingRemoteDriver;
 	public Read_XLS TestFile = null;
+	public Read_XLS platformReadingFile = null;
 	public HashMap<String, String> URLs = null;
 	public HashMap<String, String> participationURLs = null;
 	public String CaseToRun = null;
@@ -70,7 +74,6 @@ public class SuiteBase {
 	public String DeleteCaseURL = null;
 	public String DeleteCasePass = null;
 	public static ExtentReports extent = null;
-	static public HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	public LoginPage loginPage = new LoginPage();
 	public HomePage homePage = new HomePage();
 	public SMXPage smxPage = new SMXPage();
@@ -78,6 +81,9 @@ public class SuiteBase {
 	public RMXPage rmxPage = new RMXPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
+	public static final String USERNAME = "gauravgolatkar1";
+	public static final String AUTOMATE_KEY = "YzA3qocp3CT7pvq2NtKo";
+	public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 	
 	public WebDriver getDriver() {
 		return driver.get();
@@ -88,7 +94,8 @@ public class SuiteBase {
 		
 		Add_Log = Logger.getLogger("rootLogger");
 		extent = ExtentManager.getExtentInstance();
-		TestFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\K12_Performance.xlsx");
+		TestFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\K12_NSReadings.xlsx");
+		platformReadingFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\K12_PlatformReadings.xlsx");
 		Add_Log.info("Excel file initialized successfully.");
 		
 		Config = new Properties();
@@ -110,6 +117,9 @@ public class SuiteBase {
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE") && ExistingIEBrowser!=null) {
 			driver.set(ExistingIEBrowser);
 			return;
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote") && ExistingRemoteDriver!=null) {
+			driver.set(ExistingRemoteDriver);
+			return;
 		}
 		
 		if(Config.getProperty("testBrowser").equalsIgnoreCase("Mozilla")) {
@@ -123,7 +133,11 @@ public class SuiteBase {
 		} else if (Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
-
+			File theDir = new File(downloadFilePath);  // Create folder if not exists 
+			if (!theDir.exists()) {
+				theDir.mkdir();
+			}
+			
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
 			chromePrefs.put("download.default_directory", downloadFilePath);
@@ -143,6 +157,25 @@ public class SuiteBase {
 			driver.set(new ChromeDriver(cap));
 			Add_Log.info("Chrome Driver instance loaded successfully.");
 
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+		    
+		    caps.setCapability("os", Config.getProperty("os"));
+		    caps.setCapability("os_version", Config.getProperty("os_version"));
+		    caps.setCapability("browser", Config.getProperty("browser"));
+		    caps.setCapability("browser_version", Config.getProperty("browser_version"));
+		    caps.setCapability("resolution", Config.getProperty("resolution"));
+		    caps.setCapability("browserstack.local", Config.getProperty("browserstack.local"));
+		    caps.setCapability("browserstack.networkLogs", Config.getProperty("browserstack.networkLogs"));
+		    caps.setCapability("browserstack.selenium_versions", Config.getProperty("browserstack.selenium_versions"));
+		    caps.setCapability("browserstack.console", Config.getProperty("browserstack.console"));
+			try {
+				driver.set(new RemoteWebDriver(new URL(URL), caps));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			Add_Log.info("Remote Driver instance loaded successfully.");
+			getDriver().manage().window().maximize();
 		}
 	}
 	
@@ -255,4 +288,10 @@ public class SuiteBase {
 	public String getErrorPage(WebDriver driver) {
 		return (String) ((JavascriptExecutor)driver).executeScript("return window.location.href");		 
 	}
+	
+	 @AfterSuite (alwaysRun = true)
+	 public void afterSuite() {
+		 fetchExcelData.reportLog("K12_PlatformReadings", "K12_PlatformReadings", "xlsx");
+		 fetchExcelData.reportLog("K12_NSReadings", "K12_NSReadings", "xlsx");
+	 }
 }
