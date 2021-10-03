@@ -89,6 +89,8 @@
 			<parameter name="PlatformReadings_TC47" value="Publish on Twitter"></parameter>
 			<parameter name="PlatformReadings_TC48" value="Publish on LinkedIn"></parameter>
 			<parameter name="PlatformReadings_TC49" value="Send SMS Invite wizard"></parameter>
+			<parameter name="PlatformReadings_TC50" value="Response Rate Report"></parameter>
+			<parameter name="PlatformReadings_TC51" value="Advance Frequency Report"></parameter>
 		</classes>
 	</test>
 	

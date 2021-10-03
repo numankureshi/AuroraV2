@@ -1917,6 +1917,183 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		return readingData;
 	}
 	
+	public Map<String, String> getResponseRateReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToRespRateReport(driver, param, test));
+		readingData.put(param.get("Step2"), goToRespRateStep2(driver, param, test));
+		readingData.put(param.get("Step3"), goToRespRateStep3(driver, param, test));
+		readingData.put(param.get("Step4"), genRespRateRate(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public Map<String, String> getAdvFreqRReportReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		readingData.put(param.get("Step1"), goToAdvFreqReport(driver, param, test));
+		readingData.put(param.get("Step2"), goToAdvFreqRepStep2(driver, param, test));
+		readingData.put(param.get("Step3"), goToAdvFreqRepStep3(driver, param, test));
+		readingData.put(param.get("Step4"), goToAdvFreqRepStep4(driver, param, test));
+		readingData.put(param.get("Step5"), genAdvFreqReport(driver, param, test));
+		
+		return readingData;
+	}
+	
+	public String goToAdvFreqReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, frequency, test);
+		waitforElemPresent(driver, testcaseName, 30, frequency_menu, test);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, adv_freq, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, all_questions3, test);
+		end = System.currentTimeMillis();
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String goToAdvFreqRepStep2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, all_questions3, test);
+		Thread.sleep(1000);
+		waitForElementToBeVisible(driver, testcaseName, continue_button1, 10, 200, test);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, continue_button1, test);
+		waitforElemPresent(driver, testcaseName, 30, adv_freq_reorder_descr, test);
+		end = System.currentTimeMillis();
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String goToAdvFreqRepStep3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, wizard_step2_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, wizard_step2_continue, test);
+
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, wizard_step2_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, percentage_setting, test);
+		end = System.currentTimeMillis();
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String goToAdvFreqRepStep4(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, next3, test);
+		waitforElemPresent(driver, testcaseName, 30, next3, test);
+
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, next3, test);
+		waitforElemPresent(driver, testcaseName, 30, data_sources, test);
+		end = System.currentTimeMillis();
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String genAdvFreqReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, generate_now_button_2, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_now_button_2, test);
+
+		//Capture page load time of All question
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, generate_now_button_2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, adv_freq_title, test);
+		end = System.currentTimeMillis();
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String goToRespRateReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, legacy_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, legacy_reports_menu, test);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, response_rate, test);
+		waitforElemPresent(driver, testcaseName, 30, select_resp_rate_que, test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String goToRespRateStep2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectByVisibleText(driver, testcaseName, select_resp_rate_que, param.get("respRateQue"), test);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, next1, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[contains(text(),\"" +param.get("respRateQue") +"\")]"), param.get("respRateQue"), test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String goToRespRateStep3(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, max_possible_cb, test);
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, wizard_step2_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, generate_now_button_2, test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	public String genRespRateRate(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		start = System.currentTimeMillis();	
+		click(driver, testcaseName, generate_now_button_2, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[contains(text(),\"" +param.get("respRateQue") +"\")]"), param.get("respRateQue"), test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = ((end - start)) / 1000;
+		strtotalTime = df.format(totalTime);
+	
+		return strtotalTime;
+	}
+	
+	
+	
 	public String goToSegmentationReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		

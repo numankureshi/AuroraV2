@@ -92,8 +92,20 @@ public interface IRMXPage {
 	String ADD_CONDITION = "//input[@id='btnAddCondition']";
 	WebPageElements add_condition = new WebPageElements("Conditional - Add Condition Button", "xpath", ADD_CONDITION );
 
-	String ADV_FREQ = "//a[@id='ddAdvBarGraph']";
+	String ADV_FREQ = "//li[@id='ddAdvBarGraph']/a";
 	WebPageElements adv_freq = new WebPageElements("ADV frequency", "xpath", ADV_FREQ );
+	
+	String ADV_FREQ_REORDER_DESCR = "//span[text()='Indicate the order of questions (you can drag and drop a question to another location). ']";
+	WebPageElements adv_freq_reorder_descr = new WebPageElements("Adv Freq Reorder Description", "xpath", ADV_FREQ_REORDER_DESCR );
+	
+	String PECENTAGE_SETTING = "//span[text()='Percentage Setting']";
+	WebPageElements percentage_setting = new WebPageElements("Percentage Setting", "xpath", PECENTAGE_SETTING );
+	
+	String DATA_SOURCES = "//span[text()='Data Sources']";
+	WebPageElements data_sources = new WebPageElements("Data Sources", "xpath", DATA_SOURCES );
+	
+	String ADV_FREQ_TITLE = "//div[text()='Advanced Frequency Report']";
+	WebPageElements adv_freq_title = new WebPageElements("Advanced Frequency Report - Title", "xpath", ADV_FREQ_TITLE );
 	
 	String CROSS_DD = "//div[@id='btnPivot']//span[contains(text(),'Cross Tabulation')]";
 	WebPageElements cross_dd = new WebPageElements("Cross Tabulation - Drop Down", "xpath", CROSS_DD );
@@ -385,8 +397,14 @@ public interface IRMXPage {
 	WebPageElements statistical_download_word = new WebPageElements("Statistical Report - Download Button", "xpath", STATISTICAL_DOWNLOAD_WORD );
 	
 	
-	String RESPONSE_RATE  = "//a[@id='btnParticipationRate']";
+	String RESPONSE_RATE  = "//li[@id='btnParticipationRate']/a";
 	WebPageElements response_rate = new WebPageElements("Response Rate", "xpath", RESPONSE_RATE );
+	
+	String SELECT_RESP_RATE_QUE  = "//select[@id='cmbQuestions']";
+	WebPageElements select_resp_rate_que = new WebPageElements("Response Rate Question Drop down", "xpath", SELECT_RESP_RATE_QUE );
+	
+	String MAX_POSSIBLE_CB  = "//input[@id='chkWarn']";
+	WebPageElements max_possible_cb = new WebPageElements("Max Possible Response Warning Check box", "xpath", MAX_POSSIBLE_CB );
 	
 	String RESPONSE_TREND = "//li[@id='btnResponseTrend']/a";
 	WebPageElements response_trend = new WebPageElements("Response Trend", "xpath", RESPONSE_TREND );
@@ -442,13 +460,13 @@ public interface IRMXPage {
 	WebPageElements select_allcb = new WebPageElements("Select ALLCB", "xpath", SELECT_ALLCB );
 	
 	String NEXT1 = "//input[@id='btnstep1Next']";
-	WebPageElements next1 = new WebPageElements("Next step 1", "xpath", NEXT1 );
+	WebPageElements next1 = new WebPageElements("Continue", "xpath", NEXT1 );
 	
 	String NEXT3 = "//input[@id='btnstep3Next']";
-	WebPageElements next3 = new WebPageElements("Next step 3", "xpath", NEXT3 );
+	WebPageElements next3 = new WebPageElements("Continue", "xpath", NEXT3 );
 	
 	String NEXT4 = "//input[@id='btnstep4Next']";
-	WebPageElements next4 = new WebPageElements("Next step 4", "xpath", NEXT4 );
+	WebPageElements next4 = new WebPageElements("Continue", "xpath", NEXT4 );
 
 	String REPORTS_DD = "//input[@id='hd-group fr hd-relative-group']";
 	WebPageElements reports_dd = new WebPageElements("Reports DD", "xpath", REPORTS_DD );
@@ -617,17 +635,17 @@ public interface IRMXPage {
 	WebPageElements all_questions = new WebPageElements("All Questions", "xpath", ALL_QUESTIONS);
 	
 	String WIZARD_STEP1_CONTINUE = "//input[@id='btnstep1Next']";
-	WebPageElements wizard_step1_continue = new WebPageElements("Report Wizard - Step 1 Continue", "xpath", WIZARD_STEP1_CONTINUE);
+	WebPageElements wizard_step1_continue = new WebPageElements("Continue", "xpath", WIZARD_STEP1_CONTINUE);
 	
 	String WIZARD_STEP2_CONTINUE = "//input[@id='btnStep2Next']";
-	WebPageElements wizard_step2_continue = new WebPageElements("Report Wizard - Step 2 Continue", "xpath", WIZARD_STEP2_CONTINUE);
+	WebPageElements wizard_step2_continue = new WebPageElements("Continue", "xpath", WIZARD_STEP2_CONTINUE);
 	
 	//Use this step 2 btn for Frequency table report, Cross tab report
 	String WIZARD_STEP2_CONTINUE_2 = "//input[@id='btnstep2Next']";
-	WebPageElements wizard_step2_continue_2 = new WebPageElements("Report Wizard - Step 2 Continue", "xpath", WIZARD_STEP2_CONTINUE_2);
+	WebPageElements wizard_step2_continue_2 = new WebPageElements("Continue", "xpath", WIZARD_STEP2_CONTINUE_2);
 	
 	String WIZARD_STEP3_CONTINUE = "//input[@id='btnstep3Next']";
-	WebPageElements wizard_step3_continue = new WebPageElements("Report Wizard - Step 3 Continue", "xpath", WIZARD_STEP3_CONTINUE);
+	WebPageElements wizard_step3_continue = new WebPageElements("Continue", "xpath", WIZARD_STEP3_CONTINUE);
 	
 	String GENERATE_NOW_BUTTON = "//input[@id='btnstep4Next']";
 	WebPageElements generate_now_button = new WebPageElements("Generate Now", "xpath", GENERATE_NOW_BUTTON);
@@ -1029,5 +1047,7 @@ public interface IRMXPage {
 	
 	String INCLUDE_IN_REPORTS = "//button[text()='Include in reports']";
 	WebPageElements include_in_reports = new WebPageElements("Include in Reports Button", "xpath", INCLUDE_IN_REPORTS);
+	
+	
 	
 }

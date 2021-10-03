@@ -1234,6 +1234,96 @@ public class RMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
+	public void PlatformReadings_TC50(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String surveyTitle = getData(data, "Survey Title");
+		String SID = getData(data, "SID");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("respRateQue", getData(data, "Condition que 1"));
+
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
+				readingData = rmx.getResponseRateReportReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "Reports", alwaysRun = true)
+	public void PlatformReadings_TC51(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String surveyTitle = getData(data, "Survey Title");
+		String SID = getData(data, "SID");
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		param.put("Step3", getData(data, "Step 3"));
+		param.put("Step4", getData(data, "Step 4"));
+		param.put("Step5", getData(data, "Step 5"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmx.goToReportPage(getDriver(), param, surveyTitle, SID, test);
+				readingData = rmx.getAdvFreqRReportReading(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
 
 
 	@AfterMethod(alwaysRun = true)
