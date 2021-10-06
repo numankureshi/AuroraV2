@@ -23,13 +23,11 @@
 			<run>
 				<include name="Reports" />
 				<include name="DMX"/>
-				<include name="Design"/>
 			</run>
 		</groups>
 		<classes>
 			<class name="com.k12.performance.rmx.RMXPlatformReading_TC" > </class>
 			<class name="com.k12.performance.dmx.DMXPlatformReading_TC"> </class>
-			<class name="com.k12.performance.smx.SMXPlatformReading_TC"> </class>
 			<parameter name="PlatformReadings_TC1" value="Bar Graph Report"></parameter>
 			<parameter name="PlatformReadings_TC2" value="Response Table Report"></parameter>
 			<parameter name="PlatformReadings_TC3" value="Individual Report"></parameter>
