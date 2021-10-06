@@ -1,5 +1,7 @@
 package pageobjects;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -1385,12 +1387,22 @@ Thread.sleep(1000);
 		
 		String testcaseName = param.get("TestCaseName");
 		Boolean isMatrixGridFound = false;
+		String qtitle = null;
+		List<WebElement> questions = null;
 		long totalQuestions = (Long) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion.length;", test);
 		int totalUniqueQuestions = Integer.parseInt((String) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion[" +(totalQuestions-1) +"].uniqueqno;", test));
 		
 		for(int i=0; i<totalUniqueQuestions; i++) {
-			List<WebElement> questions = getWebElements(driver, testcaseName, question_title, test);
-			String qtitle = questions.get(i).getAttribute("qtitle");
+			questions = getWebElements(driver, testcaseName, question_title, test);
+			try {
+				qtitle = questions.get(i).getAttribute("qtitle");
+			}catch (IndexOutOfBoundsException e) {
+				executeScript(driver, testcaseName, "return window.scrollBy(0,1500);", test);
+				waitForJStoLoad(driver, 30);
+				questions = getWebElements(driver, testcaseName, question_title, test);
+				qtitle = questions.get(i).getAttribute("qtitle");
+			}
+			scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + questions.get(i).getAttribute("qtitle"), test);
 			
 			if(questions.get(i).getAttribute("bind-html-compile").contains("matrix")) {
 				scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + qtitle, test);
@@ -1414,9 +1426,7 @@ Thread.sleep(1000);
 				
 				isMatrixGridFound = true;
 				break;
-			} else {
-				scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + questions.get(i).getAttribute("qtitle"), test);
-			}
+			} 
 			Thread.sleep(1000);
 		}
 		
