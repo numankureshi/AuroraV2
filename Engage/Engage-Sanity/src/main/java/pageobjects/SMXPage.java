@@ -1166,10 +1166,11 @@ Thread.sleep(1000);
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	private ArrayList<String> getZarcaQIDs(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+	private ArrayList<String> getZarcaQIDs(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		ArrayList<Object> pageQuestionData = new ArrayList<Object>();
 		ArrayList<String> zarcaQIDs = new ArrayList<String>();
+		waitForJStoLoad(driver, 60);
 		String script = "return SurveyJson.PageQuestion;";
 		pageQuestionData = (ArrayList<Object>) executeScript(driver, testcaseName, script, test);
 		Iterator<Object> iterator = pageQuestionData.iterator();
