@@ -1152,7 +1152,7 @@ Thread.sleep(1000);
 			click(driver, testcaseName, IHomePage.edit_icon, test);
 		}
 		
-		driver.switchTo().defaultContent();
+		//driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, designer_button, test);
 		end = System.currentTimeMillis();

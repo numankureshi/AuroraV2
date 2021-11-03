@@ -865,10 +865,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
 		
-		//Check if new dashboard is enabled or not
+		//	Check if new dashboard is enabled or not
 		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
 				
-		//For new dashboard changes
+		//	For new dashboard changes
 		if (isShowNewAllProjectDashBoard == true) {		
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
 			setText(driver, testcaseName, IHomePage.new_search_bar, surveyTitle, test);
@@ -881,10 +881,11 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			WebElement survey = driver.findElement(By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"));
 			new Actions(driver).moveToElement(survey).build().perform();
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_publish_icon, 60, 100, test);
+			
 			start = System.currentTimeMillis();		
 			click(driver, testcaseName, IHomePage.new_publish_icon, test);
 		}
-		//For old dashboard
+		//	For old dashboard
 		else {	
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
 			setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
@@ -896,7 +897,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			start = System.currentTimeMillis();		
 			click(driver, testcaseName, IHomePage.publish_icon, test);
 		}
-		driver.switchTo().defaultContent();	
+		
+		//driver.switchTo().defaultContent();	
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, quick_send, test);
 		end = System.currentTimeMillis();
