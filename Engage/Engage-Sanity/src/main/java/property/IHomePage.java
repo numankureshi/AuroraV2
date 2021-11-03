@@ -13,11 +13,17 @@ public interface IHomePage {
 	String MAIN_FOLDER = "//img[@class='openMain']";
 	WebPageElements main_folder = new WebPageElements("Main Folder", "xpath", MAIN_FOLDER);
 	
+	String NEW_MAIN_FOLDER = "//span[text()='Main']";
+	WebPageElements new_main_folder = new WebPageElements("Main Folder", "xpath", NEW_MAIN_FOLDER);
+	
 	String REPORT_ICON = "//div[@id='OverDivReport']/span";
 	WebPageElements report_icon = new WebPageElements("Report Icon", "xpath", REPORT_ICON);
 	
 	String PUBLISH_ICON = "//div[@id='OverDivPublish']/span";
 	WebPageElements publish_icon = new WebPageElements("Publish Icon", "xpath", PUBLISH_ICON);
+	
+	String NEW_PUBLISH_ICON = "//div[@id='OverDivPublish'][@style='display: flex;']/span";
+	WebPageElements new_publish_icon = new WebPageElements("Publish Icon", "xpath", NEW_PUBLISH_ICON);
 	
 	String TRACK_SURVEY_ICON = "//div[@id='OverDivTrack']/span";
 	WebPageElements track_survey_icon = new WebPageElements("Track Survey Icon", "xpath", TRACK_SURVEY_ICON);
@@ -27,6 +33,9 @@ public interface IHomePage {
 	
 	String EDIT_ICON = "//div[@id='OverDivEdit']/span";
 	WebPageElements edit_icon = new WebPageElements("Edit Icon", "xpath", EDIT_ICON);
+	
+	String NEW_EDIT_ICON = "//div[@id='OverDivEdit'][@style='display: flex;']/span";
+	WebPageElements new_edit_icon = new WebPageElements("Edit Icon", "xpath", NEW_EDIT_ICON);
 	
 	String COPY_ICON = "//div[@id='OverDivCopy']/span";
 	WebPageElements copy_icon = new WebPageElements("Copy Icon", "xpath", COPY_ICON);
@@ -42,6 +51,9 @@ public interface IHomePage {
 	
 	String SEARCH_BAR = "//input[@id='txtSearch']";
 	WebPageElements search_bar = new WebPageElements("Search Bar", "xpath", SEARCH_BAR);
+	
+	String NEW_SEARCH_BAR = "//input[@id='InSearchText']";
+	WebPageElements new_search_bar = new WebPageElements("Search Bar", "xpath", NEW_SEARCH_BAR);
 	
 	String SEARCH_ICON = "//div[@id='SurveyGrid_dvsearchIcon']";
 	WebPageElements search_icon = new WebPageElements("Search Icon", "xpath", SEARCH_ICON);	
@@ -67,5 +79,7 @@ public interface IHomePage {
 	String SMALL_LOADER= "//img[contains(@id,'imgSmallLoader')]";
 	WebPageElements small_loader = new WebPageElements("Loader", "xpath", SMALL_LOADER);
 
+	String FILTER_APPLIED= "//div[@id='dvFilterApplied']";
+	WebPageElements filter_applied = new WebPageElements("Filter", "xpath", FILTER_APPLIED);
 	
 }

@@ -1119,17 +1119,39 @@ Thread.sleep(1000);
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
-		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
-		click(driver, testcaseName, IHomePage.search_icon, test);
-		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@sid='"+SID+"']"), "Survey ID "+SID, test);
-		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.edit_icon, 10, 100, test);
 		
-		start = System.currentTimeMillis();		
-		click(driver, testcaseName, IHomePage.edit_icon, test);
-		waitForJStoLoad(driver, 60);
+		//Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
+		
+		//For new dashboard changes
+		if (isShowNewAllProjectDashBoard == true) {		
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.new_search_bar, surveyTitle, test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"),
+					surveyTitle, 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_edit_icon, 60, 100, test);
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.new_edit_icon, test);
+		}
+		//For old dashboard
+		else {		
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
+			click(driver, testcaseName, IHomePage.search_icon, test);
+			waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@sid='"+SID+"']"), "Survey ID "+SID, test);
+			WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
+			new Actions(driver).moveToElement(survey).perform();
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.edit_icon, test);
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.edit_icon, test);
+		}
+		
 		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, designer_button, test);
