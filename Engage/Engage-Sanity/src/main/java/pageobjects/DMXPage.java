@@ -869,7 +869,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
 				
 		//	For new dashboard changes
-		if (isShowNewAllProjectDashBoard == true) {		
+		if (isShowNewAllProjectDashBoard) {		
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
 			setText(driver, testcaseName, IHomePage.new_search_bar, surveyTitle, test);
 			driver.switchTo().defaultContent();
@@ -898,7 +898,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			click(driver, testcaseName, IHomePage.publish_icon, test);
 		}
 		
-		//driver.switchTo().defaultContent();	
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, quick_send, test);
 		end = System.currentTimeMillis();

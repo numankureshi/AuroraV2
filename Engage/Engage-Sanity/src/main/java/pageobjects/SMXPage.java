@@ -1124,7 +1124,7 @@ Thread.sleep(1000);
 		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
 		
 		//For new dashboard changes
-		if (isShowNewAllProjectDashBoard == true) {		
+		if (isShowNewAllProjectDashBoard) {		
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
 			setText(driver, testcaseName, IHomePage.new_search_bar, surveyTitle, test);
 			driver.switchTo().defaultContent();
@@ -1151,8 +1151,8 @@ Thread.sleep(1000);
 			start = System.currentTimeMillis();		
 			click(driver, testcaseName, IHomePage.edit_icon, test);
 		}
-		
-		//driver.switchTo().defaultContent();
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, designer_button, test);
 		end = System.currentTimeMillis();
@@ -1170,7 +1170,6 @@ Thread.sleep(1000);
 		String testcaseName = param.get("TestCaseName");
 		ArrayList<Object> pageQuestionData = new ArrayList<Object>();
 		ArrayList<String> zarcaQIDs = new ArrayList<String>();
-		waitForJStoLoad(driver, 60);
 		String script = "return SurveyJson.PageQuestion;";
 		pageQuestionData = (ArrayList<Object>) executeScript(driver, testcaseName, script, test);
 		Iterator<Object> iterator = pageQuestionData.iterator();
@@ -1420,7 +1419,7 @@ Thread.sleep(1000);
 			try {
 				qtitle = questions.get(i).getAttribute("qtitle");
 			}catch (IndexOutOfBoundsException e) {
-				executeScript(driver, testcaseName, "return window.scrollBy(0,1500);", test);
+				executeScript(driver, testcaseName, "return window.scrollTo(0, document.body.scrollHeight);", test);
 				waitForJStoLoad(driver, 30);
 				questions = getWebElements(driver, testcaseName, question_title, test);
 				qtitle = questions.get(i).getAttribute("qtitle");
