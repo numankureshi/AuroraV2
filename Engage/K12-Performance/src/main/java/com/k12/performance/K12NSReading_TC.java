@@ -9,6 +9,7 @@ import com.aventstack.extentreports.Status;
 import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
+import utility.MyScreenRecorder;
 import utility.Read_XLS;
 import utility.SuiteUtility;
 
@@ -60,6 +61,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC1(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -99,6 +101,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC2(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -143,6 +146,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC3(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -187,6 +191,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC4(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -233,6 +238,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC5(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -277,6 +283,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC6(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -321,6 +328,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC7(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -366,6 +374,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC8(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -412,6 +421,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC9(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -455,6 +465,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC10(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -499,6 +510,7 @@ public class K12NSReading_TC extends SuiteBase {
 	public void Performance_TC11(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -574,6 +586,12 @@ public class K12NSReading_TC extends SuiteBase {
 			if (!(getDriver() == null)) {
 				closeWebBrowser();
 			}
+		}
+		try {
+			MyScreenRecorder.stopRecording();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		testSkip = false;
 	}

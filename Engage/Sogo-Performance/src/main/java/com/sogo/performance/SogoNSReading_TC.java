@@ -5,12 +5,16 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import pageobjects.SoGoStaticPage;
 import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
 import utility.Read_XLS;
+import utility.MyScreenRecorder;
+import utility.SeleniumUtils;
 import utility.SuiteUtility;
 
 import java.io.File;
@@ -21,6 +25,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 
 import org.testng.Assert;
 import org.testng.ITestListener;
@@ -30,6 +35,7 @@ import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.AfterSuite;
 
@@ -55,11 +61,12 @@ public class SogoNSReading_TC extends SuiteBase {
 			Environment = env;
 		}
 	}
-
+	
 	@Test(dataProvider = "Performance", dataProviderClass = utility.XLSDataProvider.class, groups = "Static", alwaysRun = true)
 	public void Performance_TC1(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -84,11 +91,35 @@ public class SogoNSReading_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
+				
+				
 				loadBrowser();
+//				Selenium 4 Changes : add network logs				
+//				devTools.createSession();
+//				devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+//				
+//				JsonArray ntwJsonArray = new JsonArray();
+//				devTools.addListener(Network.responseReceived(), response -> {
+//					Long originTime = System.currentTimeMillis();
+//					JsonObject resp = new JsonObject(); 
+//					resp.addProperty("url", response.getResponse().getUrl());
+//					resp.addProperty("status",response.getResponse().getStatus());
+//					resp.addProperty("MimeType",response.getResponse().getMimeType());
+//					resp.addProperty("Protocol",response.getResponse().getProtocol().get());
+//					resp.addProperty("Type",response.getType().name());
+//					Long respTime = (long) Double.parseDouble(response.getResponse().getResponseTime().get().toString());
+//					resp.addProperty("ResponseTime",respTime);
+//					resp.addProperty("originTime",originTime);
+//					resp.addProperty("Duration",(respTime-originTime));
+//					ntwJsonArray.add(resp);
+//				});
 				double totalTime = staticPage.navigateToSogoStatic(getDriver(), param, URLs.get(key), test);
+//				System.out.println(ntwJsonArray);
 				String totaltime = df.format(totalTime);
 				System.out.println("total time :"+ totaltime);
 				LoadTime.put(TestCaseName, totaltime);
+//				devTools.send(Network.disable());
+//				devTools.close();
 			}
 		}
 
@@ -98,6 +129,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC2(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -136,6 +168,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC3(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -174,6 +207,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC4(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -212,6 +246,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC5(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -251,6 +286,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC6(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -292,6 +328,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC7(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -339,6 +376,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC8(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -383,6 +421,8 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC9(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -427,6 +467,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC10(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -473,6 +514,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC11(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -517,6 +559,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC12(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -561,6 +604,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC13(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -606,6 +650,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC14(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -652,6 +697,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC15(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -695,6 +741,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC16(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -739,6 +786,7 @@ public class SogoNSReading_TC extends SuiteBase {
 	public void Performance_TC17(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -813,6 +861,12 @@ public class SogoNSReading_TC extends SuiteBase {
 			if (!(getDriver() == null)) {
 				closeWebBrowser();
 			}
+		}
+		try {
+			MyScreenRecorder.stopRecording();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		testSkip = false;
 	}

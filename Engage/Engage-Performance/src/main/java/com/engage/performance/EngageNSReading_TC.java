@@ -10,6 +10,7 @@ import com.aventstack.extentreports.Status;
 import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
+import utility.MyScreenRecorder;
 import utility.Read_XLS;
 import utility.SeleniumUtils;
 import utility.SuiteUtility;
@@ -20,9 +21,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -46,6 +50,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public double finish, start;
 	public static HashMap<String, String> TestResultTL = new HashMap<String, String>();
 	static public HashMap<String, String> LoadTime = new HashMap<String, String>();
+	public File recording;
 	
 	@BeforeClass(alwaysRun = true)
 	public void setUp() throws Exception {
@@ -64,6 +69,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC1(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -102,6 +108,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC2(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -145,6 +152,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC3(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -189,6 +197,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC4(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -235,6 +244,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC5(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -279,6 +289,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC6(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -323,6 +334,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC7(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -368,6 +380,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC8(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -412,6 +425,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC9(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -456,6 +470,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC10(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -500,6 +515,7 @@ public class EngageNSReading_TC extends SuiteBase {
 	public void Performance_TC11(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
+		MyScreenRecorder.startRecording(TestCaseName);
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
@@ -590,6 +606,12 @@ public class EngageNSReading_TC extends SuiteBase {
 			if (!(getDriver() == null)) {
 				closeWebBrowser();
 			}
+		}
+		try {
+			MyScreenRecorder.stopRecording();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		testSkip = false;
 	}
