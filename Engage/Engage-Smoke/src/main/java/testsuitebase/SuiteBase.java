@@ -29,6 +29,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
+import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.engage.smoke.surveypage.SurveyPage_TC;
@@ -88,11 +89,16 @@ public class SuiteBase {
 		return driver.get();
 	}
 	
+	@BeforeSuite(alwaysRun = true)
+	public void beforeSuite() {
+		//	Invoke instance of extent report before suite so that all test cases will be logged in single report.
+		extent = ExtentManager.getExtentInstance();
+	}
+	
 	public void init() throws Exception {
 		System.out.println("Call Init.");
 		
-		Add_Log = Logger.getLogger("rootLogger");
-		extent = ExtentManager.getExtentInstance();
+		Add_Log = Logger.getLogger("rootLogger");	
 		TestFile = new Read_XLS(System.getProperty("user.dir") + "\\src\\main\\resources\\excelfiles\\Engage_Smoke.xlsx");
 		Add_Log.info("Excel file initialized successfully.");
 		
