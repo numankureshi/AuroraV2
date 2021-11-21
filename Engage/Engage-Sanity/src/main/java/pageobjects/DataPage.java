@@ -28,7 +28,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.MoveMouseAction;
-import org.openqa.selenium.internal.FindsByXPath;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Reporter;
@@ -75,7 +74,7 @@ public class DataPage extends SeleniumUtils implements IDataPage {
 		driver.findElement(By.xpath(IMPORT_FILE)).sendKeys(System.getProperty("user.dir")
 				+"\\src\\main\\resources\\excelfiles\\uploadfiles\\" + param.get("file"));
 		Thread.sleep(500);	
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[text()='"+ param.get("file") +"']"), param.get("file"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//b[text()='"+ param.get("file") +"']"), param.get("file"), test);
 		click(driver, testcaseName, import_map,test);
 		waitforElemPresent(driver, testcaseName, 30, import_data, test);
 		click(driver, testcaseName, import_data, test);

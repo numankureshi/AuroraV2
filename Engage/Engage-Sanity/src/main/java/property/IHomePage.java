@@ -31,6 +31,12 @@ public interface IHomePage {
 	String DATA_ICON = "//div[@id='OverDivData']/span";
 	WebPageElements data_icon = new WebPageElements("Data Icon", "xpath", DATA_ICON);
 	
+	String NEW_DATA_ICON = "//div[@id='OverDivData'][@style='display: flex;']/span";
+	WebPageElements new_data_icon = new WebPageElements("Data Icon", "xpath", NEW_DATA_ICON);
+	
+	String NEW_REPORT_ICON = "//div[@id='OverDivReport'][@style='display: flex;']/span";
+	WebPageElements new_report_icon = new WebPageElements("Report Icon", "xpath", NEW_REPORT_ICON);
+	
 	String EDIT_ICON = "//div[@id='OverDivEdit']/span";
 	WebPageElements edit_icon = new WebPageElements("Edit Icon", "xpath", EDIT_ICON);
 	

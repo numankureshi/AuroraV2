@@ -3,6 +3,7 @@ package testsuitebase;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ import org.testng.ITestResult;
 import com.aventstack.extentreports.ExtentReports;
 import com.sogo.smoke.surveypage.SurveyPage_TC;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageobjects.DMXPage;
 import pageobjects.DMXPageSogo;
 import pageobjects.DataPage;
@@ -52,6 +54,7 @@ public class SuiteBase {
 	public WebDriver ExistingMozillaBrowser;
 	public WebDriver ExistingChromeBrowser;
 	public WebDriver ExistingIEBrowser;
+	public WebDriver ExistingRemoteDriver;
 	public Read_XLS TestFile = null;
 	public HashMap<String, String> URLs = null;
 	public HashMap<String, String> participationURLs = null;
@@ -75,6 +78,9 @@ public class SuiteBase {
 	public DataPage dataPage = new DataPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
+	public static final String USERNAME = "gauravgolatkar1";
+	public static final String AUTOMATE_KEY = "YzA3qocp3CT7pvq2NtKo";
+	public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 	
 	public WebDriver getDriver() {
 		return driver.get();
@@ -107,45 +113,142 @@ public class SuiteBase {
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE") && ExistingIEBrowser!=null) {
 			driver.set(ExistingIEBrowser);
 			return;
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote") && ExistingRemoteDriver!=null) {
+			driver.set(ExistingRemoteDriver);
+			return;
 		}
 		
 		if(Config.getProperty("testBrowser").equalsIgnoreCase("Mozilla")) {
+			WebDriverManager.firefoxdriver().setup();
 			driver.set(new FirefoxDriver());
 			Add_Log.info("Firefox Driver instance loaded successfully.");
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE")) {
-			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + "\\src\\main\\resources\\browserdrivers\\IEDriverServer.exe");
+			WebDriverManager.iedriver().setup();
 			driver.set(new InternetExplorerDriver());
 			Add_Log.info("IE Driver instance loaded successfully.");
-		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
+		} else if (Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+			File theDir = new File(downloadFilePath);  // Create folder if not exists 
+			if (!theDir.exists()) {
+				theDir.mkdir();
+			}
+
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.default_directory", downloadFilePath);
+
+			ChromeOptions options = new ChromeOptions();
+			options.setExperimentalOption("prefs", chromePrefs);
+			options.addArguments("--start-maximized");
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.addArguments("disable-infobars");
+			options.addArguments("--ignore-certificate-errors");
+
+			DesiredCapabilities cap = DesiredCapabilities.chrome();
+			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+			cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+			driver.set(new ChromeDriver(cap));
+			Add_Log.info("Chrome Driver instance loaded successfully.");
+
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+		    
+		    caps.setCapability("os", Config.getProperty("os"));
+		    caps.setCapability("os_version", Config.getProperty("os_version"));
+		    caps.setCapability("browser", Config.getProperty("browser"));
+		    caps.setCapability("browser_version", Config.getProperty("browser_version"));
+		    caps.setCapability("resolution", Config.getProperty("resolution"));
+		    caps.setCapability("browserstack.local", Config.getProperty("browserstack.local"));
+		    caps.setCapability("browserstack.networkLogs", Config.getProperty("browserstack.networkLogs"));
+		    caps.setCapability("browserstack.selenium_versions", Config.getProperty("browserstack.selenium_versions"));
+		    caps.setCapability("browserstack.console", Config.getProperty("browserstack.console"));
+			try {
+				driver.set(new RemoteWebDriver(new URL(URL), caps));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			Add_Log.info("Remote Driver instance loaded successfully.");
+			getDriver().manage().window().maximize();
+		}
+	}
+	
+	/**
+	 * Use this method to load browser for dynamic download file path
+	 * @param downloadFilePath
+	 */
+	@SuppressWarnings("deprecation")
+	public void loadBrowser(String downloadFilePath) {
+		if(Config.getProperty("testBrowser").equalsIgnoreCase("Mozilla") && ExistingMozillaBrowser!=null) {
+			driver.set(ExistingMozillaBrowser);
+			return;
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Chrome") && ExistingChromeBrowser!=null) {
+			driver.set(ExistingChromeBrowser);
+			return;
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE") && ExistingIEBrowser!=null) {
+			driver.set(ExistingIEBrowser);
+			return;
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote") && ExistingRemoteDriver!=null) {
+			driver.set(ExistingRemoteDriver);
+			return;
+		}
+		
+		if(Config.getProperty("testBrowser").equalsIgnoreCase("Mozilla")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver.set(new FirefoxDriver());
+			Add_Log.info("Firefox Driver instance loaded successfully.");
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE")) {
+			WebDriverManager.iedriver().setup();
+			driver.set(new InternetExplorerDriver());
+			Add_Log.info("IE Driver instance loaded successfully.");
+		} else if (Config.getProperty("testBrowser").equalsIgnoreCase("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			try {
+				FileUtils.forceMkdir(new File(downloadFilePath));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
-			  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
-			  + "\\src\\main\\resources\\browserdrivers\\chromedriver.exe");
-			  
-			  String downloadFilePath = System.getProperty("user.dir") +
-			  "\\src\\main\\resources\\excelfiles\\";
-			  
-			  HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-			  chromePrefs.put("profile.default_content_settings.popups", 0);
-			  chromePrefs.put("download.default_directory", downloadFilePath);
-			  
-			  ChromeOptions options = new ChromeOptions();
-			  options.setExperimentalOption("prefs", chromePrefs);
-			  options.addArguments("--start-maximized");
-			  options.setExperimentalOption("useAutomationExtension", false);
-			  options.addArguments("disable-infobars");
-			  options.addArguments("--ignore-certificate-errors");
-			  
-			  DesiredCapabilities cap = DesiredCapabilities.chrome();
-			  cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			  cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
-			  UnexpectedAlertBehaviour.ACCEPT); 
-			  cap.setCapability(ChromeOptions.CAPABILITY,
-			  options);
-			  
-			  driver.set(new ChromeDriver(cap));
-			  Add_Log.info("Chrome Driver instance loaded successfully.");
-			 
-			 
+			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.default_directory", downloadFilePath);
+
+			ChromeOptions options = new ChromeOptions();
+			options.setExperimentalOption("prefs", chromePrefs);
+			options.addArguments("--start-maximized");
+			options.setExperimentalOption("useAutomationExtension", false);
+			options.addArguments("disable-infobars");
+			options.addArguments("--ignore-certificate-errors");
+
+			DesiredCapabilities cap = DesiredCapabilities.chrome();
+			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+			cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+			driver.set(new ChromeDriver(cap));
+			Add_Log.info("Chrome Driver instance loaded successfully.");
+
+		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {
+			DesiredCapabilities caps = new DesiredCapabilities();
+		    
+		    caps.setCapability("os", Config.getProperty("os"));
+		    caps.setCapability("os_version", Config.getProperty("os_version"));
+		    caps.setCapability("browser", Config.getProperty("browser"));
+		    caps.setCapability("browser_version", Config.getProperty("browser_version"));
+		    caps.setCapability("resolution", Config.getProperty("resolution"));
+		    caps.setCapability("browserstack.local", Config.getProperty("browserstack.local"));
+		    caps.setCapability("browserstack.networkLogs", Config.getProperty("browserstack.networkLogs"));
+		    caps.setCapability("browserstack.selenium_versions", Config.getProperty("browserstack.selenium_versions"));
+		    caps.setCapability("browserstack.console", Config.getProperty("browserstack.console"));
+			try {
+				driver.set(new RemoteWebDriver(new URL(URL), caps));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			Add_Log.info("Remote Driver instance loaded successfully.");
+			getDriver().manage().window().maximize();
 		}
 	}
 	

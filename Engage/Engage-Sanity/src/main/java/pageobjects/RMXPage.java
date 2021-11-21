@@ -373,15 +373,35 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, all_project_dashboard_iframe, test);
-		waitForElementToBeVisible(driver, testcaseName, main_folder, 30, 100, test);
-		setText(driver, testcaseName, search_bar, param.get("surveyTitle"), test);
-		click(driver, testcaseName, search_icon, test);
-		waitForLoad(driver, testcaseName, 30, test);
-		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, report_icon2, 10, 100, test);
-	
-		click(driver, testcaseName, report_icon2, test);
+		
+//		Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
+		
+//		For new dashboard changes
+		if (isShowNewAllProjectDashBoard) {		
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.new_search_bar, param.get("surveyTitle"), test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + param.get("surveyTitle") +"\"]"), param.get("surveyTitle"), 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + param.get("surveyTitle") +"\"]"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_report_icon, 60, 100, test);	
+			click(driver, testcaseName, IHomePage.new_report_icon, test);
+		}
+//		For old dashboard
+		else {	
+			waitForElementToBeVisible(driver, testcaseName, main_folder, 30, 100, test);
+			setText(driver, testcaseName, search_bar, param.get("surveyTitle"), test);
+			click(driver, testcaseName, search_icon, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
+			new Actions(driver).moveToElement(survey).perform();
+			waitForElementToBeVisible(driver, testcaseName, report_icon2, 10, 100, test);
+			click(driver, testcaseName, report_icon2, test);
+		}
 		waitForJStoLoad(driver, 60);
 		waitforElemPresent(driver, testcaseName, 60, omni_report, test);
 		
@@ -1386,7 +1406,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
     		waitForLoad(driver, testcaseName, 30, test);
     		String DOWNLOAD_REPORT = "(//a[text()='Export'])["+ size +"]";
     		WebPageElements download_report = new WebPageElements("Download Report", "xpath", DOWNLOAD_REPORT);
-    		downloadFile(driver, param, download_report, format, test);
+    		downloadFile(driver, param, download_report, format, param.get("downloadFilePath"), test);
 	}
 	
 	public void downloadReportAdvance(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
@@ -1453,7 +1473,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	        }
 	     
     		
-    		downloadFile(driver, param, download_report, format, test);
+    		downloadFile(driver, param, download_report, format, param.get("downloadFilePath"), test);
 	}
 	
 	public void downloadReportIndividual(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
@@ -1533,7 +1553,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	        }
 	     
     		
-    		downloadFile(driver, param, download_report, format, test);
+    		downloadFile(driver, param, download_report, format, param.get("downloadFilePath"), test);
 	}
 	
 	public void downloadReportResponseTable(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -1553,17 +1573,15 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		format = "xls";
 		download_report = download_excel4;
 
-		downloadFile(driver, param, download_report, format, test);
+		downloadFile(driver, param, download_report, format, param.get("downloadFilePath"), test);
 	}
 	
-	public void downloadFile(WebDriver driver, HashMap<String, String> param, WebPageElements button, String format, ExtentTest test) {
+	public void downloadFile(WebDriver driver, HashMap<String, String> param, WebPageElements button, String format, String downloadFilePath, ExtentTest test) {
 		DMXPage dmxPage = new DMXPage();
 		String testcaseName = param.get("TestCaseName");
-		String downloadFilePath = System.getProperty("user.dir") +"\\src\\main\\resources\\excelfiles";
-		String fileSystem = "ExportFiles";
 		long beforeCount = 0;
 		try {
-			beforeCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+			beforeCount = Files.list(Paths.get(downloadFilePath)).count();
 			System.out.println(beforeCount);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1574,45 +1592,46 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			int i = 0;
 //			waitforElemPresent(driver, testcaseName, 30, button, test);
 			click(driver, testcaseName, button, test);
-			while (beforeCount >= afterCount && i < 300) {
-				afterCount = Files.list(Paths.get("./src/main/resources/excelfiles")).count();
+			while (beforeCount >= afterCount && i < 600) {
+				afterCount = Files.list(Paths.get(downloadFilePath)).count();
 				Thread.sleep(1000);
 				i++;
 			}
-			if(i == 300) {
+			if(i == 600) {
 				reportFail(testcaseName,
-						"The excel was not downloaded.", test);
+						"The file was not downloaded.", test);
 			}
 			System.out.println(afterCount);
-//			Thread.sleep(2000);
-			String fileName = dmxPage.latestFileName();
+			//Thread.sleep(2000);
+			String fileName = dmxPage.latestFileNameFromPath(downloadFilePath);
 			while(fileName.contains("tmp") || fileName.contains("crdownload")) {
 				Thread.sleep(500);
-				fileName = dmxPage.latestFileName();
+				fileName = dmxPage.latestFileNameFromPath(downloadFilePath);
 			}
 			
 		} catch (Exception e) {
 			reportFail(testcaseName,
 					"The excel was not downloaded.", test);
+			e.printStackTrace();
 		}
 		
-		File theDir = new File("./src/main/resources/excelfiles/"+ fileSystem);
+		File theDir = new File(downloadFilePath);
 		if(!theDir.exists()) {
 			theDir.mkdir();
 		}
 		int r = dmxPage.RandomNumber();
-		String fileName = dmxPage.latestFileName(format);
+		String fileName = dmxPage.latestFileName(downloadFilePath, format);
 		String[] filesNew2 = fileName.split("\\.");
 		String latestFile = filesNew2[0] + "_" + r;
 //		String latestFile = fileName;
 		System.out.println(latestFile);
-		File file = new File("./src/main/resources/excelfiles/"+latestFile.trim()+"."+format);
-		File file2 = new File("./src/main/resources/excelfiles/"+fileName);
+		File file = new File(downloadFilePath + latestFile.trim()+"."+format);
+		File file2 = new File(downloadFilePath + fileName);
 		
 		file2.renameTo(file);
-		String path = "./src/main/resources/excelfiles/"+fileSystem+"/"+latestFile.trim()+"."+format;
+		String path = downloadFilePath + "/"+latestFile.trim()+"."+format;
 		
-		file.renameTo(new File("./src/main/resources/excelfiles/"+fileSystem+"/"+latestFile.trim()+"."+format));
+		file.renameTo(new File(downloadFilePath +"/"+latestFile.trim()+"."+format));
 		System.out.println("File path is: "+path);
 	}
 	

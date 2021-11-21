@@ -176,6 +176,65 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		System.out.println("File path is: "+path);
 	}
 	
+	public void downloadFile(WebDriver driver, HashMap<String, String> param, WebPageElements button, String format, String downloadFilePath, ExtentTest test) {
+		DMXPage dmxPage = new DMXPage();
+		String testcaseName = param.get("TestCaseName");
+		long beforeCount = 0;
+		try {
+			beforeCount = Files.list(Paths.get(downloadFilePath)).count();
+			System.out.println(beforeCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			long afterCount = beforeCount;
+			int i = 0;
+			waitforElemPresent(driver, testcaseName, 30, button, test);
+			click(driver, testcaseName, button, test);
+			while (beforeCount >= afterCount && i < 300) {
+				afterCount = Files.list(Paths.get(downloadFilePath)).count();
+				Thread.sleep(1000);
+				i++;
+			}
+			if(i == 300) {
+				reportFail(testcaseName,
+						"The file was not downloaded.", test);
+			}
+			System.out.println(afterCount);
+//			Thread.sleep(2000);
+			String fileName = dmxPage.latestFileNameFromPath(downloadFilePath);
+			while(fileName.contains("tmp") || fileName.contains("crdownload")) {
+				Thread.sleep(500);
+				fileName = dmxPage.latestFileNameFromPath(downloadFilePath);
+			}
+			
+		} catch (Exception e) {
+			reportFail(testcaseName,
+					"The excel was not downloaded.", test);
+			e.printStackTrace();
+		}
+		
+		File theDir = new File(downloadFilePath);
+		if(!theDir.exists()) {
+			theDir.mkdir();
+		}
+		int r = dmxPage.RandomNumber();
+		String fileName = dmxPage.latestFileName(downloadFilePath, format);
+		String[] filesNew2 = fileName.split("\\.");
+		String latestFile = filesNew2[0] + "_" + r;
+//		String latestFile = fileName;
+		System.out.println(latestFile);
+		File file = new File(downloadFilePath + latestFile.trim()+"."+format);
+		File file2 = new File(downloadFilePath + fileName);
+		
+		file2.renameTo(file);
+		String path = downloadFilePath + "/"+latestFile.trim()+"."+format;
+		
+		file.renameTo(new File(downloadFilePath +"/"+latestFile.trim()+"."+format));
+		System.out.println("File path is: "+path);
+	}
+	
 	public void publishTestInvites(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -214,6 +273,18 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		return theNewFile.toString();
 	}
 	
+	public String latestFileNameFromPath(String path) {
+		File theNewFile = null;
+		File dir = new File(path);
+		FileFilter fileFilter = new WildcardFileFilter("*.*");
+		File[] files = dir.listFiles(fileFilter);
+		if(files.length > 0) {
+			Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+			theNewFile = files[0];
+		}
+		return theNewFile.toString();
+	}
+	
 	public String latestFileName(String extension) {
 		File theNewFile = null;
 		File dir = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\excelfiles");
@@ -228,6 +299,22 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 		return fileNew;
 	}
+
+	public String latestFileName(String path, String extension) {
+		File theNewFile = null;
+		File dir = new File(path);
+		FileFilter fileFilter = new WildcardFileFilter("*."+extension);
+		File[] files = dir.listFiles(fileFilter);
+		if(files.length > 0) {
+			Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+			theNewFile = files[0];
+		}
+		//
+		String fileNew = theNewFile.getName().toString();
+	
+		return fileNew;
+	}
+	
 	
 	public void createContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -331,7 +418,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, 60, invitation_sent, test);
+		waitforElemPresent(driver, testcaseName, 60, sms_invitation_sent, test);
 	}
 	
 	public void publishSingleUseLinkexe(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -729,6 +816,14 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 60, invitation_sent, test);
 	}
 	
+	public void sendOrScheduleReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+		waitforElemPresent(driver, testcaseName, 30, send_now, test);
+		click(driver, testcaseName, send_now, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, reminder_sent, test);
+	}
 	
 	
 	public void sendOrScheduleexe(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -770,7 +865,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		driver.switchTo().alert().accept();
 		waitForLoad(driver, testcaseName, 30, test);
 		selectEmailTemplateReminder(driver, param, test);
-		sendOrSchedule(driver, param, test);
+		sendOrScheduleReminders(driver, param, test);
 	}
 	
 	public void sendRemindersEXE(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -823,7 +918,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, invitation_sent, test);
+		waitforElemPresent(driver, testcaseName, 30, sms_reminder_sent, test);
 	}
 	
 	public void selectCalendar(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -876,9 +971,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 			waitForLoad(driver, testcaseName, 120, test);
 			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
 			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
-			waitForElementToBeVisible(driver, testcaseName, By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"),
-					surveyTitle, 60, 100, test);
-			WebElement survey = driver.findElement(By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"));
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"), surveyTitle, 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"));
 			new Actions(driver).moveToElement(survey).build().perform();
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_publish_icon, 60, 100, test);
 			

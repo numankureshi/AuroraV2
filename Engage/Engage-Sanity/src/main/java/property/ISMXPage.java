@@ -10,10 +10,10 @@ public interface ISMXPage {
 	String BEGIN_LABEL = "//div[text()='Where would you like to begin?']";
 	WebPageElements begin_label = new WebPageElements("Where would you like to begin?", "xpath", BEGIN_LABEL);
 	
-	String SURVEY_BUTTON = "//span[text()='Survey']";
+	String SURVEY_BUTTON = "(//div[text()='Survey']//parent::div[contains(@class,'project-type-container')])[1]";
 	WebPageElements survey_button = new WebPageElements("Survey Button", "xpath", SURVEY_BUTTON);
 	
-	String BLANK_SURVEY = "//span[text()='Start with a Blank Survey']";
+	String BLANK_SURVEY = "//div[@id='dvstartNew']";
 	WebPageElements blank_survey = new WebPageElements("Start with a Blank Survey Button", "xpath", BLANK_SURVEY);
 	
 	String CONTINUE_BUTTON = "//input[@id='btnContinue' and @type='button']";
@@ -22,25 +22,28 @@ public interface ISMXPage {
 	String CREATE_SURVEY_LABEL = "//div[text()='Create New Survey']";
 	WebPageElements create_survey_label = new WebPageElements("Create New Survey Label", "xpath", CREATE_SURVEY_LABEL);
 	
-	String SURVEY_NAME = "//input[@name='txtSurveyTitle']";
+	String SURVEY_NAME = "//input[@id='txtSurveyTitle']";
 	WebPageElements survey_name = new WebPageElements("Survey Name", "xpath", SURVEY_NAME);
 	
 	String FOLDER = "//div[@class='folder-select']";
 	WebPageElements folder = new WebPageElements("Select Folder", "xpath", FOLDER);
 	
-	String PRIMARY_LANGUAGE_DD = "//select[@name='ddlPrimaryLang']";
+	String PRIMARY_LANGUAGE_DD = "//div[@id='dvPrimaryFolder']";
 	WebPageElements primary_lanugage_dd = new WebPageElements("Primary Langugage Drop down", "xpath", PRIMARY_LANGUAGE_DD);
+	
+	String PRIMARY_LANGUAGE_LIST = "//div[@class='o-menu-list primary-dd-language']";
+	WebPageElements primary_lanugage_list = new WebPageElements("Primary Langugage List", "xpath", PRIMARY_LANGUAGE_LIST);
 	
 	String SECONDARY_LANGUAGE_DD = "//div[@class='SecondaryHolder']";
 	WebPageElements secondary_lanugage_dd = new WebPageElements("Secondary Langugage Drop down", "xpath", SECONDARY_LANGUAGE_DD);
 	
-	String SECONDARY_LANGUAGE_DD_SEARCH = "//input[@class='SearchInput']";
+	String SECONDARY_LANGUAGE_DD_SEARCH = "//input[@class='SearchInput ']";
 	WebPageElements secondary_lanugage_dd_search = new WebPageElements("Secondary Langugage Drop down Search", "xpath", SECONDARY_LANGUAGE_DD_SEARCH);
 	
-	String START_BUTTON = "(//input[@value='Start'])[1]";
-	WebPageElements start_button = new WebPageElements("Start Button", "xpath", START_BUTTON);
+	String START_BUTTON = "//input[@id='CreateNewProject']";
+	WebPageElements start_button = new WebPageElements("Create Button", "xpath", START_BUTTON);
 	
-	String SECONDARY_LANGUAGE_SWITCH = "//input[@id='rdOtherLangYes']";
+	String SECONDARY_LANGUAGE_SWITCH = "//label[@id='rbAdditionalLanguageToggle']";
 	WebPageElements secondary_language_switch = new WebPageElements("Secondary Language Switch", "xpath", SECONDARY_LANGUAGE_SWITCH);
 	
 	String DESCRIPTION_BUTTON = "//div[contains(text(),'Descriptive Text')]/parent::div[@id='dvcom']";

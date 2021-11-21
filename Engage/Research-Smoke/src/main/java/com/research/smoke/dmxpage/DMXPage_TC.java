@@ -13,9 +13,11 @@ import utility.Read_XLS;
 import utility.SuiteUtility;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -182,7 +184,8 @@ public class DMXPage_TC extends SuiteBase {
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		//test
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\"  + "publish\\" 
+				+ DateFormatUtils.format(new Date(), "dd-MM-yyyy") + "\\";
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -193,6 +196,7 @@ public class DMXPage_TC extends SuiteBase {
 		param.put("mailmergetxt", getData(data, "mailmergetxt"));
 		param.put("prepopdd", getData(data, "prepopdd"));
 		param.put("emailtemplatere", getData(data, "emailtemplatere"));
+		param.put("downloadFilePath", downloadFilePath);
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -210,7 +214,7 @@ public class DMXPage_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				loadBrowser();
+				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dmxPage2.publishSurveyPasswords(getDriver(), param, test);
 				

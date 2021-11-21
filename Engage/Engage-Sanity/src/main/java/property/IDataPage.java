@@ -10,7 +10,7 @@ public interface IDataPage {
 	String IMPORT_MODULE = "//div[@id='MyHeader_ctl00_dvImport']";
 	WebPageElements import_module = new WebPageElements("Import data module", "xpath", IMPORT_MODULE);
 	
-	String IMPORT_FILE = "//input[@name='File1']";
+	String IMPORT_FILE = "//input[@name='MyFile']";
 	WebPageElements import_file = new WebPageElements("Import File", "xpath", IMPORT_FILE);
 	
 	String IMPORT_DATA = "//input[@name='btnImport']";

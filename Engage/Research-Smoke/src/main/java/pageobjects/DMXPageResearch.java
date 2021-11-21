@@ -327,7 +327,7 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
-		dmxPage.downloadFile(driver, param, generate_password , test);
+		dmxPage.downloadFile(driver, param, generate_password , "xls", param.get("downloadFilePath"), test);
 	}
 
 	public void selectTestDropDown(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {

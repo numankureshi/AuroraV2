@@ -13,9 +13,11 @@ import utility.Read_XLS;
 import utility.SuiteUtility;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -50,7 +52,8 @@ public class RMXPage_TC extends SuiteBase {
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		//test
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\"  + "reports\\" 
+				+ DateFormatUtils.format(new Date(), "dd-MM-yyyy") + "\\";	
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -58,6 +61,7 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("surveyTitle", getData(data, "surveyTitle"));
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
+		param.put("downloadFilePath", downloadFilePath);
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -75,7 +79,7 @@ public class RMXPage_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				loadBrowser();
+				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPageResearch.generateOmniReport(getDriver(), param, test);
 			}
@@ -89,7 +93,8 @@ public class RMXPage_TC extends SuiteBase {
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		//test
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\"  + "reports\\" 
+				+ DateFormatUtils.format(new Date(), "dd-MM-yyyy") + "\\";	
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -97,6 +102,7 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("surveyTitle", getData(data, "surveyTitle"));
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
+		param.put("downloadFilePath", downloadFilePath);
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -114,7 +120,7 @@ public class RMXPage_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				loadBrowser();
+				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPageResearch.generateAdvancedFrequencyReport(getDriver(), param, test);
 			}
@@ -128,7 +134,8 @@ public class RMXPage_TC extends SuiteBase {
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		//test
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\"  + "reports\\" 
+				+ DateFormatUtils.format(new Date(), "dd-MM-yyyy") + "\\";	
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -136,6 +143,7 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("surveyTitle", getData(data, "surveyTitle"));
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
+		param.put("downloadFilePath", downloadFilePath);
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -153,7 +161,7 @@ public class RMXPage_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				loadBrowser();
+				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateIndividualReport(getDriver(), param, test);
 			}
@@ -167,7 +175,8 @@ public class RMXPage_TC extends SuiteBase {
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		//test
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\"  + "reports\\" 
+				+ DateFormatUtils.format(new Date(), "dd-MM-yyyy") + "\\";	
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -175,6 +184,7 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("surveyTitle", getData(data, "surveyTitle"));
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
+		param.put("downloadFilePath", downloadFilePath);
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -192,7 +202,7 @@ public class RMXPage_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				loadBrowser();
+				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateResponseTableReport(getDriver(), param, test);
 			}
@@ -206,7 +216,8 @@ public class RMXPage_TC extends SuiteBase {
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
 		String Role = getData(data, "Role");
-		//test
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\"  + "reports\\" 
+				+ DateFormatUtils.format(new Date(), "dd-MM-yyyy") + "\\";	
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("TestCaseName", TestCaseName);
@@ -214,6 +225,7 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("surveyTitle", getData(data, "surveyTitle"));
 		param.put("emailto", getData(data, "Email"));
 		param.put("question", getData(data, "Expected2"));
+		param.put("downloadFilePath", downloadFilePath);
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -231,7 +243,7 @@ public class RMXPage_TC extends SuiteBase {
 				}
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
-				loadBrowser();
+				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPageResearch.generateSegmentationReport(getDriver(), param, test);
 			}

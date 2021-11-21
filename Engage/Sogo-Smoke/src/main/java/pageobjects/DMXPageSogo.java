@@ -208,7 +208,7 @@ public class DMXPageSogo extends SeleniumUtils implements IDMXPage, ISMXPage {
 		
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
-		dmxPage.downloadFile(driver, param, generate_password , test);
+		dmxPage.downloadFile(driver, param, generate_password , "xls", param.get("downloadFilePath"), test);
 	}
 	
 	public void selectFromAList2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {

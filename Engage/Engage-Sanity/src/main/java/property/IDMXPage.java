@@ -355,20 +355,29 @@ public interface IDMXPage {
 	String SCHEDULED_DELIVERY = "//input[@value='Schedule Delivery'][@name='btnSubmit']";
 	WebPageElements scheduled_delivery = new WebPageElements("Schedule Delivery", "xpath", SCHEDULED_DELIVERY);
 	
-	String INVITATION_SENT = "//font[contains(text(),'You have sent')]";
-	WebPageElements invitation_sent = new WebPageElements("You have sent", "xpath", INVITATION_SENT);
+	String INVITATION_SENT = "//span[contains(text(),'Email Invitation(s) sent:')]";
+	WebPageElements invitation_sent = new WebPageElements("Email Invitation(s) sent Message", "xpath", INVITATION_SENT);
 	
-	String SUCCESSFULLY_GENERATED = "//span[contains(text(),'You have successfully generated')]";
-	WebPageElements successfully_generated = new WebPageElements("You have successfully generated", "xpath", SUCCESSFULLY_GENERATED);
+	String REMINDER_SENT = "//span[@id='spnPublish'][starts-with(text(),'Email Reminder(s) sent')]";
+	WebPageElements reminder_sent = new WebPageElements("Email Reminder(s) sent Message", "xpath", REMINDER_SENT);
+	
+	String SMS_INVITATION_SENT = "//span[@id='spnPublish'][starts-with(text(),'SMS Invitation(s) sent')]";
+	WebPageElements sms_invitation_sent = new WebPageElements("SMS Invitation(s) sent Message", "xpath", SMS_INVITATION_SENT);
+	
+	String SMS_REMINDER_SENT = "//span[@id='spnPublish'][starts-with(text(),'SMS Reminder(s) sent')]";
+	WebPageElements sms_reminder_sent = new WebPageElements("SMS Reminder(s) sent Message", "xpath", SMS_REMINDER_SENT);
+	
+	String SUCCESSFULLY_GENERATED = "//span[@id='spnPublish'][starts-with(text(),'Passwords generated')]";
+	WebPageElements successfully_generated = new WebPageElements("Password Generated Message", "xpath", SUCCESSFULLY_GENERATED);
 	
 	String GENERATE_PASSWORD = "//input[@id='btnDwnPwd']";
 	WebPageElements generate_password = new WebPageElements("Generate Password", "xpath", GENERATE_PASSWORD);
 	
-	String INVITATION_SENT_EXE = "//font[contains(text(),'invitation(s) have been queued for delivery. You will be notified via email')]";
+	String INVITATION_SENT_EXE = "//span[starts-with(text(),'Invitations queued for delivery:')]";
 	WebPageElements invitation_sent_exe = new WebPageElements("have been queued for delivery ", "xpath", INVITATION_SENT_EXE);
 	
-	String REMINDERS_SENT_EXE = "//font[contains(text(),'reminder(s) have been queued for delivery. You will be notified via email')]";
-	WebPageElements reminders_sent_exe = new WebPageElements("have been queued for delivery ", "xpath", REMINDERS_SENT_EXE);
+	String REMINDERS_SENT_EXE = "//span[@id='spnPublish'][starts-with(text(),'Reminders queued for delivery')]";
+	WebPageElements reminders_sent_exe = new WebPageElements("Reminders have been queued for delivery message", "xpath", REMINDERS_SENT_EXE);
 	
 	
 	String REMINDERS = "(//span[contains(text(),'Reminders')])[1]";

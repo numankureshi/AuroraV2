@@ -86,26 +86,20 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 100, create_project, test);
 		click(driver, testcaseName, create_project, test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, begin_label, test);
 	}
 	
 	public void selectBlankSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1' and contains(@src,'CreateNewTool.aspx')]"), "Iframe", test);
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1' and contains(@src,'CreateNewTool.aspx')]")));
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1' and contains(@src,'CreateNewTool')]"), "Iframe", test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1' and contains(@src,'CreateNewTool')]")));
 		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, survey_button, test);
 		click(driver, testcaseName, survey_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, blank_survey, test);
 		click(driver, testcaseName, blank_survey, test);
-		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, continue_button, test);
-		click(driver, testcaseName, continue_button, test);
-		waitForLoad(driver, testcaseName, 30, test);
-		driver.switchTo().defaultContent();
-		waitforElemPresent(driver, testcaseName, 30, create_survey_label, test);
+
 	}
 	
 	public void createNewSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -147,15 +141,18 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, primary_lanugage_dd, test);
-		Select select = new Select(driver.findElement(By.xpath(PRIMARY_LANGUAGE_DD)));
-		select.selectByVisibleText(param.get("primarylanguage"));
+		click(driver, testcaseName, primary_lanugage_dd, test);
+		waitforElemPresent(driver, testcaseName, 30, primary_lanugage_list, test);
+		scrollIntoCenter(driver, testcaseName, By.xpath("//div[@class='o-menu-list-item'][contains(text(),'" + param.get("primarylanguage") + "')]"), param.get("primarylanguage"), test);
+		click(driver, testcaseName, By.xpath("//div[@class='o-menu-list-item'][contains(text(),'" + param.get("primarylanguage") + "')]"), param.get("primarylanguage"), test);
+
 		
 	}
 	
 	public void selectSecondaryLanugage(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-//		waitforElemPresent(driver, testcaseName, 30, secondary_language_switch, test);
+		waitforElemPresent(driver, testcaseName, 30, secondary_language_switch, test);
 		click(driver, testcaseName, secondary_language_switch,test);
 		waitforElemPresent(driver, testcaseName, 30, secondary_lanugage_dd, test);
 		click(driver, testcaseName, secondary_lanugage_dd,test);
@@ -164,8 +161,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		Thread.sleep(2000);
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
 		click(driver, testcaseName, By.xpath("//label[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
-//		Select select = new Select(driver.findElement(By.xpath(PRIMARY_LANGUAGE_DD)));
-//		select.selectByVisibleText(param.get("primarylanguage"));
+
 		
 	}
 	
@@ -1131,9 +1127,8 @@ Thread.sleep(1000);
 			waitForLoad(driver, testcaseName, 120, test);
 			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
 			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
-			waitForElementToBeVisible(driver, testcaseName, By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"),
-					surveyTitle, 60, 100, test);
-			WebElement survey = driver.findElement(By.xpath("//span[text()=\"" +surveyTitle +"\"]//parent::div[starts-with(@title,'SID: " +SID +"')]"));
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"), surveyTitle, 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"));
 			new Actions(driver).moveToElement(survey).build().perform();
 			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_edit_icon, 60, 100, test);
 			start = System.currentTimeMillis();		
@@ -1274,7 +1269,7 @@ Thread.sleep(1000);
 			start = System.currentTimeMillis();
 			click(driver, testcaseName, deposite_button, test);
 			waitForLoad(driver, testcaseName, 30, test);
-			//waitforElemPresent(driver, testcaseName, 60, toaster_msg, test);
+			waitforElemPresent(driver, testcaseName, 60, toaster_msg, test);
 			end = System.currentTimeMillis();
 			
 			Thread.sleep(1000);
