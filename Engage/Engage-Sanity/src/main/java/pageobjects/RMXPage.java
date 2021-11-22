@@ -2243,8 +2243,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public String goToAdvPivotReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		click(driver, testcaseName, cross_dd, test);
-		waitforElemPresent(driver, testcaseName, 30, cross_tab_menu, test);
+		click(driver, testcaseName, legacy_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, legacy_reports_menu, test);
 		
 		start = System.currentTimeMillis();	
 		clickAtOffset(driver, testcaseName, adv_piv, -50, 0, test);
@@ -2930,23 +2930,19 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		return strtotalTime;
 	}
 	
-	public String goToCrossTabReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+	public String goToCrossTabReport(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		if(driver.getCurrentUrl().toLowerCase().contains("sogo")) {
-			start = System.currentTimeMillis();	
-			click(driver, testcaseName, cross_tabulation, test);
-			waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
-			end = System.currentTimeMillis();
-		}else {
-			click(driver, testcaseName, cross_dd, test);
-			waitforElemPresent(driver, testcaseName, 30, cross_tab_menu, test);
-			
-			//Capture page load time of All question
-			start = System.currentTimeMillis();	
-			clickAtOffset(driver, testcaseName, cross_tab, -50, 0, test);
-			waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
-			end = System.currentTimeMillis();	
-		}
+
+		click(driver, testcaseName, legacy_reports, test);
+		waitforElemPresent(driver, testcaseName, 30, legacy_reports_menu, test);
+
+		// Capture page load time of All question
+		start = System.currentTimeMillis();
+		clickAtOffset(driver, testcaseName, cross_tab, -50, 0, test);
+		waitforElemPresent(driver, testcaseName, 30, cross_tab_2lvl, test);
+		end = System.currentTimeMillis();
+
 		totalTime = ((end - start)) / 1000;
 		strtotalTime = df.format(totalTime);
 		return strtotalTime;
