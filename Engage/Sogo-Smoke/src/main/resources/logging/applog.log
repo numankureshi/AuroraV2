@@ -1,6 +1,73 @@
-2021-01-30 17:51:01,125 - rootLogger - INFO - Excel file initialized successfully.
-2021-01-30 17:51:01,128 - rootLogger - INFO - Config.properties file Loaded successfully.
-2021-01-30 17:51:01,235 - rootLogger - INFO - Smoke_TC1 is SKIPPED.
-2021-01-30 17:51:01,345 - rootLogger - INFO - Excel file initialized successfully.
-2021-01-30 17:51:01,350 - rootLogger - INFO - Config.properties file Loaded successfully.
-2021-01-30 17:51:01,437 - rootLogger - INFO - Smoke_TC2 is SKIPPED.
+2021-11-23 20:32:22,047 - rootLogger - INFO - Excel file initialized successfully.
+2021-11-23 20:32:22,052 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-11-23 20:32:25,218 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-11-23 20:32:29,303 - rootLogger - INFO - Successfully waited for Login Button Static to be present on page.
+2021-11-23 20:32:33,322 - rootLogger - INFO - Successfully clicked on Login Button Static element.
+2021-11-23 20:32:33,417 - rootLogger - INFO - Successfully waited for SoGo Static Login Image to be present on page.
+2021-11-23 20:32:33,476 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-11-23 20:32:33,610 - rootLogger - INFO - Successfully entered sogo_gmail110 in User Name textbox.
+2021-11-23 20:32:33,737 - rootLogger - INFO - Successfully entered Eighth8# in User Password textbox.
+2021-11-23 20:32:38,576 - rootLogger - INFO - Successfully clicked on Login element.
+2021-11-23 20:32:40,751 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-11-23 20:32:40,802 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-11-23 20:32:40,924 - rootLogger - INFO - Successfully clicked on Create Project Button element.
+2021-11-23 20:32:47,903 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:32:47,947 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:32:47,988 - rootLogger - INFO - Successfully waited for Iframe to be present on page.
+2021-11-23 20:32:51,820 - rootLogger - INFO - Successfully waited for Survey Button to be present on page.
+2021-11-23 20:32:51,954 - rootLogger - INFO - Successfully clicked on Survey Button element.
+2021-11-23 20:32:53,085 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:32:53,150 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:32:53,203 - rootLogger - INFO - Successfully waited for Start with a Blank Survey Button to be present on page.
+2021-11-23 20:32:53,346 - rootLogger - INFO - Successfully clicked on Start with a Blank Survey Button element.
+2021-11-23 20:32:53,962 - rootLogger - INFO - Successfully waited for Survey Name to be present on page.
+2021-11-23 20:32:54,164 - rootLogger - INFO - Successfully entered SMx DP - 23-Nov-2021 20:32:53 in Survey Name textbox.
+2021-11-23 20:32:54,216 - rootLogger - INFO - Successfully waited for Select Folder to be present on page.
+2021-11-23 20:32:54,305 - rootLogger - INFO - Successfully clicked on Select Folder element.
+2021-11-23 20:32:54,360 - rootLogger - INFO - Successfully waited for Main to be present on page.
+2021-11-23 20:32:55,453 - rootLogger - INFO - Successfully clicked on Main element.
+2021-11-23 20:32:55,537 - rootLogger - INFO - Successfully waited for Primary Langugage Drop down to be present on page.
+2021-11-23 20:32:55,677 - rootLogger - INFO - Successfully clicked on Primary Langugage Drop down element.
+2021-11-23 20:32:55,737 - rootLogger - INFO - Successfully waited for Primary Langugage List to be present on page.
+2021-11-23 20:32:55,766 - rootLogger - INFO - Successfully move to :English
+2021-11-23 20:32:55,893 - rootLogger - INFO - Successfully clicked on English element.
+2021-11-23 20:32:55,952 - rootLogger - INFO - Successfully waited for Secondary Language Switch to be present on page.
+2021-11-23 20:32:56,095 - rootLogger - INFO - Successfully clicked on Secondary Language Switch element.
+2021-11-23 20:32:56,147 - rootLogger - INFO - Successfully waited for Secondary Langugage Drop down to be present on page.
+2021-11-23 20:32:56,322 - rootLogger - INFO - Successfully clicked on Secondary Langugage Drop down element.
+2021-11-23 20:32:56,388 - rootLogger - INFO - Successfully waited for Secondary Langugage Drop down Search to be present on page.
+2021-11-23 20:32:56,607 - rootLogger - INFO - Successfully entered Spanish in Secondary Langugage Drop down Search textbox.
+2021-11-23 20:32:58,683 - rootLogger - INFO - Successfully waited for Spanish to be present on page.
+2021-11-23 20:32:58,850 - rootLogger - INFO - Successfully clicked on Spanish element.
+2021-11-23 20:32:58,897 - rootLogger - INFO - Successfully waited for Create Button to be present on page.
+2021-11-23 20:32:59,076 - rootLogger - INFO - Successfully clicked on Create Button element.
+2021-11-23 20:33:00,254 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:00,329 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:04,140 - rootLogger - INFO - Successfully waited for SMx DP - 23-Nov-2021 20:32:53 to be present on page.
+2021-11-23 20:33:05,344 - rootLogger - INFO - Successfully waited for Description Button to be present on page.
+2021-11-23 20:33:05,688 - rootLogger - INFO - Successfully double clicked on Description Button element.
+2021-11-23 20:33:06,579 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:07,571 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2021-11-23 20:33:07,696 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2021-11-23 20:33:08,020 - rootLogger - INFO - Successfully entered This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. in Description Text Input textbox.
+2021-11-23 20:33:08,086 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2021-11-23 20:33:08,234 - rootLogger - INFO - Successfully clicked on Save Button element.
+2021-11-23 20:33:09,311 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:09,508 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:09,586 - rootLogger - INFO - Successfully waited for Description Added This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. to be present on page.
+2021-11-23 20:33:09,644 - rootLogger - INFO - Successfully waited for Net Promoter Button to be present on page.
+2021-11-23 20:33:09,911 - rootLogger - INFO - Successfully double clicked on Net Promoter Button element.
+2021-11-23 20:33:11,420 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:11,784 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
+2021-11-23 20:33:11,875 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
+2021-11-23 20:33:11,902 - rootLogger - INFO - Successfully fetched text How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? from Description Text Input
+2021-11-23 20:33:12,000 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
+2021-11-23 20:33:12,154 - rootLogger - INFO - Successfully clicked on Save Button element.
+2021-11-23 20:33:13,869 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:13,916 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:13,975 - rootLogger - INFO - Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.
+2021-11-23 20:33:14,025 - rootLogger - INFO - Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.
+2021-11-23 20:33:14,082 - rootLogger - INFO - Successfully waited for Text Box Button to be present on page.
+2021-11-23 20:33:14,331 - rootLogger - INFO - Successfully double clicked on Text Box Button element.
+2021-11-23 20:33:16,307 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-11-23 20:33:29,112 - rootLogger - INFO - Iframe Button not present on page.
