@@ -544,9 +544,9 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				click(driver, testcaseName, add_seg_grp_btn, test);
 				waitforElemPresent(driver, testcaseName, 60, segment_grp_name, test);
 				setText(driver, testcaseName, segment_grp_name, param.get("segmentGroupName"), test);
-				waitForJStoLoad(driver, 60);
 				click(driver, testcaseName, segment_question, test);
 				waitforElemPresent(driver, testcaseName, 60, segment_question_dd_menu, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), 60, 100, test);
 				scrollIntoCenter(driver, testcaseName, By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), test);
 				Thread.sleep(1000);
 				click(driver, testcaseName,By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), test);
