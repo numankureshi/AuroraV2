@@ -62,8 +62,6 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
 		param.put("downloadFilePath", downloadFilePath);
-		param.put("segmentGroupName", getData(data, "TextBox"));
-		param.put("segmentQue", getData(data, "RadioButton"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -83,7 +81,7 @@ public class RMXPage_TC extends SuiteBase {
 				
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPage.generateOmniReport(getDriver(), param, test);
+				rmxPageResearch.generateOmniReport(getDriver(), param, test);
 			}
 		}
 
