@@ -4,3 +4,6 @@
 /screenshots/
 /surefire-reports/
 /test-output/
+/PlatformReadings/
+/recordings/
+/src/main/resources/logging/applog.log

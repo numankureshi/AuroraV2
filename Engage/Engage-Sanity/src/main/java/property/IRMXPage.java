@@ -781,6 +781,9 @@ public interface IRMXPage {
 	String DOWNLOAD_PPT = "//span[@title='PowerPoint']/parent::div";
 	WebPageElements download_ppt = new WebPageElements("Download PowerPoint", "xpath", DOWNLOAD_PPT);
 	
+	String DOWNLOAD_PDF = "//span[@title='PDF']/parent::div[contains(@ng-click,'ctrlCanvasSettings.checkPDFExport')]";
+	WebPageElements download_PDF = new WebPageElements("Download PDF", "xpath", DOWNLOAD_PDF);
+	
 	String SHARE_EMAIL_TITLE = "//input[@name='TxtReportName']";
 	WebPageElements share_email_title = new WebPageElements("Share Email Title", "xpath", SHARE_EMAIL_TITLE);
 	
@@ -1048,6 +1051,82 @@ public interface IRMXPage {
 	String INCLUDE_IN_REPORTS = "//button[text()='Include in reports']";
 	WebPageElements include_in_reports = new WebPageElements("Include in Reports Button", "xpath", INCLUDE_IN_REPORTS);
 	
+	String CANVAS_ELEMENT_COUNT = "//span[@class='canvas-number ng-binding']";
+	WebPageElements canvas_element_count = new WebPageElements("Canvas Element Count", "xpath", CANVAS_ELEMENT_COUNT);
 	
+	String CANVAS_TAB = "//div[contains(@ng-click,'ShowCanvas')]";
+	WebPageElements canvas_tab = new WebPageElements("Canvas Tab", "xpath", CANVAS_TAB);
+	
+	String CANVAS_SEGMENT_ICON = "//span[@class='canvas-add-segment-icon']";
+	WebPageElements canvas_segment_icon = new WebPageElements("Canvas Segment Icon", "xpath", CANVAS_SEGMENT_ICON);
+	
+	String SEGMENT_GRP_NAME = "//input[contains(@class,'segmentation-input')]";
+	WebPageElements segment_grp_name = new WebPageElements("Segment Group Name", "xpath", SEGMENT_GRP_NAME);
+	
+	String SEGMENT_QUESTION = "(//div[contains(@class,'dd-custom')])[2]";
+	WebPageElements segment_question = new WebPageElements("Segment Question Drop down", "xpath", SEGMENT_QUESTION);
+	
+	String SEGMENT_QUESTION_DD_MENU = "//div[contains(@class,'seg-dd-option-list')] [starts-with(@class,'o-menu-list')]";
+	WebPageElements segment_question_dd_menu = new WebPageElements("Segment Question Drop down Menu", "xpath", SEGMENT_QUESTION_DD_MENU);
+	
+	String SEGMENT_ANS_DD = "//div[@class='custom-seg-dd']";
+	WebPageElements segment_ans_dd = new WebPageElements("Segment Answer Drop Down", "xpath", SEGMENT_ANS_DD);
+	
+	String SEGMENT_ANS_DD_MENU = "//div[@id='segOptionList']//div[@class='seg-dd-option-list']";
+	WebPageElements segment_ans_dd_menu = new WebPageElements("Segment Answer Drop Down Menu", "xpath", SEGMENT_ANS_DD_MENU);
+	
+	String SELECT_ALL_SEG_OPT = "//input[@id='segOption1']";
+	WebPageElements select_all_seg_opt = new WebPageElements("Select All", "xpath", SELECT_ALL_SEG_OPT);
+	
+	String DONE_BUTTON = "//input[@id='btndone']";
+	WebPageElements done_button = new WebPageElements("Done Button", "xpath", DONE_BUTTON);
+	
+	String TOASTER_MSG_SEG_ADDED = "//span[text()='Settings Saved Successfully.']";
+	WebPageElements toaster_msg_seg_added = new WebPageElements("Toaster Message - Settings Saved Successfully.", "xpath", TOASTER_MSG_SEG_ADDED);
+	
+	String SEGMENT_GRP_OPTIONS = "//div[@class='dots-icon']";
+	WebPageElements segment_grp_options = new WebPageElements("Segment Group Options", "xpath", SEGMENT_GRP_OPTIONS);
+	
+	String SEGMENT_GRP_OPTIONS_LIST = "//div[@class='seg-menu-list']";
+	WebPageElements segment_grp_options_list = new WebPageElements("Segment Group Options Menu", "xpath", SEGMENT_GRP_OPTIONS_LIST);
+	
+	String SEGMENT_EXPORT = "//div[contains(@ng-click,'OpenCanvasSegmentExport')]";
+	WebPageElements segment_export = new WebPageElements("Export", "xpath", SEGMENT_EXPORT);
+	
+	String SEGMENT_EXPORT_TAB = "//div[@id='tabOption2']";
+	WebPageElements segment_export_tab = new WebPageElements("Segment Export Modal Tab", "xpath", SEGMENT_EXPORT_TAB);
+	
+	String SELECT_ALL_SEG_OPT2 = "//input[@id='exportSegOption_All']";
+	WebPageElements select_all_seg_opt2 = new WebPageElements("Select All", "xpath", SELECT_ALL_SEG_OPT2);
+	
+	String EMAIL_TO = "//input[@ng-model='ctrlCanvasSettings.EmailTo']";
+	WebPageElements email_to = new WebPageElements("Email Field", "xpath", EMAIL_TO);
+	
+	String SEGMENTED_EXCEL = "//span[@title='Excel']//parent::div[contains(@onclick,'SetSegmentExportType')]";
+	WebPageElements segmented_excel = new WebPageElements("Excel", "xpath", SEGMENTED_EXCEL);
+	
+	String SEGMENTED_PPT = "//span[@title='PowerPoint']//parent::div[contains(@onclick,'SetSegmentExportType')]";
+	WebPageElements segmented_ppt = new WebPageElements("PowerPoint", "xpath", SEGMENTED_PPT);
+	
+	String SEGMENTED_PDF = "//span[@title='PDF']//parent::div[contains(@onclick,'SetSegmentExportType')]";
+	WebPageElements segmented_pdf = new WebPageElements("PDF", "xpath", SEGMENTED_PDF);
+	
+	String EXPORT = "//a[text()='Export'][@ng-click='ctrlCanvasSettings.ExportSegmentReport()']";
+	WebPageElements export = new WebPageElements("Export", "xpath", EXPORT);
+	
+	String TOASTER_MSG_SEG_SENT = "//span[starts-with(text(),'Your request has been received, and your report is being processed')]";
+	WebPageElements toaster_msg_seg_sent = new WebPageElements("Toaster Message - Report is being processed.", "xpath", TOASTER_MSG_SEG_SENT);
+	
+	String ADD_SEG_GRP_BTN = "//span[@id='addSegGroupIcon']";
+	WebPageElements add_seg_grp_btn = new WebPageElements("Add Segment Group Button", "xpath", ADD_SEG_GRP_BTN);
+	
+	String OMNI_REPORT_TAB = "//div[@ng-click='ShowReport()']";
+	WebPageElements omni_report_tab = new WebPageElements("Omni Report Tab", "xpath", OMNI_REPORT_TAB);
+	
+	String ADD_REPORT_TO_CANVAS = "//div[@title='Add Report to Canvas']";
+	WebPageElements add_report_to_canvas = new WebPageElements("'Add Report to Canvas", "xpath", ADD_REPORT_TO_CANVAS);
+	
+	String TOASTER_ADD_REP_TO_CANVAS = "//span[text()='Element(s) added to the Canvas.']";
+	WebPageElements toaster_add_rep_to_canvas = new WebPageElements("Toaster Message - Element(s) added to the Canvas.", "xpath", TOASTER_ADD_REP_TO_CANVAS);
 	
 }

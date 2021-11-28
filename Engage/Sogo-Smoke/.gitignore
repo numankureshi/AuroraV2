@@ -1,1 +1,7 @@
 /target/
+/Extent Reports/
+/reportlog/
+/screenshots/
+/surefire-reports/
+/test-output/
+/src/main/resources/logging/applog.log

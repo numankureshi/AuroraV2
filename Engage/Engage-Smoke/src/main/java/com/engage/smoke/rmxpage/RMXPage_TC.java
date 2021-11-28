@@ -4,29 +4,22 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
 
-import pageobjects.LoginPage;
-import pageobjects.RMXPage;
-import pageobjects.StaticPage;
 import testsuitebase.SuiteBase;
-import testsuitebase.TestResultStatus;
-import utility.FetchExcelDataSet;
-import utility.Read_XLS;
-import utility.SuiteUtility;
 
-import java.io.File;
+import utility.Read_XLS;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -67,6 +60,8 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
 		param.put("downloadFilePath", downloadFilePath);
+		param.put("segmentGroupName", getData(data, "TextBox"));
+		param.put("segmentQue", getData(data, "RadioButton"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -86,7 +81,7 @@ public class RMXPage_TC extends SuiteBase {
 				
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPageEngage.generateOmniReport(getDriver(), param, test);
+				rmxPage.generateOmniReport(getDriver(), param, test);
 			}
 		}
 
@@ -391,17 +386,5 @@ public class RMXPage_TC extends SuiteBase {
 		testSkip = false;
 	}
 
-
-	/*
-	 * @AfterSuite(alwaysRun = true)
-	public void afterSuite() {
-		
-			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
-			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
-			extent.flush();
-			fetchExcelData.reportLog("Engage_Smoke", "Report", "xlsx");
-		
-	}
-	*/
 }
 	

@@ -1,1 +1,9 @@
 /target/
+/Extent Reports/
+/reportlog/
+/screenshots/
+/surefire-reports/
+/test-output/
+/SaveEmails/
+/Output Json/
+/src/main/resources/logging/applog.log

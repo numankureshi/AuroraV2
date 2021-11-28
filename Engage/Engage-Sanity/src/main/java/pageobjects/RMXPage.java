@@ -17,7 +17,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -25,9 +24,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -40,14 +39,11 @@ import org.openqa.selenium.support.ui.Select;
 import com.aventstack.extentreports.ExtentTest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import property.IHomePage;
 import property.IRMXPage;
-import testsuitebase.SuiteBase;
 import utility.JSONUtility;
 import utility.SeleniumUtils;
-import utility.SuiteUtility;
 import utility.WebPageElements;
 
 public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
@@ -408,13 +404,207 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		driver.switchTo().defaultContent();	
 	}
 	
+	public void selectOmniReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, omni_report, test);
+		click(driver, testcaseName, omni_report, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
 	public void generateOmniReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		goToReportsPage(driver, param, test);
+		String currentURL = driver.getCurrentUrl().toLowerCase();
+		if(!currentURL.substring(0, currentURL.indexOf(".com")).contains("sogo")) {
+			selectOmniReport(driver, param, test);
+		}
 		slideShowEmail(driver, param, test);
+		sendOmniExeMail(driver, param, test);
+		click(driver, testcaseName, omni_report_tab, test);
 		saveReport(driver, param, test);
 		downloadReport(driver, param, test);
 		emailReport(driver, param, test);
+	}
+	
+	
+	public void sendOmniExeMail(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		int canvasElementCount = getCanvasElementCount(driver, param, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		// Add report elements onto the canvas if there are no elements in canvas
+		if(canvasElementCount == 0) {
+			click(driver, testcaseName, add_report_to_canvas, test);
+			waitForLoad(driver, testcaseName, 60, test);
+			waitforElemPresent(driver, testcaseName, 60, toaster_add_rep_to_canvas, test);
+		}
+		click(driver, testcaseName, canvas_tab, test);
+		waitForJStoLoad(driver, 60);
+		waitForLoad(driver, testcaseName, 60, test);
+		
+		// If there are no segment groups are added in canvas
+		if(driver.findElement(By.xpath(CANVAS_SEGMENT_ICON)).isDisplayed()) {
+			click(driver, testcaseName, canvas_segment_icon, test);
+			waitforElemPresent(driver, testcaseName, 60, segment_grp_name, test);
+			setText(driver, testcaseName, segment_grp_name, param.get("segmentGroupName"), test);
+			waitForJStoLoad(driver, 60);
+			Thread.sleep(1000);
+			click(driver, testcaseName, segment_question, test);
+			waitforElemPresent(driver, testcaseName, 60, segment_question_dd_menu, test);
+			scrollIntoCenter(driver, testcaseName, By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), test);
+			Thread.sleep(1000);
+			click(driver, testcaseName,By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), test);
+			waitforElemPresent(driver, testcaseName, 60, segment_ans_dd, test);
+			click(driver, testcaseName, segment_ans_dd, test);
+			waitforElemPresent(driver, testcaseName, 60, segment_ans_dd_menu, test);
+			click(driver, testcaseName, select_all_seg_opt, test);
+			click(driver, testcaseName, done_button, test);
+			waitforElemNotVisible(driver, testcaseName, 60, segment_grp_name, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath(TOASTER_MSG_SEG_ADDED), "Segment Added Toaster Message ", 
+					60, 100, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='segGroupWrapper']/div[text()='" + param.get("segmentGroupName") + "']"), 
+					param.get("segmentGroupName"), 60, 100, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
+					"Three Dots", 60, 100, test);
+			click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
+					"Three Dots", test);
+			waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']"),
+					"Segment group options", test);
+			click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
+					"Export", test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
+					60, 100, test);
+			click(driver, testcaseName, select_all_seg_opt2, test);
+			clearText(driver, testcaseName, email_to, test);
+			Thread.sleep(1000);
+			setText(driver, testcaseName, email_to, param.get("emailto"), test);
+			
+			//	Rotate export format on daily basis
+			int todayDate = Integer.parseInt(DateFormatUtils.format(new Date(), "dd"));
+			switch(todayDate%3) {
+			case 0: 
+				click(driver, testcaseName, segmented_excel, test);
+				break;
+			case 1:
+				click(driver, testcaseName, segmented_ppt, test);
+				break;
+			case 2: 
+				click(driver, testcaseName, segmented_pdf, test);
+				break;
+			default:
+				click(driver, testcaseName, segmented_excel, test);
+				break;
+			}
+			waitforElemPresent(driver, testcaseName, 60, export, test);
+			click(driver, testcaseName, export, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath(TOASTER_MSG_SEG_SENT), "Segment Sent Toaster Message", 
+					60, 100, test);		
+			}
+		// Send the omni exe mail if given segment group is already added in canvas
+		else if (driver.findElements(By.xpath("//div[@id='segGroupWrapper']//div[text()='" + param.get("segmentGroupName") + "']")).size()>0) {
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
+						"Three Dots", 60, 100, test);
+				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
+						"Three Dots", test);
+				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']"),
+						"Segment group options", test);
+				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
+						"Export", test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
+						60, 100, test);
+				click(driver, testcaseName, select_all_seg_opt2, test);
+				clearText(driver, testcaseName, email_to, test);
+				Thread.sleep(1000);
+				setText(driver, testcaseName, email_to, param.get("emailto"), test);
+				
+				//	Rotate export format on daily basis
+				int todayDate = Integer.parseInt(DateFormatUtils.format(new Date(), "dd"));
+				switch(todayDate%3) {
+				case 0: 
+					click(driver, testcaseName, segmented_excel, test);
+					break;
+				case 1:
+					click(driver, testcaseName, segmented_ppt, test);
+					break;
+				case 2: 
+					click(driver, testcaseName, segmented_pdf, test);
+					break;
+				default:
+					click(driver, testcaseName, segmented_excel, test);
+					break;
+				}
+				
+				waitforElemPresent(driver, testcaseName, 60, export, test);
+				click(driver, testcaseName, export, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath(TOASTER_MSG_SEG_SENT), "Segment Sent Toaster Message", 
+						60, 100, test);	
+				
+			}
+		// 	Send the omni exe mail if segment groups are already added in canvas and given segment group is not present
+		else if (driver.findElements(By.xpath("//div[@id='segGroupWrapper']//div[text()='" + param.get("segmentGroupName") + "']")).size() == 0) {
+				click(driver, testcaseName, add_seg_grp_btn, test);
+				waitforElemPresent(driver, testcaseName, 60, segment_grp_name, test);
+				setText(driver, testcaseName, segment_grp_name, param.get("segmentGroupName"), test);
+				waitForJStoLoad(driver, 60);
+				click(driver, testcaseName, segment_question, test);
+				waitforElemPresent(driver, testcaseName, 60, segment_question_dd_menu, test);
+				scrollIntoCenter(driver, testcaseName, By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), test);
+				Thread.sleep(1000);
+				click(driver, testcaseName,By.xpath("//div[@title=\"" + param.get("segmentQue") + "\"]"), param.get("segmentQue"), test);
+				waitforElemPresent(driver, testcaseName, 60, segment_ans_dd, test);
+				click(driver, testcaseName, segment_ans_dd, test);
+				waitforElemPresent(driver, testcaseName, 60, segment_ans_dd_menu, test);
+				click(driver, testcaseName, select_all_seg_opt, test);
+				click(driver, testcaseName, done_button, test);
+				waitforElemNotVisible(driver, testcaseName, 60, segment_grp_name, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath(TOASTER_MSG_SEG_ADDED), "Segment Added Toaster Message ", 
+						60, 100, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='segGroupWrapper']/div[text()='" + param.get("segmentGroupName") + "']"), 
+						param.get("segmentGroupName"), 60, 100, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
+						"Three Dots", 60, 100, test);
+				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
+						"Three Dots", test);
+				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']"),
+						"Segment group options", test);
+				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
+						"Export", test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
+						60, 100, test);
+				click(driver, testcaseName, select_all_seg_opt2, test);
+				clearText(driver, testcaseName, email_to, test);
+				Thread.sleep(1000);
+				setText(driver, testcaseName, email_to, param.get("emailto"), test);
+				
+				//	Rotate export format on daily basis
+				int todayDate = Integer.parseInt(DateFormatUtils.format(new Date(), "dd"));
+				switch(todayDate%3) {
+				case 0: 
+					click(driver, testcaseName, segmented_excel, test);
+					break;
+				case 1:
+					click(driver, testcaseName, segmented_ppt, test);
+					break;
+				case 2: 
+					click(driver, testcaseName, segmented_pdf, test);
+					break;
+				default:
+					click(driver, testcaseName, segmented_excel, test);
+					break;
+				}
+				waitforElemPresent(driver, testcaseName, 60, export, test);
+				click(driver, testcaseName, export, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath(TOASTER_MSG_SEG_SENT), "Segment Sent Toaster Message", 
+						60, 100, test);
+				
+			}
+			
+		
+	}
+	
+	public int getCanvasElementCount(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
+		String testcaseName = param.get("TestCaseName");
+		int canvasElementCount = Integer.parseInt(driver.findElement(By.xpath(CANVAS_ELEMENT_COUNT)).getAttribute("innerHTML"));
+		return canvasElementCount;
 	}
 	
 	public void generateAdvancedFrequencyReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
@@ -1373,22 +1563,22 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	                break;
 	            case 3:
 	                System.out.println("Wednesday");
-	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
-	        		click(driver, testcaseName, download_excel, test);
+	                waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
+	        		click(driver, testcaseName, download_PDF, test);
 	        		waitForLoad(driver, testcaseName, 30, test);
 	        		format = "xlsx";
 	                break;
 	            case 4:
 	                System.out.println("Thursday");
-	                waitforElemPresent(driver, testcaseName, 30, download_ppt, test);
-	        		click(driver, testcaseName, download_ppt, test);
+	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
+	        		click(driver, testcaseName, download_excel, test);
 	        		waitForLoad(driver, testcaseName, 30, test);
 	        		format = "pptx";
 	                break;
 	            case 5:
 	                System.out.println("Friday");
-	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
-	        		click(driver, testcaseName, download_excel, test);
+	                waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
+	        		click(driver, testcaseName, download_PDF, test);
 	        		waitForLoad(driver, testcaseName, 30, test);
 	        		format = "xlsx";
 	                break;
