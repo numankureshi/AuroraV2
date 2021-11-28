@@ -1,316 +1,208 @@
-2021-11-23 20:33:53,190 - rootLogger - INFO - Excel file initialized successfully.
-2021-11-23 20:33:53,193 - rootLogger - INFO - Config.properties file Loaded successfully.
-2021-11-23 20:33:55,901 - rootLogger - INFO - Chrome Driver instance loaded successfully.
-2021-11-23 20:33:58,017 - rootLogger - INFO - Successfully waited for User Name to be present on page.
-2021-11-23 20:33:58,158 - rootLogger - INFO - Successfully entered gjoy_test in User Name textbox.
-2021-11-23 20:33:58,274 - rootLogger - INFO - Successfully entered Eighth8# in User Password textbox.
-2021-11-23 20:34:01,051 - rootLogger - INFO - Successfully clicked on Login element.
-2021-11-23 20:34:03,151 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
-2021-11-23 20:34:03,212 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
-2021-11-23 20:34:03,305 - rootLogger - INFO - Successfully clicked on Create Project Button element.
-2021-11-23 20:34:06,239 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:06,281 - rootLogger - INFO - Successfully waited for Iframe to be present on page.
-2021-11-23 20:34:07,386 - rootLogger - INFO - Successfully waited for Survey Button to be present on page.
-2021-11-23 20:34:07,555 - rootLogger - INFO - Successfully clicked on Survey Button element.
-2021-11-23 20:34:08,686 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:08,745 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:08,796 - rootLogger - INFO - Successfully waited for Start with a Blank Survey Button to be present on page.
-2021-11-23 20:34:08,918 - rootLogger - INFO - Successfully clicked on Start with a Blank Survey Button element.
-2021-11-23 20:34:09,549 - rootLogger - INFO - Successfully waited for Survey Name to be present on page.
-2021-11-23 20:34:09,752 - rootLogger - INFO - Successfully entered SMx DP - 23-Nov-2021 20:34:08 in Survey Name textbox.
-2021-11-23 20:34:09,809 - rootLogger - INFO - Successfully waited for Select Folder to be present on page.
-2021-11-23 20:34:09,887 - rootLogger - INFO - Successfully clicked on Select Folder element.
-2021-11-23 20:34:09,946 - rootLogger - INFO - Successfully waited for Main to be present on page.
-2021-11-23 20:34:11,038 - rootLogger - INFO - Successfully clicked on Main element.
-2021-11-23 20:34:11,088 - rootLogger - INFO - Successfully waited for Primary Langugage Drop down to be present on page.
-2021-11-23 20:34:11,199 - rootLogger - INFO - Successfully clicked on Primary Langugage Drop down element.
-2021-11-23 20:34:11,277 - rootLogger - INFO - Successfully waited for Primary Langugage List to be present on page.
-2021-11-23 20:34:11,307 - rootLogger - INFO - Successfully move to :English
-2021-11-23 20:34:11,425 - rootLogger - INFO - Successfully clicked on English element.
-2021-11-23 20:34:11,480 - rootLogger - INFO - Successfully waited for Secondary Language Switch to be present on page.
-2021-11-23 20:34:11,590 - rootLogger - INFO - Successfully clicked on Secondary Language Switch element.
-2021-11-23 20:34:11,660 - rootLogger - INFO - Successfully waited for Secondary Langugage Drop down to be present on page.
-2021-11-23 20:34:11,793 - rootLogger - INFO - Successfully clicked on Secondary Langugage Drop down element.
-2021-11-23 20:34:11,860 - rootLogger - INFO - Successfully waited for Secondary Langugage Drop down Search to be present on page.
-2021-11-23 20:34:12,076 - rootLogger - INFO - Successfully entered Spanish in Secondary Langugage Drop down Search textbox.
-2021-11-23 20:34:14,146 - rootLogger - INFO - Successfully waited for Spanish to be present on page.
-2021-11-23 20:34:14,305 - rootLogger - INFO - Successfully clicked on Spanish element.
-2021-11-23 20:34:14,363 - rootLogger - INFO - Successfully waited for Create Button to be present on page.
-2021-11-23 20:34:14,527 - rootLogger - INFO - Successfully clicked on Create Button element.
-2021-11-23 20:34:20,275 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:20,309 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:20,358 - rootLogger - INFO - Successfully waited for SMx DP - 23-Nov-2021 20:34:08 to be present on page.
-2021-11-23 20:34:21,456 - rootLogger - INFO - Successfully waited for Description Button to be present on page.
-2021-11-23 20:34:21,733 - rootLogger - INFO - Successfully double clicked on Description Button element.
-2021-11-23 20:34:22,728 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:24,047 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:34:24,704 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:34:24,997 - rootLogger - INFO - Successfully entered This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. in Description Text Input textbox.
-2021-11-23 20:34:25,059 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:34:25,240 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:34:26,419 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:26,455 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:26,510 - rootLogger - INFO - Successfully waited for Description Added This survey is for manufacturers and product distributors to get a sense of how current and prospective customers responded to a particular product. to be present on page.
-2021-11-23 20:34:26,584 - rootLogger - INFO - Successfully waited for Net Promoter Button to be present on page.
-2021-11-23 20:34:26,834 - rootLogger - INFO - Successfully double clicked on Net Promoter Button element.
-2021-11-23 20:34:27,740 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:28,168 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:34:28,271 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:34:28,305 - rootLogger - INFO - Successfully fetched text How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? from Description Text Input
-2021-11-23 20:34:28,391 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:34:28,562 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:34:29,615 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:29,652 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:29,697 - rootLogger - INFO - Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.
-2021-11-23 20:34:29,756 - rootLogger - INFO - Successfully waited for Net Promoter Label Added How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? to be present on page.
-2021-11-23 20:34:29,825 - rootLogger - INFO - Successfully waited for Text Box Button to be present on page.
-2021-11-23 20:34:30,077 - rootLogger - INFO - Successfully double clicked on Text Box Button element.
-2021-11-23 20:34:31,450 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:31,864 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:34:31,975 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:34:32,180 - rootLogger - INFO - Successfully entered What are the specific details of the product / service. in Description Text Input textbox.
-2021-11-23 20:34:32,242 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:34:32,396 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:34:33,581 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:33,613 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:33,659 - rootLogger - INFO - Successfully waited for Text Box Label Added What are the specific details of the product / service. to be present on page.
-2021-11-23 20:34:33,715 - rootLogger - INFO - Successfully waited for Text Box Added What are the specific details of the product / service. to be present on page.
-2021-11-23 20:34:33,781 - rootLogger - INFO - Successfully waited for Radio Button to be present on page.
-2021-11-23 20:34:34,041 - rootLogger - INFO - Successfully double clicked on Radio Button element.
-2021-11-23 20:34:35,810 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:36,214 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:34:36,303 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:34:36,482 - rootLogger - INFO - Successfully entered Where did you last purchase THE PRODUCT? in Description Text Input textbox.
-2021-11-23 20:34:36,538 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
-2021-11-23 20:34:36,671 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
-2021-11-23 20:34:36,729 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
-2021-11-23 20:34:37,712 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
-2021-11-23 20:34:37,771 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
-2021-11-23 20:34:37,838 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
-2021-11-23 20:34:38,996 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:39,128 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:39,203 - rootLogger - INFO - Successfully waited for Endorsement to be present on page.
-2021-11-23 20:34:39,379 - rootLogger - INFO - Successfully clicked on Endorsement element.
-2021-11-23 20:34:39,431 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
-2021-11-23 20:34:39,847 - rootLogger - INFO - Successfully clicked on Use this list Button element.
-2021-11-23 20:34:39,931 - rootLogger - INFO - Successfully waited for Other checkbox to be present on page.
-2021-11-23 20:34:40,111 - rootLogger - INFO - Successfully clicked on Other checkbox element.
-2021-11-23 20:34:40,169 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:34:40,336 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:34:41,601 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:41,631 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:41,672 - rootLogger - INFO - Successfully waited for Radio Buttons Label Added Where did you last purchase THE PRODUCT? to be present on page.
-2021-11-23 20:34:41,716 - rootLogger - INFO - Successfully waited for Radio Buttons Added Where did you last purchase THE PRODUCT? to be present on page.
-2021-11-23 20:34:41,769 - rootLogger - INFO - Successfully waited for Check Box Button to be present on page.
-2021-11-23 20:34:42,024 - rootLogger - INFO - Successfully double clicked on Check Box Button element.
-2021-11-23 20:34:43,389 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:43,830 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:34:43,944 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:34:44,137 - rootLogger - INFO - Successfully entered Please select your choices from the list in Description Text Input textbox.
-2021-11-23 20:34:44,207 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
-2021-11-23 20:34:44,333 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
-2021-11-23 20:34:44,381 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
-2021-11-23 20:34:45,219 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
-2021-11-23 20:34:45,270 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
-2021-11-23 20:34:45,319 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
-2021-11-23 20:34:46,523 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:46,659 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:46,743 - rootLogger - INFO - Successfully waited for Endorsement to be present on page.
-2021-11-23 20:34:46,884 - rootLogger - INFO - Successfully clicked on Endorsement element.
-2021-11-23 20:34:46,941 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
-2021-11-23 20:34:47,337 - rootLogger - INFO - Successfully clicked on Use this list Button element.
-2021-11-23 20:34:47,428 - rootLogger - INFO - Successfully waited for None of Above to be present on page.
-2021-11-23 20:34:47,653 - rootLogger - INFO - Successfully clicked on None of Above element.
-2021-11-23 20:34:47,709 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:34:47,918 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:34:49,949 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:49,988 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:50,036 - rootLogger - INFO - Successfully waited for Check Box Label Added Please select your choices from the list to be present on page.
-2021-11-23 20:34:50,081 - rootLogger - INFO - Successfully waited for Check Box Added Please select your choices from the list to be present on page.
-2021-11-23 20:34:50,147 - rootLogger - INFO - Successfully waited for Drop Down Button to be present on page.
-2021-11-23 20:34:50,421 - rootLogger - INFO - Successfully double clicked on Drop Down Button element.
-2021-11-23 20:34:52,161 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:52,623 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:34:52,718 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:34:52,909 - rootLogger - INFO - Successfully entered How long have you been our customer? in Description Text Input textbox.
-2021-11-23 20:34:52,973 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
-2021-11-23 20:34:53,089 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
-2021-11-23 20:34:53,146 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
-2021-11-23 20:34:53,995 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
-2021-11-23 20:34:54,057 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
-2021-11-23 20:34:54,110 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
-2021-11-23 20:34:55,313 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:55,420 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:55,485 - rootLogger - INFO - Successfully waited for Endorsement to be present on page.
-2021-11-23 20:34:55,599 - rootLogger - INFO - Successfully clicked on Endorsement element.
-2021-11-23 20:34:55,645 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
-2021-11-23 20:34:55,999 - rootLogger - INFO - Successfully clicked on Use this list Button element.
-2021-11-23 20:34:56,056 - rootLogger - INFO - Successfully waited for Other checkbox to be present on page.
-2021-11-23 20:34:56,241 - rootLogger - INFO - Successfully clicked on Other checkbox element.
-2021-11-23 20:34:56,320 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:34:56,514 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:34:57,985 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:58,016 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:34:58,058 - rootLogger - INFO - Successfully waited for Drop Down Label Added How long have you been our customer? to be present on page.
-2021-11-23 20:34:58,098 - rootLogger - INFO - Successfully waited for Drop Down Added How long have you been our customer? to be present on page.
-2021-11-23 20:34:58,152 - rootLogger - INFO - Successfully waited for Demographics Button to be present on page.
-2021-11-23 20:34:58,381 - rootLogger - INFO - Successfully double clicked on Demographics Button element.
-2021-11-23 20:35:00,146 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:00,454 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:35:00,585 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:35:00,762 - rootLogger - INFO - Successfully entered Please fill below information. in Description Text Input textbox.
-2021-11-23 20:35:00,830 - rootLogger - INFO - Successfully waited for Demographics Name to be present on page.
-2021-11-23 20:35:01,141 - rootLogger - INFO - Successfully clicked on Demographics Name element.
-2021-11-23 20:35:01,204 - rootLogger - INFO - Successfully waited for Demographics Name: Title to be present on page.
-2021-11-23 20:35:01,536 - rootLogger - INFO - Successfully clicked on Demographics Name: Title element.
-2021-11-23 20:35:01,624 - rootLogger - INFO - Successfully waited for Demographics Name: First Name to be present on page.
-2021-11-23 20:35:01,923 - rootLogger - INFO - Successfully clicked on Demographics Name: First Name element.
-2021-11-23 20:35:01,989 - rootLogger - INFO - Successfully waited for Demographics Name: Middle Name to be present on page.
-2021-11-23 20:35:02,294 - rootLogger - INFO - Successfully clicked on Demographics Name: Middle Name element.
-2021-11-23 20:35:02,395 - rootLogger - INFO - Successfully waited for Demographics Name: Last Name to be present on page.
-2021-11-23 20:35:02,590 - rootLogger - INFO - Successfully clicked on Demographics Name: Last Name element.
-2021-11-23 20:35:02,666 - rootLogger - INFO - Successfully waited for Demographics Gender to be present on page.
-2021-11-23 20:35:02,894 - rootLogger - INFO - Successfully clicked on Demographics Gender element.
-2021-11-23 20:35:02,978 - rootLogger - INFO - Successfully waited for Demographics Date of Birth to be present on page.
-2021-11-23 20:35:03,223 - rootLogger - INFO - Successfully clicked on Demographics Date of Birth element.
-2021-11-23 20:35:03,306 - rootLogger - INFO - Successfully waited for Demographics Address to be present on page.
-2021-11-23 20:35:03,534 - rootLogger - INFO - Successfully clicked on Demographics Address element.
-2021-11-23 20:35:03,609 - rootLogger - INFO - Successfully waited for Demographics Address: Street 1 to be present on page.
-2021-11-23 20:35:03,824 - rootLogger - INFO - Successfully clicked on Demographics Address: Street 1 element.
-2021-11-23 20:35:03,900 - rootLogger - INFO - Successfully waited for Demographics Address: Street 2 to be present on page.
-2021-11-23 20:35:04,163 - rootLogger - INFO - Successfully clicked on Demographics Address: Street 2 element.
-2021-11-23 20:35:04,244 - rootLogger - INFO - Successfully waited for Demographics Address: City to be present on page.
-2021-11-23 20:35:04,503 - rootLogger - INFO - Successfully clicked on Demographics Address: City element.
-2021-11-23 20:35:04,586 - rootLogger - INFO - Successfully waited for Demographics Address: Country to be present on page.
-2021-11-23 20:35:04,846 - rootLogger - INFO - Successfully clicked on Demographics Address: Country element.
-2021-11-23 20:35:04,943 - rootLogger - INFO - Successfully waited for Demographics Address: State to be present on page.
-2021-11-23 20:35:05,205 - rootLogger - INFO - Successfully clicked on Demographics Address: State element.
-2021-11-23 20:35:05,276 - rootLogger - INFO - Successfully waited for Demographics Address: ZIP to be present on page.
-2021-11-23 20:35:05,561 - rootLogger - INFO - Successfully clicked on Demographics Address: ZIP element.
-2021-11-23 20:35:05,631 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX to be present on page.
-2021-11-23 20:35:05,830 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX element.
-2021-11-23 20:35:05,898 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX: Telephone to be present on page.
-2021-11-23 20:35:06,176 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX: Telephone element.
-2021-11-23 20:35:06,249 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX: Extension to be present on page.
-2021-11-23 20:35:06,555 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX: Extension element.
-2021-11-23 20:35:06,636 - rootLogger - INFO - Successfully waited for Demographics Telephone/FAX: Fax to be present on page.
-2021-11-23 20:35:06,915 - rootLogger - INFO - Successfully clicked on Demographics Telephone/FAX: Fax element.
-2021-11-23 20:35:06,998 - rootLogger - INFO - Successfully waited for Demographics Email Address to be present on page.
-2021-11-23 20:35:07,247 - rootLogger - INFO - Successfully clicked on Demographics Email Address element.
-2021-11-23 20:35:07,307 - rootLogger - INFO - Successfully waited for Demographics Require to re-enter email address to be present on page.
-2021-11-23 20:35:07,569 - rootLogger - INFO - Successfully clicked on Demographics Require to re-enter email address element.
-2021-11-23 20:35:07,616 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:35:07,844 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:35:10,679 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:10,868 - rootLogger - INFO - Successfully waited for Demographics Label Added Please fill below information. to be present on page.
-2021-11-23 20:35:10,908 - rootLogger - INFO - Successfully waited for Demographics Added Please fill below information. to be present on page.
-2021-11-23 20:35:10,973 - rootLogger - INFO - Successfully waited for Rating Scale Button to be present on page.
-2021-11-23 20:35:11,260 - rootLogger - INFO - Successfully double clicked on Rating Scale Button element.
-2021-11-23 20:35:12,459 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:12,829 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:35:12,941 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:35:13,175 - rootLogger - INFO - Successfully entered How likely is it that you would recommend our company to a friend or colleague? in Description Text Input textbox.
-2021-11-23 20:35:14,300 - rootLogger - INFO - Successfully waited for Show N/A option to be present on page.
-2021-11-23 20:35:15,508 - rootLogger - INFO - Successfully clicked on Show N/A option element.
-2021-11-23 20:35:16,098 - rootLogger - INFO - Successfully waited for Show scale in reverse order to be present on page.
-2021-11-23 20:35:17,301 - rootLogger - INFO - Successfully clicked on Show scale in reverse order element.
-2021-11-23 20:35:17,884 - rootLogger - INFO - Successfully waited for Show participant rating field to be present on page.
-2021-11-23 20:35:18,049 - rootLogger - INFO - Successfully clicked on Show participant rating field element.
-2021-11-23 20:35:19,170 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:35:20,335 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:35:23,097 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:23,145 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:23,191 - rootLogger - INFO - Successfully waited for Rating Scale Added How likely is it that you would recommend our company to a friend or colleague? to be present on page.
-2021-11-23 20:35:23,234 - rootLogger - INFO - Successfully waited for Rating Scale Added How likely is it that you would recommend our company to a friend or colleague? to be present on page.
-2021-11-23 20:35:23,308 - rootLogger - INFO - Successfully waited for Symbol Rating Scale Button to be present on page.
-2021-11-23 20:35:23,582 - rootLogger - INFO - Successfully double clicked on Symbol Rating Scale Button element.
-2021-11-23 20:35:26,617 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:27,489 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:35:27,614 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:35:27,869 - rootLogger - INFO - Successfully entered Please indicate the extent to which you agree with the following statements. in Description Text Input textbox.
-2021-11-23 20:35:27,954 - rootLogger - INFO - Successfully waited for Increase SRS Question Button to be present on page.
-2021-11-23 20:35:28,385 - rootLogger - INFO - Successfully clicked on Increase SRS Question Button element.
-2021-11-23 20:35:29,322 - rootLogger - INFO - Successfully clicked on Increase SRS Question Button element.
-2021-11-23 20:35:30,255 - rootLogger - INFO - Successfully clicked on Increase SRS Question Button element.
-2021-11-23 20:35:31,167 - rootLogger - INFO - Successfully clicked on Increase SRS Question Button element.
-2021-11-23 20:35:32,100 - rootLogger - INFO - Successfully clicked on Increase SRS Question Button element.
-2021-11-23 20:35:32,691 - rootLogger - INFO - Successfully waited for Sub Question 1 to be present on page.
-2021-11-23 20:35:33,061 - rootLogger - INFO - Successfully entered The company clearly conveys its mission to its employees. in Sub Question 1 textbox.
-2021-11-23 20:35:33,666 - rootLogger - INFO - Successfully waited for Sub Question 1 Scale to be present on page.
-2021-11-23 20:35:34,394 - rootLogger - INFO - Successfully waited for Sub Question 2 to be present on page.
-2021-11-23 20:35:34,667 - rootLogger - INFO - Successfully entered There is good communication from managers to employees. in Sub Question 2 textbox.
-2021-11-23 20:35:35,264 - rootLogger - INFO - Successfully waited for Sub Question 2 Scale to be present on page.
-2021-11-23 20:35:36,541 - rootLogger - INFO - Successfully waited for Sub Question 3 to be present on page.
-2021-11-23 20:35:36,863 - rootLogger - INFO - Successfully entered I have the tools and resources I need to do my job.  in Sub Question 3 textbox.
-2021-11-23 20:35:37,457 - rootLogger - INFO - Successfully waited for Sub Question 3 Scale to be present on page.
-2021-11-23 20:35:38,682 - rootLogger - INFO - Successfully waited for Sub Question 4 to be present on page.
-2021-11-23 20:35:39,008 - rootLogger - INFO - Successfully entered I have the training I need to do my job.  in Sub Question 4 textbox.
-2021-11-23 20:35:39,604 - rootLogger - INFO - Successfully waited for Sub Question 4 Scale to be present on page.
-2021-11-23 20:35:40,849 - rootLogger - INFO - Successfully waited for Sub Question 5 to be present on page.
-2021-11-23 20:35:41,079 - rootLogger - INFO - Successfully entered I feel underutilized in my job.  in Sub Question 5 textbox.
-2021-11-23 20:35:41,687 - rootLogger - INFO - Successfully waited for Sub Question 5 Scale to be present on page.
-2021-11-23 20:35:42,953 - rootLogger - INFO - Successfully waited for Sub Question 6 to be present on page.
-2021-11-23 20:35:43,208 - rootLogger - INFO - Successfully entered The amount of work expected of me is reasonable.  in Sub Question 6 textbox.
-2021-11-23 20:35:43,805 - rootLogger - INFO - Successfully waited for Sub Question 6 Scale to be present on page.
-2021-11-23 20:35:45,067 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:35:45,384 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:35:47,919 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:47,995 - rootLogger - INFO - Successfully waited for Symbol Rating Scale Added Please indicate the extent to which you agree with the following statements. to be present on page.
-2021-11-23 20:35:48,036 - rootLogger - INFO - Successfully waited for Symbol Rating Scale Added Please indicate the extent to which you agree with the following statements. to be present on page.
-2021-11-23 20:35:48,080 - rootLogger - INFO - Successfully waited for Like/Dislike Button to be present on page.
-2021-11-23 20:35:48,372 - rootLogger - INFO - Successfully double clicked on Like/Dislike Button element.
-2021-11-23 20:35:50,339 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:50,744 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:35:50,856 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:35:51,144 - rootLogger - INFO - Successfully entered Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? in Description Text Input textbox.
-2021-11-23 20:35:51,201 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:35:51,367 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:35:53,639 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:53,732 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:53,817 - rootLogger - INFO - Successfully waited for Like/Dislike Added Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? to be present on page.
-2021-11-23 20:35:53,864 - rootLogger - INFO - Successfully waited for Like/Dislike Added Do you use THE PRODUCT all of the time or rarely when PERFORMING THE FUNCTION FOR WHICH ITS DESIGNED? to be present on page.
-2021-11-23 20:35:54,990 - rootLogger - INFO - Successfully waited for Ranking Button to be present on page.
-2021-11-23 20:35:55,266 - rootLogger - INFO - Successfully double clicked on Ranking Button element.
-2021-11-23 20:35:56,770 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:35:57,099 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:35:57,181 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:35:57,382 - rootLogger - INFO - Successfully entered Which Product/Service type do you want to provide your feedback about in Description Text Input textbox.
-2021-11-23 20:35:57,462 - rootLogger - INFO - Successfully waited for Answer Library Button to be present on page.
-2021-11-23 20:35:57,575 - rootLogger - INFO - Successfully clicked on Answer Library Button element.
-2021-11-23 20:35:57,636 - rootLogger - INFO - Successfully waited for Get Answer Options from Answer Library Button to be present on page.
-2021-11-23 20:35:58,516 - rootLogger - INFO - Successfully clicked on Get Answer Options from Answer Library Button element.
-2021-11-23 20:35:58,605 - rootLogger - INFO - Successfully waited for Ansers Library Button to be present on page.
-2021-11-23 20:35:58,653 - rootLogger - INFO - Successfully waited for Iframe Answer Options to be present on page.
-2021-11-23 20:36:00,015 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:00,139 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:00,231 - rootLogger - INFO - Successfully waited for Qualification to be present on page.
-2021-11-23 20:36:00,405 - rootLogger - INFO - Successfully clicked on Qualification element.
-2021-11-23 20:36:00,466 - rootLogger - INFO - Successfully waited for Use this list Button to be present on page.
-2021-11-23 20:36:00,848 - rootLogger - INFO - Successfully clicked on Use this list Button element.
-2021-11-23 20:36:00,932 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:36:01,168 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:36:03,849 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:03,908 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:03,958 - rootLogger - INFO - Successfully waited for Ranking Added Which Product/Service type do you want to provide your feedback about to be present on page.
-2021-11-23 20:36:04,005 - rootLogger - INFO - Successfully waited for Ranking Added Which Product/Service type do you want to provide your feedback about to be present on page.
-2021-11-23 20:36:04,092 - rootLogger - INFO - Successfully waited for Date Button to be present on page.
-2021-11-23 20:36:04,429 - rootLogger - INFO - Successfully double clicked on Date Button element.
-2021-11-23 20:36:05,677 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:06,043 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:36:06,278 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:36:06,411 - rootLogger - INFO - Successfully entered Please enter the date of birth in Description Text Input textbox.
-2021-11-23 20:36:06,490 - rootLogger - INFO - Successfully waited for Save Button to be present on page.
-2021-11-23 20:36:06,655 - rootLogger - INFO - Successfully clicked on Save Button element.
-2021-11-23 20:36:09,866 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:09,938 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:09,996 - rootLogger - INFO - Successfully waited for Date Added Please enter the date of birth to be present on page.
-2021-11-23 20:36:10,047 - rootLogger - INFO - Successfully waited for Date Added Please enter the date of birth to be present on page.
-2021-11-23 20:36:11,169 - rootLogger - INFO - Successfully waited for Image Choice Button to be present on page.
-2021-11-23 20:36:11,459 - rootLogger - INFO - Successfully double clicked on Image Choice Button element.
-2021-11-23 20:36:13,275 - rootLogger - INFO - Successfully waited for loader to disappear.
-2021-11-23 20:36:13,873 - rootLogger - INFO - Successfully waited for Iframe Button to be present on page.
-2021-11-23 20:36:13,991 - rootLogger - INFO - Successfully waited for Description Text Input to be present on page.
-2021-11-23 20:36:14,179 - rootLogger - INFO - Successfully entered Where you like to travel from the below place in Description Text Input textbox.
-2021-11-23 20:36:14,234 - rootLogger - INFO - Successfully waited for Add Image to be present on page.
-2021-11-23 20:36:14,512 - rootLogger - INFO - Successfully clicked on Add Image element.
-2021-11-23 20:36:14,572 - rootLogger - INFO - Successfully waited for Iframe Questions Options to be present on page.
+2021-02-12 12:21:10,847 - rootLogger - INFO - Excel file initialized successfully.
+2021-02-12 12:21:10,850 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-02-12 12:21:10,986 - rootLogger - INFO - Smoke_TC1 is SKIPPED.
+2021-02-12 12:21:11,070 - rootLogger - INFO - Excel file initialized successfully.
+2021-02-12 12:21:11,071 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-02-12 12:21:11,129 - rootLogger - INFO - Smoke_TC2 is SKIPPED.
+2021-02-12 12:21:11,198 - rootLogger - INFO - Excel file initialized successfully.
+2021-02-12 12:21:11,199 - rootLogger - INFO - Config.properties file Loaded successfully.
+2021-02-12 12:21:14,948 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-02-12 12:21:19,598 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-02-12 12:21:19,888 - rootLogger - INFO - Successfully entered sabiya_test in User Name textbox.
+2021-02-12 12:21:19,964 - rootLogger - INFO - Successfully entered Test@1234 in User Password textbox.
+2021-02-12 12:21:28,788 - rootLogger - INFO - Successfully clicked on Login element.
+2021-02-12 12:21:31,874 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-02-12 12:21:31,910 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-02-12 12:21:39,281 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:39,331 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:39,395 - rootLogger - INFO - Successfully waited for Publish Button to be present on page.
+2021-02-12 12:21:39,433 - rootLogger - INFO - Successfully waited for Single Use Link Button to be present on page.
+2021-02-12 12:21:39,896 - rootLogger - INFO - Successfully clicked on Single Use Link Button element.
+2021-02-12 12:21:47,632 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:47,669 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:47,705 - rootLogger - INFO - Successfully waited for Search Email to be present on page.
+2021-02-12 12:21:47,867 - rootLogger - INFO - Successfully entered Invitation with EXE in Search Email textbox.
+2021-02-12 12:21:53,303 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:54,341 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:54,360 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:21:54,382 - rootLogger - INFO - Successfully waited for Invitation with EXE to be present on page.
+2021-02-12 12:21:54,407 - rootLogger - INFO - Successfully waited for Invitation with EXE to be present on page.
+2021-02-12 12:21:55,612 - rootLogger - INFO - Successfully waited for Edit Button to be present on page.
+2021-02-12 12:22:06,062 - rootLogger - INFO - Successfully clicked on Edit Button element.
+2021-02-12 12:22:07,238 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:22:07,303 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:22:07,329 - rootLogger - INFO - Successfully waited for Edit template: Invitation with EXE to be present on page.
+2021-02-12 12:22:09,401 - rootLogger - INFO - Successfully waited for IFrame mail template to be present on page.
+2021-02-12 12:22:09,468 - rootLogger - INFO - Successfully waited for Edit Subject - Email Template to be present on page.
+2021-02-12 12:22:09,498 - rootLogger - INFO - Successfully waited for Done Editing Button to be present on page.
+2021-02-12 12:22:16,135 - rootLogger - INFO - Successfully clicked on Done Editing Button element.
+2021-02-12 12:22:18,188 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:22:18,217 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:22:18,248 - rootLogger - INFO - Successfully waited for Save and Overwrite Button to be present on page.
+2021-02-12 12:22:18,336 - rootLogger - INFO - Successfully clicked on Save and Overwrite Button element.
+2021-02-12 12:22:19,401 - rootLogger - INFO - Successfully waited for Done Editing Button to be present on page.
+2021-02-12 12:22:19,475 - rootLogger - INFO - Successfully clicked on Done Editing Button element.
+2021-02-12 12:22:31,004 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:22:31,028 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:22:31,087 - rootLogger - INFO - Successfully waited for Select Source to be present on page.
+2021-02-12 12:22:31,121 - rootLogger - INFO - Successfully waited for From A List to be present on page.
+2021-02-12 12:22:31,221 - rootLogger - INFO - Successfully clicked on From A List element.
+2021-02-12 12:22:32,295 - rootLogger - INFO - Successfully waited for Select List to be present on page.
+2021-02-12 12:22:33,895 - rootLogger - INFO - Sanity_TC3 is FAILED.
+2021-02-12 12:22:38,375 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-02-12 12:22:42,579 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-02-12 12:22:42,621 - rootLogger - INFO - Successfully entered sabiya_test in User Name textbox.
+2021-02-12 12:22:42,683 - rootLogger - INFO - Successfully entered Test@1234 in User Password textbox.
+2021-02-12 12:23:08,562 - rootLogger - INFO - Successfully clicked on Login element.
+2021-02-12 12:23:11,649 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-02-12 12:23:11,681 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-02-12 12:23:20,539 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:20,599 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:20,631 - rootLogger - INFO - Successfully waited for Publish Button to be present on page.
+2021-02-12 12:23:20,661 - rootLogger - INFO - Successfully waited for Single Use Link Button to be present on page.
+2021-02-12 12:23:21,026 - rootLogger - INFO - Successfully clicked on Single Use Link Button element.
+2021-02-12 12:23:28,767 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:28,787 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:28,821 - rootLogger - INFO - Successfully waited for Search Email to be present on page.
+2021-02-12 12:23:29,034 - rootLogger - INFO - Successfully entered Invitation with Platform in Search Email textbox.
+2021-02-12 12:23:36,082 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:37,225 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:37,241 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:37,287 - rootLogger - INFO - Successfully waited for Invitation with Platform to be present on page.
+2021-02-12 12:23:37,312 - rootLogger - INFO - Successfully waited for Invitation with Platform to be present on page.
+2021-02-12 12:23:38,528 - rootLogger - INFO - Successfully waited for Edit Button to be present on page.
+2021-02-12 12:23:48,963 - rootLogger - INFO - Successfully clicked on Edit Button element.
+2021-02-12 12:23:50,123 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:50,152 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:23:50,174 - rootLogger - INFO - Successfully waited for Edit template: Invitation with Platform to be present on page.
+2021-02-12 12:23:52,227 - rootLogger - INFO - Successfully waited for IFrame mail template to be present on page.
+2021-02-12 12:23:52,303 - rootLogger - INFO - Successfully waited for Edit Subject - Email Template to be present on page.
+2021-02-12 12:23:52,334 - rootLogger - INFO - Successfully waited for Done Editing Button to be present on page.
+2021-02-12 12:23:59,175 - rootLogger - INFO - Successfully clicked on Done Editing Button element.
+2021-02-12 12:24:01,253 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:01,296 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:01,328 - rootLogger - INFO - Successfully waited for Save and Overwrite Button to be present on page.
+2021-02-12 12:24:01,441 - rootLogger - INFO - Successfully clicked on Save and Overwrite Button element.
+2021-02-12 12:24:02,492 - rootLogger - INFO - Successfully waited for Done Editing Button to be present on page.
+2021-02-12 12:24:02,580 - rootLogger - INFO - Successfully clicked on Done Editing Button element.
+2021-02-12 12:24:13,337 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:13,355 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:13,400 - rootLogger - INFO - Successfully waited for Select Source to be present on page.
+2021-02-12 12:24:13,450 - rootLogger - INFO - Successfully waited for From A List to be present on page.
+2021-02-12 12:24:13,502 - rootLogger - INFO - Successfully clicked on From A List element.
+2021-02-12 12:24:14,546 - rootLogger - INFO - Successfully waited for Select List to be present on page.
+2021-02-12 12:24:16,209 - rootLogger - INFO - Sanity_TC4 is FAILED.
+2021-02-12 12:24:20,718 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-02-12 12:24:25,412 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-02-12 12:24:25,597 - rootLogger - INFO - Successfully entered sabiya_test in User Name textbox.
+2021-02-12 12:24:25,667 - rootLogger - INFO - Successfully entered Test@1234 in User Password textbox.
+2021-02-12 12:24:35,950 - rootLogger - INFO - Successfully clicked on Login element.
+2021-02-12 12:24:39,017 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-02-12 12:24:39,043 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-02-12 12:24:47,086 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:47,138 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:47,168 - rootLogger - INFO - Successfully waited for Publish Button to be present on page.
+2021-02-12 12:24:47,197 - rootLogger - INFO - Successfully waited for SMS Invitation Button to be present on page.
+2021-02-12 12:24:47,531 - rootLogger - INFO - Successfully clicked on SMS Invitation Button element.
+2021-02-12 12:24:53,232 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:53,277 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:53,305 - rootLogger - INFO - Successfully waited for Import from File to be present on page.
+2021-02-12 12:24:53,348 - rootLogger - INFO - Successfully clicked on Import from File element.
+2021-02-12 12:24:55,402 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:55,428 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:58,181 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:58,207 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:24:58,227 - rootLogger - INFO - Successfully waited for SMS numbers.xlsx to be present on page.
+2021-02-12 12:24:59,335 - rootLogger - INFO - Successfully clicked on Header Switch element.
+2021-02-12 12:25:01,372 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:01,401 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:01,428 - rootLogger - INFO - Successfully waited for Done Editing Button to be present on page.
+2021-02-12 12:25:03,812 - rootLogger - INFO - Successfully clicked on Done Editing Button element.
+2021-02-12 12:25:04,977 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:05,003 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:05,073 - rootLogger - INFO - Successfully waited for Send Unique Button to be present on page.
+2021-02-12 12:25:12,877 - rootLogger - INFO - Successfully clicked on Send Unique Button element.
+2021-02-12 12:25:13,931 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:13,956 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:13,982 - rootLogger - INFO - Successfully waited for Done Editing Button to be present on page.
+2021-02-12 12:25:20,633 - rootLogger - INFO - Successfully clicked on Done Editing Button element.
+2021-02-12 12:25:21,766 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:21,801 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:21,828 - rootLogger - INFO - Successfully waited for You have sent to be present on page.
+2021-02-12 12:25:21,854 - rootLogger - INFO - Successfully waited for Reminders to be present on page.
+2021-02-12 12:25:21,896 - rootLogger - INFO - Successfully clicked on Reminders element.
+2021-02-12 12:25:29,126 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:29,171 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:29,199 - rootLogger - INFO - Successfully waited for SMS Invitations to be present on page.
+2021-02-12 12:25:33,393 - rootLogger - INFO - Successfully clicked on SMS Invitations element.
+2021-02-12 12:25:34,578 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:34,606 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:34,658 - rootLogger - INFO - Successfully waited for Original Invitation Date to be present on page.
+2021-02-12 12:25:34,738 - rootLogger - INFO - Successfully clicked on Original Invitation Date element.
+2021-02-12 12:25:35,795 - rootLogger - INFO - Successfully waited for On Date to be present on page.
+2021-02-12 12:25:35,839 - rootLogger - INFO - Successfully clicked on On Date element.
+2021-02-12 12:25:35,867 - rootLogger - INFO - Successfully waited for Calendar to be present on page.
+2021-02-12 12:25:35,930 - rootLogger - INFO - Successfully clicked on Calendar element.
+2021-02-12 12:25:36,967 - rootLogger - INFO - Successfully waited for Calendar - Year to be present on page.
+2021-02-12 12:25:38,053 - rootLogger - INFO - Successfully waited for Calendar - Month to be present on page.
+2021-02-12 12:25:39,121 - rootLogger - INFO - Successfully waited for 12 to be present on page.
+2021-02-12 12:25:39,165 - rootLogger - INFO - Successfully clicked on 12 element.
+2021-02-12 12:25:40,199 - rootLogger - INFO - Successfully waited for Done Button to be present on page.
+2021-02-12 12:25:45,527 - rootLogger - INFO - Successfully clicked on Done Button element.
+2021-02-12 12:25:46,581 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:25:46,612 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:26:17,060 - rootLogger - INFO - Schedule Reminder Button not present on page.
+2021-02-12 12:26:17,372 - rootLogger - INFO - Sanity_TC5 is FAILED.
+2021-02-12 12:26:21,930 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-02-12 12:26:26,565 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-02-12 12:26:26,681 - rootLogger - INFO - Successfully entered sabiya_test in User Name textbox.
+2021-02-12 12:26:26,740 - rootLogger - INFO - Successfully entered Test@1234 in User Password textbox.
+2021-02-12 12:26:35,529 - rootLogger - INFO - Successfully clicked on Login element.
+2021-02-12 12:26:38,621 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-02-12 12:26:38,646 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-02-12 12:26:44,915 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:26:44,946 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:26:44,992 - rootLogger - INFO - Successfully waited for Publish Button to be present on page.
+2021-02-12 12:26:45,018 - rootLogger - INFO - Successfully waited for Survey Passwords to be present on page.
+2021-02-12 12:26:45,434 - rootLogger - INFO - Successfully clicked on Survey Passwords element.
+2021-02-12 12:26:51,593 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:26:51,623 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:26:51,672 - rootLogger - INFO - Successfully waited for Generate New URL to be present on page.
+2021-02-12 12:27:00,139 - rootLogger - INFO - Successfully clicked on Generate New URL element.
+2021-02-12 12:27:01,210 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:01,237 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:01,285 - rootLogger - INFO - Successfully waited for Survey Passwords to be present on page.
+2021-02-12 12:27:01,358 - rootLogger - INFO - Successfully clicked on Survey Passwords element.
+2021-02-12 12:27:02,389 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:02,416 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:02,443 - rootLogger - INFO - Successfully waited for Use Existing List to be present on page.
+2021-02-12 12:27:02,490 - rootLogger - INFO - Successfully clicked on Use Existing List element.
+2021-02-12 12:27:03,536 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:03,584 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:03,614 - rootLogger - INFO - Successfully waited for Select List to be present on page.
+2021-02-12 12:27:03,926 - rootLogger - INFO - Sanity_TC6 is FAILED.
+2021-02-12 12:27:08,438 - rootLogger - INFO - Chrome Driver instance loaded successfully.
+2021-02-12 12:27:13,598 - rootLogger - INFO - Successfully waited for User Name to be present on page.
+2021-02-12 12:27:13,638 - rootLogger - INFO - Successfully entered sabiya_test in User Name textbox.
+2021-02-12 12:27:13,693 - rootLogger - INFO - Successfully entered Test@1234 in User Password textbox.
+2021-02-12 12:27:22,751 - rootLogger - INFO - Successfully clicked on Login element.
+2021-02-12 12:27:25,820 - rootLogger - INFO - Successfully waited for Sogo Account to be present on page.
+2021-02-12 12:27:25,848 - rootLogger - INFO - Successfully waited for Create Project Button to be present on page.
+2021-02-12 12:27:44,176 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:44,215 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:27:44,243 - rootLogger - INFO - Successfully waited for Publish Button to be present on page.
+2021-02-12 12:27:44,301 - rootLogger - INFO - Successfully waited for Contact Lists to be present on page.
+2021-02-12 12:28:02,119 - rootLogger - INFO - Successfully clicked on Contact Lists element.
+2021-02-12 12:28:03,209 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:28:03,235 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:28:03,278 - rootLogger - INFO - Successfully waited for Create New to be present on page.
+2021-02-12 12:28:03,325 - rootLogger - INFO - Successfully clicked on Create New element.
+2021-02-12 12:28:04,508 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:28:04,550 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:28:04,578 - rootLogger - INFO - Successfully waited for Create New List to be present on page.
+2021-02-12 12:28:04,658 - rootLogger - INFO - Successfully clicked on Create New List element.
+2021-02-12 12:28:09,164 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:28:09,224 - rootLogger - INFO - Successfully waited for loader to disappear.
+2021-02-12 12:28:39,300 - rootLogger - INFO - List Name not present on page.
+2021-02-12 12:28:39,591 - rootLogger - INFO - Sanity_TC7 is FAILED.
+2021-02-12 12:28:40,790 - rootLogger - INFO - Sanity_TC8 is SKIPPED.

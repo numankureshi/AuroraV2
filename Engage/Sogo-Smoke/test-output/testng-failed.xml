@@ -6,7 +6,6 @@
       <class name="com.sogo.smoke.smxpage.SMXPage_TC">
         <methods>
           <include name="setUp"/>
-          <include name="beforeSuite"/>
           <include name="reporterDataResults"/>
           <include name="Smoke_TC2" invocation-numbers="0"/>
         </methods>

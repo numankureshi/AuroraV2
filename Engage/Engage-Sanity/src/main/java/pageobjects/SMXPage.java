@@ -24,7 +24,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -169,7 +168,6 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterDescription(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, description_button, test);
 		doubleClick(driver, testcaseName, description_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -187,7 +185,6 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterNetPromoter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-	
 		waitforElemPresent(driver, testcaseName, 30, net_promoter_score_button, test);
 		doubleClick(driver, testcaseName, net_promoter_score_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -577,10 +574,6 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterRankingQuestionButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		//EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
-		//eventFiringWebDriver.executeScript("document.queryselector('div  [class=\"left_pan\"]').scrollTop=500");
-		scrollIntoView(driver, testcaseName, ranking_question_button, test);
-		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, ranking_question_button, test);
 		doubleClick(driver, testcaseName, ranking_question_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
