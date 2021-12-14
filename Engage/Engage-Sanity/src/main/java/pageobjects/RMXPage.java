@@ -474,6 +474,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
 					60, 100, test);
 			click(driver, testcaseName, select_all_seg_opt2, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@ng-model='ctrlCanvasSettings.EmailTo']"), "To Email field", 5, 100, test);
 			clearText(driver, testcaseName, email_to, test);
 			Thread.sleep(1000);
 			setText(driver, testcaseName, email_to, param.get("emailto"), test);
@@ -512,6 +513,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
 						60, 100, test);
 				click(driver, testcaseName, select_all_seg_opt2, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@ng-model='ctrlCanvasSettings.EmailTo']"), "To Email field", 5, 100, test);
 				clearText(driver, testcaseName, email_to, test);
 				Thread.sleep(1000);
 				setText(driver, testcaseName, email_to, param.get("emailto"), test);
@@ -571,6 +573,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
 						60, 100, test);
 				click(driver, testcaseName, select_all_seg_opt2, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@ng-model='ctrlCanvasSettings.EmailTo']"), "To Email field", 5, 100, test);
 				clearText(driver, testcaseName, email_to, test);
 				Thread.sleep(1000);
 				setText(driver, testcaseName, email_to, param.get("emailto"), test);
@@ -2837,14 +2840,14 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	}
 	
 
-	private String validateDownloadFile(String downloadDir, String fileExtension)
+	public String validateDownloadFile(String downloadDir, String fileExtension)
 	{	
 		String downloadedFileName = null;
 		boolean valid = true;
 		boolean found = false;
 	
 		//default timeout in seconds
-		long timeOut = 300000; 
+		long timeOut = 300; 
 		try 
 		{					
 			Path downloadFolderPath = Paths.get(downloadDir);
@@ -2912,7 +2915,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		}
 		return downloadedFileName;
 	}
-
+	
+	
 	
 	
 	
