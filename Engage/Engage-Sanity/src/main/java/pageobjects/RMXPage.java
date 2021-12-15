@@ -1419,6 +1419,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitforElemPresent(driver, testcaseName, 30, slideshow_email, test);
 		click(driver, testcaseName, slideshow_email, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@id='txtEmailFrom'][contains(@class,'ng-not-empty')]"), "From field", 30, 100, test);
 		waitforElemPresent(driver, testcaseName, 30, slideshow_email_to, test);
 		setText(driver, testcaseName, slideshow_email_to, param.get("emailto"), test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -1569,7 +1570,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	                waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
 	        		click(driver, testcaseName, download_PDF, test);
 	        		waitForLoad(driver, testcaseName, 30, test);
-	        		format = "xlsx";
+	        		format = "pdf";
 	                break;
 	            case 4:
 	                System.out.println("Thursday");
@@ -1583,7 +1584,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	                waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
 	        		click(driver, testcaseName, download_PDF, test);
 	        		waitForLoad(driver, testcaseName, 30, test);
-	        		format = "xlsx";
+	        		format = "pdf";
 	                break;
 	            default:
 	                System.out.println("Weekend");
