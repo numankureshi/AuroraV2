@@ -1419,7 +1419,9 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		waitforElemPresent(driver, testcaseName, 30, slideshow_email, test);
 		click(driver, testcaseName, slideshow_email, test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@id='txtEmailFrom'][contains(@class,'ng-not-empty')]"), "From field", 30, 100, test);
+		if(driver.getTitle().contains("Omni")) {
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@id='txtEmailFrom'][contains(@class,'ng-not-empty')]"), "From field", 30, 100, test);
+		}
 		waitforElemPresent(driver, testcaseName, 30, slideshow_email_to, test);
 		setText(driver, testcaseName, slideshow_email_to, param.get("emailto"), test);
 		waitForLoad(driver, testcaseName, 30, test);
