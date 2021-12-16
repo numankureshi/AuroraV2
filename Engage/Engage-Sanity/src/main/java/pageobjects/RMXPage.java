@@ -1579,7 +1579,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	                waitforElemPresent(driver, testcaseName, 30, download_excel, test);
 	        		click(driver, testcaseName, download_excel, test);
 	        		waitForLoad(driver, testcaseName, 30, test);
-	        		format = "pptx";
+	        		format = "xlsx";
 	                break;
 	            case 5:
 	                System.out.println("Friday");
