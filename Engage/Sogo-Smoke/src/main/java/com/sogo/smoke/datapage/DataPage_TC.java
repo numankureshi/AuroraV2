@@ -13,7 +13,11 @@ import utility.FetchExcelDataSet;
 import utility.Read_XLS;
 import utility.SuiteUtility;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -133,12 +137,21 @@ public class DataPage_TC extends SuiteBase {
 				test.skip(Result.getName() + " is SKIPPED.");
 			} else if (Result.getStatus() == ITestResult.FAILURE) {
 				String path = captureScreenShot(Result, "FAIL", getDriver());
+				File screenshot = new File(path);
+				
+				// 	Send error mails on testcase failure
+				String errorPage = getErrorPage(getDriver());
+				URL errorURL = new URL(errorPage);	
+				StringWriter errors = new StringWriter();
+				Result.getThrowable().printStackTrace(new PrintWriter(errors));
+				String subject = errorURL.getHost().replace("http://","").replace("http:// www.","").replace("www.","").replace(".com", "") +" : Error in Smoke Suite";
+				sendHtmlFormatMail(subject, errorPage, errorURL.getPath(), errorURL.getQuery(), getIpAddress(), errors.toString(), screenshot);
 				
 				Reporter.log(Result.getName() + " is FAILED.");
 				Add_Log.info(Result.getName() + " is FAILED.");
 				TestResultTL.put(Result.getName(), "FAIL");
 				test.fail(Result.getName() + " is FAILED.", (MediaEntityBuilder.createScreenCaptureFromPath(takescreenshots(getDriver())).build()));
-//				String path = captureScreenShot(Result, "FAIL", getDriver());
+				
 				if (!(getDriver() == null)) {
 					closeWebBrowser();
 				}
