@@ -513,7 +513,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
 						60, 100, test);
 				click(driver, testcaseName, select_all_seg_opt2, test);
-				waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@ng-model='ctrlCanvasSettings.EmailTo']"), "To Email field", 5, 100, test);
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//input[@class='ng-pristine ng-untouched ng-valid ng-not-empty'][@ng-model='ctrlCanvasSettings.EmailTo']"), 
+						"To Email field", 5, 100, test);
 				clearText(driver, testcaseName, email_to, test);
 				Thread.sleep(1000);
 				setText(driver, testcaseName, email_to, param.get("emailto"), test);
@@ -522,19 +523,27 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				int todayDate = Integer.parseInt(DateFormatUtils.format(new Date(), "dd"));
 				switch(todayDate%3) {
 				case 0: 
+					scrollIntoCenter(driver, testcaseName, segmented_excel, test);
+					waitforElemPresent(driver, testcaseName, 60, segmented_excel, test);
 					click(driver, testcaseName, segmented_excel, test);
 					break;
 				case 1:
+					scrollIntoCenter(driver, testcaseName, segmented_ppt, test);
+					waitforElemPresent(driver, testcaseName, 60, segmented_ppt, test);
 					click(driver, testcaseName, segmented_ppt, test);
 					break;
 				case 2: 
+					scrollIntoCenter(driver, testcaseName, segmented_pdf, test);
+					waitforElemPresent(driver, testcaseName, 60, segmented_pdf, test);
 					click(driver, testcaseName, segmented_pdf, test);
 					break;
 				default:
+					scrollIntoCenter(driver, testcaseName, segmented_excel, test);
+					waitforElemPresent(driver, testcaseName, 60, segmented_excel, test);
 					click(driver, testcaseName, segmented_excel, test);
 					break;
 				}
-				
+				scrollIntoCenter(driver, testcaseName, export, test);
 				waitforElemPresent(driver, testcaseName, 60, export, test);
 				click(driver, testcaseName, export, test);
 				waitForElementToBeVisible(driver, testcaseName, By.xpath(TOASTER_MSG_SEG_SENT), "Segment Sent Toaster Message", 
