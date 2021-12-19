@@ -368,6 +368,7 @@ public class RMXPage_TC extends SuiteBase {
 		} else if (Result.getStatus() == ITestResult.FAILURE) {
 			String path = captureScreenShot(Result, "FAIL", getDriver());
 			File screenshot = new File(path);
+			File logFile = new File(System.getProperty("user.dir") + "\\src\\main\\resources\\logging\\applog.log");
 			
 			// 	Send error mails on testcase failure
 			String errorPage = getErrorPage(getDriver());
@@ -375,7 +376,7 @@ public class RMXPage_TC extends SuiteBase {
 			StringWriter errors = new StringWriter();
 			Result.getThrowable().printStackTrace(new PrintWriter(errors));
 			String subject = errorURL.getHost().replace("http://","").replace("http:// www.","").replace("www.","").replace(".com", "") +" : Error in Smoke Suite";
-			sendHtmlFormatMail(subject, errorPage, errorURL.getPath(), errorURL.getQuery(), getIpAddress(), errors.toString(), screenshot);
+			sendHtmlFormatMail(subject, errorPage, errorURL.getPath(), errorURL.getQuery(), getIpAddress(), errors.toString(), screenshot, logFile);
 			
 			Reporter.log(Result.getName() + " is FAILED.");
 			Add_Log.info(Result.getName() + " is FAILED.");

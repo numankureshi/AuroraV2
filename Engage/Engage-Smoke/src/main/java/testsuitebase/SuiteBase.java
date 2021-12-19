@@ -316,7 +316,7 @@ public class SuiteBase {
 		return FilePath2;
 	}
 	
-	public void sendHtmlFormatMail(String subject, String errorPage, String path, String queryString, String ipAddress, String errors, File file) {
+	public void sendHtmlFormatMail(String subject, String errorPage, String path, String queryString, String ipAddress, String errors, File file, File log) {
 		Add_Log.info("===============Email generation started================");
 		// Create the email message
 		HtmlEmail email = new HtmlEmail();
@@ -346,6 +346,9 @@ public class SuiteBase {
 			
 			//Attach file
 			email.attach(file);
+			
+			//Attach log file
+			email.attach(log);
 
 			// send the email
 			email.send();
