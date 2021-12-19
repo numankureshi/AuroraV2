@@ -757,6 +757,34 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void waitForGhostLoader(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+		try {
+			try {
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
+				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='loading-skeleton']")));
+			} catch (Exception e) {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='loading-skeleton']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			} finally {
+				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='loading-skeleton']"))));
+				test.log(Status.INFO, "Successfully waited for loader to disappear.");
+				Add_Log.info("Successfully waited for loader to disappear.");
+				Reporter.log("Successfully waited for loader to disappear.");
+			}
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Loader did not disappear.");
+			Add_Log.info("Loader did not disappear.");
+			Reporter.log("Loader did not disappear.");
+			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
 	public void waitForInsideLoad(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {

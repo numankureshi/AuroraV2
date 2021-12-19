@@ -1468,38 +1468,109 @@ Thread.sleep(1000);
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
-		setText(driver, testcaseName, IHomePage.search_bar, param.get("Survey Title"), test);
-		click(driver, testcaseName, IHomePage.search_icon, test);
-		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.copy_icon, 10, 100, test);
 		
-		click(driver, testcaseName, IHomePage.copy_icon, test);
-		waitforElemPresent(driver, testcaseName, 30, IHomePage.copy_drop_down, test);
-		click(driver, testcaseName, IHomePage.copy_in_same_acc, test);
-		waitForLoad(driver, testcaseName, 30, test);
+//		Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
 		
-		//Rename survey title of Copied Survey
-		click(driver, testcaseName, getWebElements(driver, testcaseName, IHomePage.survey_title, test).get(0), "Survey Title", test);
-		waitforElemPresent(driver, testcaseName, 30, IHomePage.edit_survey_title, test);
-		clearText(driver, testcaseName, IHomePage.edit_survey_title, test);
-		Thread.sleep(1000);
-		setText(driver, testcaseName, IHomePage.edit_survey_title, testcaseName +" -" + DateFormatUtils.format(System.currentTimeMillis(), "dd-MMM-yyyy HH:mm:ss") , test);
-		click(driver, testcaseName, IHomePage.save_survey_title, test);
-		waitforElemNotVisible(driver, testcaseName, 30, IHomePage.small_loader, test);
-		waitForJStoLoad(driver, 30);
+//		For new dashboard changes
+		if (isShowNewAllProjectDashBoard) {		
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.new_search_bar, param.get("Survey Title"), test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + param.get("Survey Title") +"\"]"), param.get("Survey Title"), 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + param.get("Survey Title") +"\"]"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_copy_icon, 10, 100, test);
+			click(driver, testcaseName, IHomePage.new_copy_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.new_copy_drop_down, test);
+			click(driver, testcaseName, IHomePage.new_copy_in_same_acc, test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 30, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitForJStoLoad(driver, 60);
+			
+			//Rename survey title of Copied Survey
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.new_search_bar, test);
+			setText(driver, testcaseName, IHomePage.new_search_bar, param.get("Survey Title"), test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + param.get("Survey Title") +"\"]"), param.get("Survey Title"), 60, 100, test);
+			click(driver, testcaseName, getWebElements(driver, testcaseName, IHomePage.new_survey_title, test).get(0), "Survey Title", test);
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.new_edit_survey_title, test);
+			clearText(driver, testcaseName, IHomePage.new_edit_survey_title, test);
+			Thread.sleep(1000);
+			
+			//Save Survey title Copied survey
+			param.put("copiedSurveyTitle", testcaseName +" -" + DateFormatUtils.format(new Date(), "dd-MMM-yyyy HH:mm:ss"));
+			setText(driver, testcaseName, IHomePage.new_edit_survey_title, param.get("copiedSurveyTitle") , test);
+			click(driver, testcaseName, IHomePage.new_save_survey_title, test);
+			waitforElemNotVisible(driver, testcaseName, 30, IHomePage.small_loader, test);
+			waitForJStoLoad(driver, 30);
+			
+//			waitforElemPresent(driver, testcaseName, 60, IHomePage.new_search_bar, test);
+//			clearText(driver, testcaseName, IHomePage.new_search_bar, test);
+//			Thread.sleep(1000);
+//			setText(driver, testcaseName, IHomePage.new_search_bar, param.get("copiedSurveyTitle"), test);
+//			driver.switchTo().defaultContent();	
+//			waitForLoad(driver, testcaseName, 120, test);
+//			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+//			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+//			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + param.get("copiedSurveyTitle") +"\"]"), param.get("copiedSurveyTitle"), 60, 100, test);
+			//Save Survey title and SID of Copied survey which always appears at first position
+//			param.put("copiedSurveyTitle", driver.findElement(By.xpath(IHomePage.NEW_FIRST_ROW)).getAttribute("stitle"));
+//			param.put("copiedSurveySID", driver.findElement(By.xpath(IHomePage.NEW_FIRST_ROW)).getAttribute("hoversurveyno"));
+			
 		
-		//Save Survey title and SID of Copied survey which always appears at first position
-		param.put("copiedSurveyTitle", driver.findElement(By.xpath(IHomePage.FIRST_ROW)).getAttribute("stitle"));
-		param.put("copiedSurveySID", driver.findElement(By.xpath(IHomePage.FIRST_ROW)).getAttribute("sid"));
+			test.log(Status.INFO, "Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle") 
+			+ " .");
+			Add_Log.info("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
+			+ " .");
+			Reporter.log("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
+			+ " .");
+		}
+		// For old dashboard
+		else {
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.search_bar, param.get("Survey Title"), test);
+			click(driver, testcaseName, IHomePage.search_icon, test);
+			WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
+			new Actions(driver).moveToElement(survey).perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.copy_icon, 10, 100, test);
+			
+			click(driver, testcaseName, IHomePage.copy_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.copy_drop_down, test);
+			click(driver, testcaseName, IHomePage.copy_in_same_acc, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			
+			//Rename survey title of Copied Survey
+			click(driver, testcaseName, getWebElements(driver, testcaseName, IHomePage.survey_title, test).get(0), "Survey Title", test);
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.edit_survey_title, test);
+			clearText(driver, testcaseName, IHomePage.edit_survey_title, test);
+			Thread.sleep(1000);
+			
+			setText(driver, testcaseName, IHomePage.edit_survey_title, testcaseName +" -" + DateFormatUtils.format(System.currentTimeMillis(), "dd-MMM-yyyy HH:mm:ss") , test);
+			click(driver, testcaseName, IHomePage.save_survey_title, test);
+			waitforElemNotVisible(driver, testcaseName, 30, IHomePage.small_loader, test);
+			waitForJStoLoad(driver, 30);
+			
+			//Save Survey title and SID of Copied survey which always appears at first position
+			param.put("copiedSurveyTitle", driver.findElement(By.xpath(IHomePage.FIRST_ROW)).getAttribute("stitle"));
+			param.put("copiedSurveySID", driver.findElement(By.xpath(IHomePage.FIRST_ROW)).getAttribute("sid"));
+			
+			test.log(Status.INFO, "Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle") 
+			+" and " +param.get("copiedSurveySID") + " respectively.");
+			Add_Log.info("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
+			+" and " +param.get("copiedSurveySID") + " respectively.");
+			Reporter.log("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
+			+" and " +param.get("copiedSurveySID") + " respectively.");
+		}
 		
-		test.log(Status.INFO, "Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle") 
-		+" and " +param.get("copiedSurveySID") + " respectively.");
-		Add_Log.info("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
-		+" and " +param.get("copiedSurveySID") + " respectively.");
-		Reporter.log("Successfully copied the survey. Survey title and SID of copied survey is "+ param.get("copiedSurveyTitle")
-		+" and " +param.get("copiedSurveySID") + " respectively.");
+		
 	}
 	
 	

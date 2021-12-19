@@ -383,6 +383,9 @@ public interface IDMXPage {
 	String REMINDERS = "(//span[contains(text(),'Reminders')])[1]";
 	WebPageElements reminders = new WebPageElements("Reminders", "xpath", REMINDERS);
 	
+	String REMINDERS2 = "//span[@id='ToolBox1_Span1']";
+	WebPageElements reminders2 = new WebPageElements("Reminders", "xpath", REMINDERS2);
+	
 	String REMINDER_HISTORY_BAR = "//span[text()='View Reminder History']";
 	WebPageElements reminder_history_bar = new WebPageElements("View Reminder History", "xpath", REMINDER_HISTORY_BAR);
 	

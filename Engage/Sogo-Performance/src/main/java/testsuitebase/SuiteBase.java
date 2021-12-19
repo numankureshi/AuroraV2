@@ -41,6 +41,7 @@ import com.sogo.performance.SogoNSReading_TC;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageobjects.DMXPage;
+import pageobjects.DataPage;
 import pageobjects.HomePage;
 import pageobjects.RMXPage;
 import pageobjects.SMXPage;
@@ -78,6 +79,7 @@ public class SuiteBase {
 	public SMXPage smxPage = new SMXPage();
 	public DMXPage dmxPage = new DMXPage();
 	public RMXPage rmxPage = new RMXPage();
+	public DataPage dataPage = new DataPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	
@@ -134,7 +136,11 @@ public class SuiteBase {
 			HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 			chromePrefs.put("profile.default_content_settings.popups", 0);
 			chromePrefs.put("download.default_directory", downloadFilePath);
-
+			chromePrefs.put("download.prompt_for_download", false);
+			chromePrefs.put("safebrowsing.enabled", true);
+			chromePrefs.put("download.extensions_to_open", "xml");   //	Avoid safe downloading warning for XML file
+			chromePrefs.put("download.extensions_to_open", "mdb");	 //	Avoid safe downloading warning for mdb file
+			
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("prefs", chromePrefs);
 			options.addArguments("--start-maximized");

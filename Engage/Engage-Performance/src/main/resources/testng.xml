@@ -24,11 +24,13 @@
 			<run>
 				<include name="Reports" />
 				<include name="DMX"/>
+				<include name="Data"/>
 			</run>
 		</groups>
 		<classes>
 			<class name="com.engage.performance.rmx.RMXPlatformReading_TC" > </class>
 			<class name="com.engage.performance.dmx.DMXPlatformReading_TC"> </class>
+			<class name="com.engage.performance.data.DataPlatformReading_TC"> </class>
 			<parameter name="PlatformReadings_TC1" value="Bar Graph Report"></parameter>
 			<parameter name="PlatformReadings_TC2" value="Response Table Report"></parameter>
 			<parameter name="PlatformReadings_TC3" value="Individual Report"></parameter>
@@ -80,6 +82,15 @@
 			<parameter name="PlatformReadings_TC49" value="Send SMS Invite wizard"></parameter>
 			<parameter name="PlatformReadings_TC50" value="Response Rate Report"></parameter>
 			<parameter name="PlatformReadings_TC51" value="Advance Frequency Report"></parameter>
+			<parameter name="PlatformReadings_TC52" value="Home Page to Data Module"></parameter>
+			<parameter name="PlatformReadings_TC53" value="Export Excel"></parameter>
+			<parameter name="PlatformReadings_TC54" value="Export CSV"></parameter>
+			<parameter name="PlatformReadings_TC55" value="Export XML"></parameter>
+			<parameter name="PlatformReadings_TC56" value="Export Access"></parameter>
+			<parameter name="PlatformReadings_TC57" value="Export Word"></parameter>
+			<parameter name="PlatformReadings_TC58" value="Export HTML"></parameter>
+			<parameter name="PlatformReadings_TC59" value="Export SPSS"></parameter>
+			<parameter name="PlatformReadings_TC60" value="Export SoGoSurvey1"></parameter>
 		</classes>
 
 	</test>

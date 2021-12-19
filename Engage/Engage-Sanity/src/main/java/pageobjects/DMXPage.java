@@ -950,7 +950,16 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+//		Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
+		
+		if(isShowNewAllProjectDashBoard) {
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
+		}
+//		For old dashboard
+		else {
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+		}
 	}
 	
 	public double goToDistributePage(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
@@ -1006,15 +1015,45 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	public double goToDistributePage2(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		
-		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
-		click(driver, testcaseName, IHomePage.search_icon, test);
-		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
-		new Actions(driver).moveToElement(survey).build().perform();
-		waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
+//		Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
 		
-		start = System.currentTimeMillis();		
-		click(driver, testcaseName, IHomePage.publish_icon, test);
-		waitForJStoLoad(driver, 60);
+//		For new dashboard changes
+		if (isShowNewAllProjectDashBoard) {	
+			if(param.containsKey("copiedSurveyTitle")) {
+				waitForLoad(driver, testcaseName, 30, test);
+				waitForJStoLoad(driver, 30);
+				clearText(driver, testcaseName, IHomePage.new_search_bar, test);
+				Thread.sleep(1000);
+			}
+			setText(driver, testcaseName, IHomePage.new_search_bar, surveyTitle, test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"), surveyTitle, 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_publish_icon, 60, 100, test);
+			
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.new_publish_icon, test);
+		}
+//		For old dashboard
+		else {
+			setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
+			click(driver, testcaseName, IHomePage.search_icon, test);
+			WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
+			
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.publish_icon, test);
+		}
+		
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, quick_send, test);
 		end = System.currentTimeMillis();
 		
@@ -1023,22 +1062,49 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		return totalTime;
 	}
 	
+	
 	public String goToDistributePage(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
 		click(driver, testcaseName, IHomePage.all_projects, test);
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
-		setText(driver, testcaseName, IHomePage.search_bar, param.get("Survey Title"), test);
-		click(driver, testcaseName, IHomePage.search_icon, test);
-		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
-		new Actions(driver).moveToElement(survey).build().perform();
-		waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
 		
-		start = System.currentTimeMillis();		
-		click(driver, testcaseName, IHomePage.publish_icon, test);
-		waitForJStoLoad(driver, 60);
+//		Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
+		
+//		For new dashboard changes
+		if (isShowNewAllProjectDashBoard) {	
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.new_search_bar, param.get("Survey Title"), test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + param.get("Survey Title") +"\"]"), param.get("Survey Title"), 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + param.get("Survey Title") +"\"]"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_publish_icon, 60, 100, test);
+			
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.new_publish_icon, test);
+		}
+		
+		else {
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.search_bar, param.get("Survey Title"), test);
+			click(driver, testcaseName, IHomePage.search_icon, test);
+			WebElement survey = driver.findElement(By.xpath("//div[@sid='"+param.get("SID")+"']"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.publish_icon, test);
+			
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.publish_icon, test);
+		}
+		
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, quick_send, test);
 		end = System.currentTimeMillis();
 		
@@ -1087,16 +1153,41 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
-		setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
-		click(driver, testcaseName, IHomePage.search_icon, test);
-		WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
-		new Actions(driver).moveToElement(survey).perform();
-		waitForElementToBeVisible(driver, testcaseName, IHomePage.track_survey_icon, 10, 100, test);
 		
-		start = System.currentTimeMillis();		
-		click(driver, testcaseName, IHomePage.track_survey_icon, test);
-		waitForJStoLoad(driver, 60);
+//		Check if new dashboard is enabled or not
+		boolean isShowNewAllProjectDashBoard = Boolean.parseBoolean((executeScript(driver, testcaseName, "return isShowNewAllProjectDashBoard", test).toString()));
+		
+//		For new dashboard changes
+		if (isShowNewAllProjectDashBoard) {	
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.new_search_bar, param.get("Survey Title"), test);
+			driver.switchTo().defaultContent();
+			waitForLoad(driver, testcaseName, 120, test);
+			switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
+			waitforElemPresent(driver, testcaseName, 60, IHomePage.filter_applied, test);
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"), surveyTitle, 60, 100, test);
+			WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + surveyTitle +"\"]"));
+			new Actions(driver).moveToElement(survey).build().perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.new_track_survey_icon, 60, 100, test);
+			
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.new_track_survey_icon, test);
+		}
+		else {
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.main_folder, 30, 100, test);
+			setText(driver, testcaseName, IHomePage.search_bar, surveyTitle, test);
+			click(driver, testcaseName, IHomePage.search_icon, test);
+			WebElement survey = driver.findElement(By.xpath("//div[@sid='"+SID+"']"));
+			new Actions(driver).moveToElement(survey).perform();
+			waitForElementToBeVisible(driver, testcaseName, IHomePage.track_survey_icon, 10, 100, test);
+			
+			start = System.currentTimeMillis();		
+			click(driver, testcaseName, IHomePage.track_survey_icon, test);
+		}
+		
+		waitForLoad(driver, testcaseName, 60, test);
+		driver.switchTo().defaultContent();
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, time_filter, test);
 		end = System.currentTimeMillis();
 		
@@ -3096,10 +3187,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 	public String getReminderPageReading(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, reminders, test);
+		waitforElemPresent(driver, testcaseName, 30, reminders2, test);
 		
 		start = System.currentTimeMillis();
-		click(driver, testcaseName, reminders, test);
+		click(driver, testcaseName, reminders2, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, reminder_history_bar, test);
 		end = System.currentTimeMillis();
