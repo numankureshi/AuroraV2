@@ -1,4 +1,4 @@
 title Engage-Sanity Execution
-cd E:\Automation\Git\engage\Engage
-E:\Automation\apache-maven-3.6.3\binmvn.cmd clean test
+cd %CD%
+call %Maven_Home%\bin\mvn.cmd clean install
 pause
