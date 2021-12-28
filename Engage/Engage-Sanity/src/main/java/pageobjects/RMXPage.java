@@ -3810,7 +3810,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		try {
 			if (driver.findElement(By.xpath(include_in_reports.getValue())).isDisplayed()) {
 				click(driver, testcaseName, include_in_reports, test);
-				waitforElemNotVisible(driver, testcaseName, 30, exclude_from_reports, test);
+				waitforElemPresent(driver, testcaseName, 30, exclude_from_reports, test);
 			}
 		} catch (NoSuchElementException e) {
 			System.out.println("Include button is not present");
