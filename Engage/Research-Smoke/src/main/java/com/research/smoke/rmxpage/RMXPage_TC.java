@@ -87,7 +87,7 @@ public class RMXPage_TC extends SuiteBase {
 				
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				rmxPageResearch.generateOmniReport(getDriver(), param, test);
+				rmxPage.generateOmniReport(getDriver(), param, test);
 			}
 		}
 

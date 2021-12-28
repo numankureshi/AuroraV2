@@ -415,7 +415,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		String testcaseName = param.get("TestCaseName");
 		goToReportsPage(driver, param, test);
 		String currentURL = driver.getCurrentUrl().toLowerCase();
-		if(!currentURL.substring(0, currentURL.indexOf(".com")).contains("sogo")) {
+		if(currentURL.substring(0, currentURL.indexOf(".com")).contains("k12")) {
 			selectOmniReport(driver, param, test);
 		}
 		slideShowEmail(driver, param, test);
