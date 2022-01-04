@@ -62,7 +62,7 @@ public class SeleniumUtils {
 		Actions action = new Actions(driver);
 		try {
 			element = getWebElement(driver, testcaseName, ele, test);
-			action.doubleClick(element).build().perform();
+			action.moveToElement(element).doubleClick(element).build().perform();
 			test.log(Status.INFO, "Successfully double clicked on "+ ele.getName() +" element.");
 			Add_Log.info("Successfully double clicked on "+ ele.getName() +" element.");
 			Reporter.log("Successfully double clicked on "+ ele.getName() +" element.");
@@ -1059,6 +1059,23 @@ public class SeleniumUtils {
 		return result;
 	}
 	
+	public Object executeScript(WebDriver driver, String testcaseName, String script, WebElement element, ExtentTest test) {
+		Object result = null;
+		try {
+			JavascriptExecutor exe = (JavascriptExecutor) driver;
+			result = exe.executeScript(script, element);
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Failed to execute script :" + script);
+			Add_Log.info("Failed to execute script :" + script);
+			Reporter.log("Failed to execute script :" + script);
+			TestResultStatus.failureReason.add(testcaseName + "| Failed to execute script :" + script);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+
+		}
+		return result;
+	}
+	
 	public Object executeScript(WebDriver driver, String testcaseName, String script, WebPageElements ele, ExtentTest test) {
 		Object result = null;
 		WebElement element = null;
@@ -1181,6 +1198,25 @@ public class SeleniumUtils {
 			Add_Log.info("Did not find the option containing text "+visibleText);
 			Reporter.log("Did not find the option containing text "+visibleText);
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void selectByExactVisibleText(WebDriver driver, String testcaseName, WebPageElements ele, String visibleText,
+			ExtentTest test) {
+		Select select = new Select(getWebElement(driver, testcaseName, ele, test));
+		try {
+			select.selectByVisibleText(visibleText);
+			Add_Log.info("Successfully selected option maching with text " + visibleText);
+			test.log(Status.INFO, "Successfully selected option maching with text " + visibleText);
+			Reporter.log("Successfully selected option maching with text " + visibleText);
+		}
+		 catch (Exception e) {
+			test.log(Status.FAIL, "Did not find the option maching with text "+visibleText);
+			Add_Log.info("Did not find the option maching with text "+visibleText);
+			Reporter.log("Did not find the option maching with text "+visibleText);
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option maching with text "+visibleText);
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 		}
