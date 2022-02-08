@@ -784,6 +784,9 @@ public interface IRMXPage {
 	String DOWNLOAD_PDF = "//span[@title='PDF']/parent::div[contains(@ng-click,'ctrlCanvasSettings.checkPDFExport')]";
 	WebPageElements download_PDF = new WebPageElements("Download PDF", "xpath", DOWNLOAD_PDF);
 	
+	String DOWNLOAD_PDF2 = "//span[@title='PDF']/parent::div[contains(@onclick,'SetExportType')]";
+	WebPageElements download_PDF2 = new WebPageElements("Download PDF", "xpath", DOWNLOAD_PDF2);
+	
 	String SHARE_EMAIL_TITLE = "//input[@name='TxtReportName']";
 	WebPageElements share_email_title = new WebPageElements("Share Email Title", "xpath", SHARE_EMAIL_TITLE);
 	

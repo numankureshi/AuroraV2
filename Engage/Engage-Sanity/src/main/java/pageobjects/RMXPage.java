@@ -1560,6 +1560,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		DayOfWeek day = date.getDayOfWeek();
 		int noDay = day.getValue();
 	        String format = null;
+	        String currentURL = null;
 	        switch(noDay)
 	        {
 	            case 1:
@@ -1578,8 +1579,15 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	                break;
 	            case 3:
 	                System.out.println("Wednesday");
-	                waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
-	        		click(driver, testcaseName, download_PDF, test);
+	                currentURL = driver.getCurrentUrl().toLowerCase();
+	        		if(currentURL.substring(0, currentURL.indexOf(".com")).contains("k12")) {
+	        			waitforElemPresent(driver, testcaseName, 30, download_PDF2, test);
+		        		click(driver, testcaseName, download_PDF2, test);
+	        		}else {
+	        			waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
+		        		click(driver, testcaseName, download_PDF, test);
+	        		}
+	      
 	        		waitForLoad(driver, testcaseName, 30, test);
 	        		format = "pdf";
 	                break;
@@ -1592,8 +1600,14 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	                break;
 	            case 5:
 	                System.out.println("Friday");
-	                waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
-	        		click(driver, testcaseName, download_PDF, test);
+	                currentURL = driver.getCurrentUrl().toLowerCase();
+	        		if(currentURL.substring(0, currentURL.indexOf(".com")).contains("k12")) {
+	        			waitforElemPresent(driver, testcaseName, 30, download_PDF2, test);
+		        		click(driver, testcaseName, download_PDF2, test);
+	        		}else {
+	        			waitforElemPresent(driver, testcaseName, 30, download_PDF, test);
+		        		click(driver, testcaseName, download_PDF, test);
+	        		}
 	        		waitForLoad(driver, testcaseName, 30, test);
 	        		format = "pdf";
 	                break;
