@@ -196,6 +196,12 @@ public interface ISMXPage {
 	String ANSWERS_LIBRARY = "(//a[contains(text(),'Answer Library')])[1]";
 	WebPageElements answers_library = new WebPageElements("Answer Library Button", "xpath", ANSWERS_LIBRARY);
 	
+	String ANSWERS_LIBRARY_NEW = "//div[@class='ansLibraryContainer']";
+	WebPageElements answers_library_new = new WebPageElements("Answer Library", "xpath", ANSWERS_LIBRARY_NEW);
+	
+	String SEARCH_ANS_LIB = "//input[@id='txtSearchAnsLib']";
+	WebPageElements search_ans_lib = new WebPageElements("Search", "xpath", SEARCH_ANS_LIB);
+	
 	String ANSWERS_LIBRARY2 = "(//li[contains(text(),'Answer Library')])[1]";
 	WebPageElements answers_library2 = new WebPageElements("Answer Library Button", "xpath", ANSWERS_LIBRARY2);
 	

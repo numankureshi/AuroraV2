@@ -358,6 +358,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, delete_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 //		driver.switchTo().alert().accept();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
+			click(driver, testcaseName, delete_button2, test);
+		}
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
 	}
@@ -2580,6 +2584,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, delete_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		//driver.switchTo().alert().accept();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
+			click(driver, testcaseName, delete_button2, test);
+		}
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
 		end = System.currentTimeMillis();

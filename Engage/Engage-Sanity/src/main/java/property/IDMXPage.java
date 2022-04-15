@@ -46,6 +46,12 @@ public interface IDMXPage {
 	String DELETE_BUTTON = "(//input[@value='Delete'])[1]";
 	WebPageElements delete_button = new WebPageElements("Delete Button", "xpath", DELETE_BUTTON);
 	
+	String DELETE_MODAL_DIALOG = "//div[@id='ctl00_ctl00_cphMain_cphBody_dvDeleteModalAlert']/div";
+	WebPageElements delete_modal_dialog = new WebPageElements("Delete Modal", "xpath", DELETE_MODAL_DIALOG);
+	
+	String DELETE_BUTTON2 = "//input[@id='ctl00_ctl00_cphMain_cphBody_btnDeleteConfirm']";
+	WebPageElements delete_button2 = new WebPageElements("Ok", "xpath", DELETE_BUTTON2);
+	
 	String DELETE_MSG = "//span[contains(text(),'List  deleted successfully.')]";
 	WebPageElements delete_msg = new WebPageElements("Delete Message", "xpath", DELETE_MSG);
 	

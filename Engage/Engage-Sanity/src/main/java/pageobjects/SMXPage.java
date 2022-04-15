@@ -266,17 +266,27 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 10, answers_library, test);
 		click(driver, testcaseName, answers_library, test);
-		waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
-		click(driver, testcaseName, get_answer_options_library, test);
-		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options, test);
-		waitForLoad(driver, testcaseName,60, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS)));
-		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-		click(driver, testcaseName, use_this_list_button, test);
-		driver.switchTo().defaultContent();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, answers_library_new, test);
+			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
+			setText(driver, testcaseName, search_ans_lib, answerOption, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
+			new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+		}else {
+			waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
+			click(driver, testcaseName, get_answer_options_library, test);
+			waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
+			waitforElemPresent(driver, testcaseName, 30, iframe_answer_options, test);
+			waitForLoad(driver, testcaseName,60, test);
+			driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS)));
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+			click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+			waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
+			click(driver, testcaseName, use_this_list_button, test);
+			driver.switchTo().defaultContent();
+			}
 		}
 	
 	public void answersLibraryGrid(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
@@ -284,18 +294,29 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 10, answers_library, test);
 		click(driver, testcaseName, answers_library, test);
-		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
-		click(driver, testcaseName, get_answer_options_library, test);
-		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options_grid, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS_GRID)));
-		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-		click(driver, testcaseName, use_this_list_button, test);
-		driver.switchTo().defaultContent();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, answers_library_new, test);
+			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
+			setText(driver, testcaseName, search_ans_lib, answerOption, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
+			new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+		}else {
+			waitForLoad(driver, testcaseName, 60, test);
+			waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
+			click(driver, testcaseName, get_answer_options_library, test);
+			waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
+			waitforElemPresent(driver, testcaseName, 30, iframe_answer_options_grid, test);
+			driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS_GRID)));
+			waitForLoad(driver, testcaseName, 60, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+			click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+			waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
+			click(driver, testcaseName, use_this_list_button, test);
+			driver.switchTo().defaultContent();
+		}
+		
 		}
 	
 	public void answersLibrary2(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
@@ -306,15 +327,26 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 10, answers_library2, test);
 		click(driver, testcaseName, answers_library2, test);
-		waitForLoad(driver, testcaseName, 60, test);
-//		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-		waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
-		waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-		click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-		waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-		click(driver, testcaseName, use_this_list_button, test);
-		driver.switchTo().parentFrame();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, answers_library_new, test);
+			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
+			setText(driver, testcaseName, search_ans_lib, answerOption, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
+			new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+		}else {
+			waitForLoad(driver, testcaseName, 60, test);
+//			waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
+			waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
+			driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+			click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
+			waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
+			click(driver, testcaseName, use_this_list_button, test);
+			driver.switchTo().parentFrame();
+		}
+		
 		}
 	
 	public void questionsLibrary(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
