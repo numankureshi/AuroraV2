@@ -169,6 +169,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, description_button, test);
+		waitForJStoLoad(driver, 30);
 		doubleClick(driver, testcaseName, description_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
@@ -925,10 +926,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-plus']"), "Weight Highest", test);
 		click(driver, testcaseName, By.xpath("//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-plus']"), "Weight Highest", test);
-		
+		waitForJStoLoad(driver, 30);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']"), "Weight Middle", test);
 		click(driver, testcaseName, By.xpath("//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']"), "Weight Middle", test);
-		Thread.sleep(1000);
+		waitForJStoLoad(driver, 30);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtNA_0']"), "Weight NA", test);
 		click(driver, testcaseName, By.xpath("//input[@name='txtNA_0']"), "Weight NA", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtNA_0']"), "NA", "Weight NA", test);
