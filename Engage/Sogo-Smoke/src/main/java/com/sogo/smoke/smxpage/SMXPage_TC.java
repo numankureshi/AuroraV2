@@ -48,7 +48,10 @@ public class SMXPage_TC extends SuiteBase {
 		}
 	}
 
+
 		//Anas comment
+		//Vivek Comment
+
 		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
 		public void Smoke_TC2(LinkedHashMap<String, String> data) throws Exception {
 			TestCaseName = getData(data, "TestCaseName");
