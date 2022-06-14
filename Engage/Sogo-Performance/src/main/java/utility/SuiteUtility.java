@@ -27,4 +27,5 @@ public class SuiteUtility {
 	public static boolean WriteResultUtility4(Read_XLS xls, String sheetName, ITestResult TestResultTL, Map<String,String> loadTime) {
 		return xls.writePlatformReadings(sheetName, TestResultTL, loadTime);
 	}
+	
 }
