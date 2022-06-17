@@ -7,6 +7,64 @@ public interface ISMXPage {
 	String CREATE_PROJECT = "//span[text()='Create Project']";
 	WebPageElements create_project = new WebPageElements("Create Project Button", "xpath", CREATE_PROJECT);
 	
+	String CREATE_POLL = "//div[@class='cls-projecttype-container']//div[contains(text(),'Poll')]";
+	WebPageElements create_poll = new WebPageElements("Create Poll Button", "xpath", CREATE_POLL);
+	
+	String ANSWER_LIBRARY = "//div[@id='dvAnswerCat']";
+	WebPageElements answer_library = new WebPageElements("Answer library", "xpath", ANSWER_LIBRARY);
+	
+	String CONTINUE_BUTTONP = "//input[@onclick='ValidateStep2();']";
+	WebPageElements continue_buttonp = new WebPageElements("Continue Buttonp", "xpath", CONTINUE_BUTTONP);
+	
+	String USE_THIS_LIST = "//input[@id='btnusethislist']";
+	WebPageElements use_this_list = new WebPageElements("Use This List", "xpath", USE_THIS_LIST);
+	
+	String EXPIRY_DATE_AND_TIME = "//label[@for='rdExpireYes']";
+	WebPageElements  Expiry_Date_and_Time = new WebPageElements("Expiry date and time", "xpath", EXPIRY_DATE_AND_TIME);
+	
+	
+	String RESULT_SETTINGS = "//label[@for='DispresT']";
+	WebPageElements Result_Settings = new WebPageElements ("Result Settings","xpath",RESULT_SETTINGS);
+	
+	
+	String PARTICIPATION_POLL_SUBMIT = "//input[@class='btnPoll']";
+	WebPageElements Participation_Poll_Submit = new WebPageElements ("Result Settings","xpath",PARTICIPATION_POLL_SUBMIT);
+	
+	
+	String TRACK_POLL = "//input[@id='btnErrorSave']";
+	WebPageElements Track_Poll = new WebPageElements("Create Poll", "xpath",TRACK_POLL );
+	
+	
+	String CONTINUE_BUTTONT = "//input[@onclick='ValidateStep2a()']";
+	WebPageElements Continue_Buttont = new WebPageElements("Continue Button Translate", "xpath",CONTINUE_BUTTONT );
+	
+	
+	String CONTINUE_BUTTONPS = "//input[@onclick='ValidateStep3()']";
+	WebPageElements Continue_Buttonps = new WebPageElements("Continue Button Poll Settings","xpath",CONTINUE_BUTTONPS);
+	
+	
+	
+	String CONTINUE_BUTTONVS = "//input[@onclick='StepNext4();']";
+	WebPageElements Continue_Buttonvs = new WebPageElements("Continue Visual Settings","xpath",CONTINUE_BUTTONVS);
+	
+	
+	String CONTINUE_BUTTONRS = "//input[@id='btnMainSubmit']";
+	WebPageElements Continue_Buttonrs = new WebPageElements("Continue Result Settings","xpath",CONTINUE_BUTTONRS);
+	
+	
+	String EXPRIE_POLL_YES = "//label[@for='rdExpireYes']";
+	WebPageElements expire_poll_yes = new WebPageElements("radio button for expire","xpath",EXPRIE_POLL_YES);
+	
+	
+	String SAVE_AND_FINISH = "//input[@id='mainsubmit']";
+	WebPageElements Save_And_Finish = new WebPageElements("Save and finish","xpath",SAVE_AND_FINISH);
+	
+	
+	String PUBLIC_ACCESS = "//span[@title='View Individual Response']/parent::a";
+	WebPageElements Public_Access = new WebPageElements("Public Access","xpath",PUBLIC_ACCESS);
+	
+	
+	
 	String BEGIN_LABEL = "//div[text()='Where would you like to begin?']";
 	WebPageElements begin_label = new WebPageElements("Where would you like to begin?", "xpath", BEGIN_LABEL);
 	
@@ -45,6 +103,8 @@ public interface ISMXPage {
 	
 	String SECONDARY_LANGUAGE_SWITCH = "//label[@id='rbAdditionalLanguageToggle']";
 	WebPageElements secondary_language_switch = new WebPageElements("Secondary Language Switch", "xpath", SECONDARY_LANGUAGE_SWITCH);
+	
+	
 	
 	String DESCRIPTION_BUTTON = "//div[contains(text(),'Descriptive Text')]/parent::div[@id='dvcom']";
 	WebPageElements description_button = new WebPageElements("Description Button", "xpath", DESCRIPTION_BUTTON);
@@ -424,5 +484,71 @@ public interface ISMXPage {
 	
 	
 	
+	String ADD_LOGO = "//div[@id='divAddSurveyLogoLink1']//div[@ng-click='showAddSurveyLogoDiv(pg.Page_no);']";
+	WebPageElements add_logo = new WebPageElements("add logo", "xpath", ADD_LOGO);
 	
+	 //div[@id='divLogoFromComputer']//div[@class='icon']
+	
+	String UPLOAD_FROM_COMPUTER = "//div[@id='divLogoFromComputer']//div[@class='icon']";
+	WebPageElements upload_from_computer = new WebPageElements("upload logo from computer", "xpath", UPLOAD_FROM_COMPUTER);
+	
+	
+	
+
+	String USE_ACCOUNT_LOGO = "//div[@id='divCopyAccountImage']//div[@class='icon']";
+	WebPageElements use_account_logo = new WebPageElements("use acount logo", "xpath", USE_ACCOUNT_LOGO);
+	
+	
+	
+	String COPY_FROM_OTHER_PROJECT = "//div[@id='divCopyFromOtherSurvey']//div[@class='icon']";
+	WebPageElements copy_from_other_project = new WebPageElements("copy from another project", "xpath", COPY_FROM_OTHER_PROJECT);
+	
+	
+	
+	String INSERT_FROM_URL = "//div[@id='divFromWebLink']//div[@class='icon']";
+	WebPageElements insert_from_url = new WebPageElements("logo insert using url", "xpath", INSERT_FROM_URL);
+	
+	
+	String LOGO_URL_TEXTBOX = "//input[@id='txtLogoURL']";
+	WebPageElements logo_url_textbox = new WebPageElements("textbox for  url", "xpath", LOGO_URL_TEXTBOX);
+	
+	String BTN_LOGO_URL = "//input[@id='btnLogoURL2']";
+	WebPageElements btn_logo_url = new WebPageElements("continue ", "xpath", BTN_LOGO_URL);
+	
+	
+	String SELECT_MAIN = "//ul[@class='sub']//li[1]//a[1]";
+	//li[@class='com-subbar OpenDropDown']
+	 
+	WebPageElements select_main = new WebPageElements("selecting main in dropdown", "xpath", SELECT_MAIN);
+	
+	
+	String CPY_FROM_ANOTHERSURVEY = "//div[@id='btnCopyFromOtherSruvey']";
+	WebPageElements copy_from_anothersurvey = new WebPageElements("selecting main in dropdown", "xpath", CPY_FROM_ANOTHERSURVEY);
+	
+	
+	
+	
+	String SAVE_BTN = "//input[@id='btnSave']";
+	WebPageElements save_btn = new WebPageElements("save button for upload logo", "xpath", SAVE_BTN);
+	
+	String LOGO_DISPLAY = "//img[@id='imgSurveyLogo1']";
+	WebPageElements logo_display = new WebPageElements("logo display", "xpath", LOGO_DISPLAY);
+	
+	
+	//div[@title='Delete Logo']
+	String DELETE_LOGO_DISPLAY = "//div[@class='editimg delete']//img[@src='../AllImages/imagesnew/general/delete_reverse.svg']";
+	WebPageElements delete_logo_display = new WebPageElements("delete logo display", "xpath", DELETE_LOGO_DISPLAY);
+	
+	
+	String DELETE_ICON = "//span[@class='DelCon']";
+	WebPageElements delete_icon = new WebPageElements("delete icon display", "xpath", DELETE_ICON);
+	
+	
+	
+	String ALIGN_ICON = "//div[@title='Align Logo']";
+	WebPageElements align_icon = new WebPageElements("align icon", "xpath", ALIGN_ICON);
+	
+	
+	String ALIGN_ICON1 = "//span[normalize-space()='Align']";
+	WebPageElements align_icon1 = new WebPageElements("align icon", "xpath", ALIGN_ICON1);
 }
