@@ -312,12 +312,14 @@ public class SeleniumUtils {
 			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
 			Reporter.log("Successfully waited for "+ name +" to be present on page.");
 		} catch (Exception e) {
+			e.printStackTrace();
 			test.log(Status.FAIL, name +" not present on page.");
 			Add_Log.info(name +" not present on page.");
 			Reporter.log(name +" not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
 			TestResultStatus.TestFail = true;
 			Assert.fail();
+			
 		}
 	}
 	
@@ -1333,6 +1335,7 @@ public class SeleniumUtils {
 				Assert.fail();
 			} 
 	}
+
 	
 	public JsonArray getPerformanceLogs(WebDriver driver, String testcaseName, ExtentTest test) {
 		try {
@@ -1344,6 +1347,7 @@ public class SeleniumUtils {
 		}
 		
 	}
+
 	
 
 }

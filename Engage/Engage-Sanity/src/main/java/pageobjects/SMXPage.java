@@ -1,7 +1,12 @@
 package pageobjects;
 
-import static org.testng.Assert.assertEquals;
 
+import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
+
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,9 +32,13 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.Set;
 
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.http.message.BasicListHeaderIterator;
+import org.apache.commons.lang.time.DateUtils;
+import org.apache.commons.lang3.time.CalendarUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -41,10 +50,11 @@ import org.openqa.selenium.devtools.v100.performance.model.Metric;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
-
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.google.gson.JsonArray;
@@ -104,6 +114,23 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
 	}
 
+	public void createPoll(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectCreatePoll(driver, param, test);
+		createPollButton(driver, param, test);
+		selectAnswerlibrary(driver, param, test);
+		pollSettings(driver, param, test);
+		visualSettings(driver, param, test);
+		resultSettings(driver, param, test);
+		publishPoll(driver, param, test);
+		pollParticipation(driver, param, test);
+		pollTrack(driver, param, test);
+		answerCheck(driver, param, test);
+		
+	}
+	
 	public void selectCreateProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -111,6 +138,522 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, create_project, test);
 		waitForLoad(driver, testcaseName, 60, test);
 	}
+	
+	public void selectProjectType(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		driver.switchTo().frame("iframe1");
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//div[@class='cls-projecttype-container']//div[contains(text(),'"+ param.get("surveyType") +"')]"), param.get("surveyType"), test);        
+	   click(driver, testcaseName,  By.xpath("//div[@class='cls-projecttype-container']//div[contains(text(),'"+ param.get("surveyType") +"')]"), param.get("surveyType"), test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, blank_survey, test);
+		click(driver, testcaseName, blank_survey, test);
+		enterSurveyName(driver, param, test);
+		click(driver, testcaseName, start_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+
+	public void logoUploadFromComputer(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		logoCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, upload_from_computer, test);
+		click(driver, testcaseName, upload_from_computer, test);
+		driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
+				+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("imageLocation") +"");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgLogo']"), testcaseName, test);
+		WebElement img = driver.findElement(By.xpath("//img[@id='imgLogo']"));
+		if(img.isDisplayed())
+		{
+			reportPass("logo is displayed", test);
+		}
+		else
+		{
+			reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+		}
+		waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+		click(driver, testcaseName, save_btn, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), testcaseName, test);
+		  WebElement img2 = driver.findElement(By.xpath("//img[@id='imgSurveyLogo1']"));
+		  if(img2.isDisplayed())
+		  {
+			  reportPass("logo is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+			}
+		 
+		  deleteLogo(driver, param, test);
+	}
+	public void useAccountLogo(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		logoCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, use_account_logo, test);
+		click(driver, testcaseName, use_account_logo, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgLogo']"), "account logo", test);
+		WebElement img = driver.findElement(By.xpath("//img[@id='imgLogo']"));
+		if(img.isDisplayed())
+		{
+			  reportPass("logo is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+			}
+		waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+		click(driver, testcaseName, save_btn, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), "account logo after save", test);
+		  WebElement img2 = driver.findElement(By.xpath(
+		  "//img[@id='imgSurveyLogo1']"));
+		  if(img2.isDisplayed()) {
+		  
+			  reportPass("logo is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+			}
+		
+	}
+	public void deleteUseAccountLogo(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		 useAccountLogo(driver, param, test);
+		deleteLogo(driver, param, test);
+	}
+	public void logoValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+	waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgLogo']"), testcaseName, test);
+	WebElement img = driver.findElement(By.xpath("//img[@id='imgLogo']"));
+	if(img.isDisplayed())
+	{
+		  reportPass("logo is displayed", test);
+	  } 
+	  else
+		{
+			reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+		}
+	waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+	click(driver, testcaseName, save_btn, test);
+	driver.switchTo().defaultContent();
+	waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), testcaseName, test);
+	  WebElement img2 = driver.findElement(By.xpath(
+	  "//img[@id='imgSurveyLogo1']"));
+	  if(img2.isDisplayed()){
+		  
+		  reportPass("logo is displayed", test);
+	  } 
+	  else
+		{
+			reportFail(testcaseName,"logo is not displayed" , test);  
+		}
+}
+	public void logoValidation2(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), testcaseName, test);
+		  WebElement img2 = driver.findElement(By.xpath(
+		  "//img[@id='imgSurveyLogo1']"));
+		  if(img2.isDisplayed()){
+		  
+			  reportPass("logo is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"logo is not displayed" , test);  
+			}
+	}
+	public void logoCommonSteps(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+
+		String testcaseName = param.get("TestCaseName");
+		
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_logo, test);
+		click(driver, testcaseName, add_logo, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'AddSurveyLogo.aspx?')]")));
+	}
+	public void copyFromAnotherProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		logoCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, copy_from_other_project, test);
+		 click(driver, testcaseName, copy_from_other_project, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[normalize-space()='--Select Project--']"), testcaseName, test);
+ 	    click(driver, testcaseName, By.xpath("//a[normalize-space()='--Select Project--']"), testcaseName, test);
+ 	    waitforElemPresent(driver, testcaseName, 10,   By.xpath("//span[normalize-space()='"+ param.get("foldername") +"']"), param.get("foldername"), test);        
+	   	click(driver, testcaseName,  By.xpath("//span[normalize-space()='"+ param.get("foldername") +"']"), param.get("foldername"), test); 
+ 	   waitforElemPresent(driver, testcaseName, 30, select_main, test);
+		 doubleClick(driver, testcaseName, select_main, test);
+		 waitforElemPresent(driver, testcaseName, 10,   By.xpath("//a[normalize-space()='"+ param.get("ThanksMsg") +"']"), param.get("ThanksMsg"), test);        
+		   	click(driver, testcaseName,  By.xpath("//a[normalize-space()='"+ param.get("ThanksMsg") +"']"), param.get("ThanksMsg"), test); 
+	    waitforElemPresent(driver, testcaseName, 30, copy_from_anothersurvey, test);
+		 doubleClick(driver, testcaseName, copy_from_anothersurvey, test);
+		 logoValidation(driver, param, test);
+		 deleteLogo(driver, param, test);
+	}
+	
+	
+	public void insertFromUrl(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		logoCommonSteps(driver, param, test);
+		  waitforElemPresent(driver, testcaseName, 30, insert_from_url, test);
+			click(driver, testcaseName, insert_from_url, test);
+			WebElement q6 = driver.findElement(By.xpath("//input[@id='txtLogoURL']"));
+			q6.sendKeys("https://image.shutterstock.com/image-vector/link-icon-hyperlink-chain-symbol-260nw-1186749931.jpg");
+			 waitforElemPresent(driver, testcaseName, 30, btn_logo_url, test);
+			 click(driver, testcaseName, btn_logo_url, test);
+			 logoValidation(driver, param, test);
+			 deleteLogo(driver, param, test);
+	}
+	public void deleteLogo(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			waitforElemPresent(driver, testcaseName, 30, logo_display, test);
+			WebElement hower = driver.findElement(By.xpath("//div[@class='divSurveyLogoImageContainer']"));
+			Actions action = new Actions(driver);
+			action.moveToElement(hower).perform();
+			waitforElemPresent(driver, testcaseName, 30, delete_logo_display, test);
+			click(driver, testcaseName, delete_logo_display, test);
+			waitforElemPresent(driver, testcaseName, 30, delete_icon, test);
+			click(driver, testcaseName, delete_icon, test);
+	}
+	
+	public void alignOfLogoLeft(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			 useAccountLogo(driver, param, test);
+			WebElement hower = driver.findElement(By.xpath("//div[@class='divSurveyLogoImageContainer']"));
+			Actions action = new Actions(driver);
+			action.moveToElement(hower).perform();
+			waitforElemPresent(driver, testcaseName, 30, align_icon1, test);
+			click(driver, testcaseName, align_icon1, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[normalize-space()='Left']"),"logo left align ", test);
+			click(driver, testcaseName, By.xpath("//span[normalize-space()='Left']"),"logo left align ", test);
+			 logoValidation2(driver, param, test);
+	}
+	public void alignOfLogoRight(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			 useAccountLogo(driver, param, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, logo_display, test);
+			
+			WebElement hower1 = driver.findElement(By.xpath("//div[@class='divSurveyLogoImageContainer']"));
+			Actions action1 = new Actions(driver);
+			action1.moveToElement(hower1).perform();
+			
+			waitforElemPresent(driver, testcaseName, 30, align_icon1, test);
+			click(driver, testcaseName, align_icon1, test);
+			
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[normalize-space()='Right']"),"logo right align ", test);
+			click(driver, testcaseName, By.xpath("//span[normalize-space()='Right']"),"logo right align", test);
+			
+			logoValidation2(driver, param, test);
+	}
+	
+	
+	public void uploadingJPGFile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			logoCommonSteps(driver, param, test);
+			waitforElemPresent(driver, testcaseName, 30, upload_from_computer, test);
+			click(driver, testcaseName, upload_from_computer, test);
+			driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("imageLocation1") +"");
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgLogo']"), testcaseName, test);
+			WebElement img = driver.findElement(By.xpath("//img[@id='imgLogo']"));
+			if(img.isDisplayed())
+			{
+				  reportPass("logo is displayed", test);
+			  } 
+			  else
+				{
+					reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+				}
+			waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+			click(driver, testcaseName, save_btn, test);
+			driver.switchTo().defaultContent();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), testcaseName, test);
+			  WebElement img2 = driver.findElement(By.xpath(
+			  "//img[@id='imgSurveyLogo1']"));
+			  if(img2.isDisplayed()){
+				  
+				  reportPass("logo is displayed", test);
+			  } 
+			  else
+				{
+					reportFail(testcaseName,"logo is not displayed" , test);   // "img is not displayed";
+				}
+			
+	}
+	
+	
+	public void uploadingGIFFile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			logoCommonSteps(driver, param, test);
+			waitforElemPresent(driver, testcaseName, 30, upload_from_computer, test);
+			click(driver, testcaseName, upload_from_computer, test);
+			driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("imageLocation2") +"");
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgLogo']"), testcaseName, test);
+			WebElement img = driver.findElement(By.xpath("//img[@id='imgLogo']"));
+			if(img.isDisplayed())
+			{
+				  reportPass("logo is displayed", test);
+			  } 
+			  else
+				{
+					reportFail(testcaseName,"logo is not displayed" , test);  
+				}
+			waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+			click(driver, testcaseName, save_btn, test);
+			driver.switchTo().defaultContent();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), testcaseName, test);
+			  WebElement img2 = driver.findElement(By.xpath(
+			  "//img[@id='imgSurveyLogo1']"));
+			  if(img2.isDisplayed()){
+				  
+				  reportPass("logo is displayed", test);
+			  } 
+			  else
+				{
+					reportFail(testcaseName,"logo is not displayed" , test);  
+				}
+			
+	}
+	public void uploadingJPEGFile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			logoCommonSteps(driver, param, test);
+			waitforElemPresent(driver, testcaseName, 30, upload_from_computer, test);
+			click(driver, testcaseName, upload_from_computer, test);
+			driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("imageLocation3") +"");
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgLogo']"), testcaseName, test);
+			WebElement img = driver.findElement(By.xpath("//img[@id='imgLogo']"));
+			if(img.isDisplayed())
+			{
+				  
+				  reportPass("logo is displayed", test);
+			  } 
+			  else
+				{
+					reportFail(testcaseName,"logo is not displayed" , test);  
+				}
+			waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+			click(driver, testcaseName, save_btn, test);
+			driver.switchTo().defaultContent();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='imgSurveyLogo1']"), testcaseName, test);
+			  WebElement img2 = driver.findElement(By.xpath(
+			  "//img[@id='imgSurveyLogo1']"));
+			  if(img2.isDisplayed()){
+				  
+				  reportPass("logo is displayed", test);
+			  } 
+			  else
+				{
+					reportFail(testcaseName,"logo is not displayed" , test);  
+				}	
+	}
+	public void logoGreaterThan5mb(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		logoCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, upload_from_computer, test);
+		click(driver, testcaseName, upload_from_computer, test);
+		driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
+				+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("imageLocation4") +"");
+		waitForAlert(driver, testcaseName, 30, test);
+		 Alert alertPopUp = driver.switchTo().alert();
+	        // Print the alert message to console
+		 String alert_msg =  ("Alert Box message: " + alertPopUp.getText());
+	        // Accept the alert popup
+		 System.out.println(alert_msg);
+	        alertPopUp.accept();
+	        String	alert_msg1 = param.get("DOB");
+	        if(alert_msg.contains(alert_msg1))
+				
+				System.out.println(" \"matched\" ");
+				else
+				//Fail
+				System.out.println(" \"not matched\" ");
+	}
+	
+	
+	public void unSupportedFileForLogo(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		logoCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, upload_from_computer, test);
+		click(driver, testcaseName, upload_from_computer, test);
+		driver.findElement(By.xpath(BROWSE_BUTTON)).sendKeys(System.getProperty("user.dir")
+				+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("imageLocation5") +"");
+		 Alert alertPopUp = driver.switchTo().alert();
+	        // Print the alert message to console
+		 String alert_msg =  ("Alert Box message: " + alertPopUp.getText());
+	        // Accept the alert popup
+		 System.out.println(alert_msg);
+	        alertPopUp.accept();
+	        String	alert_msg0 = param.get("Grade");
+	        if(alert_msg.contains(alert_msg0))
+				
+				System.out.println(" \"matched\" ");
+				else
+				//Fail
+				System.out.println(" \"not matched\" ");
+		}
+		
+	public void selectCreatePoll(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		driver.switchTo().frame("iframe1");
+		//driver.switchTo().frame(driver.findElement(By.xpath("//div[@class='cls-projecttype-container']//div[@class='cls-project-name-container'][normalize-space()='Poll']")));
+		waitforElemPresent(driver, testcaseName, 30, create_poll, test);
+		click(driver, testcaseName, create_poll, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		
+	}
+	
+	
+	
+	public void selectAnswerlibrary(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, answer_library, test);
+		click(driver, testcaseName, answer_library,test);
+		WebElement OPTION = driver.findElement(By.xpath("//a[@id='A1']"));
+		OPTION.click();
+		driver.switchTo().frame("iframe1");
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//label[normalize-space()='"+ param.get("RadioButton") +"']"), param.get("RadioButton"), test);        
+	   	click(driver, testcaseName,  By.xpath("//label[normalize-space()='"+ param.get("RadioButton") +"']"), param.get("RadioButton"), test); 
+	   	click(driver, testcaseName, use_this_list,test);
+	   	driver.switchTo().defaultContent();
+	   	continuebuttonp(driver, param, test);
+	   	waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@title='Auto-translate with Bing.']/parent::a"),"Bing Translate",test);
+		click(driver, testcaseName, By.xpath("//img[@title='Auto-translate with Bing.']/parent::a"),"Bing Translate",test); 
+		
+		driver.switchTo().alert().accept();
+		Thread.sleep(3000);
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttont, test);
+		click(driver, testcaseName, Continue_Buttont,test);
+	}
+	
+	
+	public void continuebuttonp(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, continue_buttonp, test);
+		
+	}
+	
+	public void pollSettings(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, expire_poll_yes, test);
+		click(driver, testcaseName, expire_poll_yes,test);
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonps, test);
+		click(driver, testcaseName, Continue_Buttonps,test);
+
+	}
+	
+	
+	public void visualSettings(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonvs, test);
+		click(driver, testcaseName, Continue_Buttonvs,test);
+	}
+	
+	
+	public void resultSettings(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, Result_Settings, test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonrs, test);
+		click(driver, testcaseName, Continue_Buttonrs,test);
+	}
+	
+	public void publishPoll(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String URl = (driver.findElement(By.xpath("//div[@id='txt_English']")).getText());
+		waitforElemPresent(driver, testcaseName, 30, Save_And_Finish, test);
+		click(driver, testcaseName, Save_And_Finish,test);
+		executeScript(driver, testcaseName, "window.open()", test);
+		Thread.sleep(2000);
+		Set<String> handles = driver.getWindowHandles();
+	    String currentWindowHandle = driver.getWindowHandle();
+	    param.put("currentWindowHandle", currentWindowHandle);
+	    for (String handle : handles) {
+	    	System.out.println(handle);
+	    	System.out.println(currentWindowHandle);
+	        if (!currentWindowHandle.equals(handle)) {
+	            driver.switchTo().window(handle);
+	        }
+	    }
+		driver.get(URl);
+	}
+	
+	public void pollParticipation(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//label[normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);        
+	   	click(driver, testcaseName,  By.xpath("//label[normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+	   	click(driver, testcaseName, Participation_Poll_Submit, test);
+		driver.close();
+		driver.switchTo().window(param.get("currentWindowHandle"));
+	}	
+		
+	public void pollTrack(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, Track_Poll, test);
+		waitforElemPresent(driver, testcaseName, 30, Public_Access, test);
+		click(driver, testcaseName, Public_Access, test);
+	}
+	
+	public void answerCheck(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Set<String> handles = driver.getWindowHandles();
+	    String currentWindowHandle = driver.getWindowHandle();
+	    param.put("currentWindowHandle", currentWindowHandle);
+	    for (String handle : handles) {
+	    	System.out.println(handle);
+	    	System.out.println(currentWindowHandle);
+	        if (!currentWindowHandle.equals(handle)) {
+	            driver.switchTo().window(handle);
+	        }
+	    }
+		
+	String	ANS = param.get("AnswerOptions");
+	
+	waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='individual-answer']"), ANS, test);
+		
+	String Ans = (driver.findElement(By.xpath("//div[@class='individual-answer']")).getText());
+		if(Ans.contains(ANS))
+			
+			System.out.println(" \"matched\" ");
+			else
+			//Fail
+			System.out.println("e \"not matched\" ");
+	}
+	
+	
 	
 	public void selectBlankSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -126,6 +669,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 
 	}
 	
+	
+	
+	
+	
 	public void createNewSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -138,6 +685,19 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@title='"+ param.get("surveyName") +"']"), param.get("surveyName"), test);
 	}
+	
+	public void createPollButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		enterSurveyName(driver, param, test);
+		
+		addlanguages(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, start_button, test);
+		click(driver, testcaseName, start_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	
 	
 	public void enterSurveyName(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -189,6 +749,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 	}
 	
+
 	/**
 	 * Add Description question by using double click action.
 	 * @param driver
@@ -196,10 +757,22 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	 * @param test
 	 * @throws InterruptedException
 	 */
+	public void addlanguages(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, secondary_lanugage_dd, test);
+		click(driver, testcaseName, secondary_lanugage_dd,test);
+		//driver.findElement(By.xpath("//label[normalize-space()='Arabic']"));
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//label[normalize-space()='"+ param.get("secondarylanguage") +"']"), param.get("secondarylanguage"), test);        
+	   	click(driver, testcaseName,  By.xpath("//label[normalize-space()='"+ param.get("secondarylanguage") +"']"), param.get("secondarylanguage"), test);        
+	
+	}
+	
 	public void enterDescription(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, description_button, test);
+		waitForJStoLoad(driver, 30);
 		doubleClick(driver, testcaseName, description_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
@@ -261,7 +834,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, save_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("description") +"']"), "Description Added "+ param.get("description"), test);
+	                                                             
 	}
+	
 	
 	public void enterNetPromoter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -425,6 +1000,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 				driver.switchTo().parentFrame();			
 				
 			}
+
 		}
 	
 	public void questionsLibrary(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
@@ -1003,10 +1579,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-plus']"), "Weight Highest", test);
 		click(driver, testcaseName, By.xpath("//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-plus']"), "Weight Highest", test);
-		
+		waitForJStoLoad(driver, 30);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']"), "Weight Middle", test);
 		click(driver, testcaseName, By.xpath("//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']"), "Weight Middle", test);
-		Thread.sleep(1000);
+		waitForJStoLoad(driver, 30);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='txtNA_0']"), "Weight NA", test);
 		click(driver, testcaseName, By.xpath("//input[@name='txtNA_0']"), "Weight NA", test);
 		setText(driver, testcaseName, By.xpath("//input[@name='txtNA_0']"), "NA", "Weight NA", test);

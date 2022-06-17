@@ -49,6 +49,9 @@ public class SMXPage_TC extends SuiteBase {
 	}
 
 
+		//Anas comment
+		//Vivek Comment
+
 		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
 		public void Smoke_TC2(LinkedHashMap<String, String> data) throws Exception {
 			TestCaseName = getData(data, "TestCaseName");
@@ -184,7 +187,539 @@ public class SMXPage_TC extends SuiteBase {
 
 		}
 	
+		
+		
+		
+		
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC19(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("surveyname", getData(data, "surveyname"));
+			param.put("secondarylanguage", getData(data, "secondarylanguage"));
+			param.put("RadioButton",getData(data, "RadioButton"));
+			param.put("primarylanguage", getData(data, "primarylanguage"));
+			param.put("AnswerOptions", getData(data, "AnswerOptions"));
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.createPoll(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC20(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("surveyname", getData(data, "surveyname"));
+			param.put("imageLocation", getData(data, "secondarylanguage"));
+			param.put("surveyType", getData(data, "surveyType"));
+			
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.logoUploadFromComputer(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC21(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("surveyname", getData(data, "surveyname"));
+			param.put("surveyType", getData(data, "surveyType"));
+		
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.useAccountLogo(getDriver(), param, test);
+					
+				}
+			}
+
+		}
 	
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC22(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("foldername", getData(data, "foldername"));
+			param.put("ThanksMsg", getData(data, "ThanksMsg"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.copyFromAnotherProject(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC23(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("primarylanguage", getData(data, "primarylanguage"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.insertFromUrl(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC24(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("imageLocation1", getData(data, "RadioButton"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.uploadingJPGFile(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC25(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("imageLocation2", getData(data, "RadioButton2"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.uploadingGIFFile(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC26(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.alignOfLogoLeft(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC27(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));	
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.alignOfLogoRight(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC28(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("imageLocation3", getData(data, "CheckBox"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.uploadingJPEGFile(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC29(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("imageLocation4", getData(data, "DropDown"));
+			param.put("DOB", getData(data, "DOB"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.logoGreaterThan5mb(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC30(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("imageLocation5", getData(data, "Gender"));
+			param.put("Grade", getData(data, "Grade"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.unSupportedFileForLogo(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC31(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("textbox", getData(data, "textbox"));
+			param.put("surveyType", getData(data, "surveyType"));
+			param.put("surveyname", getData(data, "surveyname"));
+			
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.deleteUseAccountLogo(getDriver(), param, test);
+					
+				}
+			}
+
+		}
+		
+		
+		
 
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
