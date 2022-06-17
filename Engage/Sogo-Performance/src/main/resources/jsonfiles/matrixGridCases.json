@@ -1,0 +1,24 @@
+{
+  "case 1" : {
+    "case description" : "Add a Matric Grid Button by using double click action.",
+    "case validation" : "",
+    "isAnswerlibrary" : [ "true", "true", "true", "true", "true" ],
+    "answerlibraryList" : [ "Endorsement", "Endorsement", "Endorsement", "Endorsement", "Endorsement" ],
+    "isDataPop" : false,
+    "dataPopValue" : "",
+    "isMandatory" : false,
+    "isEncourage" : false,
+    "isQuestionHint" : false,
+    "questionHintText" : "",
+    "isRandomQuestiontext" : false,
+    "gridHeader" : "Add a Matrix Grid Button by using double click action.",
+    "subquestionCount" : 10,
+    "isRandomSubQuestiontext" : false,
+    "subQuestionText" : "Quality of food/~/Quality of Service/~/Atmosphere/~/Food and Drink Menu/~/Facilities/~/Hospitility/~/Front Desk/~/Speed of Delivery/~/Value for Money/~/Support Availability",
+    "questionCount" : 5,
+    "questionText" : [ "Add a matrix grid radio button.", "Add a matrix grid checkbox button.", "Add a matrix grid drop down button.", "Add a matrix grid rating radio button.", "Add a matrix grid rating drop down button." ],
+    "questionTypes" : [ "RG", "RG", "RG", "RG", "RG" ],
+    "isMultimedia" : false,
+    "action" : "Double Click"
+  }
+}

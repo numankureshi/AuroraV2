@@ -1,0 +1,34 @@
+{
+	"case 1": {
+		"case description": "Add a Drop down by using double click action.",
+		"case validation": "",
+		"isAnswerlibrary": true,
+		"answerlibrary": "Countries",
+		"isTypeManually": false,
+		"isListView": false,
+		"isNormalView": true,
+		"isOtherPleaseSpecify": false,
+		"isOtherPleaseSpecifyDefaultLable": false,
+		"otherPleaseSpecifyLableText": "",
+		"otherPleaseSpecifyWidth": "",
+		"isDataPop": false,
+		"dataPopValue": "",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isRandomQuestiontext": false,
+		"question text": "Add a Drop down by using double click action.",
+		"isRandomAnsoptiontext": false,
+		"answerOptionsText": [
+		],
+		"isRearrangeAnswers": false,
+		"sortBy": "",
+		"answerSequence": "As Entered",
+		"ansColumns": "1 Column",
+		"displayOrder": "Vertical",
+		"isMultimedia": false,
+		"action": "Double Click"
+	}
+	
+}

@@ -1,0 +1,19 @@
+{
+  "case 1" : {
+    "case description" : "Add a attachment by using double click action.",
+    "case validation" : "",
+    "isQuestionlibrary" : false,
+    "questionlibrary" : "",
+    "isTypeManually" : true,
+    "isMandatory" : false,
+    "isQuestionHint" : false,
+    "questionHintText" : "",
+    "isRandomQuestiontext" : false,
+    "question text" : "Add a attachment by using double click action.",
+    "attachmentsCount" : 5,
+    "attachmentsSubQues" : [ "Attachment 1", "Attachment 2", "Attachment 3", "Attachment 4", "Attachment 5" ],
+    "format" : [ "", "", "", "", "" ],
+    "isMultimedia" : false,
+    "action" : "Double Click"
+  }
+}

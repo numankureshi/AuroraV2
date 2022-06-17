@@ -1,0 +1,20 @@
+{
+	"case 1": {
+		"case description": "Add a Multiple Text Box question by using double click action.",
+		"case validation": "",
+		"isDataPop": false,
+		"dataPopValue": "",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isRandomQuestiontext": false,
+		"question text": "Add a Multiple Text Box question by using double click action.",
+		"subquestionCount": 50,
+		"format": "General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General;General",
+		"isRandomSubQuestiontext": true,
+		"subQuestionText" : "",
+		"isMultimedia": false,
+		"action": "Double Click"
+	}
+}

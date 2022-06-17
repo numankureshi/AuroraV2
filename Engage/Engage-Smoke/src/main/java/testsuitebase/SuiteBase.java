@@ -160,12 +160,7 @@ public class SuiteBase {
 			options.addArguments("disable-infobars");
 			options.addArguments("--ignore-certificate-errors");
 
-			DesiredCapabilities cap = DesiredCapabilities.chrome();
-			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-			cap.setCapability(ChromeOptions.CAPABILITY, options);
-
-			driver.set(new ChromeDriver(cap));
+			driver.set(new ChromeDriver(options));
 			Add_Log.info("Chrome Driver instance loaded successfully.");
 
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {
@@ -237,12 +232,7 @@ public class SuiteBase {
 			options.addArguments("disable-infobars");
 			options.addArguments("--ignore-certificate-errors");
 
-			DesiredCapabilities cap = DesiredCapabilities.chrome();
-			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-			cap.setCapability(ChromeOptions.CAPABILITY, options);
-
-			driver.set(new ChromeDriver(cap));
+			driver.set(new ChromeDriver(options));
 			Add_Log.info("Chrome Driver instance loaded successfully.");
 
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("Remote")) {

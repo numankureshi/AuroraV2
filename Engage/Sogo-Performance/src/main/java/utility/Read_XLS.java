@@ -19,6 +19,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -52,6 +53,8 @@ public class Read_XLS {
 	public Read_XLS(String fileLocation) {
 		this.fileLocation = fileLocation;
 		try {
+			// Set MinInflateRatio to 0 to avoid zip bomb error
+			ZipSecureFile.setMinInflateRatio(0);
 			fip = new FileInputStream(fileLocation);
 			book = new XSSFWorkbook(fip);
 			sheet = book.getSheetAt(0);
