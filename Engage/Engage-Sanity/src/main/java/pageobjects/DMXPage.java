@@ -358,6 +358,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, delete_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 //		driver.switchTo().alert().accept();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
+			click(driver, testcaseName, delete_button2, test);
+		}
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
 	}
@@ -833,6 +837,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, send_now, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 60, invitation_sent_exe, test);
+		
 	}
 	
 	public void sendOrScheduleReminderexe(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -924,9 +929,14 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	public void selectCalendar(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		SimpleDateFormat formatter = new SimpleDateFormat("d.MMM.yyyy");  
-		Date date = new Date();  
+		Date date = new Date(); 
 		System.out.println(formatter.format(date));  
 		String today = formatter.format(date);
+		
+//		JsonObject localData = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonFiles\\localData.json", test);
+//		JsonArray last2InvitationSentDateFromEXE = localData.get("localData").getAsJsonArray().get(0).getAsJsonObject().get("last2InvitationSentDateFromEXE").getAsJsonArray();
+//		String today = last2InvitationSentDateFromEXE.get(0).getAsJsonObject().get("previousDate").getAsString();
+		
 		String dates[] = today.split("\\.");
 		waitforElemPresent(driver, testcaseName, 30, calendar, test);
 		click(driver, testcaseName, calendar, test);
@@ -2580,6 +2590,10 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, delete_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		//driver.switchTo().alert().accept();
+		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+			waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
+			click(driver, testcaseName, delete_button2, test);
+		}
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
 		end = System.currentTimeMillis();
