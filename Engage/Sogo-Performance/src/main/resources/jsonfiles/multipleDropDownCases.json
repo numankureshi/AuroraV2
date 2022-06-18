@@ -1,0 +1,36 @@
+{
+	"case 1": {
+		"case description": "Add a Multiple Drop Down question by using double click action.",
+		"case validation": "",
+		"isAnswerlibrary": false,
+		"isTypeManually": false,
+		"isListView": false,
+		"isNormalView": true,
+		"isDataPop": false,
+		"dataPopValue": "",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isRandomQuestiontext": false,
+		"question text": "Add a Multiple Drop Down question by using double click action.",
+		"subquestionCount": 50,
+		"isRandomSubQuestiontext": true,
+		"subQuestionText": "",
+		"isRandomAnsoptiontext": false,
+		"answerOptionsText": [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October"
+		],
+		"isMultimedia": false,
+		"action": "Double Click"
+	}
+}

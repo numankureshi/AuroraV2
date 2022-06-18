@@ -3,11 +3,13 @@ package testsuitebase;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,6 +39,10 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterSuite;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.sogo.performance.SogoNSReading_TC;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -120,6 +126,7 @@ public class SuiteBase {
 		if(Config.getProperty("testBrowser").equalsIgnoreCase("Mozilla")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver.set(new FirefoxDriver());
+			driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(600));
 			Add_Log.info("Firefox Driver instance loaded successfully.");
 		} else if(Config.getProperty("testBrowser").equalsIgnoreCase("IE")) {
 			WebDriverManager.iedriver().setup();
@@ -148,12 +155,7 @@ public class SuiteBase {
 			options.addArguments("disable-infobars");
 			options.addArguments("--ignore-certificate-errors");
 
-			DesiredCapabilities cap = DesiredCapabilities.chrome();
-			cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-			cap.setCapability(ChromeOptions.CAPABILITY, options);
-
-			driver.set(new ChromeDriver(cap));
+			driver.set(new ChromeDriver(options));
 			Add_Log.info("Chrome Driver instance loaded successfully.");
 
 		}
@@ -212,19 +214,15 @@ public class SuiteBase {
 		Add_Log.info("===============Email generation started================");
 		// Create the email message
 		HtmlEmail email = new HtmlEmail();
-		email.setHostName("smtp.gmail.com");
-		email.setSmtpPort(465);
-		/*
-		 * To avoid javax.mail.AuthenticationFailedException, 
-		 * First, make sure you have turned off 2-way authentication of google account 
-		 * Second, allow access for less secure apps- https://myaccount.google.com/lesssecureapps
-		 */
+		email.setHostName(Config.getProperty("smtpHostName"));
+		email.setSmtpPort(Integer.parseInt(Config.getProperty("smtpPort")));
 		email.setAuthenticator(new DefaultAuthenticator(Config.getProperty("authenticatorEmailId"), Config.getProperty("authenticatorPassword")));
-		email.setSSLOnConnect(true);
+		email.setSSLOnConnect(Boolean.parseBoolean(Config.getProperty("sslEncryption")));
+		email.setStartTLSEnabled(Boolean.parseBoolean(Config.getProperty("tlsEncryption")));
 
 		try {
-			email.addTo(Config.getProperty("addToEmail"));
-			email.addCc(Config.getProperty("addCcEmail"));
+			email.addTo(Config.getProperty("addToEmail").split(","));
+			email.addCc(Config.getProperty("addCcEmail").split(","));
 			email.setFrom(Config.getProperty("setFromEmail"), Config.getProperty("setFromName"));
 			email.setSubject(subject);
 
@@ -239,12 +237,14 @@ public class SuiteBase {
 
 			// send the email
 			email.send();
+			
+			Add_Log.info("===============Email sent================");
 		} catch (EmailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		Add_Log.info("===============Email sent================");
+		
 	}
 	
 	public String getIpAddress() {
@@ -269,6 +269,24 @@ public class SuiteBase {
 		return (String) ((JavascriptExecutor)driver).executeScript("return window.location.href");		 
 	}
 	
+	public JsonArray getPerformanceLogs(WebDriver driver) {
+		JsonParser parser = new JsonParser();
+		return (JsonArray) parser.parse((String) ((JavascriptExecutor)driver).executeScript("return JSON.stringify(performance.getEntries());"));
+	}
+	
+	public void getPerformanceLogsFile(WebDriver driver, String filePath) {
+			
+		try {
+			FileWriter fileWriter = new FileWriter(System.getProperty("user.dir") + filePath);
+			Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+			String prettyJson = gson.toJson(getPerformanceLogs(driver));
+			fileWriter.write(prettyJson);
+			fileWriter.flush();
+			fileWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	 @AfterSuite (alwaysRun = true)
 	 public void afterSuite() {

@@ -10,6 +10,9 @@ public interface IHomePage {
 	String ALL_PROJECT_DASHBOARD_IFRAME = "//iframe[@id='iframe1']";
 	WebPageElements all_project_dashboard_iframe = new WebPageElements("All project dashboard Iframe", "xpath", ALL_PROJECT_DASHBOARD_IFRAME);
 	
+	String CLOSE_BUTTON = "//div[@id='dvcloseModal']";
+	WebPageElements close_button = new WebPageElements("Close Dashboard", "xpath", CLOSE_BUTTON);
+	
 	String MAIN_FOLDER = "//img[@class='openMain']";
 	WebPageElements main_folder = new WebPageElements("Main Folder", "xpath", MAIN_FOLDER);
 	
@@ -46,6 +49,24 @@ public interface IHomePage {
 	String NEW_EDIT_ICON = "//div[@id='OverDivEdit'][@style='display: flex;']/span";
 	WebPageElements new_edit_icon = new WebPageElements("Edit Icon", "xpath", NEW_EDIT_ICON);
 	
+	String MORE_ICON = "//div[@id='divSurveyMoreButton'][@style='position: relative; display: flex;']";
+	WebPageElements more_icon = new WebPageElements("More Icon", "xpath", MORE_ICON);
+	
+	String DOWNLOAD = "//div[@class='survey more-button-options top-arrow']/div/span[contains(text(),'Download')]";
+	WebPageElements download = new WebPageElements("Download", "xpath", DOWNLOAD);
+	
+	String PDF = "//div[@class='survey more-button-options top-arrow']//a[@id='pdf']";
+	WebPageElements pdf = new WebPageElements("Adobe PDF", "xpath", PDF);
+	
+	String WORD = "//div[@id='over-div-contents']//a[@id='word']";
+	WebPageElements word = new WebPageElements("MS Word", "xpath", WORD);
+	
+	String SCANNER_READY = "//div[@id='over-div-contents']//a[@id='A1']";
+	WebPageElements scanner_ready = new WebPageElements("Scanner Ready", "xpath", SCANNER_READY);
+	
+	String DELETE = "//div[@class='survey more-button-options top-arrow']/div/span[contains(text(),'Delete')]";
+	WebPageElements delete = new WebPageElements("Delete", "xpath", DELETE);
+	
 	String COPY_ICON = "//div[@id='OverDivCopy']/span";
 	WebPageElements copy_icon = new WebPageElements("Copy Icon", "xpath", COPY_ICON);
 	
@@ -63,6 +84,15 @@ public interface IHomePage {
 	
 	String NEW_COPY_IN_SAME_ACC = "(//a[@id='lnkBtnCopyToSameAccount'])[2]";
 	WebPageElements new_copy_in_same_acc = new WebPageElements("Copy in Same Account Option", "xpath", NEW_COPY_IN_SAME_ACC);
+	
+	String COPY_IN_DIFF_ACC = "//div[@id='over-div-contents']//a[@id='lnkBtnCopyToDifferentAccount']";
+	WebPageElements copy_in_diff_acc = new WebPageElements("Copy into Different Account", "xpath", COPY_IN_DIFF_ACC);
+	
+	String USERID_COPIED_INTO = "//input[@id='txtCorporateID']";
+	WebPageElements userid_copied_into = new WebPageElements("User ID", "xpath", USERID_COPIED_INTO);
+	
+	String COPY = "//input[@id='btnCopyToDiffAcc']";
+	WebPageElements copy = new WebPageElements("Copy", "xpath", COPY);
 	
 	String FIRST_ROW = "(//div[@class='dRow'])[1]";
 	WebPageElements first_row = new WebPageElements("First Project From All Project", "xpath", FIRST_ROW);

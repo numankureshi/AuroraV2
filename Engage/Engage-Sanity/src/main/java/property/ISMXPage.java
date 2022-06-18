@@ -104,10 +104,20 @@ public interface ISMXPage {
 	String SECONDARY_LANGUAGE_SWITCH = "//label[@id='rbAdditionalLanguageToggle']";
 	WebPageElements secondary_language_switch = new WebPageElements("Secondary Language Switch", "xpath", SECONDARY_LANGUAGE_SWITCH);
 	
-	
+	String BLANK_PAGE = "//div[@class='blank-page ui-sortable-handle']";
+	WebPageElements blank_page = new WebPageElements("Blank Question Manager Page", "xpath", BLANK_PAGE);
 	
 	String DESCRIPTION_BUTTON = "//div[contains(text(),'Descriptive Text')]/parent::div[@id='dvcom']";
 	WebPageElements description_button = new WebPageElements("Description Button", "xpath", DESCRIPTION_BUTTON);
+	
+	String QUESTION_HINT = "//input[@id='chkQuestionTip']";
+	WebPageElements question_hint = new WebPageElements("Question Hint Check Box", "xpath", QUESTION_HINT);
+	
+	String QUESTION_HINT_TB = "//textarea[@id='txtQuestionTip']";
+	WebPageElements question_hint_tb = new WebPageElements("Question Hint Text Area", "xpath", QUESTION_HINT_TB);
+	
+	String ADD_MEDIA = "//a[@id='advEdit']";
+	WebPageElements add_media = new WebPageElements("Add Media", "xpath", ADD_MEDIA);
 	
 	String NET_PROMOTER_BUTTON = "//div[contains(text(),'Net Promoter')]/parent::div[@id='dvrat_NPS']";
 	WebPageElements net_promoter_score_button = new WebPageElements("Net Promoter Button", "xpath", NET_PROMOTER_BUTTON);
@@ -178,6 +188,9 @@ public interface ISMXPage {
 	String LISTBOX_BUTTON = "//div[contains(text(),'List Box')]/parent::div[@id='dvmslb']";
 	WebPageElements listbox_button = new WebPageElements("List Box Button", "xpath", LISTBOX_BUTTON);
 	
+	String NUMERIC_ALLOCATION = "//div[contains(text(),'Numeric Allocation')]/parent::div[@id='dvNumeric']";
+	WebPageElements numeric_allocation = new WebPageElements("Numeric Allocation", "xpath", NUMERIC_ALLOCATION);
+	
 	String RATING_RADIO_BUTTON = "//div[contains(text(),'Rating Radio Grid')]/parent::div[@id='dvrrg']";
 	WebPageElements rating_radio_button = new WebPageElements("Rating Radio Grid Button", "xpath", RATING_RADIO_BUTTON);
 	
@@ -192,6 +205,21 @@ public interface ISMXPage {
 	
 	String IFRAME_BUTTON = "//iframe[@class='cke_wysiwyg_frame cke_reset']";
 	WebPageElements iframe_button = new WebPageElements("Iframe Button", "xpath", IFRAME_BUTTON);
+	
+	String IFRAME_ADD_MEDIA = "//iframe[starts-with(@src,'advImMedia.aspx?')]";
+	WebPageElements iframe_add_media = new WebPageElements("Add Media Iframe", "xpath", IFRAME_ADD_MEDIA);
+	
+	String BROWSE_LABEL = "//label[text()='browse']";
+	WebPageElements browse_label = new WebPageElements("Browse", "xpath", BROWSE_LABEL);
+	
+//	String BROWSE = "//input[@id='btnUploadImageOrMedia']";
+//	WebPageElements browse = new WebPageElements("Browse", "xpath", BROWSE);
+	
+	String BROWSE = "//div/input[@type='file']";
+	WebPageElements browse = new WebPageElements("Browse", "xpath", BROWSE);
+	
+	String SAVE_AND_GO_BACK = "//input[@id='btnSaveGoToQM']";
+	WebPageElements save_and_go_back = new WebPageElements("Save and Go Back", "xpath", SAVE_AND_GO_BACK);
 	
 	String IFRAME_ADD_MANUALLY = "//iframe[contains(@src,'PresetList_AddManually.aspx')]";
 	WebPageElements iframe_add_manually = new WebPageElements("Iframe Button", "xpath", IFRAME_ADD_MANUALLY);
@@ -257,7 +285,10 @@ public interface ISMXPage {
 	WebPageElements answers_library = new WebPageElements("Answer Library Button", "xpath", ANSWERS_LIBRARY);
 	
 	String ANSWERS_LIBRARY_NEW = "//div[@class='ansLibraryContainer']";
-	WebPageElements answers_library_new = new WebPageElements("Answer Library", "xpath", ANSWERS_LIBRARY_NEW);
+	WebPageElements answers_library_new = new WebPageElements("Answer Library Menu", "xpath", ANSWERS_LIBRARY_NEW);
+	
+	String ANSWERS_LIBRARY_GRID = "//div[@id='menu_0']/div/div[@class='ansLibraryContainer']";
+	WebPageElements answers_library_grid = new WebPageElements("Answer Library Menu", "xpath", ANSWERS_LIBRARY_GRID);
 	
 	String SEARCH_ANS_LIB = "//input[@id='txtSearchAnsLib']";
 	WebPageElements search_ans_lib = new WebPageElements("Search", "xpath", SEARCH_ANS_LIB);
@@ -288,6 +319,12 @@ public interface ISMXPage {
 	
 	String OTHER_CHCKBOX2 = "//input[@id='CHK_Other']/following-sibling::label[text()='Include \"Other\" text responses']";
 	WebPageElements other_checkbox2 = new WebPageElements("Other checkbox", "xpath", OTHER_CHCKBOX2);
+	
+	String OTHER_PLZ_TEXTBOX = "//input[@id='TB_Other']";
+	WebPageElements other_plz_textbox = new WebPageElements("Other Please Specify Lable Text Box", "xpath", OTHER_PLZ_TEXTBOX);
+	
+	String SELECT_OTHER_PLZ_TB_WIDTH = "//select[@id='DDL_TextboxWidth_Other']";
+	WebPageElements select_other_plz_tb_width = new WebPageElements("Other Please Specify Width Drop Down", "xpath", SELECT_OTHER_PLZ_TB_WIDTH);
 	
 	String NONE_OF_ABOVE = "//label[text()='Include \"None of the above\" ']";
 	WebPageElements none_of_above = new WebPageElements("None of Above", "xpath", NONE_OF_ABOVE);
@@ -380,6 +417,15 @@ public interface ISMXPage {
 	String QUESTION_MENU_MORE_OPTIONS = "//div[contains(@class,'content-wrapper')][contains(@onclick,'funcShowMoreMenu(this);')]";
 	WebPageElements question_menu_more_options = new WebPageElements("Question Menu - More Options", "xpath", QUESTION_MENU_MORE_OPTIONS);
 	
+	String ANSWER_QUOTA = "//a[text()='Set Answer Quota']";
+	WebPageElements answer_quota = new WebPageElements("Set Answer Quota", "xpath", ANSWER_QUOTA);
+	
+	String IFRAME_ANSWER_QUOTA = "//iframe[contains(@src,'Qmgmt.aspx?')]";
+	WebPageElements iframe_answer_quota = new WebPageElements("Set Answer Quota - Iframe", "xpath", IFRAME_ANSWER_QUOTA);
+	
+	String RESET = "//a[text()='Reset']";
+	WebPageElements reset = new WebPageElements("Reset", "xpath", RESET);
+	
 	String QUESTION_MENU_DELETE_OPTION = "//span[contains(text(),'Delete')][@class='caption']";
 	WebPageElements question_menu_delete_option = new WebPageElements("Question Menu - Delete Option", "xpath", QUESTION_MENU_DELETE_OPTION);
 	
@@ -454,6 +500,9 @@ public interface ISMXPage {
 	
 	String LIST_OF_SURVEY_PAGES = "//a[starts-with(text(),'Page')][@class='arrw']";
 	WebPageElements list_of_survey_pages = new WebPageElements("Survey Pages", "xpath", LIST_OF_SURVEY_PAGES);
+	
+	String ALL_PAGES = "//a[starts-with(text(),'All Pages')]";
+	WebPageElements all_pages = new WebPageElements("All Pages", "xpath", ALL_PAGES);
 		
 	String PAGE_ACTIONS = "//div[@title='Page Actions']";
 	WebPageElements page_actions = new WebPageElements("Page Actions", "xpath", PAGE_ACTIONS);
@@ -461,8 +510,17 @@ public interface ISMXPage {
 	String MOVE_PAGE = "//a[@id='ancmove']";
 	WebPageElements move_page = new WebPageElements("Page Actions - Move Page", "xpath", MOVE_PAGE);
 	
+	String COPY_PAGE = "//a[@id='anccopy']";
+	WebPageElements copy_page = new WebPageElements("Page Actions - Copy Page", "xpath", COPY_PAGE);
+	
+	String DELETE_PAGE = "//a[@id='ancdelete']";
+	WebPageElements delete_page = new WebPageElements("Page Actions - Delete Page", "xpath", DELETE_PAGE);
+	
 	String MOVE_PAGE_OPTIONS = "//select[@id='LBMovePage']";
 	WebPageElements move_page_options = new WebPageElements("Move Page Options", "xpath", MOVE_PAGE_OPTIONS);
+	
+	String COPY_PAGE_OPTIONS = "//select[@id='LBCopyPage']";
+	WebPageElements copy_page_options = new WebPageElements("Copy Page Options", "xpath", COPY_PAGE_OPTIONS);
 	
 	String LIST_OF_QUESTION_IN_SURVEY = "//div[contains(@class,'ui-sortable-handle')][@content='item']";
 	WebPageElements list_of_question_in_survey = new WebPageElements("Total Questions in Survey", "xpath", LIST_OF_QUESTION_IN_SURVEY);
@@ -482,73 +540,372 @@ public interface ISMXPage {
 	String INCREASE_SRS_SUBQUE = "//div[contains(@onclick,'fnIncreaseSRSSubQuestion') and @class='step-plus']";
 	WebPageElements increase_srs_subque = new WebPageElements("Increase SRS Question Button", "xpath", INCREASE_SRS_SUBQUE);
 	
+	String EXPAND_NUM_OF_QUE = "//div[@id='divNumberOfQuestions']//div[@class='txt_opts_mg']";
+	WebPageElements expand_num_of_que = new WebPageElements("Number of Question", "xpath", EXPAND_NUM_OF_QUE);
 	
+	String EXPAND_NUM_OF_SUBQUE = "//div[@id='stepperNumberOfSubQuestions']/parent::div[@class='txt_opts_mg']";
+	WebPageElements expand_num_of_subque = new WebPageElements("Number of SubQuestion", "xpath", EXPAND_NUM_OF_SUBQUE);
+	
+	String ADD_SUBQUE = "//div[contains(@onclick,'addSubQuestions(1)') and @class='step-plus']";
+	WebPageElements add_subque = new WebPageElements("Add Sub-question Button", "xpath", ADD_SUBQUE);
+	
+	String REMOVE_SUBQUE = "//div[contains(@onclick,'deleteOneRow()') and @class='step-minus']";
+	WebPageElements remove_subque = new WebPageElements("Remove Sub-question Button", "xpath", REMOVE_SUBQUE);
+	
+	String ADD_QUE = "//div[@id='stepperNumberOfQuestions']/div[@class='step-plus']";
+	WebPageElements add_que = new WebPageElements("Add Question Button", "xpath", ADD_QUE);
+	
+	String REMOVE_QUE = "//div[@id='stepperNumberOfQuestions']/div[@class='step-minus']";
+	WebPageElements remove_que = new WebPageElements("Remove Question Button", "xpath", REMOVE_QUE);
+	
+	String MANDATORY_BTN_LABEL = "//label[@id='lblMandatory']";
+	WebPageElements mandatory_btn_label = new WebPageElements("Mandatory Button Label", "xpath", MANDATORY_BTN_LABEL);
+	
+	String MANDATORY_BTN = "//input[@id='chkMandatory']";
+	WebPageElements mandatory_btn = new WebPageElements("Mandatory Button", "xpath", MANDATORY_BTN);
+	
+	String ENCOURAGE_BTN_LABEL = "//label[@id='lblChkSoftRequired']";
+	WebPageElements encourage_btn_label = new WebPageElements("Encouraged Button Label", "xpath", ENCOURAGE_BTN_LABEL);
+	
+	String ENCOURAGE_BTN = "//input[@id='chkSoftRequired']";
+	WebPageElements encourage_btn = new WebPageElements("Encouraged Button", "xpath", ENCOURAGE_BTN);
+	
+	String ENCOURAGE_MSG_TB = "//textarea[@id='txtSoftRequiredErrorMsg']";
+	WebPageElements encourage_msg_tb = new WebPageElements("Encouraged Message Text Box", "xpath", ENCOURAGE_MSG_TB);
+	
+	String SELECT_TB_FORMAT = "//select[@id='DDL_AnswerSubType']";
+	WebPageElements select_tb_format = new WebPageElements("TB Format Drop Down", "xpath", SELECT_TB_FORMAT);
+	
+	String MAX_WORDS = "//input[@id='TB_MaximumWords']";
+	WebPageElements max_words = new WebPageElements("Maximum characters allowed Text Box", "xpath", MAX_WORDS);
+	
+	String CURRECY_SYMBOL = "//label[@id='lblcurrency']";
+	WebPageElements currency_symbol = new WebPageElements("Append Currency Symbol", "xpath",CURRECY_SYMBOL);
+	
+	String RE_ENTER_EMAIL = "//label[@id='lblreEnterText']";
+	WebPageElements re_enter_email = new WebPageElements("Re-Enter Email Address Label", "xpath",RE_ENTER_EMAIL);
+	
+	String ALLOW_INT_ONLY = "//label[@id='lblAllowOnlyIntegerValue']";
+	WebPageElements allow_int_only = new WebPageElements("Allow Integer Only Label", "xpath",ALLOW_INT_ONLY);
+	
+	String FROM_RAGE_TB = "//input[@id='TB_NumRangeFrom']";
+	WebPageElements from_range_tb = new WebPageElements("From Field", "xpath",FROM_RAGE_TB);
+	
+	String CUSTOM_FORMAT_TB = "//input[@id='txt_CustomFormat']";
+	WebPageElements custom_format_tb = new WebPageElements("Custom Format Textbox", "xpath",CUSTOM_FORMAT_TB);
+	
+	String VALIDATION_DD = "//div[@id='layer_errormsg']";
+	WebPageElements validation_dd = new WebPageElements("Validation Message Drop down", "xpath",VALIDATION_DD);
+	
+	String DATA_POPULATION_DD = "//div[contains(text(),'Data Population')][@class='txt_opts Data_pop']";
+	WebPageElements data_population_dd = new WebPageElements("Data Population Drop down", "xpath", DATA_POPULATION_DD);
+	
+	String DATA_POPULATION_MENU = "//ul[@id='Ul1']";
+	WebPageElements data_population_menu = new WebPageElements("Data Population Menu", "xpath", DATA_POPULATION_MENU);
+	
+	String PRE_READ = "//label[@for='rdPrePopReadOnly']";
+	WebPageElements pre_read = new WebPageElements("Pre Read Only", "xpath", PRE_READ);
+	
+	String PRE_EDIT = "//label[@for='rdPrePopEditable']";
+	WebPageElements pre_edit = new WebPageElements("Pre Edit", "xpath", PRE_EDIT);
+	
+	String PRE_HIDDEN = "//label[@for='rdPrePopHidden']";
+	WebPageElements pre_hidden = new WebPageElements("Pre Hidden", "xpath", PRE_HIDDEN);
+	
+	String POST_SHOW = "//label[@for='rdPrePopShow']";
+	WebPageElements post_show = new WebPageElements("Post Show", "xpath", POST_SHOW);
+	
+	String POST_HIDE = "//label[@for='rdPrePopHide']";
+	WebPageElements post_hide = new WebPageElements("Post Hide", "xpath", POST_HIDE);
+	
+	String SHORT_ANS_TEXT_CB = "//label[@id='lblSingleLine']";
+	WebPageElements short_ans_text_cb = new WebPageElements("Allow only short answer text", "xpath", SHORT_ANS_TEXT_CB);
+	
+	String CROSS_BUTTON = "//div[@onclick='closeTabPanel(this)']";
+	WebPageElements cross_button = new WebPageElements("Close Preview Question", "xpath", CROSS_BUTTON);
+	
+	String DESCRIPTION_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='com']";
+	WebPageElements description_sample = new WebPageElements("Description Sample Preview", "xpath", DESCRIPTION_SAMPLE);
+	
+	String NPS_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='ratescale_NPS']";
+	WebPageElements nps_sample = new WebPageElements("NPS Sample Preview", "xpath", NPS_SAMPLE);
+	
+	String TB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='tb']";
+	WebPageElements tb_sample = new WebPageElements("Text Box Sample Preview", "xpath", TB_SAMPLE);
+	
+	String RB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='rb']";
+	WebPageElements rb_sample = new WebPageElements("Radio Button Sample Preview", "xpath", RB_SAMPLE);
+	
+	String CB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='mscb']";
+	WebPageElements cb_sample = new WebPageElements("Check Box Sample Preview", "xpath", CB_SAMPLE);
+	
+	String DD_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='dd']";
+	WebPageElements dd_sample = new WebPageElements("Drop Down Sample Preview", "xpath", DD_SAMPLE);
+	
+	String DEMO_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='demograph']";
+	WebPageElements demo_sample = new WebPageElements("Demographics Sample Preview", "xpath", DEMO_SAMPLE);
+	
+	String RATING_SCALE_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='ratescale']";
+	WebPageElements rating_scale_sample = new WebPageElements("Rating scale Sample Preview", "xpath", RATING_SCALE_SAMPLE);
+	
+	String SYMBOL_RATING_SCALE_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='GraphicalRating']";
+	WebPageElements symbol_rating_scale_sample = new WebPageElements("Symbol rating scale Sample Preview", "xpath", SYMBOL_RATING_SCALE_SAMPLE);
+	
+	String LIKE_DISLIKE_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='likeDisLike']";
+	WebPageElements like_dislike_sample = new WebPageElements("Like/Dislike Sample Preview", "xpath", LIKE_DISLIKE_SAMPLE);
+	
+	String DATE_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='date']";
+	WebPageElements date_sample = new WebPageElements("Date Sample Preview", "xpath", DATE_SAMPLE);
+	
+	String RANKING_SAMPLE = "//div[starts-with(@class,'TabbedPanelsContent')][@id='rank']";
+	WebPageElements ranking_sample = new WebPageElements("Ranking Sample Preview", "xpath", RANKING_SAMPLE);
+	
+	String IMC_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='imgChoice']";
+	WebPageElements imc_sample = new WebPageElements("Image Choice Sample Preview", "xpath", IMC_SAMPLE);
+	
+	String MTB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='mtb']";
+	WebPageElements mtb_sample = new WebPageElements("Multiple Text Box Sample Preview", "xpath", MTB_SAMPLE);
+	
+	String MDD_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='mdd']";
+	WebPageElements mdd_sample = new WebPageElements("Multiple Drop Down Sample Preview", "xpath", MDD_SAMPLE);
+	
+	String RG_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='radioGrid']";
+	WebPageElements rg_sample = new WebPageElements("Radio Grid Sample Preview", "xpath", RG_SAMPLE);
+	
+	String CBG_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='checkBoxGrid']";
+	WebPageElements cbg_sample = new WebPageElements("Check Box Grid Sample Preview", "xpath", CBG_SAMPLE);
+	
+	String RRG_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='ratingRadioGrid']";
+	WebPageElements rrg_sample = new WebPageElements("Rating Radio Grid Sample Preview", "xpath", RRG_SAMPLE);
+	
+	String RDDG_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='ratingDropDownGrid']";
+	WebPageElements rddg_sample = new WebPageElements("Rating Drop Down Grid Sample Preview", "xpath", RDDG_SAMPLE);
+	
+	String RSG_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='ratingScaleGrid']";
+	WebPageElements rsg_sample = new WebPageElements("Rating Scale Grid Sample Preview", "xpath", RSG_SAMPLE);
+	
+	String HRB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='hrb']";
+	WebPageElements hrb_sample = new WebPageElements("Horizontal Sample Preview", "xpath", HRB_SAMPLE);
+	
+	String LB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='mslb']";
+	WebPageElements lb_sample = new WebPageElements("List Box Sample Preview", "xpath", LB_SAMPLE);
+	
+	String RRB_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='raterb']";
+	WebPageElements rrb_sample = new WebPageElements("Rating Radio Button Sample Preview", "xpath", RRB_SAMPLE);
+	
+	String RDD_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='ratedd']";
+	WebPageElements rdd_sample = new WebPageElements("Rating Drop Down Sample Preview", "xpath", RDD_SAMPLE);
+	
+	String ATTACHMENT_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='attachment']";
+	WebPageElements attachment_sample = new WebPageElements("Attachment Sample Preview", "xpath", ATTACHMENT_SAMPLE);
+	
+	String SELECT_ATTACHMENT_SUBQUES = "//select[@id='DdlTotalControls_AT']";
+	WebPageElements select_attachment_subques = new WebPageElements("Attachment Subquestion Drop down", "xpath", SELECT_ATTACHMENT_SUBQUES);
+	
+	String NORMAL_VIEW = "//a[@id='swtNw']";
+	WebPageElements noraml_view = new WebPageElements("Normal View", "xpath", NORMAL_VIEW);
+	
+	String LIST_VIEW = "//a[@id='swtLw']";
+	WebPageElements list_view = new WebPageElements("List View", "xpath", LIST_VIEW);
+	
+	String NORMAL_VIEW_TEXT_AREA = "//textarea[@id='lstView']";
+	WebPageElements noraml_view_text_area = new WebPageElements("Normal View - Text Area", "xpath", NORMAL_VIEW_TEXT_AREA);
+	
+	String ADD_MTB_SUBQUE = "//div[@title='Add'][contains(@onclick,'fnAddMTBQuestion')]";
+	WebPageElements add_mtb_subque = new WebPageElements("Add MTB Question", "xpath", ADD_MTB_SUBQUE);
+	
+	String NUMBER_OF_DROP_DOWN = "//select[@id='DdlTotalControls_MD']";
+	WebPageElements number_of_drop_down = new WebPageElements("Number of drop down", "xpath", NUMBER_OF_DROP_DOWN);
+	
+	String DEFAULT_ANS_OPTS_IN_GRID = "//input[starts-with(@value,'Choice')]";
+	WebPageElements default_ans_opts_in_grid = new WebPageElements("Default Answer Options", "xpath", DEFAULT_ANS_OPTS_IN_GRID);
+	
+	String LOWEST_TEXT_FIELD = "//input[@id='txtGrid_0_Lowest']";
+	WebPageElements lowest_text_field = new WebPageElements("Lowest Text Field", "xpath", LOWEST_TEXT_FIELD);
+	
+	String LOWEST_VALUE_FIELD = "//input[@id='ddlRSLow_0']";
+	WebPageElements lowest_value_field = new WebPageElements("Lowest Field Value", "xpath", LOWEST_VALUE_FIELD);
+	
+	String LOWEST_VALUE_STEP_UP = "//input[@name='ddlRSLow_0']/following-sibling::div[@class='step-plus']";
+	WebPageElements lowest_value_step_up = new WebPageElements("Lowest Field Step Up", "xpath", LOWEST_VALUE_STEP_UP);
+	
+	String LOWEST_VALUE_STEP_DOWN = "//input[@name='ddlRSLow_0']/following-sibling::div[@class='step-minus']";
+	WebPageElements lowest_value_step_down = new WebPageElements("Lowest Field Step Down", "xpath", LOWEST_VALUE_STEP_DOWN);
+	
+	String MIDDLE_TEXT_FIELD = "//input[@id='txtGrid_0_Middle']";
+	WebPageElements middle_text_field = new WebPageElements("Middle Text Field", "xpath", MIDDLE_TEXT_FIELD);
+	
+	String MIDDLE_VALUE_FIELD = "//input[@id='txtRSMid_0']";
+	WebPageElements middle_value_field = new WebPageElements("Middle Field Value", "xpath", MIDDLE_VALUE_FIELD);
+	
+	String MIDDLE_VALUE_STEP_UP = "//input[@name='txtRSMid_0']/following-sibling::div[@class='step-plus customStep']";
+	WebPageElements middle_value_step_up = new WebPageElements("Middle Field Step Up", "xpath", MIDDLE_VALUE_STEP_UP);
+	
+	String MIDDLE_VALUE_STEP_DOWN = "//input[@name='txtRSMid_0']/following-sibling::div[@class='step-minus customStep']";
+	WebPageElements middle_value_step_down = new WebPageElements("Middle Field Step Down", "xpath", MIDDLE_VALUE_STEP_DOWN);
+	
+	String HIGHEST_TEXT_FIELD = "//input[@id='txtGrid_0_Highest']";
+	WebPageElements highest_text_field = new WebPageElements("Highest Text Field", "xpath", HIGHEST_TEXT_FIELD);
+	
+	String HIGHEST_VALUE_FIELD = "//input[@id='ddlRSHigh_0']";
+	WebPageElements highest_value_field = new WebPageElements("Highest Field Value", "xpath", HIGHEST_VALUE_FIELD);
+	
+	String HIGHEST_VALUE_STEP_UP = "//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-plus']";
+	WebPageElements highest_value_step_up = new WebPageElements("Highest Field Step Up", "xpath", HIGHEST_VALUE_STEP_UP);
+	
+	String HIGHEST_VALUE_STEP_DOWN = "//input[@name='ddlRSHigh_0']/following-sibling::div[@class='step-minus']";
+	WebPageElements highest_value_step_down = new WebPageElements("Highest Field Step Down", "xpath", HIGHEST_VALUE_STEP_DOWN);
+	
+	String NA_TEXT_FIELD = "//input[@name='txtNA_0']";
+	WebPageElements na_text_field = new WebPageElements("N/A Text Field", "xpath", NA_TEXT_FIELD);
+	
+	String REARRANGE_ANS = "//div[text()='Rearrange Answers']";
+	WebPageElements rearrange_ans = new WebPageElements("Rearrange Answers", "xpath", REARRANGE_ANS);
+	
+	String REARRANGE_ANS_TEXT = "//span[text()='Drag and drop answers to rearrange']";
+	WebPageElements rearrange_ans_text = new WebPageElements("Drag and drop answers to rearrange", "xpath", REARRANGE_ANS_TEXT);
+	
+	String REARRANGE_ANS_MENU = "//div[@id='updatedRearrnge']";
+	WebPageElements rearrange_ans_menu = new WebPageElements("Rearrange Answer Options", "xpath", REARRANGE_ANS_MENU);
+	
+	String ATOZ_SORT = "//a[@id='sortRearrangeA2ZLink']";
+	WebPageElements atoz_sort = new WebPageElements("Sort By A to Z Link", "xpath", ATOZ_SORT);
+	
+	String ZTOA_SORT = "//a[@id='sortRearrangeZ2ALink']";
+	WebPageElements ztoa_sort = new WebPageElements("Sort By Z to A Link", "xpath", ZTOA_SORT);
+	
+	String DONE_BTN = "//input[@id='btnSaveRearrange']";
+	WebPageElements done_btn = new WebPageElements("Done", "xpath", DONE_BTN);
+	
+	String ANSWER_SEQ = "//*[@id='divAnsSequ']/div[1]";
+	WebPageElements answer_seq = new WebPageElements("Answer Sequence", "xpath", ANSWER_SEQ);
+	
+	String ROTATE_LABEL = "//label[@for='rdAnsSeqRotate']";
+	WebPageElements rotate_label = new WebPageElements("Rotate", "xpath", ROTATE_LABEL);
+	
+	String RANDOMIZE_LABEL = "//label[@for='rdAnsSeqRandomize']";
+	WebPageElements randomize_label = new WebPageElements("Randomize", "xpath", RANDOMIZE_LABEL);
+	
+	String ADD_MORE = "//a[@id='addmore']";
+	WebPageElements add_more = new WebPageElements("Add +10 Answer Option", "xpath", ADD_MORE);
+	
+	String ANS_LABEL0 = "//input[@id='txtNum0']";
+	WebPageElements ans_label0 = new WebPageElements("Answe lable for 0th field", "xpath", ANS_LABEL0);
+	
+	String ANS_LABEL10 = "//input[@id='txtNum10']";
+	WebPageElements ans_label10 = new WebPageElements("Answe lable for 10th field", "xpath", ANS_LABEL10);
+	
+	String TEXT_AND_TRANSLATION = "//span[@id='ctl08_linkEditMultiSurvey']";
+	WebPageElements text_and_translation = new WebPageElements("Text and Translation", "xpath", TEXT_AND_TRANSLATION);
+	
+	String TEXT_AND_TRANSLATION_MENU = "//div[@id='ctl08_ulSecLang']";
+	WebPageElements text_and_translation_menu = new WebPageElements("Text and Translation Menu", "xpath", TEXT_AND_TRANSLATION_MENU);
+	
+	String LANGUAGE_DROPDOWN = "//div[@id='ctl46_dvLangText']";
+	WebPageElements language_dropdown = new WebPageElements("Language Drop Down", "xpath", LANGUAGE_DROPDOWN);
+	
+	String AUTO_TRANSLATE = "//input[@id='Button5']";
+	WebPageElements auto_translate = new WebPageElements("Auto Translate", "xpath", AUTO_TRANSLATE);
+	
+	String ALL_TRANSLATE = "//a[@id='A1']";
+	WebPageElements all_translate = new WebPageElements("All Questions and messages", "xpath", ALL_TRANSLATE);
+	
+	String SAVE_BTN = "//input[@id='btnSave']";
+	WebPageElements save_btn = new WebPageElements("Save", "xpath", SAVE_BTN);
+	
+	String SAVE_BTN2 = "//input[@id='btnsave']";
+	WebPageElements save_btn2 = new WebPageElements("Save", "xpath", SAVE_BTN2);
+	
+	String RESET_TRANSLATION = "//input[@id='btnDeleteSurvey']";
+	WebPageElements reset_translation = new WebPageElements("Reset Translation", "xpath", RESET_TRANSLATION);
+	
+	String LOGIC = "//div[@id='ctl08_divLogic']";
+	WebPageElements logic = new WebPageElements("Logic Button", "xpath", LOGIC);
+	
+	String QDL_OPTION = "//div[@id='ctl08_dvPageLevelQDL']";
+	WebPageElements qdl_option = new WebPageElements("Question Display Logic", "xpath", QDL_OPTION);
+	
+	String IFRAME_QDL = "//iframe[contains(@src,'/SMConditionalDisplayLogic/ShowAll?')]";
+	WebPageElements iframe_qdl = new WebPageElements("Question Display Logic Modal", "xpath", IFRAME_QDL);
+	
+	String SELECT_SHOWHIDE_QUESTION = "//select[@id='ddlShowHideQuestions']";
+	WebPageElements select_showhide_question = new WebPageElements("Show-Hide Question Drop Down", "xpath", SELECT_SHOWHIDE_QUESTION);
+	
+	String SELECT_DECISION_QUESTION = "//select[@id='ddlDecisionQuestions']";
+	WebPageElements select_decision_question = new WebPageElements("Decision Question Drop Down", "xpath", SELECT_DECISION_QUESTION);
+	
+	String SELECT_OPERATOR = "//select[@id='ddlOperator']";
+	WebPageElements select_operator = new WebPageElements("Operator Drop Down", "xpath", SELECT_OPERATOR);
+	
+	String SAVE = "//input[@name='btnSave']";
+	WebPageElements save = new WebPageElements("Save", "xpath", SAVE);
+	
+	String CLOSE = "//div[@id='dvwindow']/following-sibling::div";
+	WebPageElements close = new WebPageElements("Close", "xpath", CLOSE);
+	
+	String ADD_MORE_QDL = "//div[text()='Add More']";
+	WebPageElements add_more_qdl = new WebPageElements("Add More", "xpath", ADD_MORE_QDL);
+	
+	String SURVEY_OPTIONS = "//div[@id='ctl08_liSS']";
+	WebPageElements survey_options = new WebPageElements("Options", "xpath", SURVEY_OPTIONS);
+	
+	String EXPIRY_RULES = "//div[@class='hd-dropdown-row'][contains(text(),'Expiry Rules')]";
+	WebPageElements expiry_rules = new WebPageElements("Expiry Rules", "xpath", EXPIRY_RULES);
+	
+	String EXPIRY_RULES_TITLE = "//div[@class='survey-settings-title']/span[text()='Expiry Rules']";
+	WebPageElements expiry_rules_title = new WebPageElements("Expiry Rules Title", "xpath", EXPIRY_RULES_TITLE);
+	
+	String VISUAL_SETTINGS = "//span[text()='Visual Settings']";
+	WebPageElements visual_settings = new WebPageElements("Visual Settings", "xpath", VISUAL_SETTINGS);
+	
+	String DESKTOP_DEV = "//div[@id='dvweb']";
+	WebPageElements desktop_dev = new WebPageElements("Visual Settings - Desktop Tab", "xpath", DESKTOP_DEV);
+	
+	String MOBILE_DEV = "//div[@id='dvmobile']";
+	WebPageElements mobile_dev = new WebPageElements("Visual Settings - Mobile Tab", "xpath", MOBILE_DEV);
+	
+	String MOBILE_VIEW = "//div[@id='divmobilecont']";
+	WebPageElements mobile_view = new WebPageElements("Visual Settings - Mobile Background Image", "xpath", MOBILE_VIEW);
 	
 	String ADD_LOGO = "//div[@id='divAddSurveyLogoLink1']//div[@ng-click='showAddSurveyLogoDiv(pg.Page_no);']";
 	WebPageElements add_logo = new WebPageElements("add logo", "xpath", ADD_LOGO);
-	
-	 //div[@id='divLogoFromComputer']//div[@class='icon']
-	
+		
 	String UPLOAD_FROM_COMPUTER = "//div[@id='divLogoFromComputer']//div[@class='icon']";
 	WebPageElements upload_from_computer = new WebPageElements("upload logo from computer", "xpath", UPLOAD_FROM_COMPUTER);
-	
-	
-	
 
 	String USE_ACCOUNT_LOGO = "//div[@id='divCopyAccountImage']//div[@class='icon']";
 	WebPageElements use_account_logo = new WebPageElements("use acount logo", "xpath", USE_ACCOUNT_LOGO);
 	
-	
-	
 	String COPY_FROM_OTHER_PROJECT = "//div[@id='divCopyFromOtherSurvey']//div[@class='icon']";
 	WebPageElements copy_from_other_project = new WebPageElements("copy from another project", "xpath", COPY_FROM_OTHER_PROJECT);
 	
-	
-	
 	String INSERT_FROM_URL = "//div[@id='divFromWebLink']//div[@class='icon']";
 	WebPageElements insert_from_url = new WebPageElements("logo insert using url", "xpath", INSERT_FROM_URL);
-	
-	
+
 	String LOGO_URL_TEXTBOX = "//input[@id='txtLogoURL']";
 	WebPageElements logo_url_textbox = new WebPageElements("textbox for  url", "xpath", LOGO_URL_TEXTBOX);
 	
 	String BTN_LOGO_URL = "//input[@id='btnLogoURL2']";
 	WebPageElements btn_logo_url = new WebPageElements("continue ", "xpath", BTN_LOGO_URL);
 	
-	
-	String SELECT_MAIN = "//ul[@class='sub']//li[1]//a[1]";
-	//li[@class='com-subbar OpenDropDown']
-	 
+	String SELECT_MAIN = "//ul[@class='sub']//li[1]//a[1]";	 
 	WebPageElements select_main = new WebPageElements("selecting main in dropdown", "xpath", SELECT_MAIN);
-	
 	
 	String CPY_FROM_ANOTHERSURVEY = "//div[@id='btnCopyFromOtherSruvey']";
 	WebPageElements copy_from_anothersurvey = new WebPageElements("selecting main in dropdown", "xpath", CPY_FROM_ANOTHERSURVEY);
 	
-	
-	
-	
-	String SAVE_BTN = "//input[@id='btnSave']";
-	WebPageElements save_btn = new WebPageElements("save button for upload logo", "xpath", SAVE_BTN);
-	
 	String LOGO_DISPLAY = "//img[@id='imgSurveyLogo1']";
 	WebPageElements logo_display = new WebPageElements("logo display", "xpath", LOGO_DISPLAY);
 	
-	
-	//div[@title='Delete Logo']
 	String DELETE_LOGO_DISPLAY = "//div[@class='editimg delete']//img[@src='../AllImages/imagesnew/general/delete_reverse.svg']";
 	WebPageElements delete_logo_display = new WebPageElements("delete logo display", "xpath", DELETE_LOGO_DISPLAY);
-	
 	
 	String DELETE_ICON = "//span[@class='DelCon']";
 	WebPageElements delete_icon = new WebPageElements("delete icon display", "xpath", DELETE_ICON);
 	
-	
-	
 	String ALIGN_ICON = "//div[@title='Align Logo']";
 	WebPageElements align_icon = new WebPageElements("align icon", "xpath", ALIGN_ICON);
-	
-	
+
 	String ALIGN_ICON1 = "//span[normalize-space()='Align']";
 	WebPageElements align_icon1 = new WebPageElements("align icon", "xpath", ALIGN_ICON1);
 }

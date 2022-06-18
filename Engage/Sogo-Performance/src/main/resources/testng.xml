@@ -36,12 +36,14 @@
 				<include name="Reports" />
 				<include name="DMX"/>
 				<include name="Data"/>
+				<include name="SMX"/>
 			</run>
 		</groups>
 		<classes>
 			<class name="com.sogo.performance.rmx.RMXPlatformReading_TC" />
 			<class name="com.sogo.performance.dmx.DMXPlatformReading_TC" />
 			<class name="com.sogo.performance.data.DataPlatformReading_TC" />
+			<class name="com.sogo.performance.smx.SMXPlatformReading_TC" />
 			<parameter name="PlatformReadings_TC1" value="Bar Graph Report"></parameter>
 			<parameter name="PlatformReadings_TC2" value="Response Table Report"></parameter>
 			<parameter name="PlatformReadings_TC3" value="Individual Report"></parameter>
@@ -102,6 +104,14 @@
 			<parameter name="PlatformReadings_TC58" value="Export HTML"></parameter>
 			<parameter name="PlatformReadings_TC59" value="Export SPSS"></parameter>
 			<parameter name="PlatformReadings_TC60" value="Export SoGoSurvey1"></parameter>
+			<parameter name="PlatformReadings_TC61" value="Survey Creation Readings"></parameter>
+			<parameter name="PlatformReadings_TC62" value="All question type readings"></parameter>
+			<parameter name="PlatformReadings_TC63" value="AutoTranslation Readings"></parameter>
+			<parameter name="PlatformReadings_TC64" value="QDL Readings"></parameter>
+			<parameter name="PlatformReadings_TC65" value="Download Survey Reading"></parameter>
+			<parameter name="PlatformReadings_TC66" value="View all Pages "></parameter>
+			<parameter name="PlatformReadings_TC67" value="Quota Readings"></parameter>
+			<parameter name="PlatformReadings_TC68" value="Copy Survey Readings"></parameter>
 			
 		</classes>
 	</test>
