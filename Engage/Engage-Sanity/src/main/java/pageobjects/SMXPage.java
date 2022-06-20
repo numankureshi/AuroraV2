@@ -4682,18 +4682,285 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitForJStoLoad(driver, 30);
-		scrollIntoView(driver, testcaseName, ele, test);
+		scrollIntoCenter(driver, testcaseName, ele, test);
 		waitforElemPresent(driver, testcaseName, 30, ele, test);
 		waitForJStoLoad(driver, 30);
-		Thread.sleep(1500);
-		
-		// Capture page load time
-		start = System.currentTimeMillis();	
-		doubleClick(driver, testcaseName, ele, test);
 		
 		String quesType = getWebElement(driver, testcaseName, ele, test).getAttribute("id");
 		param.put("quesType", quesType);
 		
+		// Capture page load time
+		start = System.currentTimeMillis();		
+		doubleClick(driver, testcaseName, ele, test);		
+		
+		try {
+			switch(quesType) {
+			
+			case "dvcom":
+				if(driver.findElement(By.xpath(DESCRIPTION_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;				
+			case "dvrat_NPS":
+				if(driver.findElement(By.xpath(NPS_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvtb":
+				if(driver.findElement(By.xpath(TB_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrb":
+				if(driver.findElement(By.xpath(RB_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvdd":
+				if(driver.findElement(By.xpath(DD_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvdemo":
+				if(driver.findElement(By.xpath(DEMO_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrat":
+				if(driver.findElement(By.xpath(RATING_SCALE_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvGQ":
+				if(driver.findElement(By.xpath(SYMBOL_RATING_SCALE_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvLikeDislike":
+				if(driver.findElement(By.xpath(LIKE_DISLIKE_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrk":
+				if(driver.findElement(By.xpath(RANKING_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvdate":
+				if(driver.findElement(By.xpath(DATE_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvIMC":
+				if(driver.findElement(By.xpath(IMC_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvmtb":
+				if(driver.findElement(By.xpath(MTB_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvmdd":
+				if(driver.findElement(By.xpath(MDD_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrg":
+				if(driver.findElement(By.xpath(RG_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvcbg":
+				if(driver.findElement(By.xpath(CBG_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrrg":
+				if(driver.findElement(By.xpath(RRG_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrddg":
+				if(driver.findElement(By.xpath(RDDG_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrcg":
+				if(driver.findElement(By.xpath(RSG_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvHRB":
+				if(driver.findElement(By.xpath(HRB_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvmslb":
+				if(driver.findElement(By.xpath(LB_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvrrb":
+				if(driver.findElement(By.xpath(RRB_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvratdd":
+				if(driver.findElement(By.xpath(RDD_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvatt":
+				if(driver.findElement(By.xpath(ATTACHMENT_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvNumeric":
+				if(driver.findElement(By.xpath(NUMERICAL_ALLOCATION_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			case "dvmg":
+				if(driver.findElement(By.xpath(MATRIX_GRID_SAMPLE)).isDisplayed()) {
+					test.log(Status.INFO, "Question sample displayed on performing double click, hence performing double click again.");
+					Add_Log.info("Question sample displayed on performing double click, hence performing double click again.");
+					Reporter.log("Question sample displayed on performing double click, hence performing double click again.");
+					waitforElemPresent(driver, testcaseName, 30, ele, test);
+					start = System.currentTimeMillis();		
+					doubleClick(driver, testcaseName, ele, test);
+				}
+				break;
+			}
+			
+		}catch(NoSuchElementException e) {
+			
+		}
 		waitForLoad(driver, testcaseName, 60, test);
 		
 		end = System.currentTimeMillis();	
