@@ -103,6 +103,868 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 	}
 	
+	
+	
+	public void headerCommonSteps(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+	}
+	
+	
+	public void listCommonStepsHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.ENTER);
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		
+	}
+	
+	
+	public void listCommonStepsFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.ENTER);
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		
+	}
+	
+	
+	
+	
+	
+	public void footerCommonSteps(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		waitforElemPresent(driver, testcaseName, 30,description_text, test);
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		
+	}
+	
+	public void validationForBoldStyle(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//strong[normalize-space()='"+ param.get("textbox") +"']"), "header/footer added"+ param.get("textbox"), test);
+		  WebElement style = driver.findElement( By.xpath("//strong[normalize-space()='"+ param.get("textbox") +"']"));
+		//span[contains(text(),'This is a sample textbox')]
+		  if(style.isDisplayed())
+		  {
+			  reportPass("bold content is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"bold content is not displayed" , test);  
+			} 
+	}
+	
+	
+	public void boldCheckForHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		headerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,bold_button, test);
+		click(driver, testcaseName,bold_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		validationForBoldStyle(driver, param, test);
+	}
+	
+	
+	
+	public void boldCheckForFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		footerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,bold_button, test);
+		click(driver, testcaseName,bold_button, test);
+	
+	 scrollIntoCenter(driver, testcaseName, save_button_for_footer, test);
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		validationForBoldStyle(driver, param, test);
+	}
+	
+	
+	
+	
+	
+	
+	public void italicCheckForHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		headerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,italic_button, test);
+		click(driver, testcaseName,italic_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		validationForItalicStyle(driver, param, test);
+		
+	}
+	public void validationForItalicStyle(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//em[normalize-space()='"+ param.get("textbox") +"']"), "header/footer added"+ param.get("textbox"), test);
+		  WebElement style = driver.findElement( By.xpath("//em[normalize-space()='"+ param.get("textbox") +"']"));
+		
+		  if(style.isDisplayed())
+		  {
+			  reportPass("italic content is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"italic content is not displayed" , test);  
+			} 
+	}
+	
+	public void limitTestForHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("secondarylanguage"), test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		waitForAlert(driver, testcaseName, 30, test);
+		 Alert alertPopUp = driver.switchTo().alert();
+		 String alert_msg =  (alertPopUp.getText());
+		 System.out.println(alert_msg);
+	        alertPopUp.accept();
+	        String	alert_msg1 = param.get("primarylanguage");
+	        if(alert_msg.contains(alert_msg1))
+				reportPass("matched", test);
+				else
+				reportFail(testcaseName, "not matched", test);
+	}
+	
+	public void limitTestForFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("secondarylanguage"), test);
+	//	driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		waitForAlert(driver, testcaseName, 30, test);
+		 Alert alertPopUp = driver.switchTo().alert();
+	        // Print the alert message to console
+		 String alert_msg =  (alertPopUp.getText());
+	        // Accept the alert popup
+		 System.out.println(alert_msg);
+	        alertPopUp.accept();
+	        String	alert_msg1 = param.get("AnswerOptions");
+	        if(alert_msg.contains(alert_msg1))
+				reportPass("matched", test);
+				else
+				reportFail(testcaseName, "not matched", test);
+	}
+	
+	public void italicCheckForFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		footerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,italic_button, test);
+		click(driver, testcaseName,italic_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		validationForItalicStyle(driver, param, test);
+	}
+	public void underlineCheckForFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		footerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,underline_button, test);
+		click(driver, testcaseName,underline_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		validationForUnderLineStyle(driver, param, test);
+	}
+	
+	
+	public void underlineCheckForHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		headerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,underline_button, test);
+		click(driver, testcaseName,underline_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		validationForUnderLineStyle(driver, param, test);
+	}
+	
+	
+	
+	public void validationForUnderLineStyle(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//u[normalize-space()='"+ param.get("textbox") +"']"), "header/footer added"+ param.get("textbox"), test);
+		  WebElement style = driver.findElement( By.xpath("//u[normalize-space()='"+ param.get("textbox") +"']"));
+		
+		  if(style.isDisplayed())
+		  {
+			  reportPass("underline content is displayed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"underline content is not displayed" , test);  
+			} 
+	}
+	
+	public void removeFormatForHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		headerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,bold_button, test);
+		click(driver, testcaseName,bold_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='divSurveyHeaderView']//div[@class='surveyHeaderText']"), "header text", test);
+		WebElement hower = driver.findElement(By.xpath("//div[@class='divSurveyHeaderView']//div[@class='surveyHeaderText']"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();
+		waitforElemPresent(driver, "add header edit", 30, By.xpath("//a[@title='Edit Survey Header']//div[@class='pageIcons imgEdit']"), testcaseName, test);
+        click(driver, "add header edit", By.xpath("//a[@title='Edit Survey Header']//div[@class='pageIcons imgEdit']"),  testcaseName, test);
+        driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+        driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        driver.switchTo().defaultContent();
+        waitforElemPresent(driver, testcaseName, 30, remove_format_button, test);
+		click(driver, testcaseName, remove_format_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		
+		validationForRemoveFormatHeader(driver, param, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='divSurveyHeaderView']//div[@class='surveyHeaderText']"), "header text", test);
+		WebElement hower1 = driver.findElement(By.xpath("//div[@class='divSurveyHeaderView']//div[@class='surveyHeaderText']"));
+		action.moveToElement(hower1).perform();
+		waitforElemPresent(driver, "add header edit", 30, By.xpath("//div[@title='Delete Survey Header']"), testcaseName, test);
+        click(driver, "add header edit", By.xpath("//div[@title='Delete Survey Header']"),  testcaseName, test);
+       
+	}
+	
+	
+	public void validationForRemoveFormatHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='surveyHeaderText']"), "header text", test);
+	    WebElement style = driver.findElement( By.xpath("//div[@class='surveyHeaderText']"));
+		
+		  if(style.isDisplayed())
+		  {
+			  reportPass("format removed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"format removed" , test);  
+			} 
+	}
+	
+	public void validationForRemoveFormatFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='surveyFooterText']"), "header text", test);
+	    WebElement style = driver.findElement( By.xpath("//div[@class='surveyFooterText']"));
+		
+		  if(style.isDisplayed())
+		  {
+			  reportPass("format removed", test);
+		  } 
+		  else
+			{
+				reportFail(testcaseName,"format removed" , test);  
+			} 
+	}
+	
+	public void removeFormatFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		footerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,bold_button, test);
+		click(driver, testcaseName,bold_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='divSurveyFooterView']//div[@class='surveyFooterText']"), "footer text", test);
+		WebElement hower = driver.findElement(By.xpath("//div[@class='divSurveyFooterView']//div[@class='surveyFooterText']"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();
+		waitforElemPresent(driver,testcaseName, 30, By.xpath("//a[@title='Edit Survey Footer']//div[@class='pageIcons imgEdit']"), "edit icon", test);
+        click(driver,testcaseName, By.xpath("//a[@title='Edit Survey Footer']//div[@class='pageIcons imgEdit']"),  "edit icon", test);
+        driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+        driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        driver.switchTo().defaultContent();
+        waitforElemPresent(driver, testcaseName, 30, remove_format_button, test);
+		click(driver, testcaseName, remove_format_button, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		
+		validationForRemoveFormatFooter(driver, param, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='divSurveyFooterView']//div[@class='surveyFooterText']"), "footer text", test);
+		WebElement hower1 = driver.findElement(By.xpath("//div[@class='divSurveyFooterView']//div[@class='surveyFooterText']"));
+		action.moveToElement(hower1).perform();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@title='Delete Survey Footer']"), "edit icon", test);
+        click(driver,testcaseName, By.xpath("//div[@title='Delete Survey Footer']"),  "edit icon", test);
+       
+	}
+	
+	public void alignmentForHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		headerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,centre_align, test);
+		click(driver, testcaseName,centre_align, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		editHeader(driver, param, test);
+        waitforElemPresent(driver, testcaseName, 30,left_align, test);
+		click(driver, testcaseName,left_align, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		editHeader(driver, param, test);
+		 waitforElemPresent(driver, testcaseName, 30,right_align, test);
+			click(driver, testcaseName,right_align, test);
+			waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+			editHeader(driver, param, test);
+			 waitforElemPresent(driver, testcaseName, 30,justify_align, test);
+				click(driver, testcaseName,justify_align, test);
+				waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+				click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	public void alignmentForFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		footerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,centre_align, test);
+		click(driver, testcaseName,centre_align, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		editFooter(driver, param, test);
+        waitforElemPresent(driver, testcaseName, 30,left_align, test);
+		click(driver, testcaseName,left_align, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		editFooter(driver, param, test);
+		 waitforElemPresent(driver, testcaseName, 30,right_align, test);
+			click(driver, testcaseName,right_align, test);
+			waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+			editFooter(driver, param, test);
+			 waitforElemPresent(driver, testcaseName, 30,justify_align, test);
+				click(driver, testcaseName,justify_align, test);
+				waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+				click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	public void undoAndRedoHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		headerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,bold_button, test);
+		click(driver, testcaseName,bold_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		 waitforElemPresent(driver, testcaseName, 30, remove_format_button, test);
+		click(driver, testcaseName, remove_format_button, test);
+		
+		 waitforElemPresent(driver, testcaseName, 30, undo_icon, test);
+			click(driver, testcaseName, undo_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+			editHeader(driver, param, test);
+			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
+			driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+			driver.switchTo().defaultContent();
+			waitforElemPresent(driver, testcaseName, 30,underline_button, test);
+			click(driver, testcaseName,underline_button, test);
+			 waitforElemPresent(driver, testcaseName, 30, undo_icon, test);
+				click(driver, testcaseName, undo_icon, test);
+				 waitforElemPresent(driver, testcaseName, 30, redo_icon, test);
+					click(driver, testcaseName, redo_icon, test);
+					waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+					click(driver, testcaseName, save_button_for_header, test);
+			
+	}
+	
+	public void undoAndRedoFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		footerCommonSteps(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30,bold_button, test);
+		click(driver, testcaseName,bold_button, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		 waitforElemPresent(driver, testcaseName, 30, remove_format_button, test);
+		click(driver, testcaseName, remove_format_button, test);
+		 waitforElemPresent(driver, testcaseName, 30, undo_icon, test);
+			click(driver, testcaseName, undo_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+			editFooter(driver, param, test);
+			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
+			driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+			driver.switchTo().defaultContent();
+			waitforElemPresent(driver, testcaseName, 30,underline_button, test);
+			click(driver, testcaseName,underline_button, test);
+			 waitforElemPresent(driver, testcaseName, 30, undo_icon, test);
+				click(driver, testcaseName, undo_icon, test);
+				 waitforElemPresent(driver, testcaseName, 30, redo_icon, test);
+					click(driver, testcaseName, redo_icon, test);
+					waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+					click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	
+	
+	public void editHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='divSurveyHeaderView']//div[@class='surveyHeaderText']"), "header text", test);
+		WebElement hower = driver.findElement(By.xpath("//div[@class='divSurveyHeaderView']//div[@class='surveyHeaderText']"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();
+		waitforElemPresent(driver, "add header edit", 30, By.xpath("//a[@title='Edit Survey Header']//div[@class='pageIcons imgEdit']"), testcaseName, test);
+        click(driver, "add header edit", By.xpath("//a[@title='Edit Survey Header']//div[@class='pageIcons imgEdit']"),  testcaseName, test);
+        driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+        driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        driver.switchTo().defaultContent();
+	}
+	
+	public void editFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+        waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='divSurveyFooterView']//div[@class='surveyFooterText']"), "footer text", test);
+		WebElement hower = driver.findElement(By.xpath("//div[@class='divSurveyFooterView']//div[@class='surveyFooterText']"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();
+		waitforElemPresent(driver,testcaseName, 30, By.xpath("//a[@title='Edit Survey Footer']//div[@class='pageIcons imgEdit']"), "edit icon", test);
+        click(driver,testcaseName, By.xpath("//a[@title='Edit Survey Footer']//div[@class='pageIcons imgEdit']"),  "edit icon", test);
+        driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+        driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        driver.switchTo().defaultContent();
+	}
+	public void numberListHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsHeader(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, number_list_icon, test);
+		click(driver, testcaseName, number_list_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+	}
+	public void numberListFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsFooter(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, number_list_icon, test);
+		click(driver, testcaseName, number_list_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	public void bulltedListHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsHeader(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, bullet_list_icon, test);
+		click(driver, testcaseName, bullet_list_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	public void bulltedListFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsFooter(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, bullet_list_icon, test);
+		click(driver, testcaseName, bullet_list_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	public void increaseAndDecreaseIndentHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsHeader(driver, param, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, increase_indent_icon, test);
+		click(driver, testcaseName, increase_indent_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		editHeader(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, decrease_indent_icon, test);
+		click(driver, testcaseName, decrease_indent_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	public void increaseAndDecreaseIndentFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsFooter(driver, param, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, increase_indent_icon, test);
+		click(driver, testcaseName, increase_indent_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		editFooter(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, decrease_indent_icon, test);
+		click(driver, testcaseName, decrease_indent_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	public void sourceHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsHeader(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, source_icon, test);
+		click(driver, testcaseName, source_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	public void sourceFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		listCommonStepsFooter(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, source_icon, test);
+		click(driver, testcaseName, source_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	
+	public void linkUnlinkHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, link_icon, test);
+		click(driver, testcaseName, link_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@class='cke_dialog_ui_input_text']"), "display Text", test);
+		setText(driver, testcaseName, By.xpath("//input[@class='cke_dialog_ui_input_text']"), param.get("textbox"), "display text", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='cke_dialog_ui_input_text']//input[@id='cke_131_textInput']"), "link", test);
+		setText(driver, testcaseName, By.xpath("//div[@class='cke_dialog_ui_input_text']//input[@id='cke_131_textInput']"), param.get("description"), "link", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "link ok button", test);
+		click(driver, testcaseName,  By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "link ok button", test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+		click(driver, testcaseName, save_button_for_header, test);
+		  editHeader(driver, param, test); 
+		  waitforElemPresent(driver, testcaseName, 30, unlink_icon, test);
+		  click(driver, testcaseName, unlink_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+		 
+	}
+	
+	public void linkUnlinkFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, link_icon, test);
+		click(driver, testcaseName, link_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@class='cke_dialog_ui_input_text']"), "display Text", test);
+		setText(driver, testcaseName, By.xpath("//input[@class='cke_dialog_ui_input_text']"), param.get("textbox"), "display text", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='cke_dialog_ui_input_text']//input[@id='cke_131_textInput']"), "link", test);
+		setText(driver, testcaseName, By.xpath("//div[@class='cke_dialog_ui_input_text']//input[@id='cke_131_textInput']"), param.get("description"), "link", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "link ok button", test);
+		click(driver, testcaseName,  By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "link ok button", test);
+		waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+		click(driver, testcaseName, save_button_for_footer, test);
+		  editFooter(driver, param, test); 
+		  waitforElemPresent(driver, testcaseName, 30, unlink_icon, test);
+		  click(driver, testcaseName, unlink_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+		 
+	}
+	
+	public void spellCheckHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("radiobutton"), test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30,spell_check, test);
+		click(driver, testcaseName,spell_check, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[contains(@src,'SpellCheck.aspx?')]"), "Spell check iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'SpellCheck.aspx?')]")));
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@src='SpellCheck.aspx']"), "Suggestion check iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement( By.xpath("//iframe[@src='SpellCheck.aspx']")));
+		System.out.println(driver.findElements(By.xpath("//select[@class='suggestion']")).size());
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='suggestion']"), "suggestion", test);
+		Select dropdown = new Select(driver.findElement(By.xpath("//select[@class='suggestion']")));
+		dropdown.selectByVisibleText(param.get("textbox"));
+		waitforElemPresent(driver, testcaseName, 30,replace_button, test);
+		click(driver, testcaseName,replace_button, test);
+		waitForAlert(driver, testcaseName, 30, test);
+		 Alert alertPopUp = driver.switchTo().alert();
+		 String alert_msg =  (alertPopUp.getText());
+		 System.out.println(alert_msg);
+	        alertPopUp.accept();
+	        driver.switchTo().defaultContent();
+	        waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	
+	public void spellCheckFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("radiobutton"), test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30,spell_check, test);
+		click(driver, testcaseName,spell_check, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[contains(@src,'SpellCheck.aspx?')]"), "Spell check iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'SpellCheck.aspx?')]")));
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@src='SpellCheck.aspx']"), "Suggestion check iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement( By.xpath("//iframe[@src='SpellCheck.aspx']")));
+		System.out.println(driver.findElements(By.xpath("//select[@class='suggestion']")).size());
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='suggestion']"), "suggestion", test);
+		Select dropdown = new Select(driver.findElement(By.xpath("//select[@class='suggestion']")));
+		dropdown.selectByVisibleText(param.get("textbox"));
+		waitforElemPresent(driver, testcaseName, 30,replace_button, test);
+		click(driver, testcaseName,replace_button, test);
+		waitForAlert(driver, testcaseName, 30, test);
+		 Alert alertPopUp = driver.switchTo().alert();
+		 String alert_msg =  (alertPopUp.getText());
+		 System.out.println(alert_msg);
+	        alertPopUp.accept();
+	        driver.switchTo().defaultContent();
+	        waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+		
+		
+	}
+	
+	public void pasteFromWordHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, paste_from_word, test);
+		click(driver, testcaseName, paste_from_word, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@aria-label='Paste Area']"), "copy from word  iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@aria-label='Paste Area']")));
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//html[@dir='ltr']//body[@contenteditable='true']"), "content", test);
+		setText(driver, testcaseName, By.xpath("//html[@dir='ltr']//body[@contenteditable='true']"), param.get("description"), "link", test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "ok button", test);
+		click(driver, testcaseName,  By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "ok button", test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//body[contains(text(),'"+ param.get("description") +"')]"), param.get("description"), test);
+		driver.switchTo().defaultContent();
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+
+	}
+	
+	
+	public void pasteFromWordFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, paste_from_word, test);
+		click(driver, testcaseName, paste_from_word, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@aria-label='Paste Area']"), "copy from word  iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@aria-label='Paste Area']")));
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//html[@dir='ltr']//body[@contenteditable='true']"), "content", test);
+		setText(driver, testcaseName, By.xpath("//html[@dir='ltr']//body[@contenteditable='true']"), param.get("description"), "link", test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "ok button", test);
+		click(driver, testcaseName,  By.xpath("//a[@class='cke_dialog_ui_button cke_dialog_ui_button_ok']//span[@class='cke_dialog_ui_button']"), "ok button", test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//body[contains(text(),'"+ param.get("description") +"')]"), param.get("description"), test);
+		driver.switchTo().defaultContent();
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	
+	public void fontColourHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		headerCommonSteps(driver, param, test);
+		fontColour(driver, param, test);
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	public void fontColourFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		footerCommonSteps(driver, param, test);
+		fontColour(driver, param, test);
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	
+	public void fontColour(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, font_colour_icon, test);
+		click(driver, testcaseName, font_colour_icon, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@class='cke_panel_frame']"), "color  iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_panel_frame']")));
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//a[@title='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);        
+		   click(driver, testcaseName,  By.xpath("//a[@title='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		driver.switchTo().defaultContent();
+	}
+	
+	public void fontSizeHeader(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_header, test);
+		click(driver, testcaseName, add_header, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, font_size_icon, test);
+		click(driver, testcaseName, font_size_icon, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@class='cke_panel_frame']"), "size  iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_panel_frame']")));
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//span[normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);        
+		   click(driver, testcaseName,  By.xpath("//span[normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		driver.switchTo().defaultContent();
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_header, test);
+			click(driver, testcaseName, save_button_for_header, test);
+	}
+	
+	
+	public void fontSizeFooter(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver, param, test);
+		selectProjectType(driver, param, test);
+		enterTextBox(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, add_footer, test);
+		click(driver, testcaseName, add_footer, test);
+		driver.switchTo().frame(driver.findElement(By.xpath(" //iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		setText(driver, testcaseName, description_text, param.get("textbox"), test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,visual_settings_cb, test);
+		click(driver, testcaseName,visual_settings_cb, test);
+		waitforElemPresent(driver, testcaseName, 30, font_size_icon, test);
+		click(driver, testcaseName, font_size_icon, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//iframe[@class='cke_panel_frame']"), "size  iframe", 30, 100, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_panel_frame']")));
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//span[normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);        
+		   click(driver, testcaseName,  By.xpath("//span[normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		driver.switchTo().defaultContent();
+		 waitforElemPresent(driver, testcaseName, 30, save_button_for_footer, test);
+			click(driver, testcaseName, save_button_for_footer, test);
+	}
+	
+	
 	public void selectCreateProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -1076,7 +1938,11 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, save_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']"), "Rating Scale Added "+ param.get("ratingscale"), test);
+		
+	  if(driver.getTitle().contains("K12 Insight - Designer"))
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-slider-horizontal')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
+	  else 
+		  waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']/parent::div/following-sibling::div//div[contains(@class,'ui-slider-range ui-corner-all ui-widget-header')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
 	}
 	
 	public void enterSymbolRatingScaleButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)

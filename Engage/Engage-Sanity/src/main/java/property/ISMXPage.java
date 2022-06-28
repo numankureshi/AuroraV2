@@ -551,4 +551,117 @@ public interface ISMXPage {
 	
 	String ALIGN_ICON1 = "//span[normalize-space()='Align']";
 	WebPageElements align_icon1 = new WebPageElements("align icon", "xpath", ALIGN_ICON1);
+	
+	String ADD_HEADER = "//span[normalize-space()='Add Header']";
+	WebPageElements add_header = new WebPageElements("add header", "xpath", ADD_HEADER);
+	
+	
+	String ADD_FOOTER = "//span[normalize-space()='Add Footer']";
+	WebPageElements add_footer = new WebPageElements("add header", "xpath", ADD_FOOTER);
+	
+	String SAVE_BUTTON_FOR_HEADER = "//div[@class='surveyHeaderFooterSaveStrip']//input[@ng-click='SaveSurveyHeader(pg.Page_no)']";
+	WebPageElements save_button_for_header = new WebPageElements("save button for header", "xpath", SAVE_BUTTON_FOR_HEADER);
+	
+	
+
+	String SAVE_BUTTON_FOR_FOOTER = "	//input[@ng-click='SaveSurveyFooter(pg.Page_no)']";
+	WebPageElements save_button_for_footer = new WebPageElements("save_button_for_footer", "xpath", SAVE_BUTTON_FOR_FOOTER);
+	
+	String VISUAL_SETTINGS_CB = "//span[@class='cke_button_icon cke_button__checkbox1_icon']";
+	WebPageElements visual_settings_cb = new WebPageElements("visual setting check box in add header", "xpath", VISUAL_SETTINGS_CB);
+
+	
+	
+	String BOLD_BUTTON = "//span[@class='cke_button_icon cke_button__bold_icon']";
+	WebPageElements bold_button = new WebPageElements("bold font style ", "xpath", BOLD_BUTTON);
+	
+	
+	String ITALIC_BUTTON = "//span[@class='cke_button_icon cke_button__italic_icon']";
+	WebPageElements italic_button = new WebPageElements("italic font style ", "xpath", ITALIC_BUTTON);
+	
+	
+	String UNDERLINE_BUTTON = "//span[@class='cke_button_icon cke_button__underline_icon']";
+	WebPageElements underline_button = new WebPageElements("underline font style ", "xpath", UNDERLINE_BUTTON);
+	
+	
+	
+	String REMOVE_FORMAT_BUTTON = "//span[@class='cke_button_icon cke_button__removeformat_icon']";
+	WebPageElements remove_format_button = new WebPageElements("remove format ", "xpath", REMOVE_FORMAT_BUTTON);
+	
+	
+	
+	String SIZE_DROPDOWN = "//span[@class='cke_combo_text cke_combo_inlinelabel']";
+	WebPageElements size_dropdown = new WebPageElements("size dropdown", "xpath", SIZE_DROPDOWN);
+	
+	
+	String CENTRE_ALIGN = "//span[@class='cke_button_icon cke_button__justifycenter_icon']";
+	WebPageElements centre_align = new WebPageElements("centre align ", "xpath", CENTRE_ALIGN);
+	
+	
+	String RIGHT_ALIGN = "//span[@class='cke_button_icon cke_button__justifyright_icon']";
+	WebPageElements right_align = new WebPageElements("right align ", "xpath", RIGHT_ALIGN);
+	
+	String LEFT_ALIGN = "//span[@class='cke_button_icon cke_button__justifyleft_icon']";
+	WebPageElements left_align = new WebPageElements("left align ", "xpath", LEFT_ALIGN);
+	
+	
+	String JUSTIFY_ALIGN = "//span[@class='cke_button_icon cke_button__justifyblock_icon']";
+	WebPageElements justify_align = new WebPageElements("justify ", "xpath", JUSTIFY_ALIGN);
+	
+	
+	String UNDO_ICON = "//span[@class='cke_button_icon cke_button__undo_icon']";
+	WebPageElements undo_icon = new WebPageElements("undo ", "xpath", UNDO_ICON);
+	
+	String REDO_ICON = "//span[@class='cke_button_icon cke_button__redo_icon']";
+	WebPageElements redo_icon = new WebPageElements("redo ", "xpath", REDO_ICON);
+	
+	
+	String NUMBER_LIST_ICON = "//span[@class='cke_button_icon cke_button__numberedlist_icon']";
+	WebPageElements number_list_icon = new WebPageElements("number_list_icon ", "xpath", NUMBER_LIST_ICON);
+	
+	
+	String BULET_LIST_ICON = "//span[@class='cke_button_icon cke_button__bulletedlist_icon']";
+	WebPageElements bullet_list_icon = new WebPageElements("bullet_list_icon ", "xpath", BULET_LIST_ICON);
+	
+	
+	
+	
+	String DECREASE_INDENT_ICON = "//span[@class='cke_button_icon cke_button__outdent_icon']";
+	WebPageElements decrease_indent_icon = new WebPageElements("decrease_indent_icon ", "xpath", DECREASE_INDENT_ICON);
+	
+	String INCCREASE_INDENT_ICON = "//span[@class='cke_button_icon cke_button__indent_icon']";
+	WebPageElements increase_indent_icon = new WebPageElements("increase_indent_icon ", "xpath", INCCREASE_INDENT_ICON);
+	
+
+	
+	String SOURCE_ICON = "//span[@class='cke_button_icon cke_button__source_icon']";
+	WebPageElements source_icon = new WebPageElements("source_icon ", "xpath", SOURCE_ICON);
+	
+	
+	String LINK_ICON = "//span[@class='cke_button_icon cke_button__link_icon']";
+	WebPageElements link_icon = new WebPageElements("link_icon ", "xpath", LINK_ICON);
+	
+	
+
+	String UNLINK_ICON = "//span[@class='cke_button_icon cke_button__unlink_icon']";
+	WebPageElements unlink_icon = new WebPageElements("unlink_icon ", "xpath", UNLINK_ICON);
+	
+	
+	String SPELL_CHECK = "//span[@class='cke_button_icon cke_button__spellchecker_icon']";
+	WebPageElements spell_check = new WebPageElements("spell_check ", "xpath", SPELL_CHECK);
+	
+	
+	String PASTE_FROM_WORD = "//span[@class='cke_button_icon cke_button__pastefromword_icon']";
+	WebPageElements paste_from_word = new WebPageElements("paste_from_word ", "xpath", PASTE_FROM_WORD);
+	
+	String FONT_COLOUR_ICON = "//span[@class='cke_button_icon cke_button__textcolor_icon']";
+	WebPageElements font_colour_icon = new WebPageElements("font_colour", "xpath", FONT_COLOUR_ICON);
+	
+	String FONT_SIZE_ICON = "//span[@class='cke_combo_text cke_combo_inlinelabel']";
+	WebPageElements font_size_icon = new WebPageElements("font_size", "xpath", FONT_SIZE_ICON);
+	
+	
+	String REPLACE_BUTTON = "//input[@id='ReplaceButton']";
+	WebPageElements replace_button = new WebPageElements("replace_button", "xpath", REPLACE_BUTTON);
+	
 }
