@@ -127,6 +127,65 @@ public class SMXPage_TC extends SuiteBase {
 			}
 
 		}
+		
+		@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+		public void Smoke_TC119(LinkedHashMap<String, String> data) throws Exception {
+			TestCaseName = getData(data, "TestCaseName");
+			test = extent.createTest(TestCaseName);
+			CaseToRun = getData(data, "CaseToRun");
+			String Role = getData(data, "Role");
+			//test
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("TestCaseName", TestCaseName);
+			param.put("surveyname", getData(data, "surveyname"));
+			param.put("foldername", getData(data, "foldername"));
+			param.put("primarylanguage", getData(data, "primarylanguage"));
+			param.put("secondarylanguage", getData(data, "secondarylanguage"));
+			param.put("reportingvalue", getData(data, "reportingvalue"));
+			param.put("images", getData(data, "images"));
+			param.put("QuestionOptions", getData(data, "QuestionOptions"));
+			param.put("matrixgrid", getData(data, "matrixgrid"));
+			param.put("numericallocations", getData(data, "numericallocations"));
+			param.put("SRSSubqueCount", getData(data, "subQuestionCount"));
+			param.put("MDDSubqueCount", getData(data, "subQuestionCount"));
+			param.put("RGSubqueCount", getData(data, "subQuestionCount"));
+			param.put("CBGSubqueCount", getData(data, "subQuestionCount"));
+			param.put("RRGSubqueCount", getData(data, "subQuestionCount"));
+			param.put("RDDGSubqueCount", getData(data, "subQuestionCount"));
+			param.put("RSGSubqueCount", getData(data, "subQuestionCount"));
+			param.put("attachmentQDetails", getData(data, "attachmentQDetails1"));
+			param.put("srsFormat", getData(data, "srsFormat"));
+			param.put("MTBSubqueCount", getData(data, "MTBSubqueCount"));
+			param.put("mtbFormat", getData(data, "mtbFormat"));
+			param.put("RSGAnsOptions", getData(data, "RSG"));
+//			param.put("quesHint", getData(data, "quesHint"));
+			param.put("Custom format", getData(data, "Custom format"));
+			
+			if (CaseToRun.equalsIgnoreCase("N")) {
+				System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				testSkip = true;
+				test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+				throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			} else {
+				for (String key : URLs.keySet()) {
+					System.out.println(URLs.get(key));
+					credentials = TestFile.getLoginCredentials("Users", Role);
+					for (int i = 0; i < credentials.size(); i++) {
+						users = credentials.get(i);
+						username = users.get("username");
+						encPassword = users.get("password");
+					}
+//					password = decryptPass.decryptUserPassword(encPassword);
+					
+					loadBrowser();
+					staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+					smxPage.allControlSurvey(getDriver(), param, test);
+					
+				}
+			}
+
+		}
 	
 		
 		

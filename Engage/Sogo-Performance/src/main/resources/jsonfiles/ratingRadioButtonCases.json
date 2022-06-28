@@ -1,0 +1,28 @@
+{
+	"case 1": {
+		"case description": "Add a rating radio button by using double click action. Enter Question text.",
+		"case validation": "",
+		"isAnswerlibrary": true,
+		"isTypeManually": false,
+		"isListView": false,
+		"isNormalView": true,
+		"isDataPop": false,
+		"dataPopValue": "",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isRandomQuestiontext": false,
+		"question text": "Add a rating radio button by using double click action. Enter Question text.",
+		"isRandomAnsoptiontext": false,
+		"answerOptionsText": [],
+		"weights": [],
+		"isRearrangeAnswers": false,
+		"sortBy": "",
+		"answerSequence": "As Entered",
+		"ansColumns": "1 Column",
+		"displayOrder": "Vertical",
+		"isMultimedia": false,
+		"action": "Double Click"
+	}
+}

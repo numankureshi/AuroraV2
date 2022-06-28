@@ -1,8 +1,11 @@
 package utility;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
@@ -10,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -25,6 +29,8 @@ import org.testng.internal.TestResult;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 
 import testsuitebase.TestResultStatus;
 
@@ -62,7 +68,7 @@ public class SeleniumUtils {
 		Actions action = new Actions(driver);
 		try {
 			element = getWebElement(driver, testcaseName, ele, test);
-			action.moveToElement(element).doubleClick(element).build().perform();
+			action.moveToElement(element).doubleClick().build().perform();
 			test.log(Status.INFO, "Successfully double clicked on "+ ele.getName() +" element.");
 			Add_Log.info("Successfully double clicked on "+ ele.getName() +" element.");
 			Reporter.log("Successfully double clicked on "+ ele.getName() +" element.");
@@ -85,12 +91,14 @@ public class SeleniumUtils {
 			Reporter.log("Successfully clicked on "+ name +" element.");
 		} catch (Exception e) {
 			try {
+				e.printStackTrace();
 				JavascriptExecutor executor = (JavascriptExecutor) driver;
 				executor.executeScript("arguments[0].click();", element);
 				test.log(Status.INFO, "Successfully clicked on "+ name +" element.");
 				Add_Log.info("Successfully clicked on "+ name +" element.");
 				Reporter.log("Successfully clicked on "+ name +" element.");
 			} catch (Exception e2) {
+				e2.printStackTrace();
 				test.log(Status.FAIL, "Not able to click on "+ name +" element.");
 				Add_Log.info("Not able to click on "+ name +" element.");
 				Reporter.log("Not able to click on "+ name +" element.");
@@ -221,7 +229,7 @@ public class SeleniumUtils {
 	
 	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, WebPageElements ele, ExtentTest test) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			if(ele.getLocator().equalsIgnoreCase("xpath")) {
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ele.getValue())));
 			} else if(ele.getLocator().equalsIgnoreCase("id")) {
@@ -252,7 +260,7 @@ public class SeleniumUtils {
 	
 	public void waitforElemNotVisible(WebDriver driver, String testcaseName, int seconds, WebPageElements ele, ExtentTest test) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			if(ele.getLocator().equalsIgnoreCase("xpath")) {
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(ele.getValue())));
 			} else if(ele.getLocator().equalsIgnoreCase("id")) {
@@ -279,9 +287,26 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void waitforElemNotVisible(WebDriver driver, String testcaseName, int seconds, By by, String name, ExtentTest test) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+			test.log(Status.INFO, "Successfully waited for "+ name +" to be disappear on page.");
+			Add_Log.info("Successfully waited for "+ name +" to be disappear on page.");
+			Reporter.log("Successfully waited for "+ name +" to be disappear on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, name +" is still present on page.");
+			Add_Log.info(name +" is stillot present on page.");
+			Reporter.log(name +" is still present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" is still present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
 	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, By by, String name, ExtentTest test) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
 			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
@@ -298,9 +323,10 @@ public class SeleniumUtils {
 		}
 	}
 	
+	
 	public void waitforElemPresent(WebDriver driver, String testcaseName, int seconds, WebElement element, String name, ExtentTest test) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, seconds);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 			wait.until(ExpectedConditions.elementToBeClickable(element));
 			test.log(Status.INFO, "Successfully waited for "+ name +" to be present on page.");
 			Add_Log.info("Successfully waited for "+ name +" to be present on page.");
@@ -310,6 +336,42 @@ public class SeleniumUtils {
 			Add_Log.info(name +" not present on page.");
 			Reporter.log(name +" not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void waitforAlert(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+			wait.until(ExpectedConditions.alertIsPresent());
+			test.log(Status.INFO, "Successfully waited for alert to be present on page.");
+			Add_Log.info("Successfully waited for alert to be present on page.");
+			Reporter.log("Successfully waited for alert to be present on page.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, "Alert did not appear on page.");
+			Add_Log.info("Alert did not appear on page.");
+			Reporter.log("Alert did not appear on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ "Alert did not appear on page.");
+			TestResultStatus.TestFail = true;
+			Assert.fail();
+		}
+	}
+	
+	public void waitforFrameToBePresent(WebDriver driver, String testcaseName, int seconds, WebPageElements ele,  ExtentTest test) {
+		WebElement element;
+		try {
+			element = getWebElement(driver, testcaseName, ele, test);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+			test.log(Status.INFO, "Successfully waited for "+ ele.getName() +" to be present on page and switched to Iframe.");
+			Add_Log.info("Successfully waited for "+ ele.getName() +" to be present on page switched to Iframe.");
+			Reporter.log("Successfully waited for "+ ele.getName() +" to be present on page switched to Iframe.");
+		} catch (Exception e) {
+			test.log(Status.FAIL, ele.getName() +" not present on page.");
+			Add_Log.info(ele.getName() +" not present on page.");
+			Reporter.log(ele.getName() +" not present on page.");
+			TestResultStatus.failureReason.add(testcaseName + "| "+ ele.getName() +" not present on page.");
 			TestResultStatus.TestFail = true;
 			Assert.fail();
 		}
@@ -380,7 +442,7 @@ public class SeleniumUtils {
 		try {
 		WebElement element = getWebElement(driver, testcaseName, ele, test);
 		long startTime = System.currentTimeMillis();
-		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
 		wait.until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				return element.getAttribute(attribute).contains(attributeValue);
@@ -401,13 +463,42 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void waitUntilReqAttribute(WebDriver driver,  String testcaseName, int timeOutInSeconds, int pollingEveryInMilliSec, final By by, String name,
+			final String attribute, final String attributeValue, ExtentTest test) {
+		try {
+		long startTime = System.currentTimeMillis();
+		Wait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(timeOutInSeconds)).pollingEvery(Duration.ofMillis(pollingEveryInMilliSec))
+				.ignoring(StaleElementReferenceException.class);
+		fWait.until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				WebElement element = driver.findElement(by);
+				System.out.println(element.getAttribute(attribute));
+				return element.getAttribute(attribute).contains(attributeValue);
+			}
+		});
+		long endTime = System.currentTimeMillis();
+		long totalTime = endTime - startTime;  //Get total wait in milliseconds
+		test.log(Status.INFO, "Successfully waited for "+name+" to change it's "+attribute+ " attribute value to "+attributeValue+" is "+totalTime+" milliseconds");
+		Add_Log.info("Successfully waited for "+name+" to change it's "+attribute+ " attribute value to "+attributeValue+" is "+totalTime+" milliseconds");
+		Reporter.log("Successfully waited for "+name+" to change it's "+attribute+ " attribute value to "+attributeValue+" is "+totalTime+" milliseconds");
+		}catch(Exception e) {
+			e.printStackTrace();
+			test.log(Status.FAIL, "Attribute value of " + name + " is not changed");
+			Add_Log.info("Attribute value of " + name + " is not changed");
+			Reporter.log("Attribute value of " + name + " is not changed");
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Attribute value of " + name + " is not changed");
+			TestResultStatus.TestFail = true;
+			Assert.fail();		
+		}
+	}
+	
 	
 	public void waitUntilReqCSSValue(WebDriver driver,  String testcaseName, int timeOutInSeconds, final WebPageElements ele, int elementNo,
 			final String cssAttribute, final String cssValue, ExtentTest test) {
 		try {
 		WebElement element = getWebElements(driver, testcaseName, ele, test).get(elementNo);
 		long startTime = System.currentTimeMillis();
-		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
 		wait.until(new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				return element.getCssValue(cssAttribute).contains(cssValue);
@@ -631,7 +722,8 @@ public class SeleniumUtils {
 	public void scrollIntoView(WebDriver driver, String testcaseName, WebPageElements ele, ExtentTest test) {
 		try {
 			WebElement element = getWebElement(driver, testcaseName, ele, test);
-			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior: \"smooth\", block: \"end\", inline: \"nearest\"});", element);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ ele.getName());
 			Add_Log.info("Failed to scrolling on element "+ ele.getName());
@@ -645,7 +737,8 @@ public class SeleniumUtils {
 	public void scrollIntoView(WebDriver driver, String testcaseName, By by, String name, ExtentTest test) {
 		WebElement element = driver.findElement(by);
 		try {
-			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior: \"smooth\", block: \"end\", inline: \"nearest\"});", element);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
@@ -658,7 +751,8 @@ public class SeleniumUtils {
 	
 	public void scrollIntoView(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {
 		try {
-			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior: \"smooth\", block: \"end\", inline: \"nearest\"});", element);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
@@ -734,16 +828,16 @@ public class SeleniumUtils {
 	public void waitForLoad(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
-				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
 				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='loader-parent']")));
 			} catch (Exception e) {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='loader-parent']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
 				Reporter.log("Successfully waited for loader to disappear.");
 			} finally {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='loader-parent']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
@@ -765,13 +859,13 @@ public class SeleniumUtils {
 				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
 				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='loading-skeleton']")));
 			} catch (Exception e) {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='loading-skeleton']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
 				Reporter.log("Successfully waited for loader to disappear.");
 			} finally {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='loading-skeleton']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
@@ -790,16 +884,16 @@ public class SeleniumUtils {
 	public void waitForInsideLoad(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
-				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
 				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='insideLoader']")));
 			} catch (Exception e) {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='insideLoader']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
 				Reporter.log("Successfully waited for loader to disappear.");
 			} finally {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='insideLoader']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
@@ -814,21 +908,21 @@ public class SeleniumUtils {
 			Assert.fail();
 		}
 	}
-
+	
 	
 	public void waitForLoadAttach(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
-				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
 				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='attachedLoader']")));
 			} catch (Exception e) {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
 				Reporter.log("Successfully waited for loader to disappear.");
 			} finally {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
@@ -849,16 +943,16 @@ public class SeleniumUtils {
 	public void waitForLoad2(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 		try {
 			try {
-				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(1, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(3)).pollingEvery(Duration.ofMillis(100)).ignoring(NoSuchElementException.class);
 				fWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='attachedLoader']")));
 			} catch (Exception e) {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
 				Reporter.log("Successfully waited for loader to disappear.");
 			} finally {
-				WebDriverWait wait = new WebDriverWait(driver, seconds);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
 				wait.until(ExpectedConditions.invisibilityOfAllElements(driver.findElements(By.xpath("//div[@class='attachedLoader']"))));
 				test.log(Status.INFO, "Successfully waited for loader to disappear.");
 				Add_Log.info("Successfully waited for loader to disappear.");
@@ -875,7 +969,7 @@ public class SeleniumUtils {
 	}
 	
 	public boolean waitForJStoLoad(WebDriver driver, long timeOutInSeconds) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
 		//Thread.sleep(1000);
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
 
@@ -989,7 +1083,7 @@ public class SeleniumUtils {
 		try {
 			Actions act = new Actions(driver);
 			element = getWebElement(driver, testcaseName, ele, test);
-			act.moveToElement(element).perform();
+			act.moveToElement(element).build().perform();
 			Add_Log.info("Successfully move on to " + ele.getName());
 			test.log(Status.INFO, "Successfully move on to " + ele.getName());
 			Reporter.log("Successfully move on to " + ele.getName());
@@ -1008,7 +1102,7 @@ public class SeleniumUtils {
 		try {
 			Actions act = new Actions(driver);
 			element = driver.findElement(by);
-			act.moveToElement(element).perform();
+			act.moveToElement(element).build().perform();
 			Add_Log.info("Successfully move on to " + name);
 			test.log(Status.INFO, "Successfully move on to " + name);
 			Reporter.log("Successfully move on to " + name);
@@ -1026,7 +1120,7 @@ public class SeleniumUtils {
 	public void hoverAction(WebDriver driver, String testcaseName, WebElement element, String name, ExtentTest test) {		
 		try {
 			Actions act = new Actions(driver);
-			act.moveToElement(element).perform();
+			act.moveToElement(element).build().perform();
 			Add_Log.info("Successfully hover on to " + name);
 			test.log(Status.INFO, "Successfully hover on to " + name);
 			Reporter.log("Successfully hover on to " + name);
@@ -1102,7 +1196,7 @@ public class SeleniumUtils {
 			WebPageElements ele, ExtentTest test) {
 		List<WebElement> element = getWebElements(driver, testcaseName, ele, test);
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
 			wait.until(new ExpectedCondition<Boolean>() {
 				public Boolean apply(WebDriver driver) {
 					return element.size() > 0;
@@ -1243,6 +1337,17 @@ public class SeleniumUtils {
 	}
 
 	
+	public JsonArray getPerformanceLogs(WebDriver driver, String testcaseName, ExtentTest test) {
+		try {
+			JsonParser parser = new JsonParser();
+			return (JsonArray) parser.parse((String) ((JavascriptExecutor)driver).executeScript("return JSON.stringify(performance.getEntries());"));
+		}catch(Exception e) {
+			
+			return null;
+		}
+		
+	}
+
 	
 
 }

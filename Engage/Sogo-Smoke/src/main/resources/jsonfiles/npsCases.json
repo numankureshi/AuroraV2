@@ -1,0 +1,72 @@
+{
+	"case 1": {
+		"case description": "Add NPS question with default setting.",
+		"case validation": "Validate question is added or not.",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isDefaultQuestionText": true,
+		"question text": "",
+		"defaultAnsLables": true,
+		"ansLabels": [],
+		"isMultimedia": false,
+		"action": "Double Click"
+	},
+	"case 2": {
+		"case description": "Add NPS question. Enter the question text. Make question mandatory.",
+		"case validation": "Validate question is added or not. Validate Mandatory icon is given or not (Checks svg element on DOM).",
+		"isMandatory": true,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isDefaultQuestionText": false,
+		"question text": "Add NPS question. Enter the question text. Make question mandatory.",
+		"defaultAnsLables": true,
+		"ansLabels": [],
+		"isMultimedia": false,
+		"action": "Double Click"
+	},
+	"case 3": {
+		"case description": "Add NPS question. Enter the question text. Make question encourage.",
+		"case validation": "Validate question is added or not. Check for encourage message fields is displayed or not.",
+		"isMandatory": false,
+		"isEncourage": true,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isDefaultQuestionText": false,
+		"question text": "Add NPS question. Enter the question text. Make question encourage.",
+		"defaultAnsLables": true,
+		"ansLabels": [],
+		"isMultimedia": false,
+		"action": "Double Click"
+	},
+	"case 4": {
+		"case description": "Add NPS question. Enter the question text. Add Question Hint.",
+		"case validation": "Validate question is added or not. Validate Question Hint Text shown inside the hover tooltip.",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": true,
+		"questionHintText": "Prepare their minds ahead of time by adding an estimated survey-completion time. While shorter surveys are likely to have more respondents, don't give a false estimation to bait people to fill your survey.",
+		"isDefaultQuestionText": false,
+		"question text": "Add NPS question. Enter the question text. Add Question Hint.",
+		"defaultAnsLables": true,
+		"ansLabels": [],
+		"isMultimedia": false,
+		"action": "Double Click"
+	},
+	"case 5": {
+		"case description": "Add NPS question. Enter the question text. Add Question Hint. Change the answer labels.",
+		"case validation": "Validate question is added or not. Validate Question Hint Text shown inside the hover tooltip.",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isDefaultQuestionText": false,
+		"question text": "Add NPS question. Enter the question text. Add Question Hint. Change the answer labels.",
+		"defaultAnsLables": false,
+		"ansLabels": ["Not Likely","Very Likely"],
+		"isMultimedia": false,
+		"action": "Double Click"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"case 1": {
+		"case description": "Add a Date question by using double click action.",
+		"case validation": "",
+		"isDataPop": false,
+		"dataPopValue": "",
+		"isMandatory": false,
+		"isEncourage": false,
+		"isQuestionHint": false,
+		"questionHintText": "",
+		"isRandomQuestiontext": false,
+		"question text": "Add a Date question by using double click action.",
+		"isMultimedia": false,
+		"action": "Double Click"
+	}
+	
+}

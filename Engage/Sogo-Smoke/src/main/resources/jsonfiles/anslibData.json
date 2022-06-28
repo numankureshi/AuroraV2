@@ -1,0 +1,57 @@
+{
+	"anslib": [
+		{
+			"Comparison II": [
+				"Much worse than others",
+				"Worse than others",
+				"No Difference",
+				"Better than others",
+				"Much better than others"
+			]
+		},
+		{
+			"Comparison I": [
+				"Much less than others",
+				"Less than others",
+				"About the same as others",
+				"More than others"
+			]
+		},
+		{
+			"Intensity": [
+				"Really Apprehensive",
+				"Somewhat Apprehensive",
+				"Mixed Feelings",
+				"Somewhat Excited",
+				"Really Excited"
+			]
+		},
+		{
+			"Influence": [
+				"Big Problem",
+				"Moderate Problem",
+				"Small Problem",
+				"Very Small Problem",
+				"No Problem"
+			]
+		},
+		{
+			"Endorsement": [
+				"Strongly Disagree",
+				"Disagree",
+				"Agree",
+				"Strongly Agree",
+				"Don't Know"
+			]
+		},
+		{
+			"Freqeuncy I": [
+				"0 times",
+				"1-2 times",
+				"3-6 times",
+				"7-9 times",
+				"10 or more times"
+			]
+		}
+	]
+}

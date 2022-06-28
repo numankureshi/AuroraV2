@@ -12,7 +12,7 @@ public interface ILoginPage {
 	String LOGIN_IMG_STATIC = "//div[@class='Logoimg']";
 	WebPageElements login_img_static = new WebPageElements("Login Image Static", "xpath", LOGIN_IMG_STATIC);
 	
-	String USER_PASS = "//input[contains(@id,'strPassword')]";
+	String USER_PASS = "//input[@type='password']";
 	WebPageElements user_pass = new WebPageElements("User Password", "xpath", USER_PASS);
 	
 	String LOGIN_BUTTON = "//input[@name='submit']";
