@@ -111,6 +111,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterRatingRadioButton(driver, param, test);
 		enterRatingDropDownButton(driver, param, test);
 		enterListBoxButton(driver, param, test);
+		scrollIntoCenter(driver, testcaseName, captcha_button, test);
 		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
 	}
 
@@ -922,7 +923,19 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 10, answers_library, test);
 		click(driver, testcaseName, answers_library, test);
-		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
+		waitForElementToBeVisible(driver, testcaseName, answers_library_new, 30, 100, test);
+		waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
+		setText(driver, testcaseName, search_ans_lib, answerOption, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
+		new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+		click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+	}
+	
+	public void answersLibraryGrid(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
+			throws InterruptedException {String testcaseName = param.get("TestCaseName");
+			waitforElemPresent(driver, testcaseName, 10, answers_library, test);
+			click(driver, testcaseName, answers_library, test);
 			waitForElementToBeVisible(driver, testcaseName, answers_library_new, 30, 100, test);
 			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
 			setText(driver, testcaseName, search_ans_lib, answerOption, test);
@@ -930,47 +943,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
 			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
 			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
-		}else {
-			waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
-			click(driver, testcaseName, get_answer_options_library, test);
-			waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-			waitforElemPresent(driver, testcaseName, 30, iframe_answer_options, test);
-			waitForLoad(driver, testcaseName,60, test);
-			driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS)));
-			waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-			click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-			waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-			click(driver, testcaseName, use_this_list_button, test);
-			driver.switchTo().defaultContent();
-			}
-		}
-	
-	public void answersLibraryGrid(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
-			throws InterruptedException {String testcaseName = param.get("TestCaseName");
-			waitforElemPresent(driver, testcaseName, 10, answers_library, test);
-			click(driver, testcaseName, answers_library, test);
-			if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-				waitForElementToBeVisible(driver, testcaseName, answers_library_new, 30, 100, test);
-				waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
-				setText(driver, testcaseName, search_ans_lib, answerOption, test);
-				waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
-				new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
-				waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
-				click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
-			}else {
-				waitForLoad(driver, testcaseName, 60, test);
-				waitforElemPresent(driver, testcaseName, 10, get_answer_options_library, test);
-				click(driver, testcaseName, get_answer_options_library, test);
-				waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-				waitforElemPresent(driver, testcaseName, 30, iframe_answer_options_grid, test);
-				driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS_GRID)));
-				waitForLoad(driver, testcaseName, 60, test);
-				waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-				click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-				waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-				click(driver, testcaseName, use_this_list_button, test);
-				driver.switchTo().defaultContent();
-			}
+		
 		}
 	
 	public void answersLibrary2(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
@@ -980,27 +953,13 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			
 			waitforElemPresent(driver, testcaseName, 10, answers_library2, test);
 			click(driver, testcaseName, answers_library2, test);
-			if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-				waitForElementToBeVisible(driver, testcaseName, answers_library_grid, 30, 100, test);
-				waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
-				setText(driver, testcaseName, search_ans_lib, answerOption, test);
-				waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
-				new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
-				waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
-				click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
-			}else {
-				waitForLoad(driver, testcaseName, 60, test);
-//				waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-				waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
-				driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
-				waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-				click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-				waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-				click(driver, testcaseName, use_this_list_button, test);
-				driver.switchTo().parentFrame();			
-				
-			}
-
+			waitForElementToBeVisible(driver, testcaseName, answers_library_grid, 30, 100, test);
+			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
+			setText(driver, testcaseName, search_ans_lib, answerOption, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
+			new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
+			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
 		}
 	
 	public void questionsLibrary(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
@@ -1160,7 +1119,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, save_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']"), "Rating Scale Added "+ param.get("ratingscale"), test);
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-slider-horizontal')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-corner-all ui-slider-horizontal')]"), "Rating Scale Slider Added "+ param.get("ratingscale"), test);
 	}
 	
 	public void enterSymbolRatingScaleButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -1351,6 +1310,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterMultipleTextBoxButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, multiple_textbox_button, test);
 		waitforElemPresent(driver, testcaseName, 30, multiple_textbox_button, test);
 		doubleClick(driver, testcaseName, multiple_textbox_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -1702,6 +1662,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void enterAttachmentButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, attachments_button, test);
 		waitforElemPresent(driver, testcaseName, 30, attachments_button, test);
 		doubleClick(driver, testcaseName, attachments_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -4097,7 +4058,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			totalTime = ((end - start)) / 1000;
 			strtotalTime = df.format(totalTime);
 			
-			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingscale") +"\"]/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-slider-horizontal')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingscale") +"\"]/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-corner-all ui-slider-horizontal')]"), "Rating Scale Slider Added "+ param.get("ratingscale"), test);
 			break;
 		case "dvGQ":
 			waitforElemPresent(driver, testcaseName, 10, save_button, test);
