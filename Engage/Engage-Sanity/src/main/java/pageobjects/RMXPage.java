@@ -463,25 +463,15 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 					60, 100, test);
 			waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='segGroupWrapper']/div[text()='" + param.get("segmentGroupName") + "']"), 
 					param.get("segmentGroupName"), 60, 100, test);
-			if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
-						"Three Dots", 60, 100, test);
-				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
-						"Three Dots", test);
-				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']"),
-						"Segment group options", test);
-				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
-						"Export", test);
-			}else {
-				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
-						"Three Dots", 60, 100, test);
-				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
-						"Three Dots", test);
-				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']"),
-						"Segment group options", test);
-				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
-						"Export", test);
-			}
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
+					"Three Dots", 60, 100, test);
+			click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
+					"Three Dots", test);
+			waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']"),
+					"Segment group options", test);
+			click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
+					"Export", test);
+		
 			
 			
 			waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
@@ -515,7 +505,6 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			}
 		// Send the omni exe mail if given segment group is already added in canvas
 		else if (driver.findElements(By.xpath("//div[@id='segGroupWrapper']//div[text()='" + param.get("segmentGroupName") + "']")).size()>0) {
-			if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
 				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
 						"Three Dots", 60, 100, test);
 				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
@@ -523,18 +512,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']"),
 						"Segment group options", test);
 				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
-						"Export", test);
-			}else {
-				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
-						"Three Dots", 60, 100, test);
-				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
-						"Three Dots", test);
-				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']"),
-						"Segment group options", test);
-				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
-						"Export", test);
-			}
-				
+						"Export", test);			
 				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
 						60, 100, test);
 				click(driver, testcaseName, select_all_seg_opt2, test);
@@ -596,26 +574,14 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 						60, 100, test);
 				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='segGroupWrapper']/div[text()='" + param.get("segmentGroupName") + "']"), 
 						param.get("segmentGroupName"), 60, 100, test);
-				if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-					waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
-							"Three Dots", 60, 100, test);
-					click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
-							"Three Dots", test);
-					waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']"),
-							"Segment group options", test);
-					click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
-							"Export", test);
-				}else {
-					waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
-							"Three Dots", 60, 100, test);
-					click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']"), 
-							"Three Dots", test);
-					waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']"),
-							"Segment group options", test);
-					click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[@class='dots-icon']//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
-							"Export", test);
-				}
-				
+				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
+						"Three Dots", 60, 100, test);
+				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]"), 
+						"Three Dots", test);
+				waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']"),
+						"Segment group options", test);
+				click(driver, testcaseName, By.xpath("//div[text()='" + param.get("segmentGroupName") + "']//following-sibling::div[contains(@class,'dots-icon')]//div[@class='seg-menu-list']//div[contains(@ng-click,'OpenCanvasSegmentExport')]"),
+						"Export", test);		
 				waitForElementToBeVisible(driver, testcaseName, By.xpath(SEGMENT_EXPORT_TAB), "Segment Export Modal", 
 						60, 100, test);
 				click(driver, testcaseName, select_all_seg_opt2, test);
