@@ -1021,4 +1021,116 @@ public interface ISMXPage {
 	String REPLACE_BUTTON = "//input[@id='ReplaceButton']";
 	WebPageElements replace_button = new WebPageElements("replace_button", "xpath", REPLACE_BUTTON);
 	
+	String ALL_PROJECTS= "//div[@class='all-projects']";
+	WebPageElements all_projects = new WebPageElements("AllProjects", "xpath", ALL_PROJECTS);
+	
+	String SEARCH_PROJECTS= "//input[@id='InSearchText']";
+	WebPageElements search_projects = new WebPageElements("SearchProjects", "xpath", SEARCH_PROJECTS);
+	
+	String HOVER1 = "//div[contains(@title,'Do not touch - Merge DP1 FROM sogo_Asharma')]";
+	WebPageElements hover1 = new WebPageElements("Hover1", "xpath", HOVER1 );
+	
+	String HOVER2 = "//div[contains(@title,'Do not touch - Merge DP2 FROM sogo_Asharma')]";
+	WebPageElements hover2 = new WebPageElements("Hover2", "xpath", HOVER2 );
+	
+	String DD0 = "//ul[@id='common-menu1']//li//a[@class='fly']//span[contains(text(),'Merge DP')]";
+	WebPageElements dd0 = new WebPageElements("DdO", "xpath", DD0 );
+	
+	String DD1 = "//ul[@id='common-menu3']//li//a[@class='fly']//span[contains(text(),'Merge DP')]";
+	WebPageElements dd1 = new WebPageElements("Dd1", "xpath", DD1);
+	
+	String PUBLISH_PROJECT= "//div[@id='over-div-contents']//span[@class='survey-option-icon publish-opt-icon']";
+	WebPageElements publish_project = new WebPageElements("PublishProject", "xpath", PUBLISH_PROJECT);
+	
+	String COPY_URL= "//div[@id='copyPublishUrl']";
+	WebPageElements copy_url = new WebPageElements("CopyUrl", "xpath", COPY_URL);
+	
+	
+	String S1Q1 = "//label[normalize-space()='Much less than others']";
+	WebPageElements s1q1 = new WebPageElements("Survey1Q1", "xpath", S1Q1 );
+	
+	String S1Q2 = "//label[normalize-space()='Strongly Disagree']";
+	WebPageElements s1q2 = new WebPageElements("Survey1Q2", "xpath", S1Q2 );
+	
+	String S1Q3 = "//option[@value='3']";
+	WebPageElements s1q3 = new WebPageElements("Survey1Q3", "xpath", S1Q3 );
+	
+	String S1Q4 = "//label[normalize-space()='Never']";
+	WebPageElements s1q4 = new WebPageElements("Survey1Q4", "xpath", S1Q4 );
+	
+	String S1Q5 = "//div[@class='slide ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all']";
+	WebPageElements s1q5 = new WebPageElements("Survey1Q5", "xpath", S1Q5 );
+	
+	String S2Q1 = "//label[normalize-space()='Much less than others']";
+	WebPageElements s2q1 = new WebPageElements("Survey2Q1", "xpath", S2Q1 );
+	
+	String S2Q2 = "//label[normalize-space()='Strongly Disagree']";
+	WebPageElements s2q2 = new WebPageElements("Survey2Q2", "xpath", S2Q2 );
+	
+	String S2Q3 = "//option[@value='3']";
+	WebPageElements s2q3 = new WebPageElements("Survey2Q3", "xpath", S2Q3 );
+	
+	String S2Q4 = "//label[normalize-space()='Never']";
+	WebPageElements s2q4 = new WebPageElements("Survey2Q4", "xpath", S2Q4 );
+	
+	String S2Q5 = "//span[@role='slider']";
+	WebPageElements s2q5 = new WebPageElements("Survey2Q5", "xpath", S2Q5 );
+	
+	String NEXT = "//input[@id='BUTTON_NEXT']";
+	WebPageElements next = new WebPageElements("SurveyParticipationNext", "xpath", NEXT );
+	
+	String SUBMIT = "//input[@id='BUTTON_SUBMIT']";
+	WebPageElements submit = new WebPageElements("SurveyParticipationSubmit", "xpath", SUBMIT );
+	
+	String SUBMIT2 = "//span[contains (text(),'Submit')]";
+	WebPageElements submit2 = new WebPageElements("SurveyParticipationSubmit2", "xpath", SUBMIT2 );
+	
+	String SUBMITENGAGE = "//span[contains(text(),'Plz Do Submit')]";
+	WebPageElements submitengage = new WebPageElements("SurveyParticipationSubmiEngage", "xpath", SUBMITENGAGE );
+	
+	String SUBMITENGAGE2 = "//input[@id='BUTTON_SUBMIT']";
+	WebPageElements submitengage2 = new WebPageElements("SurveyParticipationSubmitEngage2", "xpath", SUBMITENGAGE2 );
+	
+	String SUBMITZARCA = "//span[contains(text(),'Submit')]";
+	WebPageElements submitzarca = new WebPageElements("SurveyParticipationSubmitZarca", "xpath", SUBMITZARCA );
+	
+	String SUBMITZARCA2 = "//input[@id='BUTTON_SUBMIT']";
+	WebPageElements submitzarca2 = new WebPageElements("SurveyParticipationSubmitZarca2", "xpath", SUBMITZARCA2 );
+	 
+	String UTILITIES = "//a[@id='Inner_header1_ctl00_aum']";
+	WebPageElements utilities = new WebPageElements("Utilities", "xpath", UTILITIES );
+	
+	String MERGE_PROJECTS = "//a[@id='Inner_header1_ctl00_lnkUTLmerge']";
+	WebPageElements merge_projects = new WebPageElements("Merge_Projects", "xpath", MERGE_PROJECTS );
+	
+	String CREATE_NEW_MERGE_PROJECTS = "//input[@id='btnCreateNewMerge']";
+	WebPageElements create_new_merge_projects = new WebPageElements("Create_New_Merge_Projects", "xpath", CREATE_NEW_MERGE_PROJECTS );
+	
+	String CONTINUE1 = "//input[@name='btnNext1']";
+	WebPageElements continue1 = new WebPageElements("Continue1", "xpath", CONTINUE1 );
+	
+	String SELECT_PROJECT1 = "//div[@id='dvSurvey1']//a[@class='top_link']";
+	WebPageElements select_project1 = new WebPageElements("Select_Project1", "xpath", SELECT_PROJECT1 );	
+	
+	String  DO_NOT_TOUCH_MERGE_DP1_FROM_SOGO_ASHARMA = "//ul[@id='common-menu1']//li//a[contains(text(),'Do not touch - Merge DP1 FROM sogo_Asharma')]";
+	WebPageElements do_not_touch_merge_dp1_from_sogo_asharma = new WebPageElements("Do_NOT_TOUCH_Merge_Dp1_From_Sogo_Asharma", "xpath", DO_NOT_TOUCH_MERGE_DP1_FROM_SOGO_ASHARMA );
+	
+	String SELECT_PROJECT2 = "//div[@id='dvSurvey3']//a[@class='top_link']";
+	WebPageElements select_project2 = new WebPageElements("Select_Project2", "xpath", SELECT_PROJECT2 );
+	
+	String DO_NOT_TOUCH_MERGE_DP2_FROM_SOGO_ASHARMA = "//ul[@id='common-menu3']//li//a[contains(text(),'Do not touch - Merge DP2 FROM sogo_Asharma')]";
+	WebPageElements do_not_touch_merge_dp2_from_sogo_asharma = new WebPageElements("Do_NOT_TOUCH_MERGE_DP2_FROM_SOGO_ASHARMA", "xpath", DO_NOT_TOUCH_MERGE_DP2_FROM_SOGO_ASHARMA );
+	
+	String CONTINUE2 = "//input[@id='btnNext2']";
+	WebPageElements continue2 = new WebPageElements("Continue2", "xpath", CONTINUE2 );
+	
+	String SELECT_FOLDER_MERGE_DP = "//span[@class='folder-text ng-binding'][normalize-space()='Merge DP']";
+	WebPageElements select_folder_merge_dp = new WebPageElements("Select_Folder_Merge_Dp", "xpath", SELECT_FOLDER_MERGE_DP );
+	
+	String IMPORT_RESPONSE = "//label[@for='rdImportNowYes']";
+	WebPageElements import_response = new WebPageElements("Import_Response", "xpath", IMPORT_RESPONSE );
+	
+	String DONE = "//input[@id='btnDone']";
+	WebPageElements done = new WebPageElements("Done", "xpath", DONE );
+	
 }

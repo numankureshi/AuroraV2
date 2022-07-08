@@ -40,6 +40,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.time.CalendarUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -115,6 +116,183 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
 	}
 
+	public void MergeDP(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		SelectAllProject(driver,param,test);
+		SelectFolder(driver,param,test);
+		Publish_Survey1(driver,param,test);
+		SurveyParticipation1(driver,param,test);
+		SelectAllProject(driver,param,test);
+		Publish_Survey2(driver,param,test);
+		SurveyParticipation2(driver,param,test);
+		Final_Merge_Steps(driver,param,test);
+	}
+	
+	public void SelectAllProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, all_projects, test);
+		click(driver, testcaseName, all_projects, test);
+	}
+	public void SelectFolder(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1']"),testcaseName,test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));
+		waitforElemPresent(driver, testcaseName, 30, select_folder_merge_dp, test);
+		click(driver, testcaseName, select_folder_merge_dp, test);
+	}
+	
+	public void Publish_Survey1(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, hover1, test);
+		WebElement hower = driver.findElement(By.xpath("//div[contains(@title,'Do not touch - Merge DP1 FROM sogo_Asharma')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		waitforElemPresent(driver, testcaseName, 30, publish_project, test);
+		click(driver, testcaseName, publish_project, test);
+		waitforElemPresent(driver, testcaseName, 30, copy_url, test);
+		click(driver, testcaseName, copy_url, test);
+		String URL = (driver.findElement(By.xpath("//div[@id='publishUrl']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	}
+		
+	public void SurveyParticipation1(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Much less than others']"),testcaseName,test);
+		click(driver, testcaseName, By.xpath("//label[normalize-space()='Much less than others']"), testcaseName, test);
+		click(driver, testcaseName, s1q2, test);
+		click(driver, testcaseName, s1q3, test);
+		click(driver, testcaseName, s1q4, test);
+		//click(driver, testcaseName, s1q5, test);  
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		if(driver.getCurrentUrl().contains("http://urlbranding.sogoquiz.com/survey.aspx?k=SsQTURPVsTVSsPsPsP&lang=0&data=")) {
+			waitforElemPresent(driver, testcaseName, 30, submit, test);
+			click(driver, testcaseName, submit, test); 
+		}	
+		else if(driver.getCurrentUrl().contains("https://urlbranding.k12insight.com/survey1.aspx?k=SsTUXQQsQPRQsPsPsP&lang=0")) {
+		     waitforElemPresent(driver, testcaseName, 30, submitengage, test);
+	    	 click(driver, testcaseName, submitengage, test);
+		}
+      else {
+    	  waitforElemPresent(driver, testcaseName, 30, submitzarca, test);
+    	  click(driver, testcaseName, submitzarca, test);
+      }
+    	  
+		driver.switchTo().window(param.get("currentWindowHandle"));
+	}
+	
+	public void Publish_Survey2(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1']"),testcaseName,test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));
+		waitforElemPresent(driver, testcaseName, 30, hover2, test);
+		WebElement hower = driver.findElement(By.xpath("//div[contains(@title,'Do not touch - Merge DP2 FROM sogo_Asharma')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();
+		waitforElemPresent(driver, testcaseName, 30, publish_project, test);
+		click(driver, testcaseName, publish_project, test);
+		waitforElemPresent(driver, testcaseName, 30, copy_url, test);
+		click(driver, testcaseName, copy_url, test);	
+		String URL1 = (driver.findElement(By.xpath("//div[@id='publishUrl']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL1);
+	    	    
+	}
+	
+	public void SurveyParticipation2(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Much less than others']"),testcaseName,test);
+		click(driver, testcaseName, By.xpath("//label[normalize-space()='Much less than others']"), testcaseName, test);
+		click(driver, testcaseName, s2q2, test);
+		click(driver, testcaseName, s2q3, test);
+		click(driver, testcaseName, s2q4, test);
+		//click(driver, testcaseName, s2q5, test);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)");
+		if(driver.getCurrentUrl().contains("http://urlbranding.sogoquiz.com/survey1.aspx?k=SsQTURPVsTVRsPsPsP&lang=0")) {
+			waitforElemPresent(driver, testcaseName, 30, submit2, test);
+			click(driver, testcaseName, submit2, test); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://urlbranding.k12insight.com/survey.aspx?k=SsTUXQQsQPRRsPsPsP&lang=0&data=")) {
+		     waitforElemPresent(driver, testcaseName, 30, submitengage2, test);
+	    	 click(driver, testcaseName, submitengage2, test);
+		}
+      else {
+    	  waitforElemPresent(driver, testcaseName, 30, submitzarca2, test);
+    	  click(driver, testcaseName, submitzarca2, test);
+      }
+		driver.switchTo().window(param.get("currentWindowHandle"));
+		
+	}
+	
+	public void Final_Merge_Steps(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, utilities, test);
+		click(driver, testcaseName, utilities, test);
+		waitforElemPresent(driver, testcaseName, 30, merge_projects, test);
+		click(driver, testcaseName, merge_projects, test);
+		waitforElemPresent(driver, testcaseName, 30, create_new_merge_projects, test);
+		click(driver, testcaseName, create_new_merge_projects, test);
+		waitforElemPresent(driver, testcaseName, 30, continue1, test);
+		click(driver, testcaseName, continue1, test);
+		waitforElemPresent(driver, testcaseName, 30, select_project1, test);
+		click(driver, testcaseName, select_project1, test);
+		waitforElemPresent(driver, testcaseName, 30, dd0, test);
+		WebElement dd0 = driver.findElement(By.xpath("//ul[@id='common-menu1']//li//a[@class='fly']//span[contains(text(),'Merge DP')]"));
+		Actions action0 = new Actions(driver); 
+		action0.doubleClick(dd0).perform();
+		waitforElemPresent(driver, testcaseName, 30, do_not_touch_merge_dp1_from_sogo_asharma, test);
+		click(driver, testcaseName, do_not_touch_merge_dp1_from_sogo_asharma, test);
+		waitforElemPresent(driver, testcaseName, 30, select_project2, test);
+		click(driver, testcaseName, select_project2, test);
+		waitforElemPresent(driver, testcaseName, 30, dd1, test);
+		WebElement dd1 = driver.findElement(By.xpath("//ul[@id='common-menu3']//li//a[@class='fly']//span[contains(text(),'Merge DP')]"));
+		Actions action1 = new Actions(driver); 
+		action1.doubleClick(dd1).perform();
+		waitforElemPresent(driver, testcaseName, 30, do_not_touch_merge_dp2_from_sogo_asharma, test);
+		click(driver, testcaseName, do_not_touch_merge_dp2_from_sogo_asharma, test);
+		waitforElemPresent(driver, testcaseName, 30, continue2, test);
+		click(driver, testcaseName, continue2, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();
+		waitforElemPresent(driver, testcaseName, 30, import_response, test);
+		click(driver, testcaseName, import_response, test);
+		waitforElemPresent(driver, testcaseName, 30, done, test);
+		click(driver, testcaseName, done, test);
+		Thread.sleep(5000);
+		
+	}
+	
 	public void createPoll(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
