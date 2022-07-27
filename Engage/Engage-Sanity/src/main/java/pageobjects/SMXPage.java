@@ -115,6 +115,410 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterListBoxButton(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
 	}
+	
+	public void DescriptiveText(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Descriptive_Text(driver,param,test);
+		Add_Questions(driver,param,test);	
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("DescriptiveText") +"')]"), "Descriptive Text : "+ param.get("DescriptiveText"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("DescriptiveText") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Descriptive Text is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Descriptive Text is not displayed" , test);
+		}
+	}
+	public void TextBox(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Text_Box(driver,param,test);
+		Add_Questions(driver,param,test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("TextBox") +"')]"), "TextBox : "+ param.get("TextBox"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("TextBox") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Text Box is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Text Box is not displayed" , test);
+		}
+	}
+	public void RadioButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Radio_Button(driver,param,test);
+		Add_Questions(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("RadioButton") +"')]"), "RadioButton : "+ param.get("RadioButton"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("RadioButton") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Radio Button is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Radio Button is not displayed" , test);
+		}
+	}
+	public void CheckBox(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Check_Box(driver,param,test);
+		Add_Questions(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("CheckBox") +"')]"), "CheckBox : "+ param.get("CheckBox"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("CheckBox") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Check Box is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Check Box is not displayed" , test);
+		}
+	}
+	public void DropDown(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Drop_Down(driver,param,test);
+		Add_Questions(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("DropDown") +"')]"), "DropDown : "+ param.get("DropDown"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("DropDown") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Drop Down is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Drop Down is not displayed" , test);
+		}
+	}
+	public void RankingQuestion(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Ranking(driver,param,test);
+		Add_Questions(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("ranking") +"')]"), "Ranking : "+ param.get("ranking"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("ranking") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Ranking is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Ranking is not displayed" , test);
+		}
+	}
+	
+	public void DateQuestion(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Date(driver,param,test);
+		Add_Questions(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("date") +"')]"), "Date : "+ param.get("date"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("date") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Date is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Date is not displayed" , test);
+		}
+	}
+	public void HorizontalRadio(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Horizontal_Radio(driver,param,test);
+		Add_Questions(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("horizontalradiobutton") +"')]"), "horizontal RadioButton : "+ param.get("horizontalradiobutton"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("horizontalradiobutton") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Horizontal Radio is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Horizontal Radio is not displayed" , test);
+		}
+	}
+	public void PageBreakWithoutQuestions(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Page_Break(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30, add_questions, test);
+		click(driver, testcaseName, add_questions, test);
+		//WebDriverWait wait = new WebDriverWait(driver, 300 /*timeout in seconds*/);
+		//if(wait.until(ExpectedConditions.alertIsPresent())==null)
+		    //System.out.println("page break without questions alert was not present");	
+		String actualalert = driver.switchTo().alert().getText();
+		String expectedalert = "Looks like something's missing! Please review tags, questions, and answer text.";
+		Assert.assertEquals(actualalert, expectedalert, "Alert message is not matching with expectedalert");
+	}
+	
+	public void CreateCopyPaste(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		CreateNewSurveyForCopyPaste(driver,param,test);
+		Descriptive_Text(driver,param,test);
+		Text_Box(driver,param,test);
+		Radio_Button(driver,param,test);
+		Page_Break(driver,param,test);
+		Check_Box(driver,param,test);
+		Drop_Down(driver,param,test);
+		Ranking(driver,param,test);
+		Page_Break(driver,param,test);
+		Date(driver,param,test);
+		Horizontal_Radio(driver,param,test);
+		Add_Questions(driver,param,test);
+	}
+	
+	public void CopyPaste(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		SelectAllProject(driver,param,test);
+		Hover_Edit_Project(driver,param,test);
+		Descriptive_Text(driver,param,test);
+		Text_Box(driver,param,test);
+		Radio_Button(driver,param,test);
+		Page_Break(driver,param,test);
+		Check_Box(driver,param,test);
+		Drop_Down(driver,param,test);
+		Ranking(driver,param,test);
+		Page_Break(driver,param,test);
+		Date(driver,param,test);
+		Horizontal_Radio(driver,param,test);
+		Add_Questions(driver,param,test);
+	}
+		
+	public void CreateNewSurveyForCopyPaste(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 10, ihavequestionsreadytocp, test);
+		click(driver, testcaseName, ihavequestionsreadytocp, test);
+		Thread.sleep(2000);
+		waitforElemPresent(driver, testcaseName, 30, start_button, test);
+		click(driver, testcaseName, start_button, test);
+		//waitForLoad(driver, testcaseName, 30, test);
+		//waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@title='"+ param.get("surveyName") +"']"), param.get("surveyName"), test);	
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1']"),testcaseName,test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));
+		waitforElemPresent(driver, testcaseName, 30, questiontags, test);
+		click(driver, testcaseName, questiontags, test);
+	}
+	public void Page_Break(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, pb, test);
+		click(driver, testcaseName, pb, test);
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	public void Hover_Edit_Project(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1']"),testcaseName,test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));
+		waitforElemPresent(driver, testcaseName, 30, hover3, test);
+		WebElement hower = driver.findElement(By.xpath("//div[@title='SID: 1334, new copy paste feature Anas']"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();
+		waitforElemPresent(driver, testcaseName, 30, edit1, test);
+		click(driver, testcaseName, edit1, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, clickhere, test);
+		click(driver, testcaseName, clickhere, test);	
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1']"),testcaseName,test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));
+		waitforElemPresent(driver, testcaseName, 30, questiontags, test);
+		click(driver, testcaseName, questiontags, test);
+		Thread.sleep(3000);
+	}
+
+
+	public void Descriptive_Text(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, dt, test);
+		click(driver, testcaseName, dt, test);
+		//driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(param.get("DescriptiveText"));
+		setText(driver, testcaseName, enter_text, param.get("DescriptiveText"), test);
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		
+	}
+	public void Text_Box(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, tb, test);
+		click(driver, testcaseName, tb, test);
+		//driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(param.get("TextBox"));	
+		setText(driver, testcaseName, enter_text, param.get("TextBox"), test);
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Radio_Button(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		//String rbquestiontext = param.get("RadioButton").split("/~~/")[0];
+		//String[] rbansweroptionarray = param.get("RadioButton").split("/~~/")[1].split("/~/");
+		waitforElemPresent(driver, testcaseName, 30, rb, test);
+		click(driver, testcaseName, rb, test);
+		//driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(param.get("RadioButton"));	
+		setText(driver, testcaseName, enter_text, param.get("RadioButton"), test);
+		//setText(driver, testcaseName, enter_text, rbquestiontext , test);
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption1");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption2");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption3");
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Check_Box(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, cb, test);
+		click(driver, testcaseName, cb, test);	
+		setText(driver, testcaseName, enter_text, param.get("CheckBox"), test);
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption1");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption2");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption3");
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Drop_Down(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, dd, test);
+		click(driver, testcaseName, dd, test);	
+		setText(driver, testcaseName, enter_text, param.get("DropDown"), test);
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption1");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption2");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption3");
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Ranking(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, r, test);
+		click(driver, testcaseName, r, test);	
+		setText(driver, testcaseName, enter_text, param.get("ranking"), test);
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption1");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption2");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption3");
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Date(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, date, test);
+		click(driver, testcaseName, date, test);	
+		setText(driver, testcaseName, enter_text, param.get("date"), test);
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Horizontal_Radio(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, hr, test);
+		click(driver, testcaseName, hr, test);	
+		setText(driver, testcaseName, enter_text, param.get("horizontalradiobutton"), test);
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption1");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption2");
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys("AnsOption3");
+		Actions action = new Actions(driver);
+		action.moveByOffset(10,0).click().build().perform();
+		driver.findElement(By.xpath("//textarea[@id='txtCopyPaste']")).sendKeys(System.lineSeparator());
+	}
+	
+	public void Add_Questions(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, add_questions, test);
+		click(driver, testcaseName, add_questions, test);
+		//waitforElemPresent(driver, testcaseName, 30, hp, test);
+		//click(driver, testcaseName, hp, test);
+		
+	}
 
 	public void MergeDP(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {

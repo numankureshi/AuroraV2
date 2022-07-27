@@ -665,6 +665,36 @@ public interface IDMXPage {
 	String TYPE_MANUALLY_ICON = "//div[text()='Type Manually']/preceding::div[contains(@class,'source-option-icon')]";
 	WebPageElements type_manually_icon = new WebPageElements("Type Manually Icon", "xpath", TYPE_MANUALLY_ICON);
 	
+	String TEST_BUTTON = "//span[normalize-space()='Test']";
+	WebPageElements test_button = new WebPageElements("TestButton", "xpath", TEST_BUTTON );
+	
+	String SEND_TEST_INVITATION = "//div[@id='anhSendTestInvite']";
+	WebPageElements send_test_invitation = new WebPageElements("SendTestInvitation", "xpath", SEND_TEST_INVITATION );
+	
+	String SELECT_TEMPLATE = "//div[@class='btn-quick-view center select-btn']";
+	WebPageElements select_template = new WebPageElements("SelectTemplate", "xpath", SELECT_TEMPLATE );
+	
+	String TEXT_AREA_FOR_INVIATION = "//div[@class='textarea invitation wordcontainer']";
+	WebPageElements text_area_for_invitation = new WebPageElements("Text_Area_For_Invitaion", "xpath", TEXT_AREA_FOR_INVIATION );
+	
+	String BUTTON_CONTINUE = "//input[@id='btnNext']";
+	WebPageElements button_continue = new WebPageElements("Button_Continue", "xpath", BUTTON_CONTINUE );
+	
+	String TEXTBOX = "//div[@id='dvtb']";
+	WebPageElements textbox = new WebPageElements("Textbox", "xpath", TEXTBOX );
+	
+	String SAVE_QUESTION = "//input[@id='btnSaveQuestionAnswer']";
+	WebPageElements save_question = new WebPageElements("Save_Question", "xpath", SAVE_QUESTION );
+	
+	String SEND_NOW1 = "//input[@id='sub1']";
+	WebPageElements send_now1 = new WebPageElements("Send_Now1", "xpath", SEND_NOW1 );
+	
+	String CONFIRM1 = "//input[@id='btnSubmit']";
+	WebPageElements confirm1 = new WebPageElements("Confirm1", "xpath", CONFIRM1 );
+	
+	String GOT_IT = "//input[@value='Got it​']";
+	WebPageElements got_it = new WebPageElements("Done", "xpath", GOT_IT );
+	
 }
 	
 

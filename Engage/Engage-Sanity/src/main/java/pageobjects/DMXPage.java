@@ -23,10 +23,23 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.mail.Address;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Part;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.internet.MimeBodyPart;
 
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.FileUtils;
@@ -53,7 +66,7 @@ import com.google.common.base.Splitter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-
+import io.restassured.response.Response;
 import property.IDMXPage;
 import property.IHomePage;
 import property.ISMXPage;
@@ -68,7 +81,311 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	public double end;
 	String strtotalTime= null;
 	public DecimalFormat df = new DecimalFormat("#.##");
+	public static String participationLink="";
 	
+	public void CreateNewSurveySendTestInvite(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Date currentTime = Calendar.getInstance().getTime();
+		selectCreateProject(driver,param,test);
+		selectBlankSurvey(driver,param,test);
+		enterSurveyName(driver, param, test);
+		Thread.sleep(2000);
+		CreateNewSurveyForTestInvite(driver,param,test);
+		waitforElemPresent(driver, testcaseName, 30, distribute, test);
+		click(driver, testcaseName, distribute, test);
+		waitforElemPresent(driver, testcaseName, 30, test_button, test);
+		click(driver, testcaseName, test_button, test);
+		waitforElemPresent(driver, testcaseName, 30, send_test_invitation, test);
+		click(driver, testcaseName, send_test_invitation, test);
+			
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@title = '"+ param.get("emailtemplate") +"']"), param.get("emailtemplate"), test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"))).build().perform();	
+						
+		waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@id='"+ param.get("SelectTemplate") +"']"), param.get("SelectTemplate"), test);
+		click(driver, testcaseName, By.xpath("//div[@id='"+ param.get("SelectTemplate") +"']"), param.get("SelectTemplate"), test);	
+		waitforElemPresent(driver, testcaseName, 30, text_area_for_invitation, test);
+		click(driver, testcaseName, text_area_for_invitation, test);
+		waitforElemPresent(driver, testcaseName, 30, text_area_for_invitation, test);
+		driver.findElement(By.xpath("//input[@name='txtSendFromType']")).sendKeys(param.get("Email"));
+		waitforElemPresent(driver, testcaseName, 30, button_continue, test);
+		click(driver, testcaseName, button_continue, test);
+		waitforElemPresent(driver, testcaseName, 30, send_now1, test);
+		click(driver, testcaseName, send_now1, test);
+		waitforElemPresent(driver, testcaseName, 30, confirm1, test);
+		click(driver, testcaseName, confirm1, test);
+	
+		getInviteURLFromEmail(param, currentTime, test);
+		
+		ParticipationForTestInvite(driver,param,test);
+	}
+	
+	public void getInviteURLFromEmail( HashMap<String, String> param, Date currentTime, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String[] hostArray = param.get("emailhost").split(",");
+		String[] emailArray = param.get("stremailaddress").split(",");
+		String[] passwordArray = param.get("emailPassword").split(",");
+		String sub = param.get("subject");
+		
+		
+		for(int i=0; i<emailArray.length; i++) {
+			HashMap<String, String> emailData = readRecentEmail(param, hostArray[i], emailArray[i], passwordArray[i], sub, currentTime, test);
+			try {
+				String[] emailContent = emailData.get("Message Content").split(" ");
+				//String participationLink="";
+				
+				for (String content : emailContent) {
+					if (content.contains("http") && content.contains("/k/")) {
+						participationLink = content.substring(content.indexOf("http"));
+						 System.out.println(participationLink);			 
+						break;		
+					}
+					
+				}
+				Reporter.log("Email has been received with Subject <b>"+emailData.get("Subject") +"</b> from <b> "+(emailData.get("Sent From").replaceAll("[<>]*", "")) +"</b> to <b>"+ emailArray[i] +"</b> on <b>"+emailData.get("Date") +"</b> and participation URL is : <b>"+participationLink+"</b>.");  // Add log in testNG report
+				test.info("Email has been received with Subject <b>"+emailData.get("Subject") +"</b> from <b> "+(emailData.get("Sent From").replaceAll("[<>]*", "")) +"</b> to <b>"+ emailArray[i] +"</b> on <b>"+emailData.get("Date") +"</b> and participation URL is : <b>"+participationLink+"</b>.");		// Add log in extent report		
+			}catch(StringIndexOutOfBoundsException ex) {
+				Reporter.log("Email not found in the INBOX of email id : <b>" +emailArray[i]+"</b>");
+				test.log(Status.FATAL, "Email not found in INBOX of email id : <b>" +emailArray[i]+"</b>");
+			}
+		}
+	
+	}
+	
+	public void ParticipationForTestInvite(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		executeScript(driver, testcaseName, "window.open()", test);	
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(participationLink);
+		
+		waitforElemPresent(driver, testcaseName, 30,  By.xpath("//span[contains(text(),'"+ param.get("TextBox") +"')]"), "TextBox : "+ param.get("TextBox"), test);
+		WebElement style = driver.findElement( By.xpath("//span[contains(text(),'"+ param.get("TextBox") +"')]"));
+
+		if(style.isDisplayed())
+		{
+		reportPass("Text Box is displayed", test);
+		}
+		else
+		{
+		reportFail(testcaseName,"Text Box is not displayed" , test);
+		}
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='answer-option-wrapper tb-box']//input[contains(text(),'')]"),testcaseName,test);
+		driver.findElement(By.xpath("//div[@class='answer-option-wrapper tb-box']//input[contains(text(),'')]")).sendKeys(param.get("TextBox"));
+		waitforElemPresent(driver, testcaseName, 30, submit2, test);
+		click(driver, testcaseName, submit2, test);
+		//String actualalert = driver.switchTo().alert().getText();
+		//String expectedalert = "You have participated in a test version of this project. Your responses will not be included in reports.";
+		//Assert.assertEquals(actualalert, expectedalert, "Alert message is not matching with expected alert");
+		waitforElemPresent(driver, testcaseName, 30, got_it, test);
+		click(driver, testcaseName, got_it, test);
+	}
+	public void CreateNewSurveyForTestInvite(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, start_button, test);
+		click(driver, testcaseName, start_button, test);		
+		waitforElemPresent(driver, testcaseName, 30, textbox, test);
+		WebElement tb = driver.findElement(By.xpath("//div[@id='dvtb']"));
+		Actions action0 = new Actions(driver);
+		action0.doubleClick(tb).perform();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@title='Rich Text Editor, QuestionText']"),testcaseName,test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='Rich Text Editor, QuestionText']")));
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']"),testcaseName,test);
+		driver.findElement(By.xpath("//body[@class='cke_editable cke_editable_themed cke_contents_ltr cke_show_borders']")).sendKeys(param.get("TextBox"));
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, save_question, test);
+		click(driver, testcaseName, save_question, test);
+		
+	}
+	
+	
+	public void selectCreateProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 100, create_project, test);
+		click(driver, testcaseName, create_project, test);
+		waitForLoad(driver, testcaseName, 30, test);
+	}
+	
+	public void selectBlankSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//iframe[@id='iframe1' and contains(@src,'CreateNewTool')]"), "Iframe", test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1' and contains(@src,'CreateNewTool')]")));
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, survey_button, test);
+		click(driver, testcaseName, survey_button, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, blank_survey, test);
+		click(driver, testcaseName, blank_survey, test);
+
+	}
+	
+	public void enterSurveyName(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+		String strDate = formatter.format(date);
+		
+		waitforElemPresent(driver, testcaseName, 30, survey_name, test);
+		String surveyName = param.get("surveyname") + " - " + strDate;
+		param.put("surveyName", surveyName);
+		setText(driver, testcaseName, survey_name, surveyName, test);
+	}
+	
+	public HashMap<String, String> readRecentEmail(HashMap<String, String> param, String host, String userName, String password, String sub, Date currentTime, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		HashMap<String, String> emailData = new HashMap<String, String>();
+		String saveDirectory = System.getProperty("user.dir") + "\\SaveEmails";
+		String Date = "";
+		String sentFrom = "";
+		String subject = "";
+		String messageContent = "";
+		boolean isMailReceived = false;
+		
+		System.out.println("Current time : "+currentTime);
+		
+        Properties properties = new Properties();
+        properties.setProperty("mail.store.protocol", "imaps");
+        try {
+            double endTime = 300;    // Run loop for 300 seconds
+            double startTime = System.currentTimeMillis();
+            do {
+            	Session session = Session.getDefaultInstance(properties, null);
+                Store store = session.getStore("imaps");
+                
+    			if (host.equalsIgnoreCase("gmail")) {
+    				store.connect("imap.gmail.com", userName, password);
+    			} else if (host.equalsIgnoreCase("yahoo")) {
+    				store.connect("imap.mail.yahoo.com", userName, password);
+    			} else if (host.equalsIgnoreCase("outlook")) {
+    				store.connect("outlook.office365.com", userName, password);
+    			} else if (host.equalsIgnoreCase("bluwberry")) {
+    				store.connect("corp.bluwberry.com", userName, password);
+    			}
+            	Folder inbox = store.getFolder("INBOX");
+            	 
+                int unreadMailCount = inbox.getUnreadMessageCount();
+                System.out.println("No. of Unread Mails = " + unreadMailCount);
+     
+                inbox.open(Folder.READ_WRITE);
+                
+                Message messages[] = inbox.getMessages();
+                System.out.println("No. of Total Mails = " + messages.length);
+            	//Get latest message
+                Message message = messages[messages.length-1];
+ 
+                Address[] from = message.getFrom();
+                System.out.println("====================================== Mail no.: " + messages.length + " start ======================================");
+                Date = message.getSentDate().toString();
+                sentFrom = from[0].toString();
+                subject = message.getSubject();
+                
+                System.out.println("Date: " + Date);
+                System.out.println("From: " + sentFrom);
+                System.out.println("Subject: " + subject);
+                
+                
+                String contentType = message.getContentType();
+ 
+                // store attachment file name, separated by comma
+                String attachFiles = "";
+ 
+                if (contentType.contains("multipart")) {
+                    // content may contain attachments
+                    Multipart multiPart = (Multipart) message.getContent();
+                    int numberOfParts = multiPart.getCount();
+                    for (int partCount = 0; partCount < numberOfParts; partCount++) {
+                        MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
+                        if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+                            // this part is attachment
+                            String fileName = part.getFileName();
+                            attachFiles += fileName + ", ";
+                            part.saveFile(saveDirectory + File.separator + fileName);
+						}
+						// this part may be the message content
+                        if (part.getContentType().contains("multipart")) {
+                        	messageContent = ((Multipart) (part.getContent())).getBodyPart(partCount).getContent().toString();
+                        }else {
+                        	messageContent = part.getContent().toString();
+                        }
+						
+						System.out.println("Message content : " + (messageContent));
+
+                    }
+ 
+                    if (attachFiles.length() > 1) {
+                        attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
+                    }
+                } else if (contentType.contains("text/plain")
+                        || contentType.contains("text/html")) {
+                    Object content = message.getContent();
+                    if (content != null) {
+                        messageContent = content.toString();
+                        System.out.println("Message content : "+messageContent);
+                    }
+                }
+                System.out.println("Attachments: " + attachFiles);
+             
+                System.out.println("====================================== Mail no.: " + messages.length + " end ======================================");
+                System.out.println(subject.equalsIgnoreCase(sub));
+                System.out.println(message.getSentDate().after(currentTime));
+                System.out.println( message.getSentDate().equals(currentTime));
+                System.out.println(currentTime);
+                System.out.println(message.getSentDate());
+                
+                if (subject.equalsIgnoreCase(sub) && (message.getSentDate().after(currentTime) || message.getSentDate().equals(currentTime))) {
+                	isMailReceived = true;
+                	break;
+                }
+                // disconnect
+                inbox.close(false);
+                store.close();
+                Thread.sleep(3000);
+            }while(((System.currentTimeMillis()-startTime)/1000) < endTime);  // Exit the loop after 300 seconds
+            
+            //Fail the test case if mail is not received.
+            if(isMailReceived == false) {
+            	test.log(Status.FAIL,"Expected mail with subject <b>"+sub +"</b> is not received.");
+				Add_Log.info("Expected mail with subject "+sub +" is not received.");
+				Reporter.log("Expected mail with subject <b>"+sub +"</b> is not received.");
+				TestResultStatus.failureReason.add(testcaseName + "| "+ "Expected mail with subject "+sub +" is not received.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+            }
+            
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider for pop3.");
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store");
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        emailData.put("Date", Date);
+        emailData.put("Sent From", sentFrom);
+        emailData.put("Subject", subject);
+        emailData.put("Message Content", messageContent);
+        
+        return emailData;
+	}
 
 	public void selectDistributeProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {

@@ -1133,4 +1133,56 @@ public interface ISMXPage {
 	String DONE = "//input[@id='btnDone']";
 	WebPageElements done = new WebPageElements("Done", "xpath", DONE );
 	
+	String HOVER3 = "//div[@title='SID: 1334, new copy paste feature Anas']";
+	WebPageElements hover3 = new WebPageElements("Hover3", "xpath", HOVER3 );
+	
+	String EDIT1 = "//div[@id='over-div-contents']//div[@id='OverDivEdit']";
+	WebPageElements edit1 = new WebPageElements("Edit1", "xpath", EDIT1 );
+	
+	String CLICKHERE = "//div[@class='blank-page ui-sortable-handle']//a[contains(text(),'Click here')]";
+	WebPageElements clickhere = new WebPageElements("Clickhere", "xpath", CLICKHERE );
+	
+	String QUESTIONTAGS = "//div[@class='fr copyPasteTextTab copyPasteTag']";
+	WebPageElements questiontags = new WebPageElements("Questiontags", "xpath",QUESTIONTAGS  );
+	
+	String DT = "//div[@class='copyPasteTextQType']//span[contains(text(),' Descriptive Text ')]";
+	WebPageElements dt = new WebPageElements("Dt", "xpath", DT );
+	
+	String TB = "//div[@class='copyPasteTextQType']//span[contains(text(),' Text Box ')]";
+	WebPageElements tb = new WebPageElements("Tb", "xpath", TB );
+	
+	String RB = "//div[@class='copyPasteTextQType']//span[contains(text(),'Radio Button')]";
+	WebPageElements rb = new WebPageElements("Rb", "xpath", RB );
+	
+	String CB = "//div[@class='copyPasteTextQType']//span[contains(text(),'Check Box')]";
+	WebPageElements cb = new WebPageElements("Cb", "xpath", CB );
+	
+	String DD = "//div[@class='copyPasteTextQType']//span[contains(text(),'Dropdown')]";
+	WebPageElements dd = new WebPageElements("Dd", "xpath", DD );
+	
+	String R = "//div[@class='copyPasteTextQType']//span[contains(text(),'Ranking')]";
+	WebPageElements r = new WebPageElements("Ranking", "xpath", R );
+	
+	String DATE = "//div[@class='copyPasteTextQType']//span[contains(text(),'Date')]";
+	WebPageElements date = new WebPageElements("Date", "xpath", DATE );
+	
+	String HR = "//div[@class='copyPasteTextQType']//span[contains(text(),'Horizontal Radio')]";
+	WebPageElements hr = new WebPageElements("Hr", "xpath", HR );
+	
+	String PB = "//div[@class='copyPasteTextQType']//span[contains(text(),'Page Break')]";
+	WebPageElements pb = new WebPageElements("Pb", "xpath", PB );
+	
+	String ADD_QUESTIONS = "//input[@id='btnSubmit']";
+	WebPageElements add_questions = new WebPageElements("Add_QUESTIONS", "xpath", ADD_QUESTIONS );
+	
+	String HP = "//div[@id='MyHeader_ctl00_imglogo']";
+	WebPageElements hp = new WebPageElements("Home_Page", "xpath", HP );
+	
+	String ENTER_TEXT = "//textarea[@id='txtCopyPaste']";
+	WebPageElements enter_text = new WebPageElements("Enter_Text", "xpath", ENTER_TEXT );
+	
+	String IHAVEQUESTIONSREADYTOCOPYPASTE = "//label[@id='lblAlreadyQuestionsWritten']";
+	WebPageElements ihavequestionsreadytocp = new WebPageElements("IHaveQuestionReadyToCopyPaste", "xpath", IHAVEQUESTIONSREADYTOCOPYPASTE );
+	
+	
 }
