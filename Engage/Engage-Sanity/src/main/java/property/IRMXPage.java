@@ -89,8 +89,8 @@ public interface IRMXPage {
 	String CONDITIONAL_GENERATE_BUTTON = "//input[@value='Generate']";
 	WebPageElements conditional_generate_button = new WebPageElements("Conditional - Generate Button", "xpath", CONDITIONAL_GENERATE_BUTTON );
 	
-	String ADD_CONDITION = "//input[@id='btnAddCondition']";
-	WebPageElements add_condition = new WebPageElements("Conditional - Add Condition Button", "xpath", ADD_CONDITION );
+	String ADD_CONDITION1 = "//input[@id='btnAddCondition']";
+	WebPageElements add_condition1 = new WebPageElements("Conditional - Add Condition Button", "xpath", ADD_CONDITION1 );
 
 	String ADV_FREQ = "//li[@id='ddAdvBarGraph']/a";
 	WebPageElements adv_freq = new WebPageElements("ADV frequency", "xpath", ADV_FREQ );
@@ -857,8 +857,8 @@ public interface IRMXPage {
 	String SEGMENT_DD1 = "//select[@name='DDL_Seg1']";
 	WebPageElements segment_dd1 = new WebPageElements("Segmentation DD", "xpath", SEGMENT_DD1);
 	
-	String SELECT_ALL_OPTIONS = "//label[contains(text(),'Select All Options')]";
-	WebPageElements select_all_options = new WebPageElements("Select All Options", "xpath", SELECT_ALL_OPTIONS);
+	String SELECT_ALL_OPTIONS1 = "//label[contains(text(),'Select All Options')]";
+	WebPageElements select_all_options1 = new WebPageElements("Select All Options", "xpath", SELECT_ALL_OPTIONS1);
 	
 	String PARTICIPATION_DETAILS2 = "//input[@id='txtReportType']";
 	WebPageElements participation_details2 = new WebPageElements("Participants in study", "xpath", PARTICIPATION_DETAILS2);
@@ -1132,4 +1132,74 @@ public interface IRMXPage {
 	String TOASTER_ADD_REP_TO_CANVAS = "//span[text()='Element(s) added to the Canvas.']";
 	WebPageElements toaster_add_rep_to_canvas = new WebPageElements("Toaster Message - Element(s) added to the Canvas.", "xpath", TOASTER_ADD_REP_TO_CANVAS);
 	
+	
+	
+	 String SELECT_QUESTION= "//td[@id='tdQlist_999_1_0']//div[@id='dvCondQno_999']//div//a[@class='top_link QuestionDDtop_link']";
+	    WebPageElements select_question = new WebPageElements("SELECT_QUESTION", "xpath", SELECT_QUESTION);
+	    
+	  
+	    String SELECT_CONDITION= "//select[@class='fm_sel2 grytxt AnswerDD']/option";
+	    WebPageElements select_condition = new WebPageElements("SELECT_CONDITION", "xpath", SELECT_CONDITION);
+
+	  
+	    String CONDITION_ARROW= "//div[@class='custom-select-wrapper filter_csw']//span[@class='arr']";
+	    WebPageElements condition_arrow = new WebPageElements("CONDITION_ARROW", "xpath", CONDITION_ARROW);
+
+	  
+	    String ADD_CONDITION= "//div[@class='AddCond']";
+	    WebPageElements add_condition = new WebPageElements("ADD_CONDITION", "xpath", ADD_CONDITION);
+	    
+	  
+	    String SAVE_AND_GOTO_FM= "//input[@id='btnAdvSaveGoToFM']";
+	    WebPageElements save_and_goto_fm = new WebPageElements("SAVE_AND_GOTO_FM", "xpath", SAVE_AND_GOTO_FM);
+	    
+	  
+	    String FILTER_NAME= "//input[@id='txtSaveAsFilterName']";
+	    WebPageElements filter_name = new WebPageElements("FILTER_NAME", "xpath", FILTER_NAME);
+	    
+	  
+	    String SAVE_BUTTON_FOR_FILTER= "//input[@id='btnSaveFilter']";
+	    WebPageElements save_button_for_filter = new WebPageElements("SAVE_BUTTON_FOR_FILTER", "xpath", SAVE_BUTTON_FOR_FILTER);
+
+	  
+	    String VALIDATION_CONDITION= "//div[@id='dvConOpr_999_1_0']";
+	    WebPageElements validation_condition = new WebPageElements("VALIDATION_CONDITION", "xpath", VALIDATION_CONDITION);
+
+	  
+	    String CREATE_NEW_FILTER= "//input[@id='btnNew']";
+	    WebPageElements create_new_filter = new WebPageElements("CREATE_NEW_FILTER", "xpath", CREATE_NEW_FILTER);
+	    
+	  
+	    String DROP_DOWN1_FILTER= " //span[@class='fl spaceSpan']//select[@class='fm_sel2 grytxt']";
+	    WebPageElements drop_down1_filter = new WebPageElements("DROP_DOWN1_FILTER for between", "xpath", DROP_DOWN1_FILTER);
+	    
+	  
+	    String DROP_DOWN2_FILTER= " //span[@class='fl']//select[@class='fm_sel2 grytxt']";
+	    WebPageElements drop_down2_filter = new WebPageElements("DROP_DOWN2_FILTER for between", "xpath", DROP_DOWN2_FILTER);
+	    
+	  
+	    String TEXT_BOX_AREA= "//textarea[@class='font']";
+	    WebPageElements text_box_area = new WebPageElements("TEXT_BOX_AREA for fiter", "xpath", TEXT_BOX_AREA);
+	    
+	    
+	    String TEXT_BOX_AREA_RESPONSE= "//input[@id='txtToTT_1000000000000001_999_1_0']";
+	    WebPageElements text_box_area_response = new WebPageElements("TEXT_BOX_AREA_RESPONSE for fiter", "xpath", TEXT_BOX_AREA_RESPONSE);
+	    
+	  
+	    String TEXT_BOX_FROM_RESPONSE= "//div[@class='AnsCont']//input";
+	    WebPageElements text_box_from_response = new WebPageElements("TEXT_BOX_FROM_RESPONSE for filter", "xpath", TEXT_BOX_FROM_RESPONSE);
+	  
+	    String TEXT_BOX_FROM= "//div[@class='AnsCont']//input";
+	    WebPageElements text_box_from = new WebPageElements("TEXT_BOX_FROM for filter", "xpath", TEXT_BOX_FROM);
+	    
+	  
+	    String TEXT_BOX_TO= "//div[@class='AnsCont']/span/input";
+	    WebPageElements text_box_to = new WebPageElements("TEXT_BOX_TO for filter", "xpath", TEXT_BOX_TO);
+	    
+	 
+	    String SELECT_ALL_OPTIONS= "//label[normalize-space()='Select all options']";
+	    WebPageElements select_all_options = new WebPageElements("SELECT_ALL_OPTIONS for filter", "xpath", SELECT_ALL_OPTIONS);
+	
+	  
+	   
 }
