@@ -699,6 +699,12 @@ public interface ISMXPage {
 	String ATTACHMENT_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='attachment']";
 	WebPageElements attachment_sample = new WebPageElements("Attachment Sample Preview", "xpath", ATTACHMENT_SAMPLE);
 	
+	String NUMERICAL_ALLOCATION_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='num']";
+	WebPageElements numerical_allocation_sample = new WebPageElements("Numerical Allocation Sample Preview", "xpath", NUMERICAL_ALLOCATION_SAMPLE);
+	
+	String MATRIX_GRID_SAMPLE = "//div[@class='TabbedPanelsContent'][@id='matrix']";
+	WebPageElements matrix_grid_sample = new WebPageElements("Matrix Grid Sample Preview", "xpath", MATRIX_GRID_SAMPLE);
+	
 	String SELECT_ATTACHMENT_SUBQUES = "//select[@id='DdlTotalControls_AT']";
 	WebPageElements select_attachment_subques = new WebPageElements("Attachment Subquestion Drop down", "xpath", SELECT_ATTACHMENT_SUBQUES);
 	
