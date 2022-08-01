@@ -15,6 +15,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -45,7 +46,17 @@ public class SeleniumUtils {
 			test.log(Status.INFO, "Successfully clicked on "+ ele.getName() +" element.");
 			Add_Log.info("Successfully clicked on "+ ele.getName() +" element.");
 			Reporter.log("Successfully clicked on "+ ele.getName() +" element.");
-		} catch (Exception e) {
+		} catch(WebDriverException e) {
+			//Do nothing
+			if(getWebElements(driver, testcaseName, ele, test).size() > 0) {
+				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				executor.executeScript("arguments[0].click();", element);
+				test.log(Status.INFO, "Successfully clicked on "+ ele.getName() +" element.");
+				Add_Log.info("Successfully clicked on "+ ele.getName() +" element.");
+				Reporter.log("Successfully clicked on "+ ele.getName() +" element.");
+			}
+		}
+		catch (Exception e) {
 			try {
 				JavascriptExecutor executor = (JavascriptExecutor) driver;
 				executor.executeScript("arguments[0].click();", element);

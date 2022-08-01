@@ -17,6 +17,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -150,7 +151,3678 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		
 	}
 		
+	public void filterManagement(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30,all_projects, test);
+		click(driver, testcaseName,all_projects, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));	
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='folder-text ng-binding'][normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		click(driver, testcaseName, By.xpath("//span[@class='folder-text ng-binding'][normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@title='"+ param.get("surveyname") +"']"), param.get("surveyname"), test);
+		WebElement hower1 = driver.findElement(By.xpath("//div[@title='"+ param.get("surveyname") +"']"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower1).perform();
+		WebElement report = driver.findElement(By.xpath("//div[@id='over-div-contents']//span[@class='survey-option-icon report-option-icon']"));
+		report.click();
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[normalize-space()='Frequency']"), testcaseName, test);
+		String qq = driver.getTitle();
+		System.out.println(qq);
+		if(driver.getTitle().contains("K12 Insight - Bar Graph")) {
+		waitforElemPresent(driver, testcaseName, 40, By.xpath("//div[@title='More']"), "more option for filter", test);
+		driver.findElement(By.xpath("//div[@title='More']"));
+		click(driver, testcaseName, By.xpath("//div[@title='More']"), "more option for filter", test);
+		waitforElemPresent(driver, testcaseName, 40, By.xpath("//span[normalize-space()='Filter Manager']"), " filter manager", test);
+		click(driver, testcaseName, By.xpath("//span[normalize-space()='Filter Manager']"), "filter manager", test);
+		}
 		
+		else {
+			
+			waitforElemPresent(driver, testcaseName, 40, By.xpath("//span[normalize-space()='Filter Manager']"), " filter manager", test);
+			click(driver, testcaseName, By.xpath("//span[normalize-space()='Filter Manager']"), "filter manager", test);
+		}
+		waitforElemPresent(driver, testcaseName, 40, By.xpath("//input[@id='btnNew']"), "create new filter", test);
+		click(driver, testcaseName, By.xpath("//input[@id='btnNew']"), "create new filter", test);
+		waitforElemPresent(driver, testcaseName, 30, select_question, test);
+		click(driver, testcaseName, select_question, test);
+		
+		List<WebElement> numberOfQuestions = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+		System.out.println("Number of questions:" +numberOfQuestions.size());
+		 for (int i=1; i<numberOfQuestions.size();i++){
+			int j=i+1;
+			int k = j+1;
+			
+			if(i == 1) {
+		      System.out.println( numberOfQuestions.get(i).getAttribute("qtype"));
+		   String xpath = "//div[@id='div']//li["+j+"]";
+		   System.out.println(xpath);
+		   waitforElemPresent(driver, testcaseName, 30, select_question, test);
+			click(driver, testcaseName, select_question, test);
+			}
+			
+			else {
+				List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+				Collections.copy(numberOfQuestions, numberOfQuestions1);
+				System.out.println( numberOfQuestions.get(i).getAttribute("qtype"));
+				   String xpath = "//div[@id='div']//li["+j+"]";
+				   System.out.println(xpath);
+				   waitforElemPresent(driver, testcaseName, 30, select_question, test);
+					click(driver, testcaseName, select_question, test);
+			}
+			
+			
+		   waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+		   waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+		   Thread.sleep(1000);
+           click(driver, testcaseName, select_condition, test);
+           waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2 grytxt AnswerDD']/option"), "condition list", test);
+                List<WebElement> numberOfConditions = driver.findElements(By.xpath("//select[@class='fm_sel2 grytxt AnswerDD']/option"));
+                	for (int x=1; x < numberOfConditions.size();x++){
+                		//int y=x+1;
+                       if(x == 1) {
+                			System.out.println( numberOfConditions.get(x).getAttribute("value"));
+                			//String c2 = numberOfConditions.get(y).getAttribute("value");
+                			System.out.println( numberOfConditions.get(x).getText());
+                			System.out.println("Number of conditions:" +numberOfConditions.size());
+                			Thread.sleep(1000);
+                			// System.out.println(c2);
+                       }
+                       else {
+                           waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2 grytxt AnswerDD']/option"), testcaseName, test);
+                           List<WebElement> numberOfConditions1 = driver.findElements(By.xpath("//select[@class='fm_sel2 grytxt AnswerDD']/option"));
+                           Collections.copy(numberOfConditions, numberOfConditions1);
+                    	   System.out.println( numberOfConditions.get(x).getAttribute("value"));
+               		//	String c2 = numberOfConditions.get(y).getAttribute("value");
+               			System.out.println( numberOfConditions.get(x).getText());
+               			System.out.println("Number of conditions:" +numberOfConditions.size());
+               			Thread.sleep(1000);
+                       }
+                			
+                			String xpath2 = "//option[@value='"+ numberOfConditions.get(x).getAttribute("value") +"']";
+                			System.out.println(xpath2);
+                			waitforElemPresent(driver, testcaseName, 30, (By.xpath("//option[@value='"+ numberOfConditions.get(x).getAttribute("value") +"']")), "conditions", test) ;
+                			click(driver, testcaseName, (By.xpath("//option[@value='"+ numberOfConditions.get(x).getAttribute("value") +"']")), "selecting condition", test);
+                			String c = numberOfConditions.get(x).getAttribute("value");
+            				String q = numberOfQuestions.get(i).getAttribute("qtype");
+            				String t =  numberOfConditions.get(x).getText();
+                			switch (numberOfQuestions.get(i).getAttribute("qtype")) {
+                			case "RS":
+                				
+
+                				if (numberOfConditions.get(x).getAttribute("value").equals("OR")) {
+                						waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "all options", test);
+                						click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting all options", test);
+                						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                						click(driver, testcaseName, add_condition, test);
+                						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                						WebElement option = driver.findElement(By.xpath("//div[@class='checkall']//input[@checked='checked']"));
+                						
+                						if(option.isSelected())
+                		            	{
+                		            		reportPass("condition matched", test);
+                		            	} 
+                		            	else
+                		            	{
+                		            		reportFail(testcaseName,"condition not matched" , test);  
+                		            	}
+                						
+                				if(t.equals(validationcondition))
+                            	{
+                            		reportPass("condition matched", test);
+                            	} 
+                            	else
+                            	{
+                            		reportFail(testcaseName,"condition not matched" , test);  
+                            	}
+                            waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                            click(driver, testcaseName, save_and_goto_fm, test);
+                            waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                            String Name =  q + i + System.currentTimeMillis();
+                            setText(driver, testcaseName, filter_name, Name, test);
+                            waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                            click(driver, testcaseName, save_button_for_filter, test);
+                           
+                            waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                            WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                            if(name.isDisplayed())
+                        	{
+                        		reportPass("condition matched", test);
+                        	} 
+                        	else
+                        	{
+                        		reportFail(testcaseName,"condition not matched" , test);  
+                        	}
+                            
+                            
+                            
+                            
+                            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                            click(driver, testcaseName, create_new_filter, test);
+                            
+                            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    		click(driver, testcaseName, select_question, test);
+                    		 waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"), testcaseName, test);
+                             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             				Collections.copy(numberOfQuestions, numberOfQuestions1);
+             				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                    		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test);
+                 		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                 		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+               		   Thread.sleep(1000);
+                          click(driver, testcaseName, select_condition, test);
+                    	}
+                				else if(numberOfConditions.get(x).getAttribute("value").equals("NOT")) {
+                					waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "1 - 1", test);
+            						click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting 1 - 1", test);
+            						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+            						click(driver, testcaseName, add_condition, test);
+            						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+            						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+            						WebElement option = driver.findElement(By.xpath("//div[@class='checkall']//input[@checked='checked']"));
+            						
+            						if(option.isSelected())
+            		            	{
+            		            		reportPass("condition matched", test);
+            		            	} 
+            		            	else
+            		            	{
+            		            		reportFail(testcaseName,"condition not matched" , test);  
+            		            	}
+            				if(t.equals(validationcondition))
+                        	{
+                        		reportPass("condition matched", test);
+                        	} 
+                        	else
+                        	{
+                        		reportFail(testcaseName,"condition not matched" , test);  
+                        	}
+            				 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                             click(driver, testcaseName, save_and_goto_fm, test);
+                             waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                             String Name =  q + i + System.currentTimeMillis();
+                             setText(driver, testcaseName, filter_name, Name, test);
+                             waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                             click(driver, testcaseName, save_button_for_filter, test);
+                             waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                             WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                             if(name.isDisplayed())
+                         	{
+                         		reportPass("condition matched", test);
+                         	} 
+                         	else
+                         	{
+                         		reportFail(testcaseName,"condition not matched" , test);  
+                         	}
+                        //11-09-2022
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                		click(driver, testcaseName, select_question, test);
+                		  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+          				Collections.copy(numberOfQuestions, numberOfQuestions1);
+          				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           		   Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+                				
+                				}
+                				
+                				else if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")){
+                					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+            						click(driver, testcaseName, drop_down1_filter, test);	
+            						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+            						click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+            						waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+            						click(driver, testcaseName, drop_down2_filter, test);
+            						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+            						click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+            						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+            						click(driver, testcaseName, add_condition, test);
+            						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+            						String option1 = (driver.findElement(By.xpath("//span[@class='fl spaceSpan']//option[@selected='selected']")).getAttribute("weight"));
+            						String option2 = (driver.findElement(By.xpath("//span[@class='fl']//option[@selected='selected']")).getAttribute("weight"));
+            						String o1 = "1";
+            						String o2 = "3";
+            						if(option1.equals(o1))
+            	                	{
+            	                		reportPass("condition matched", test);
+            	                	} 
+            	                	else
+            	                	{
+            	                		reportFail(testcaseName,"condition not matched" , test);  
+            	                	}
+            						if(option2.equals(o2))
+            	                	{
+            	                		reportPass("condition matched", test);
+            	                	} 
+            	                	else
+            	                	{
+            	                		reportFail(testcaseName,"condition not matched" , test);  
+            	                	}
+            						if(t.equals(validationcondition))
+                                	{
+                                		reportPass("condition matched", test);
+                                	} 
+                                	else
+                                	{
+                                		reportFail(testcaseName,"condition not matched" , test);  
+                                	}
+            						 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                                     click(driver, testcaseName, save_and_goto_fm, test);
+                                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                                     String Name =  q + i + System.currentTimeMillis();
+                                     setText(driver, testcaseName, filter_name, Name, test);
+                                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                                     click(driver, testcaseName, save_button_for_filter, test);
+                                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                                     if(name.isDisplayed())
+                                 	{
+                                 		reportPass("condition matched", test);
+                                 	} 
+                                 	else
+                                 	{
+                                 		reportFail(testcaseName,"condition not matched" , test);  
+                                 	}
+                                    
+                                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                                    click(driver, testcaseName, create_new_filter, test);
+                                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                                    click(driver, testcaseName, select_question, test);
+                                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                    				Collections.copy(numberOfQuestions, numberOfQuestions1);
+                    				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                       		   Thread.sleep(1000);
+                                  click(driver, testcaseName, select_condition, test);
+                				}
+                				
+                				else if(numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN"))
+                				{
+                					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+            						click(driver, testcaseName, drop_down1_filter, test);	
+            						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+            						click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+            						waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+            						click(driver, testcaseName, drop_down2_filter, test);
+            						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+            						click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+            						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+            						click(driver, testcaseName, add_condition, test);
+            						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+            						String option1 = (driver.findElement(By.xpath("//span[@class='fl spaceSpan']//option[@selected='selected']")).getAttribute("weight"));
+            						String option2 = (driver.findElement(By.xpath("//span[@class='fl']//option[@selected='selected']")).getAttribute("weight"));
+            						String o1 = "1";
+            						String o2 = "3";
+            						if(option1.equals(o1))
+            	                	{
+            	                		reportPass("condition matched", test);
+            	                	} 
+            	                	else
+            	                	{
+            	                		reportFail(testcaseName,"condition not matched" , test);  
+            	                	}
+            						
+            							if(option2.equals(o2))
+            							{
+            								reportPass("condition matched", test);
+            							} 
+            							else
+            							{
+            								reportFail(testcaseName,"condition not matched" , test);  
+            							}
+            						
+            						if(t.equals(validationcondition))
+                                	{
+                                		reportPass("condition matched", test);
+                                	} 
+                                	else
+                                	{
+                                		reportFail(testcaseName,"condition not matched" , test);  
+                                	}
+            						 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                                     click(driver, testcaseName, save_and_goto_fm, test);
+                                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                                     String Name =  q + i + System.currentTimeMillis();
+                                     setText(driver, testcaseName, filter_name, Name, test);
+                                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                                     click(driver, testcaseName, save_button_for_filter, test);
+                                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                                     if(name.isDisplayed())
+                                 	{
+                                 		reportPass("condition matched", test);
+                                 	} 
+                                 	else
+                                 	{
+                                 		reportFail(testcaseName,"condition not matched" , test);  
+                                 	}
+                                    
+                                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                                    click(driver, testcaseName, create_new_filter, test);
+                                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                            		click(driver, testcaseName, select_question, test);
+                            		List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                    				Collections.copy(numberOfQuestions, numberOfQuestions1);
+                    				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                                  click(driver, testcaseName, select_condition, test);
+                				}
+								  else if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER"))
+								  {
+								  waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+								  click(driver, testcaseName, add_condition, test); 
+								  String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+								  if(t.equals(validationcondition))
+								  { 
+									  reportPass("condition matched", test);
+									  }
+								  else { 
+									  reportFail(testcaseName,"condition not matched" , test); 
+									  }
+								  waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+		                            click(driver, testcaseName, save_and_goto_fm, test);
+		                            waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+		                            String Name =  q + i + System.currentTimeMillis();
+		                            setText(driver, testcaseName, filter_name, Name, test);
+		                            waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+		                            click(driver, testcaseName, save_button_for_filter, test);
+		                            waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+		                            WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+		                            if(name.isDisplayed())
+		                        	{
+		                        		reportPass("condition matched", test);
+		                        	} 
+		                        	else
+		                        	{
+		                        		reportFail(testcaseName,"condition not matched" , test);  
+		                        	}
+								  
+								  waitforElemPresent(driver, testcaseName, 30,create_new_filter, test);
+								  click(driver, testcaseName, create_new_filter, test);
+								  waitforElemPresent(driver, testcaseName, 30, select_question, test);
+								  click(driver, testcaseName, select_question, test);
+								  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+								  Collections.copy(numberOfQuestions, numberOfQuestions1);
+								  scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+								  waitforElemPresent(driver, testcaseName, 30,(By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ; 
+								  click(driver,testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question",test) ;
+								  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+								  click(driver, testcaseName, select_condition, test);
+								   }
+                				
+                				
+								  else {
+									  waitforElemPresent(driver, testcaseName, 30, By.xpath(" //span[@class='fl spaceSpan']//select[@class='fm_sel2 grytxt']"), "select drop down", test);
+	            						click(driver, testcaseName,  By.xpath(" //select[@class='fm_sel2 grytxt']"), "select drop down", test);
+	            						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "select drop down 1-1", test);
+	            						click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "select drop down 1-1", test);
+	            						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+	            						click(driver, testcaseName, add_condition, test);
+	            						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+	            						String validationcondition1 = (driver.findElement(By.xpath("//select[@class='fm_sel2 grytxt']//option[@selected='selected']")).getAttribute("weight"));
+	            						String t1 = "1";
+	                                	if(t1.equals(validationcondition1))
+	                                	{
+	                                		reportPass("condition matched", test);
+	                                	} 
+	                                	else
+	                                	{
+	                                		reportFail(testcaseName,"condition not matched" , test);  
+	                                	}
+	            						if(t.equals(validationcondition))
+	                                	{
+	                                		reportPass("condition matched", test);
+	                                	} 
+	                                	else
+	                                	{
+	                                		reportFail(testcaseName,"condition not matched" , test);  
+	                                	}
+	            						 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+	                                     click(driver, testcaseName, save_and_goto_fm, test);
+	                                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+	                                     String Name =  q + i + System.currentTimeMillis();
+	                                     setText(driver, testcaseName, filter_name, Name, test);
+	                                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+	                                     click(driver, testcaseName, save_button_for_filter, test);
+	                                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+	                                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+	                                     if(name.isDisplayed())
+	                                 	{
+	                                 		reportPass("condition matched", test);
+	                                 	} 
+	                                 	else
+	                                 	{
+	                                 		reportFail(testcaseName,"condition not matched" , test);  
+	                                 	}
+	                                    
+	                                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+	                                    click(driver, testcaseName, create_new_filter, test);
+	                                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+	                            		click(driver, testcaseName, select_question, test);
+	                            		 List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+	                     				Collections.copy(numberOfQuestions, numberOfQuestions1);
+	                     				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+	                            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+	                         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+	                         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+	                                  click(driver, testcaseName, select_condition, test);
+								  }
+                				break;
+                			
+                		case "T":
+                                if (numberOfConditions.get(x).getAttribute("value").equals("ISANSWERED")) {
+                                    waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                    click(driver, testcaseName, add_condition, test);
+                                    waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                    String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                                   
+                                    		
+                            if(t.equals(validationcondition))
+                            {
+                                reportPass("condition matched", test);
+                            }
+                            else
+                            {
+                                reportFail(testcaseName,"condition not matched" , test);
+                            }
+                            waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                            click(driver, testcaseName, save_and_goto_fm, test);
+                            waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                            String Name =  q + i + System.currentTimeMillis();
+                            setText(driver, testcaseName, filter_name, Name, test);
+                            waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                            click(driver, testcaseName, save_button_for_filter, test);
+                            waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                            WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                            if(name.isDisplayed())
+                        	{
+                        		reportPass("condition matched", test);
+                        	} 
+                        	else
+                        	{
+                        		reportFail(testcaseName,"condition not matched" , test);  
+                        	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                        click(driver, testcaseName, select_question, test);
+                        List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                        Collections.copy(numberOfQuestions, numberOfQuestions1);
+                        scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                        waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                        click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                       waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                      Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+                                }
+                                else if (numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+                                	waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                    click(driver, testcaseName, add_condition, test);
+                                    waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                    String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                            if(t.equals(validationcondition))
+                            {
+                                reportPass("condition matched", test);
+                            }
+                            else
+                            {
+                                reportFail(testcaseName,"condition not matched" , test);
+                            }
+                            waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                            click(driver, testcaseName, save_and_goto_fm, test);
+                            waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                            String Name =  q + i + System.currentTimeMillis();
+                            setText(driver, testcaseName, filter_name, Name, test);
+                            waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                            click(driver, testcaseName, save_button_for_filter, test);
+                            waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                            WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                            if(name.isDisplayed())
+                        	{
+                        		reportPass("condition matched", test);
+                        	} 
+                        	else
+                        	{
+                        		reportFail(testcaseName,"condition not matched" , test);  
+                        	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                        click(driver, testcaseName, select_question, test);
+                        List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                        Collections.copy(numberOfQuestions, numberOfQuestions1);
+                        scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                        waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                        click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                       waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                      Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+                                }
+                			
+                                else {
+                                		waitforElemPresent(driver, testcaseName, 30, text_box_area, test);
+                                		setText(driver, testcaseName, text_box_area, param.get("textbox"), test);
+                                	waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                    click(driver, testcaseName, add_condition, test);
+                                    waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                    String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                                    String Text = (driver.findElement(By.xpath(" //td[@class='condtd answer']//textarea")).getText());
+                                    if(Text.equals(param.get("textbox")))
+                                    {
+                                        reportPass("condition matched", test);
+                                    }
+                                    else
+                                    {
+                                        reportFail(testcaseName,"condition not matched" , test);
+                                    }  
+                                    
+                                    
+                                    
+                                    
+                            if(t.equals(validationcondition))
+                            {
+                                reportPass("condition matched", test);
+                            }
+                            else
+                            {
+                                reportFail(testcaseName,"condition not matched" , test);
+                            }
+                            waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                            click(driver, testcaseName, save_and_goto_fm, test);
+                            waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                            String Name =  q + i + System.currentTimeMillis();
+                            setText(driver, testcaseName, filter_name, Name, test);
+                            waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                            click(driver, testcaseName, save_button_for_filter, test);
+                            waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                            WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                            if(name.isDisplayed())
+                        	{
+                        		reportPass("condition matched", test);
+                        	} 
+                        	else
+                        	{
+                        		reportFail(testcaseName,"condition not matched" , test);  
+                        	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                        click(driver, testcaseName, select_question, test);
+                        List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                        Collections.copy(numberOfQuestions, numberOfQuestions1);
+                        scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                        waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                        click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                       waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                      Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+                                }
+                    break;
+                		case "NA":
+                			if (numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+                                waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                click(driver, testcaseName, add_condition, test);
+                                waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                        if(t.equals(validationcondition))
+                        {
+                            reportPass("condition matched", test);
+                        }
+                        else
+                        {
+                            reportFail(testcaseName,"condition not matched" , test);
+                        }
+                        waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                        click(driver, testcaseName, save_and_goto_fm, test);
+                        waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                        String Name =  q + i + System.currentTimeMillis();
+                        setText(driver, testcaseName, filter_name, Name, test);
+                        waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                        click(driver, testcaseName, save_button_for_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                        WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                        if(name.isDisplayed())
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    click(driver, testcaseName, select_question, test);
+                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                    Collections.copy(numberOfQuestions, numberOfQuestions1);
+                    scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                    waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                    click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                   waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                  Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+                            }
+                			
+                			else if (numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN")) {
+                				waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+                				setText(driver, testcaseName, text_box_from, param.get("AnswerOptions1"), test);
+                				waitforElemPresent(driver, testcaseName, 30, text_box_to, test);
+                				setText(driver, testcaseName, text_box_to, param.get("checkbox"), test);
+                				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                click(driver, testcaseName, add_condition, test);
+                                waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                        if(t.equals(validationcondition))
+                        {
+                            reportPass("condition matched", test);
+                        }
+                        else
+                        {
+                            reportFail(testcaseName,"condition not matched" , test);
+                        }
+                        waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                        click(driver, testcaseName, save_and_goto_fm, test);
+                        waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                        String Name =  q + i + System.currentTimeMillis();
+                        setText(driver, testcaseName, filter_name, Name, test);
+                        waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                        click(driver, testcaseName, save_button_for_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                        WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                        if(name.isDisplayed())
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    click(driver, testcaseName, select_question, test);
+                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                    Collections.copy(numberOfQuestions, numberOfQuestions1);
+                    scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                    waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                    click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                   waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                  Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+                            }
+                			
+                			else if (numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")) {
+                				waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+                				setText(driver, testcaseName, text_box_from, param.get("AnswerOptions1"), test);
+                				waitforElemPresent(driver, testcaseName, 30, text_box_to, test);
+                				setText(driver, testcaseName, text_box_to, param.get("checkbox"), test);
+                				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                click(driver, testcaseName, add_condition, test);
+                                waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                        if(t.equals(validationcondition))
+                        {
+                            reportPass("condition matched", test);
+                        }
+                        else
+                        {
+                            reportFail(testcaseName,"condition not matched" , test);
+                        }
+                        waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                        click(driver, testcaseName, save_and_goto_fm, test);
+                        waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                        String Name =  q + i +  System.currentTimeMillis();
+                        setText(driver, testcaseName, filter_name, Name, test);
+                        waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                        click(driver, testcaseName, save_button_for_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                        WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                        if(name.isDisplayed())
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                   
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    click(driver, testcaseName, select_question, test);
+                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                    Collections.copy(numberOfQuestions, numberOfQuestions1);
+                    scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                    waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                    click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                   waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                  Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+                            }
+                			
+                			else {
+                				
+                				waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+                				setText(driver, testcaseName, text_box_from, param.get("AnswerOptions1"), test);
+                				
+                				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                                click(driver, testcaseName, add_condition, test);
+                                waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                                String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                        if(t.equals(validationcondition))
+                        {
+                            reportPass("condition matched", test);
+                        }
+                        else
+                        {
+                            reportFail(testcaseName,"condition not matched" , test);
+                        }
+                        waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                        click(driver, testcaseName, save_and_goto_fm, test);
+                        waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                        String Name =  q + i + System.currentTimeMillis();
+                        setText(driver, testcaseName, filter_name, Name, test);
+                        waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                        click(driver, testcaseName, save_button_for_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                        WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                        if(name.isDisplayed())
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                   
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    click(driver, testcaseName, select_question, test);
+                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                    Collections.copy(numberOfQuestions, numberOfQuestions1);
+                    scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                    waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                    click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                   waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                  Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+                				
+                			}
+                			break;
+                case "RB":
+                		if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+                			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                            click(driver, testcaseName, add_condition, test);
+                            waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                            String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    if(t.equals(validationcondition))
+                    {
+                        reportPass("condition matched", test);
+                    }
+                    else
+                    {
+                        reportFail(testcaseName,"condition not matched" , test);
+                    }
+                    waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                    click(driver, testcaseName, save_and_goto_fm, test);
+                    waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                    String Name =  q + i +  System.currentTimeMillis();
+                    setText(driver, testcaseName, filter_name, Name, test);
+                    waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                    click(driver, testcaseName, save_button_for_filter, test);
+                    waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                    WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                    if(name.isDisplayed())
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+                
+                waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                click(driver, testcaseName, create_new_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                click(driver, testcaseName, select_question, test);
+                List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                Collections.copy(numberOfQuestions, numberOfQuestions1);
+                scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+               waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+              Thread.sleep(1000);
+              click(driver, testcaseName, select_condition, test);
+                		}
+                		else {
+                			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                            click(driver, testcaseName, select_all_options, test);
+                            waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                            click(driver, testcaseName, add_condition, test);
+                            waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                            String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    if(t.equals(validationcondition))
+                    {
+                        reportPass("condition matched", test);
+                    }
+                    else
+                    {
+                        reportFail(testcaseName,"condition not matched" , test);
+                    }
+                    waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                    click(driver, testcaseName, save_and_goto_fm, test);
+                    waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                    String Name =  q + i + System.currentTimeMillis();
+                    setText(driver, testcaseName, filter_name, Name, test);
+                    waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                    click(driver, testcaseName, save_button_for_filter, test);
+                    waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                    WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                    if(name.isDisplayed())
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+                
+                waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                click(driver, testcaseName, create_new_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                click(driver, testcaseName, select_question, test);
+                List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+                Collections.copy(numberOfQuestions, numberOfQuestions1);
+                scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+               waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+              Thread.sleep(1000);
+              click(driver, testcaseName, select_condition, test);
+                		}
+                		break;
+                case "MSCB":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+                break;	
+                case "DD":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+                	break;
+                case "RW":	
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test); 
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else if(numberOfConditions.get(x).getAttribute("value").equals("NOT")) {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+                	
+            		else if(numberOfConditions.get(x).getAttribute("value").equals("OR")) {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")){
+    					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+    					click(driver, testcaseName, drop_down1_filter, test);	
+    					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+    					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+    					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+    					click(driver, testcaseName, drop_down2_filter, test);
+    					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+    					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+    					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+    					click(driver, testcaseName, add_condition, test);
+    					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    	if(t.equals(validationcondition))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                         click(driver, testcaseName, save_and_goto_fm, test);
+                         waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                         String Name =  q + i +  System.currentTimeMillis();
+                         setText(driver, testcaseName, filter_name, Name, test);
+                         waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                         click(driver, testcaseName, save_button_for_filter, test);
+                         waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                         WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                         if(name.isDisplayed())
+                     	{
+                     		reportPass("condition matched", test);
+                     	} 
+                     	else
+                     	{
+                     		reportFail(testcaseName,"condition not matched" , test);  
+                     	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                        click(driver, testcaseName, select_question, test);
+                        List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+        				Collections.copy(numberOfQuestions, numberOfQuestions1);
+        				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           		   Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+    				}
+    				
+    				else if(numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN"))
+    				{
+    					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+    					click(driver, testcaseName, drop_down1_filter, test);	
+    					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+    					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+    					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+    					click(driver, testcaseName, drop_down2_filter, test);
+    					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+    					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+    					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+    					click(driver, testcaseName, add_condition, test);
+    					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    	if(t.equals(validationcondition))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                         click(driver, testcaseName, save_and_goto_fm, test);
+                         waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                         String Name =  q + i + System.currentTimeMillis();
+                         setText(driver, testcaseName, filter_name, Name, test);
+                         waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                         click(driver, testcaseName, save_button_for_filter, test);
+                         waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                         WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                         if(name.isDisplayed())
+                     	{
+                     		reportPass("condition matched", test);
+                     	} 
+                     	else
+                     	{
+                     		reportFail(testcaseName,"condition not matched" , test);  
+                     	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                		click(driver, testcaseName, select_question, test);
+                		List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+        				Collections.copy(numberOfQuestions, numberOfQuestions1);
+        				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           		   Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+    				}
+    				 else {
+   					  waitforElemPresent(driver, testcaseName, 30, By.xpath(" //span[@class='fl spaceSpan']//select[@class='fm_sel2 grytxt']"), "select drop down", test);
+   						click(driver, testcaseName,  By.xpath(" //select[@class='fm_sel2 grytxt']"), "select drop down", test);
+   						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "select drop down 1-1", test);
+   						click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "select drop down 1-1", test);
+   						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+   						click(driver, testcaseName, add_condition, test);
+   						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                       	if(t.equals(validationcondition))
+                       	{
+                       		reportPass("condition matched", test);
+                       	} 
+                       	else
+                       	{
+                       		reportFail(testcaseName,"condition not matched" , test);  
+                       	}
+                        waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                        click(driver, testcaseName, save_and_goto_fm, test);
+                        waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                        String Name =  q + i + System.currentTimeMillis();
+                        setText(driver, testcaseName, filter_name, Name, test);
+                        waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                        click(driver, testcaseName, save_button_for_filter, test);
+                        waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                        WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                        if(name.isDisplayed())
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                           
+                           waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                           click(driver, testcaseName, create_new_filter, test);
+                          
+                           waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                   		click(driver, testcaseName, select_question, test);
+                   		 List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            				Collections.copy(numberOfQuestions, numberOfQuestions1);
+            				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                   		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                         click(driver, testcaseName, select_condition, test);
+   				  }
+                	break;
+                case "DT":
+					if (numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']"))
+								.getText());
+						if (t.equals(validationcondition)) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+						waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+						click(driver, testcaseName, save_and_goto_fm, test);
+						waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+						String Name = q + i + System.currentTimeMillis();
+						setText(driver, testcaseName, filter_name, Name, test);
+						waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+						click(driver, testcaseName, save_button_for_filter, test);
+						waitforElemPresent(driver, testcaseName, 30,
+								By.xpath("//div[normalize-space()='" + Name + "']"), Name, test);
+						WebElement name = driver.findElement(By.xpath("//div[normalize-space()='" + Name + "']"));
+						if (name.isDisplayed()) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+
+						waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+						click(driver, testcaseName, create_new_filter, test);
+						waitforElemPresent(driver, testcaseName, 30, select_question, test);
+						click(driver, testcaseName, select_question, test);
+						List<WebElement> numberOfQuestions1 = driver.findElements(
+								By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+						Collections.copy(numberOfQuestions, numberOfQuestions1);
+						scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"),
+								"scrolling to the question", test);
+						waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li[" + j + "]")),
+								"questions", test);
+						click(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"), "selecting question",
+								test);
+						waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+						Thread.sleep(1000);
+						click(driver, testcaseName, select_condition, test);
+					}
+					else if (numberOfConditions.get(x).getAttribute("value").equals("BETWEEN"))
+					{
+						waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+						click(driver, testcaseName, text_box_from, test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						click(driver, testcaseName, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						click(driver, testcaseName, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[normalize-space()='1']"), "date", test);
+						click(driver, testcaseName, By.xpath("//a[normalize-space()='1']"), "date", test);
+						waitforElemPresent(driver, testcaseName, 30, text_box_to, test);
+						click(driver, testcaseName, text_box_to, test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						click(driver, testcaseName, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						click(driver, testcaseName, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[normalize-space()='5']"), "date", test);
+						click(driver, testcaseName, By.xpath("//a[normalize-space()='5']"), "date", test);
+						
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']"))
+								.getText());
+						if (t.equals(validationcondition)) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+						waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+						click(driver, testcaseName, save_and_goto_fm, test);
+						waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+						String Name = q + i + System.currentTimeMillis();
+						setText(driver, testcaseName, filter_name, Name, test);
+						waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+						click(driver, testcaseName, save_button_for_filter, test);
+						waitforElemPresent(driver, testcaseName, 30,
+								By.xpath("//div[normalize-space()='" + Name + "']"), Name, test);
+						WebElement name = driver.findElement(By.xpath("//div[normalize-space()='" + Name + "']"));
+						if (name.isDisplayed()) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+
+						waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+						click(driver, testcaseName, create_new_filter, test);
+						waitforElemPresent(driver, testcaseName, 30, select_question, test);
+						click(driver, testcaseName, select_question, test);
+						List<WebElement> numberOfQuestions1 = driver.findElements(
+								By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+						Collections.copy(numberOfQuestions, numberOfQuestions1);
+						scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"),
+								"scrolling to the question", test);
+						waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li[" + j + "]")),
+								"questions", test);
+						click(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"), "selecting question",
+								test);
+						waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+						click(driver, testcaseName, select_condition, test);
+					}
+
+					else if (numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN"))
+					{
+						waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+						click(driver, testcaseName, text_box_from, test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						click(driver, testcaseName, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						click(driver, testcaseName, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[normalize-space()='1']"), "date", test);
+						click(driver, testcaseName, By.xpath("//a[normalize-space()='1']"), "date", test);
+						waitforElemPresent(driver, testcaseName, 30, text_box_to, test);
+						click(driver, testcaseName, text_box_to, test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						click(driver, testcaseName, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						click(driver, testcaseName, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[normalize-space()='5']"), "date", test);
+						click(driver, testcaseName, By.xpath("//a[normalize-space()='5']"), "date", test);
+						
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']"))
+								.getText());
+						if (t.equals(validationcondition)) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+						waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+						click(driver, testcaseName, save_and_goto_fm, test);
+						waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+						String Name = q + i + System.currentTimeMillis();
+						setText(driver, testcaseName, filter_name, Name, test);
+						waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+						click(driver, testcaseName, save_button_for_filter, test);
+						waitforElemPresent(driver, testcaseName, 30,
+								By.xpath("//div[normalize-space()='" + Name + "']"), Name, test);
+						WebElement name = driver.findElement(By.xpath("//div[normalize-space()='" + Name + "']"));
+						if (name.isDisplayed()) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+
+						waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+						click(driver, testcaseName, create_new_filter, test);
+						waitforElemPresent(driver, testcaseName, 30, select_question, test);
+						click(driver, testcaseName, select_question, test);
+						List<WebElement> numberOfQuestions1 = driver.findElements(
+								By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+						Collections.copy(numberOfQuestions, numberOfQuestions1);
+						scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"),
+								"scrolling to the question", test);
+						waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li[" + j + "]")),
+								"questions", test);
+						click(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"), "selecting question",
+								test);
+						waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+						click(driver, testcaseName, select_condition, test);
+					}
+					else {
+
+						waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+						setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						click(driver, testcaseName, By.xpath("//select[@aria-label='Select month']"), "month dd", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						click(driver, testcaseName, By.xpath("//select[@class='ui-datepicker-month']//option[@value='3']"), "month", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//a[normalize-space()='1']"), "date", test);
+						click(driver, testcaseName, By.xpath("//a[normalize-space()='1']"), "date", test);
+						
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']"))
+								.getText());
+						if (t.equals(validationcondition)) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+						waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+						click(driver, testcaseName, save_and_goto_fm, test);
+						waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+						String Name = q + i + System.currentTimeMillis();
+						setText(driver, testcaseName, filter_name, Name, test);
+						waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+						click(driver, testcaseName, save_button_for_filter, test);
+						waitforElemPresent(driver, testcaseName, 30,
+								By.xpath("//div[normalize-space()='" + Name + "']"), Name, test);
+						WebElement name = driver.findElement(By.xpath("//div[normalize-space()='" + Name + "']"));
+						if (name.isDisplayed()) {
+							reportPass("condition matched", test);
+						} else {
+							reportFail(testcaseName, "condition not matched", test);
+						}
+
+						waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+						click(driver, testcaseName, create_new_filter, test);
+						waitforElemPresent(driver, testcaseName, 30, select_question, test);
+						click(driver, testcaseName, select_question, test);
+						List<WebElement> numberOfQuestions1 = driver.findElements(
+								By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+						Collections.copy(numberOfQuestions, numberOfQuestions1);
+						scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"),
+								"scrolling to the question", test);
+						waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li[" + j + "]")),
+								"questions", test);
+						click(driver, testcaseName, By.xpath("//div[@id='div']//li[" + j + "]"), "selecting question",
+								test);
+						waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+						Thread.sleep(1000);
+						click(driver, testcaseName, select_condition, test);
+					}
+        			break;
+                case "GR":	
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+                	break;
+                	
+                case "GC":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+                	break;
+                case "RK":
+    				if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")){
+    					waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2_Rank grytxt']"), "drop_down_1 for rank", test);
+						click(driver, testcaseName,  By.xpath("//select[@class='fm_sel2_Rank grytxt']"), "drop_down_1 for rank", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2_Rank grytxt']//option[@value='1']"), "drop_down_1 for rank op1", test);
+						click(driver, testcaseName,  By.xpath("//select[@class='fm_sel2_Rank grytxt']//option[@value='1']"), "drop_down_1 for rank op1", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span//select[@class='fm_sel2_Rank grytxt']"), "drop_down_2 for rank", test);
+						click(driver, testcaseName,  By.xpath("//span//select[@class='fm_sel2_Rank grytxt']"), "drop_down_2 for rank", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span//select[@class='fm_sel2_Rank grytxt']//option[@value='3']"), "drop_down_1 for rank op3", test);
+						click(driver, testcaseName,  By.xpath("//span//select[@class='fm_sel2_Rank grytxt']//option[@value='3']"), "drop_down_1 for rank op3", test);
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    	if(t.equals(validationcondition))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                         click(driver, testcaseName, save_and_goto_fm, test);
+                         waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                         String Name =  q + i +  System.currentTimeMillis();
+                         setText(driver, testcaseName, filter_name, Name, test);
+                         waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                         click(driver, testcaseName, save_button_for_filter, test);
+                         waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                         WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                         if(name.isDisplayed())
+                     	{
+                     		reportPass("condition matched", test);
+                     	} 
+                     	else
+                     	{
+                     		reportFail(testcaseName,"condition not matched" , test);  
+                     	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                        click(driver, testcaseName, select_question, test);
+                        List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+        				Collections.copy(numberOfQuestions, numberOfQuestions1);
+        				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           		   Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+    				}
+    				
+    				else if(numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN"))
+    				{
+    					waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2_Rank grytxt']"), "drop_down_1 for rank", test);
+						click(driver, testcaseName,  By.xpath("//select[@class='fm_sel2_Rank grytxt']"), "drop_down_1 for rank", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2_Rank grytxt']//option[@value='1']"), "drop_down_1 for rank op1", test);
+						click(driver, testcaseName,  By.xpath("//select[@class='fm_sel2_Rank grytxt']//option[@value='1']"), "drop_down_1 for rank op1", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span//select[@class='fm_sel2_Rank grytxt']"), "drop_down_2 for rank", test);
+						click(driver, testcaseName,  By.xpath("//span//select[@class='fm_sel2_Rank grytxt']"), "drop_down_2 for rank", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span//select[@class='fm_sel2_Rank grytxt']//option[@value='3']"), "drop_down_1 for rank op3", test);
+						click(driver, testcaseName,  By.xpath("//span//select[@class='fm_sel2_Rank grytxt']//option[@value='3']"), "drop_down_1 for rank op3", test);
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    	if(t.equals(validationcondition))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                         click(driver, testcaseName, save_and_goto_fm, test);
+                         waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                         String Name =  q + i + System.currentTimeMillis();
+                         setText(driver, testcaseName, filter_name, Name, test);
+                         waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                         click(driver, testcaseName, save_button_for_filter, test);
+                         waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                         WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                         if(name.isDisplayed())
+                     	{
+                     		reportPass("condition matched", test);
+                     	} 
+                     	else
+                     	{
+                     		reportFail(testcaseName,"condition not matched" , test);  
+                     	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                        
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                		click(driver, testcaseName, select_question, test);
+                		List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+        				Collections.copy(numberOfQuestions, numberOfQuestions1);
+        				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           		   Thread.sleep(1000);
+                      click(driver, testcaseName, select_condition, test);
+    				}
+    				
+    				
+					
+					  else if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER"))
+					  {
+					  waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					  click(driver, testcaseName, add_condition, test); 
+					  String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+					  if(t.equals(validationcondition))
+					  { 
+						  reportPass("condition matched", test);
+						  }
+					  else { 
+						  reportFail(testcaseName,"condition not matched" , test); 
+						  }
+					  waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                      click(driver, testcaseName, save_and_goto_fm, test);
+                      waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                      String Name =  q + i + System.currentTimeMillis();
+                      setText(driver, testcaseName, filter_name, Name, test);
+                      waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                      click(driver, testcaseName, save_button_for_filter, test);
+                      waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                      WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                      if(name.isDisplayed())
+                  	{
+                  		reportPass("condition matched", test);
+                  	} 
+                  	else
+                  	{
+                  		reportFail(testcaseName,"condition not matched" , test);  
+                  	}
+					  
+					  waitforElemPresent(driver, testcaseName, 30,create_new_filter, test);
+					  click(driver, testcaseName, create_new_filter, test);
+					  waitforElemPresent(driver, testcaseName, 30, select_question, test);
+					  click(driver, testcaseName, select_question, test);
+					  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+					  Collections.copy(numberOfQuestions, numberOfQuestions1);
+					  scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+					  waitforElemPresent(driver, testcaseName, 30,(By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ; 
+					  click(driver,testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question",test) ;
+					  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+					  click(driver, testcaseName, select_condition, test);
+					   }
+    				
+    				
+					  else {
+						  waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@class='fm_sel2_Rank grytxt']"), "select drop down", test);
+    						click(driver, testcaseName,  By.xpath("//select[@class='fm_sel2_Rank grytxt']"), "select drop down", test);
+    						waitforElemPresent(driver, testcaseName, 30, By.xpath("//option[normalize-space()='Rank 1']"), "rank 1", test);
+    						click(driver, testcaseName,  By.xpath("//option[normalize-space()='Rank 1']"), "rank 1", test);
+    						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+    						click(driver, testcaseName, add_condition, test);
+    						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                        	if(t.equals(validationcondition))
+                        	{
+                        		reportPass("condition matched", test);
+                        	} 
+                        	else
+                        	{
+                        		reportFail(testcaseName,"condition not matched" , test);  
+                        	}
+                        	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                             click(driver, testcaseName, save_and_goto_fm, test);
+                             waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                             String Name =  q + i + System.currentTimeMillis();
+                             setText(driver, testcaseName, filter_name, Name, test);
+                             waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                             click(driver, testcaseName, save_button_for_filter, test);
+                             waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                             WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                             if(name.isDisplayed())
+                         	{
+                         		reportPass("condition matched", test);
+                         	} 
+                         	else
+                         	{
+                         		reportFail(testcaseName,"condition not matched" , test);  
+                         	}
+                            
+                            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                            click(driver, testcaseName, create_new_filter, test);
+                           
+                            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    		click(driver, testcaseName, select_question, test);
+                    		 List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             				Collections.copy(numberOfQuestions, numberOfQuestions1);
+             				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                    		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+                 		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+                 		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                          click(driver, testcaseName, select_condition, test);
+					  }
+    				break;
+                case "MSLB":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+                	break;
+                case "RT":
+                	if (numberOfConditions.get(x).getAttribute("value").equals("OR")) {
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "1 - 1", test);
+						click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting 1 - 1", test);
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+            	if(t.equals(validationcondition))
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i + System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            Thread.sleep(1000);
+           
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+    		click(driver, testcaseName, select_question, test);
+    		 waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"), testcaseName, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+				Collections.copy(numberOfQuestions, numberOfQuestions1);
+				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+    		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+ 		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+ 		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+		   Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+			
+    	}
+				else if(numberOfConditions.get(x).getAttribute("value").equals("NOT")) {
+    
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "1 - 1", test);
+					click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting 1 - 1", test);
+					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					click(driver, testcaseName, add_condition, test);
+					waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+        
+        	if(t.equals(validationcondition))
+        	{
+        		reportPass("condition matched", test);
+        	} 
+        	else
+        	{
+        		reportFail(testcaseName,"condition not matched" , test);  
+        	}
+        	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+             click(driver, testcaseName, save_and_goto_fm, test);
+             waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+             String Name =  q + i +  System.currentTimeMillis();
+             setText(driver, testcaseName, filter_name, Name, test);
+             waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+             click(driver, testcaseName, save_button_for_filter, test);
+             waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+             WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+             if(name.isDisplayed())
+         	{
+         		reportPass("condition matched", test);
+         	} 
+         	else
+         	{
+         		reportFail(testcaseName,"condition not matched" , test);  
+         	}
+        
+        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+        click(driver, testcaseName, create_new_filter, test);
+      
+        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+		click(driver, testcaseName, select_question, test);
+		  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+			Collections.copy(numberOfQuestions, numberOfQuestions1);
+			 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+	   Thread.sleep(1000);
+      click(driver, testcaseName, select_condition, test);
+				
+				}
+				
+				else if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")){
+					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+					click(driver, testcaseName, drop_down1_filter, test);	
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+					click(driver, testcaseName, drop_down2_filter, test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					click(driver, testcaseName, add_condition, test);
+					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                	if(t.equals(validationcondition))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+                	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                     click(driver, testcaseName, save_and_goto_fm, test);
+                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                     String Name =  q + i +  System.currentTimeMillis();
+                     setText(driver, testcaseName, filter_name, Name, test);
+                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                     click(driver, testcaseName, save_button_for_filter, test);
+                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                     if(name.isDisplayed())
+                 	{
+                 		reportPass("condition matched", test);
+                 	} 
+                 	else
+                 	{
+                 		reportFail(testcaseName,"condition not matched" , test);  
+                 	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                    
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    click(driver, testcaseName, select_question, test);
+                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+    				Collections.copy(numberOfQuestions, numberOfQuestions1);
+    				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+       		   Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+				}
+				
+				else if(numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN"))
+				{
+					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+					click(driver, testcaseName, drop_down1_filter, test);	
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "drop_down1_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+					click(driver, testcaseName, drop_down2_filter, test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[@weight='3']"), "drop_down2_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					click(driver, testcaseName, add_condition, test);
+					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                	if(t.equals(validationcondition))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+                	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                     click(driver, testcaseName, save_and_goto_fm, test);
+                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                     String Name =  q + i +  System.currentTimeMillis();
+                     setText(driver, testcaseName, filter_name, Name, test);
+                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                     click(driver, testcaseName, save_button_for_filter, test);
+                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                     if(name.isDisplayed())
+                 	{
+                 		reportPass("condition matched", test);
+                 	} 
+                 	else
+                 	{
+                 		reportFail(testcaseName,"condition not matched" , test);  
+                 	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                    
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            		click(driver, testcaseName, select_question, test);
+            		List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+    				Collections.copy(numberOfQuestions, numberOfQuestions1);
+    				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+       		   Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+				}
+				
+				
+				
+				  else if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER"))
+				  {
+				  waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+				  click(driver, testcaseName, add_condition, test); 
+				  String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+				  if(t.equals(validationcondition))
+				  { 
+					  reportPass("condition matched", test);
+					  }
+				  else { 
+					  reportFail(testcaseName,"condition not matched" , test); 
+					  }
+				  waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                  click(driver, testcaseName, save_and_goto_fm, test);
+                  waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                  String Name =  q + i + System.currentTimeMillis();
+                  setText(driver, testcaseName, filter_name, Name, test);
+                  waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                  click(driver, testcaseName, save_button_for_filter, test);
+                  waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                  WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                  if(name.isDisplayed())
+              	{
+              		reportPass("condition matched", test);
+              	} 
+              	else
+              	{
+              		reportFail(testcaseName,"condition not matched" , test);  
+              	}
+				  
+				  waitforElemPresent(driver, testcaseName, 30,create_new_filter, test);
+				  click(driver, testcaseName, create_new_filter, test);
+				  waitforElemPresent(driver, testcaseName, 30, select_question, test);
+				  click(driver, testcaseName, select_question, test);
+				  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+				  Collections.copy(numberOfQuestions, numberOfQuestions1);
+				  scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+				  waitforElemPresent(driver, testcaseName, 30,(By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ; 
+				  click(driver,testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question",test) ;
+				  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+				  click(driver, testcaseName, select_condition, test);
+				   }
+			
+				
+				  else {
+					  waitforElemPresent(driver, testcaseName, 30, By.xpath(" //span[@class='fl spaceSpan']//select[@class='fm_sel2 grytxt']"), "select drop down", test);
+						click(driver, testcaseName,  By.xpath(" //select[@class='fm_sel2 grytxt']"), "select drop down", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "select drop down 1-1", test);
+						click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[@weight='1']"), "select drop down 1-1", test);
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                    	if(t.equals(validationcondition))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                         click(driver, testcaseName, save_and_goto_fm, test);
+                         waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                         String Name =  q + i +  System.currentTimeMillis();
+                         setText(driver, testcaseName, filter_name, Name, test);
+                         waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                         click(driver, testcaseName, save_button_for_filter, test);
+                         waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                         WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                         if(name.isDisplayed())
+                     	{
+                     		reportPass("condition matched", test);
+                     	} 
+                     	else
+                     	{
+                     		reportFail(testcaseName,"condition not matched" , test);  
+                     	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                       
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                		click(driver, testcaseName, select_question, test);
+                		 List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+         				Collections.copy(numberOfQuestions, numberOfQuestions1);
+         				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                      click(driver, testcaseName, select_condition, test);
+				  }
+				break;
+                case "LA":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("OR")) {
+                		waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		break;
+            		
+                case "HRB":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+                		
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		break;
+            		
+                case"RG":
+                	if (numberOfConditions.get(x).getAttribute("value").equals("OR")) {
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "1 - 1", test);
+						click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting 1 - 1", test);
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+						WebElement option = driver.findElement(By.xpath("//div[@class='checkall']//input[@checked='checked']"));
+				
+						if(option.isSelected())
+		            	{
+		            		reportPass("condition matched", test);
+		            	} 
+		            	else
+		            	{
+		            		reportFail(testcaseName,"condition not matched" , test);  
+		            	}
+				if(t.equals(validationcondition))
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+				
+				
+				 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i +  System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            
+           
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+    		click(driver, testcaseName, select_question, test);
+    		 waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"), testcaseName, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+				Collections.copy(numberOfQuestions, numberOfQuestions1);
+				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+    		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+ 		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+ 		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+		   Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+			
+    	}
+				else if(numberOfConditions.get(x).getAttribute("value").equals("NOT")) {
+    
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "1 - 1", test);
+					click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting 1 - 1", test);
+					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					click(driver, testcaseName, add_condition, test);
+					waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+					WebElement option = driver.findElement(By.xpath("//div[@class='checkall']//input[@checked='checked']"));
+					
+					if(option.isSelected())
+	            	{
+	            		reportPass("condition matched", test);
+	            	} 
+	            	else
+	            	{
+	            		reportFail(testcaseName,"condition not matched" , test);  
+	            	}
+        	if(t.equals(validationcondition))
+        	{
+        		reportPass("condition matched", test);
+        	} 
+        	else
+        	{
+        		reportFail(testcaseName,"condition not matched" , test);  
+        	}
+        	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+             click(driver, testcaseName, save_and_goto_fm, test);
+             waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+             String Name =  q + i + System.currentTimeMillis();
+             setText(driver, testcaseName, filter_name, Name, test);
+             waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+             click(driver, testcaseName, save_button_for_filter, test);
+             waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+             WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+             if(name.isDisplayed())
+         	{
+         		reportPass("condition matched", test);
+         	} 
+         	else
+         	{
+         		reportFail(testcaseName,"condition not matched" , test);  
+         	}
+        
+        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+        click(driver, testcaseName, create_new_filter, test);
+      
+        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+		click(driver, testcaseName, select_question, test);
+		  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+			Collections.copy(numberOfQuestions, numberOfQuestions1);
+			 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+	   Thread.sleep(1000);
+      click(driver, testcaseName, select_condition, test);
+				
+				}
+				
+				else if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")){
+					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+					click(driver, testcaseName, drop_down1_filter, test);	
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+					click(driver, testcaseName, drop_down2_filter, test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					click(driver, testcaseName, add_condition, test);
+					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+					String option1 = (driver.findElement(By.xpath("//span[@class='fl spaceSpan']//option[@selected='selected']")).getText());
+					String option2 = (driver.findElement(By.xpath("//span[@class='fl']//option[@selected='selected']")).getText());
+					String o1 = "(1) - 1";
+					String o2 = "(2) - 2";
+					if(option1.equals(o1))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+					if(option2.equals(o2))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+					
+                	if(t.equals(validationcondition))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+                	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                     click(driver, testcaseName, save_and_goto_fm, test);
+                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                     String Name =  q + i + System.currentTimeMillis();
+                     setText(driver, testcaseName, filter_name, Name, test);
+                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                     click(driver, testcaseName, save_button_for_filter, test);
+                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                     if(name.isDisplayed())
+                 	{
+                 		reportPass("condition matched", test);
+                 	} 
+                 	else
+                 	{
+                 		reportFail(testcaseName,"condition not matched" , test);  
+                 	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                    
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                    click(driver, testcaseName, select_question, test);
+                    List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+    				Collections.copy(numberOfQuestions, numberOfQuestions1);
+    				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+       		   Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+				}
+				
+				else if(numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN"))
+				{
+					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
+					click(driver, testcaseName, drop_down1_filter, test);	
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
+					click(driver, testcaseName, drop_down2_filter, test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+					click(driver, testcaseName, add_condition, test);
+					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+					String option1 = (driver.findElement(By.xpath("//span[@class='fl spaceSpan']//option[@selected='selected']")).getText());
+					String option2 = (driver.findElement(By.xpath("//span[@class='fl']//option[@selected='selected']")).getText());
+					String o1 = "(1) - 1";
+					String o2 = "(2) - 2";
+					if(option1.equals(o1))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+					if(option2.equals(o2))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+					if(t.equals(validationcondition))
+                	{
+                		reportPass("condition matched", test);
+                	} 
+                	else
+                	{
+                		reportFail(testcaseName,"condition not matched" , test);  
+                	}
+					 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                     click(driver, testcaseName, save_and_goto_fm, test);
+                     waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                     String Name =  q + i + System.currentTimeMillis();
+                     setText(driver, testcaseName, filter_name, Name, test);
+                     waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                     click(driver, testcaseName, save_button_for_filter, test);
+                     waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                     WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                     if(name.isDisplayed())
+                 	{
+                 		reportPass("condition matched", test);
+                 	} 
+                 	else
+                 	{
+                 		reportFail(testcaseName,"condition not matched" , test);  
+                 	}
+                    
+                    waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                    click(driver, testcaseName, create_new_filter, test);
+                    
+                    waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            		click(driver, testcaseName, select_question, test);
+            		List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+    				Collections.copy(numberOfQuestions, numberOfQuestions1);
+    				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+         		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+         		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+       		   Thread.sleep(1000);
+                  click(driver, testcaseName, select_condition, test);
+				}
+				
+				
+				
+				  else if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER"))
+				  {
+				  waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+				  click(driver, testcaseName, add_condition, test); 
+				  String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+				  if(t.equals(validationcondition))
+				  { 
+					  reportPass("condition matched", test);
+					  }
+				  else { 
+					  reportFail(testcaseName,"condition not matched" , test); 
+					  }
+				  waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                  click(driver, testcaseName, save_and_goto_fm, test);
+                  waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                  String Name =  q + i +  System.currentTimeMillis();
+                  setText(driver, testcaseName, filter_name, Name, test);
+                  waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                  click(driver, testcaseName, save_button_for_filter, test);
+                  waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                  WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                  if(name.isDisplayed())
+              	{
+              		reportPass("condition matched", test);
+              	} 
+              	else
+              	{
+              		reportFail(testcaseName,"condition not matched" , test);  
+              	}
+				  
+				  waitforElemPresent(driver, testcaseName, 30,create_new_filter, test);
+				  click(driver, testcaseName, create_new_filter, test);
+				  waitforElemPresent(driver, testcaseName, 30, select_question, test);
+				  click(driver, testcaseName, select_question, test);
+				  List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+				  Collections.copy(numberOfQuestions, numberOfQuestions1);
+				  scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+				  waitforElemPresent(driver, testcaseName, 30,(By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ; 
+				  click(driver,testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question",test) ;
+				  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+				  click(driver, testcaseName, select_condition, test);
+				   }
+				
+				
+				  else {
+					  waitforElemPresent(driver, testcaseName, 30, By.xpath(" //span[@class='fl spaceSpan']//select[@class='fm_sel2 grytxt']"), "select drop down", test);
+						click(driver, testcaseName,  By.xpath(" //select[@class='fm_sel2 grytxt']"), "select drop down", test);
+						waitforElemPresent(driver, testcaseName, 30, By.xpath("//option[normalize-space()='(1) - 1']"), "select drop down 1-1", test);
+						click(driver, testcaseName,  By.xpath("//option[normalize-space()='(1) - 1']"), "select drop down 1-1", test);
+						waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+						click(driver, testcaseName, add_condition, test);
+						String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+						String validationcondition1 = (driver.findElement(By.xpath("//select[@class='fm_sel2 grytxt']//option[@selected='selected']")).getText());
+						String t1 = "(1) - 1";
+                    	if(t.equals(validationcondition))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	if(t1.equals(validationcondition1))
+                    	{
+                    		reportPass("condition matched", test);
+                    	} 
+                    	else
+                    	{
+                    		reportFail(testcaseName,"condition not matched" , test);  
+                    	}
+                    	
+                    	 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                         click(driver, testcaseName, save_and_goto_fm, test);
+                         waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                         String Name =  q + i +  System.currentTimeMillis();
+                         setText(driver, testcaseName, filter_name, Name, test);
+                         waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                         click(driver, testcaseName, save_button_for_filter, test);
+                         waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                         WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                         if(name.isDisplayed())
+                     	{
+                     		reportPass("condition matched", test);
+                     	} 
+                     	else
+                     	{
+                     		reportFail(testcaseName,"condition not matched" , test);  
+                     	}
+                        
+                        waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+                        click(driver, testcaseName, create_new_filter, test);
+                       
+                        waitforElemPresent(driver, testcaseName, 30, select_question, test);
+                		click(driver, testcaseName, select_question, test);
+                		 List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+         				Collections.copy(numberOfQuestions, numberOfQuestions1);
+         				 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+                		waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             		   click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+             		  waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+                      click(driver, testcaseName, select_condition, test);
+				  }
+				break;
+                case"GD":
+                	if(numberOfConditions.get(x).getAttribute("value").equals("DIDNOTANSWER")) {
+            			waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		else {
+            			waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
+                        click(driver, testcaseName, select_all_options, test);
+                        waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          Thread.sleep(1000);
+          click(driver, testcaseName, select_condition, test);
+            		}
+            		break;
+                case"RP":  
+                	 if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")) {
+                		waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+        				setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+        				WebElement tbfrom=driver.findElement(By.xpath("//div[@class='AnsCont']//input"));
+        			      tbfrom.sendKeys(Keys.ENTER);
+        				waitforElemPresent(driver, testcaseName, 30, text_box_to, test);
+        				setText(driver, testcaseName, text_box_to, param.get("RadioButton"), test);
+        				WebElement tbto=driver.findElement(By.xpath("//div[@class='AnsCont']/span/input"));
+        				tbto.sendKeys(Keys.ENTER);
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);	
+                	}
+                	
+                	else if(numberOfConditions.get(x).getAttribute("value").equals("NOTBETWEEN")) {
+                		waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+        				setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+        				WebElement tbfrom=driver.findElement(By.xpath("//div[@class='AnsCont']//input"));
+        			      tbfrom.sendKeys(Keys.ENTER);
+        				waitforElemPresent(driver, testcaseName, 30, text_box_to, test);
+        				setText(driver, testcaseName, text_box_to, param.get("RadioButton"), test);
+        				WebElement tbto=driver.findElement(By.xpath("//div[@class='AnsCont']/span/input"));
+        				tbto.sendKeys(Keys.ENTER);
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);	
+                	}
+                	else if(numberOfConditions.get(x).getAttribute("value").equals("=")){
+        				
+                		waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+        				setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+        				WebElement tbfrom=driver.findElement(By.xpath("//div[@class='AnsCont']//input"));
+        			      tbfrom.sendKeys(Keys.ENTER);
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);
+        			}
+                	 else if(numberOfConditions.get(x).getAttribute("value").equals("<")){
+        				
+                		waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+        				setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+        				WebElement tbfrom=driver.findElement(By.xpath("//div[@class='AnsCont']//input"));
+        			      tbfrom.sendKeys(Keys.ENTER);
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);
+        			}
+                	 else if(numberOfConditions.get(x).getAttribute("value").equals(">")){
+         				
+                 		waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+         				setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+         				WebElement tbfrom=driver.findElement(By.xpath("//div[@class='AnsCont']//input"));
+         			      tbfrom.sendKeys(Keys.ENTER);
+         				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                         click(driver, testcaseName, add_condition, test);
+                         waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                         String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                 if(t.equals(validationcondition))
+                 {
+                     reportPass("condition matched", test);
+                 }
+                 else
+                 {
+                     reportFail(testcaseName,"condition not matched" , test);
+                 }
+                 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i + System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+             
+             waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+             click(driver, testcaseName, create_new_filter, test);
+             waitforElemPresent(driver, testcaseName, 30, select_question, test);
+             click(driver, testcaseName, select_question, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             Collections.copy(numberOfQuestions, numberOfQuestions1);
+             scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+             waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+            waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           click(driver, testcaseName, select_condition, test);
+         			}
+                	 else if(numberOfConditions.get(x).getAttribute("value").equals("<>")){
+         				
+                 		waitforElemPresent(driver, testcaseName, 30, text_box_from, test);
+         				setText(driver, testcaseName, text_box_from, param.get("TextBox"), test);
+         				WebElement tbfrom=driver.findElement(By.xpath("//div[@class='AnsCont']//input"));
+         			      tbfrom.sendKeys(Keys.ENTER);
+         				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                         click(driver, testcaseName, add_condition, test);
+                         waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                         String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                 if(t.equals(validationcondition))
+                 {
+                     reportPass("condition matched", test);
+                 }
+                 else
+                 {
+                     reportFail(testcaseName,"condition not matched" , test);
+                 }
+                 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i +  System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+             
+             waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+             click(driver, testcaseName, create_new_filter, test);
+             waitforElemPresent(driver, testcaseName, 30, select_question, test);
+             click(driver, testcaseName, select_question, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             Collections.copy(numberOfQuestions, numberOfQuestions1);
+             scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+             waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+            waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           click(driver, testcaseName, select_condition, test);
+         			}
+                	 else {
+                		 waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                         click(driver, testcaseName, add_condition, test);
+                         waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                         String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                 if(t.equals(validationcondition))
+                 {
+                     reportPass("condition matched", test);
+                 }
+                 else
+                 {
+                     reportFail(testcaseName,"condition not matched" , test);
+                 }
+                 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i +  System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+             
+             waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+             click(driver, testcaseName, create_new_filter, test);
+             waitforElemPresent(driver, testcaseName, 30, select_question, test);
+             click(driver, testcaseName, select_question, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             Collections.copy(numberOfQuestions, numberOfQuestions1);
+             scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+             waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+            waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           click(driver, testcaseName, select_condition, test);
+                	 }
+        			break;
+                case"TT":
+                	if (numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")) {
+        				waitforElemPresent(driver, testcaseName, 30, text_box_from_response, test);
+        				setText(driver, testcaseName, text_box_from_response, param.get("AnswerOptions1"), test);
+        				waitforElemPresent(driver, testcaseName, 30, text_box_area_response, test);
+        				setText(driver, testcaseName, text_box_area_response, param.get("checkbox"), test);
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i +  System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+           
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);
+                    }
+                	 else {
+                 		waitforElemPresent(driver, testcaseName, 30, text_box_from_response, test);
+                 		setText(driver, testcaseName, text_box_from_response, param.get("textbox"), test);
+                 	waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                     click(driver, testcaseName, add_condition, test);
+                     waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                     String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+             if(t.equals(validationcondition))
+             {
+                 reportPass("condition matched", test);
+             }
+             else
+             {
+                 reportFail(testcaseName,"condition not matched" , test);
+             }
+             waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+             click(driver, testcaseName, save_and_goto_fm, test);
+             waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+             String Name =  q + i +  System.currentTimeMillis();
+             setText(driver, testcaseName, filter_name, Name, test);
+             waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+             click(driver, testcaseName, save_button_for_filter, test);
+             waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+             WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+             if(name.isDisplayed())
+         	{
+         		reportPass("condition matched", test);
+         	} 
+         	else
+         	{
+         		reportFail(testcaseName,"condition not matched" , test);  
+         	}
+         
+         waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+         click(driver, testcaseName, create_new_filter, test);
+        
+         waitforElemPresent(driver, testcaseName, 30, select_question, test);
+         click(driver, testcaseName, select_question, test);
+         List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+         Collections.copy(numberOfQuestions, numberOfQuestions1);
+         scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+         waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+         click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+        waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+       click(driver, testcaseName, select_condition, test);
+                 }
+                	break;
+                case"IPA":
+                	if (numberOfConditions.get(x).getAttribute("value").equals("CONTAINS")) {
+        				waitforElemPresent(driver, testcaseName, 30, text_box_area, test);
+        				setText(driver, testcaseName, text_box_area, param.get("radiobutton"), test);
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+           
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);
+                    }
+                	 else {
+                		 waitforElemPresent(driver, testcaseName, 30, text_box_area, test);
+         				setText(driver, testcaseName, text_box_area, param.get("radiobutton"), test);
+         				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                         click(driver, testcaseName, add_condition, test);
+                         waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                         String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                 if(t.equals(validationcondition))
+                 {
+                     reportPass("condition matched", test);
+                 }
+                 else
+                 {
+                     reportFail(testcaseName,"condition not matched" , test);
+                 }
+                 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i + System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+             
+             waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+             click(driver, testcaseName, create_new_filter, test);
+            
+             waitforElemPresent(driver, testcaseName, 30, select_question, test);
+             click(driver, testcaseName, select_question, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             Collections.copy(numberOfQuestions, numberOfQuestions1);
+             scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+             waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+            waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           click(driver, testcaseName, select_condition, test);
+                 }
+                break;
+                case"DS":
+                	if (numberOfConditions.get(x).getAttribute("value").equals("OR")) {
+                		waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "all options", test);
+						click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting all options", test);        				
+        				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                        click(driver, testcaseName, add_condition, test);
+                        waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                        String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                if(t.equals(validationcondition))
+                {
+                    reportPass("condition matched", test);
+                }
+                else
+                {
+                    reportFail(testcaseName,"condition not matched" , test);
+                }
+                waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                click(driver, testcaseName, save_and_goto_fm, test);
+                waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                String Name =  q + i + System.currentTimeMillis();
+                setText(driver, testcaseName, filter_name, Name, test);
+                waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                click(driver, testcaseName, save_button_for_filter, test);
+                waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                if(name.isDisplayed())
+            	{
+            		reportPass("condition matched", test);
+            	} 
+            	else
+            	{
+            		reportFail(testcaseName,"condition not matched" , test);  
+            	}
+            
+            waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+            click(driver, testcaseName, create_new_filter, test);
+           
+            waitforElemPresent(driver, testcaseName, 30, select_question, test);
+            click(driver, testcaseName, select_question, test);
+            List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+            Collections.copy(numberOfQuestions, numberOfQuestions1);
+            scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+            waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+            click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+           waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+          click(driver, testcaseName, select_condition, test);
+                    }
+                	 else {
+                		 waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[normalize-space()='Select all options']"), "all options", test);
+ 						click(driver, testcaseName,  By.xpath("//label[normalize-space()='Select all options']"), "selecting all options", test);
+         				waitforElemPresent(driver, testcaseName, 30, add_condition, test);
+                         click(driver, testcaseName, add_condition, test);
+                         waitforElemPresent(driver, testcaseName, 30, validation_condition, test);
+                         String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
+                 if(t.equals(validationcondition))
+                 {
+                     reportPass("condition matched", test);
+                 }
+                 else
+                 {
+                     reportFail(testcaseName,"condition not matched" , test);
+                 }
+                 waitforElemPresent(driver, testcaseName, 30, save_and_goto_fm, test);
+                 click(driver, testcaseName, save_and_goto_fm, test);
+                 waitforElemPresent(driver, testcaseName, 30, filter_name, test);
+                 String Name =  q + i +  System.currentTimeMillis();
+                 setText(driver, testcaseName, filter_name, Name, test);
+                 waitforElemPresent(driver, testcaseName, 30, save_button_for_filter, test);
+                 click(driver, testcaseName, save_button_for_filter, test);
+                 waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='"+Name+"']"), Name, test);
+                 WebElement name =   driver.findElement(By.xpath("//div[normalize-space()='"+Name+"']"));
+                 if(name.isDisplayed())
+             	{
+             		reportPass("condition matched", test);
+             	} 
+             	else
+             	{
+             		reportFail(testcaseName,"condition not matched" , test);  
+             	}
+             
+             waitforElemPresent(driver, testcaseName, 30, create_new_filter, test);
+             click(driver, testcaseName, create_new_filter, test);
+            
+             waitforElemPresent(driver, testcaseName, 30, select_question, test);
+             click(driver, testcaseName, select_question, test);
+             List<WebElement> numberOfQuestions1 = driver.findElements(By.xpath("//td[@id='tdQlist_999_1_0']/div/div/ul[@id='ddlQno_999_1_0']/li"));
+             Collections.copy(numberOfQuestions, numberOfQuestions1);
+             scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "scrolling to the question", test);
+             waitforElemPresent(driver, testcaseName, 30, (By.xpath("//div[@id='div']//li["+j+"]")), "questions", test) ;
+             click(driver, testcaseName, By.xpath("//div[@id='div']//li["+j+"]"), "selecting question", test) ;
+            waitforElemPresent(driver, testcaseName, 30, select_condition, test);
+           click(driver, testcaseName, select_condition, test);
+                 }
+                	break;
+             }
+                			
+		 }
+                	
+      }
+ }	
+	
 		
 		
 	public void goToIndividualReport(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException {
@@ -1135,8 +4807,8 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		Select select = new Select(driver.findElement(By.xpath(SEGMENTATION_QUESTION_DD)));
 		select.selectByVisibleText(param.get("question"));
 		waitForLoad(driver, testcaseName, 30, test);
-		waitforElemPresent(driver, testcaseName, 30, select_all_options, test);
-		click(driver, testcaseName, select_all_options, test);
+		waitforElemPresent(driver, testcaseName, 30, select_all_options1, test);
+		click(driver, testcaseName, select_all_options1, test);
 		waitForLoad(driver, testcaseName, 30, test);	
 		waitforElemPresent(driver, testcaseName, 30, continue_button1, test);
 		click(driver, testcaseName, continue_button1, test);
@@ -2353,7 +6025,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		String testcaseName = param.get("TestCaseName");
 		selectByVisibleText(driver, testcaseName, segmentation_question_dd, param.get("Segment question 1"), test);
 		waitForLoad(driver, testcaseName, 30, test);
-		click(driver, testcaseName, select_all_options, test);
+		click(driver, testcaseName, select_all_options1, test);
 		
 		start = System.currentTimeMillis();	
 		click(driver, testcaseName, continue_button1, test);
@@ -3711,7 +7383,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 //		selConditionAnswers.selectByVisibleText(param.get("Condition que 1 answers"));
 		selectByVisibleText(driver, testcaseName, select_condition_answers, param.get("Condition que 1 answers"), test);
 		
-		click(driver, testcaseName, add_condition, test);
+		click(driver, testcaseName, add_condition1, test);
 		waitForElementToBeVisible(driver, testcaseName, By.xpath("//td[contains(text(),\"" + param.get("Condition que 1") + "\")]"), "Show Condition -" +param.get("Condition que 1"), 30, 200, test);
 		
 		//Add 2nd condition

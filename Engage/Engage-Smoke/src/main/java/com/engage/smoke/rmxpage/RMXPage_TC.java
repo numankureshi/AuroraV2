@@ -357,6 +357,48 @@ public class RMXPage_TC extends SuiteBase {
 
 	}
 	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC76(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("AnswerOptions", getData(data, "AnswerOptions"));
+		param.put("AnswerOptions1", getData(data, "AnswerOptions1"));
+		param.put("checkbox", getData(data, "checkbox"));
+		param.put("surveyname", getData(data, "surveyname"));
+		param.put("textbox", getData(data, "textbox"));
+		param.put("TextBox", getData(data, "TextBox"));
+		param.put("RadioButton", getData(data, "RadioButton"));
+		param.put("radiobutton", getData(data, "radiobutton"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				rmxPage.filterManagement(getDriver(), param, test);
+				
+			}
+		}
+
+	}
 	
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
