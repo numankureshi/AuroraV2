@@ -62,7 +62,6 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("foldername", getData(data, "foldername"));
 		param.put("primarylanguage", getData(data, "primarylanguage"));
 		param.put("secondarylanguage", getData(data, "secondarylanguage"));
-		param.put("ttlangauage", getData(data, "secondarylanguage"));
 		param.put("description", getData(data, "description"));
 		param.put("textbox", getData(data, "textbox"));
 		param.put("radiobutton", getData(data, "radiobutton"));
@@ -99,7 +98,6 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("demographics", getData(data, "demographics"));
 		param.put("subquestions", getData(data, "subquestions"));
 		param.put("symbolratingscale", getData(data, "symbolratingscale"));
-		
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
