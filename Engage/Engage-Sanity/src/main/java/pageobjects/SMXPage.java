@@ -115,6 +115,35 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		enterListBoxButton(driver, param, test);
 		scrollIntoCenter(driver, testcaseName, captcha_button, test);
 		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
+		PMR(driver, param, test);
+		textTranslation(driver, param, test);
+	}
+	
+	public void PMR(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		waitforElemPresent(driver, testcaseName, 100, settings_icon, test);
+		click(driver, testcaseName, settings_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[normalize-space()='Print Options']"), "Print Options", test);
+		click(driver, testcaseName, By.xpath("//div[normalize-space()='Print Options']"), "print Options click", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[@for='rbprintrespYes']"), "survey responses", test);
+		click(driver, testcaseName, By.xpath("//label[@for='rbprintrespYes']"), "click survey responses", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[@id='lblprintblankYes']"), "blank survey ", test);
+		click(driver, testcaseName, By.xpath("//label[@id='lblprintblankYes']"), "click blank survey ", test);
+	//	scrollIntoView(driver, testcaseName, settings_save, test);
+		waitforElemPresent(driver, testcaseName, 100, settings_save, test);
+		click(driver, testcaseName, settings_save, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[normalize-space()='Your updates have been saved.']"), "alert check after saving", test);
+		click(driver, testcaseName, By.xpath("//span[normalize-space()='Your updates have been saved.']"), "alert check after saving", test);
+		
+	}
+	
+	public void textTranslation(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		gotoTextTranslationPage(driver,param,test);
+		translateAllQuestions(driver,param,test);
+		saveTranslation(driver,param,test);
 	}
 	
 	public void DescriptiveText(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -1580,6 +1609,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void selectCreateProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 100, By.xpath("//div[@class='hd-logo-img']"), testcaseName, test);
 		waitforElemPresent(driver, testcaseName, 100, create_project, test);
 		click(driver, testcaseName, create_project, test);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -2309,7 +2339,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		doubleClick(driver, testcaseName, text_box_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		//driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
+		
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("textbox"), test);
 		driver.switchTo().defaultContent();
@@ -2402,7 +2434,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
 			setText(driver, testcaseName, search_ans_lib, answerOption, test);
 			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"), answerOption + " category", test);
-			new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+		//	new Actions(driver).moveToElement(driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"))).build().perform();
+			WebElement hower = driver.findElement(By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"'][@class='ansListItem']"));
+			Actions action = new Actions(driver);
+			action.moveToElement(hower).perform();
 			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
 			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
 		}
@@ -2410,10 +2445,11 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void questionsLibrary(WebDriver driver, HashMap<String, String> param, String questionOption, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 10, By.xpath("(//div[text()='More '])[1]"), "More", test);
-		click(driver, testcaseName, By.xpath("(//div[text()='More '])[1]"), "More", test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@align='center']//div[@class='clsMore']"), "More", test);
+		click(driver, testcaseName, By.xpath("//td[@align='center']//div[@class='clsMore']"), "More", test);
 		
-		waitforElemPresent(driver, testcaseName, 10, questions_library2, test);
+		waitforElemPresent(driver, testcaseName, 20, questions_library2, test);
 		click(driver, testcaseName, questions_library2, test);
 		waitForLoad(driver, testcaseName, 60, test);
 //		waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
@@ -2565,6 +2601,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']"), "Rating Scale Added "+ param.get("ratingscale"), test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='"+ param.get("ratingscale") +"']/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-corner-all ui-slider-horizontal')]"), "Rating Scale Slider Added "+ param.get("ratingscale"), test);
+	 
 	}
 	
 	public void enterSymbolRatingScaleButton(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -2650,7 +2687,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		doubleClick(driver, testcaseName, like_dislike_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		//driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("likedislike"), test);
 		driver.switchTo().defaultContent();
@@ -2759,8 +2797,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, multiple_textbox_button, test);
 		doubleClick(driver, testcaseName, multiple_textbox_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
+		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		//driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("multitextbox"), test);
 		driver.switchTo().defaultContent();
@@ -2790,7 +2830,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		doubleClick(driver, testcaseName, multiple_dropdown_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		//driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		Thread.sleep(1000);
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("multidropdown"), test);
 		driver.switchTo().defaultContent();
@@ -3071,7 +3113,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		doubleClick(driver, testcaseName, horizontal_radio_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, iframe_button, test);
-		driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		//driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
 		waitforElemPresent(driver, testcaseName, 30, description_text, test);
 		setText(driver, testcaseName, description_text, param.get("horizontalradiobutton"), test);
 		driver.switchTo().defaultContent();
@@ -5503,7 +5546,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			totalTime = ((end - start)) / 1000;
 			strtotalTime = df.format(totalTime);
 			
-			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingscale") +"\"]/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-corner-all ui-slider-horizontal')]"), "Rating Scale Slider Added "+ param.get("ratingscale"), test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingscale") +"\"]/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-slider-horizontal')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
 			break;
 		case "dvGQ":
 			waitforElemPresent(driver, testcaseName, 10, save_button, test);
@@ -6088,7 +6131,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitForJStoLoad(driver, 30);
-		scrollIntoCenter(driver, testcaseName, ele, test);
+		scrollIntoView(driver, testcaseName, ele, test);
 		waitforElemPresent(driver, testcaseName, 30, ele, test);
 		waitForJStoLoad(driver, 30);
 		
