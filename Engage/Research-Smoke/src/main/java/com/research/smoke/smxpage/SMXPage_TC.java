@@ -62,6 +62,7 @@ public class SMXPage_TC extends SuiteBase {
 		param.put("foldername", getData(data, "foldername"));
 		param.put("primarylanguage", getData(data, "primarylanguage"));
 		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("ttlangauage", getData(data, "secondarylanguage"));
 		param.put("description", getData(data, "description"));
 		param.put("textbox", getData(data, "textbox"));
 		param.put("radiobutton", getData(data, "radiobutton"));
