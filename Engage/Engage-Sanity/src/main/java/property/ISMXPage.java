@@ -317,8 +317,8 @@ public interface ISMXPage {
 	String OTHER_CHCKBOX = "//input[@id='CHK_Other_CheckBox']/following-sibling::label[text()='Include \"Other\" text responses']";
 	WebPageElements other_checkbox = new WebPageElements("Other checkbox", "xpath", OTHER_CHCKBOX);
 	
-	String OTHER_CHCKBOX2 = "//input[@id='CHK_Other']/following-sibling::label[text()='Include \"Other\" text responses']";
-	WebPageElements other_checkbox2 = new WebPageElements("Other checkbox", "xpath", OTHER_CHCKBOX2);
+	String OTHER_CHCKBOX2 = "//input[@id='CHK_Other_Check']/following-sibling::label[text()='Include \"Other\" text responses']";
+	WebPageElements other_checkbox2 = new WebPageElements("Other checkbox2", "xpath", OTHER_CHCKBOX2);
 	
 	String OTHER_PLZ_TEXTBOX = "//input[@id='TB_Other']";
 	WebPageElements other_plz_textbox = new WebPageElements("Other Please Specify Lable Text Box", "xpath", OTHER_PLZ_TEXTBOX);
@@ -326,7 +326,7 @@ public interface ISMXPage {
 	String SELECT_OTHER_PLZ_TB_WIDTH = "//select[@id='DDL_TextboxWidth_Other']";
 	WebPageElements select_other_plz_tb_width = new WebPageElements("Other Please Specify Width Drop Down", "xpath", SELECT_OTHER_PLZ_TB_WIDTH);
 	
-	String NONE_OF_ABOVE = "//label[text()='Include \"None of the above\" ']";
+	String NONE_OF_ABOVE = "//div[@id='dispNoneOfAbove_check']//label[text()='Include \"None of the above\" ']";
 	WebPageElements none_of_above = new WebPageElements("None of Above", "xpath", NONE_OF_ABOVE);
 	
 	String ADD_IMAGE_ICON = "(//div[@id='dvAddImgs'])[1]";
@@ -801,10 +801,10 @@ public interface ISMXPage {
 	String ANS_LABEL10 = "//input[@id='txtNum10']";
 	WebPageElements ans_label10 = new WebPageElements("Answe lable for 10th field", "xpath", ANS_LABEL10);
 	
-	String TEXT_AND_TRANSLATION = "//span[@id='ctl08_linkEditMultiSurvey']";
+	String TEXT_AND_TRANSLATION = "//div[@class='dvBulkTexEdit hd-btn hd-dd-btn fl bor-left-rad']";
 	WebPageElements text_and_translation = new WebPageElements("Text and Translation", "xpath", TEXT_AND_TRANSLATION);
 	
-	String TEXT_AND_TRANSLATION_MENU = "//div[@id='ctl08_ulSecLang']";
+	String TEXT_AND_TRANSLATION_MENU = "//div[@class='bulk-lang-dropdown hd-dropdown-content hd-show-dd']";
 	WebPageElements text_and_translation_menu = new WebPageElements("Text and Translation Menu", "xpath", TEXT_AND_TRANSLATION_MENU);
 	
 	String LANGUAGE_DROPDOWN = "//div[@id='ctl46_dvLangText']";
@@ -1190,5 +1190,10 @@ public interface ISMXPage {
 	String IHAVEQUESTIONSREADYTOCOPYPASTE = "//label[@id='lblAlreadyQuestionsWritten']";
 	WebPageElements ihavequestionsreadytocp = new WebPageElements("IHaveQuestionReadyToCopyPaste", "xpath", IHAVEQUESTIONSREADYTOCOPYPASTE );
 	
+	String SETTINGS_ICON = "//div[@id='ctl10_liSS']";
+	WebPageElements settings_icon = new WebPageElements("settings icon", "xpath", SETTINGS_ICON);
 	
+	
+	String SETTINGS_SAVE = "//input[@id='btnsave']";
+	WebPageElements settings_save = new WebPageElements("settings save", "xpath", SETTINGS_SAVE);
 }
