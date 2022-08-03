@@ -44,6 +44,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import pageobjects.DMXPage;
 import pageobjects.DMXPageSogo;
 import pageobjects.DataPage;
+import pageobjects.LoginPage;
 import pageobjects.RMXPage;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
@@ -83,6 +84,7 @@ public class SuiteBase {
 	public DMXPageSogo dmxPageSogo = new DMXPageSogo();
 	public RMXPage rmxPage = new RMXPage();
 	public DataPage dataPage = new DataPage();
+	public LoginPage loginPage = new LoginPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	public static final String USERNAME = "gauravgolatkar1";

@@ -43,6 +43,10 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 		return totalTime;
 	}
 	
+	public void SoGoLoginPageWithoutCredentials(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		navigateToSogoLoginPage(driver, param, URL, test);;
+	}
 
 		public double navigateToSogoStatic(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test) throws InterruptedException {
 			String testcaseName = param.get("TestCaseName");
