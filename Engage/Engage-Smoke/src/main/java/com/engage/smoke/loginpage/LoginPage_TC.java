@@ -1,4 +1,4 @@
-package com.sogo.smoke.loginpage;
+package com.engage.smoke.loginpage;
 
 import org.testng.annotations.Test;
 
@@ -6,6 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
+import pageobjects.LoginPage;
 import testsuitebase.SuiteBase;
 import testsuitebase.TestResultStatus;
 import utility.FetchExcelDataSet;
@@ -77,9 +78,8 @@ public class LoginPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
-				staticPage.Facebooklogin(getDriver(), param, test);
-				
+				loginPage.k12LoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
+				loginPage.Invalidlogin(getDriver(), param, test);
 			}
 		}
 
@@ -114,79 +114,7 @@ public class LoginPage_TC extends SuiteBase {
 //				password = decryptPass.decryptUserPassword(encPassword);
 				
 				loadBrowser();
-				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
-				staticPage.Googlelogin(getDriver(), param, test);
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
-	public void Smoke_TC79(LinkedHashMap<String, String> data) throws Exception {
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		//test
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("textbox", getData(data, "textbox"));
-
-		
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
-				staticPage.Invalidlogin(getDriver(), param, test);
-			}
-		}
-
-	}
-	
-	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
-	public void Smoke_TC80(LinkedHashMap<String, String> data) throws Exception {
-		TestCaseName = getData(data, "TestCaseName");
-		test = extent.createTest(TestCaseName);
-		CaseToRun = getData(data, "CaseToRun");
-		String Role = getData(data, "Role");
-		//test
-		
-		HashMap<String, String> param = new HashMap<String, String>();
-		param.put("textbox", getData(data, "textbox"));
-
-		
-		if (CaseToRun.equalsIgnoreCase("N")) {
-			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			testSkip = true;
-			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
-		} else {
-			for (String key : URLs.keySet()) {
-				System.out.println(URLs.get(key));
-				credentials = TestFile.getLoginCredentials("Users", Role);
-				for (int i = 0; i < credentials.size(); i++) {
-					users = credentials.get(i);
-					username = users.get("username");
-					encPassword = users.get("password");
-				}
-//				password = decryptPass.decryptUserPassword(encPassword);
-				
-				loadBrowser();
-				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 			}
 		}
 
@@ -230,7 +158,7 @@ public class LoginPage_TC extends SuiteBase {
 			SuiteUtility.WriteResultUtility(filePath, sheetName, "Pass/Fail/Skip", TestResultTL);
 			SuiteUtility.WriteResultUtility1(filePath, sheetName, "Failure Reason", TestResultStatus.failureReason);
 			extent.flush();
-			fetchExcelData.reportLog("Sogo_Smoke", "Report", "xlsx");
+			fetchExcelData.reportLog("Engage_Smoke", "Report", "xlsx");
 		
 	}
 }

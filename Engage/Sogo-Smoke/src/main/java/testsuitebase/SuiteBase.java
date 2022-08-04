@@ -21,6 +21,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.log4j.Logger;
 import org.apache.velocity.texen.util.FileUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
@@ -34,17 +35,18 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.sogo.smoke.surveypage.SurveyPage_TC;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageobjects.DMXPage;
 import pageobjects.DMXPageSogo;
 import pageobjects.DataPage;
-import pageobjects.LoginPage;
 import pageobjects.RMXPage;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
@@ -84,7 +86,6 @@ public class SuiteBase {
 	public DMXPageSogo dmxPageSogo = new DMXPageSogo();
 	public RMXPage rmxPage = new RMXPage();
 	public DataPage dataPage = new DataPage();
-	public LoginPage loginPage = new LoginPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	public static final String USERNAME = "gauravgolatkar1";
@@ -366,4 +367,5 @@ public class SuiteBase {
 	public String getErrorPage(WebDriver driver) {
 		return (String) ((JavascriptExecutor)driver).executeScript("return window.location.href");		 
 	}
+	
 }
