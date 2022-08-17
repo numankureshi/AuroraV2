@@ -61,5 +61,15 @@
 			<class name="com.engage.smoke.datapage.DataPage_TC" />
 		</classes>
 	</test>
+	<test name="loginpage">
+		<groups>
+			<run>
+				<include name="loginpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.engage.smoke.loginpage.LoginPage_TC" />
+		</classes>
+	</test>
 
 </suite>

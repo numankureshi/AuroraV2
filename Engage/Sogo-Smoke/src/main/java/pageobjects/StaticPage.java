@@ -16,6 +16,7 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -43,6 +44,10 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 		return totalTime;
 	}
 	
+	public void SoGoLoginPageWithoutCredentials(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		navigateToSogoLoginPage(driver, param, URL, test);;
+	}
 
 		public double navigateToSogoStatic(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test) throws InterruptedException {
 			String testcaseName = param.get("TestCaseName");
@@ -154,6 +159,62 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			double totalTime = ((end - start)) / 1000;
 			return totalTime;
 
+		}
+		
+		public void Invalidlogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+			String testcaseName = param.get("TestCaseName");
+			waitforElemPresent(driver, testcaseName, 30,invalid_username, test);
+			driver.findElement(By.xpath("//input[@id='txtUserId']")).sendKeys("sogo44test@gmail.com");		
+			waitforElemPresent(driver, testcaseName, 30,invalid_password, test);
+			driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("xyz");
+			waitforElemPresent(driver, testcaseName, 30, login_button, test);
+			click(driver, testcaseName, login_button, test);
+			waitforElemPresent(driver, testcaseName, 60, invalid_id_pass, test);
+			String actualalert = driver.findElement(By.xpath("//span[contains(text(),'Invalid User ID or Password')]")).getAttribute("innerHTML");
+			String expectedalert = "Invalid User ID or Password";
+			Assert.assertEquals(actualalert, expectedalert, "Alert message is not matching with expected alert");
+			driver.close();
+		}
+		
+		public void Facebooklogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+			String testcaseName = param.get("TestCaseName");
+			waitforElemPresent(driver, testcaseName, 30, fb, test);
+			click(driver, testcaseName, fb, test);
+			String winHandleBefore = driver.getWindowHandle();
+			// Switch to new window opened
+			for(String winHandle : driver.getWindowHandles()){
+			    driver.switchTo().window(winHandle);
+			}
+			waitforElemPresent(driver, testcaseName, 30, fb_username, test);
+			driver.findElement(By.xpath("//input[@id='email']")).sendKeys("testingrmx123@gmail.com");
+			waitforElemPresent(driver, testcaseName, 30, fb_password, test);
+			driver.findElement(By.xpath("//input[@id='pass']")).sendKeys("Welcome@1234");
+			click(driver, testcaseName, fb_login_button, test);
+			driver.switchTo().window(winHandleBefore);
+			waitforElemPresent(driver, testcaseName, 60, sogo_account, test);
+			driver.close();	
+		}
+		
+		public void Googlelogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+			String testcaseName = param.get("TestCaseName");
+			waitforElemPresent(driver, testcaseName, 30, google, test);
+			click(driver, testcaseName, google, test);
+			String winHandleBefore = driver.getWindowHandle();
+			for(String winHandle : driver.getWindowHandles()){
+			    driver.switchTo().window(winHandle);
+			}
+			
+			waitforElemPresent(driver, testcaseName, 30, google_username, test);
+			driver.findElement(By.xpath("//input[@id='identifierId']")).sendKeys("sogo44test@gmail.com");
+			waitforElemPresent(driver, testcaseName, 30, google_next_button, test);
+			click(driver, testcaseName, google_next_button, test);
+			waitforElemPresent(driver, testcaseName, 30, google_password, test);
+			driver.findElement(By.xpath("//input[@name='password']")).sendKeys("9819254698");
+			waitforElemPresent(driver, testcaseName, 30, google_next_button, test);
+			click(driver, testcaseName, google_next_button, test);
+			driver.switchTo().window(winHandleBefore);
+			waitforElemPresent(driver, testcaseName, 60, sogo_account, test);
+			driver.close();
 		}
 
 //		public double logout(WebDriver driver, HashMap<String, String> param, String URL, String username, String password,
