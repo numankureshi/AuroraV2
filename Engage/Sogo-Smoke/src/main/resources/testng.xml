@@ -61,5 +61,16 @@
 			<class name="com.sogo.smoke.datapage.DataPage_TC" />
 		</classes>
 	</test>
+	
+	<test name="loginpage">
+		<groups>
+			<run>
+				<include name="loginpage" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.sogo.smoke.loginpage.LoginPage_TC" />
+		</classes>
+	</test>
 
 </suite>

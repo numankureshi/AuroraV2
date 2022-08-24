@@ -15,6 +15,6 @@ public interface ILoginPage {
 	String LOGIN_BUTTON = "//input[@class='Loginbtn']";
 	WebPageElements login_button = new WebPageElements("Login", "xpath", LOGIN_BUTTON);
 	
-	String K12_ACCOUNT = "(//span[@class='initials'])[2]";
-	WebPageElements k12_account = new WebPageElements("Sogo Account", "xpath", K12_ACCOUNT);
+	String ZARCA_ACCOUNT = "(//span[@class='initials'])[2]";
+	WebPageElements zarca_account = new WebPageElements("Zarca Account", "xpath", ZARCA_ACCOUNT);
 }

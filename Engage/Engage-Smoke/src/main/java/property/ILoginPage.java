@@ -13,8 +13,8 @@ public interface ILoginPage {
 	WebPageElements user_pass = new WebPageElements("User Password", "xpath", USER_PASS);
 	
 	String LOGIN_BUTTON = "//input[@class='Loginbtn']";
-	WebPageElements login_button = new WebPageElements("Login", "xpath", LOGIN_BUTTON);
+	WebPageElements login_button = new WebPageElements("Login Button", "xpath", LOGIN_BUTTON);
 	
 	String K12_ACCOUNT = "(//span[@class='initials'])[2]";
-	WebPageElements k12_account = new WebPageElements("Sogo Account", "xpath", K12_ACCOUNT);
+	WebPageElements k12_account = new WebPageElements("K12 Account", "xpath", K12_ACCOUNT);
 }
