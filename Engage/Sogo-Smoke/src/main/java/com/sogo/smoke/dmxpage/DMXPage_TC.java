@@ -403,6 +403,165 @@ public class DMXPage_TC extends SuiteBase {
 		}
 
 	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
+	public void Smoke_TC101(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("surveyname", getData(data, "surveyname"));
+		param.put("SID", getData(data, "surveyid"));
+		param.put("Contact List Columns", getData(data, "selectlist"));
+		param.put("Email field", getData(data, "emailtemplate"));
+		param.put("salesforceFields", getData(data, "salesforceFields"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmxPage.goToDistributePage(getDriver(), param, param.get("surveyname"), param.get("SID"), test);
+				dmxPage.goToContactList(getDriver(), param, test)
+						.goToCreateContactList(getDriver(), param, test)
+						.uploadContactsViaSalesforce(getDriver(), param, "Contacts", test)
+						.clickonCheckAllFields(getDriver(), param, test)
+						.clickonCheckAllFields(getDriver(), param, test)
+						.selectFields(getDriver(), param, test)
+						.searchForContactList(getDriver(), param, test)
+						.viewOrModifyContactList(getDriver(), param, test)
+						.validateContactList(getDriver(), param, test)
+						.goToContactList(getDriver(), param, test)
+						.searchForContactList(getDriver(), param, test)
+						.deleteContactList(getDriver(), param, test);
+			
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
+	public void Smoke_TC102(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("surveyname", getData(data, "surveyname"));
+		param.put("SID", getData(data, "surveyid"));
+		param.put("Contact List Columns", getData(data, "selectlist"));
+		param.put("Email field", getData(data, "emailtemplate"));
+		param.put("salesforceFields", getData(data, "salesforceFields"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmxPage.goToDistributePage(getDriver(), param, param.get("surveyname"), param.get("SID"), test);
+				dmxPage.goToContactList(getDriver(), param, test)
+						.goToCreateContactList(getDriver(), param, test)
+						.uploadContactsViaSalesforce(getDriver(), param, "Leads", test)
+						.clickonCheckAllFields(getDriver(), param, test)
+						.clickonCheckAllFields(getDriver(), param, test)
+						.selectFields(getDriver(), param, test)
+						.searchForContactList(getDriver(), param, test)
+						.viewOrModifyContactList(getDriver(), param, test)
+						.validateContactList(getDriver(), param, test)
+						.goToContactList(getDriver(), param, test)
+						.searchForContactList(getDriver(), param, test)
+						.deleteContactList(getDriver(), param, test);
+
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
+	public void Smoke_TC103(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("surveyname", getData(data, "surveyname"));
+		param.put("SID", getData(data, "surveyid"));
+		param.put("Contact List Columns", getData(data, "selectlist"));
+		param.put("Email field", getData(data, "emailtemplate"));
+		param.put("salesforceFields", getData(data, "salesforceFields"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				dmxPage.goToDistributePage(getDriver(), param, param.get("surveyname"), param.get("SID"), test);
+				dmxPage.goToContactList(getDriver(), param, test)
+						.goToCreateContactList(getDriver(), param, test)
+						.uploadContactsViaSalesforce(getDriver(), param, "Accounts", test)
+						.clickonCheckAllFields(getDriver(), param, test)
+						.clickonCheckAllFields(getDriver(), param, test)
+						.selectFields(getDriver(), param, test)
+						.searchForContactList(getDriver(), param, test)
+						.viewOrModifyContactList(getDriver(), param, test)
+						.validateContactList(getDriver(), param, test)
+						.goToContactList(getDriver(), param, test)
+						.searchForContactList(getDriver(), param, test)
+						.deleteContactList(getDriver(), param, test);
+
+			}
+		}
+
+	}
 
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {

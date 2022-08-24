@@ -127,6 +127,9 @@ public interface IDMXPage {
 	String CONTINUE_BUTTON1 = "//input[@id='btnContinue']";
 	WebPageElements continue_button1 = new WebPageElements("Continue Button", "xpath", CONTINUE_BUTTON1);
 	
+	String CONTINUE_BUTTON4 = "//input[@Value='Done' and @type ='submit']";
+	WebPageElements continue_button4 = new WebPageElements("Done", "xpath", CONTINUE_BUTTON4);
+	
 	String SMS_INVITES_REMINDER = "//div[text()='SMS Invitations']";
 	WebPageElements sms_invites_reminder = new WebPageElements("SMS Invitations", "xpath", SMS_INVITES_REMINDER);
 	
@@ -151,6 +154,17 @@ public interface IDMXPage {
 	String IMPORT_FROM_FILE = "//div[@class='source-option file-import']/div[@class='source-option-icon']";
 	WebPageElements import_from_file = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE);
 	
+	String IMPORT_FROM_EXTERNAL_SOURCES = "//div[@id='externalSources']/div[@class='source-option-icon']";
+	WebPageElements import_from_external_sources = new WebPageElements("Import from external sources", "xpath", IMPORT_FROM_EXTERNAL_SOURCES);
+	
+	String SALESFORCE = "//div[@class='external-source-type-title'][text()='Salesforce']";
+	WebPageElements salesforce = new WebPageElements("Salesforce", "xpath", SALESFORCE);
+	
+	String SALESFORCE_DROP_DOWN = "//span[contains(@id,'spSalesForce')]";
+	WebPageElements salesforce_drop_down = new WebPageElements("Import record from drop down", "xpath", SALESFORCE_DROP_DOWN);
+	
+	String STATIC_LIST_TOGGLE = "//label[contains(@id,'lblSFStaticList')]";
+	WebPageElements static_list_toggle = new WebPageElements("Create a static Contact List​ toggle", "xpath", STATIC_LIST_TOGGLE);
 	
 	String IMPORT_FROM_FILE2 = "//div[text()='Import from file']/ancestor::div[@class='source-option file-import']";
 	WebPageElements import_from_file2 = new WebPageElements("Import from File", "xpath", IMPORT_FROM_FILE2);
@@ -300,6 +314,9 @@ public interface IDMXPage {
 
 	String MAP_FIELDS = "//input[@id='txtAttributes1']";
 	WebPageElements map_fields = new WebPageElements("Map Answers 1", "xpath", MAP_FIELDS);
+	
+	String CHECK_ALL_FIELDS = "//label[@for='chkAll']";
+	WebPageElements check_all_fields = new WebPageElements("Select All Fields Values", "xpath", CHECK_ALL_FIELDS);
 	
 	String ALL_PREPOP_DD = "//select[starts-with(@id,'ddOption_')]";
 	WebPageElements all_prepop_DD = new WebPageElements("All Prepop drop downs", "xpath", ALL_PREPOP_DD);
