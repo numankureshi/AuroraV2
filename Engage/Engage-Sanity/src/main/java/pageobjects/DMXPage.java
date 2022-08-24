@@ -2,14 +2,9 @@ package pageobjects;
 
 
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
@@ -20,15 +15,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.mail.Address;
 import javax.mail.Folder;
@@ -41,28 +34,22 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.internet.MimeBodyPart;
 
-import org.apache.commons.codec.binary.StringUtils;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.commons.lang.time.DateUtils;
 import org.jsoup.Jsoup;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import com.google.common.base.Splitter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -70,10 +57,10 @@ import io.restassured.response.Response;
 import property.IDMXPage;
 import property.IHomePage;
 import property.ISMXPage;
-import property.ISurveyPage;
 import testsuitebase.TestResultStatus;
 import utility.JSONUtility;
 import utility.SeleniumUtils;
+import utility.SuiteUtility;
 import utility.WebPageElements;
 
 public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
@@ -82,6 +69,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	String strtotalTime= null;
 	public DecimalFormat df = new DecimalFormat("#.##");
 	public static String participationLink="";
+	boolean isAllowDuplicate = false;
 	
 	public void CreateNewSurveySendTestInvite(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -665,22 +653,19 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		deleteContactList(driver, param, test);
 	}
 	
-	public void deleteContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+	public DMXPage deleteContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-//		waitforElemPresent(driver, testcaseName, 100, list_checkbox, test);
 		click(driver, testcaseName, By.xpath("//td[text()='"+ param.get("listname") +"']"), param.get("listname"), test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_button, test);
 		click(driver, testcaseName, delete_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
-//		driver.switchTo().alert().accept();
-		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-			waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
-			click(driver, testcaseName, delete_button2, test);
-		}
+		waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
+		click(driver, testcaseName, delete_button2, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
+		return this;
 	}
 	
 	public void enterListName(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -1770,12 +1755,13 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		
 	}
 	
-	public void goToContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+	public DMXPage goToContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 100, create_contact, test);
 		click(driver, testcaseName, create_contact, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, create_new, test);
+		return this;
 	}
 	
 	public void selectContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
@@ -1785,10 +1771,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, search_contact_list_icon, test);
 		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[text()= '"+listName+"']"), listName, test);
-		click(driver, testcaseName, By.xpath("//td[text()= '"+listName+"']"), listName, test);
-		click(driver, testcaseName, view_modify_contact_list, test);
-		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, 30, total_record_field, test);
+		viewOrModifyContactList(driver, param, test);
 		selectContactListPage(driver, param, test);
 		
 	}
@@ -2801,6 +2784,16 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		strtotalTime = df.format(totalTime);
 
 		return strtotalTime;
+	}
+	
+	public DMXPage goToCreateContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, create_new, test);
+		waitforElemPresent(driver, testcaseName, 30, create_new_list, test);
+		click(driver, testcaseName, create_new_list, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, list_name, test);
+		return this;
 	}
 	
 	/**
@@ -3921,5 +3914,198 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		
 		return strtotalTime;
 	}
+	
+	
+	public DMXPage uploadContactsViaSalesforce(WebDriver driver, HashMap<String, String> param, String sfObject, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		param.put("sfObject", sfObject);
+		enterListName2(driver, param, test);
+		click(driver, testcaseName, import_from_external_sources, test);
+		click(driver, testcaseName, salesforce, test);
+		waitforElemPresent(driver, testcaseName, 30, salesforce_drop_down, test);
+		click(driver, testcaseName, salesforce_drop_down, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='o-menu-list-item'][text()='" + sfObject +"']"), sfObject, test);
+		click(driver, testcaseName, By.xpath("//div[@class='o-menu-list-item'][text()='" + sfObject +"']"), sfObject, test);
+		click(driver, testcaseName, static_list_toggle, test);
+		click(driver, testcaseName, continue_button3, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, map_fields, test);
+		return this;
+	}	
+	
+	public DMXPage clickonCheckAllFields(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, check_all_fields, test);
+		click(driver, testcaseName, check_all_fields, test);
+		return this;
+	}
+	
+	public DMXPage selectFields(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String[] fieldsToBeSelected = param.get("Contact List Columns").split(",");
+		for (String field : fieldsToBeSelected) {
+			scrollIntoCenter(driver, testcaseName, By.xpath("//input[@value='" +field +"'][starts-with(@id, 'txtAttributes')]/parent::td/following-sibling::td/span/label"), field, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='" +field +"'][starts-with(@id, 'txtAttributes')]/parent::td/following-sibling::td/span/label"), field, test);
+			click(driver, testcaseName, By.xpath("//input[@value='" +field +"'][starts-with(@id, 'txtAttributes')]/parent::td/following-sibling::td/span/label"), field, test);
+		}
+		selectEmailInList(driver, param, param.get("Email field"), test);
+		scrollIntoCenter(driver, testcaseName, continue_button4, test);
+		waitforElemPresent(driver, testcaseName, 30, continue_button4, test);
+		click(driver, testcaseName, continue_button4, test);
+		return this;
+	}
+	
+	public void selectEmailInList(WebDriver driver, HashMap<String, String> param, String emailField,  ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		
+		scrollIntoCenter(driver, testcaseName, By.xpath("//input[@value='" + emailField +"'][starts-with(@id, 'txtAttributes')]"), "Email Field", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='" + emailField +"'][starts-with(@id, 'txtAttributes')]"), "Email Field", test);
+		hoverAction(driver, testcaseName,By.xpath("//input[@value='" + emailField +"'][starts-with(@id, 'txtAttributes')]"), "Email Field", test);
+		click(driver, testcaseName, By.xpath("//input[@value='" + emailField +"'][starts-with(@id, 'txtAttributes')]/parent::td/following-sibling::td/div[@class='icons-holder ']/div"), 
+				"Lock Icon", test);
 
+	}
+	
+	public ArrayList<LinkedHashMap<String, String>> getSalesforceContactData(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<LinkedHashMap<String, String>> salesforceData = new ArrayList<>();
+
+		Salesforce sapi = new Salesforce();
+		Response response = null;
+		if (param.get("sfObject").equals("Contacts")) {
+			response = sapi.getRecords("SELECT " + param.get("salesforceFields") + " FROM Contact");
+		} else if (param.get("sfObject").equals("Leads")) {
+			response = sapi.getRecords("SELECT " + param.get("salesforceFields") + " FROM Lead");
+		} else if (param.get("sfObject").equals("Accounts")) {
+			response = sapi.getRecords("SELECT " + param.get("salesforceFields") + " FROM Account");
+		}
+
+		System.out.println(response.jsonPath().prettify());
+		List<LinkedHashMap<String, String>> records = response.jsonPath().getList("records");
+		Set<String> uniqueEmail = new HashSet<>();
+		for (int i = 0; i < records.size(); i++) {
+			if (param.get("sfObject").equals("Accounts")) {
+				if (SuiteUtility.isValidEmailAddrss(records.get(i).get("Email__c"))) {
+					if (isAllowDuplicate) {
+						salesforceData.add(records.get(i));
+					} else {
+						if (uniqueEmail.add(records.get(i).get("Email__c"))) {
+							salesforceData.add(records.get(i));
+						}
+					}
+
+				}
+			} else {
+				if (SuiteUtility.isValidEmailAddrss(records.get(i).get("Email"))) {
+					if (isAllowDuplicate) {
+						salesforceData.add(records.get(i));
+					} else {
+						if (uniqueEmail.add(records.get(i).get("Email"))) {
+							salesforceData.add(records.get(i));
+						}
+					}
+
+				}
+			}
+		}
+		System.out.println(salesforceData);
+		return salesforceData;
+	}
+	
+	public DMXPage validateContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		
+		ArrayList<LinkedHashMap<String, String>> salesforceData = getSalesforceContactData(driver, param, test);
+		ArrayList<LinkedHashMap<String, String>> contactListData = getContactListData(driver, param, test);
+		
+		// Verify number of contact based on Total records
+		int expectedContactCount = salesforceData.size();
+		int actualContactCount = Integer.parseInt(driver.findElement(By.xpath(TOTAL_RECORD_FIELD)).getAttribute("innerHTML"));
+		Assert.assertEquals(actualContactCount, expectedContactCount, "Total number of records in contact is incorrect");
+		
+		// Verify number of contact based on number of rows present 
+		actualContactCount = contactListData.size();
+		Assert.assertEquals(actualContactCount, expectedContactCount, "Total number of records in contact is incorrect");
+		
+		for(int i=0; i<salesforceData.size(); i++) {
+			if(param.get("sfObject").equals("Contacts")) {
+				String expectedEmail = salesforceData.get(i).get("Email") != null ? salesforceData.get(i).get("Email") : "";
+				String expectedId = salesforceData.get(i).get("Id") != null ? salesforceData.get(i).get("Id") : "";
+				String expectedAccountId = salesforceData.get(i).get("AccountId") != null ? salesforceData.get(i).get("AccountId") : "";
+				String expectedName = salesforceData.get(i).get("Name") != null ? salesforceData.get(i).get("Name") : "";
+				String expectedMobilePhone = salesforceData.get(i).get("MobilePhone") != null ? salesforceData.get(i).get("MobilePhone") : "";
+				
+				Assert.assertEquals(contactListData.get(i).get("Email Address"), expectedEmail, "Mismatch found in Email Address"); // Validate email address
+				Assert.assertEquals(contactListData.get(i).get("Contact ID (Id)"), expectedId, "Mismatch found in Contact ID"); // Validate Contact ID
+				Assert.assertEquals(contactListData.get(i).get("Account ID (AccountId)"), expectedAccountId, "Mismatch found in Account ID"); // Validate Account ID
+				Assert.assertEquals(contactListData.get(i).get("Full Name (Name)"), expectedName, "Mismatch found in Full Name (Name)"); // Validate Full Name (Name)
+				Assert.assertEquals(contactListData.get(i).get("Mobile Phone (MobilePhone)"), expectedMobilePhone, "Mismatch found in Mobile Phone (MobilePhone)"); // Validate Mobile Phone (MobilePhone)
+			
+			}else if(param.get("sfObject").equals("Leads")) {
+				String expectedEmail = salesforceData.get(i).get("Email") != null ? salesforceData.get(i).get("Email") : "";
+				String expectedId = salesforceData.get(i).get("Id") != null ? salesforceData.get(i).get("Id") : "";
+				String expectedName = salesforceData.get(i).get("Name") != null ? salesforceData.get(i).get("Name") : "";
+				String expectedMobilePhone = salesforceData.get(i).get("MobilePhone") != null ? salesforceData.get(i).get("MobilePhone") : "";
+				
+				Assert.assertEquals(contactListData.get(i).get("Email Address"), expectedEmail, "Mismatch found in Email Address"); // Validate email address
+				Assert.assertEquals(contactListData.get(i).get("Lead ID (Id)"), expectedId, "Mismatch found in Contact ID"); // Validate Lead ID
+				Assert.assertEquals(contactListData.get(i).get("Full Name (Name)"), expectedName, "Mismatch found in Full Name (Name)"); // Validate Full Name (Name)
+				Assert.assertEquals(contactListData.get(i).get("Mobile Phone (MobilePhone)"), expectedMobilePhone, "Mismatch found in Mobile Phone (MobilePhone)"); // Validate Mobile Phone (MobilePhone)
+			
+			}else if(param.get("sfObject").equals("Accounts")) {
+				String expectedEmail = salesforceData.get(i).get("Email__c") != null ? salesforceData.get(i).get("Email__c") : "";
+				String expectedId = salesforceData.get(i).get("Id") != null ? salesforceData.get(i).get("Id") : "";
+				String expectedName = salesforceData.get(i).get("Name") != null ? salesforceData.get(i).get("Name") : "";
+				String expectedMobilePhone = salesforceData.get(i).get("Phone") != null ? salesforceData.get(i).get("Phone") : "";
+				
+				Assert.assertEquals(contactListData.get(i).get("Email Address"), expectedEmail, "Mismatch found in Email Address"); // Validate email address
+				Assert.assertEquals(contactListData.get(i).get("Account ID (Id)"), expectedId, "Mismatch found in Account ID (Id)"); // Validate Account ID (Id)
+				Assert.assertEquals(contactListData.get(i).get("Account Name (Name)"), expectedName, "Mismatch found in Account Name (Name)"); // Validate Account Name (Name)
+				Assert.assertEquals(contactListData.get(i).get("Account Phone (Phone)"), expectedMobilePhone, "Mismatch found in Account Phone (Phone)"); // Validate Account Phone (Phone)
+			}
+		}
+		return this;
+	}
+	
+	public DMXPage searchForContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String listName = param.get("listname");
+		setText(driver, testcaseName, search_contact_list, listName, test);
+		click(driver, testcaseName, search_contact_list_icon, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[text()= '"+listName+"']"), listName, test);
+		return this;
+	}
+
+	public DMXPage viewOrModifyContactList(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String listName = param.get("listname");
+		click(driver, testcaseName, By.xpath("//td[text()= '"+listName+"']"), listName, test);
+		click(driver, testcaseName, view_modify_contact_list, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, total_record_field, test);
+		return this;
+	}
+	
+	public ArrayList<LinkedHashMap<String, String>> getContactListData(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		ArrayList<LinkedHashMap<String, String>> contactListData = new ArrayList<>();
+		
+		List<WebElement> contactListRow = getWebElements(driver, testcaseName, contact_list_row, test);
+		List<WebElement> headerFields = getWebElements(driver, testcaseName, contact_list_header_fields, test);
+		headerFields.remove(1);		// Remove Status field
+		
+		for(int i=0; i<contactListRow.size(); i++) {
+			List<WebElement> rowData = driver.findElements(By.xpath("//td[contains(@id,'td_"+(i+2)+"_')]"));	
+			rowData.remove(1);		// Remove Status field
+			LinkedHashMap<String, String> contact = new LinkedHashMap<>();
+			for(int j=0; j<rowData.size(); j++) {
+				contact.put(headerFields.get(j).getAttribute("innerHTML"), Jsoup.parse(rowData.get(j).getAttribute("innerHTML")).text());
+			}
+			contactListData.add(i, contact);
+		}
+		return contactListData;
+		
+	}
+	
 }
