@@ -2899,11 +2899,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		start = System.currentTimeMillis();
 		click(driver, testcaseName, delete_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
-		//driver.switchTo().alert().accept();
-		if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-			waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
-			click(driver, testcaseName, delete_button2, test);
-		}
+		waitforElemPresent(driver, testcaseName, 30, delete_modal_dialog, test);
+		click(driver, testcaseName, delete_button2, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, delete_msg, test);
 		end = System.currentTimeMillis();
@@ -3659,6 +3656,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 				waitforElemPresent(driver, testcaseName, 30, getWebElements(driver, testcaseName, cancel_reminders, test).get(0), "Cancel Reminders", test);
 				click(driver, testcaseName, getWebElements(driver, testcaseName, cancel_reminders, test).get(0), "Cancel Reminders", test);
 				driver.switchTo().alert().accept();
+				waitforAlert(driver, testcaseName, 30, test);
+				driver.switchTo().alert().accept();
 				waitForLoad(driver, testcaseName, 30, test);
 				waitforElemPresent(driver, testcaseName, 30, reminder_history_bar, test);
 				click(driver, testcaseName, reminder_history_bar, test);
@@ -3686,6 +3685,8 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, getWebElements(driver, testcaseName, cancel_reminders, test).get(0), "Cancel Reminders", test); //Delete first reminders which are scheduled
 		
 		start = System.currentTimeMillis();
+		driver.switchTo().alert().accept();
+		waitforAlert(driver, testcaseName, 30, test);
 		driver.switchTo().alert().accept();
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, reminder_history_bar, test);

@@ -628,7 +628,7 @@ public interface IDMXPage {
 	String INVITATION_SENT_COUNT= "//div[text()='Invitations Sent']/preceding-sibling::div";
 	WebPageElements inivitation_sent_count = new WebPageElements("Invitation Sent Count", "xpath", INVITATION_SENT_COUNT);
 	
-	String SCHEDULED_FOR_LATER = "//div[@id='dvSchedule']";
+	String SCHEDULED_FOR_LATER = "//label[@for='rbSchedule']";
 	WebPageElements scheduled_for_later = new WebPageElements("Schedule for Later", "xpath", SCHEDULED_FOR_LATER);
 	
 	String INVITATION_DATE = "//input[@id='txtdtinvitationDate']";
