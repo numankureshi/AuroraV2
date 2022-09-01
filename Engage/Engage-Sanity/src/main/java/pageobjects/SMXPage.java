@@ -3322,7 +3322,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			//Check question count before depositing the question to prevent getting JS message of exhausted limit
 			if (questioncount<100) {
 				String categoryTitle = category.getAttribute("title");
-				WebElement searchField = driver.findElement(By.xpath("(//input[contains(@class,'SearchInput')])[2]"));
+				WebElement searchField = driver.findElement(By.xpath("//input[@placeholder='Type here to search'][@ng-change='fnSearchText()']"));
 				searchField.sendKeys(categoryTitle);
 				category.click();
 				test.log(Status.INFO, categoryTitle +" has been selected");
