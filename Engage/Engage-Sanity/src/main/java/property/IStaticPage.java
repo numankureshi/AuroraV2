@@ -12,7 +12,7 @@ public interface IStaticPage {
 	String LOGIN_BUTTON_STATIC = "(//a[text()='Login'])[1]";
 	WebPageElements login_button_static = new WebPageElements("Login Button Static", "xpath", LOGIN_BUTTON_STATIC);
 	
-	String SOGO_LOGIN_IMG_STATIC = "//img[@title='SoGoSurvey']";
+	String SOGO_LOGIN_IMG_STATIC = "//img[@title='Sogolytics']";
 	WebPageElements sogo_login_img_static = new WebPageElements("SoGo Static Login Image", "xpath", SOGO_LOGIN_IMG_STATIC);
 	
 	String K12_LOGIN_IMG_STATIC = "//div[@class='Logoimg']";

@@ -13,7 +13,7 @@ public interface IZarcaStaticPage {
 	String LOGIN_BUTTON = "//input[@value='LOG IN']";
 	WebPageElements login_button = new WebPageElements("Login", "xpath", LOGIN_BUTTON);
 	
-	String LOGIN_IMG_STATIC = "//div[@class='zarca-to-sogo-wrapper']";
+	String LOGIN_IMG_STATIC = "//div[@class='Logoimg masterlogin productLogoMain productLogoM']";
 	WebPageElements login_img_static = new WebPageElements("Login Image Static", "xpath", LOGIN_IMG_STATIC);
 
 }

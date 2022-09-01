@@ -77,10 +77,10 @@ public class SoGoStaticPage extends SeleniumUtils implements ISoGoStaticPage {
 	public double navigateToSogoPricing(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		driver.get(URL);
-		waitforElemPresent(driver, testcaseName, 60, pricing_static, test);
+		navigateToSogoLoginPage(driver, param, URL, test);
+		waitforElemPresent(driver, testcaseName, 60, sign_up, test);
 		start = System.currentTimeMillis();
-		click(driver, testcaseName, pricing_static, test);
+		click(driver, testcaseName, sign_up, test);
 		waitForJStoLoad(driver, 60);
 		waitforElemPresent(driver, testcaseName, 60, all_packages, test);
 		end = System.currentTimeMillis();
