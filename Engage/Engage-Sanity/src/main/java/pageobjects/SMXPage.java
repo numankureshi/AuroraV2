@@ -10,9 +10,14 @@ import java.awt.datatransfer.DataFlavor;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -32,6 +37,9 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import javax.mail.Message;
+
 import java.util.Set;
 
 import org.apache.commons.lang.time.DateFormatUtils;
@@ -117,6 +125,2133 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 10, captcha_button, test);
 		PMR(driver, param, test);
 		textTranslation(driver, param, test);
+	}
+	
+	public void OpenFileLibrary(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");		
+		waitforElemPresent(driver, testcaseName, 30, utilities, test);
+		click(driver, testcaseName, utilities, test);
+		waitforElemPresent(driver, testcaseName, 30, file_library, test);
+		click(driver, testcaseName, file_library, test);
+		waitforElemPresent(driver, testcaseName, 30, add_new_file, test);
+		//click(driver, testcaseName, add_new_file, test);
+		Thread.sleep(2000);
+	}
+	
+	public void Upload_mp4file(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		////TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "mp4.mp4";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_mp4, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_mp3file(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		////TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "mp3.mp3";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_mp3, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_csvfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		////TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "csv.csv";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_csv, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+
+	public void Upload_xhtmlfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		////TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "xhtml.xhtml";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_xhtml, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_htmlfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		////TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "html.html";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_html, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_htmfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "htm.htm";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_htm, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_pngfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "png.png";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_png, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_giffile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "gif.gif";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_gif, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_bmpfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "bmp.bmp";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_bmp, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_jpegfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "jpeg.jpeg";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_jpeg, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_jpgfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "jpg.jpg";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_jpg, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_swffile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "swf.swf";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_swf, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_mpgfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "mpg.mpg";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_mpg, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		DeletePreviousDownloadedFile(driver, param, test);
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_xmlfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "xml.xml";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_xml, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_rtffile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "rtf.rtf";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_rtf, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_txtfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "txt.txt";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_txt, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_pdffile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "pdf.pdf";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_pdf, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_ppsfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "pps.pps";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_pps, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_pptxfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+	
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);	
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "pptx.pptx";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_pptx, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_pptfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+			
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		
+		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "ppt.ppt";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_ppt, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+  
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_docxfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+		
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		
+		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "docxfile.docx";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }	
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_docx, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_docfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);		
+		
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		
+		
+		String actualfile = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expectedfile = "docfile.doc";
+		Assert.assertEquals(actualfile, expectedfile, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_doc, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_xlsxfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+		
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		
+		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "smsnumber.xlsx";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_xlsx, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}
+	
+	public void Upload_xlsfile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date currentTime = Calendar.getInstance().getTime();
+		System.out.println(dateFormat.format(currentTime.getTime()));
+		//TimeUnit.MINUTES.sleep(1);
+		
+		List<WebElement> dynamicElement = driver.findElements(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		
+		if (dynamicElement.size() != 0){      
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+			waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+			click(driver, testcaseName, delete_file, test);
+			waitforAlert(driver, testcaseName, 30, test);
+			driver.switchTo().alert().accept();
+        }
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(BROWSE_BUTTON2)).sendKeys(System.getProperty("user.dir")
+					+ "\\src\\main\\resources\\excelfiles\\uploadfiles\\"+ param.get("secondarylanguage") +"");
+				
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		
+		
+		String actual = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]")).getAttribute("innerHTML");
+		String expected = "sogo_data_import_file.xls";
+		Assert.assertEquals(actual, expected, "Alert message is not matching with expected alert");
+		
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]"), param.get("account_id"), test);			
+		String actualuser = driver.findElement(By.xpath("//tr[@id='2']//span[contains(text(),'"+ param.get("account_id") +"')]")).getAttribute("innerHTML");
+		
+		if(driver.getCurrentUrl().contains("https://www.sogolytics.com/zUM/FileManager.aspx")) {
+			String expecteduser = "sogo_abhandi";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert"); 
+		}		
+		else if(driver.getCurrentUrl().contains("https://research.k12insight.com/zUM/FileManager.aspx")) {
+			String expecteduser = "ruksar_k12";
+			Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+		}
+      else {
+    	  String expecteduser = "anil_test";
+  		Assert.assertEquals(actualuser, expecteduser, "Alert message is not matching with expected alert");
+      }
+		CompareWithCurrentTime(driver,param, test, currentTime);
+		DeletePreviousDownloadedFile(driver, param, test);  
+				
+		waitforElemPresent(driver, testcaseName, 30, hover_xls, test);
+		WebElement hower = driver.findElement(By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(hower).perform();	
+		
+		waitforElemPresent(driver, testcaseName, 30, copy_url1, test);
+		click(driver, testcaseName, copy_url1, test);
+		
+		String actualCopyrl = driver.findElement(By.xpath("//div[contains(text(),'URL copied to clipboard.')]")).getAttribute("innerHTML");
+		String expectedCopyUrl = "URL copied to clipboard.";
+		Assert.assertEquals(actualCopyrl.trim(), expectedCopyUrl, "Alert message is not matching with expected alert");
+		
+		String URL = (driver.findElement(By.xpath("//a[@id='dgAllDocuments_ctl02_hlFileURL']")).getText());
+		executeScript(driver, testcaseName, "window.open()", test);
+		
+		Set<String> handles = driver.getWindowHandles();
+		String currentWindowHandle = driver.getWindowHandle();
+		param.put("currentWindowHandle", currentWindowHandle);
+		for (String handle : handles) {
+		System.out.println(handle);
+		System.out.println(currentWindowHandle);
+		if (!currentWindowHandle.equals(handle)) {
+		driver.switchTo().window(handle);
+		}
+		}
+	    driver.get(URL);
+	    Thread.sleep(5000);
+	    ValidateDownloadedFile(driver, param, test);    
+	    driver.switchTo().window(param.get("currentWindowHandle"));
+	    
+	    waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+	    click(driver, testcaseName,  By.xpath("//span[contains(text(),'"+ param.get("secondarylanguage") +"')]"), param.get("secondarylanguage"), test);
+		waitforElemPresent(driver, testcaseName, 30, delete_file, test);
+		click(driver, testcaseName, delete_file, test);
+		waitforAlert(driver, testcaseName, 30, test);
+		driver.switchTo().alert().accept();	
+		Thread.sleep(5000);
+	}	
+	       
+	public void DeletePreviousDownloadedFile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+	     	throws InterruptedException {
+	String testcaseName = param.get("TestCaseName");
+	String fileName = param.get("secondarylanguage");
+	System.out.println("Searching for "  +  fileName);  
+	 String dirPath = (System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles"); 
+	 String dirPath1 = (System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\" + fileName); 
+     File dir1 = new File(dirPath1);
+     File dir = new File(dirPath);
+     File[] files = dir.listFiles();
+     for (File listFile : files) {
+             if (listFile.getName().contains(fileName)) {      
+            	 dir1.delete();
+                 System.out.println(fileName + " is deleted successfully");
+                 break;
+             }
+	}
+	}
+	         
+	public void ValidateDownloadedFile(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+	String testcaseName = param.get("TestCaseName");
+	String fileName = param.get("secondarylanguage");
+	System.out.println("Searching for " +  fileName);
+	boolean flag = false;
+     
+     String dirPath = (System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles"); 
+     File dir = new File(dirPath);
+     File[] files = dir.listFiles();
+     if (files.length == 0 || files == null) {
+         System.out.println("The directory is empty");
+         flag = false;
+     } else {
+         for (File listFile : files) {
+             if (listFile.getName().contains(fileName)) {
+                 System.out.println(fileName + " is present");
+                 flag = true;
+                 break;         
+             }        
+         }
+         System.out.println(flag);
+         if(flag == true)
+         {
+             reportPass("Validation of Downloaded File is passed", test);
+         }
+         else
+         {
+             reportFail(testcaseName,"Validation of Downloaded File" , test);
+         }
+     }
+	}
+	
+	public void CompareWithCurrentTime(WebDriver driver, HashMap<String, String> param, ExtentTest test, java.util.Date currentTime) throws InterruptedException, ParseException {
+		String testcaseName = param.get("TestCaseName");
+		boolean isFileUploaded = false;
+
+		String DateUploadedInString = driver.findElement(By.xpath("//span[@id='dgAllDocuments_ctl02_Label1']")).getAttribute("innerHTML");
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		Date DateUploaded=new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(DateUploadedInString);
+		System.out.println(dateFormat.format(DateUploaded.getTime()));
+		
+		if(DateUploaded.equals(currentTime)||DateUploaded.after(currentTime)){
+				isFileUploaded=true;
+				System.out.println(isFileUploaded);
+				System.out.println("Date/Time Validation Passed");
+		}
+		else{
+				System.out.println("Date/Time Validation Failed");
+		}
+		
 	}
 	
 	public void PMR(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -556,10 +2691,19 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		SelectFolder(driver,param,test);
 		Publish_Survey1(driver,param,test);
 		SurveyParticipation1(driver,param,test);
-		SelectAllProject(driver,param,test);
+		NewAllProject(driver,param,test);
 		Publish_Survey2(driver,param,test);
 		SurveyParticipation2(driver,param,test);
 		Final_Merge_Steps(driver,param,test);
+	}
+	
+	public void NewAllProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, hd_logo, test);
+		click(driver, testcaseName, hd_logo, test);
+		waitforElemPresent(driver, testcaseName, 30, all_projects1, test);
+		click(driver, testcaseName, all_projects1, test);
 	}
 	
 	public void SelectAllProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -568,6 +2712,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, all_projects, test);
 		click(driver, testcaseName, all_projects, test);
 	}
+	
 	public void SelectFolder(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
