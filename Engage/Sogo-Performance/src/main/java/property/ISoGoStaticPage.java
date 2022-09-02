@@ -90,7 +90,8 @@ public interface ISoGoStaticPage {
 	String LOGOUT_POPUP_OPTION= "//div[contains(text(),'Logout')]";
 	WebPageElements logout_popup_option = new WebPageElements("Logout - Popup Option", "xpath", LOGOUT_POPUP_OPTION);
 	
-	
+	String SIGN_UP= "//div[@id='dvSignupLink']/a";
+	WebPageElements sign_up = new WebPageElements("Sign Up", "xpath", SIGN_UP);
 			
 	
 	
