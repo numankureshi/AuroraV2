@@ -48,7 +48,7 @@ public class DataPage_TC extends SuiteBase {
 			Environment = env;
 		}
 	}
-	
+	//Test
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "datapage", alwaysRun = true)
 	public void Smoke_TC17(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
