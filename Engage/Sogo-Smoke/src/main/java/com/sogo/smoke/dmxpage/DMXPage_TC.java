@@ -405,7 +405,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Smoke_TC101(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC106(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -458,7 +458,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Smoke_TC102(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC107(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");
@@ -511,7 +511,7 @@ public class DMXPage_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "dmxpage", alwaysRun = true)
-	public void Smoke_TC103(LinkedHashMap<String, String> data) throws Exception {
+	public void Smoke_TC108(LinkedHashMap<String, String> data) throws Exception {
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
 		CaseToRun = getData(data, "CaseToRun");

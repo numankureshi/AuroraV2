@@ -1027,8 +1027,14 @@ public interface ISMXPage {
 	String REPLACE_BUTTON = "//input[@id='ReplaceButton']";
 	WebPageElements replace_button = new WebPageElements("replace_button", "xpath", REPLACE_BUTTON);
 	
-	String ALL_PROJECTS= "//div[@class='all-projects']";
+	String ALL_PROJECTS= "//span[contains (text(),'All Projects')]";
 	WebPageElements all_projects = new WebPageElements("AllProjects", "xpath", ALL_PROJECTS);
+	
+	String HD_LOGO= "//div[@class='hd-main-DD']";
+	WebPageElements hd_logo = new WebPageElements("New Hd Logo", "xpath", HD_LOGO);
+	
+	String ALL_PROJECTS1= "//div[@class='hd-main-DD-Options headerDashboard hd-sel-survey all-projects']";
+	WebPageElements all_projects1 = new WebPageElements("AllProjects1", "xpath", ALL_PROJECTS1);
 	
 	String SEARCH_PROJECTS= "//input[@id='InSearchText']";
 	WebPageElements search_projects = new WebPageElements("SearchProjects", "xpath", SEARCH_PROJECTS);
@@ -1103,7 +1109,7 @@ public interface ISMXPage {
 	String SUBMITZARCA2 = "//input[@id='BUTTON_SUBMIT']";
 	WebPageElements submitzarca2 = new WebPageElements("SurveyParticipationSubmitZarca2", "xpath", SUBMITZARCA2 );
 	 
-	String UTILITIES = "//a[@id='Inner_header1_ctl00_aum']";
+	String UTILITIES = "//a[@id='z_h_ctl00_aum']";
 	WebPageElements utilities = new WebPageElements("Utilities", "xpath", UTILITIES );
 	
 	String MERGE_PROJECTS = "//a[@id='Inner_header1_ctl00_lnkUTLmerge']";
@@ -1196,4 +1202,94 @@ public interface ISMXPage {
 	
 	String SETTINGS_SAVE = "//input[@id='btnsave']";
 	WebPageElements settings_save = new WebPageElements("settings save", "xpath", SETTINGS_SAVE);
+	
+	String FILE_LIBRARY = "//a[@id='z_h_ctl00_lnkUTLfile']";
+	WebPageElements file_library = new WebPageElements("file library", "xpath", FILE_LIBRARY );
+	
+	String ADD_NEW_FILE = "//div[@id='div_BtnAddNew']";
+	WebPageElements add_new_file = new WebPageElements("Add New File", "xpath", ADD_NEW_FILE );
+	
+	String BROWSE_BUTTON2 = "//input[@title='Add New']";
+	WebPageElements browse_button2 = new WebPageElements("Browse Button2", "xpath", BROWSE_BUTTON2 );
+	
+	String HOVER_XLS = "//span[contains(text(),'sogo_data_import_file.xls')]";
+	WebPageElements hover_xls = new WebPageElements("Hover_xls file", "xpath", HOVER_XLS );
+	
+	String HOVER_XLSX = "//span[contains(text(),'smsnumber.xlsx')]";
+	WebPageElements hover_xlsx = new WebPageElements("Hover_xlsx file", "xpath", HOVER_XLSX );
+	
+	String HOVER_DOC = "//span[contains(text(),'docfile.doc')]";
+	WebPageElements hover_doc = new WebPageElements("Hover_doc file", "xpath", HOVER_DOC );
+	
+	String HOVER_DOCX = "//span[contains(text(),'docxfile.docx')]";
+	WebPageElements hover_docx = new WebPageElements("Hover_docx file", "xpath", HOVER_DOCX );
+	
+	String HOVER_PPT = "//span[contains(text(),'ppt.ppt')]";
+	WebPageElements hover_ppt = new WebPageElements("Hover_ppt file", "xpath", HOVER_PPT );
+	
+	String HOVER_PPTX = "//span[contains(text(),'pptx.pptx')]";
+	WebPageElements hover_pptx = new WebPageElements("Hover_pptx file", "xpath", HOVER_PPTX );
+	
+	String HOVER_PPS = "//span[contains(text(),'pps.pps')]";
+	WebPageElements hover_pps = new WebPageElements("Hover_pps file", "xpath", HOVER_PPS );
+	
+	String HOVER_PDF = "//span[contains(text(),'pdf.pdf')]";
+	WebPageElements hover_pdf = new WebPageElements("Hover_pdf file", "xpath", HOVER_PDF );
+	
+	String HOVER_TXT = "//span[contains(text(),'txt.txt')]";
+	WebPageElements hover_txt = new WebPageElements("Hover_txt file", "xpath", HOVER_TXT );
+	
+	String HOVER_RTF = "//span[contains(text(),'rtf.rtf')]";
+	WebPageElements hover_rtf = new WebPageElements("Hover_rtf file", "xpath", HOVER_RTF );
+	
+	String HOVER_XML = "//span[contains(text(),'xml.xml')]";
+	WebPageElements hover_xml = new WebPageElements("Hover_xml file", "xpath", HOVER_XML );
+	
+	String HOVER_MPG = "//span[contains(text(),'mpg.mpg')]";
+	WebPageElements hover_mpg = new WebPageElements("Hover_mpg file", "xpath", HOVER_MPG );
+	
+	String HOVER_SWF = "//span[contains(text(),'swf.swf')]";
+	WebPageElements hover_swf = new WebPageElements("Hover_swf file", "xpath", HOVER_SWF );
+	
+	String HOVER_JPG = "//span[contains(text(),'jpg.jpg')]";
+	WebPageElements hover_jpg = new WebPageElements("Hover_jpg file", "xpath", HOVER_JPG );
+	
+	String HOVER_JPEG = "//span[contains(text(),'jpeg.jpeg')]";
+	WebPageElements hover_jpeg = new WebPageElements("Hover_jpeg file", "xpath", HOVER_JPEG );
+	
+	String HOVER_BMP = "//span[contains(text(),'bmp.bmp')]";
+	WebPageElements hover_bmp = new WebPageElements("Hover_bmp file", "xpath", HOVER_BMP );
+	
+	String HOVER_GIF = "//span[contains(text(),'gif.gif')]";
+	WebPageElements hover_gif = new WebPageElements("Hover_gif file", "xpath", HOVER_GIF );
+	
+	String HOVER_PNG = "//span[contains(text(),'png.png')]";
+	WebPageElements hover_png = new WebPageElements("Hover_png file", "xpath", HOVER_PNG );
+	
+	String HOVER_HTM = "//span[contains(text(),'htm.htm')]";
+	WebPageElements hover_htm = new WebPageElements("Hover_htm file", "xpath", HOVER_HTM );
+	
+	String HOVER_HTML = "//span[contains(text(),'html.html')]";
+	WebPageElements hover_html = new WebPageElements("Hover_html file", "xpath", HOVER_HTML );
+	
+	String HOVER_XHTML = "//span[contains(text(),'xhtml.xhtml')]";
+	WebPageElements hover_xhtml = new WebPageElements("Hover_xhtml file", "xpath", HOVER_XHTML );
+	
+	String HOVER_CSV = "//span[contains(text(),'csv.csv')]";
+	WebPageElements hover_csv = new WebPageElements("Hover_csvg file", "xpath", HOVER_CSV );
+	
+	String HOVER_MP3 = "//span[contains(text(),'mp3.mp3')]";
+	WebPageElements hover_mp3 = new WebPageElements("Hover_mp3 file", "xpath", HOVER_MP3 );
+	
+	String HOVER_MP4 = "//span[contains(text(),'mp4.mp4')]";
+	WebPageElements hover_mp4 = new WebPageElements("Hover_mp4 file", "xpath", HOVER_MP4 );
+	
+	String COPY_URL1 = "//span[@title='Copy URL']";
+	WebPageElements copy_url1 = new WebPageElements("Copy URL for file library", "xpath", COPY_URL1 );
+	
+	String CLICK_XLS_FILE = "//span[contains(text(),'sogo_data_import_file.xls')]";
+	WebPageElements click_xls_file = new WebPageElements("click on the XLS File", "xpath", CLICK_XLS_FILE );
+	
+	String DELTE_FILE = "//input[@id='BtnDelete']";
+	WebPageElements delete_file = new WebPageElements("Delete File", "xpath", DELTE_FILE );
 }
