@@ -49,6 +49,7 @@ import pageobjects.RMXPageResearch;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
 import pageobjects.SurveyPage;
+import pageobjects.utilities.MasterLogPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
 import utility.FetchExcelDataSet;
@@ -83,6 +84,7 @@ public class SuiteBase {
 	public DMXPage dmxPage = new DMXPage();
 	public DMXPageResearch dmxPage2 = new DMXPageResearch();
 	public DataPage dataPage = new DataPage();
+	public MasterLogPage masterlogPage = new MasterLogPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	public RMXPage rmxPage = new RMXPage();

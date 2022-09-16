@@ -51,6 +51,7 @@ import pageobjects.RMXPage;
 import pageobjects.SMXPage;
 import pageobjects.StaticPage;
 import pageobjects.SurveyPage;
+import pageobjects.utilities.MasterLogPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
 import utility.FetchExcelDataSet;
@@ -86,6 +87,7 @@ public class SuiteBase {
 	public DMXPageSogo dmxPageSogo = new DMXPageSogo();
 	public RMXPage rmxPage = new RMXPage();
 	public DataPage dataPage = new DataPage();
+	public MasterLogPage masterlogPage = new MasterLogPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	public static final String USERNAME = "gauravgolatkar1";

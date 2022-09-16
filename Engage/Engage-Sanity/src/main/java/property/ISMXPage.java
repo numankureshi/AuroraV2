@@ -807,7 +807,7 @@ public interface ISMXPage {
 	String TEXT_AND_TRANSLATION_MENU = "//div[@class='bulk-lang-dropdown hd-dropdown-content hd-show-dd']";
 	WebPageElements text_and_translation_menu = new WebPageElements("Text and Translation Menu", "xpath", TEXT_AND_TRANSLATION_MENU);
 	
-	String LANGUAGE_DROPDOWN = "//div[@id='ctl46_dvLangText']";
+	String LANGUAGE_DROPDOWN = "//div[@id='ctl50_dvLangText']";
 	WebPageElements language_dropdown = new WebPageElements("Language Drop Down", "xpath", LANGUAGE_DROPDOWN);
 	
 	String AUTO_TRANSLATE = "//input[@id='Button5']";
@@ -1112,6 +1112,9 @@ public interface ISMXPage {
 	String UTILITIES = "//a[@id='z_h_ctl00_aum']";
 	WebPageElements utilities = new WebPageElements("Utilities", "xpath", UTILITIES );
 	
+	String UTILITIES_FROM_INSIDE = "//div[@class='hd-utilities hd-first-opt']";
+	WebPageElements utilitiesfrominside = new WebPageElements("Utilities from a survey", "xpath", UTILITIES_FROM_INSIDE );
+	
 	String MERGE_PROJECTS = "//a[@id='Inner_header1_ctl00_lnkUTLmerge']";
 	WebPageElements merge_projects = new WebPageElements("Merge_Projects", "xpath", MERGE_PROJECTS );
 	
@@ -1292,4 +1295,5 @@ public interface ISMXPage {
 	
 	String DELTE_FILE = "//input[@id='BtnDelete']";
 	WebPageElements delete_file = new WebPageElements("Delete File", "xpath", DELTE_FILE );
+	
 }

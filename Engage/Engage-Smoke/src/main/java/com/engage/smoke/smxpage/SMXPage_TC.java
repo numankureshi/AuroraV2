@@ -3439,6 +3439,1600 @@ public class SMXPage_TC extends SuiteBase {
 
 	}
 	
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC110(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("searchfor", getData(data, "searchfor"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.search(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC111(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("subscription_status", getData(data, "subscription_status"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.subscription_Status_Unsubscribe(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC112(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("subscription_status", getData(data, "subscription_status"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.subscription_Status_Ok(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC113(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("subscription_status", getData(data, "subscription_status"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.learnMore(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC114(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("surveyname", getData(data, "surveyname"));
+		param.put("Email", getData(data, "Email"));
+		param.put("TextBox", getData(data, "TextBox"));
+		param.put("SelectTemplate", getData(data, "SelectTemplate"));
+		param.put("emailtemplate", getData(data, "emailtemplate"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.newEntryMasterLog(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC115(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_A(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC116(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_B(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC117(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_C(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC118(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_D(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC119(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_E(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC120(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_F(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC121(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_G(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC122(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_H(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC123(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_I(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC124(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_J(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC125(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_K(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC126(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_L(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC127(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_M(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC128(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_N(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC129(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_O(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC130(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_P(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC131(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_Q(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC132(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_R(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC133(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_S(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC134(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_T(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC135(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_U(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC136(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_V(getDriver(), param, test);
+			}
+		}
+
+	}
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC137(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_W(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC138(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_X(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC139(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_Y(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC140(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_Z(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC141(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_0(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC142(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_1(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC143(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_2(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC144(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_3(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC145(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_4(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC146(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_5(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC147(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_6(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC148(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_7(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC149(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_8(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC150(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.filter_Keyword_9(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC151(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("aplhabet_number", getData(data, "aplhabet_number"));
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.pagationMasterLog(getDriver(), param, test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "smxpage", alwaysRun = true)
+	public void Smoke_TC152(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		// test
+
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("searchfor", getData(data, "searchfor"));
+
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+				// password = decryptPass.decryptUserPassword(encPassword);
+
+				loadBrowser();
+				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				masterlogPage.openMasterLog(getDriver(), param, test);
+				masterlogPage.exportAll(getDriver(), param, test);
+			}
+		}
+
+	}
+	
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {
 		if (Result.getStatus() == ITestResult.SKIP) {
