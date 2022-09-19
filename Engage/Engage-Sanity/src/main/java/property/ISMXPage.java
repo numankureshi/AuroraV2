@@ -825,10 +825,10 @@ public interface ISMXPage {
 	String RESET_TRANSLATION = "//input[@id='btnDeleteSurvey']";
 	WebPageElements reset_translation = new WebPageElements("Reset Translation", "xpath", RESET_TRANSLATION);
 	
-	String LOGIC = "//div[@id='ctl08_divLogic']";
+	String LOGIC = "//div[contains(@id,'_divLogic')]";
 	WebPageElements logic = new WebPageElements("Logic Button", "xpath", LOGIC);
 	
-	String QDL_OPTION = "//div[@id='ctl08_dvPageLevelQDL']";
+	String QDL_OPTION = "//div[contains(@id,'_dvPageLevelQDL')]";
 	WebPageElements qdl_option = new WebPageElements("Question Display Logic", "xpath", QDL_OPTION);
 	
 	String IFRAME_QDL = "//iframe[contains(@src,'/SMConditionalDisplayLogic/ShowAll?')]";
@@ -852,7 +852,19 @@ public interface ISMXPage {
 	String ADD_MORE_QDL = "//div[text()='Add More']";
 	WebPageElements add_more_qdl = new WebPageElements("Add More", "xpath", ADD_MORE_QDL);
 	
-	String SURVEY_OPTIONS = "//div[@id='ctl08_liSS']";
+	String MULTIPLE_QUE_BRANCHING = "//div[normalize-space(text())='Multi-Question Branching'][@class='hd-dropdown-row']";
+	WebPageElements multiple_que_branching = new WebPageElements("Multi-Question Branching", "xpath", MULTIPLE_QUE_BRANCHING);
+	
+	String IFRAME_MULTIPLE_QUE_BRANCHING = "//iframe[starts-with(@src,'branching.aspx')]";
+	WebPageElements iframe_multiple_que_branching = new WebPageElements("Multi-Question Branching Iframe", "xpath", IFRAME_MULTIPLE_QUE_BRANCHING);
+	
+	String MQB_INFO = "//span[@id='spnMQBInfo']";
+	WebPageElements mqb_info = new WebPageElements("Multi-Question Branching Info", "xpath", MQB_INFO);
+	
+	String ADD_CONDITION = "//div[@class='add_new_btn_cont addcondition']";
+	WebPageElements add_condition = new WebPageElements("Add Condition", "xpath", ADD_CONDITION);
+	
+	String SURVEY_OPTIONS = "//div[contains(@id,'_liSS')]";
 	WebPageElements survey_options = new WebPageElements("Options", "xpath", SURVEY_OPTIONS);
 	
 	String EXPIRY_RULES = "//div[@class='hd-dropdown-row'][contains(text(),'Expiry Rules')]";
@@ -860,6 +872,15 @@ public interface ISMXPage {
 	
 	String EXPIRY_RULES_TITLE = "//div[@class='survey-settings-title']/span[text()='Expiry Rules']";
 	WebPageElements expiry_rules_title = new WebPageElements("Expiry Rules Title", "xpath", EXPIRY_RULES_TITLE);
+	
+	String PROJECT_DETAILS = "//div[@class='hd-dropdown-row'][contains(text(),'Project Details')]";
+	WebPageElements project_details = new WebPageElements("Project Details", "xpath", PROJECT_DETAILS);
+	
+	String PROJECT_DETAILS_TITLE = "//div[@class='survey-settings-title']/span[text()='Project Details']";
+	WebPageElements project_details_title = new WebPageElements("Project Details Title", "xpath", PROJECT_DETAILS_TITLE);
+	
+	String THANK_YOU_PAGE = "//li[starts-with(@id,'li_')]/a[text()='Thank You Page']";
+	WebPageElements thank_you_page = new WebPageElements("Thank you page", "xpath", THANK_YOU_PAGE);
 	
 	String VISUAL_SETTINGS = "//span[text()='Visual Settings']";
 	WebPageElements visual_settings = new WebPageElements("Visual Settings", "xpath", VISUAL_SETTINGS);
@@ -1292,4 +1313,13 @@ public interface ISMXPage {
 	
 	String DELTE_FILE = "//input[@id='BtnDelete']";
 	WebPageElements delete_file = new WebPageElements("Delete File", "xpath", DELTE_FILE );
+	
+	String ASSIGN_SCORES = "//span[contains(@id, '_linkAssessment')][text()='Assign Scores']";
+	WebPageElements assign_scores = new WebPageElements("Assign Scores", "xpath", ASSIGN_SCORES );
+	
+	String ASSIGN_SCORES_LABEL = "//*[@id='tosavelabel']/div[normalize-space(text())='Assign Scores']";
+	WebPageElements assign_scores_label = new WebPageElements("Assign Scores Title", "xpath", ASSIGN_SCORES_LABEL );
+	
+	String CATEGORY_HEADING = "//div[text()='Click on the checkboxes to select/deselect the questions to be added in the category.']";
+	WebPageElements category_heading = new WebPageElements("Click on the checkboxes to select/deselect the questions to be added in the category.", "xpath", CATEGORY_HEADING );
 }

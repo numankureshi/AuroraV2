@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import pageobjects.DataPage;
 import pageobjects.SoGoStaticPage;
@@ -25,9 +27,13 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v101.network.Network;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
@@ -110,6 +116,7 @@ public class SMXPlatformReading_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				readingData = smxPage.getSMXReadingsOfSurveyCreation(getDriver(), param, test);
+				
 				System.out.println(readingData);
 				
 			}
@@ -491,6 +498,138 @@ public class SMXPlatformReading_TC extends SuiteBase {
 
 	}
 	
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true)
+	public void PlatformReadings_TC69(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("SID", getData(data, "SID"));
+		param.put("downloadFilePath", downloadFilePath);
+		param.put("surveyname", getData(data, "Survey Title"));
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = smxPage.getSurveySettingsReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true)
+	public void PlatformReadings_TC70(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("SID", getData(data, "SID"));
+		param.put("downloadFilePath", downloadFilePath);
+		param.put("surveyname", getData(data, "Survey Title"));
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = smxPage.getAssessmentSettingsReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true)
+	public void PlatformReadings_TC71(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("SID", getData(data, "SID"));
+		param.put("downloadFilePath", downloadFilePath);
+		param.put("surveyname", getData(data, "Survey Title"));
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = smxPage.getMultipleQuestionBranchingReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
 	
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {

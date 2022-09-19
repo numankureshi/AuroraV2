@@ -34,5 +34,21 @@ public class HomePage extends SeleniumUtils implements IHomePage, IStaticPage {
 		return totalTime;
 	}
 	
+	public void openDashboard(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		if(driver.getCurrentUrl().contains("zHome/home.aspx")) {
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.all_projects3, test);
+			click(driver, testcaseName, IHomePage.all_projects3, test);
+			waitForJStoLoad(driver, 60);
+			waitForLoad(driver, testcaseName, 60, test);
+		}else {
+			click(driver, testcaseName, IHomePage.hamburger_icon, test);
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.all_projects2, test);
+			click(driver, testcaseName, IHomePage.all_projects2, test);
+			waitForJStoLoad(driver, 60);
+			waitForLoad(driver, testcaseName, 60, test);
+		}
+		
+	}
 
 }

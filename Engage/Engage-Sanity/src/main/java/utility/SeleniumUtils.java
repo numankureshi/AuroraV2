@@ -69,7 +69,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to click on "+ ele.getName() +" element.");
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to click on "+ ele.getName() +" element.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to click on "+ ele.getName() +" element." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to double click on "+ ele.getName() +" element.");
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to double click on "+ ele.getName() +" element.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to double click on "+ ele.getName() +" element." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -115,7 +115,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to click on "+ name +" element.");
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to click on "+ name +" element.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to click on "+ name +" element." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		}
 	}
@@ -139,7 +139,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to click on "+ name +" element.");
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to click on "+ name +" element.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to click on "+ name +" element." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		}
 	}
@@ -159,7 +159,7 @@ public class SeleniumUtils {
 				Reporter.log(text + " not entered in "+ ele.getName() +" textbox.");
 				TestResultStatus.failureReason.add(testcaseName + "| "+ text + " not entered in "+ ele.getName() +" textbox.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail(text + " not entered in "+ ele.getName() +" textbox." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		} else {
 			test.log(Status.INFO, ele.getName() +" value is blank.");
@@ -182,7 +182,7 @@ public class SeleniumUtils {
 				Reporter.log(text + " not entered in "+ name +" textbox.");
 				TestResultStatus.failureReason.add(testcaseName + "| "+ text + " not entered in "+ name +" textbox.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail(text + " not entered in "+ name +" textbox." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		} else {
 			test.log(Status.INFO, name +" value is blank.");
@@ -204,7 +204,7 @@ public class SeleniumUtils {
 				Reporter.log(text + " not entered in "+ name +" textbox.");
 				TestResultStatus.failureReason.add(testcaseName + "| "+ text + " not entered in "+ name +" textbox.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail(text + " not entered in "+ name +" textbox." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		} else {
 			test.log(Status.INFO, name +" value is blank.");
@@ -229,7 +229,7 @@ public class SeleniumUtils {
 				Reporter.log(text + " not entered in "+ ele.getName() +" textbox.");
 				TestResultStatus.TestFail = true;
 				TestResultStatus.failureReason.add(testcaseName + "| "+ text + " not entered in "+ ele.getName() +" textbox.");
-				Assert.fail();
+				Assert.fail(text + " not entered in "+ ele.getName() +" textbox." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		} else {
 			test.log(Status.INFO, ele.getName() +" value is blank.");
@@ -263,7 +263,7 @@ public class SeleniumUtils {
 			Reporter.log(ele.getName() +" not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ ele.getName() +" not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(ele.getName() +" not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -294,7 +294,7 @@ public class SeleniumUtils {
 			Reporter.log(ele.getName() +" is still present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ ele.getName() +" is still present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(ele.getName() +" is still present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -307,11 +307,11 @@ public class SeleniumUtils {
 			Reporter.log("Successfully waited for "+ name +" to be disappear on page.");
 		} catch (Exception e) {
 			test.log(Status.FAIL, name +" is still present on page.");
-			Add_Log.info(name +" is stillot present on page.");
+			Add_Log.info(name +" is still present on page.");
 			Reporter.log(name +" is still present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" is still present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(name +" is still present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -329,7 +329,7 @@ public class SeleniumUtils {
 			Reporter.log(name +" not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(name +" not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			
 		}
 	}
@@ -348,7 +348,7 @@ public class SeleniumUtils {
 			Reporter.log(name +" not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ name +" not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(name +" not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -365,7 +365,7 @@ public class SeleniumUtils {
 			Reporter.log("Alert did not appear on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ "Alert did not appear on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Alert did not appear on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -384,7 +384,7 @@ public class SeleniumUtils {
 			Reporter.log(ele.getName() +" not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| "+ ele.getName() +" not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(ele.getName() + "is not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -404,7 +404,7 @@ public class SeleniumUtils {
 			Reporter.log(ele.getName() + "is not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| " + ele.getName() + "is not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(ele.getName() + "is not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 
 		}
 	}
@@ -423,7 +423,7 @@ public class SeleniumUtils {
 			Reporter.log(name + "is not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| " + name + "is not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(name + "is not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 
 		}
 	}
@@ -442,7 +442,7 @@ public class SeleniumUtils {
 			Reporter.log(name + "is not present on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| " + name + "is not present on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(name + "is not present on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 
 		}
 	}
@@ -470,7 +470,7 @@ public class SeleniumUtils {
 			Reporter.log("Attribute value of " + ele.getName() + "is not changed");
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Attribute value of " + ele.getName() + "is not changed");
 			TestResultStatus.TestFail = true;
-			Assert.fail();		
+			Assert.fail("Attribute value of " + ele.getName() + " is not changed" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());		
 		}
 	}
 	
@@ -499,7 +499,7 @@ public class SeleniumUtils {
 			Reporter.log("Attribute value of " + name + " is not changed");
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Attribute value of " + name + " is not changed");
 			TestResultStatus.TestFail = true;
-			Assert.fail();		
+			Assert.fail("Attribute value of " + name + " is not changed" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());		
 		}
 	}
 	
@@ -526,7 +526,7 @@ public class SeleniumUtils {
 			Reporter.log("Attribute value of " + ele.getName() + "is not changed");
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Attribute value of " + ele.getName() + "is not changed");
 			TestResultStatus.TestFail = true;
-			Assert.fail();		
+			Assert.fail("Attribute value of " + ele.getName() + "is not changed" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());		
 		}
 	}
 	
@@ -557,7 +557,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to find element "+ ele.getName() +" on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to find element "+ ele.getName() +" on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to find element "+ ele.getName() +" on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 		if(element == null) {
 			TestResultStatus.TestFail = true;
@@ -592,7 +592,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to find element "+ ele.getName() +" on page.");
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to find element "+ ele.getName() +" on page.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to find element "+ ele.getName() +" on page." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 		return element;
 	}
@@ -613,7 +613,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to fetch text "+ text + " from "+ ele.getName());
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to fetch text "+ text + " from "+ ele.getName());
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to fetch text "+ text + " from "+ ele.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		return text;
 	}
@@ -632,7 +632,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to fetch text "+ text + " from "+ name);
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to fetch text "+ text + " from "+ name);
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to fetch text "+ text + " from "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 			return text;
 	}
@@ -652,7 +652,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to fetch value "+ text + " from "+ ele.getName());
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to fetch value "+ text + " from "+ ele.getName());
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to fetch value "+ text + " from "+ ele.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 			return text;
 	}
@@ -671,7 +671,7 @@ public class SeleniumUtils {
 				Reporter.log("Not able to fetch value "+ text + " from "+ name);
 				TestResultStatus.failureReason.add(testcaseName + "| Not able to fetch value "+ text + " from "+ name);
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Not able to fetch value "+ text + " from "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 			return text;
 	}
@@ -690,7 +690,7 @@ public class SeleniumUtils {
 				Reporter.log("Text not cleared from "+ ele.getName() +" textbox");
 				TestResultStatus.failureReason.add(testcaseName + "| Text not cleared from "+ ele.getName() +" textbox");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Text not cleared from "+ ele.getName() +" textbox" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		
 	}
@@ -708,7 +708,7 @@ public class SeleniumUtils {
 				Reporter.log("Text not cleared from "+ name +" textbox");
 				TestResultStatus.failureReason.add(testcaseName + "| Text not cleared from "+ name +" textbox");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Text not cleared from "+ name +" textbox" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		
 	}
@@ -725,7 +725,7 @@ public class SeleniumUtils {
 				Reporter.log("Text not cleared from "+ name +" textbox");
 				TestResultStatus.failureReason.add(testcaseName + "| Text not cleared from "+ name +" textbox");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Text not cleared from "+ name +" textbox" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			}
 		
 	}
@@ -735,13 +735,16 @@ public class SeleniumUtils {
 			WebElement element = getWebElement(driver, testcaseName, ele, test);
 			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior: \"smooth\", block: \"end\", inline: \"nearest\"});", element);
+			test.log(Status.INFO, "Successfully move to : " +  ele.getName());
+			Add_Log.info("Successfully move to : " +  ele.getName());
+			Reporter.log("Successfully move to : " +  ele.getName());
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ ele.getName());
 			Add_Log.info("Failed to scrolling on element "+ ele.getName());
 			Reporter.log("Failed to scrolling on element "+ ele.getName());
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ ele.getName());
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to scrolling on element "+ ele.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -750,13 +753,16 @@ public class SeleniumUtils {
 		try {
 			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior: \"smooth\", block: \"end\", inline: \"nearest\"});", element);
+			test.log(Status.INFO, "Successfully move to : " + name);
+			Add_Log.info("Successfully move to : " + name);
+			Reporter.log("Successfully move to : " + name);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
 			Reporter.log("Failed to scrolling on element "+ name);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to scrolling on element "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -764,13 +770,16 @@ public class SeleniumUtils {
 		try {
 			//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({behavior: \"smooth\", block: \"end\", inline: \"nearest\"});", element);
+			test.log(Status.INFO, "Successfully move to : " + name);
+			Add_Log.info("Successfully move to : " + name);
+			Reporter.log("Successfully move to : " + name);
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ name);
 			Add_Log.info("Failed to scrolling on element "+ name);
 			Reporter.log("Failed to scrolling on element "+ name);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to scrolling on element "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -778,13 +787,16 @@ public class SeleniumUtils {
 		try {
 			WebElement element = getWebElement(driver, testcaseName, ele, test);
 			((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			test.log(Status.INFO, "Successfully move to : " + ele.getName());
+			Add_Log.info("Successfully move to : " + ele.getName());
+			Reporter.log("Successfully move to : " + ele.getName());
 		} catch (Exception e) {
 			test.log(Status.FAIL, "Failed to scrolling on element "+ ele.getName());
 			Add_Log.info("Failed to scrolling on element "+ ele.getName());
 			Reporter.log("Failed to scrolling on element "+ ele.getName());
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ ele.getName());
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to scrolling on element "+ ele.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -800,7 +812,7 @@ public class SeleniumUtils {
 			Reporter.log("Failed to scrolling on element "+ name);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to scrolling on element "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -817,7 +829,7 @@ public class SeleniumUtils {
 			Reporter.log("Failed to scrolling on element "+ name);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to scrolling on element "+ name);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to scrolling on element "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -860,7 +872,7 @@ public class SeleniumUtils {
 			Reporter.log("Loader did not disappear.");
 			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Loader did not disappear." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -888,7 +900,7 @@ public class SeleniumUtils {
 			Reporter.log("Loader did not disappear.");
 			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Loader did not disappear." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -916,7 +928,7 @@ public class SeleniumUtils {
 			Reporter.log("Loader did not disappear.");
 			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Loader did not disappear." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -945,7 +957,7 @@ public class SeleniumUtils {
 			Reporter.log("Loader did not disappear.");
 			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Loader did not disappear." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -975,7 +987,7 @@ public class SeleniumUtils {
 			Reporter.log("Loader did not disappear.");
 			TestResultStatus.failureReason.add(testcaseName + "| Loader did not disappear.");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Loader did not disappear." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -1022,7 +1034,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to click on "+ ele.getName() +" element. Adjust the x and y co-ordinate" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 		
 	}
@@ -1042,7 +1054,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to switch to "+ ele.getName());
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to switch to "+ ele.getName());
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to switch to "+ ele.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 
 	}
@@ -1065,7 +1077,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to move "+ source.getName() +"to " +target.getName());
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to move "+ source.getName() +"to " +target.getName());
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to move "+ source.getName() +"to " +target.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}	
 	}
 	
@@ -1084,7 +1096,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to move "+ source.getName() +"to target");
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to move "+ source.getName() +"to target");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to move "+ source.getName() +"to target" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}	
 	}
 	
@@ -1104,7 +1116,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to move to "+ ele.getName());
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to move to "+ ele.getName());
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to hover to "+ ele.getName() + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}	
 	}
 	
@@ -1123,7 +1135,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to move to "+ name);
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to move to "+ name);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to hover to "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}	
 	}
 	
@@ -1141,7 +1153,7 @@ public class SeleniumUtils {
 			Reporter.log("Not able to hover to "+ name);
 			TestResultStatus.failureReason.add(testcaseName + "| Not able to hover to "+ name);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Not able to hover to "+ name + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}	
 	}
 	
@@ -1160,7 +1172,7 @@ public class SeleniumUtils {
 			Reporter.log("Failed to execute script :" + script);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to execute script :" + script);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to execute script :" + script + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 
 		}
 		return result;
@@ -1177,7 +1189,7 @@ public class SeleniumUtils {
 			Reporter.log("Failed to execute script :" + script);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to execute script :" + script);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to execute script :" + script + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 
 		}
 		return result;
@@ -1196,7 +1208,7 @@ public class SeleniumUtils {
 			Reporter.log("Failed to execute script :" + script);
 			TestResultStatus.failureReason.add(testcaseName + "| Failed to execute script :" + script);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Failed to execute script :" + script + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 
 		}
 		return result;
@@ -1222,7 +1234,7 @@ public class SeleniumUtils {
 			Reporter.log(ele.getName() + " did not appear on DOM");
 			TestResultStatus.failureReason.add(testcaseName + "| " + ele.getName() + " did not appear on DOM");
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail(ele.getName() + " did not appear on DOM" + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 
 	}
@@ -1252,7 +1264,7 @@ public class SeleniumUtils {
 			Reporter.log("Did not find the option containing text "+visibleText);
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Did not find the option containing text "+visibleText + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -1279,7 +1291,7 @@ public class SeleniumUtils {
 			Reporter.log("Did not find the option containing text "+visibleText);
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Did not find the option containing text "+visibleText + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -1306,7 +1318,7 @@ public class SeleniumUtils {
 			Reporter.log("Did not find the option containing text "+visibleText);
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option containing text "+visibleText);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Did not find the option containing text "+visibleText + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -1325,7 +1337,7 @@ public class SeleniumUtils {
 			Reporter.log("Did not find the option maching with text "+visibleText);
 			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option maching with text "+visibleText);
 			TestResultStatus.TestFail = true;
-			Assert.fail();
+			Assert.fail("Did not find the option containing text "+visibleText + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 		}
 	}
 	
@@ -1343,7 +1355,7 @@ public class SeleniumUtils {
 				Reporter.log("Did not find the alert.");
 				TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the alert.");
 				TestResultStatus.TestFail = true;
-				Assert.fail();
+				Assert.fail("Did not find the alert." + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
 			} 
 	}
 

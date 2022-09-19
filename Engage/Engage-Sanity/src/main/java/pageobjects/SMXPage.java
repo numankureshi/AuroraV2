@@ -44,6 +44,7 @@ import java.util.Set;
 
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.http.message.BasicListHeaderIterator;
+import org.apache.poi.util.ArrayUtil;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.time.CalendarUtils;
 import org.openqa.selenium.Alert;
@@ -55,6 +56,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v100.network.Network;
+import org.openqa.selenium.devtools.v100.network.model.RequestId;
 import org.openqa.selenium.devtools.v100.performance.Performance;
 import org.openqa.selenium.devtools.v100.performance.model.Metric;
 import org.openqa.selenium.interactions.Action;
@@ -67,9 +70,12 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import property.IHomePage;
 import property.ISMXPage;
@@ -4554,6 +4560,24 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, By.xpath("//div[@id='searchListOption']//div[@title='"+ answerOption  +"']//div[@title='Use List']"), "Use List", test);
 	}
 	
+	public void saveAnslibraryOptionsList(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		List<String> ansOptList = new ArrayList<>();
+		List<WebElement> ansOptionWebList = driver.findElements(By.xpath("//div[@title='" + answerOption +"']/following-sibling::div/div[@class='subListItem']"));
+		int ansCount = ansOptionWebList.size();
+		for(WebElement webElement : ansOptionWebList) {
+			String ansOption = webElement.getAttribute("title");
+			if(ansOption.contains(",")) {
+				ansOptList.add(ansOption.replaceAll(",", "/~/"));
+			}
+			else {
+				ansOptList.add(ansOption);
+			}
+		}
+		param.put("ansOptList", ansOptList.toString());
+		param.put("ansCount", String.valueOf(ansCount));
+	}
+	
 	public void answersLibraryGrid(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
 			throws InterruptedException {String testcaseName = param.get("TestCaseName");
 			waitforElemPresent(driver, testcaseName, 10, answers_library, test);
@@ -7460,9 +7484,16 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 				waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("radiobutton") +"\"]/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Radio Buttons Added "+ param.get("radiobutton"), test);
 				List<String> expectedansOptList = new ArrayList<>();
 				
-				// Add elements in expected answer option list from param if isRandomAnsoptiontext is set to true
-				if(qtCases.get("isRandomAnsoptiontext").getAsBoolean()) {
-					expectedansOptList = Arrays.asList(param.get("ansOptList").replace("[", "").replace("]", "").split("\\s*,\\s*"));
+				// Add elements in expected answer option list from param if isRandomAnsoptiontext or isAnswerlibrary is set to true
+				if(qtCases.get("isRandomAnsoptiontext").getAsBoolean() ||  qtCases.get("isAnswerlibrary").getAsBoolean()){
+					List<String> rawList = Arrays.asList(param.get("ansOptList").replace("[", "").replace("]", "").split("\\s*,\\s*"));
+					for(String ansOption : rawList) {
+						if(ansOption.contains("/~/")) {
+							expectedansOptList.add(ansOption.replaceAll("/~/", ","));
+						}else {
+							expectedansOptList.add(ansOption);
+						}
+					}
 				}
 				// Add elements in expected answer option list from json if isRandomAnsoptiontext is set to false
 				else {
@@ -7654,9 +7685,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			strtotalTime = df.format(totalTime);
 			
 			//Put QID in param
-			param.put("QID",driver.findElement(By.xpath("//span[text()=\""+ param.get("radiobutton") +"\"]")).getAttribute("id").split("_")[1]);
+			param.put("QID",driver.findElement(By.xpath("//span[text()=\""+ param.get("dropdown") +"\"]")).getAttribute("id").split("_")[1]);
 			
-			int ansCount =  Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.Answers.length", test).toString());
+			scrollIntoCenter(driver, testcaseName, By.xpath("//span[text()=\""+ param.get("dropdown") +"\"]"), param.get("dropdown"), test);
+			int ansCount =  Integer.parseInt(param.get("ansCount"));
 			// For searchable drop down
 			if (ansCount>9) {
 				waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("dropdown") +"\"]/parent::div/following-sibling::div//div[@class='Search-DD-Container ControlColorsDD']"), "Drop Down Added "+ param.get("dropdown"), test);
@@ -7691,7 +7723,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			totalTime = ((end - start)) / 1000;
 			strtotalTime = df.format(totalTime);
 			
-			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingscale") +"\"]/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-slider-horizontal')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingscale") +"\"]/parent::div/following-sibling::div//div[contains(@class,'slide ui-slider ui-corner-all')]"), "Rating Scale Added "+ param.get("ratingscale"), test);
 			break;
 		case "dvGQ":
 			waitforElemPresent(driver, testcaseName, 10, save_button, test);
@@ -7875,9 +7907,16 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 				waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()=\""+ param.get("ratingradiobutton") +"\"]/parent::div/following-sibling::div//ul[@class='ControlColorsRB']"), "Rating Radio Buttons Added "+ param.get("ratingradiobutton"), test);
 				List<String> expectedansOptList = new ArrayList<>();
 				
-				// Add elements in expected answer option list from param if isRandomAnsoptiontext is set to true
-				if(qtCases.get("isRandomAnsoptiontext").getAsBoolean()) {
-					expectedansOptList = Arrays.asList(param.get("ansOptList").replace("[", "").replace("]", "").split("\\s*,\\s*"));
+				// Add elements in expected answer option list from param if isRandomAnsoptiontext or  isAnswerlibrary is set to true
+				if(qtCases.get("isRandomAnsoptiontext").getAsBoolean() ||  qtCases.get("isAnswerlibrary").getAsBoolean()){
+					List<String> rawList = Arrays.asList(param.get("ansOptList").replace("[", "").replace("]", "").split("\\s*,\\s*"));
+					for(String ansOption : rawList) {
+						if(ansOption.contains("/~/")) {
+							expectedansOptList.add(ansOption.replaceAll("/~/", ","));
+						}else {
+							expectedansOptList.add(ansOption);
+						}
+					}
 				}
 				// Add elements in expected answer option list from json if isRandomAnsoptiontext is set to false
 				else {
@@ -9784,26 +9823,15 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			click(driver, testcaseName, By.xpath("//div[@id='menu_" +i +"']/following-sibling::div"), "More", test);
 			waitforElemPresent(driver, testcaseName, 10, By.xpath("//li[@id='lnkAnsLib" +i +"']"), "Answer library Button", test);
 			click(driver, testcaseName, By.xpath("//li[@id='lnkAnsLib" +i +"']"), "Answer library button", test);
-			if(driver.getTitle().toLowerCase().contains("sogosurvey")) {
-				waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='menu_" +i +"']/div/div[@class='ansLibraryContainer']"), 
+			waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='menu_" +i +"']/div/div[@class='ansLibraryContainer']"), 
 						"Answer library button", 30, 100, test);
-				waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
-				setText(driver, testcaseName, search_ans_lib, answerOption, test);
-				waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']/div[@title='"+ answerOption  +"']"), 
+			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);
+			setText(driver, testcaseName, search_ans_lib, answerOption, test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='searchListOption']/div[@title='"+ answerOption  +"']"), 
 						answerOption + " category", test);
-				click(driver, testcaseName, By.xpath("//div[@id='searchListOption']/div[@title='"+ answerOption  +"']"), answerOption + " category", test);
-				waitForLoad(driver, testcaseName, 30, test);
-			}else {
-				waitForLoad(driver, testcaseName, 60, test);
-//				waitforElemPresent(driver, testcaseName, 30, ansers_liburary_label, test);
-				waitforElemPresent(driver, testcaseName, 30, iframe_answer_options2, test);
-				driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_ANSWER_OPTIONS2)));
-				waitforElemPresent(driver, testcaseName, 10, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-				click(driver, testcaseName, By.xpath("//label[text()='"+ answerOption +"']"), answerOption, test);
-				waitforElemPresent(driver, testcaseName, 10, use_this_list_button, test);
-				click(driver, testcaseName, use_this_list_button, test);
-				driver.switchTo().parentFrame();
-			}
+			click(driver, testcaseName, By.xpath("//div[@id='searchListOption']/div[@title='"+ answerOption  +"']"), answerOption + " category", test);
+			waitForLoad(driver, testcaseName, 30, test);
+			
 		}
 	
 	
@@ -9815,6 +9843,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		}
 		readingData.put(param.get("Step1"), getProjectDashboardReading(driver, param, test));
 		readingData.put(param.get("Step2"), getSurveyCreationReading(driver, param, test));
+		new HomePage().openDashboard(driver, param, test);
+		searchForSurveyInDashboard(driver, param, param.get("surveyName"), param.get("SID"), test);
+		deleteProject(driver, param, param.get("surveyName"), param.get("SID"), test);
 		return readingData;
 	}
 	
@@ -9837,7 +9868,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		end = System.currentTimeMillis();	
 		totalTime = ((end - start)) / 1000;
 		strtotalTime = df.format(totalTime);
-				
+		
+		param.put("SID", driver.getCurrentUrl().toLowerCase().split("survey_no=")[1]);
+		
 		return strtotalTime;
 	}
 	
@@ -9897,15 +9930,20 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, radio_button, test));
 		fillQueDetails(driver, param, radio_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		saveAnslibraryOptionsList(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step2"), saveQue(driver, param, radio_button, testdata.get("case 1").getAsJsonObject(), test));
-		
-		
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
+				
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\dropDownCases.json", test);
 		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
 		readingData.put(param.get("Step3"), doubleClickOnQT(driver, param, drop_down_button, test));
 		fillQueDetails(driver, param, drop_down_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		saveAnslibraryOptionsList(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step4"), saveQue(driver, param, drop_down_button, testdata.get("case 1").getAsJsonObject(), test));
+		deleteQuestion(driver, param, 1, 1, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\horizontalRadioButtonCases.json", test);
 		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
@@ -9913,6 +9951,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		fillQueDetails(driver, param, horizontal_radio_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step6"), saveQue(driver, param, horizontal_radio_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\checkBoxCases.json", test);
 		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
@@ -9920,11 +9960,15 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		fillQueDetails(driver, param, check_box_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step8"), saveQue(driver, param, check_box_button, testdata.get("case 1").getAsJsonObject(), test));
-			
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
+		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\textBoxCases.json", test);
 		readingData.put(param.get("Step9"), doubleClickOnQT(driver, param, text_box_button, test));
 		fillQueDetails(driver, param, text_box_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step10"), saveQue(driver, param, text_box_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\listBoxCases.json", test);
 		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
@@ -9932,34 +9976,48 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		fillQueDetails(driver, param, listbox_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step12"), saveQue(driver, param, listbox_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\numericAllocationCases.json", test);
 		readingData.put(param.get("Step13"), doubleClickOnQT(driver, param, numeric_allocation, test));
 		fillQueDetails(driver, param, numeric_allocation, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step14"), saveQue(driver, param, numeric_allocation, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\rankingCases.json", test);
 		readingData.put(param.get("Step15"), doubleClickOnQT(driver, param, ranking_question_button, test));
 		fillQueDetails(driver, param, ranking_question_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step16"), saveQue(driver, param, ranking_question_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\ratingRadioButtonCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
 		readingData.put(param.get("Step17"), doubleClickOnQT(driver, param, rating_radio2_button, test));
 		fillQueDetails(driver, param, rating_radio2_button, testdata.get("case 1").getAsJsonObject(), test);
 		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		saveAnslibraryOptionsList(driver, param, param.get("AnswerOptions"), test);
 		readingData.put(param.get("Step18"), saveQue(driver, param, rating_radio2_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);		
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\ratingScaleCases.json", test);
 		readingData.put(param.get("Step19"), doubleClickOnQT(driver, param, rating_scale_button, test));
 		fillQueDetails(driver, param, rating_scale_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step20"), saveQue(driver, param, rating_scale_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\dateCases.json", test);
 		readingData.put(param.get("Step21"), doubleClickOnQT(driver, param, date_button, test));
 		fillQueDetails(driver, param, date_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step22"), saveQue(driver, param, date_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\multipleTextBoxCases.json", test);
 		readingData.put(param.get("Step23"), doubleClickOnQT(driver, param, multiple_textbox_button, test));
@@ -9969,6 +10027,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		param.put("mtbFormat", testdata.get("case 1").getAsJsonObject().get("format").getAsString());
 		fillSubquestionDetails(driver, param, multiple_textbox_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step24"), saveQue(driver, param, multiple_textbox_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\multipleDropDownCases.json", test);
 		readingData.put(param.get("Step25"), doubleClickOnQT(driver, param, multiple_dropdown_button, test));
@@ -9978,12 +10038,16 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		setNumberOfSubquestions(driver, param, multiple_dropdown_button, test);
 		fillSubquestionDetails(driver, param, multiple_dropdown_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step26"), saveQue(driver, param, multiple_dropdown_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\demoGraphicCases.json", test);
 		readingData.put(param.get("Step27"), doubleClickOnQT(driver, param, demographics_button, test));
 		fillQueDetails(driver, param, demographics_button, testdata.get("case 1").getAsJsonObject(), test);
 		selectDemoGraphicQuestions(driver, param, demographics_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step28"), saveQue(driver, param, demographics_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\matrixGridCases.json", test);
 		readingData.put(param.get("Step29"), doubleClickOnQT(driver, param, matrix_grid_button, test));
@@ -9995,11 +10059,15 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		fillGridQueDetailsinMG(driver, param, matrix_grid_button,  testdata.get("case 1").getAsJsonObject(), test);
 		fillSubquestionDetails(driver, param, matrix_grid_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step30"), saveQue(driver, param, matrix_grid_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\descriptionCases.json", test);
 		readingData.put(param.get("Step31"), doubleClickOnQT(driver, param, description_button, test));
 		fillQueDetails(driver, param, description_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step32"), saveQue(driver, param, description_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\attachmentCases.json", test);
 		readingData.put(param.get("Step33"), doubleClickOnQT(driver, param, attachments_button, test));
@@ -10008,7 +10076,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		setNumberOfSubquestions(driver, param, attachments_button, test);
 		fillSubquestionDetails(driver, param, attachments_button, testdata.get("case 1").getAsJsonObject(), test);
 		readingData.put(param.get("Step34"), saveQue(driver, param, attachments_button, testdata.get("case 1").getAsJsonObject(), test));
-		
+		deletePage(driver, param, test);
+		Thread.sleep(3000);
 		
 		return readingData;
 	}
@@ -10288,8 +10357,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	
 	public String goToExpiryRule(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, survey_options, test);
-		click(driver, testcaseName, survey_options, test);
+		goToSurveySetting(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 30, expiry_rules, test);
 		
 		// Capture page load time
@@ -10383,14 +10451,17 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	
 	public void openDashboard(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, IHomePage.hamburger_icon, test);
+		waitforElemPresent(driver, testcaseName, 30, IHomePage.all_projects, test);
 		click(driver, testcaseName, IHomePage.all_projects, test);
 		waitForJStoLoad(driver, 60);
 		waitForLoad(driver, testcaseName, 60, test);
 	}
 	
+	
+	
 	public void searchForSurveyInDashboard(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		openDashboard(driver, param, test);	
 		
 		switchToIframe(driver, testcaseName, IHomePage.all_project_dashboard_iframe, test);
 		waitForElementToBeVisible(driver, testcaseName, IHomePage.new_main_folder, 30, 100, test);
@@ -10616,6 +10687,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return strtotalTime;
 	}
 	
+	
 	public Map<String, String> getQuotaReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		Map<String, String> readingData = new LinkedHashMap<String, String>();
@@ -10789,4 +10861,205 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return strtotalTime;
 	}
 	
+	public Map<String, String> getSurveySettingsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		readingData.put(param.get("Step1"), goToProjectDetails(driver, param, test));
+		readingData.put(param.get("Step2"), goToSurveySetting(driver, param, test).
+				goToThankyouPage(driver, param, test).
+				saveSurveySettings(driver, param, test));
+		return readingData;
+	}
+	
+	
+	public String goToProjectDetails(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		goToSurveySetting(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, project_details, test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, project_details, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 30, project_details_title, test);
+		end = System.currentTimeMillis();	
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+
+	}
+
+	public SMXPage goToSurveySetting(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, survey_options, test);
+		click(driver, testcaseName, survey_options, test);
+		return this;
+	}
+	
+	public SMXPage goToThankyouPage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, thank_you_page, test);
+		click(driver, testcaseName, thank_you_page, test);
+		return this;
+	}
+	
+	public Map<String, String> getAssessmentSettingsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		readingData.put(param.get("Step1"), goToAssignScorePage(driver, param, test));
+		readingData.put(param.get("Step2"), selectCategory(driver, param, "Category 1", test).
+				saveAssignScore(driver, param, test));
+		return readingData;
+	}
+	
+	public String goToAssignScorePage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, assign_scores, test);
+		
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, assign_scores, test);
+		waitforElemPresent(driver, testcaseName, 30, assign_scores_label, test);
+		end = System.currentTimeMillis();	
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public SMXPage selectCategory(WebDriver driver, HashMap<String, String> param, String category, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@title='" + category + "']"), category, test);
+		click(driver, testcaseName, By.xpath("//div[@title='" + category + "']"), category, test);
+		waitforElemPresent(driver, testcaseName, 60, category_heading, test);
+		return this;
+	}
+	
+	public String saveAssignScore(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, save_btn, test);
+		waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, save_btn, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		end = System.currentTimeMillis();	
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public Map<String, String> getMultipleQuestionBranchingReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		readingData.put(param.get("Step1"), goToMultipleQuestionBranching(driver, param, test));
+		String [] ansOption = {"Never", "Almost Never"};
+		selectMultipleQuestionBranchingPage(driver, param, 1, test).selectQuestionForRule(driver, param, "1", "1", "Q 1. Frequency (Rating Radio Button)", test)
+		.selectAnsConditionForRule(driver, param, "1", "1", "Is one of the following", test).selectAnsOptionsForRule(driver, param, ansOption, test)
+		.addCondition(driver, param, test);
+		String [] ansOption2 = {"Female", "Male"};
+		selectQuestionForRule(driver, param, "1", "2", "Q 11(a). Details of participant: Gender", test)
+		.selectAnsConditionForRule(driver, param, "1", "2", "Is one of the following", test).selectAnsOptionsForRule(driver, param, ansOption2, test)
+		.addCondition(driver, param, test);
+		String [] ansOption3 = {"Accountant", "Consultant"};
+		selectQuestionForRule(driver, param, "1", "3", "Q 13. Occupation", test)
+		.selectAnsConditionForRule(driver, param, "1", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, ansOption3, test)
+		.addNewRule(driver, param, "2", test);
+				
+		return readingData;
+	}
+	
+	public String goToMultipleQuestionBranching(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, logic, test);
+		waitforElemPresent(driver, testcaseName, 30, multiple_que_branching, test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, multiple_que_branching, test);
+		waitForElementToBeVisible(driver, testcaseName, iframe_multiple_que_branching, 30, 100, test);
+		switchToIframe(driver, testcaseName, iframe_multiple_que_branching, test);
+		waitForInsideLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(@id,'dvMainPageCon_')]"), "Page Accordion", test);
+		end = System.currentTimeMillis();	
+		
+		return strtotalTime;
+	}
+	
+	public SMXPage selectMultipleQuestionBranchingPage(WebDriver driver, HashMap<String, String> param, int page, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(@id,'dvMainPageCon_" + page + "')]"), "Page Accordion " + page, test);
+		click(driver, testcaseName, By.xpath("//div[starts-with(@id,'dvMainPageCon_" + page + "')]"), "Page Accordion " + page,  test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, page, mqb_info, test);
+		return this;
+	}
+	
+	public SMXPage selectQuestionForRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, String strConditionNo, String qTitle, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 0, By.xpath("//div[@id='dvQCont_"+ strRuleNO + "_" + strConditionNo +"']"), "Condition Drop down", test);
+		click(driver, testcaseName, By.xpath("//div[@id='dvQCont_"+ strRuleNO + "_" + strConditionNo +"']"), "Condition Drop down", test);
+		scrollIntoCenter(driver, testcaseName, By.xpath("//li[@id='liQList_"+ strRuleNO + "_" + strConditionNo +"']//span[@title='" + qTitle + "']"), qTitle, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//li[@id='liQList_"+ strRuleNO + "_" + strConditionNo +"']//span[@title='" + qTitle + "']"), qTitle, test);
+		click(driver, testcaseName,By.xpath("//li[@id='liQList_"+ strRuleNO + "_" + strConditionNo +"']//span[@title='" + qTitle + "']"), qTitle, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@id='ddlAnsOpr_"+ strRuleNO + "_" + strConditionNo +"']"), "Answer Option Drop down", test);
+		return this;
+	}
+	
+	public SMXPage selectAnsConditionForRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, String strConditionNo, String strCondition, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@id='ddlAnsOpr_"+ strRuleNO + "_" + strConditionNo +"']"), "Answer Option Drop down", test);
+		selectByVisibleText(driver, testcaseName, By.xpath("//select[@id='ddlAnsOpr_"+ strRuleNO + "_" + strConditionNo +"']"), strCondition, test);		
+		return this;
+	}
+	
+	public SMXPage selectAnsOptionsForRule(WebDriver driver, HashMap<String, String> param, String[] ansOptions, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		for(int i=0; i<ansOptions.length; i++) {
+			scrollIntoCenter(driver, testcaseName, By.xpath("//label[starts-with(@id,'lblAns')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[starts-with(@id,'lblAns')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
+			click(driver, testcaseName, By.xpath("//label[starts-with(@id,'lblAns')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
+			Thread.sleep(500);
+		}
+		return this;
+	}
+	
+	public SMXPage addCondition(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		int totalConditionsBefore = driver.findElements(By.xpath("//div[starts-with(@id,'dvQCont_')]")).size();
+		click(driver, testcaseName, add_condition, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		int totalConditionsAfter = driver.findElements(By.xpath("//div[starts-with(@id,'dvQCont_')]")).size();
+		if(totalConditionsAfter == (totalConditionsBefore + 1)) {
+			reportPass("Condition added successfully.", test);
+		}else {
+			reportFail(testcaseName, "Condition is not added.", test);
+		}
+		return this;
+	}
+	
+	public SMXPage addNewRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='dvAddRule_" + strRuleNO +"']"), "Add New Rule", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvAddRule_" + strRuleNO +"']"), "Add New Rule", test);
+		click(driver, testcaseName, By.xpath("//div[@id='dvAddRule_" + strRuleNO +"']"), "Add New Rule", test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='Rule " + strRuleNO + "']"), "Rule " + strRuleNO, 30, 100, test);
+		return this;
+	}
 }

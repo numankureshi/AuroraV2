@@ -7,6 +7,15 @@ public interface IHomePage {
 	String ALL_PROJECTS = "//div[@id='divBrowseAll']";
 	WebPageElements all_projects = new WebPageElements("All Projects", "xpath", ALL_PROJECTS);
 	
+	String ALL_PROJECTS2 = "//div[text()='All Projects']";
+	WebPageElements all_projects2 = new WebPageElements("All Projects", "xpath", ALL_PROJECTS2);
+	
+	String ALL_PROJECTS3 = "//div[text()='All Projects']";
+	WebPageElements all_projects3 = new WebPageElements("All Projects", "xpath", ALL_PROJECTS3);
+	
+	String HAMBURGER_ICON = "//div[@class='hd-main-DD']";
+	WebPageElements hamburger_icon = new WebPageElements("Hamburger Main Icon", "xpath", HAMBURGER_ICON);
+	
 	String ALL_PROJECT_DASHBOARD_IFRAME = "//iframe[@id='iframe1']";
 	WebPageElements all_project_dashboard_iframe = new WebPageElements("All project dashboard Iframe", "xpath", ALL_PROJECT_DASHBOARD_IFRAME);
 	
@@ -64,7 +73,7 @@ public interface IHomePage {
 	String SCANNER_READY = "//div[@id='over-div-contents']//a[@id='A1']";
 	WebPageElements scanner_ready = new WebPageElements("Scanner Ready", "xpath", SCANNER_READY);
 	
-	String DELETE = "//div[@class='survey more-button-options top-arrow']/div/span[contains(text(),'Delete')]";
+	String DELETE = "//div[@id='over-div-contents']//div[contains(@class,'survey more-button-options')]/div/span[contains(text(),'Delete')]";
 	WebPageElements delete = new WebPageElements("Delete", "xpath", DELETE);
 	
 	String COPY_ICON = "//div[@id='OverDivCopy']/span";
