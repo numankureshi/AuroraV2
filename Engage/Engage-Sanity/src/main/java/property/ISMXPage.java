@@ -1296,4 +1296,34 @@ public interface ISMXPage {
 	String DELTE_FILE = "//input[@id='BtnDelete']";
 	WebPageElements delete_file = new WebPageElements("Delete File", "xpath", DELTE_FILE );
 	
+	
+	String QUESTIONS_FOCUS = "//span[starts-with(@class,'Quesgrid editqtitleAll')]";
+	WebPageElements questions_focus = new WebPageElements("QUESTIONS_FOCUS", "xpath", QUESTIONS_FOCUS);
+	
+	
+	String LOGIC_BUTTON = "//span[normalize-space()='Logic']";
+	WebPageElements logic_button = new WebPageElements("LOGIC_BUTTON", "xpath", LOGIC_BUTTON);
+	
+	
+	String MULTI_QUESTION_BRANCHING = "//div[normalize-space()='Multi-Question Branching']";
+	WebPageElements multi_question_branching = new WebPageElements("MULTI_QUESTION_BRANCHING", "xpath", MULTI_QUESTION_BRANCHING);
+	
+	
+	String CLOSE_BUTTON = "//div[@class='modalDialog NoTransform']//div[@class='modalClose']";
+	WebPageElements close_button = new WebPageElements("CLOSE_BUTTON", "xpath", CLOSE_BUTTON);
+	
+	String SELECT_QUESTION_DD_MQB = "//div[@class='AdvbrnchQues']";
+	WebPageElements select_question_dd_mqb = new WebPageElements("SELECT_QUESTION_DD_MQB", "xpath", SELECT_QUESTION_DD_MQB);
+	
+	
+	String SELECT_QUESTION_DD_MQB1 = "//div[@class='AdvbrnchQues AdvbrnchQueshover']";
+	WebPageElements select_question_dd_mqb1 = new WebPageElements("SELECT_QUESTION_DD_MQB1", "xpath", SELECT_QUESTION_DD_MQB1);
+	
+	
+	String CONDITION_DROP_DOWN = "//select[@id='ddlAnsOpr_1_1']";
+	WebPageElements condition_drop_down = new WebPageElements("CONDITION_DROP_DOWN", "xpath", CONDITION_DROP_DOWN);
+	
+	
+	
+	
 }

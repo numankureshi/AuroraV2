@@ -68,6 +68,8 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("downloadFilePath", downloadFilePath);
 		param.put("segmentGroupName", getData(data, "TextBox"));
 		param.put("segmentQue", getData(data, "RadioButton"));
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("emailPassword", getData(data, "emailPassword"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -88,6 +90,11 @@ public class RMXPage_TC extends SuiteBase {
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateOmniReport(getDriver(), param, test);
+				savedReportPage.goToSavedReportPage(getDriver(), param, test)
+					.validateSavedReport(getDriver(), param, test);
+				emailedReportPage.goToEmailedReportPage(getDriver(), param, test)
+					.validateEmailedReport(getDriver(), param, test)
+					.isEmailedReceived(getDriver(), param, test);
 			}
 		}
 
@@ -109,6 +116,8 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
 		param.put("downloadFilePath", downloadFilePath);
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("emailPassword", getData(data, "emailPassword"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -129,6 +138,11 @@ public class RMXPage_TC extends SuiteBase {
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPageResearch.generateAdvancedFrequencyReport(getDriver(), param, test);
+				savedReportPage.goToSavedReportPage(getDriver(), param, test)
+					.validateSavedReport(getDriver(), param, test);
+				emailedReportPage.goToEmailedReportPage(getDriver(), param, test)
+					.validateEmailedReport(getDriver(), param, test)
+					.isEmailedReceived(getDriver(), param, test);
 			}
 		}
 
@@ -150,6 +164,8 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
 		param.put("downloadFilePath", downloadFilePath);
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("emailPassword", getData(data, "emailPassword"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -170,6 +186,11 @@ public class RMXPage_TC extends SuiteBase {
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateIndividualReport(getDriver(), param, test);
+				savedReportPage.goToSavedReportPage(getDriver(), param, test)
+					.validateSavedReport(getDriver(), param, test);
+				emailedReportPage.goToEmailedReportPage(getDriver(), param, test)
+					.validateEmailedReport(getDriver(), param, test)
+					.isEmailedReceived(getDriver(), param, test);
 			}
 		}
 
@@ -191,6 +212,8 @@ public class RMXPage_TC extends SuiteBase {
 		param.put("emailto", getData(data, "Email"));
 		param.put("rName", getData(data, "Expected"));
 		param.put("downloadFilePath", downloadFilePath);
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("emailPassword", getData(data, "emailPassword"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -211,6 +234,11 @@ public class RMXPage_TC extends SuiteBase {
 				loadBrowser(downloadFilePath);
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				rmxPage.generateResponseTableReport(getDriver(), param, test);
+				savedReportPage.goToSavedReportPage(getDriver(), param, test)
+					.validateSavedReport(getDriver(), param, test);
+				emailedReportPage.goToEmailedReportPage(getDriver(), param, test)
+					.validateEmailedReport(getDriver(), param, test)
+					.isEmailedReceived(getDriver(), param, test);
 			}
 		}
 

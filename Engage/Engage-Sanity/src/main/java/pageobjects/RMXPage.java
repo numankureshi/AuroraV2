@@ -17,6 +17,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +26,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.jsoup.Jsoup;
@@ -45,6 +47,7 @@ import property.IHomePage;
 import property.IRMXPage;
 import utility.JSONUtility;
 import utility.SeleniumUtils;
+import utility.SuiteUtility;
 import utility.WebPageElements;
 
 public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
@@ -4091,6 +4094,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			selectOmniReport(driver, param, test);
 		}
 		slideShowEmail(driver, param, test);
+		isSlideShowEmailReceived(driver, param, test);
 		sendOmniExeMail(driver, param, test);
 		click(driver, testcaseName, omni_report_tab, test);
 		saveReport(driver, param, test);
@@ -4303,6 +4307,7 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		propertiesPage(driver, param, test);
 		dataSources(driver, param, test);
 		slideShowEmail(driver, param, test);
+		isSlideShowEmailReceived(driver, param, test);
 		saveReport2(driver, param, test);
 		downloadReportAdvance(driver, param, test);
 		emailReport(driver, param, test);
@@ -5097,6 +5102,9 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public void slideShowEmail(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
+		Date currentTime = Calendar.getInstance().getTime();
+		param.put("emailSlideshowSentTime", currentTime.toString());
+		
 		waitforElemPresent(driver, testcaseName, 30, slideshow_icon, test);
 		click(driver, testcaseName, slideshow_icon, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -5120,6 +5128,84 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 			click(driver, testcaseName, toaster_close, test);
 		}
 		
+	}
+	
+	public RMXPage isSlideShowEmailReceived(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+
+		String testcaseName = param.get("TestCaseName");
+		SimpleDateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
+		Date emailSentTime = null;
+		try {
+			emailSentTime = formatter.parse(param.get("emailSlideshowSentTime"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		boolean isOmni = driver.getTitle().contains("Omni");
+		String subject = isOmni ? "Invitation to view Omni Report Slideshow" : "Invitation to view Advanced Frequency Slideshow";
+		HashMap<String, String> emailData = SuiteUtility.waitForEmailToBeReceived(param, param.get("emailhost"), param.get("emailto"),
+				param.get("emailPassword"), subject, emailSentTime, test);
+		
+		// Check email report URL in message content
+		Pattern p = Pattern.compile("href=\"(.*?)\"");
+		Matcher m = p.matcher(emailData.get("Message Content"));
+		if (m.find()) {
+			System.out.println(m.group(0));
+			if (isOmni) {
+				if (m.group(1).contains(SuiteUtility.getHost(driver.getCurrentUrl())) && m.group(1).contains("/zRMx/omnireport.aspx")) {
+					param.put("emailedSlideshowUrl", m.group(1));
+					reportPass("Slideshow Url is present in email content. Slideshow url : " + param.get("emailedSlideshowUrl"), test);
+				} else {
+					reportFail(testcaseName, "Email Slideshow url is not found", test);
+				}
+			}else {
+				if (m.group(1).contains(SuiteUtility.getHost(driver.getCurrentUrl())) && m.group(1).contains("/zRMx/Slideshow.aspx")) {
+					param.put("emailedSlideshowUrl", m.group(1));
+					reportPass("Slideshow Url is present in email content. Slideshow url : " + param.get("emailedSlideshowUrl"), test);
+				} else {
+					reportFail(testcaseName, "Email Slideshow url is not found", test);
+				}
+			}
+		}
+			
+		
+		
+		// Check Branding logo URL in message content
+		p = Pattern.compile("src=\"(.*?)\"");
+		m = p.matcher(emailData.get("Message Content"));
+		
+		if(m.find()) {
+			System.out.println(m.group(0));
+			param.put("brandingUrl", m.group(1));
+		}else {
+			reportFail(testcaseName, "Branding url is not found", test);
+		}
+		
+		// Check if branding logo is broken or not by validating the status code
+		if (SuiteUtility.checkStatusCode(param.get("brandingUrl")) == 200) {
+
+			// Compare branding logo with expected result
+			param.put("brandingLogoPath", param.get("downloadFilePath") + "brandingLogo_" + SuiteUtility.randomNumberGenerator(10000) + ".jpg");
+			SuiteUtility.saveFile(param.get("brandingUrl"), param.get("brandingLogoPath"));
+			String diffImagePath = param.get("downloadFilePath") + "brandingLogo_diff_" + SuiteUtility.randomNumberGenerator(10000) + ".jpg";
+			boolean isImageMatch = driver.getTitle().contains("Sogolytics")
+					? SuiteUtility.compareImages(param.get("brandingLogoPath"),
+							System.getProperty("user.dir") + "\\src\\main\\resources\\productImages\\" + "poweredby.jpg", diffImagePath)
+					: SuiteUtility.compareImages(param.get("brandingLogoPath"),
+							System.getProperty("user.dir") + "\\src\\main\\resources\\productImages\\" + "k_logo.gif", diffImagePath);
+			if (isImageMatch) {
+				reportPass("Branding logo is verified with expected result", test);
+			} else {
+				reportFail(testcaseName,
+						"Branding logo is not matching with expected result. Check difference at " + diffImagePath,
+						test);
+			}
+
+		} else {
+			reportFail(testcaseName, "Branding image is not found", test);
+		}
+		
+		return this;	
+	
 	}
 	
 	public void saveReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
@@ -5199,6 +5285,10 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 	
 	public void emailReport(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
+		
+		Date currentTime = Calendar.getInstance().getTime();
+		param.put("emailSentTime", currentTime.toString());
+		
 		waitforElemPresent(driver, testcaseName, 30, share_email, test);
 		click(driver, testcaseName, share_email, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -5219,6 +5309,9 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		click(driver, testcaseName, continue_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, share_email_send, test);
+		
+		param.put("emailReportSubject", driver.findElement(By.xpath(SUBJECT)).getAttribute("innerHTML"));
+		
 		click(driver, testcaseName, share_email_send, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[text()='Your report has been emailed to:']"), "Your report has been emailed to:", test);

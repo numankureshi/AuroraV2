@@ -474,12 +474,6 @@ public interface IRMXPage {
 	String ALL_REPORTS = "//input[@id='hd-merged-btn fr']";
 	WebPageElements all_reports = new WebPageElements("ALL REPORTS", "xpath", ALL_REPORTS );
 	
-	String SAVED_REPORTS = "//input[@id='dvSavedReportTab']";
-	WebPageElements saved_reports = new WebPageElements("Saved Reports", "xpath", SAVED_REPORTS );
-	
-	String EMAIL_REPORTS = "//input[@id='dvEmailReportTab']";
-	WebPageElements email_reports = new WebPageElements("Email Reports", "xpath", EMAIL_REPORTS );
-	
 	String FILTER_MANAGER = "//input[@id='dvFilterManagerTab']";
 	WebPageElements filter_manager = new WebPageElements("FIlter Manager", "xpath", FILTER_MANAGER );
 
@@ -1200,6 +1194,9 @@ public interface IRMXPage {
 	    String SELECT_ALL_OPTIONS= "//label[normalize-space()='Select all options']";
 	    WebPageElements select_all_options = new WebPageElements("SELECT_ALL_OPTIONS for filter", "xpath", SELECT_ALL_OPTIONS);
 	
-	  
+	    String MORE = "//div[@title='More']";
+	    WebPageElements more = new WebPageElements("More", "xpath", MORE);
 	   
+	    String SUBJECT = "//td[starts-with(text(),'Subject')]/following-sibling::td[@class='secondtd']";
+	    WebPageElements subject = new WebPageElements("Subject", "xpath", SUBJECT);
 }

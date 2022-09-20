@@ -50,6 +50,8 @@ import pageobjects.SMXPage;
 import pageobjects.StaticPage;
 import pageobjects.SurveyPage;
 import pageobjects.utilities.MasterLogPage;
+import pageobjects.RMX.EmailedReportPage;
+import pageobjects.RMX.SavedReportPage;
 import utility.DecryptPassword;
 import utility.ExtentManager;
 import utility.FetchExcelDataSet;
@@ -85,6 +87,8 @@ public class SuiteBase {
 	public DMXPageResearch dmxPage2 = new DMXPageResearch();
 	public DataPage dataPage = new DataPage();
 	public MasterLogPage masterlogPage = new MasterLogPage();
+	public SavedReportPage savedReportPage = new SavedReportPage();
+	public EmailedReportPage emailedReportPage = new EmailedReportPage();
 	public DecryptPassword decryptPass = new DecryptPassword();
 	protected FetchExcelDataSet fetchExcelData = new FetchExcelDataSet();
 	public RMXPage rmxPage = new RMXPage();
