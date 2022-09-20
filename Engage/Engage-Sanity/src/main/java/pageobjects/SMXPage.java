@@ -2841,8 +2841,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void Final_Merge_Steps(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, utilities, test);
-		click(driver, testcaseName, utilities, test);
+		waitforElemPresent(driver, testcaseName, 30, utilitiesfrominside, test);
+		click(driver, testcaseName, utilitiesfrominside, test);
 		waitforElemPresent(driver, testcaseName, 30, merge_projects, test);
 		click(driver, testcaseName, merge_projects, test);
 		waitforElemPresent(driver, testcaseName, 30, create_new_merge_projects, test);

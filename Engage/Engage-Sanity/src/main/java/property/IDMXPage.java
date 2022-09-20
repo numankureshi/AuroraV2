@@ -362,7 +362,7 @@ public interface IDMXPage {
 	String REVIEW_DATE = "(//a[text()='Review Data'])[2]";
 	WebPageElements review_data = new WebPageElements("Review Data", "xpath", REVIEW_DATE);
 	
-	String SEND_OR_SCHEDULE = "//a[contains(text(),'Send Or Schedule')]";
+	String SEND_OR_SCHEDULE = "//span[@id='lblCountMsg3']";
 	WebPageElements send_or_schedule = new WebPageElements("Send Or Schedule", "xpath", SEND_OR_SCHEDULE);
 	
 	String SEND_OR_SCHEDULE2 = "//a[contains(text(),'Send Or Schedule')]";
@@ -691,8 +691,8 @@ public interface IDMXPage {
 	String SELECT_TEMPLATE = "//div[@class='btn-quick-view center select-btn']";
 	WebPageElements select_template = new WebPageElements("SelectTemplate", "xpath", SELECT_TEMPLATE );
 	
-	String TEXT_AREA_FOR_INVIATION = "//div[@class='textarea invitation wordcontainer']";
-	WebPageElements text_area_for_invitation = new WebPageElements("Text_Area_For_Invitaion", "xpath", TEXT_AREA_FOR_INVIATION );
+	String TEXT_AREA_FOR_INVITATION = "//div[@class='textarea invitation wordcontainer']";
+	WebPageElements text_area_for_invitation = new WebPageElements("Text_Area_For_Invitaion", "xpath", TEXT_AREA_FOR_INVITATION );
 	
 	String BUTTON_CONTINUE = "//input[@id='btnNext']";
 	WebPageElements button_continue = new WebPageElements("Button_Continue", "xpath", BUTTON_CONTINUE );
