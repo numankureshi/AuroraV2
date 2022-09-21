@@ -10967,22 +10967,83 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		}
 		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
 		readingData.put(param.get("Step1"), goToMultipleQuestionBranching(driver, param, test));
+		
+		// Add first rule
 		String [] ansOption = {"Never", "Almost Never"};
-		selectMultipleQuestionBranchingPage(driver, param, 1, test).selectQuestionForRule(driver, param, "1", "1", "Q 1. Frequency (Rating Radio Button)", test)
-		.selectAnsConditionForRule(driver, param, "1", "1", "Is one of the following", test).selectAnsOptionsForRule(driver, param, ansOption, test)
-		.addCondition(driver, param, test);
+		selectMultipleQuestionBranchingPage(driver, param, "2", test).selectQuestionForRule(driver, param, "1", "1", "Q 1. Frequency (Rating Radio Button)", test)
+		.selectAnsConditionForRule(driver, param, "1", "1", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "1", "1", ansOption, test)
+		.addCondition(driver, param, "1", test);
 		String [] ansOption2 = {"Female", "Male"};
 		selectQuestionForRule(driver, param, "1", "2", "Q 11(a). Details of participant: Gender", test)
-		.selectAnsConditionForRule(driver, param, "1", "2", "Is one of the following", test).selectAnsOptionsForRule(driver, param, ansOption2, test)
-		.addCondition(driver, param, test);
+		.selectAnsConditionForRule(driver, param, "1", "2", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "1", "2", ansOption2, test)
+		.addCondition(driver, param, "1", test);
 		String [] ansOption3 = {"Accountant", "Consultant"};
 		selectQuestionForRule(driver, param, "1", "3", "Q 13. Occupation", test)
-		.selectAnsConditionForRule(driver, param, "1", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, ansOption3, test)
+		.selectAnsConditionForRule(driver, param, "1", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "1", "3", ansOption3, test)
 		.addNewRule(driver, param, "2", test);
+		
+		// Add second rule
+		selectQuestionForRule(driver, param, "2", "1", "Q 1. Frequency (Rating Radio Button)", test)
+		.selectAnsConditionForRule(driver, param, "2", "1", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "2", "1", ansOption, test)
+		.addCondition(driver, param, "2", test);
+		selectQuestionForRule(driver, param, "2", "2", "Q 11(a). Details of participant: Gender", test)
+		.selectAnsConditionForRule(driver, param, "2", "2", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "2", "2",ansOption2, test)
+		.addCondition(driver, param, "2", test);
+		selectQuestionForRule(driver, param, "2", "3", "Q 13. Occupation", test)
+		.selectAnsConditionForRule(driver, param, "2", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "2", "3", ansOption3, test)
+		.addNewRule(driver, param, "2", test);
+		
+		// Add third rule
+		selectQuestionForRule(driver, param, "3", "1", "Q 1. Frequency (Rating Radio Button)", test)
+		.selectAnsConditionForRule(driver, param, "3", "1", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "3", "1", ansOption, test)
+		.addCondition(driver, param, "3", test);
+		selectQuestionForRule(driver, param, "3", "2", "Q 11(a). Details of participant: Gender", test)
+		.selectAnsConditionForRule(driver, param, "3", "2", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "3", "2", ansOption2, test)
+		.addCondition(driver, param, "3", test);
+		selectQuestionForRule(driver, param, "3", "3", "Q 13. Occupation", test)
+		.selectAnsConditionForRule(driver, param, "3", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "3", "3", ansOption3, test)
+		.addNewRule(driver, param, "2", test);
+		
+		// Add fourth rule
+		selectQuestionForRule(driver, param, "4", "1", "Q 1. Frequency (Rating Radio Button)", test)
+		.selectAnsConditionForRule(driver, param, "4", "1", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "4", "1", ansOption, test)
+		.addCondition(driver, param, "4", test);
+		selectQuestionForRule(driver, param, "4", "2", "Q 11(a). Details of participant: Gender", test)
+		.selectAnsConditionForRule(driver, param, "4", "2", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "4", "2", ansOption2, test)
+		.addCondition(driver, param, "4", test);
+		selectQuestionForRule(driver, param, "4", "3", "Q 13. Occupation", test)
+		.selectAnsConditionForRule(driver, param, "4", "3", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "4", "3", ansOption3, test)
+		.addNewRule(driver, param, "2", test);
+		
+		// Add fifth rule
+		selectQuestionForRule(driver, param, "5", "1", "Q 1. Frequency (Rating Radio Button)", test)
+		.selectAnsConditionForRule(driver, param, "5", "1", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "5", "1", ansOption, test)
+		.addCondition(driver, param, "5", test);
+		selectQuestionForRule(driver, param, "5", "2", "Q 11(a). Details of participant: Gender", test)
+		.selectAnsConditionForRule(driver, param, "5", "2", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "5", "2", ansOption2, test)
+		.addCondition(driver, param, "5", test);
+		selectQuestionForRule(driver, param, "5", "3", "Q 13. Occupation", test)
+		.selectAnsConditionForRule(driver, param, "5", "3", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "5", "3", ansOption3, test);
+		
+		readingData.put(param.get("Step2"), saveBranchingRule(driver, param, testcaseName, test));
+		
+		// Delete all rules
+		for(int i= 0; i<5; i++) {
+			deleteRule(driver, param, 1, test);
+		}
+		
+		saveBranchingRulenReturn(driver, param, testcaseName, test);
 				
 		return readingData;
 	}
 	
+	/**
+	 * Open Multi-Question Branching modal
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 */
 	public String goToMultipleQuestionBranching(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		click(driver, testcaseName, logic, test);
@@ -10997,21 +11058,42 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(@id,'dvMainPageCon_')]"), "Page Accordion", test);
 		end = System.currentTimeMillis();	
 		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
 		return strtotalTime;
 	}
 	
-	public SMXPage selectMultipleQuestionBranchingPage(WebDriver driver, HashMap<String, String> param, int page, ExtentTest test) {
+	/**
+	 * Select any page by passing strPageNo parameter in Multiple-Question Branching modal
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param test
+	 * @return
+	 */
+	public SMXPage selectMultipleQuestionBranchingPage(WebDriver driver, HashMap<String, String> param, String strPageNo, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(@id,'dvMainPageCon_" + page + "')]"), "Page Accordion " + page, test);
-		click(driver, testcaseName, By.xpath("//div[starts-with(@id,'dvMainPageCon_" + page + "')]"), "Page Accordion " + page,  test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvMainPageCon_" + strPageNo + "']"), "Page Accordion " + strPageNo, test);
+		click(driver, testcaseName, By.xpath("//div[@id='dvMainPageCon_" + strPageNo + "']"), "Page Accordion " + strPageNo,  test);
 		waitForLoad(driver, testcaseName, 60, test);
-		waitforElemPresent(driver, testcaseName, page, mqb_info, test);
+		waitforElemPresent(driver, testcaseName, 30, mqb_info, test);
 		return this;
 	}
 	
+	/**
+	 * Select survey question for Multiple-Question Branching rule
+	 * @param driver
+	 * @param param
+	 * @param strRuleNO
+	 * @param strConditionNo
+	 * @param qTitle
+	 * @param test
+	 * @return
+	 */
 	public SMXPage selectQuestionForRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, String strConditionNo, String qTitle, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 0, By.xpath("//div[@id='dvQCont_"+ strRuleNO + "_" + strConditionNo +"']"), "Condition Drop down", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvQCont_"+ strRuleNO + "_" + strConditionNo +"']"), "Condition Drop down", test);
 		click(driver, testcaseName, By.xpath("//div[@id='dvQCont_"+ strRuleNO + "_" + strConditionNo +"']"), "Condition Drop down", test);
 		scrollIntoCenter(driver, testcaseName, By.xpath("//li[@id='liQList_"+ strRuleNO + "_" + strConditionNo +"']//span[@title='" + qTitle + "']"), qTitle, test);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//li[@id='liQList_"+ strRuleNO + "_" + strConditionNo +"']//span[@title='" + qTitle + "']"), qTitle, test);
@@ -11021,6 +11103,16 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return this;
 	}
 	
+	/**
+	 * Select answer options condition for for applied condition in rule
+	 * @param driver
+	 * @param param
+	 * @param strRuleNO
+	 * @param strConditionNo
+	 * @param strCondition
+	 * @param test
+	 * @return
+	 */
 	public SMXPage selectAnsConditionForRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, String strConditionNo, String strCondition, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//select[@id='ddlAnsOpr_"+ strRuleNO + "_" + strConditionNo +"']"), "Answer Option Drop down", test);
@@ -11028,23 +11120,45 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return this;
 	}
 	
-	public SMXPage selectAnsOptionsForRule(WebDriver driver, HashMap<String, String> param, String[] ansOptions, ExtentTest test) throws InterruptedException {
+	/**
+	 * Select Answer options for applied condition in rule
+	 * @param driver
+	 * @param param
+	 * @param strRuleNO
+	 * @param strConditionNo
+	 * @param ansOptions
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public SMXPage selectAnsOptionsForRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, String strConditionNo, String[] ansOptions, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		for(int i=0; i<ansOptions.length; i++) {
-			scrollIntoCenter(driver, testcaseName, By.xpath("//label[starts-with(@id,'lblAns')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
-			waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[starts-with(@id,'lblAns')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
-			click(driver, testcaseName, By.xpath("//label[starts-with(@id,'lblAns')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
+			scrollIntoCenter(driver, testcaseName, By.xpath("//label[starts-with(@id,'lblAns_" + strRuleNO + "_" + strConditionNo +"')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[starts-with(@id,'lblAns_" + strRuleNO + "_" + strConditionNo +"')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
+			click(driver, testcaseName, By.xpath("//label[starts-with(@id,'lblAns_" + strRuleNO + "_" + strConditionNo +"')][text()='" + ansOptions[i] + "']"), ansOptions[i], test);
 			Thread.sleep(500);
 		}
 		return this;
 	}
 	
-	public SMXPage addCondition(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+	/**
+	 * Add condition in rule
+	 * @param driver
+	 * @param param
+	 * @param strRuleNO
+	 * @param test
+	 * @return
+	 */
+	public SMXPage addCondition(WebDriver driver, HashMap<String, String> param, String strRuleNO, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
+		
 		int totalConditionsBefore = driver.findElements(By.xpath("//div[starts-with(@id,'dvQCont_')]")).size();
-		click(driver, testcaseName, add_condition, test);
+		click(driver, testcaseName, By.xpath("//td[@id='tdAddCond_" + strRuleNO + "']/div[@class='add_new_btn_cont addcondition']") , "Add Condition", test);
 		waitForLoad(driver, testcaseName, 60, test);
 		int totalConditionsAfter = driver.findElements(By.xpath("//div[starts-with(@id,'dvQCont_')]")).size();
+		
+		// Validate if condition has been added or not
 		if(totalConditionsAfter == (totalConditionsBefore + 1)) {
 			reportPass("Condition added successfully.", test);
 		}else {
@@ -11053,13 +11167,283 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return this;
 	}
 	
-	public SMXPage addNewRule(WebDriver driver, HashMap<String, String> param, String strRuleNO, ExtentTest test) {
+	/**
+	 * Add new rule in given page
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param test
+	 * @return
+	 */
+	public SMXPage addNewRule(WebDriver driver, HashMap<String, String> param, String strPageNo, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
-		scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='dvAddRule_" + strRuleNO +"']"), "Add New Rule", test);
-		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvAddRule_" + strRuleNO +"']"), "Add New Rule", test);
-		click(driver, testcaseName, By.xpath("//div[@id='dvAddRule_" + strRuleNO +"']"), "Add New Rule", test);
+		scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='dvAddRule_" + strPageNo +"']"), "Add New Rule", test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvAddRule_" + strPageNo +"']"), "Add New Rule", test);
+		click(driver, testcaseName, By.xpath("//div[@id='dvAddRule_" + strPageNo +"']"), "Add New Rule", test);
 		waitForLoad(driver, testcaseName, 30, test);
-		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='Rule " + strRuleNO + "']"), "Rule " + strRuleNO, 30, 100, test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[text()='Rule " + strPageNo + "']"), "Rule " + strPageNo, 30, 100, test);
 		return this;
 	}
+	
+	/**
+	 * Save Branching Rule
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param test
+	 * @return
+	 */
+	public String saveBranchingRule(WebDriver driver, HashMap<String, String> param, String strPageNo, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, adv_save, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemNotVisible(driver, testcaseName, 60, add_condition, test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Save and Return to Branching page
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param test
+	 * @return
+	 */
+	public String saveBranchingRulenReturn(WebDriver driver, HashMap<String, String> param, String strPageNo, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, adv_save_n_return, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(@id,'dvMainPageCon_')]"), "Page Accordion", test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	
+	/**
+	 * Delete Branching rule
+	 * @param driver
+	 * @param param
+	 * @param ruleNo
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public SMXPage deleteRule(WebDriver driver, HashMap<String, String> param, int ruleNo, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		int totalRulesBefore = driver.findElements(By.xpath("//td[@class='brRule_head']/div[starts-with(text(),'Rule')]")).size();
+		scrollIntoCenter(driver, testcaseName, By.xpath("//div[starts-with(text(),'Rule "+ ruleNo + "')]/parent::td[@class='brRule_head']//*[@class='spnruledelete']/a"), "Rule " + ruleNo, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(text(),'Rule "+ ruleNo + "')]/parent::td[@class='brRule_head']//*[@class='spnruledelete']/a"), "Rule " + ruleNo, test);
+		click(driver, testcaseName, By.xpath("//div[starts-with(text(),'Rule "+ ruleNo + "')]/parent::td[@class='brRule_head']//*[@class='spnruledelete']/a"), "Rule " + ruleNo, test);
+		driver.switchTo().alert().accept();
+		waitForJStoLoad(driver, 60);
+		
+		int totalRulesAfter = driver.findElements(By.xpath("//td[@class='brRule_head']/div[starts-with(text(),'Rule')]")).size();
+		
+		// Validate if Rule has been deleted or not
+		if(totalRulesAfter == (totalRulesBefore - 1)) {
+			reportPass("Rule deleted successfully.", test);
+		}else {
+			reportFail(testcaseName, "Rule is not deleted.", test);
+		}
+		
+		return this;
+	}
+	
+
+	public Map<String, String> getSingleQuestionBranchingReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		readingData.put(param.get("Step1"), goToSingleQuestionBranching(driver, param, test));
+		
+		selectSingleQuestionBranchingPage(driver, param, "1", test)
+		.selectBranchingQue(driver, param, "1", "1", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "1", "1", "Never", "Page 3", test)
+		.saveSingleQuestionBranching(driver, param, "1", test);
+		
+		selectSingleQuestionBranchingPage(driver, param, "2", test)
+		.selectBranchingQue(driver, param, "2", "29", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "2", "29", "Never", "Page 4", test)
+		.saveSingleQuestionBranching(driver, param, "29", test);
+		
+		selectSingleQuestionBranchingPage(driver, param, "6", test)
+		.selectBranchingQue(driver, param, "6", "73", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "6", "73", "Never", "Page 8", test)
+		.saveSingleQuestionBranching(driver, param, "73", test);
+		
+		selectSingleQuestionBranchingPage(driver, param, "7", test)
+		.selectBranchingQue(driver, param, "7", "100", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "7", "100", "Never", "Page 9", test)
+		.saveSingleQuestionBranching(driver, param, "100", test);
+		
+		selectSingleQuestionBranchingPage(driver, param, "8", test)
+		.selectBranchingQue(driver, param, "8", "127", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "8", "127", "Never", "Page 10", test);
+		
+		readingData.put(param.get("Step2"), saveSingleQuestionBranching(driver, param, "127", test));
+		
+		deleteSingleQueBranching(driver, param, "1", test)
+		.deleteSingleQueBranching(driver, param, "29", test)
+		.deleteSingleQueBranching(driver, param, "73", test)
+		.deleteSingleQueBranching(driver, param, "100", test)
+		.deleteSingleQueBranching(driver, param, "127", test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Navigate to Single Question branching page
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 */
+	public String goToSingleQuestionBranching(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, logic, test);
+		waitforElemPresent(driver, testcaseName, 30, single_que_branching, test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, single_que_branching, test);
+		waitForElementToBeVisible(driver, testcaseName, iframe_single_que_branching, 30, 100, test);
+		switchToIframe(driver, testcaseName, iframe_single_que_branching, test);
+		waitForInsideLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[starts-with(@id,'dvMainPageCon_')]"), "Page Accordion", test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Select page on which branching needs to be apply
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param test
+	 * @return
+	 */
+	public SMXPage selectSingleQuestionBranchingPage(WebDriver driver, HashMap<String, String> param, String strPageNo, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, By.xpath("//div[@id='dvMainPageCon_" + strPageNo + "']"), "Page Accordion " + strPageNo, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvMainPageCon_" + strPageNo + "']"), "Page Accordion " + strPageNo, test);
+		click(driver, testcaseName, By.xpath("//div[@id='dvMainPageCon_" + strPageNo + "']"), "Page Accordion " + strPageNo,  test);
+		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvQuestionText_" + strPageNo + "']"), "Select Question Drop Down", test);
+		return this;
+	}
+	
+	/**
+	 * Select question for branching
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param strQNo
+	 * @param qTitle
+	 * @param test
+	 * @return
+	 */
+	public SMXPage selectBranchingQue(WebDriver driver, HashMap<String, String> param, String strPageNo, String strQNo, String qTitle, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		click(driver, testcaseName, By.xpath("//div[@id='dvQuestionText_" + strPageNo + "']"), "Select Question Drop Down", test);
+		scrollIntoCenter(driver, testcaseName, By.xpath("//div[@class='QuestCount'][text()='Q "+ strQNo +"']/following-sibling::div[@title='" + qTitle + "']"), 
+				"Q "+ strQNo + " " + qTitle, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='QuestCount'][text()='Q "+ strQNo +"']/following-sibling::div[@title='" + qTitle + "']"),
+				"Q "+ strQNo + " " + qTitle, test);
+		click(driver, testcaseName, By.xpath("//div[@class='QuestCount'][text()='Q "+ strQNo +"']/following-sibling::div[@title='" + qTitle + "']"), 
+				"Q "+ strQNo + " " + qTitle, test);
+		waitforElemPresent(driver, testcaseName, 0, By.xpath("//div[@id='dvAnswerList" + strPageNo + "']"), "Answer List", test);
+		return this;
+	}
+	
+	/**
+	 * Select logic for applied branching rule
+	 * @param driver
+	 * @param param
+	 * @param strPageNo
+	 * @param strQNo
+	 * @param ansOption
+	 * @param branchToLogic
+	 * @param test
+	 * @return
+	 */
+	public SMXPage selectBranchingLogicForAnswers(WebDriver driver, HashMap<String, String> param, String strPageNo, String strQNo, String ansOption, String branchToLogic, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvAnswerList" + strPageNo + "']/div//table//td[text()='" + ansOption + "']/following-sibling::td//select[@qno='" + strQNo + "']"), 
+				"Branch to this page for answer option :" + ansOption, test);
+		selectByExactVisibleText(driver, testcaseName, By.xpath("//div[@id='dvAnswerList" + strPageNo + "']/div//table//td[text()='" + ansOption + "']/following-sibling::td//select[@qno='" + strQNo + "']"), 
+				branchToLogic, test);
+		return this;
+	}
+	
+	/**
+	 * Save Single Question branching rule
+	 * @param driver
+	 * @param param
+	 * @param strQNo
+	 * @param test
+	 * @return
+	 */
+	public String saveSingleQuestionBranching(WebDriver driver, HashMap<String, String> param, String strQNo, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvSaveCancel_" + strQNo + "']/input[@value='Save']"), "Save",  test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, By.xpath("//div[@id='dvSaveCancel_" + strQNo + "']/input[@value='Save']"), "Save", test);
+		waitForElementToBeVisible(driver, testcaseName, By.xpath("//div[@id='dvEditDeleteBranching_" + strQNo + "']//div[starts-with(@onclick,'removeBranching')]"), "Remove Branching", 60, 100, test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	/**
+	 * Delete Branching rule
+	 * @param driver
+	 * @param param
+	 * @param strQNo
+	 * @param test
+	 * @return
+	 */
+	public SMXPage deleteSingleQueBranching(WebDriver driver, HashMap<String, String> param, String strQNo, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		int totalRulesBefore = driver.findElements(By.xpath("//div[starts-with(@id,'dvEditDeleteBranching_')]")).size();
+		
+		click(driver, testcaseName, By.xpath("//div[@id='dvEditDeleteBranching_" + strQNo + "']//div[starts-with(@onclick,'removeBranching')]"), "Remove Branching", test);
+		driver.switchTo().alert().accept();
+		waitForLoad(driver, testcaseName, 60, test);
+		
+		int totalRulesAfter = driver.findElements(By.xpath("//div[starts-with(@id,'dvEditDeleteBranching_')]")).size();
+		
+		// Validate if branching has been deleted or not
+		if(totalRulesAfter == (totalRulesBefore - 1)) {
+			reportPass("Rule deleted successfully.", test);
+		}else {
+			reportFail(testcaseName, "Rule is not deleted.", test);
+		}
+		return this;
+	}
+	
 }

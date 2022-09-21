@@ -864,6 +864,18 @@ public interface ISMXPage {
 	String ADD_CONDITION = "//div[@class='add_new_btn_cont addcondition']";
 	WebPageElements add_condition = new WebPageElements("Add Condition", "xpath", ADD_CONDITION);
 	
+	String ADV_SAVE = "//input[@id='btnAdvSave']";
+	WebPageElements adv_save = new WebPageElements("Save", "xpath", ADV_SAVE);
+	
+	String ADV_SAVE_N_RETURN = "//input[@id='btnAdvSaveGoToQM']";
+	WebPageElements adv_save_n_return = new WebPageElements("Save & Return", "xpath", ADV_SAVE_N_RETURN);
+	
+	String SINGLE_QUE_BRANCHING = "//div[normalize-space(text())='Single-Question Branching'][@class='hd-dropdown-row']";
+	WebPageElements single_que_branching = new WebPageElements("Single-Question Branching", "xpath", SINGLE_QUE_BRANCHING);
+	
+	String IFRAME_SINGLE_QUE_BRANCHING = "//iframe[starts-with(@src,'branching.aspx')]";
+	WebPageElements iframe_single_que_branching = new WebPageElements("Single-Question Branching Iframe", "xpath", IFRAME_SINGLE_QUE_BRANCHING);
+	
 	String SURVEY_OPTIONS = "//div[contains(@id,'_liSS')]";
 	WebPageElements survey_options = new WebPageElements("Options", "xpath", SURVEY_OPTIONS);
 	

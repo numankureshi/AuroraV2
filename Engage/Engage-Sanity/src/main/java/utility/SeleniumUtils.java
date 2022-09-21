@@ -1341,6 +1341,25 @@ public class SeleniumUtils {
 		}
 	}
 	
+	public void selectByExactVisibleText(WebDriver driver, String testcaseName, By by, String visibleText,
+			ExtentTest test) {
+		Select select = new Select(driver.findElement(by));
+		try {
+			select.selectByVisibleText(visibleText);
+			Add_Log.info("Successfully selected option maching with text " + visibleText);
+			test.log(Status.INFO, "Successfully selected option maching with text " + visibleText);
+			Reporter.log("Successfully selected option maching with text " + visibleText);
+		}
+		 catch (Exception e) {
+			test.log(Status.FAIL, "Did not find the option maching with text "+visibleText);
+			Add_Log.info("Did not find the option maching with text "+visibleText);
+			Reporter.log("Did not find the option maching with text "+visibleText);
+			TestResultStatus.failureReason.add(testcaseName + "| " + "Did not find the option maching with text "+visibleText);
+			TestResultStatus.TestFail = true;
+			Assert.fail("Did not find the option containing text "+visibleText + "\n Error message : " + e.getLocalizedMessage(), e.fillInStackTrace());
+		}
+	}
+	
 	public void waitForAlert(WebDriver driver, String testcaseName, int seconds, ExtentTest test) {
 			try {
 				FluentWait<WebDriver> fWait = new FluentWait<WebDriver>(driver).ignoring(NoAlertPresentException.class).withTimeout(Duration.ofSeconds(seconds))
