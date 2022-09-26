@@ -82,7 +82,7 @@ public class DataPage_TC extends SuiteBase {
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dataPage.goToDataPage(getDriver(), param, getData(data, "surveyname"), getData(data, "surveyid"), test);
 				dataPage.dataImport(getDriver(), param,getData(data, "surveyname"),getData(data,"surveyid"), test);
-				
+				dataPage.validateImportDataExePage(getDriver(), param, test);
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class DataPage_TC extends SuiteBase {
 				rmxPage.goToReportPage(getDriver(), param, getData(data, "surveyname"), getData(data, "surveyid" ), test);
 				rmxPage.excludeResponseFromIndividualReport(getDriver(), param, test);
 				dataPage.dataExportAll(getDriver(), param, test);
-				
+				dataPage.validateExportDataExePage(getDriver(), param, test);
 			}	
 		}
 	}
