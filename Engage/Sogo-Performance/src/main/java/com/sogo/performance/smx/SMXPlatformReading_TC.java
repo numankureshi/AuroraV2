@@ -1021,9 +1021,6 @@ public class SMXPlatformReading_TC extends SuiteBase {
 		param.put("surveyname", getData(data, "Survey Title"));
 		param.put("Step1", getData(data, "Step 1"));
 		param.put("Step2", getData(data, "Step 2"));
-		param.put("Step3", getData(data, "Step 3"));
-		
-		
 		
 			
 		if (CaseToRun.equalsIgnoreCase("N")) {

@@ -11981,13 +11981,33 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		goToDesignerPage(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
 		readingData.put(param.get("Step1"), goToRearrangePage(driver, param, test));
+		
 		rearrangeQuestions(driver, param, "1", "1. Frequency (Rating Radio Button) [Rating Radio Button] ", 
 				"2", "0", test);
-		saveRearrangePage(driver, param, test);
+		rearrangeQuestions(driver, param, "1", "2. How likely is it that you would recommend [company / brand / product / service] to a friend or colleague? [Net Promoter Score] ", 
+				"2", "1", test);
+		rearrangeQuestions(driver, param, "1", "3. Influence [Radio Button] ", 
+				"2", "2", test);
+		rearrangeQuestions(driver, param, "1", "4. Occupation [Multiple Select Checkbox] ", 
+				"2", "3", test);
+		rearrangeQuestions(driver, param, "1", "5. Countries [Drop Down] ", 
+				"2", "4", test);
+		rearrangeQuestions(driver, param, "1", "8. Currently recovery of Covid in your area, kindly specify in numbers which will term % further. [Rating Scale] ", 
+				"2", "5", test);
+		rearrangeQuestions(driver, param, "1", "9. Date of registration for vaccine. [Date] ", 
+				"2", "6", test);
+		rearrangeQuestions(driver, param, "1", "11. Did you like the unit which you have visited for vaccination. [Like / Dislike] ", 
+				"2", "7", test);
+		rearrangeQuestions(driver, param, "1", "12. Did you like the service of visited Unit. [Like / Dislike] ", 
+				"2", "8", test);
+		rearrangeQuestions(driver, param, "1", "13. Which Unit you will prefer for vaccination [Ranking] ", 
+				"2", "9", test);
 		
-//		openDashboard(driver, param, test);
-//		searchForSurveyInDashboard(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
-//		deleteProject(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+		readingData.put(param.get("Step2"), saveRearrangePage(driver, param, test));
+		
+		new HomePage().openDashboard(driver, param, test);
+		searchForSurveyInDashboard(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+		deleteProject(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
 		
 		return readingData;
 	}
@@ -12020,20 +12040,16 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		List<WebElement> questionList = driver.findElements(By.xpath("//div[@id='p" + strTargetPageNo + "']/div"));
 		
 		Actions builder = new Actions(driver);
-//		TouchActions builder = new TouchActions(driver);
 //		builder.moveToElement(source).dragAndDrop(source, questionList.get(Integer.parseInt(strOrderNo))).build().perform();
-		builder.clickAndHold(source).pause(Duration.ofSeconds(1)).moveToElement(questionList.get(Integer.parseInt(strOrderNo))).pause(Duration.ofSeconds(1)).release(questionList.get(Integer.parseInt(strOrderNo))).build().perform();
+		builder.clickAndHold(source).moveByOffset(-1, -1).moveToElement(questionList.get(Integer.parseInt(strOrderNo))).release(questionList.get(Integer.parseInt(strOrderNo))).build().perform();
 		
 		// Refresh the list of questions present on target page for validation
 		questionList = driver.findElements(By.xpath("//div[@id='p" + strTargetPageNo + "']/div"));
 		
 		//To verify drop success/fail by validating the text inside target element
 		String targetText = questionList.get(Integer.parseInt(strOrderNo)).getAttribute("title");
-		if(targetText == qTitleSrc) {
-			reportPass("Source is dropped at location", test);
-		}else {
-			reportFail(testcaseName, "Source is not dropped at location", test);
-		}
+
+		Assert.assertEquals(targetText, qTitleSrc, "Source is not dropped at location");
 		Thread.sleep(1000);
 		
 		return this;

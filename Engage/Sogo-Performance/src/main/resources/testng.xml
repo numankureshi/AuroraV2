@@ -125,7 +125,7 @@
 			<parameter name="PlatformReadings_TC79" value="Attachment Question Reading"></parameter>
 			<parameter name="PlatformReadings_TC80" value="Single-Question Branching"></parameter>
 			<parameter name="PlatformReadings_TC81" value="Multi-Question Branching"></parameter>
-			<parameter name="PlatformReadings_TC82" value=""></parameter>
+			<parameter name="PlatformReadings_TC82" value="Re-arrange Questions"></parameter>
 			<parameter name="PlatformReadings_TC83" value="Assessment Settings (Assign Scores)"></parameter>
 			<parameter name="PlatformReadings_TC84" value="QDL Readings"></parameter>
 			<parameter name="PlatformReadings_TC85" value="Copy Survey Readings"></parameter>
