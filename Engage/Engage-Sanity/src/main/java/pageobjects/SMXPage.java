@@ -5,8 +5,11 @@ import static org.testng.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.event.InputEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -62,6 +65,7 @@ import org.openqa.selenium.devtools.v100.performance.Performance;
 import org.openqa.selenium.devtools.v100.performance.model.Metric;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.Color;
@@ -9834,7 +9838,15 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			
 		}
 	
-	
+	/**
+	 * Readings function : DNT
+	 * Survey Creation Readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
 	public Map<String, String> getSMXReadingsOfSurveyCreation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		Map<String, String> readingData = new LinkedHashMap<String, String>();
@@ -9846,6 +9858,511 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		new HomePage().openDashboard(driver, param, test);
 		searchForSurveyInDashboard(driver, param, param.get("surveyName"), param.get("SID"), test);
 		deleteProject(driver, param, param.get("surveyName"), param.get("SID"), test);
+		return readingData;
+	}
+	
+	
+	/**
+	 * Reading function : DNT
+	 * Get Survey setting readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getSurveySettingsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		readingData.put(param.get("Step1"), goToProjectDetails(driver, param, test));
+		readingData.put(param.get("Step2"), goToSurveySetting(driver, param, test).
+				goToThankyouPage(driver, param, test).
+				saveSurveySettings(driver, param, test));
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Drop down readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getDropDownReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\dropDownCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, drop_down_button, test));
+		fillQueDetails(driver, param, drop_down_button, testdata.get("case 1").getAsJsonObject(), test);
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		saveAnslibraryOptionsList(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, drop_down_button, testdata.get("case 1").getAsJsonObject(), test));
+		deleteQuestion(driver, param, 1, 1, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Radio button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getRadioButtonReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\radioButtonCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, radio_button, test));
+		fillQueDetails(driver, param, radio_button, testdata.get("case 1").getAsJsonObject(), test);
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		saveAnslibraryOptionsList(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, radio_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Horizontal radio button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getHorizontalRadioButtonReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\horizontalRadioButtonCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, horizontal_radio_button, test));
+		fillQueDetails(driver, param, horizontal_radio_button, testdata.get("case 1").getAsJsonObject(), test);
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, horizontal_radio_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Check box button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getCheckBoxButtonReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\checkBoxCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, check_box_button, test));
+		fillQueDetails(driver, param, check_box_button, testdata.get("case 1").getAsJsonObject(), test);
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, check_box_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Text box button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getTextBoxButtonReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\textBoxCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, text_box_button, test));
+		fillQueDetails(driver, param, text_box_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, text_box_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get List box button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getListBoxButtonReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\listBoxCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, listbox_button, test));
+		fillQueDetails(driver, param, listbox_button, testdata.get("case 1").getAsJsonObject(), test);
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, listbox_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Numeric allocation button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getNumericAllocationReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\numericAllocationCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, numeric_allocation, test));
+		fillQueDetails(driver, param, numeric_allocation, testdata.get("case 1").getAsJsonObject(), test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, numeric_allocation, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Ranking button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getRankingReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\rankingCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, ranking_question_button, test));
+		fillQueDetails(driver, param, ranking_question_button, testdata.get("case 1").getAsJsonObject(), test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, ranking_question_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Rating radio button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getRatingRadioButtonsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\ratingRadioButtonCases.json", test);
+		param.put("AnswerOptions", testdata.get("case 1").getAsJsonObject().get("answerlibrary").getAsString());
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, rating_radio2_button, test));
+		fillQueDetails(driver, param, rating_radio2_button, testdata.get("case 1").getAsJsonObject(), test);
+		answersLibrary(driver, param, param.get("AnswerOptions"), test);
+		saveAnslibraryOptionsList(driver, param, param.get("AnswerOptions"), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, rating_radio2_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Rating Scale button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getRatingScaleButtonsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\ratingScaleCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, rating_scale_button, test));
+		fillQueDetails(driver, param, rating_scale_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, rating_scale_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Date button readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getDateButtonsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\dateCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, date_button, test));
+		fillQueDetails(driver, param, date_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, date_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Multiple Text box readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getMultipleTextBoxReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\multipleTextBoxCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, multiple_textbox_button, test));
+		fillQueDetails(driver, param, multiple_textbox_button, testdata.get("case 1").getAsJsonObject(), test);
+		param.put("MTBSubqueCount", String.valueOf(testdata.get("case 1").getAsJsonObject().get("subquestionCount").getAsInt()));
+		setNumberOfSubquestions(driver, param, multiple_textbox_button, test);
+		param.put("mtbFormat", testdata.get("case 1").getAsJsonObject().get("format").getAsString());
+		fillSubquestionDetails(driver, param, multiple_textbox_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, multiple_textbox_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Multiple drop down readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getMultipleDropdownReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\multipleDropDownCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, multiple_dropdown_button, test));
+		fillQueDetails(driver, param, multiple_dropdown_button, testdata.get("case 1").getAsJsonObject(), test);
+		fillAnsOptionsDetails(driver, param, multiple_dropdown_button, testdata.get("case 1").getAsJsonObject(), test);
+		param.put("MDDSubqueCount", String.valueOf(testdata.get("case 1").getAsJsonObject().get("subquestionCount").getAsInt()));
+		setNumberOfSubquestions(driver, param, multiple_dropdown_button, test);
+		fillSubquestionDetails(driver, param, multiple_dropdown_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, multiple_dropdown_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Demographic readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getDemographicReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\demoGraphicCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, demographics_button, test));
+		fillQueDetails(driver, param, demographics_button, testdata.get("case 1").getAsJsonObject(), test);
+		selectDemoGraphicQuestions(driver, param, demographics_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, demographics_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Matrix grid readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getMatrixGridReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\matrixGridCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, matrix_grid_button, test));
+		fillQueDetails(driver, param, matrix_grid_button, testdata.get("case 1").getAsJsonObject(), test);
+		param.put("MGquestionCount", String.valueOf(testdata.get("case 1").getAsJsonObject().get("questionCount").getAsInt()));
+		param.put("MGSubquestionCount", String.valueOf(testdata.get("case 1").getAsJsonObject().get("subquestionCount").getAsInt()));
+		setNumberOfQuestionsInMG(driver, param, matrix_grid_button, testdata.get("case 1").getAsJsonObject(), test);
+		setNumberOfSubquestions(driver, param, matrix_grid_button, test);
+		fillGridQueDetailsinMG(driver, param, matrix_grid_button,  testdata.get("case 1").getAsJsonObject(), test);
+		fillSubquestionDetails(driver, param, matrix_grid_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, matrix_grid_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Description readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getDescriptionReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\descriptionCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, description_button, test));
+		fillQueDetails(driver, param, description_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, description_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
+		return readingData;
+	}
+	
+	/**
+	 * Reading function : DNT
+	 * Get Attachment readings
+	 * @param driver
+	 * @param param
+	 * @param test
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public Map<String, String> getAttachmentReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		JsonObject testdata = new JsonObject();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		testdata = new JSONUtility().readJSONFromFile(testcaseName, "\\src\\main\\resources\\jsonfiles\\attachmentCases.json", test);
+		readingData.put(param.get("Step1"), doubleClickOnQT(driver, param, attachments_button, test));
+		fillQueDetails(driver, param, attachments_button, testdata.get("case 1").getAsJsonObject(), test);
+		param.put("attachmentsCount", String.valueOf(testdata.get("case 1").getAsJsonObject().get("attachmentsCount").getAsInt()));
+		setNumberOfSubquestions(driver, param, attachments_button, test);
+		fillSubquestionDetails(driver, param, attachments_button, testdata.get("case 1").getAsJsonObject(), test);
+		readingData.put(param.get("Step2"), saveQue(driver, param, attachments_button, testdata.get("case 1").getAsJsonObject(), test));
+		deletePage(driver, param, test);
+		
 		return readingData;
 	}
 	
@@ -10231,17 +10748,38 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		}
 		closeQDLModal(driver, param, test);
 		
-		readingData.put(param.get("Step6"), goToExpiryRule(driver, param, test));
-		readingData.put(param.get("Step7"), saveSurveySettings(driver, param, test));
-		
-		readingData.put(param.get("Step8"), goToVisualSettingPage(driver, param, test));
-		readingData.put(param.get("Step9"), saveVisualSettingPage(driver, param, test));
-		readingData.put(param.get("Step10"), switchToMobileTheme(driver, param, test));
-		readingData.put(param.get("Step11"), saveVisualSettingPage(driver, param, test));
-		
+		return readingData;
+	}
+	
+	public Map<String, String> getExpiryRuleReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}		
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		readingData.put(param.get("Step1"), goToExpiryRule(driver, param, test));
+		readingData.put(param.get("Step2"), saveSurveySettings(driver, param, test));
 		
 		return readingData;
 	}
+	
+	public Map<String, String> getVisualSettingReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}		
+		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		
+		readingData.put(param.get("Step1"), goToVisualSettingPage(driver, param, test));
+		readingData.put(param.get("Step2"), saveVisualSettingPage(driver, param, test));
+		readingData.put(param.get("Step3"), switchToMobileTheme(driver, param, test));
+		readingData.put(param.get("Step4"), saveVisualSettingPage(driver, param, test));
+		
+		return readingData;
+	}
+	
 	
 	/**
 	 * Use this method switch between survey pages by passing pageNo
@@ -10445,19 +10983,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		readingData.put(param.get("Step3"), downloadSurvey(driver, param, param.get("surveyname"), param.get("SID"), "scannerready", test));
 		
 		return readingData;
-	}
-	
-	
-	
-	public void openDashboard(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
-		String testcaseName = param.get("TestCaseName");
-		click(driver, testcaseName, IHomePage.hamburger_icon, test);
-		waitforElemPresent(driver, testcaseName, 30, IHomePage.all_projects, test);
-		click(driver, testcaseName, IHomePage.all_projects, test);
-		waitForJStoLoad(driver, 60);
-		waitForLoad(driver, testcaseName, 60, test);
-	}
-	
+	}	
 	
 	
 	public void searchForSurveyInDashboard(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException {
@@ -10571,7 +11097,13 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		if (param.containsKey("Comment")) {
 			readingData.put("Comment", param.get("Comment"));
 		}
-		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
+		new HomePage().openDashboard(driver, param, test);
+		searchForSurveyInDashboard(driver, param, param.get("surveyname"), param.get("SID"), test);
+		copySurveyIntoSameAccount(driver, param, param.get("surveyname"), test);
+		closeAllProjectDashbard(driver, param, test);
+		
+		goToDesignerPage(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+		
 		selectQuestionPage(driver, param, 1, test);
 		readingData.put(param.get("Step1"), selectQuestionPage(driver, param, 0, test));
 		readingData.put(param.get("Step2"), selectQuestionPage(driver, param, 19, test));
@@ -10583,6 +11115,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		readingData.put(param.get("Step6"), movePage(driver, param, "Before page 1", test));
 		movePage(driver, param, "After page 19", test);
 		readingData.put(param.get("Step7"),selectQuestion(driver, param, 19, 295, test));
+		
+		new HomePage().openDashboard(driver, param, test);
+		searchForSurveyInDashboard(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+		deleteProject(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
 		
 		
 		return readingData;
@@ -10780,15 +11316,15 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			readingData.put("Comment", param.get("Comment"));
 		}
 		
-		openDashboard(driver, param, test);
+		new HomePage().openDashboard(driver, param, test);
 		searchForSurveyInDashboard(driver, param, param.get("surveyname"), param.get("SID"), test);
 		readingData.put(param.get("Step1"), copySurveyIntoSameAccount(driver, param, param.get("surveyname"), test));
 		closeAllProjectDashbard(driver, param, test);
-		openDashboard(driver, param, test);
+		new HomePage().openDashboard(driver, param, test);
 		searchForSurveyInDashboard(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
 		deleteProject(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
 		closeAllProjectDashbard(driver, param, test);
-		openDashboard(driver, param, test);
+		new HomePage().openDashboard(driver, param, test);
 		searchForSurveyInDashboard(driver, param, param.get("surveyname"), param.get("SID"), test);
 		readingData.put(param.get("Step2"),copySurveyIntoDiffAccount(driver, param, param.get("surveyname"), test));
 		return readingData;
@@ -10859,20 +11395,6 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		strtotalTime = df.format(totalTime);
 		
 		return strtotalTime;
-	}
-	
-	public Map<String, String> getSurveySettingsReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
-		String testcaseName = param.get("TestCaseName");
-		Map<String, String> readingData = new LinkedHashMap<String, String>();
-		if (param.containsKey("Comment")) {
-			readingData.put("Comment", param.get("Comment"));
-		}
-		goToDesignerPage(driver, param, param.get("surveyname"), param.get("SID"), test);
-		readingData.put(param.get("Step1"), goToProjectDetails(driver, param, test));
-		readingData.put(param.get("Step2"), goToSurveySetting(driver, param, test).
-				goToThankyouPage(driver, param, test).
-				saveSurveySettings(driver, param, test));
-		return readingData;
 	}
 	
 	
@@ -10973,12 +11495,12 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		selectMultipleQuestionBranchingPage(driver, param, "2", test).selectQuestionForRule(driver, param, "1", "1", "Q 1. Frequency (Rating Radio Button)", test)
 		.selectAnsConditionForRule(driver, param, "1", "1", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "1", "1", ansOption, test)
 		.addCondition(driver, param, "1", test);
-		String [] ansOption2 = {"Female", "Male"};
-		selectQuestionForRule(driver, param, "1", "2", "Q 11(a). Details of participant: Gender", test)
+		String [] ansOption2 = {"Big Problem", "Moderate Problem"};
+		selectQuestionForRule(driver, param, "1", "2", "Q 3. Influence", test)
 		.selectAnsConditionForRule(driver, param, "1", "2", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "1", "2", ansOption2, test)
 		.addCondition(driver, param, "1", test);
 		String [] ansOption3 = {"Accountant", "Consultant"};
-		selectQuestionForRule(driver, param, "1", "3", "Q 13. Occupation", test)
+		selectQuestionForRule(driver, param, "1", "3", "Q 4. Occupation", test)
 		.selectAnsConditionForRule(driver, param, "1", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "1", "3", ansOption3, test)
 		.addNewRule(driver, param, "2", test);
 		
@@ -10986,10 +11508,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		selectQuestionForRule(driver, param, "2", "1", "Q 1. Frequency (Rating Radio Button)", test)
 		.selectAnsConditionForRule(driver, param, "2", "1", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "2", "1", ansOption, test)
 		.addCondition(driver, param, "2", test);
-		selectQuestionForRule(driver, param, "2", "2", "Q 11(a). Details of participant: Gender", test)
+		selectQuestionForRule(driver, param, "2", "2", "Q 3. Influence", test)
 		.selectAnsConditionForRule(driver, param, "2", "2", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "2", "2",ansOption2, test)
 		.addCondition(driver, param, "2", test);
-		selectQuestionForRule(driver, param, "2", "3", "Q 13. Occupation", test)
+		selectQuestionForRule(driver, param, "2", "3", "Q 4. Occupation", test)
 		.selectAnsConditionForRule(driver, param, "2", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "2", "3", ansOption3, test)
 		.addNewRule(driver, param, "2", test);
 		
@@ -10997,10 +11519,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		selectQuestionForRule(driver, param, "3", "1", "Q 1. Frequency (Rating Radio Button)", test)
 		.selectAnsConditionForRule(driver, param, "3", "1", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "3", "1", ansOption, test)
 		.addCondition(driver, param, "3", test);
-		selectQuestionForRule(driver, param, "3", "2", "Q 11(a). Details of participant: Gender", test)
+		selectQuestionForRule(driver, param, "3", "2", "Q 3. Influence", test)
 		.selectAnsConditionForRule(driver, param, "3", "2", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "3", "2", ansOption2, test)
 		.addCondition(driver, param, "3", test);
-		selectQuestionForRule(driver, param, "3", "3", "Q 13. Occupation", test)
+		selectQuestionForRule(driver, param, "3", "3", "Q 4. Occupation", test)
 		.selectAnsConditionForRule(driver, param, "3", "3", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "3", "3", ansOption3, test)
 		.addNewRule(driver, param, "2", test);
 		
@@ -11008,10 +11530,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		selectQuestionForRule(driver, param, "4", "1", "Q 1. Frequency (Rating Radio Button)", test)
 		.selectAnsConditionForRule(driver, param, "4", "1", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "4", "1", ansOption, test)
 		.addCondition(driver, param, "4", test);
-		selectQuestionForRule(driver, param, "4", "2", "Q 11(a). Details of participant: Gender", test)
+		selectQuestionForRule(driver, param, "4", "2", "Q 3. Influence", test)
 		.selectAnsConditionForRule(driver, param, "4", "2", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "4", "2", ansOption2, test)
 		.addCondition(driver, param, "4", test);
-		selectQuestionForRule(driver, param, "4", "3", "Q 13. Occupation", test)
+		selectQuestionForRule(driver, param, "4", "3", "Q 4. Occupation", test)
 		.selectAnsConditionForRule(driver, param, "4", "3", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "4", "3", ansOption3, test)
 		.addNewRule(driver, param, "2", test);
 		
@@ -11019,10 +11541,10 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		selectQuestionForRule(driver, param, "5", "1", "Q 1. Frequency (Rating Radio Button)", test)
 		.selectAnsConditionForRule(driver, param, "5", "1", "Is one of the following", test).selectAnsOptionsForRule(driver, param, "5", "1", ansOption, test)
 		.addCondition(driver, param, "5", test);
-		selectQuestionForRule(driver, param, "5", "2", "Q 11(a). Details of participant: Gender", test)
+		selectQuestionForRule(driver, param, "5", "2", "Q 3. Influence", test)
 		.selectAnsConditionForRule(driver, param, "5", "2", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "5", "2", ansOption2, test)
 		.addCondition(driver, param, "5", test);
-		selectQuestionForRule(driver, param, "5", "3", "Q 13. Occupation", test)
+		selectQuestionForRule(driver, param, "5", "3", "Q 4. Occupation", test)
 		.selectAnsConditionForRule(driver, param, "5", "3", "Is not one of the following", test).selectAnsOptionsForRule(driver, param, "5", "3", ansOption3, test);
 		
 		readingData.put(param.get("Step2"), saveBranchingRule(driver, param, testcaseName, test));
@@ -11278,31 +11800,31 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		.saveSingleQuestionBranching(driver, param, "1", test);
 		
 		selectSingleQuestionBranchingPage(driver, param, "2", test)
-		.selectBranchingQue(driver, param, "2", "29", "Frequency (Rating Radio Button)", test)
-		.selectBranchingLogicForAnswers(driver, param, "2", "29", "Never", "Page 4", test)
-		.saveSingleQuestionBranching(driver, param, "29", test);
+		.selectBranchingQue(driver, param, "2", "31", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "2", "31", "Never", "Page 4", test)
+		.saveSingleQuestionBranching(driver, param, "31", test);
 		
 		selectSingleQuestionBranchingPage(driver, param, "6", test)
-		.selectBranchingQue(driver, param, "6", "73", "Frequency (Rating Radio Button)", test)
-		.selectBranchingLogicForAnswers(driver, param, "6", "73", "Never", "Page 8", test)
-		.saveSingleQuestionBranching(driver, param, "73", test);
+		.selectBranchingQue(driver, param, "6", "75", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "6", "75", "Never", "Page 8", test)
+		.saveSingleQuestionBranching(driver, param, "75", test);
 		
 		selectSingleQuestionBranchingPage(driver, param, "7", test)
-		.selectBranchingQue(driver, param, "7", "100", "Frequency (Rating Radio Button)", test)
-		.selectBranchingLogicForAnswers(driver, param, "7", "100", "Never", "Page 9", test)
-		.saveSingleQuestionBranching(driver, param, "100", test);
+		.selectBranchingQue(driver, param, "7", "102", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "7", "102", "Never", "Page 9", test)
+		.saveSingleQuestionBranching(driver, param, "102", test);
 		
 		selectSingleQuestionBranchingPage(driver, param, "8", test)
-		.selectBranchingQue(driver, param, "8", "127", "Frequency (Rating Radio Button)", test)
-		.selectBranchingLogicForAnswers(driver, param, "8", "127", "Never", "Page 10", test);
+		.selectBranchingQue(driver, param, "8", "129", "Frequency (Rating Radio Button)", test)
+		.selectBranchingLogicForAnswers(driver, param, "8", "129", "Never", "Page 10", test);
 		
-		readingData.put(param.get("Step2"), saveSingleQuestionBranching(driver, param, "127", test));
+		readingData.put(param.get("Step2"), saveSingleQuestionBranching(driver, param, "129", test));
 		
 		deleteSingleQueBranching(driver, param, "1", test)
-		.deleteSingleQueBranching(driver, param, "29", test)
-		.deleteSingleQueBranching(driver, param, "73", test)
-		.deleteSingleQueBranching(driver, param, "100", test)
-		.deleteSingleQueBranching(driver, param, "127", test);
+		.deleteSingleQueBranching(driver, param, "31", test)
+		.deleteSingleQueBranching(driver, param, "75", test)
+		.deleteSingleQueBranching(driver, param, "102", test)
+		.deleteSingleQueBranching(driver, param, "129", test);
 		
 		return readingData;
 	}
@@ -11444,6 +11966,97 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 			reportFail(testcaseName, "Rule is not deleted.", test);
 		}
 		return this;
+	}
+	
+	public Map<String, String> getRearrangeQuestionReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		new HomePage().openDashboard(driver, param, test);
+		searchForSurveyInDashboard(driver, param, param.get("surveyname"), param.get("SID"), test);
+		copySurveyIntoSameAccount(driver, param, param.get("surveyname"), test);
+		closeAllProjectDashbard(driver, param, test);
+		
+		goToDesignerPage(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+		readingData.put(param.get("Step1"), goToRearrangePage(driver, param, test));
+		rearrangeQuestions(driver, param, "1", "1. Frequency (Rating Radio Button) [Rating Radio Button] ", 
+				"2", "0", test);
+		saveRearrangePage(driver, param, test);
+		
+//		openDashboard(driver, param, test);
+//		searchForSurveyInDashboard(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+//		deleteProject(driver, param, param.get("copiedSurveyTitle"), param.get("copiedsurveySID"), test);
+		
+		return readingData;
+	}
+	
+	public String goToRearrangePage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, rearrange_questions, test);
+		waitForElementToBeVisible(driver, testcaseName, iframe_rearrange_questions, 30, 100, test);
+		switchToIframe(driver, testcaseName, iframe_rearrange_questions, test);
+		waitForInsideLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[starts-with(@class, 'Rearr-pg-ON')]"), "Page Accordion", test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public SMXPage rearrangeQuestions(WebDriver driver, HashMap<String, String> param, String strPageNoSrc, 
+			String qTitleSrc, String strTargetPageNo, String strOrderNo,  ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		WebElement source = driver.findElement(By.xpath("//div[@title='" + qTitleSrc + "'][@page_no='" + strPageNoSrc + "']"));
+		
+		// Get list of questions present of target page
+		List<WebElement> questionList = driver.findElements(By.xpath("//div[@id='p" + strTargetPageNo + "']/div"));
+		
+		Actions builder = new Actions(driver);
+//		TouchActions builder = new TouchActions(driver);
+//		builder.moveToElement(source).dragAndDrop(source, questionList.get(Integer.parseInt(strOrderNo))).build().perform();
+		builder.clickAndHold(source).pause(Duration.ofSeconds(1)).moveToElement(questionList.get(Integer.parseInt(strOrderNo))).pause(Duration.ofSeconds(1)).release(questionList.get(Integer.parseInt(strOrderNo))).build().perform();
+		
+		// Refresh the list of questions present on target page for validation
+		questionList = driver.findElements(By.xpath("//div[@id='p" + strTargetPageNo + "']/div"));
+		
+		//To verify drop success/fail by validating the text inside target element
+		String targetText = questionList.get(Integer.parseInt(strOrderNo)).getAttribute("title");
+		if(targetText == qTitleSrc) {
+			reportPass("Source is dropped at location", test);
+		}else {
+			reportFail(testcaseName, "Source is not dropped at location", test);
+		}
+		Thread.sleep(1000);
+		
+		return this;
+	}
+	
+	public String saveRearrangePage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, save_btn, test);
+		waitforElemPresent(driver, testcaseName, 30, save_btn, test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, save_btn, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		driver.switchTo().defaultContent();
+		waitforElemPresent(driver, testcaseName, 60, designer_button, test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+		
 	}
 	
 }

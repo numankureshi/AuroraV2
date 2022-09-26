@@ -10,7 +10,7 @@ public interface IHomePage {
 	String ALL_PROJECTS2 = "//div[text()='All Projects']";
 	WebPageElements all_projects2 = new WebPageElements("All Projects", "xpath", ALL_PROJECTS2);
 	
-	String ALL_PROJECTS3 = "//div[text()='All Projects']";
+	String ALL_PROJECTS3 = "//span[text()=' All Projects']";
 	WebPageElements all_projects3 = new WebPageElements("All Projects", "xpath", ALL_PROJECTS3);
 	
 	String HAMBURGER_ICON = "//div[@class='hd-main-DD']";

@@ -1334,4 +1334,13 @@ public interface ISMXPage {
 	
 	String CATEGORY_HEADING = "//div[text()='Click on the checkboxes to select/deselect the questions to be added in the category.']";
 	WebPageElements category_heading = new WebPageElements("Click on the checkboxes to select/deselect the questions to be added in the category.", "xpath", CATEGORY_HEADING );
+
+	String REARRANGE_QUESTIONS = "//div[@id='divlinkRearrangeQuesContainer']";
+	WebPageElements rearrange_questions = new WebPageElements("Rearrange Questions", "xpath", REARRANGE_QUESTIONS );
+	
+	String IFRAME_REARRANGE_QUESTIONS = "//iframe[starts-with(@src, '../zSM/rearrange.aspx?survey_no=')]";
+	WebPageElements iframe_rearrange_questions = new WebPageElements("Rearrange Questions IFrame", "xpath", IFRAME_REARRANGE_QUESTIONS );
+
+
+
 }
