@@ -94,7 +94,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	String strtotalTime= null;
 	public DecimalFormat df = new DecimalFormat("#.##");
 	boolean isFirstQDL = true;
-	boolean isAnswerQuotaApplied = true;
+	boolean isAnswerQuotaApplied = false;
 	
 	public void createSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -10977,6 +10977,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		if (param.containsKey("Comment")) {
 			readingData.put("Comment", param.get("Comment"));
 		}
+		new HomePage().openDashboard(driver, param, test);
 		searchForSurveyInDashboard(driver, param, param.get("surveyname"), param.get("SID"), test);
 		readingData.put(param.get("Step1"), downloadSurvey(driver, param, param.get("surveyname"), param.get("SID"), "pdf", test));
 		readingData.put(param.get("Step2"), downloadSurvey(driver, param, param.get("surveyname"), param.get("SID"), "word", test));
@@ -11275,12 +11276,13 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@value='" + qid +"']/ancestor::td/following-sibling::td/input"), 
 				"Message Text Box", test);
 		setText(driver, testcaseName, By.xpath("//input[@value='" + qid +"']/ancestor::td/following-sibling::td/input"), quotaMessage, "Message Text Box", test);
-		
+		isAnswerQuotaApplied = true;
 	}
 	
-	public String saveAnswerQuota(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+	public String saveAnswerQuota(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		
+		Thread.sleep(2000);
+		waitforElemPresent(driver, testcaseName, 30, save_btn, test);
 		// Capture page load time
 		start = System.currentTimeMillis();
 		click(driver, testcaseName, save_btn, test);
@@ -11305,6 +11307,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, reset, test);
 		driver.switchTo().alert().accept();
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//label[text()='" + ansOption +"']"), ansOption,  test);
+		waitforElemNotVisible(driver, testcaseName, 30, By.xpath("//label[text()='" + ansOption +"']/parent::span/parent::td/following-sibling::td/input[@value='Enter message here']"), 
+				"Quota Message Text Box", test);
 		isAnswerQuotaApplied = false;
 	}
 	
