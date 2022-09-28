@@ -132,9 +132,11 @@
 			<parameter name="PlatformReadings_TC86" value="View all Pages "></parameter>
 			<parameter name="PlatformReadings_TC87" value="Expiry Rule Readings"></parameter>
 			<parameter name="PlatformReadings_TC88" value="Quota Readings"></parameter>
-			<parameter name="PlatformReadings_TC89" value=""></parameter>
-			<parameter name="PlatformReadings_TC90" value="Visual Setting Readings"></parameter>
-			<parameter name="PlatformReadings_TC91" value="Download Survey Reading"></parameter>
+			<parameter name="PlatformReadings_TC89" value="Add Radio Button in Poll"></parameter>
+			<parameter name="PlatformReadings_TC90" value="Add Drop Down in Poll"></parameter>
+			<parameter name="PlatformReadings_TC91" value="Add Check box in Poll"></parameter>
+			<parameter name="PlatformReadings_TC92" value="Visual Setting Readings"></parameter>
+			<parameter name="PlatformReadings_TC93" value="Download Survey Reading"></parameter>
 			
 			
 			

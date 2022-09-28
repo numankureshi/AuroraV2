@@ -4158,7 +4158,6 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	}
 	
 	
-	
 	public void selectAnswerlibrary(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -4181,6 +4180,102 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, Continue_Buttont,test);
 	}
 	
+	public void selectQuestionTypeInPoll(WebDriver driver, HashMap<String, String> param, String qType, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, question_type_dd, test);
+		click(driver, testcaseName, question_type_dd,test);
+		waitforElemPresent(driver, testcaseName, 30, question_type_options, test);
+		
+		switch(qType) {
+		case "RB":
+			click(driver, testcaseName, By.xpath("(//div[@class='qType']/label)[1]"), "Radio Button", test);
+			break;
+		case "DD":
+			click(driver, testcaseName, By.xpath("(//div[@class='qType']/label)[2]"), "Drop Down", test);
+			break;
+		case "CB":
+			click(driver, testcaseName, By.xpath("(//div[@class='qType']/label)[3]"), "Check Box", test);
+			break;
+			default:
+			reportFail(testcaseName, "Invalid question type provided!!", test);
+		}
+		click(driver, testcaseName, apply, test);
+	}
+	
+	public void selectAnswerLibrary2(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, answer_library, test);
+		click(driver, testcaseName, answer_library,test);
+		waitforElemPresent(driver, testcaseName, 30, get_ans_opt_from_library, test);
+		click(driver, testcaseName, get_ans_opt_from_library,test);
+		switchToIframe(driver, testcaseName, iframe_answer_library, test);
+		waitforElemPresent(driver, testcaseName, 10,   By.xpath("//label[normalize-space()='"+ param.get("answerList") +"']"), param.get("answerList"), test);        
+	   	click(driver, testcaseName,  By.xpath("//label[normalize-space()='"+ param.get("answerList") +"']"), param.get("answerList"), test); 
+	   	click(driver, testcaseName, use_this_list,test);
+	   	driver.switchTo().defaultContent();
+		
+	}
+	
+	public String goToTranslatePoll(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, continue_buttonp, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@title='Auto-translate with Bing.']/parent::a"),"Bing Translate",test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
+	
+	public void doAutoTranslateinPoll(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Thread.sleep(2000);
+		click(driver, testcaseName, By.xpath("//img[@title='Auto-translate with Bing.']/parent::a"),"Bing Translate",test); 
+		driver.switchTo().alert().accept();
+		waitForLoad(driver, testcaseName, 120, test);
+	}
+	
+	public void goToPollSettings(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		scrollIntoCenter(driver, testcaseName, Continue_Buttont, test);
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttont, test);
+		click(driver, testcaseName, Continue_Buttont, test);
+		waitforElemPresent(driver, testcaseName, 30, expire_poll_yes, test);
+	}
+	
+	public void goToVisualSettings(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonps, test);
+		click(driver, testcaseName, Continue_Buttonps,test);
+		waitforElemPresent(driver, testcaseName, 30, poll_preview, test);
+	}
+	
+	public void goToResultSetting(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonvs, test);
+		click(driver, testcaseName, Continue_Buttonvs,test);
+		waitforElemPresent(driver, testcaseName, 30, Result_Settings, test);
+	}
+	
+	public String goToPublish(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonrs, test);
+		
+		// Capture page load time
+		start = System.currentTimeMillis();
+		click(driver, testcaseName, Continue_Buttonrs,test);
+		waitforElemPresent(driver, testcaseName, 60, quick_participation_link_descr, test);
+		end = System.currentTimeMillis();	
+		
+		totalTime = (end - start) / 1000;
+		strtotalTime = df.format(totalTime);
+		
+		return strtotalTime;
+	}
 	
 	public void continuebuttonp(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -4197,7 +4292,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		click(driver, testcaseName, expire_poll_yes,test);
 		waitforElemPresent(driver, testcaseName, 30, Continue_Buttonps, test);
 		click(driver, testcaseName, Continue_Buttonps,test);
-
+		
 	}
 	
 	
@@ -4326,6 +4421,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, start_button, test);
 		click(driver, testcaseName, start_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
+		param.put("SID", executeScript(driver, testcaseName, "return intSurveyNo", test).toString());
 	}
 	
 	
@@ -10414,11 +10510,18 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public String deleteProject(WebDriver driver, HashMap<String, String> param, String surveyName, String SID, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		WebElement survey = driver.findElement(By.xpath("//tr[@stitle=\"" + surveyName +"\"]"));
+		String projectType = driver.findElement(By.xpath("//tr[@stitle=\"" + surveyName +"\"]/td/div[@class='divProjectTitleContainer']/div[starts-with(@class, 'project_')]")).getAttribute("title");
 		hoverAction(driver, testcaseName, survey, surveyName, test);
 		waitForElementToBeVisible(driver, testcaseName, IHomePage.more_icon, 60, 100, test);
 		click(driver, testcaseName, IHomePage.more_icon, test);
-		waitforElemPresent(driver, testcaseName, 30, IHomePage.delete, test);
-		click(driver, testcaseName, IHomePage.delete, test);
+		if(projectType.equals("Poll")) {
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.delete_poll, test);
+			click(driver, testcaseName, IHomePage.delete_poll, test);
+		}else {
+			waitforElemPresent(driver, testcaseName, 30, IHomePage.delete, test);
+			click(driver, testcaseName, IHomePage.delete, test);
+		}
+		
 		
 		start = System.currentTimeMillis();
 		driver.switchTo().alert().accept();
@@ -10431,6 +10534,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		
 		return strtotalTime;
 	}
+	
+	
 	
 
 	public Map<String, String> getAddQuestionReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
@@ -12016,6 +12121,34 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return readingData;
 	}
 	
+	
+	public Map<String, String> getPollReadings(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		Map<String, String> readingData = new LinkedHashMap<String, String>();
+		if (param.containsKey("Comment")) {
+			readingData.put("Comment", param.get("Comment"));
+		}
+		
+		selectCreateProject(driver, param, test);
+		selectCreatePoll(driver, param, test);
+		createPollButton(driver, param, test);
+		selectQuestionTypeInPoll(driver, param, param.get("questionType"), test);
+		selectAnswerLibrary2(driver, param, test);
+		readingData.put(param.get("Step1"), goToTranslatePoll(driver, param, test));
+		doAutoTranslateinPoll(driver, param, test);
+		goToPollSettings(driver, param, test);
+		goToVisualSettings(driver, param, test);
+		goToResultSetting(driver, param, test);
+		readingData.put(param.get("Step2"), goToPublish(driver, param, test));
+		
+		new HomePage().openDashboard(driver, param, test);
+		searchForSurveyInDashboard(driver, param, param.get("surveyName"), param.get("SID"), test);
+		deleteProject(driver, param, param.get("surveyName"), param.get("SID"), test);
+		
+		return readingData;
+	}
+	
+	
 	public String goToRearrangePage(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
 		String testcaseName = param.get("TestCaseName");
 		
@@ -12078,5 +12211,7 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return strtotalTime;
 		
 	}
+	
+	
 	
 }

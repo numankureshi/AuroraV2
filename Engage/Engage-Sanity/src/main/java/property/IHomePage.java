@@ -76,6 +76,9 @@ public interface IHomePage {
 	String DELETE = "//div[@id='over-div-contents']//div[contains(@class,'survey more-button-options')]/div/span[contains(text(),'Delete')]";
 	WebPageElements delete = new WebPageElements("Delete", "xpath", DELETE);
 	
+	String DELETE_POLL = "//div[@id='over-div-contents']//div[contains(@class,'survey1 more-button-options')]/div/span[contains(text(),'Delete')]";
+	WebPageElements delete_poll = new WebPageElements("Delete", "xpath", DELETE_POLL);
+	
 	String COPY_ICON = "//div[@id='OverDivCopy']/span";
 	WebPageElements copy_icon = new WebPageElements("Copy Icon", "xpath", COPY_ICON);
 	

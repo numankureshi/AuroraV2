@@ -46,7 +46,7 @@ import org.testng.ITest;
 
 
 public class SMXPlatformReading_TC extends SuiteBase {
-	private static final int invocationCount = 4;
+	private static final int invocationCount = 5;
 	Read_XLS filePath = null;
 	String Environment;
 	String TestCaseName = null;
@@ -1329,7 +1329,148 @@ public class SMXPlatformReading_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true, invocationCount = invocationCount)
+	public void PlatformReadings_TC89(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("SID", getData(data, "SID"));
+		param.put("downloadFilePath", downloadFilePath);
+		param.put("surveyname", getData(data, "Survey Title"));
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("answerList", "Countries");
+		param.put("questionType", "RB");
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = smxPage.getPollReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true, invocationCount = invocationCount)
 	public void PlatformReadings_TC90(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("SID", getData(data, "SID"));
+		param.put("downloadFilePath", downloadFilePath);
+		param.put("surveyname", getData(data, "Survey Title"));
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("answerList", "Countries");
+		param.put("questionType", "DD");
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = smxPage.getPollReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true, invocationCount = invocationCount)
+	public void PlatformReadings_TC91(LinkedHashMap<String, String> data) throws Exception {
+		
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		String downloadFilePath = System.getProperty("user.dir") + "\\src\\main\\resources\\downloadfiles\\";
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("TestCaseName", TestCaseName);
+		param.put("SID", getData(data, "SID"));
+		param.put("downloadFilePath", downloadFilePath);
+		param.put("surveyname", getData(data, "Survey Title"));
+		param.put("secondarylanguage", getData(data, "secondarylanguage"));
+		param.put("answerList", "Countries");
+		param.put("questionType", "CB");
+		param.put("Step1", getData(data, "Step 1"));
+		param.put("Step2", getData(data, "Step 2"));
+		
+			
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = platformReadingFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+				readingData = smxPage.getPollReadings(getDriver(), param, test);
+				System.out.println(readingData);
+				
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true, invocationCount = invocationCount)
+	public void PlatformReadings_TC92(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);
@@ -1375,7 +1516,7 @@ public class SMXPlatformReading_TC extends SuiteBase {
 	}
 	
 	@Test(dataProvider = "PlatformReadings", dataProviderClass = utility.XLSDataProvider.class, groups = "SMX", alwaysRun = true, invocationCount = invocationCount)
-	public void PlatformReadings_TC91(LinkedHashMap<String, String> data) throws Exception {
+	public void PlatformReadings_TC93(LinkedHashMap<String, String> data) throws Exception {
 		
 		TestCaseName = getData(data, "TestCaseName");
 		test = extent.createTest(TestCaseName);

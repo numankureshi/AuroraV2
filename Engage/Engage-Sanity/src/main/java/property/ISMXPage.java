@@ -7,11 +7,26 @@ public interface ISMXPage {
 	String CREATE_PROJECT = "//span[text()='Create Project']";
 	WebPageElements create_project = new WebPageElements("Create Project Button", "xpath", CREATE_PROJECT);
 	
+	String QUESTION_TYPE_DD = "//div[@id='dvQuestionType']";
+	WebPageElements question_type_dd = new WebPageElements("Question Type Drop Down", "xpath", QUESTION_TYPE_DD);
+	
+	String QUESTION_TYPE_OPTIONS = "//div[@id='qtypeBox']";
+	WebPageElements question_type_options = new WebPageElements("Question Type Options", "xpath", QUESTION_TYPE_OPTIONS);
+	
+	String APPLY = "//input[@id='btnDone']";
+	WebPageElements apply = new WebPageElements("Apply", "xpath", APPLY);
+	
 	String CREATE_POLL = "//div[@class='cls-projecttype-container']//div[contains(text(),'Poll')]";
 	WebPageElements create_poll = new WebPageElements("Create Poll Button", "xpath", CREATE_POLL);
 	
 	String ANSWER_LIBRARY = "//div[@id='dvAnswerCat']";
 	WebPageElements answer_library = new WebPageElements("Answer library", "xpath", ANSWER_LIBRARY);
+	
+	String GET_ANS_OPT_FROM_LIBRARY = "//a[@id='A1']";
+	WebPageElements get_ans_opt_from_library = new WebPageElements("Get Answer Options from Answer Library", "xpath", GET_ANS_OPT_FROM_LIBRARY);
+	
+	String IFRAME_ANSWER_LIBRARY = "//iframe[starts-with(@src,'PresetList_Use.aspx')]";
+	WebPageElements iframe_answer_library = new WebPageElements("Answer library Iframe", "xpath", IFRAME_ANSWER_LIBRARY);
 	
 	String CONTINUE_BUTTONP = "//input[@onclick='ValidateStep2();']";
 	WebPageElements continue_buttonp = new WebPageElements("Continue Buttonp", "xpath", CONTINUE_BUTTONP);
@@ -55,6 +70,11 @@ public interface ISMXPage {
 	String EXPRIE_POLL_YES = "//label[@for='rdExpireYes']";
 	WebPageElements expire_poll_yes = new WebPageElements("radio button for expire","xpath",EXPRIE_POLL_YES);
 	
+	String POLL_PREVIEW = "//td[@id='pollpreview']";
+	WebPageElements poll_preview = new WebPageElements("Poll Preview","xpath",POLL_PREVIEW);
+	
+	String QUICK_PARTICIPATION_LINK_DESCR = "//div[@id='dvpoll_link'][text()='Below are the links for different languages as default; you may post these on your website to collect responses.']";
+	WebPageElements quick_participation_link_descr = new WebPageElements("Participation Link Description Text","xpath",QUICK_PARTICIPATION_LINK_DESCR);
 	
 	String SAVE_AND_FINISH = "//input[@id='mainsubmit']";
 	WebPageElements Save_And_Finish = new WebPageElements("Save and finish","xpath",SAVE_AND_FINISH);
