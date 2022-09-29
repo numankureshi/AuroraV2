@@ -45,9 +45,14 @@ import javax.mail.Message;
 
 import java.util.Set;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.http.message.BasicListHeaderIterator;
 import org.apache.poi.util.ArrayUtil;
+import org.codehaus.jettison.json.JSONException;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.time.CalendarUtils;
 import org.openqa.selenium.Alert;
@@ -2846,8 +2851,8 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	public void Final_Merge_Steps(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, utilities, test);
-		click(driver, testcaseName, utilities, test);
+		waitforElemPresent(driver, testcaseName, 30, utilitiesfrominside, test);
+		click(driver, testcaseName, utilitiesfrominside, test);
 		waitforElemPresent(driver, testcaseName, 30, merge_projects, test);
 		click(driver, testcaseName, merge_projects, test);
 		waitforElemPresent(driver, testcaseName, 30, create_new_merge_projects, test);
@@ -12211,6 +12216,810 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 		return strtotalTime;
 		
 	}
+	
+	
+	
+public void getLastQuestion(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException, JSONException {
+		
+		String testcaseName = param.get("TestCaseName");
+		Boolean isMatrixGridFound = false;
+		String qtitle = null;
+		String exe = null;
+		String qNo = null;
+		List<WebElement> questions = null;
+		JSONObject json;
+		JSONArray unq;
+		String unq1 = null;
+		String s1 = null;
+		 String anslen = null;
+		 String	AnswerOp = null;
+		 String QtypeA = null;  //used for getting qtype while getting data for ans
+		ArrayList<String> scripts = new ArrayList<String>();
+		ArrayList<String> conditions = new ArrayList<String>();
+		ArrayList<String> answerOptions = new ArrayList<String>();
+		ArrayList<String> qNumbers = new ArrayList<String>();
+		 HashMap<String,String> currentQJson=new HashMap<String,String>();
+		
+		 Thread.sleep(2000);
+		 
+		 //getting last number from each drop down page
+		 
+		 waitforElemPresent(driver, testcaseName, 30,page_number_drop_down, test);
+			click(driver, testcaseName,page_number_drop_down, test);
+			ArrayList<Integer> lastQNumbersfromDD = new ArrayList<Integer>();
+			List<WebElement> numberOfPagesInDD = driver.findElements(By.xpath("//ul[@id='UIGoToPage']/li"));
+			 System.out.println(numberOfPagesInDD.size());
+			int lastPageDD = 0;
+			 for(int pdd=0; pdd<numberOfPagesInDD.size(); pdd++) {
+				 int pdd1 = pdd + 1;
+				  lastPageDD = numberOfPagesInDD.size() - 1;
+				 if(pdd1 >= lastPageDD) {
+					 break;
+				 }
+				 else {
+				 driver.findElement(By.xpath("//a[@class='arrw'][normalize-space()='Page "+pdd1+" of "+lastPageDD+"']"));
+				 WebElement hower2 = driver.findElement(By.xpath("//a[@class='arrw'][normalize-space()='Page "+pdd1+" of "+lastPageDD+"']"));
+					Actions action1 = new Actions(driver);
+					action1.moveToElement(hower2).perform();
+					List<WebElement> numberOfQuestions = driver.findElements(By.xpath("//ul[@id='qpg"+pdd1+"']//li"));
+					System.out.println(numberOfQuestions.size());
+					String lastQnoinPage =  driver.findElement(By.xpath("//ul[@id='qpg"+pdd1+"']//li["+numberOfQuestions.size()+"]")).getText();
+					System.out.println(lastQnoinPage);
+					StringBuilder singleString = new StringBuilder();
+					if(lastQnoinPage.contains("Question"))	{
+						int pos;
+						int QnumfromDD;
+						pos = lastQnoinPage.indexOf("n");
+						lastQnoinPage = lastQnoinPage.substring(pos+2);
+						System.out.println(lastQnoinPage);
+						QnumfromDD = Integer.parseInt(lastQnoinPage);
+						lastQNumbersfromDD.add(QnumfromDD);
+						System.out.println(lastQNumbersfromDD);
+					}
+				 }
+			 }
+			 System.out.println(lastPageDD);
+		 driver.findElement(By.xpath("//li[@class='liViewAll']//a[contains(text(),'All Pages ("+lastPageDD+")')]"));
+		click(driver, testcaseName, driver.findElement(By.xpath("//li[@class='liViewAll']//a[contains(text(),'All Pages ("+lastPageDD+")')]")), "all pages", test);
+		 
+		int totalQuestions =  Integer.parseInt( executeScript(driver, testcaseName, "return SurveyJson.PageQuestion.length;", test).toString());
+		int totalUniqueQuestions = Integer.parseInt((String) executeScript(driver, testcaseName, "return SurveyJson.PageQuestion[" +(totalQuestions-1) +"].uniqueqno;", test));
+		int finalqno = totalUniqueQuestions - 1;
+		for(int i=1; i<finalqno; i++) {
+			
+			questions = getWebElements(driver, testcaseName, question_title, test);
+			try {
+				qtitle = questions.get(i).getAttribute("qtitle");
+			}catch (IndexOutOfBoundsException e) {
+				executeScript(driver, testcaseName, "return window.scrollTo(0, document.body.scrollHeight);", test);
+				try {
+					waitForJStoLoad(driver, 30);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Thread.sleep(2000);
+				waitforElemPresent(driver, testcaseName, 30,question_title, test);
+				questions = getWebElements(driver, testcaseName, question_title, test);
+				qtitle = questions.get(i).getAttribute("qtitle");
+			}
+			Thread.sleep(1000);
+			scrollIntoCenter(driver, testcaseName, questions.get(i), "Question : " + questions.get(i).getAttribute("qtitle") + i, test);
+			WebElement hower = driver.findElement(By.xpath("//span[normalize-space()='"+questions.get(i).getAttribute("qtitle")+"']"));
+			Actions action = new Actions(driver);
+			action.moveToElement(hower).perform();
+			waitforElemPresent(driver, testcaseName, 30,question_title, test);
+			for(int j=1; j<finalqno; j++) {
+				try {
+		         exe  = ((String)executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON);", test));
+		         String qt = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.qtype;", test));
+		         if(qt.equals("RK")) {
+		        	 System.out.println(scripts);
+		        	 	exe = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.Answers).map(({value_text}) => value_text));", test));
+		        	 	 anslen = ((String)executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.Answers.length)", test));
+		        	 	int Aop = Integer.parseInt(anslen);
+		        	 	 System.out.println(Aop);
+		        	 	 System.out.println(exe);
+		        	 	exe = exe.substring(1, exe.length() - 1);
+		        	 	exe = exe.replace("\"","");
+		        	 	String[] rankq = exe.split(",");
+		        	 	List<String> rankqrresult = Arrays.asList(rankq); 
+		        	 	scripts.addAll(rankqrresult);
+		        	 	System.out.println(scripts);
+		        	 	for(int pn=0;pn<Aop;pn++) {
+			        		qNo = executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.qno)", test).toString();
+			        		qNumbers.add(qNo);
+			        	 	}
+		        	 	 System.out.println(qNumbers);
+		         
+		         }
+		         else {
+		          anslen = ((String)executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.Answers.length)", test));
+		         System.out.println(anslen);
+		         json = new JSONObject(exe);
+	            unq1 = json.getString("PipeQTitle");
+	            QtypeA =  json.getString("qtype");
+	            qNo = json.getString("qno");
+	            
+	            String  others  = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.other_text;", test));
+	            System.out.println(others);
+	            System.out.println(QtypeA);
+	            System.out.println(unq1);
+	       //     System.out.println(json);
+	            Thread.sleep(1000);
+	            scripts.add(unq1);
+	            qNumbers.add(qNo);
+	            int ANSLEN=Integer.parseInt(anslen);  
+	       
+	            		if(ANSLEN == 1) 
+	            		{
+	            							System.out.println("answers is of textbox type");
+	            				//			answerOptions.add(" ");
+	            		}
+	            		else 
+	            		{
+	            				if(QtypeA.equals("RS"))
+	            				{
+	            					String rstype = executeScript(driver, testcaseName, "return currentQuestionJSON.RS_type;", test).toString();
+	            					if(rstype.equals("1")) {
+	            						AnswerOp = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.Answers).map(({value_text}) => value_text));", test));
+	            					}
+	            					
+	            					else if(rstype.equals("2")) {
+	            						answerOptions.add("(0-6) Detractors");
+	            						answerOptions.add("(7-8) Passives");
+	            						answerOptions.add("(9-10) Promoters");
+	            						System.out.println(answerOptions);
+	            						break;
+	            						
+	            					}
+	            					else {
+	            						AnswerOp = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.Answers).map(({value_id}) => value_id));", test));
+	            					}
+	            					System.out.println(AnswerOp);
+	            					AnswerOp = AnswerOp.substring(1, AnswerOp.length() - 1);
+	            					AnswerOp = AnswerOp.replace("\"","");
+	            					String[] optionResult = AnswerOp.split(",");
+	            					 List<String> optionResult1 = Arrays.asList(optionResult); 
+	            					 answerOptions.addAll(optionResult1);
+	            					 System.out.println(answerOptions);
+	            				}
+	            				else if(QtypeA.equals("RK"))
+	            				{
+	            				String	AnswerOp1 = executeScript(driver, testcaseName, "return currentQuestionJSON.Answers.length;", test).toString();
+	            					int Aop = Integer.parseInt(AnswerOp1);
+	            					for(int rk=0;rk<Aop;rk++) {
+	            						String RankingOption = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.Answers["+rk+"].value_id;", test));
+	            						String RAnksuffix = "Rank ";
+	            						RankingOption = RAnksuffix+(RankingOption);
+	            						answerOptions.add(RankingOption);
+	            					}
+	            					System.out.println(answerOptions);
+	            				}
+	            				
+	            				else
+	            				{
+	            					
+	            					AnswerOp = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.Answers).map(({value_text}) => value_text));", test));
+	            					System.out.println(AnswerOp);
+	            					AnswerOp = AnswerOp.substring(1, AnswerOp.length() - 1);
+	            					AnswerOp = AnswerOp.replace("\"","");
+	            					String[] optionResult = AnswerOp.split(",");
+	            					 List<String> optionResult1 = Arrays.asList(optionResult); 
+	            					 answerOptions.addAll(optionResult1);
+	            					 if(others == "true")
+	            					 {
+	            						 answerOptions.add(others);
+	            					 }
+	            					 System.out.println(answerOptions);
+	            				}
+	            		
+	            		}
+		          }
+	            		
+				}
+				
+				catch(java.lang.AssertionError e) {
+					String exe1  =((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.SubQuestions).map(({qtitle}) => qtitle))", test));
+					int ql = exe1.length();
+					if (ql == 2) {
+						String issinglegrid = executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.isSingleGrid)", test).toString();
+						if(issinglegrid != "true") {
+							int groupcount = Integer.parseInt(executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.Groups.length)", test).toString());
+							int subquestionCount = Integer.parseInt(executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.Groups[0].Questions.length)", test).toString());
+							for (int gc=0; gc<groupcount;gc++) {
+								for(int sc=0; sc<subquestionCount; sc++) {
+									String 	subQuestion  = executeScript(driver, testcaseName,"return JSON.stringify(currentQuestionJSON.Groups["+gc+"].Questions[" +sc +"].qtitle)", test).toString();
+									qNo = executeScript(driver, testcaseName,"return JSON.stringify(currentQuestionJSON.Groups["+gc+"].Questions[" +sc +"].qno)", test).toString();
+									qNo = qNo.replace("\"", "");
+									subQuestion = subQuestion.replace("\"", "");
+									System.out.println(subQuestion);
+									scripts.add(subQuestion);
+									System.out.println(qNo);
+									qNumbers.add(qNo);
+									}
+							}
+						
+						}
+						
+						else {
+							int subquestionCount = Integer.parseInt(executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.Groups[0].Questions.length)", test).toString());
+							for(int sc=0; sc<subquestionCount; sc++) {
+							String 	subQuestion  = executeScript(driver, testcaseName,"return JSON.stringify(currentQuestionJSON.Groups[0].Questions[" +sc +"].qtitle)", test).toString();
+							qNo = executeScript(driver, testcaseName,"return JSON.stringify(currentQuestionJSON.Groups[0].Questions[" +sc +"]].qno)", test).toString();
+							qNo = qNo.replace("\"", "");
+							System.out.println(qNo);
+							qNumbers.add(qNo);
+							subQuestion = subQuestion.replace("\"", "");
+							System.out.println(subQuestion);
+							scripts.add(subQuestion);
+							}
+						}
+					    System.out.println(scripts);
+							}
+					//demo
+				else {
+					
+					String qt = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.qtype", test));
+					
+					if(qt.equals("AT")){
+						 System.out.println(scripts);
+					}
+					
+					else {
+					
+					 exe  = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.SubQuestions).map(({qtitle}) => qtitle))", test));
+                     System.out.println(exe);
+                     unq1 = exe;
+                     unq1 = unq1.substring(1, unq1.length() - 1);
+                     unq1 = unq1.replace("\"", "");
+                     String[] result1 = unq1.split(",");
+                      List<String> scripts1 = Arrays.asList(result1);
+                      scripts.addAll(scripts1);
+                       System.out.println(scripts);
+                       anslen = ((String)executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.SubQuestions.length)", test));
+		        	 	int Aop = Integer.parseInt(anslen);
+		        	 	 System.out.println(Aop);
+		        	 	for(int pn=0;pn<Aop;pn++) {
+			        		qNo = executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.qno)", test).toString();
+			        		qNumbers.add(qNo);
+			        	 	}
+		        	 	 System.out.println(qNumbers);
+					 }
+					}
+					
+					 anslen = ((String)executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.Answers.length)", test));
+					 int ANSLEN=Integer.parseInt(anslen); 
+					 
+					String demField = ((String)executeScript(driver, testcaseName, "return JSON.stringify(currentQuestionJSON.DemographicFieldID)", test));
+					 int DEMFIELD=Integer.parseInt(demField); 
+					 
+					 String qtAns  = executeScript(driver, testcaseName, "return currentQuestionJSON.qtype", test).toString();
+	            		if(ANSLEN == 1) 
+	            		{
+	            			if(DEMFIELD == 1) {
+	            				
+	            				int subquestioncount = Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions.length", test).toString());
+	            				for (int gc=0; gc<subquestioncount; gc++)
+								{
+	            					String demSubQtype = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions["+gc+"].qtype;", test));
+	            					if(demSubQtype.equals("T")) {
+	            						System.out.println("answers is of textbox type");
+	            					}
+	            					
+	            					else {
+	            						int demSubQtypeOptionCount = Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions["+gc+"].Answers.length;", test).toString());
+	            						
+	            						for (int oc=0; oc<demSubQtypeOptionCount; oc++) {
+	            							String demSubQtypeValue =   ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions["+gc+"].Answers["+oc+"].value_text;", test));
+	            							System.out.println(demSubQtypeValue);
+	            							answerOptions.add(demSubQtypeValue);
+	            							System.out.println(answerOptions);
+	            						     }
+	            						
+	            					     }
+								}
+	            			}
+	            			else {
+	            							System.out.println("answers is of textbox type");
+	            			     }			
+	            		}
+	            		else {
+	            			String issinglegrid = executeScript(driver, testcaseName, "return currentQuestionJSON.isSingleGrid", test).toString();
+							
+	            			if(issinglegrid.equals("false")) {
+						
+								if(qtAns.equals("DDD") || qtAns.equals("GQ")) {
+												System.out.println("DDD");
+												int subquestioncount = Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions.length", test).toString());
+												for (int gc=0; gc<subquestioncount; gc++)
+												{
+													int mqanslen = Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions["+gc+"].Answers.length", test).toString());
+													for (int mqa=0; mqa<mqanslen; mqa++)
+													{
+														AnswerOp = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.SubQuestions["+gc+"].Answers["+mqa+"].value_text;", test));
+														AnswerOp = AnswerOp.replace("\"", "");
+														System.out.println(AnswerOp);
+														answerOptions.add(AnswerOp);
+														System.out.println(answerOptions);
+													}
+												}
+									
+											}
+							
+								
+										else {
+								
+											if(qtAns.equals("MD")) {
+												AnswerOp = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.Answers).map(({value_text}) => value_text));", test));
+												System.out.println(AnswerOp);
+												AnswerOp = AnswerOp.substring(1, AnswerOp.length() - 1);
+												AnswerOp = AnswerOp.replace("\"","");
+												String[] optionResult = AnswerOp.split(",");
+												List<String> optionResult1 = Arrays.asList(optionResult); 
+												answerOptions.addAll(optionResult1);
+												System.out.println(answerOptions);
+											}
+											
+											
+											else{
+												int groupcount = Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.Groups.length", test).toString());
+												int mqanslen = Integer.parseInt(executeScript(driver, testcaseName, "return currentQuestionJSON.Groups[0].Questions[0].Answers.length", test).toString());
+												for (int gc=0; gc<groupcount; gc++)
+												{
+													for (int mqa=0; mqa<mqanslen; mqa++)
+													{
+														AnswerOp = ((String)executeScript(driver, testcaseName, "return currentQuestionJSON.Groups["+gc+"].Questions[0].Answers["+mqa+"].value_text;", test));
+														if(AnswerOp.equals("")) {
+															System.out.println("textbox question");
+															break;
+														}
+														
+														else {
+														//	AnswerOp = AnswerOp.substring(1, AnswerOp.length() - 1);
+														AnswerOp = AnswerOp.replace("\"", " ");
+														System.out.println(AnswerOp);
+														answerOptions.add(AnswerOp);
+														System.out.println(answerOptions);
+														}
+													}
+												}	
+										    }
+										}	
+									}
+	            			
+	            			
+							else {
+								AnswerOp = ((String)executeScript(driver, testcaseName, "return JSON.stringify(Array.from(currentQuestionJSON.Answers).map(({value_text}) => value_text));", test));
+								System.out.println(AnswerOp);
+								AnswerOp = AnswerOp.substring(1, AnswerOp.length() - 1);
+								AnswerOp = AnswerOp.replace("\"","");
+								String[] optionResult = AnswerOp.split(",");
+								List<String> optionResult1 = Arrays.asList(optionResult); 
+								answerOptions.addAll(optionResult1);
+								System.out.println(answerOptions);
+							 }
+	            		}
+					
+					
+				}
+				
+				System.out.println(scripts.size());
+				 System.out.println(qNumbers.size());
+				break;
+			}
+		}
+		
+		
+		currentQJson.entrySet().forEach(entry -> {
+		    System.out.println(entry.getKey() + " " + entry.getValue());
+		});
+		 
+		
+		
+		waitforElemPresent(driver, testcaseName, 30,logic_button, test);
+		click(driver, testcaseName,logic_button, test);
+		waitforElemPresent(driver, testcaseName, 30,multi_question_branching, test);
+		click(driver, testcaseName,multi_question_branching, test);
+		driver.switchTo().frame(driver.findElement(By.xpath("//div[@class='modalBody']//iframe[@id='iframe1']")));
+		driver.findElements(By.xpath("//div[starts-with(@id,'dvMainPageCon_')]/div/a"));
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@id='dvAdvBranchSurveyHeader']"), "mqb branch page header", test);
+		 List<WebElement> numberOfquestionsInAccordin;
+		List<WebElement> numberOfAccordin = driver.findElements(By.xpath("//div[starts-with(@id,'dvMainPageCon_')]/div/a"));
+		 System.out.println("Number of Accordin:" +numberOfAccordin.size());
+		 
+		 
+		 HashMap<String, List<String>> questionCon = new HashMap<>();
+			questionCon.put("RS",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("T",Arrays.asList("Contains","Does not contain","Starts with","Is answered","Is not answered","Contains one of the following"));
+			questionCon.put("NA",Arrays.asList("Equal to","Not equal to","Less than","Greater than","Less than or equal to","Greater than or equal to","Between","Not between","Is not answered"));
+			questionCon.put("RB",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("MSCB",Arrays.asList("Is one of the following","Is all of the following","Is not one of the following","Is not answered"));
+			questionCon.put("DD",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("RW",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("DT",Arrays.asList("On","Before","After","Not on","Between","Not between","Is not answered"));
+			questionCon.put("GQ",Arrays.asList("Equal to","Not equal to","Less than","Greater than","Less than or equal to","Greater than or equal to","Between","Not between","Is not answered"));
+			questionCon.put("RK",Arrays.asList("Is","Is not","Less than","Greater than","Less than or equal to","Greater than or equal to","Between","Is not answered"));
+			questionCon.put("GR",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("GC",Arrays.asList("Is one of the following","Is all of the following","Is not one of the following","Is not answered"));
+			questionCon.put("RG",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("HRB",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("RT",Arrays.asList("Is one of the following","Is not one of the following","Is not answered"));
+			questionCon.put("MSLB",Arrays.asList("Is one of the following","Is all of the following","Is not one of the following","Is not answered"));
+		 
+			for(int k=0; k<numberOfAccordin.size(); k++) {
+			 int z = numberOfAccordin.size() - 1;
+			 if(k == numberOfAccordin.size() - 1 ){
+				 System.out.println("mqb is not supported for last page");
+			 }
+			 else {
+			int l = k+1;
+			String x = "//div[@id='dvMainPageCon_"+l+"']/div[@id='P1"+l+"']";
+			 System.out.println(x);
+				driver.findElements(By.xpath("//div[@id='dvMainPageCon_"+l+"']/div[@id='P1"+l+"']"));
+				click(driver, testcaseName, By.xpath("//div[@id='dvMainPageCon_"+l+"']/div[@id='P"+l+"']"), "accordion", test);
+				
+				waitforElemPresent(driver, testcaseName, 20, select_question_dd_mqb, test);
+				click(driver, testcaseName,select_question_dd_mqb, test);
+				
+				driver.findElements(By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li"));
+				 numberOfquestionsInAccordin= driver.findElements(By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li"));
+				int c = numberOfquestionsInAccordin.size();
+				System.out.println(c);
+				ArrayList<String> qtitleList = new ArrayList<String>();
+				ArrayList<String> qNoList = new ArrayList<String>();
+				ArrayList<String> commonqtitleList = new ArrayList<String>();
+				ArrayList<String> qAnswerOptionsList = new ArrayList<String>();
+				ArrayList<String> commonqAnswerOptionsList = new ArrayList<String>();
+			//	ArrayList<String> conditionlist = new ArrayList<String>();
+				String Qtype = null;
+				String QnoAcc = null;
+				 for(int m=0; m<numberOfquestionsInAccordin.size(); m++) {
+					int n = m+1;
+					String Qtextpath = driver.findElement(By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li["+n+"]")).getText(); 
+					Qtype = driver.findElement(By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li["+n+"]")).getAttribute("qtype");
+					QnoAcc = driver.findElement(By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li["+n+"]")).getAttribute("qno");
+					 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li["+n+"]"), "scrolling to the question", test);
+					 qNoList.add(QnoAcc);
+					 System.out.println(Qtextpath);
+					//System.out.println(Qtype);
+				click(driver, testcaseName, By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li["+n+"]"), "scrolling to the question", test);
+					 
+					Boolean qt = questionCon.containsKey(Qtype);
+					    if(qt == true){
+					        System.out.println("Matched key = " + Qtype);
+					        String conditiondCheck = questionCon.get(Qtype).toString();
+					        conditiondCheck = conditiondCheck.substring(1,conditiondCheck.length() - 1);
+					        
+					        System.out.println(conditiondCheck);
+					        String[] conditionsfromtool = conditiondCheck.split(",");
+		                      List<String> conditionlist = Arrays.asList(conditionsfromtool);
+		                  //    scripts.addAll(conditionlist);
+		                       System.out.println(conditionlist);
+		                       ArrayList<String> conditionslistupdated = new ArrayList<String>();
+		                       String ctext = null;
+		                       for (int cl=0;cl<conditionlist.size();cl++) {
+		                    	   if(cl == 0){
+		                    		   ctext = conditionlist.get(cl);
+		                    	   }
+		                    	   else {
+		                    		   ctext = conditionlist.get(cl);
+		                    		   ctext = ctext.substring(1,ctext.length());
+		                    	   }
+		                    	   conditionslistupdated.add(ctext);
+		                       }
+		                      
+		                       Thread.sleep(2000);
+					//        System.out.println(questionCon.Value);
+					        waitforElemPresent(driver, testcaseName, 20, condition_drop_down, test);
+					        Thread.sleep(1000);
+					//		click(driver, testcaseName,condition_drop_down, test);
+							List<WebElement> numberOfConditions = driver.findElements(By.xpath("//div[@class='custom-select-wrapper ansopr']/select/option"));
+							System.out.println("Number of conditions:" +numberOfConditions.size());
+							
+							for (int cs=0; cs < numberOfConditions.size();cs++){
+								String	 condition =  numberOfConditions.get(cs).getText();
+								conditions.add(condition);
+							}
+							System.out.println(conditions);
+							 System.out.println(conditionslistupdated);
+							 List<WebElement> numberOfquestionsInAccordin1 = driver.findElements(By.xpath("//div[@class='AdvbrnchQuesDD branching-list-wrapper mqbQlist']/ul/li"));
+	             			Collections.copy(numberOfquestionsInAccordin, numberOfquestionsInAccordin1);
+	             			List<WebElement> numberOfConditions1 = driver.findElements(By.xpath("//div[@class='custom-select-wrapper ansopr']/select/option"));
+	             			Collections.copy(numberOfConditions, numberOfConditions1);
+	             			
+	             			
+	             			//Question Answer options
+	             			
+	             			if(Qtype.equals("T")||Qtype.equals("DT")) {
+	             	//			qAnswerOptionsList.add(" ");
+	             				System.out.println("answers is of textbox type");
+	             			}
+	             			
+	             			else if(Qtype.equals("GQ")) {
+	             				List <WebElement> qAnswerOptions = driver.findElements(By.xpath("//select[@id='ddlFromGQ_1_1']/option"));
+		             			System.out.println(qAnswerOptions.size());
+		             			for(int qao=0; qao<qAnswerOptions.size(); qao++) {
+		             				int qao1 = qao + 1;
+		             				String OptionVal = driver.findElement(By.xpath("//select[@id='ddlFromGQ_1_1']/option["+qao1+"]")).getText();
+		             				qAnswerOptionsList.add(OptionVal);
+		             			}
+	             			}
+	             			
+	             			
+	             			else if(Qtype.equals("RK")) {
+	             				List <WebElement> qAnswerOptions = driver.findElements(By.xpath("//select[@id='ddlFromRK_1_1']/option"));
+		             			System.out.println(qAnswerOptions.size());
+		             			for(int qao=1; qao<qAnswerOptions.size(); qao++) {
+		             				int qao1 = qao + 1;
+		             				String OptionVal = driver.findElement(By.xpath("//select[@id='ddlFromRK_1_1']/option["+qao1+"]")).getText();
+		             				qAnswerOptionsList.add(OptionVal);
+		             			}
+	             				
+	             			}
+	             			else {	             			
+	             			List <WebElement> qAnswerOptions = driver.findElements(By.xpath("//div[@class='AdvChkAnsOption']"));
+	             			System.out.println(qAnswerOptions.size());
+	             			for(int qao=0; qao<qAnswerOptions.size(); qao++) {
+	             				int qao1 = qao + 1;
+	             			String OptionVal = driver.findElement(By.xpath("//div[@class='AdvChkAnsOption']["+qao1+"]")).getText();
+	             			 scrollIntoCenter(driver, testcaseName, By.xpath("//div[@class='AdvChkAnsOption']["+qao1+"]"), "scrolling to the option", test);
+	             			qAnswerOptionsList.add(OptionVal);
+	             			}
+	             			
+	             			}
+	             			System.out.println(qAnswerOptionsList);	
+	             			
+	             			
+	             			boolean boolcl = conditionslistupdated.equals(conditions);
+	       				 if(boolcl == true)
+	       					{
+	       						reportPass("conditions from tool and map are matched", test);
+	       					}
+	       					else
+	       					{
+	       						reportFail(testcaseName,"conditions from tool and map are not matched" , test); 
+	       					}
+	       				conditions.clear();
+	             			
+					    } else{
+					        System.out.println("Key not matched with qtype");
+					    }
+					
+					
+					
+					Thread.sleep(2000);
+					waitforElemPresent(driver, testcaseName, 20, select_question_dd_mqb1, test);
+					click(driver, testcaseName,select_question_dd_mqb1, test);
+					String QText = null;
+					StringBuilder singleString = new StringBuilder();
+					if(Qtextpath.contains(":"))	{
+						int pos;
+						pos = Qtextpath.indexOf(":");
+						System.out.println(pos);
+						QText = Qtextpath.substring(pos+2);
+						System.out.println(QText);
+						qtitleList.add(QText);
+						System.out.println(qtitleList);
+					}
+					else {
+						String [] result = Qtextpath.split("\\s+");
+						for(z=2; z<result.length; z++) {
+							singleString.append(result[z]);
+					         singleString.append(" ");
+					         if(m == 0) {
+					        	 StringBuilder sb1 = new StringBuilder(" ");
+					         }
+						}
+						QText = singleString.toString();
+						QText = QText.substring(0,QText.length() - 1);
+						System.out.print(QText);
+						qtitleList.add(QText);
+					}
+				 }
+
+				 //question validation
+				 
+				 List<String> result = new ArrayList<>();
+				 for(int index = 0; index < qtitleList.size(); index++) {
+					 for(int index1 = 0; index1 < scripts.size(); index1++) {
+					String a =	 qtitleList.get(index);
+					String b = scripts.get(index1);
+						 if (a==b);{
+							 result.add(a);
+							break;
+						 }
+					  }
+					 continue;
+			        }
+				 System.out.println(result);
+				 
+				 
+				 boolean boolqt = result.equals(qtitleList);
+				 if(boolqt == true)
+					{
+					 reportPass("q title matched", test);
+					}
+					else
+					{
+						reportFail(testcaseName,"q title not matched" , test); 
+					}
+				 
+				 
+				 //answer options validation
+				 
+				 List<String> result1 = new ArrayList<>();
+				 for(int index = 0; index < qAnswerOptionsList.size(); index++) {
+					 for(int index1 = 0; index1 < answerOptions.size(); index1++) {
+					String a =	 qAnswerOptionsList.get(index);
+					String b = answerOptions.get(index1);
+						 if (a==b);{
+							 result1.add(a);
+							break;
+						 }
+					  }
+					 continue;
+			        }
+				 System.out.println(result1);
+				 
+				 
+				 boolean boolqt1 = result1.equals(qAnswerOptionsList);
+				 if(boolqt1 == true)
+					{
+						reportPass("q answer options matched", test);
+					}
+					else
+					{
+						 System.out.println(result1);
+						 System.out.println(qAnswerOptionsList);
+						reportFail(testcaseName,"q answer options not matched" , test); 
+					}
+				 
+				 //question number validation
+				 
+				 ArrayList<String> result2 = new ArrayList<>();
+				 for(int index = 0; index < qNoList.size(); index++) {
+					 for(int index1 = 0; index1 < qNumbers.size(); index1++) {
+					String a =	 qNoList.get(index);
+					String b = qNumbers.get(index1);
+						 if (a==b);{
+							 result2.add(a);
+							break;
+						 }
+					  }
+					 continue;
+			        }
+				 System.out.println(result2);
+				 boolean boolqt2 = result2.equals(qNoList);
+				 if(boolqt1 == true)
+					{
+						reportPass("q pageno matched", test);
+					}
+					else
+					{
+						 System.out.println(result2);
+						 System.out.println(qNoList);
+						reportFail(testcaseName,"q pageno not matched" , test); 
+					}
+				 ArrayList<Integer> qnumlist = new ArrayList<>();
+				 	for(int in = 0; in < result2.size(); in++) {
+				 		String a =	 qNoList.get(in);
+				 		int b = Integer.parseInt(a);
+				 		qnumlist.add(b);
+				 	}
+				 	 System.out.println(qnumlist);
+				 	 System.out.println(lastQNumbersfromDD.get(k));
+				 	 
+				 	for(int in = 0; in < qnumlist.size(); in++) {
+				 		int com = qnumlist.get(in);
+				 		if(lastQNumbersfromDD.get(k)>=com) {
+				 			System.out.println("working fine");
+				 		}
+				 		else {
+				 			System.out.println("not working fine");
+				 		}
+				 	}
+				 
+			 }
+				 driver.findElements(By.xpath("//input[@onclick='redirect();']"));
+				click(driver, testcaseName, By.xpath("//input[@onclick='redirect();']"), "cancel button", test);
+		 }
+	}
+	
+
+
+
+public void mQB1(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+		throws InterruptedException, JSONException {
+	
+	String testcaseName = param.get("TestCaseName");
+	String maxpn;
+	waitforElemPresent(driver, testcaseName, 30,all_projects, test);
+	click(driver, testcaseName,all_projects, test);
+	driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@id='iframe1']")));	
+	waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='folder-text ng-binding'][normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+	click(driver, testcaseName, By.xpath("//span[@class='folder-text ng-binding'][normalize-space()='"+ param.get("AnswerOptions") +"']"), param.get("AnswerOptions"), test);
+	waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@title='"+ param.get("surveyname") +"']"), param.get("surveyname"), test);
+	WebElement hower1 = driver.findElement(By.xpath("//div[@title='"+ param.get("surveyname") +"']"));
+	Actions action = new Actions(driver);
+	action.moveToElement(hower1).perform();
+	WebElement edit = driver.findElement(By.xpath("//div[@id='over-div-contents']//span[@class='survey-option-icon edit-opt-icon']"));
+	edit.click();
+	driver.switchTo().defaultContent();
+	waitforElemPresent(driver, testcaseName, 100, By.xpath("//div[@class='hd-logo-img']"), testcaseName, test);
+	Thread.sleep(3000);
+	String SD = executeScript(driver, testcaseName, "return JSON.stringify(SurveyJson);", test).toString();
+	System.out.println(SD);
+	JSONObject json = new JSONObject(SD);  
+	System.out.println(json.toString());
+	 maxpn = json.getString("MaxPageNo");  
+	System.out.println(maxpn);
+	int Maxpn=Integer.parseInt(maxpn);
+	String SDPageNUm = executeScript(driver, testcaseName, "return SurveyJson.txtALLQuestionIdsASC", test).toString();
+	
+	
+	String[] qResult = SDPageNUm.split(",");	
+	List<String> qResult1 = Arrays.asList(qResult); 
+	System.out.println(qResult1.size());
+	int maxxxx = qResult1.size()-1;
+	System.out.println(qResult1.get(maxxxx));
+	
+	waitforElemPresent(driver, testcaseName, 30,logic_button, test);
+	click(driver, testcaseName,logic_button, test);
+	waitforElemPresent(driver, testcaseName, 30,multi_question_branching, test);
+	click(driver, testcaseName,multi_question_branching, test);
+
+	boolean mqbcheck = driver.findElement(By.xpath("//div[@class='modalBody']//iframe[@id='iframe1']")) != null;
+	if(mqbcheck = true) {
+		reportPass("MQB is supported", test);
+	}
+	else {
+		reportFail(testcaseName,"MQB is notsupported" , test);
+	}
+	
+	
+	
+	waitforElemPresent(driver, testcaseName, 30, By.xpath("//div[@class='modalBody']//iframe[@id='iframe1']"), testcaseName, test);
+	//driver.switchTo().frame(driver.findElement(By.xpath(IFRAME_BUTTON)));
+	driver.switchTo().frame(driver.findElement(By.xpath("//div[@class='modalBody']//iframe[@id='iframe1']")));
+	
+	
+	driver.findElements(By.xpath("//div[starts-with(@id,'dvMainPageCon_')]/div/a"));
+	 List<WebElement> numberOfAccordin = driver.findElements(By.xpath("//div[starts-with(@id,'dvMainPageCon_')]/div/a"));
+	
+	 System.out.println("Number of Accordin:" +numberOfAccordin.size());
+	
+	 if(Maxpn == numberOfAccordin.size())
+		{
+			  reportPass("no of pages and accordin is matched", test);
+		} 
+	 else
+		{
+				reportFail(testcaseName,"no of pages and accordin is matched" , test);
+		}
+	 
+	 for(int i=0; i<numberOfAccordin.size(); i++) {
+		 driver.findElement(By.xpath("//div[starts-with(@id,'dvMainPageCon_')]/div/a"));
+		 String pagetitle = numberOfAccordin.get(i).getText();
+		int j = i+1;
+		String pt =  param.get("TextBox")+j;
+		System.out.println(pt);
+		System.out.println(pagetitle);
+		 if(pt.equals(pagetitle))
+			{
+				  reportPass("title is matched", test);
+			} 
+		 else
+			{
+					reportFail(testcaseName,"title is not matched" , test);
+			}
+	 }
+	 driver.switchTo().defaultContent();
+	 
+	 waitforElemPresent(driver, testcaseName, 30,close_button, test);
+		click(driver, testcaseName,close_button, test);
+		getLastQuestion (driver,param,test);
+}
 	
 	
 	

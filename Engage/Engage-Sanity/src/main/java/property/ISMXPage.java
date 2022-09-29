@@ -827,7 +827,7 @@ public interface ISMXPage {
 	String TEXT_AND_TRANSLATION_MENU = "//div[@class='bulk-lang-dropdown hd-dropdown-content hd-show-dd']";
 	WebPageElements text_and_translation_menu = new WebPageElements("Text and Translation Menu", "xpath", TEXT_AND_TRANSLATION_MENU);
 	
-	String LANGUAGE_DROPDOWN = "//div[@id='ctl46_dvLangText']";
+	String LANGUAGE_DROPDOWN = "//div[@id='ctl50_dvLangText']";
 	WebPageElements language_dropdown = new WebPageElements("Language Drop Down", "xpath", LANGUAGE_DROPDOWN);
 	
 	String AUTO_TRANSLATE = "//input[@id='Button5']";
@@ -1165,6 +1165,9 @@ public interface ISMXPage {
 	String UTILITIES = "//a[@id='z_h_ctl00_aum']";
 	WebPageElements utilities = new WebPageElements("Utilities", "xpath", UTILITIES );
 	
+	String UTILITIES_FROM_INSIDE = "//div[@class='hd-utilities hd-first-opt']";
+	WebPageElements utilitiesfrominside = new WebPageElements("Utilities from a survey", "xpath", UTILITIES_FROM_INSIDE );
+	
 	String MERGE_PROJECTS = "//a[@id='Inner_header1_ctl00_lnkUTLmerge']";
 	WebPageElements merge_projects = new WebPageElements("Merge_Projects", "xpath", MERGE_PROJECTS );
 	
@@ -1361,6 +1364,28 @@ public interface ISMXPage {
 	String IFRAME_REARRANGE_QUESTIONS = "//iframe[starts-with(@src, '../zSM/rearrange.aspx?survey_no=')]";
 	WebPageElements iframe_rearrange_questions = new WebPageElements("Rearrange Questions IFrame", "xpath", IFRAME_REARRANGE_QUESTIONS );
 
-
-
+	String QUESTIONS_FOCUS = "//span[starts-with(@class,'Quesgrid editqtitleAll')]";
+	WebPageElements questions_focus = new WebPageElements("QUESTIONS_FOCUS", "xpath", QUESTIONS_FOCUS);
+	
+	String LOGIC_BUTTON = "//span[normalize-space()='Logic']";
+	WebPageElements logic_button = new WebPageElements("LOGIC_BUTTON", "xpath", LOGIC_BUTTON);
+	
+	String MULTI_QUESTION_BRANCHING = "//div[normalize-space()='Multi-Question Branching']";
+	WebPageElements multi_question_branching = new WebPageElements("MULTI_QUESTION_BRANCHING", "xpath", MULTI_QUESTION_BRANCHING);
+	
+	String CLOSE_BUTTON = "//div[@class='modalDialog NoTransform']//div[@class='modalClose']";
+	WebPageElements close_button = new WebPageElements("CLOSE_BUTTON", "xpath", CLOSE_BUTTON);
+	
+	String SELECT_QUESTION_DD_MQB = "//div[@class='AdvbrnchQues']";
+	WebPageElements select_question_dd_mqb = new WebPageElements("SELECT_QUESTION_DD_MQB", "xpath", SELECT_QUESTION_DD_MQB);
+	
+	String SELECT_QUESTION_DD_MQB1 = "//div[@class='AdvbrnchQues AdvbrnchQueshover']";
+	WebPageElements select_question_dd_mqb1 = new WebPageElements("SELECT_QUESTION_DD_MQB1", "xpath", SELECT_QUESTION_DD_MQB1);
+	
+	String CONDITION_DROP_DOWN = "//select[@id='ddlAnsOpr_1_1']";
+	WebPageElements condition_drop_down = new WebPageElements("CONDITION_DROP_DOWN", "xpath", CONDITION_DROP_DOWN);
+	
+	
+	
+	
 }

@@ -310,6 +310,8 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		waitForLoad(driver, testcaseName, 60, test);	
 		dmxPage.selectFromAList2(driver, param, test);
 		prePopulation3(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 60, By.xpath("//input[@id='btnContinue']"), "generate", test);
+        click(driver, testcaseName, By.xpath("//input[@id='btnContinue']"), "generate", test);
 		waitforElemPresent(driver, testcaseName, 30, generate_button, test);
 		click(driver, testcaseName, generate_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -322,7 +324,6 @@ public class DMXPageResearch extends SeleniumUtils implements IDMXPage, ISMXPage
 		} catch (Exception e) {
 			waitforElemPresent(driver, testcaseName, 60, successfully_generated, test);
 		}
-		
 		
 		
 		waitForLoad(driver, testcaseName, 30, test);
