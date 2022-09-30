@@ -951,6 +951,9 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, done_editing_button, test);
 		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
+		waitforElemPresent(driver, testcaseName, 30, By.xpath("//input[@name='btnSubmit']"), "send now", test);
+		click(driver, testcaseName, By.xpath("//input[@name='btnSubmit']"), "send now button", test);
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, sms_invitation_sent, test);
 	}
 	
@@ -1612,7 +1615,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		commonStepsForTodayFilter(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 20, sms_invitation_inside_track, test);
 		click(driver, testcaseName, sms_invitation_inside_track, test);
-		waitForLoad(driver, testcaseName, 10, test);
+		waitForLoad(driver, testcaseName, 20, test);
 		
 		try {
 			CompareWithPresentTime(driver, param, test);
