@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
@@ -204,12 +205,51 @@ public class DMXPageSogo extends SeleniumUtils implements IDMXPage, ISMXPage {
 			waitforElemPresent(driver, testcaseName, 60, successfully_generated, test);
 		}
 		
-		
-		
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
 		dmxPage.downloadFile(driver, param, generate_password , "xls", param.get("downloadFilePath"), test);
 	}
+	
+	public void SurveyCheckWithPassword(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, survey_access_password_from_track, test);
+		click(driver, testcaseName, survey_access_password_from_track, test);
+		waitForLoad(driver, testcaseName, 16, test);
+		String URl = (driver.findElement(By.xpath("//td[@id='tdSurveyLoginURL_0']")).getText());
+		String Name = (driver.findElement(By.xpath("//td[@id='tdPassword_0']")).getText());
+		System.out.println(Name);
+		executeScript(driver, testcaseName, "window.open()", test);
+		Thread.sleep(2000);
+		Set<String> handles = driver.getWindowHandles();
+	    String currentWindowHandle = driver.getWindowHandle();
+	    param.put("currentWindowHandle", currentWindowHandle);
+	    for (String handle : handles) {
+	    	System.out.println(handle);
+	    	System.out.println(currentWindowHandle);
+	        if (!currentWindowHandle.equals(handle)) {
+	            driver.switchTo().window(handle);
+	        }
+	    }
+		driver.get(URl);
+		
+		 setText(driver, testcaseName, sap_textbox, Name, test);
+		 waitforElemPresent(driver, testcaseName, 30, sap_submit, test);
+			click(driver, testcaseName, sap_submit, test);
+			validationOfSAPSurvey(driver, param, test);
+	}
+	public void validationOfSAPSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitForLoad(driver, testcaseName, 8, test);
+		boolean SAPValidation = driver.findElement(By.xpath("//td[normalize-space()='"+ param.get("TextBox") +"']")) != null;
+		if(SAPValidation = true) {
+			reportPass("question is present on page", test);
+		}
+		else {
+			reportFail(testcaseName,"question is not present on page" , test);
+		}
+	}
+	
+	
 	
 	public void selectFromAList2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");

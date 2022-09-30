@@ -111,6 +111,14 @@ public class DMXPage_TC extends SuiteBase {
 		param.put("mailmergetxt", getData(data, "mailmergetxt"));
 		param.put("prepopdd", getData(data, "prepopdd"));
 		param.put("emailtemplatere", getData(data, "emailtemplatere"));
+		param.put("Email", getData(data, "Email"));
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("stremailaddress", getData(data, "stremailaddress"));
+		param.put("emailPassword", getData(data, "emailPassword"));
+		param.put("subject", getData(data, "subject"));
+	//	param.put("Expected", getData(data, "Expected"));
+	//	param.put("subject1", getData(data, "subject1"));
+		
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -130,8 +138,9 @@ public class DMXPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
-				dmxPage.publishSingleUseLink(getDriver(), param, test);
-				dmxPage.sendReminders(getDriver(), param, test);
+				dmxPage.publishSingleUseLinkWithValidation(getDriver(), param, test);
+				dmxPage.sendRemindersWithValidation(getDriver(), param, test);
+				
 				
 			}
 		}
@@ -156,6 +165,7 @@ public class DMXPage_TC extends SuiteBase {
 		param.put("prepopdd", getData(data, "prepopdd"));
 		param.put("emailtemplatere", getData(data, "emailtemplatere"));
 		param.put("file", getData(data, "selectlist"));
+		param.put("Expected3", getData(data, "Expected3"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -202,7 +212,8 @@ public class DMXPage_TC extends SuiteBase {
 		param.put("prepopdd", getData(data, "prepopdd"));
 		param.put("emailtemplatere", getData(data, "emailtemplatere"));
 		param.put("downloadFilePath", downloadFilePath);
-		
+		param.put("Email", getData(data, "Email"));
+		param.put("TextBox", getData(data, "TextBox"));
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
 			testSkip = true;
@@ -222,6 +233,8 @@ public class DMXPage_TC extends SuiteBase {
 				loadBrowser(downloadFilePath);
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dmxPageSogo.publishSurveyPasswords(getDriver(), param, test);
+				dmxPage.commonStepsForTodayFilter(getDriver(), param, test);
+				dmxPageSogo.SurveyCheckWithPassword(getDriver(), param, test);
 				
 			}
 		}
@@ -333,6 +346,8 @@ public class DMXPage_TC extends SuiteBase {
 		param.put("TestCaseName", TestCaseName);
 		param.put("surveyid", getData(data, "surveyid"));
 		param.put("emailtemplatere", getData(data, "emailtemplatere"));
+		param.put("Expected", getData(data, "Expected"));
+		
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");

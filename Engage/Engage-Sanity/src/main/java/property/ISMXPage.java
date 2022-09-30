@@ -807,7 +807,7 @@ public interface ISMXPage {
 	String TEXT_AND_TRANSLATION_MENU = "//div[@class='bulk-lang-dropdown hd-dropdown-content hd-show-dd']";
 	WebPageElements text_and_translation_menu = new WebPageElements("Text and Translation Menu", "xpath", TEXT_AND_TRANSLATION_MENU);
 	
-	String LANGUAGE_DROPDOWN = "//div[@id='ctl46_dvLangText']";
+	String LANGUAGE_DROPDOWN = "//div[@id='ctl50_dvLangText']";
 	WebPageElements language_dropdown = new WebPageElements("Language Drop Down", "xpath", LANGUAGE_DROPDOWN);
 	
 	String AUTO_TRANSLATE = "//input[@id='Button5']";
