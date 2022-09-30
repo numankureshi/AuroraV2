@@ -7,9 +7,12 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -148,6 +151,41 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		}
 	
 	}
+	
+	
+	public void getURL( HashMap<String, String> param, Date currentTime, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String[] hostArray = param.get("emailhost").split(",");
+		String[] emailArray = param.get("stremailaddress").split(",");
+		String[] passwordArray = param.get("emailPassword").split(",");
+		String sub = param.get("subject");
+		String sub1 = param.get("subject1");
+		
+		for(int i=0; i<emailArray.length; i++) {
+			HashMap<String, String> emailData = readRecentEmail1(param, hostArray[i], emailArray[i], passwordArray[i], sub,sub1, currentTime, test);
+			try {
+				String[] emailContent = emailData.get("Message Content").split(" ");
+				//String participationLink="";
+				
+				for (String content : emailContent) {
+					if (content.contains("http") && content.contains("/k/")) {
+						participationLink = content.substring(content.indexOf("http"));
+						 System.out.println(participationLink);			 
+						break;		
+					}
+					
+				}
+				Reporter.log("Email has been received with Subject <b>"+emailData.get("Subject") +"</b> from <b> "+(emailData.get("Sent From").replaceAll("[<>]*", "")) +"</b> to <b>"+ emailArray[i] +"</b> on <b>"+emailData.get("Date") +"</b> and participation URL is : <b>"+participationLink+"</b>.");  // Add log in testNG report
+				test.info("Email has been received with Subject <b>"+emailData.get("Subject") +"</b> from <b> "+(emailData.get("Sent From").replaceAll("[<>]*", "")) +"</b> to <b>"+ emailArray[i] +"</b> on <b>"+emailData.get("Date") +"</b> and participation URL is : <b>"+participationLink+"</b>.");		// Add log in extent report		
+			}catch(StringIndexOutOfBoundsException ex) {
+				Reporter.log("Email not found in the INBOX of email id : <b>" +emailArray[i]+"</b>");
+				test.log(Status.FATAL, "Email not found in INBOX of email id : <b>" +emailArray[i]+"</b>");
+			}
+		}
+	
+	}
+	
+	
 	
 	public void ParticipationForTestInvite(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
@@ -382,6 +420,170 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
         return emailData;
 	}
 
+	
+	public HashMap<String, String> readRecentEmail1(HashMap<String, String> param, String host, String userName, String password, String sub,String sub1, Date currentTime, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		HashMap<String, String> emailData = new HashMap<String, String>();
+		String saveDirectory = System.getProperty("user.dir") + "\\SaveEmails";
+		String Date = "";
+		String sentFrom = "";
+		String subject = "";
+		String messageContent = "";
+		boolean isMailReceived = false;
+		
+		
+		for(int i=0;i<2;i++) {
+		
+		System.out.println("Current time : "+currentTime);
+		
+        Properties properties = new Properties();
+        properties.setProperty("mail.store.protocol", "imaps");
+        try {
+            double endTime = 300;    // Run loop for 300 seconds
+            double startTime = System.currentTimeMillis();
+            do {
+            	Session session = Session.getDefaultInstance(properties, null);
+                Store store = session.getStore("imaps");
+                
+    			if (host.equalsIgnoreCase("gmail")) {
+    				store.connect("imap.gmail.com", userName, password);
+    			} else if (host.equalsIgnoreCase("yahoo")) {
+    				store.connect("imap.mail.yahoo.com", userName, password);
+    			} else if (host.equalsIgnoreCase("outlook")) {
+    				store.connect("outlook.office365.com", userName, password);
+    			} else if (host.equalsIgnoreCase("bluwberry")) {
+    				store.connect("corp.bluwberry.com", userName, password);
+    			}
+            	Folder inbox = store.getFolder("INBOX");
+            	 
+                int unreadMailCount = inbox.getUnreadMessageCount();
+                System.out.println("No. of Unread Mails = " + unreadMailCount);
+     
+                inbox.open(Folder.READ_WRITE);
+                
+                Message messages[] = inbox.getMessages();
+                System.out.println("No. of Total Mails = " + messages.length);
+            	//Get latest message
+                Message message = messages[messages.length-1];
+ 
+                Address[] from = message.getFrom();
+                System.out.println("====================================== Mail no.: " + messages.length + " start ======================================");
+                Date = message.getSentDate().toString();
+                sentFrom = from[0].toString();
+                subject = message.getSubject();
+                
+                System.out.println("Date: " + Date);
+                System.out.println("From: " + sentFrom);
+                System.out.println("Subject: " + subject);
+                
+                
+                String contentType = message.getContentType();
+ 
+                // store attachment file name, separated by comma
+                String attachFiles = "";
+ 
+                if (contentType.contains("multipart")) {
+                    // content may contain attachments
+                    Multipart multiPart = (Multipart) message.getContent();
+                    int numberOfParts = multiPart.getCount();
+                    for (int partCount = 0; partCount < numberOfParts; partCount++) {
+                        MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
+                        if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+                            // this part is attachment
+                            String fileName = part.getFileName();
+                            attachFiles += fileName + ", ";
+                            part.saveFile(saveDirectory + File.separator + fileName);
+						}
+						// this part may be the message content
+                        if (part.getContentType().contains("multipart")) {
+                        	messageContent = ((Multipart) (part.getContent())).getBodyPart(partCount).getContent().toString();
+                        }else {
+                        	messageContent = part.getContent().toString();
+                        }
+						
+						System.out.println("Message content : " + (messageContent));
+
+                    }
+ 
+                    if (attachFiles.length() > 1) {
+                        attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
+                    }
+                } else if (contentType.contains("text/plain")
+                        || contentType.contains("text/html")) {
+                    Object content = message.getContent();
+                    if (content != null) {
+                        messageContent = content.toString();
+                        System.out.println("Message content : "+messageContent);
+                    }
+                }
+                System.out.println("Attachments: " + attachFiles);
+             
+                System.out.println("====================================== Mail no.: " + messages.length + " end ======================================");
+                System.out.println(subject.equalsIgnoreCase(sub));
+                System.out.println(message.getSentDate().after(currentTime));
+                System.out.println( message.getSentDate().equals(currentTime));
+                System.out.println(currentTime);
+                System.out.println(message.getSentDate());
+                if(i == 0) {
+                	if (subject.equalsIgnoreCase(sub) && (message.getSentDate().after(currentTime) || message.getSentDate().equals(currentTime))) {
+                		isMailReceived = true;
+                		 System.out.println(sub);
+                		break;
+                	}
+                }
+                else {
+                	//sub = sub1;
+                	if (subject.equalsIgnoreCase(sub1) && (message.getSentDate().after(currentTime) || message.getSentDate().equals(currentTime))) {
+                		isMailReceived = true;
+                		 System.out.println(sub1);
+                		break;
+                	}
+                }
+                
+                // disconnect
+                inbox.close(false);
+                store.close();
+                Thread.sleep(3000);
+            }while(((System.currentTimeMillis()-startTime)/1000) < endTime);  // Exit the loop after 300 seconds
+            
+            //Fail the test case if mail is not received.
+            if(isMailReceived == false) {
+            	test.log(Status.FAIL,"Expected mail with subject <b>"+sub +"</b> is not received.");
+				Add_Log.info("Expected mail with subject "+sub +" is not received.");
+				Reporter.log("Expected mail with subject <b>"+sub +"</b> is not received.");
+				TestResultStatus.failureReason.add(testcaseName + "| "+ "Expected mail with subject "+sub +" is not received.");
+				TestResultStatus.TestFail = true;
+				Assert.fail();
+            }
+            
+        } catch (NoSuchProviderException ex) {
+            System.out.println("No provider for pop3.");
+            ex.printStackTrace();
+        } catch (MessagingException ex) {
+            System.out.println("Could not connect to the message store");
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+        
+		}
+        emailData.put("Date", Date);
+        emailData.put("Sent From", sentFrom);
+        emailData.put("Subject", subject);
+        emailData.put("Message Content", messageContent);
+        
+        return emailData;
+		
+	   
+	}
+	
+	
+	
+	
+	
+	
 	public void selectDistributeProject(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -397,7 +599,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	public void publishSingleUseLink(WebDriver driver, HashMap<String, String> param, ExtentTest test)
 			throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		selectDistributeProject(driver, param, test);	
+		selectDistributeProject(driver, param, test);
 		waitforElemPresent(driver, testcaseName, 100, single_use_link_button, test);
 		click(driver, testcaseName, single_use_link_button, test);
 		waitForLoad(driver, testcaseName, 60, test);
@@ -407,6 +609,24 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		prePopulation(driver, param, test);
 		//reviewData(driver, param, test);
 		sendOrSchedule(driver, param, test);
+	}
+	
+	public void publishSingleUseLinkWithValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		selectDistributeProject(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 100, single_use_link_button, test);
+		click(driver, testcaseName, single_use_link_button, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		selectEmailTemplate(driver, param, test);
+		selectFromAList(driver, param, test);
+		mailMerge(driver, param, test);
+		prePopulation(driver, param, test);
+		Date currentTime = Calendar.getInstance().getTime();
+		Thread.sleep(6000);
+		//reviewData(driver, param, test);
+		sendOrSchedule(driver, param, test);
+		getInviteURLFromEmail (param, currentTime,test);
 	}
 	
 	public void publishSurveyPasswords(WebDriver driver, HashMap<String, String> param, ExtentTest test)
@@ -864,7 +1084,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 //		Thread.sleep(1000);
 //		waitForLoad(driver, testcaseName, 60, test);
 		driver.switchTo().defaultContent();
-		waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+//		waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
 		
 		
 	}
@@ -1122,7 +1342,7 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 	
 	public void sendOrSchedule(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
-		waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
+	//	waitforElemPresent(driver, testcaseName, 30, send_or_schedule, test);
 		waitforElemPresent(driver, testcaseName, 30, send_now, test);
 		click(driver, testcaseName, send_now, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -1138,6 +1358,84 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 60, reminder_sent, test);
 	}
 	
+	public void commonStepsForTodayFilter(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 15, track_survey_page, test);
+		click(driver, testcaseName, track_survey_page, test);
+		waitForLoad(driver, testcaseName, 10, test);
+		//waitforElemPresent(driver, testcaseName, 30, all_time_filter_button, test);
+		//click(driver, testcaseName, all_time_filter_button, test);
+		//waitforElemPresent(driver, testcaseName, 30, today, test);
+		//click(driver, testcaseName, today, test);
+		waitForLoad(driver, testcaseName, 15, test);
+		waitforElemPresent(driver, testcaseName, 20, header_title, test);
+		click(driver, testcaseName, header_title, test);
+		
+	}
+	
+	
+	
+	public void ValidationForEmailandRemainder(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		commonStepsForTodayFilter(driver, param, test);
+		
+		waitforElemPresent(driver, testcaseName, 30, sinlge_use_link_inside_track, test);
+		click(driver, testcaseName, sinlge_use_link_inside_track, test);
+		waitForLoad(driver, testcaseName, 20, test);
+		boolean mailcheck = driver.findElement(By.xpath("//span[@class='ts-email-addr'][normalize-space()='"+ param.get("Email") +"']")) != null;
+		if(mailcheck = true) {
+			reportPass("new mail is generated", test);
+		}
+		else {
+			reportFail(testcaseName,"new mail is not generated" , test);
+		}
+		try {
+			CompareWithPresentTime(driver, param, test);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public void CompareWithPresentTime(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException, ParseException {
+        String testcaseName = param.get("TestCaseName");
+        boolean timeComparison = false;
+        String date1 = "";
+        
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		 Date date = new Date();
+		 date1= dateFormat.format(date);
+		 System.out.println("Current date and time is " +date1);
+       String DateUploadedInString = driver.findElement(By.xpath("//td[@id='tdInvitationDate_0']")).getText();
+       Date currentdateandtime = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(date1);
+       Date dateandTimefromTrack = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(DateUploadedInString);
+        if(dateandTimefromTrack.equals(currentdateandtime)||currentdateandtime.after(dateandTimefromTrack)){
+        	timeComparison=true;
+                System.out.println(timeComparison);
+                reportPass("date validation is working fine", test);
+        }
+        else{
+        	reportFail(testcaseName,"date validation is not working fine" , test);
+        }
+        
+    }	
+	
+	
+	
+	
+	
+	public void currentDateandTime(WebDriver driver, HashMap<String, String> param,   ExtentTest test, String date1) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		// String date1;
+		 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		 Date date = new Date();
+		 date1= dateFormat.format(date);
+		 System.out.println("Current date and time is " +date1);
+	}
 	
 	public void sendOrScheduleexe(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -1158,9 +1456,11 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 60, reminders_sent_exe, test);
 	}
 	
-	public void sendReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+	public void sendRemindersWithValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		Thread.sleep(20000);
+		Date currentTime = Calendar.getInstance().getTime();
+		//getInviteURLFromEmail (param, currentTime,test);
 		waitforElemPresent(driver, testcaseName, 60, reminders, test);
 		click(driver, testcaseName, reminders, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -1180,10 +1480,16 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		selectEmailTemplateReminder(driver, param, test);
 		sendOrScheduleReminders(driver, param, test);
+		ValidationForEmailandRemainder(driver, param, test);
+		//getURL (param, currentTime,test);
+		getInviteURLFromEmail (param, currentTime,test);
 	}
 	
-	public void sendRemindersEXE(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+	public void sendReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
+		Thread.sleep(20000);
+		Date currentTime = Calendar.getInstance().getTime();
+		//getInviteURLFromEmail (param, currentTime,test);
 		waitforElemPresent(driver, testcaseName, 60, reminders, test);
 		click(driver, testcaseName, reminders, test);
 		waitForLoad(driver, testcaseName, 30, test);
@@ -1202,8 +1508,78 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		driver.switchTo().alert().accept();
 		waitForLoad(driver, testcaseName, 30, test);
 		selectEmailTemplateReminder(driver, param, test);
+		sendOrScheduleReminders(driver, param, test);
+		
+	}
+	
+	
+	public void sendRemindersEXE(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 60, reminders, test);
+		click(driver, testcaseName, reminders, test);
+		waitForLoad(driver, testcaseName, 30, test);
+		waitforElemPresent(driver, testcaseName, 60, original_invitation_date_filter, test);
+		click(driver, testcaseName, original_invitation_date_filter, test);
+		Thread.sleep(1000);
+		waitforElemPresent(driver, testcaseName, 60, on_date, test);
+		click(driver, testcaseName, on_date, test);
+		selectCalendar1(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 30, schedule_reminder, test);
+		click(driver, testcaseName, schedule_reminder, test);
+		Thread.sleep(1000);
+		driver.switchTo().alert().accept();
+		waitForLoad(driver, testcaseName, 30, test);
+		selectEmailTemplateReminder(driver, param, test);
 		sendOrScheduleReminderexe(driver, param, test);
 	}
+	
+	
+	 public void selectCalendar2(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+	        String testcaseName = param.get("TestCaseName");
+	        SimpleDateFormat formatter = new SimpleDateFormat("d.MMM.yyyy");  
+	        Date date = new Date();
+	        System.out.println(formatter.format(date));  
+	        String today = formatter.format(date);
+	        String dates[] = today.split("\\.");
+	        waitforElemPresent(driver, testcaseName, 30, calendar, test);
+	        click(driver, testcaseName, calendar, test);
+	        Thread.sleep(1000);
+	        waitforElemPresent(driver, testcaseName, 60, year, test);
+	        Select select = new Select(driver.findElement(By.xpath(YEAR)));
+	        select.selectByVisibleText(dates[2]);
+	        Thread.sleep(1000);
+	        waitforElemPresent(driver, testcaseName, 60, month, test);
+	        Select select2 = new Select(driver.findElement(By.xpath(MONTH)));
+	        select2.selectByVisibleText(dates[1]);
+	        Thread.sleep(1000);
+	        System.out.println(dates[0]);
+	        int newDate = Integer.parseInt(dates[0]);
+	        newDate = newDate-1;
+	        waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
+	        click(driver, testcaseName, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
+	        Thread.sleep(1000);
+	        waitforElemPresent(driver, testcaseName, 30, done_button3, test);
+	        click(driver, testcaseName, done_button3, test);
+	        waitForLoad(driver, testcaseName, 30, test);
+	         List<WebElement> EmailRecords = driver.findElements(By.xpath("//tr[@onmouseover='MO_survey_2006(event);']"));
+	         int noOfEmailRecords = EmailRecords.size();
+	         if (noOfEmailRecords == 0) {
+	            //img[@id='Image2']
+	             waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='Image2']"), "calendar image1", test);
+	             click(driver, testcaseName, By.xpath("//img[@id='Image2']"), "calendar image1", test);
+	                Thread.sleep(1000);
+	                waitforElemPresent(driver, testcaseName, 30, calendar, test);
+	                click(driver, testcaseName, calendar, test);
+	                waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ newDate +"']"), dates[0], test);
+	                click(driver, testcaseName, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ newDate +"']"), dates[0], test);
+	                Thread.sleep(1000);
+	                waitforElemPresent(driver, testcaseName, 30, done_button3, test);
+	                click(driver, testcaseName, done_button3, test);
+	                waitForLoad(driver, testcaseName, 30, test);
+	         }
+	        
+	    }
+	
 	
 	public void sendSMSReminders(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -1233,7 +1609,35 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		click(driver, testcaseName, done_editing_button, test);
 		waitForLoad(driver, testcaseName, 30, test);
 		waitforElemPresent(driver, testcaseName, 30, sms_reminder_sent, test);
+		commonStepsForTodayFilter(driver, param, test);
+		waitforElemPresent(driver, testcaseName, 20, sms_invitation_inside_track, test);
+		click(driver, testcaseName, sms_invitation_inside_track, test);
+		waitForLoad(driver, testcaseName, 10, test);
+		
+		try {
+			CompareWithPresentTime(driver, param, test);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		numberValidation(driver, param, test);
 	}
+	
+	public void numberValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		String num = param.get("Expected3");
+		boolean numberValidation = driver.findElement(By.xpath("//td[normalize-space()='+1-"+num+"']")) != null;
+		if(numberValidation = true) {
+			reportPass("required sms number is present", test);
+		}
+		else {
+			reportFail(testcaseName,"required sms number is present" , test);
+		}
+		
+	}
+	
+	
 	
 	public void selectCalendar(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -1257,10 +1661,92 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 60, month, test);
 		Select select2 = new Select(driver.findElement(By.xpath(MONTH)));
 		select2.selectByVisibleText(dates[1]);
+		
 		Thread.sleep(1000);
 		waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
 		click(driver, testcaseName, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
 		Thread.sleep(1000);
+	}
+	
+	
+	
+	public void selectCalendar1(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("d.MMM.yyyy");  
+		Date date = new Date(); 
+		System.out.println(formatter.format(date));  
+		String today = formatter.format(date);
+		 Calendar cal = Calendar.getInstance();
+		 int noOfDays = Integer.parseInt(param.get("Expected"));
+//		 cal.add(Calendar.DATE, -noOfDays);
+//	     Date todate1 = cal.getTime();    
+//	     System.out.println(formatter.format(todate1));
+//	     String startDate = formatter.format(todate1);
+	     String dates[] = today.split("\\.");
+			waitforElemPresent(driver, testcaseName, 30, calendar, test);
+			click(driver, testcaseName, calendar, test);
+			Thread.sleep(1000);
+			waitforElemPresent(driver, testcaseName, 60, year, test);
+			Select select = new Select(driver.findElement(By.xpath(YEAR)));
+			select.selectByVisibleText(dates[2]);
+			Thread.sleep(1000);
+			waitforElemPresent(driver, testcaseName, 60, month, test);
+			Select select2 = new Select(driver.findElement(By.xpath(MONTH)));
+			select2.selectByVisibleText(dates[1]);
+			Thread.sleep(1000);
+			waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
+			click(driver, testcaseName, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ dates[0] +"']"), dates[0], test);
+			Thread.sleep(1000);
+			waitforElemPresent(driver, testcaseName, 30, done_button3, test);
+	        click(driver, testcaseName, done_button3, test);
+	        waitForLoad(driver, testcaseName, 30, test);
+	        List<WebElement> EmailRecords = driver.findElements(By.xpath("//tr[@onmouseover='MO_survey_2006(event);']"));
+	         int noOfEmailRecords = EmailRecords.size();
+	         if (noOfEmailRecords == 0) {
+	        	 for(int i=1;i<noOfDays;i++) {
+	        		 cal.add(Calendar.DATE, -1);
+	        		 Date newDate = cal.getTime();
+	        		 System.out.println(newDate);
+	        		 String startDate = formatter.format(newDate);
+	        		 String newDates[] = startDate.split("\\.");
+	        	 waitforElemPresent(driver, testcaseName, 30, By.xpath("//img[@id='Image2']"), "calendar image1", test);
+	             click(driver, testcaseName, By.xpath("//img[@id='Image2']"), "calendar image1", test);
+	                Thread.sleep(1000);
+	                waitforElemPresent(driver, testcaseName, 30, calendar, test);
+	                click(driver, testcaseName, calendar, test);
+	            	Thread.sleep(1000);
+	    			waitforElemPresent(driver, testcaseName, 60, year, test);
+	    			Select newSelect = new Select(driver.findElement(By.xpath(YEAR)));
+	    			newSelect.selectByVisibleText(dates[2]);
+	    			Thread.sleep(1000);
+	    			waitforElemPresent(driver, testcaseName, 60, month, test);
+	    			Select newSelect2 = new Select(driver.findElement(By.xpath(MONTH)));
+	    			newSelect2.selectByVisibleText(dates[1]);
+	    			Thread.sleep(1000);
+	    			waitforElemPresent(driver, testcaseName, 30, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ newDates[0] +"']"), newDates[0], test);
+	    			click(driver, testcaseName, By.xpath("//td[@data-handler='selectDay']/a[text()='"+ newDates[0] +"']"), newDates[0], test);
+	    			Thread.sleep(1000);
+	                waitforElemPresent(driver, testcaseName, 30, done_button3, test);
+	                click(driver, testcaseName, done_button3, test);
+	                waitForLoad(driver, testcaseName, 30, test);
+	                List<WebElement> newEmailRecords = driver.findElements(By.xpath("//tr[@onmouseover='MO_survey_2006(event);']"));
+	   	           int newnoOfEmailRecords = newEmailRecords.size();
+	   	         		if (newnoOfEmailRecords != 0) {
+	   	         			reportPass("invitation present", test);
+	   	         			break;
+	   	         		}
+	             }
+	         }
+	         
+	         List<WebElement> recordsCheckAfterDateSelection = driver.findElements(By.xpath("//tr[@onmouseover='MO_survey_2006(event);']"));
+	         int noOfrecordsCheckAfterDateSelection = recordsCheckAfterDateSelection.size();
+	         if (noOfrecordsCheckAfterDateSelection == 0) {
+	        	 reportFail(testcaseName, "invitation not present", test);
+	         }
+	         else {
+	        	 reportPass("invitation present", test);
+	         }
 	}
 	
 	public void goToAllProject(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException{

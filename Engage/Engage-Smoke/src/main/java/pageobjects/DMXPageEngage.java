@@ -7,10 +7,12 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
@@ -161,6 +163,24 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		dmxPage.sendOrSchedule(driver, param, test);
 	}
 	
+	public void publishSingleUseLinkWithValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		dmxPage.selectDistributeProject(driver, param, test);	
+		waitforElemPresent(driver, testcaseName, 100, single_use_link_button, test);
+		click(driver, testcaseName, single_use_link_button, test);
+		waitForLoad(driver, testcaseName, 60, test);
+		dmxPage.selectEmailTemplate(driver, param, test);
+		selectFromAList(driver, param, test);
+		mailMerge2(driver, param, test);
+		dmxPage.prePopulation(driver, param, test);
+//		dmxPage.reviewData(driver, param, test);
+		Date currentTime = Calendar.getInstance().getTime();
+		Thread.sleep(8000);
+		dmxPage.sendOrSchedule(driver, param, test);
+		dmxPage.getInviteURLFromEmail (param, currentTime,test);
+	}
+	
 	public void selectFromAList(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
 		waitforElemPresent(driver, testcaseName, 30, from_a_list, test);
@@ -236,6 +256,45 @@ public class DMXPageEngage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitForLoad(driver, testcaseName, 30, test);
 		//file download
 		dmxPage.downloadFile(driver, param, generate_password, "xls", param.get("downloadFilePath"), test);
+	}
+	
+	public void SurveyCheckWithPassword(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitforElemPresent(driver, testcaseName, 30, survey_access_password_from_track, test);
+		click(driver, testcaseName, survey_access_password_from_track, test);
+		waitForLoad(driver, testcaseName, 20, test);
+		String URl = (driver.findElement(By.xpath("//td[@id='tdSurveyLoginURL_0']")).getText());
+		String Name = (driver.findElement(By.xpath("//td[@id='tdPassword_0']")).getText());
+		System.out.println(Name);
+		executeScript(driver, testcaseName, "window.open()", test);
+		Thread.sleep(2000);
+		Set<String> handles = driver.getWindowHandles();
+	    String currentWindowHandle = driver.getWindowHandle();
+	    param.put("currentWindowHandle", currentWindowHandle);
+	    for (String handle : handles) {
+	    	System.out.println(handle);
+	    	System.out.println(currentWindowHandle);
+	        if (!currentWindowHandle.equals(handle)) {
+	            driver.switchTo().window(handle);
+	        }
+	    }
+		driver.get(URl);
+		
+		 setText(driver, testcaseName, sap_textbox, Name, test);
+		 waitforElemPresent(driver, testcaseName, 30, sap_submit, test);
+			click(driver, testcaseName, sap_submit, test);
+			validationOfSAPSurvey(driver, param, test);
+	}
+	public void validationOfSAPSurvey(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+		String testcaseName = param.get("TestCaseName");
+		waitForLoad(driver, testcaseName, 10, test);
+		boolean SAPValidation = driver.findElement(By.xpath("//td[normalize-space()='"+ param.get("TextBox") +"']")) != null;
+		if(SAPValidation = true) {
+			reportPass("question is present on page", test);
+		}
+		else {
+			reportFail(testcaseName,"question is not present on page" , test);
+		}
 	}
 	
 	public void prePopulation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {

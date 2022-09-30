@@ -173,11 +173,17 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 		String qq = driver.getTitle();
 		System.out.println(qq);
 		if(driver.getTitle().contains("K12 Insight - Bar Graph")) {
-		waitforElemPresent(driver, testcaseName, 40, By.xpath("//div[@title='More']"), "more option for filter", test);
-		driver.findElement(By.xpath("//div[@title='More']"));
-		click(driver, testcaseName, By.xpath("//div[@title='More']"), "more option for filter", test);
-		waitforElemPresent(driver, testcaseName, 40, By.xpath("//span[normalize-space()='Filter Manager']"), " filter manager", test);
-		click(driver, testcaseName, By.xpath("//span[normalize-space()='Filter Manager']"), "filter manager", test);
+		
+//		waitforElemPresent(driver, testcaseName, 40, By.xpath("//div[@title='More']"), "more option for filter", test);
+//		driver.findElement(By.xpath("//div[@title='More']"));
+//		click(driver, testcaseName, By.xpath("//div[@title='More']"), "more option for filter", test);
+//		waitforElemPresent(driver, testcaseName, 40, By.xpath("//span[normalize-space()='Filter Manager']"), " filter manager", test);
+//		click(driver, testcaseName, By.xpath("//span[normalize-space()='Filter Manager']"), "filter manager", test);
+			
+			waitforElemPresent(driver, testcaseName, 40, By.xpath("//span[normalize-space()='Filter Manager']"), " filter manager", test);
+			click(driver, testcaseName, By.xpath("//span[normalize-space()='Filter Manager']"), "filter manager", test);
+		
+		
 		}
 		
 		else {
@@ -2857,19 +2863,19 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				else if(numberOfConditions.get(x).getAttribute("value").equals("BETWEEN")){
 					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
 					click(driver, testcaseName, drop_down1_filter, test);	
-					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
-					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(0) - 0']"), "drop_down1_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(0) - 0']"), "drop_down1_filter", test);
 					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
 					click(driver, testcaseName, drop_down2_filter, test);
-					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
-					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[normalize-space()='(1) - 1']"), "drop_down2_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[normalize-space()='(1) - 1']"), "drop_down2_filter", test);
 					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
 					click(driver, testcaseName, add_condition, test);
 					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
 					String option1 = (driver.findElement(By.xpath("//span[@class='fl spaceSpan']//option[@selected='selected']")).getText());
 					String option2 = (driver.findElement(By.xpath("//span[@class='fl']//option[@selected='selected']")).getText());
-					String o1 = "(1) - 1";
-					String o2 = "(2) - 2";
+					String o1 = "(0) - 0";
+					String o2 = "(1) - 1";
 					if(option1.equals(o1))
                 	{
                 		reportPass("condition matched", test);
@@ -2932,19 +2938,19 @@ public class RMXPage extends SeleniumUtils implements IRMXPage, IHomePage {
 				{
 					waitforElemPresent(driver, testcaseName, 30, drop_down1_filter, test);
 					click(driver, testcaseName, drop_down1_filter, test);	
-					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
-					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(1) - 1']"), "drop_down1_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(0) - 0']"), "drop_down1_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl spaceSpan']//option[normalize-space()='(0) - 0']"), "drop_down1_filter", test);
 					waitforElemPresent(driver, testcaseName, 30, drop_down2_filter, test);
 					click(driver, testcaseName, drop_down2_filter, test);
-					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
-					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[normalize-space()='(2) - 2']"), "drop_down2_filter", test);
+					waitforElemPresent(driver, testcaseName, 30, By.xpath("//span[@class='fl']//option[normalize-space()='(1) - 1']"), "drop_down2_filter", test);
+					click(driver, testcaseName,  By.xpath("//span[@class='fl']//option[normalize-space()='(1) - 1']"), "drop_down2_filter", test);
 					waitforElemPresent(driver, testcaseName, 30, add_condition, test);
 					click(driver, testcaseName, add_condition, test);
 					String validationcondition = (driver.findElement(By.xpath("//div[@id='dvConOpr_999_1_0']")).getText());
 					String option1 = (driver.findElement(By.xpath("//span[@class='fl spaceSpan']//option[@selected='selected']")).getText());
 					String option2 = (driver.findElement(By.xpath("//span[@class='fl']//option[@selected='selected']")).getText());
-					String o1 = "(1) - 1";
-					String o2 = "(2) - 2";
+					String o1 = "(0) - 0";
+					String o2 = "(1) - 1";
 					if(option1.equals(o1))
                 	{
                 		reportPass("condition matched", test);

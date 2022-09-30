@@ -4699,10 +4699,9 @@ public class SMXPage extends SeleniumUtils implements ISMXPage {
 	
 	public void answersLibrary2(WebDriver driver, HashMap<String, String> param, String answerOption, ExtentTest test)
 			throws InterruptedException {String testcaseName = param.get("TestCaseName");
-			waitforElemPresent(driver, testcaseName, 10, By.xpath("(//div[text()='More '])[2]"), "More", test);
-			click(driver, testcaseName, By.xpath("(//div[text()='More '])[2]"), "More", test);
-			
-			waitforElemPresent(driver, testcaseName, 10, answers_library2, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//table[@id='Table0']//div[@class='clsMore']/img"), "More", test);
+			click(driver, testcaseName, By.xpath("//table[@id='Table0']//div[@class='clsMore']/img"), "More", test);
+			waitforElemPresent(driver, testcaseName, 20, answers_library2, test);
 			click(driver, testcaseName, answers_library2, test);
 			waitForElementToBeVisible(driver, testcaseName, answers_library_grid, 30, 100, test);
 			waitforElemPresent(driver, testcaseName, 30, search_ans_lib, test);

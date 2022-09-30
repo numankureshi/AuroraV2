@@ -46,7 +46,7 @@ public interface IDMXPage {
 	String DELETE_BUTTON = "(//input[@value='Delete'])[1]";
 	WebPageElements delete_button = new WebPageElements("Delete Button", "xpath", DELETE_BUTTON);
 	
-	String DELETE_MODAL_DIALOG = "//div[@id='ctl00_ctl00_cphMain_cphBody_dvDeleteModalAlert']/div";
+	String DELETE_MODAL_DIALOG = "//input[@id='ctl00_ctl00_cphMain_cphBody_btnDeleteConfirm']";
 	WebPageElements delete_modal_dialog = new WebPageElements("Delete Modal", "xpath", DELETE_MODAL_DIALOG);
 	
 	String DELETE_BUTTON2 = "//input[@id='ctl00_ctl00_cphMain_cphBody_btnDeleteConfirm']";
@@ -712,6 +712,33 @@ public interface IDMXPage {
 	String GOT_IT = "//input[@value='Got it​']";
 	WebPageElements got_it = new WebPageElements("Done", "xpath", GOT_IT );
 	
+	
+	String TRACK_SURVEY_PAGE = "//a[@id='Inner_header1_ctl00_atm']";
+	WebPageElements track_survey_page = new WebPageElements("TRACK_SURVEY_PAGE", "xpath", TRACK_SURVEY_PAGE);
+	
+	String ALL_TIME_FILTER_BUTTON = "//div[@class='ts-select-time']";
+	WebPageElements all_time_filter_button = new WebPageElements("ALL_TIME_FILTER_BUTTON", "xpath", ALL_TIME_FILTER_BUTTON );
+	
+	String TODAY = "//li[@id='liToday'][@class='clear-fix']";
+	WebPageElements today = new WebPageElements("TODAY", "xpath", TODAY );
+	
+	String HEADER_TITLE = "//div[@class='ts-header-title fl']";
+	WebPageElements header_title = new WebPageElements("HEADER_TITLE", "xpath", HEADER_TITLE );
+	
+	String SINGLE_USE_LINK_INSIDE_TRACK = "//li[@id='li_SingleUseLink']";
+	WebPageElements sinlge_use_link_inside_track = new WebPageElements("SINGLE_USE_LINK_INSIDE_TRACK", "xpath", SINGLE_USE_LINK_INSIDE_TRACK );
+	
+	String SMS_INVITATON_INSIDE_TRACK = "//li[@id='li_SMSInvites']";
+	WebPageElements sms_invitation_inside_track = new WebPageElements("SMS_INVITATON_INSIDE_TRACK", "xpath", SMS_INVITATON_INSIDE_TRACK );
+	
+	String SURVEY_ACCESS_PASSWORD_FROM_TRACK = "//li[@id='li_SurveyPasswords']";
+	WebPageElements survey_access_password_from_track = new WebPageElements("SURVEY_ACCESS_PASSWORD_FROM_TRACK", "xpath", SURVEY_ACCESS_PASSWORD_FROM_TRACK );
+	
+	String SAP_TEXTBOX = "//input[@id='txtKey']";
+	WebPageElements sap_textbox = new WebPageElements("SAP_TEXTBOX", "xpath", SAP_TEXTBOX );
+	
+	String SAP_SUBMIT = "//input[@id='btnSubmit']";
+	WebPageElements sap_submit = new WebPageElements("SAP_SUBMIT", "xpath", SAP_SUBMIT );
 }
 	
 
