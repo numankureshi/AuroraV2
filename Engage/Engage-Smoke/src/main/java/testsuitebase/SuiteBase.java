@@ -49,6 +49,7 @@ import pageobjects.RMXPage;
 import pageobjects.RMXPageEngage;
 import pageobjects.SMXPage;
 import pageobjects.SurveyPage;
+import pageobjects.utilities.MasterLogPage;
 import pageobjects.RMX.EmailedReportPage;
 import pageobjects.RMX.SavedReportPage;
 import utility.DecryptPassword;
@@ -86,6 +87,7 @@ public class SuiteBase {
 	public DMXPageEngage dmxPage2 = new DMXPageEngage();
 	public RMXPage rmxPage = new RMXPage();
 	public DataPage dataPage = new DataPage();
+	public MasterLogPage masterlogPage = new MasterLogPage();
 	public RMXPageEngage rmxPageEngage = new RMXPageEngage();
 	public SavedReportPage savedReportPage = new SavedReportPage();
 	public EmailedReportPage emailedReportPage = new EmailedReportPage();

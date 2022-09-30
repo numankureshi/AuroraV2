@@ -90,13 +90,20 @@ public class DMXPage extends SeleniumUtils implements IDMXPage, ISMXPage {
 		waitforElemPresent(driver, testcaseName, 30, send_test_invitation, test);
 		click(driver, testcaseName, send_test_invitation, test);
 			
+		waitforElemPresent(driver, testcaseName, 10, search_email, test);
+		setText(driver, testcaseName, search_email, param.get("emailtemplate"), test);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath(SEARCH_EMAIL)).sendKeys(Keys.RETURN);
+		waitForLoadAttach(driver, testcaseName, 60, test);
+		waitForLoad(driver, testcaseName, 60, test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("//div[@title = '"+ param.get("emailtemplate") +"']"), param.get("emailtemplate"), test);
 		waitforElemPresent(driver, testcaseName, 60, By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"), param.get("emailtemplate"), test);
+		Thread.sleep(2000);	
 		Actions action = new Actions(driver);
-		action.moveToElement(driver.findElement(By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"))).build().perform();	
-						
+		action.moveToElement(driver.findElement(By.xpath("(//div[@title = '"+ param.get("emailtemplate") +"']//following::div[@class='middle-content'])[1]"))).build().perform();			
 		waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@id='"+ param.get("SelectTemplate") +"']"), param.get("SelectTemplate"), test);
 		click(driver, testcaseName, By.xpath("//div[@id='"+ param.get("SelectTemplate") +"']"), param.get("SelectTemplate"), test);	
+		
 		waitforElemPresent(driver, testcaseName, 30, text_area_for_invitation, test);
 		click(driver, testcaseName, text_area_for_invitation, test);
 		waitforElemPresent(driver, testcaseName, 30, text_area_for_invitation, test);

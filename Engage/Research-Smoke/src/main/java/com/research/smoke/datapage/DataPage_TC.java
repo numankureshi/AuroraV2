@@ -61,6 +61,10 @@ public class DataPage_TC extends SuiteBase {
 		param.put("TestCaseName", TestCaseName);
 		param.put("surveyid", getData(data, "surveyid"));
 		param.put("file", getData(data, "selectlist"));
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("stremailaddress", getData(data, "stremailaddress"));
+		param.put("emailPassword", getData(data, "emailPassword"));
+		param.put("subject", getData(data, "subject"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -82,7 +86,7 @@ public class DataPage_TC extends SuiteBase {
 				loginPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
 				dataPage.goToDataPage(getDriver(), param, getData(data, "surveyname"), getData(data, "surveyid"), test);
 				dataPage.dataImport(getDriver(), param,getData(data, "surveyname"),getData(data,"surveyid"), test);
-				
+				dataPage.validateImportDataExePage(getDriver(), param, test);
 			}
 		}
 	}
@@ -99,6 +103,10 @@ public class DataPage_TC extends SuiteBase {
 		param.put("TestCaseName", TestCaseName);
 		param.put("surveyid", getData(data, "surveyid"));
 		param.put("responseNo", getData(data, "DropDown"));
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("stremailaddress", getData(data, "stremailaddress"));
+		param.put("emailPassword", getData(data, "emailPassword"));
+		param.put("subject", getData(data, "subject"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -121,7 +129,7 @@ public class DataPage_TC extends SuiteBase {
 				rmxPage.goToReportPage(getDriver(), param, getData(data, "surveyname"), getData(data, "surveyid" ), test);
 				rmxPage.excludeResponseFromIndividualReport(getDriver(), param, test);
 				dataPage.dataExportAll(getDriver(), param, test);
-				
+				dataPage.validateExportDataExePage(getDriver(), param, test);
 			}	
 		}
 	}

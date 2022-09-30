@@ -691,8 +691,8 @@ public interface IDMXPage {
 	String SELECT_TEMPLATE = "//div[@class='btn-quick-view center select-btn']";
 	WebPageElements select_template = new WebPageElements("SelectTemplate", "xpath", SELECT_TEMPLATE );
 	
-	String TEXT_AREA_FOR_INVIATION = "//div[@class='textarea invitation wordcontainer']";
-	WebPageElements text_area_for_invitation = new WebPageElements("Text_Area_For_Invitaion", "xpath", TEXT_AREA_FOR_INVIATION );
+	String TEXT_AREA_FOR_INVITATION = "//div[@class='textarea invitation wordcontainer']";
+	WebPageElements text_area_for_invitation = new WebPageElements("Text_Area_For_Invitaion", "xpath", TEXT_AREA_FOR_INVITATION );
 	
 	String BUTTON_CONTINUE = "//input[@id='btnNext']";
 	WebPageElements button_continue = new WebPageElements("Button_Continue", "xpath", BUTTON_CONTINUE );

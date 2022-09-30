@@ -3,6 +3,7 @@
 		"case description": "Add a rating radio button by using double click action. Enter Question text.",
 		"case validation": "",
 		"isAnswerlibrary": true,
+		"answerlibrary": "Countries",
 		"isTypeManually": false,
 		"isListView": false,
 		"isNormalView": true,

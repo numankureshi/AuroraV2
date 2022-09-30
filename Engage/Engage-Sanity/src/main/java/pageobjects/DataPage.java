@@ -51,18 +51,28 @@ import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-
-import freemarker.template.utility.DateUtil;
-import property.IDMXPage;
 import property.IDataPage;
 import property.IHomePage;
-import property.IRMXPage;
-import property.ISMXPage;
-import property.ISurveyPage;
 import testsuitebase.TestResultStatus;
-import property.IDataPage;
 import utility.SeleniumUtils;
 import utility.WebPageElements;
+
+
+import java.io.IOException;
+import java.util.Properties;
+import java.util.Set;
+
+import javax.mail.Address;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Part;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.internet.MimeBodyPart;
+
 
 public class DataPage extends SeleniumUtils implements IDataPage {
 	
@@ -70,6 +80,467 @@ public class DataPage extends SeleniumUtils implements IDataPage {
 	public double end;
 	String strtotalTime= null;
 	public DecimalFormat df = new DecimalFormat("#.##");
+	
+	public void validateEmail( HashMap<String, String> param, Date currentTime, ExtentTest test) {
+		String testcaseName = param.get("TestCaseName");
+		String[] hostArray = param.get("emailhost").split(",");
+		String[] emailArray = param.get("stremailaddress").split(",");
+		String[] passwordArray = param.get("emailPassword").split(",");
+		String sub = param.get("subject");
+		String survey_ID = param.get("surveyid");
+		String SID="";
+		
+		for(int i=0; i<emailArray.length; i++) {
+			HashMap<String, String> emailData = readRecentEmail(param, hostArray[i], emailArray[i], passwordArray[i], sub, currentTime, test);
+			try {
+				String[] emailContent = emailData.get("Message Content").split(" ");
+				System.out.println("Email Received Having Subject:  " + sub );
+				//String participationLink="";
+				
+				for (String content : emailContent) {
+					if (content.contains("Survey ID:") && content.contains(survey_ID)) {
+						SID = content.substring(content.indexOf("Survey ID:"));
+						 System.out.println(SID);		
+						 System.out.println("Email is present");	
+						break;		
+					}	
+				}
+				Reporter.log("Email has been received with Subject <b>"+emailData.get("Subject") +"</b> from <b> "+(emailData.get("Sent From").replaceAll("[<>]*", "")) +"</b> to <b>"+ emailArray[i] +"</b> on <b>"+emailData.get("Date") +"</b> and Survey id is : <b>"+survey_ID+"</b>.");  // Add log in testNG report
+				test.info("Email has been received with Subject <b>"+emailData.get("Subject") +"</b> from <b> "+(emailData.get("Sent From").replaceAll("[<>]*", "")) +"</b> to <b>"+ emailArray[i] +"</b> on <b>"+emailData.get("Date") +"</b> and Survey id is : <b>"+survey_ID+"</b>.");		// Add log in extent report		
+			}catch(StringIndexOutOfBoundsException ex) {
+				Reporter.log("Email not found in the INBOX of email id : <b>" +emailArray[i]+"</b>");
+				test.log(Status.FATAL, "Email not found in INBOX of email id : <b>" +emailArray[i]+"</b>");
+			}
+		}
+	
+	}
+
+	 		public void validateImportDataExePage(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+				throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");	
+			Date currentTime = Calendar.getInstance().getTime();
+			if(driver.getCurrentUrl().contains("https://www.sogolytics.com")) {
+				String URL = "https://www.sogolytics.com/misc/importexequeue.aspx";
+				executeScript(driver, testcaseName, "window.open()", test);
+				
+				Set<String> handles = driver.getWindowHandles();
+				String currentWindowHandle = driver.getWindowHandle();
+				param.put("currentWindowHandle", currentWindowHandle);
+				for (String handle : handles) {
+				System.out.println(handle);
+				System.out.println(currentWindowHandle);
+				if (!currentWindowHandle.equals(handle)) {
+				driver.switchTo().window(handle);
+				}
+				}
+			    driver.get(URL);
+			    Thread.sleep(5000);
+			    
+			    String ImportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+			    System.out.println(ImportStatus);
+			    
+			   if (ImportStatus.equals("Done")) {
+				   reportPass("Import Status is Done", test);		
+			} else {
+				for (int i=1; i<=60; i++){
+					TimeUnit.SECONDS.sleep(30);	
+					driver.navigate().refresh();
+					String LatestImportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+					System.out.println(LatestImportStatus);
+				    
+					if (LatestImportStatus.equals("Done")) {
+						 reportPass("Import Status is Done", test);
+						 break;
+					} else {
+						System.out.println("Waiting for 30mins, Import Status is not Done");				
+					}			
+				}	
+				//reportFail(testcaseName,"Import Status is not Done" , test);
+				String Sogo_Import_Queue = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+				if (Sogo_Import_Queue.equals("Done")) {
+					 reportPass("Sogo Import Status is Done", test);
+				} else {
+					reportFail(testcaseName,"Sogo Import Status is not Done" , test);				
+				}	
+				
+			}
+			}else if(driver.getCurrentUrl().contains("https://research.k12insight.com")) {
+				String URL = "https://research.k12insight.com//misc/importexequeue.aspx";
+				executeScript(driver, testcaseName, "window.open()", test);
+				
+				Set<String> handles = driver.getWindowHandles();
+				String currentWindowHandle = driver.getWindowHandle();
+				param.put("currentWindowHandle", currentWindowHandle);
+				for (String handle : handles) {
+				System.out.println(handle);
+				System.out.println(currentWindowHandle);
+				if (!currentWindowHandle.equals(handle)) {
+				driver.switchTo().window(handle);
+				}
+				}
+			    driver.get(URL);
+			    Thread.sleep(5000);
+			    
+			    String ImportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+			    System.out.println(ImportStatus);
+			    
+			   if (ImportStatus.equals("Done")) {
+				   reportPass("Import Status is Done", test);
+				   
+			} else {
+				for (int i=1; i<=60; i++){
+					TimeUnit.SECONDS.sleep(30);	
+					driver.navigate().refresh();
+					String LatestImportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+					System.out.println(LatestImportStatus);
+				    
+					if (LatestImportStatus.equals("Done")) {
+						 reportPass("Import Status is Done", test);
+						 break;
+					} else {
+						System.out.println("Waiting for 30mins, Import Status is not Done");				
+					}			
+				}	
+				//reportFail(testcaseName,"Import Status is not Done" , test);
+				String K12_Import_Queue = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+				if (K12_Import_Queue.equals("Done")) {
+					 reportPass("K12 Import Status is Done", test);
+				} else {
+					reportFail(testcaseName,"K12 Import Status is not Done" , test);				
+				}
+			}
+			} else {
+	    	  String URL = "https://research.zarca.com/misc/importexequeue.aspx";
+				executeScript(driver, testcaseName, "window.open()", test);
+				
+				Set<String> handles = driver.getWindowHandles();
+				String currentWindowHandle = driver.getWindowHandle();
+				param.put("currentWindowHandle", currentWindowHandle);
+				for (String handle : handles) {
+				System.out.println(handle);
+				System.out.println(currentWindowHandle);
+				if (!currentWindowHandle.equals(handle)) {
+				driver.switchTo().window(handle);
+				}
+				}
+			    driver.get(URL);
+			    Thread.sleep(5000);
+			    
+			    String ImportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+			    System.out.println(ImportStatus);
+			    
+			   if (ImportStatus.equals("Done")) {
+				   reportPass("Import Status is Done", test);		
+			} else {
+				for (int i=1; i<=60; i++){
+					TimeUnit.SECONDS.sleep(30);	
+					driver.navigate().refresh();
+					String LatestImportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+					System.out.println(LatestImportStatus);
+				    
+					if (LatestImportStatus.equals("Done")) {
+						 reportPass("Import Status is Done", test);
+						 break;
+					} else {
+						System.out.println("Waiting for 30mins, Import Status is not Done");				
+					}			
+				}	
+				//reportFail(testcaseName,"Import Status is not Done" , test);
+				String Zarca_Import_Queue = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[3]")).getAttribute("innerHTML"));
+				if (Zarca_Import_Queue.equals("Done")) {
+					 reportPass("Zarca Import Status is Done", test);
+				} else {
+					reportFail(testcaseName,"Zarca Import Status is not Done" , test);				
+				}
+			}
+	      }
+				validateEmail(param, currentTime, test);  
+	}
+	
+	 		public void validateExportDataExePage(WebDriver driver, HashMap<String, String> param, ExtentTest test)
+			throws InterruptedException {
+	 		String testcaseName = param.get("TestCaseName");
+	 		Date currentTime = Calendar.getInstance().getTime();
+		    if(driver.getCurrentUrl().contains("https://www.sogolytics.com")) {
+			String URL = "https://www.sogolytics.com/misc/exportexequeue.aspx";
+			executeScript(driver, testcaseName, "window.open()", test);
+			
+			Set<String> handles = driver.getWindowHandles();
+			String currentWindowHandle = driver.getWindowHandle();
+			param.put("currentWindowHandle", currentWindowHandle);
+			for (String handle : handles) {
+			System.out.println(handle);
+			System.out.println(currentWindowHandle);
+			if (!currentWindowHandle.equals(handle)) {
+			driver.switchTo().window(handle);
+			}
+			}
+		    driver.get(URL);
+		    Thread.sleep(5000);
+		    
+		    String ExportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+		    System.out.println(ExportStatus);
+		    
+		    if (ExportStatus.equals("Done")) {
+				   reportPass("Export Status is Done", test);		
+			} else {
+				for (int i=1; i<=60; i++){
+					TimeUnit.SECONDS.sleep(30);
+					driver.navigate().refresh();
+					String LatestExportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+					System.out.println(LatestExportStatus);
+					if (LatestExportStatus.equals("Done")) {
+						 reportPass("Export Status is Done", test);
+						 break;
+					} else {
+						System.out.println("Waiting for 30mins, Export Status is not Done");				
+					}			
+				} 
+				//reportFail(testcaseName,"Export Status is not Done" , test);
+				String Sogo_Export_Queue = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+				if (Sogo_Export_Queue.equals("Done")) {
+					 reportPass("Sogo Export Status is Done", test);
+				} else {
+					reportFail(testcaseName,"Sogo Export Status is not Done" , test);				
+				}	
+			}    
+		}		
+		
+		
+		    else if(driver.getCurrentUrl().contains("https://research.k12insight.com")) {
+			String URL = "https://research.k12insight.com//misc/exportexequeue.aspx";
+			executeScript(driver, testcaseName, "window.open()", test);
+			
+			Set<String> handles = driver.getWindowHandles();
+			String currentWindowHandle = driver.getWindowHandle();
+			param.put("currentWindowHandle", currentWindowHandle);
+			for (String handle : handles) {
+			System.out.println(handle);
+			System.out.println(currentWindowHandle);
+			if (!currentWindowHandle.equals(handle)) {
+			driver.switchTo().window(handle);
+			}
+			}
+		    driver.get(URL);
+		    Thread.sleep(5000);
+		    
+		    String ExportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+		    System.out.println(ExportStatus);
+		    
+		    if (ExportStatus.equals("Done")) {
+				   reportPass("Export Status is Done", test);		
+			} else {
+				for (int i=1; i<=60; i++){
+					TimeUnit.SECONDS.sleep(30);	
+					driver.navigate().refresh();
+					String LatestExportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+					System.out.println(LatestExportStatus);
+					if (LatestExportStatus.equals("Done")) {
+						 reportPass("Export Status is Done", test);
+						 break;
+					} else {
+						System.out.println("Waiting for 30mins, Export Status is not Done");				
+					}			
+				} 
+				//reportFail(testcaseName,"Export Status is not Done" , test);
+				String K12_Import_Queue = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getAttribute("innerHTML"));
+				if (K12_Import_Queue.equals("Done")) {
+					 reportPass("K12 Export Status is Done", test);
+				} else {
+					reportFail(testcaseName,"K12 Export Status is not Done" , test);				
+				}
+			}   
+		}
+		
+		
+		  else {
+    	  String URL = "https://research.zarca.com/misc/exportexequeue.aspx";
+			executeScript(driver, testcaseName, "window.open()", test);
+			
+			Set<String> handles = driver.getWindowHandles();
+			String currentWindowHandle = driver.getWindowHandle();
+			param.put("currentWindowHandle", currentWindowHandle);
+			for (String handle : handles) {
+			System.out.println(handle);
+			System.out.println(currentWindowHandle);
+			if (!currentWindowHandle.equals(handle)) {
+			driver.switchTo().window(handle);
+			}
+			}
+		    driver.get(URL);
+		    Thread.sleep(5000);
+		    
+		    String ExportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+		    System.out.println(ExportStatus);
+		    
+		    if (ExportStatus.equals("Done")) {
+				   reportPass("Export Status is Done", test);		
+			} else {
+				for (int i=1; i<=60; i++){
+					TimeUnit.SECONDS.sleep(30);	
+					driver.navigate().refresh();
+					String LatestExportStatus = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getText());
+					System.out.println(LatestExportStatus);
+					if (LatestExportStatus.equals("Done")) {
+						 reportPass("Export Status is Done", test);
+						 break;
+					} else {
+						System.out.println("Waiting for 30mins, Export Status is not Done");				
+					}			
+				} 
+				//reportFail(testcaseName,"Export Status is not Done" , test);
+				String Zarca_Export_Queue = (driver.findElement(By.xpath("//td[normalize-space()='g_golatkar@outlook.com']/following-sibling::td[6]")).getAttribute("innerHTML"));
+				if (Zarca_Export_Queue.equals("Done")) {
+					 reportPass("Zarca Export Status is Done", test);
+				} else {
+					reportFail(testcaseName,"Zarca Export Status is not Done" , test);				
+				}
+			}   
+      }
+		    	validateEmail(param, currentTime, test);
+   }
+	 		
+	 		public HashMap<String, String> readRecentEmail(HashMap<String, String> param, String host, String userName, String password, String sub, Date currentTime, ExtentTest test) {
+	 			String testcaseName = param.get("TestCaseName");
+	 			HashMap<String, String> emailData = new HashMap<String, String>();
+	 			String saveDirectory = System.getProperty("user.dir") + "\\SaveEmails";
+	 			String Date = "";
+	 			String sentFrom = "";
+	 			String subject = "";
+	 			String messageContent = "";
+	 			boolean isMailReceived = false;
+	 			
+	 			System.out.println("Current time : "+currentTime);
+	 			
+	 	        Properties properties = new Properties();
+	 	        properties.setProperty("mail.store.protocol", "imaps");
+	 	        try {
+	 	            double endTime = 300;    // Run loop for 300 seconds
+	 	            double startTime = System.currentTimeMillis();
+	 	            do {
+	 	            	Session session = Session.getDefaultInstance(properties, null);
+	 	                Store store = session.getStore("imaps");
+	 	                
+	 	    			if (host.equalsIgnoreCase("gmail")) {
+	 	    				store.connect("imap.gmail.com", userName, password);
+	 	    			} else if (host.equalsIgnoreCase("yahoo")) {
+	 	    				store.connect("imap.mail.yahoo.com", userName, password);
+	 	    			} else if (host.equalsIgnoreCase("outlook")) {
+	 	    				store.connect("outlook.office365.com", userName, password);
+	 	    			} else if (host.equalsIgnoreCase("bluwberry")) {
+	 	    				store.connect("corp.bluwberry.com", userName, password);
+	 	    			}
+	 	            	Folder inbox = store.getFolder("INBOX");
+	 	            	 
+	 	                int unreadMailCount = inbox.getUnreadMessageCount();
+	 	                System.out.println("No. of Unread Mails = " + unreadMailCount);
+	 	     
+	 	                inbox.open(Folder.READ_WRITE);
+	 	                
+	 	                Message messages[] = inbox.getMessages();
+	 	                System.out.println("No. of Total Mails = " + messages.length);
+	 	            	//Get latest message
+	 	                Message message = messages[messages.length-1];
+	 	 
+	 	                Address[] from = message.getFrom();
+	 	                System.out.println("====================================== Mail no.: " + messages.length + " start ======================================");
+	 	                Date = message.getSentDate().toString();
+	 	                sentFrom = from[0].toString();
+	 	                subject = message.getSubject();
+	 	                
+	 	                System.out.println("Date: " + Date);
+	 	                System.out.println("From: " + sentFrom);
+	 	                System.out.println("Subject: " + subject);
+	 	                
+	 	                
+	 	                String contentType = message.getContentType();
+	 	 
+	 	                // store attachment file name, separated by comma
+	 	                String attachFiles = "";
+	 	 
+	 	                if (contentType.contains("multipart")) {
+	 	                    // content may contain attachments
+	 	                    Multipart multiPart = (Multipart) message.getContent();
+	 	                    int numberOfParts = multiPart.getCount();
+	 	                    for (int partCount = 0; partCount < numberOfParts; partCount++) {
+	 	                        MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
+	 	                        if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+	 	                            // this part is attachment
+	 	                            String fileName = part.getFileName();
+	 	                            attachFiles += fileName + ", ";
+	 	                            part.saveFile(saveDirectory + File.separator + fileName);
+	 							}
+	 							// this part may be the message content
+	 	                        if (part.getContentType().contains("multipart")) {
+	 	                        	messageContent = ((Multipart) (part.getContent())).getBodyPart(partCount).getContent().toString();
+	 	                        }else {
+	 	                        	messageContent = part.getContent().toString();
+	 	                        }
+	 							
+	 							System.out.println("Message content : " + (messageContent));
+
+	 	                    }
+	 	 
+	 	                    if (attachFiles.length() > 1) {
+	 	                        attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
+	 	                    }
+	 	                } else if (contentType.contains("text/plain")
+	 	                        || contentType.contains("text/html")) {
+	 	                    Object content = message.getContent();
+	 	                    if (content != null) {
+	 	                        messageContent = content.toString();
+	 	                        System.out.println("Message content : "+messageContent);
+	 	                    }
+	 	                }
+	 	                System.out.println("Attachments: " + attachFiles);
+	 	             
+	 	                System.out.println("====================================== Mail no.: " + messages.length + " end ======================================");
+	 	                System.out.println(subject.equalsIgnoreCase(sub));
+	 	                System.out.println(message.getSentDate().after(currentTime));
+	 	                System.out.println( message.getSentDate().equals(currentTime));
+	 	                System.out.println(currentTime);
+	 	                System.out.println(message.getSentDate());
+	 	                
+	 	                if (subject.equalsIgnoreCase(sub) && (message.getSentDate().after(currentTime) || message.getSentDate().equals(currentTime))) {
+	 	                	isMailReceived = true;
+	 	                	break;
+	 	                }
+	 	                // disconnect
+	 	                inbox.close(false);
+	 	                store.close();
+	 	                Thread.sleep(3000);
+	 	            }while(((System.currentTimeMillis()-startTime)/1000) < endTime);  // Exit the loop after 300 seconds
+	 	            
+	 	            //Fail the test case if mail is not received.
+	 	            if(isMailReceived == false) {
+	 	            	test.log(Status.FAIL,"Expected mail with subject <b>"+sub +"</b> is not received.");
+	 					Add_Log.info("Expected mail with subject "+sub +" is not received.");
+	 					Reporter.log("Expected mail with subject <b>"+sub +"</b> is not received.");
+	 					TestResultStatus.failureReason.add(testcaseName + "| "+ "Expected mail with subject "+sub +" is not received.");
+	 					TestResultStatus.TestFail = true;
+	 					Assert.fail();
+	 	            }
+	 	            
+	 	        } catch (NoSuchProviderException ex) {
+	 	            System.out.println("No provider for pop3.");
+	 	            ex.printStackTrace();
+	 	        } catch (MessagingException ex) {
+	 	            System.out.println("Could not connect to the message store");
+	 	            ex.printStackTrace();
+	 	        } catch (IOException ex) {
+	 	            ex.printStackTrace();
+	 	        } catch (InterruptedException e) {
+	 				e.printStackTrace();
+	 			}
+	 	        emailData.put("Date", Date);
+	 	        emailData.put("Sent From", sentFrom);
+	 	        emailData.put("Subject", subject);
+	 	        emailData.put("Message Content", messageContent);
+	 	        
+	 	        return emailData;
+	 		}
+	
+	
 	
 	public double goToDataPage(WebDriver driver, HashMap<String, String> param, String surveyTitle, String SID, ExtentTest test) throws InterruptedException{
 		String testcaseName = param.get("TestCaseName");
