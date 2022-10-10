@@ -27,7 +27,7 @@ public interface ISoGoStaticPage {
 	String SOGO_ACCOUNT = "(//span[@class='initials'])[2]";
 	WebPageElements sogo_account = new WebPageElements("Sogo Account", "xpath", SOGO_ACCOUNT);
 	
-	String PRODUCT_STATIC = "(//li[contains(@class,'sogo-product-megamenu')]/a[contains(text(),'Products')])[1]";
+	String PRODUCT_STATIC = "//li[starts-with(@id,'menu-item-')]/a/div[text()='Products ']";
 	WebPageElements products_static = new WebPageElements("Products on Static", "xpath", PRODUCT_STATIC);
 	
 	String PRICING_STATIC = "(//a[contains(text(),'Pricing')])[1]";
