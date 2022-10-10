@@ -518,7 +518,7 @@ public interface ISMXPage {
 	String PAGE_NUMBER_DROP_DOWN_VALUE_1 = "//div[@id='divPageNo'][@pageno='1']";
 	WebPageElements page_number_drop_down_value_1 = new WebPageElements("Page Number Drop Down - Page 1", "xpath", PAGE_NUMBER_DROP_DOWN_VALUE_1);
 	
-	String LIST_OF_SURVEY_PAGES = "//a[starts-with(text(),'Page')][@class='arrw']";
+	String LIST_OF_SURVEY_PAGES = "//a[@class='arrw']";
 	WebPageElements list_of_survey_pages = new WebPageElements("Survey Pages", "xpath", LIST_OF_SURVEY_PAGES);
 	
 	String ALL_PAGES = "//a[starts-with(text(),'All Pages')]";
