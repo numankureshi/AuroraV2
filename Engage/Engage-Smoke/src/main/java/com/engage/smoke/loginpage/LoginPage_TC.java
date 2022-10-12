@@ -59,7 +59,18 @@ public class LoginPage_TC extends SuiteBase {
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("textbox", getData(data, "textbox"));
-
+		param.put("Expected", getData(data, "Expected"));
+		param.put("Expected2", getData(data, "Expected2"));
+		param.put("Header", getData(data, "Header"));
+		param.put("Expected3", getData(data, "Expected3"));
+		param.put("RadioButton2", getData(data, "RadioButton2"));
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("stremailaddress", getData(data, "stremailaddress"));
+		param.put("emailPassword", getData(data, "emailPassword"));
+		param.put("subject", getData(data, "subject"));
+		param.put("TextBox", getData(data, "TextBox"));
+		param.put("SelectTemplate", getData(data, "SelectTemplate"));
+		
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");

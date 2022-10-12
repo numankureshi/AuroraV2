@@ -120,4 +120,39 @@ public interface IStaticPage {
 	String  INVALID_ID_PASS = "//span[contains(text(),'Invalid User ID or Password')]";
 	WebPageElements invalid_id_pass = new WebPageElements("Invalid Id Pass Alert", "xpath", INVALID_ID_PASS );
 	
+	String  INVALID_PASSWORD_IMG = "//img[@src='/AllImages/ProductImages/Product_specifics/error-symbol-login.png']";
+	WebPageElements invalid_password_img = new WebPageElements("Invalid Password img", "xpath", INVALID_PASSWORD_IMG );
+	
+	String  FORGET_PASSWORD = "//a[normalize-space()='Forgot Password?']";
+	WebPageElements forget_password = new WebPageElements("forget Password", "xpath", FORGET_PASSWORD );
+	
+	String  FORGET_PASSWORD_SUBMIT = "//input[@id='btnSubmit']";
+	WebPageElements forget_password_submit = new WebPageElements("forget Password submit", "xpath", FORGET_PASSWORD_SUBMIT );
+
+	String  RETURN_LOGIN = "//input[@id='btnReturnLogin']";
+	WebPageElements return_login = new WebPageElements("RETURN_LOGIN", "xpath", RETURN_LOGIN );
+	
+	String  SOGO_TITLE = "//img[@title='Sogolytics']";
+	WebPageElements sogo_title = new WebPageElements("sogo title", "xpath", SOGO_TITLE );
+	
+	
+	String  EYE_ICON = "//img[@id='eyeShow']";
+	WebPageElements eye_icon = new WebPageElements("eye icon", "xpath", EYE_ICON );
+	
+	
+	String  PRIVACY_POLICY = "//a[normalize-space()='Privacy Policy']";
+	WebPageElements privacy_policy = new WebPageElements("privacy policy", "xpath", PRIVACY_POLICY );
+	
+	String  TERMS_OF_SERVICE = "//a[normalize-space()='Terms of Service']";
+	WebPageElements terms_of_service = new WebPageElements("TERMS OF SERVICE", "xpath", TERMS_OF_SERVICE );
+	
+	String  ANTI_SPAM_POLICY = "//a[normalize-space()='Anti-Spam Policy']";
+	WebPageElements anti_spam_policy = new WebPageElements("anti spam policy", "xpath", ANTI_SPAM_POLICY );
+	
+	String  DATA_AND_SECURITY = "//a[normalize-space()='Data and Security']";
+	WebPageElements data_and_security = new WebPageElements("Data and Security", "xpath", DATA_AND_SECURITY );
+	
+	String  COMMON_XPATH_FOR_RIGHT_DIV_FEATURES = "//div[@class='sliderpost-container']/div/a";
+	WebPageElements common_xpath_for_right_div_features = new WebPageElements("common xpath for right div features", "xpath", COMMON_XPATH_FOR_RIGHT_DIV_FEATURES );
+	
 }
