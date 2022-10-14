@@ -58,7 +58,7 @@ public class LoginPage_TC extends SuiteBase {
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("textbox", getData(data, "textbox"));
-
+		param.put("Expected", getData(data, "Expected"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -78,6 +78,7 @@ public class LoginPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
+				staticPage.SogolyticsButtonValidation(getDriver(), param, test);
 				staticPage.Facebooklogin(getDriver(), param, test);
 				
 			}
@@ -95,7 +96,7 @@ public class LoginPage_TC extends SuiteBase {
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("textbox", getData(data, "textbox"));
-
+		param.put("Expected", getData(data, "Expected"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -115,6 +116,7 @@ public class LoginPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
+				staticPage.SogolyticsButtonValidation(getDriver(), param, test);
 				staticPage.Googlelogin(getDriver(), param, test);
 			}
 		}
@@ -131,7 +133,18 @@ public class LoginPage_TC extends SuiteBase {
 		
 		HashMap<String, String> param = new HashMap<String, String>();
 		param.put("textbox", getData(data, "textbox"));
-
+		param.put("TextBox", getData(data, "TextBox"));
+		param.put("Expected", getData(data, "Expected"));
+		param.put("Expected2", getData(data, "Expected2"));
+		param.put("Expected3", getData(data, "Expected3"));
+		param.put("emailhost", getData(data, "emailhost"));
+		param.put("stremailaddress", getData(data, "stremailaddress"));
+		param.put("emailPassword", getData(data, "emailPassword"));
+		param.put("subject", getData(data, "subject"));
+		param.put("RadioButton", getData(data, "RadioButton"));
+		param.put("RadioButton2", getData(data, "RadioButton2"));
+		param.put("CheckBox", getData(data, "CheckBox"));
+		param.put("Header", getData(data, "Header"));
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
 			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
@@ -151,6 +164,7 @@ public class LoginPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
+				staticPage.SogolyticsButtonValidation(getDriver(), param, test);
 				staticPage.Invalidlogin(getDriver(), param, test);
 			}
 		}
@@ -187,6 +201,47 @@ public class LoginPage_TC extends SuiteBase {
 				
 				loadBrowser();
 				staticPage.login(getDriver(), param, username, encPassword, URLs.get(key), test);
+			}
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC160(LinkedHashMap<String, String> data) throws Exception {
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("textbox", getData(data, "textbox"));
+		param.put("Expected", getData(data, "Expected"));
+		param.put("Expected2", getData(data, "Expected2"));
+		param.put("Expected3", getData(data, "Expected3"));
+		param.put("Header", getData(data, "Header"));
+		param.put("TextBox", getData(data, "TextBox"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.SoGoLoginPageWithoutCredentials(getDriver(), param, URLs.get(key), test);
+				staticPage.extraDetails(getDriver(), param, test);
 			}
 		}
 

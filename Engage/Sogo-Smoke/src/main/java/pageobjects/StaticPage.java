@@ -7,11 +7,15 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
@@ -28,6 +32,7 @@ import utility.SeleniumUtils;
 public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage {
 	public double finish, start;
 	public double end;
+	DMXPage dmxPage = new DMXPage();
 	
 	public double login(WebDriver driver, HashMap<String, String> param, String username, String password, String URL, ExtentTest test) throws InterruptedException {
 		String testcaseName = param.get("TestCaseName");
@@ -161,23 +166,131 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 
 		}
 		
-		public void Invalidlogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		public void Invalidlogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 			String testcaseName = param.get("TestCaseName");
-			waitforElemPresent(driver, testcaseName, 30,invalid_username, test);
-			driver.findElement(By.xpath("//input[@id='txtUserId']")).sendKeys("sogo44test@gmail.com");		
-			waitforElemPresent(driver, testcaseName, 30,invalid_password, test);
-			driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys("xyz");
+			maxLengthCheck(driver,param, test);
+			rememberFontValidation(driver,param, test);
 			waitforElemPresent(driver, testcaseName, 30, login_button, test);
 			click(driver, testcaseName, login_button, test);
 			waitforElemPresent(driver, testcaseName, 60, invalid_id_pass, test);
 			String actualalert = driver.findElement(By.xpath("//span[contains(text(),'Invalid User ID or Password')]")).getAttribute("innerHTML");
 			String expectedalert = "Invalid User ID or Password";
 			Assert.assertEquals(actualalert, expectedalert, "Alert message is not matching with expected alert");
-			driver.close();
+			String xpath = param.get("TextBox");
+			ImgValidation1(driver,param, xpath, test);
+			forgetPassword(driver,param, test);
 		}
+		public void forgetPassword(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Date currentTime = Calendar.getInstance().getTime();
+			waitforElemPresent(driver, testcaseName, 30, forget_password, test);
+			click(driver, testcaseName, forget_password, test);
+			waitForLoad(driver, testcaseName, 30, test);
+			driver.findElement(By.xpath("//input[@id='txtUserId']")).sendKeys(param.get("stremailaddress"));
+			waitforElemPresent(driver, testcaseName, 30, forget_password_submit, test);
+			click(driver, testcaseName, forget_password_submit, test);
+			dmxPage.getInviteURLFromEmail (param,currentTime,test);
+			waitforElemPresent(driver, testcaseName, 30, return_login, test);
+			click(driver, testcaseName, return_login, test);
+			waitforElemPresent(driver, testcaseName, 30, sogo_title, test);
+		}
+		
+		public void maxLengthCheck(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			String xpath = "";
+			char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+			StringBuilder sb = new StringBuilder(20);
+			Random random = new Random();
+			for (int i = 0; i < Integer.parseInt(param.get("Expected")); i++) {
+			    char c = chars[random.nextInt(chars.length)];
+			    sb.append(c);
+			}
+			String output = sb.toString();
+			System.out.println(output);
+			
+			waitforElemPresent(driver, testcaseName, 30,invalid_username, test);
+			driver.findElement(By.xpath("//input[@id='txtUserId']")).sendKeys(output);	
+			String UserID = driver.findElement(By.xpath("//input[@id='txtUserId']")).getAttribute("value");
+			
+			int UserIDLength = UserID.length();
+			int UserIDlendiff = output.length() - UserIDLength;
+			System.out.println(UserIDlendiff);
+			
+			if (UserIDlendiff == Integer.parseInt(param.get("Expected2"))) {
+		    	  reportPass("maxlength for userid is 30, working fine",test);
+		      } else {
+		    	  reportFail(testcaseName,"maxlength for userid is 30, notworking fine" , test);
+		      }
+			
+			
+			waitforElemPresent(driver, testcaseName, 30,invalid_password, test);
+			driver.findElement(By.xpath("//input[@id='txtPassword']")).sendKeys(output);
+			String Password = driver.findElement(By.xpath("//input[@id='txtPassword']")).getAttribute("value");
+			
+			int PasswordLength = Password.length();
+			int Passlendiff = output.length() - PasswordLength;
+			System.out.println(Passlendiff);
+			
+			if (Passlendiff == Integer.parseInt(param.get("Expected3"))) {
+		    	  reportPass("maxlength for password is 30, working fine",test);
+		      } else {
+		    	  reportFail(testcaseName,"maxlength for password is 30, notworking fine" , test);
+		      }
+			
+			xpath = param.get("RadioButton");
+			ImgValidation1(driver,param,xpath,test);
+			passwordType(driver,param,test);
+		}
+		public void passwordType(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			//waitforElemPresent(driver, testcaseName, 30, eye_icon, test);
+			String actualPasswordType = driver.findElement(By.xpath("//input[@id='txtPassword']")).getAttribute("type");
+			String expectedPasswordType = param.get("RadioButton2");
+			Assert.assertEquals(actualPasswordType, expectedPasswordType, "Type mismatch");
+			click(driver, testcaseName, eye_icon, test);
+			Thread.sleep(2000);
+			String actualPasswordTypeaf = driver.findElement(By.xpath("//input[@id='txtPassword']")).getAttribute("type");
+			String expectedPasswordTypeaf =  param.get("CheckBox");
+			Assert.assertEquals(actualPasswordTypeaf, expectedPasswordTypeaf, "Type mismatch");
+		}
+		
+		
+		
+		public void ImgValidation1(WebDriver driver, HashMap<String, String> param,String xpath, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Thread.sleep(3000);
+			 WebElement i = driver.findElement(By.xpath(xpath));
+				      Boolean p = (Boolean) ((JavascriptExecutor)driver) .executeScript("return arguments[0].complete " + "&& typeof arguments[0].naturalWidth != \"undefined\" " + "&& arguments[0].naturalWidth > 0", i);
+				      if (p) {
+				    	  reportPass("i img  present",test);
+				      } else {
+				    	  reportFail(testcaseName,"i img  present" , test);
+				      }
+		}
+		
+		public void SogolyticsButtonValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Thread.sleep(3000);
+			 WebElement i = driver.findElement(By.xpath("//img[@title='Sogolytics']"));
+				      Boolean p = (Boolean) ((JavascriptExecutor)driver) .executeScript("return arguments[0].complete " + "&& typeof arguments[0].naturalWidth != \"undefined\" " + "&& arguments[0].naturalWidth > 0", i);
+				      if (p) {
+				    	  reportPass("sogolytics img Logo present",test);
+				      } else {
+				    	  reportFail(testcaseName,"sogolytics img Logo present" , test);
+				      }
+		
+				      String displayValue = driver.findElement(By.xpath("//img[@title='Sogolytics']")).getAttribute("src");
+					  System.out.println(displayValue);
+						Assert.assertEquals(param.get("Header"), displayValue);
+		}
+		
 		
 		public void Facebooklogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
 			String testcaseName = param.get("TestCaseName");
+			String displayValue = driver.findElement(By.className("facebook-banner")).getCssValue("background-image");
+			System.out.println(displayValue);
+			Assert.assertEquals(param.get("Expected"), displayValue);
+			
 			waitforElemPresent(driver, testcaseName, 30, fb, test);
 			click(driver, testcaseName, fb, test);
 			String winHandleBefore = driver.getWindowHandle();
@@ -195,8 +308,13 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			driver.close();	
 		}
 		
-		public void Googlelogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) {
+		public void Googlelogin(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
 			String testcaseName = param.get("TestCaseName");
+			
+			String displayValue = driver.findElement(By.className("google-banner")).getCssValue("background-image");
+			System.out.println(displayValue);
+			Assert.assertEquals(param.get("Expected"), displayValue);
+			
 			waitforElemPresent(driver, testcaseName, 30, google, test);
 			click(driver, testcaseName, google, test);
 			String winHandleBefore = driver.getWindowHandle();
@@ -216,6 +334,25 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			waitforElemPresent(driver, testcaseName, 60, sogo_account, test);
 			driver.close();
 		}
+		
+		
+		public void rememberFontValidation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			waitforElemPresent(driver, testcaseName, 20, By.xpath("//span[@class='sogo-remember']"), "remember me before check", test);
+			click(driver, testcaseName, By.xpath("//span[@class='sogo-remember']"), "clicking remember me before check", test);
+			Thread.sleep(2000);
+			
+			WebElement rememberMeFont = driver.findElement(By.xpath("//span[@class='sogo-remember sogo-rem-font']")); 
+		    if(rememberMeFont.isDisplayed()) { 
+		    	reportPass("rememberMeFont is changed",test);
+		    } 
+		    else { 
+		    	 reportFail(testcaseName,"rememberMeFont is not changed" , test);
+		    } 
+			waitforElemPresent(driver, testcaseName, 20, By.xpath("//span[@class='sogo-remember sogo-rem-font']"), "remember me after check", test);
+			click(driver, testcaseName, By.xpath("//span[@class='sogo-remember sogo-rem-font']"), "clicking remember me after check", test);
+		}
 
 //		public double logout(WebDriver driver, HashMap<String, String> param, String URL, String username, String password,
 //				ExtentTest test) throws InterruptedException {
@@ -233,4 +370,96 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 //			return totalTime;
 //		}
 	
+		public void privacyPolicy(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Thread.sleep(5000);
+			waitforElemPresent(driver, testcaseName, 30, privacy_policy, test);
+			click(driver, testcaseName, privacy_policy, test);
+			Thread.sleep(5000);
+			changingTabControl(driver,param,test);
+			String actualalert = driver.getTitle();
+			System.out.println(actualalert);
+			System.out.println(param.get("Expected"));
+			Assert.assertEquals(actualalert, param.get("Expected"), "Alert message is not matching with expected alert");
+		}
+		
+		public void termsOfService(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Thread.sleep(5000);
+			waitforElemPresent(driver, testcaseName, 30, terms_of_service, test);
+			click(driver, testcaseName, terms_of_service, test);
+			Thread.sleep(5000);
+			changingTabControl(driver,param,test);
+			String actualalert = driver.getTitle();
+			System.out.println(actualalert);
+			System.out.println(param.get("Expected2"));
+			Assert.assertEquals(actualalert, param.get("Expected2"), "Alert message is not matching with expected alert");
+		}
+		
+		public void antiSpamPolicy(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Thread.sleep(5000);
+			waitforElemPresent(driver, testcaseName, 30, anti_spam_policy, test);
+			click(driver, testcaseName, anti_spam_policy, test);
+			Thread.sleep(5000);
+			changingTabControl(driver,param,test);
+			String actualalert = driver.getTitle();
+			System.out.println(actualalert);
+			System.out.println(param.get("Expected3"));
+			Assert.assertEquals(actualalert, param.get("Expected3"), "Alert message is not matching with expected alert");
+		}
+		
+		public void dataAndSecurity(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Thread.sleep(5000);
+			waitforElemPresent(driver, testcaseName, 30, data_and_security, test);
+			click(driver, testcaseName, data_and_security, test);
+			Thread.sleep(5000);
+			changingTabControl(driver,param,test);
+			String actualalert = driver.getTitle();
+			System.out.println(actualalert);
+			System.out.println(param.get("Header"));
+			Assert.assertEquals(actualalert, param.get("Header"), "Alert message is not matching with expected alert");
+		}
+		
+		public void changingTabControl(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			Set<String> handles = driver.getWindowHandles();
+		    String currentWindowHandle = driver.getWindowHandle();
+		    param.put("currentWindowHandle", currentWindowHandle);
+		    for (String handle : handles) {
+		    	System.out.println(handle);
+		    	System.out.println(currentWindowHandle);
+		        if (!currentWindowHandle.equals(handle)) {
+		            driver.switchTo().window(handle);
+		        }
+		    }			
+		}
+		
+		public void extraDetails(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			privacyPolicy(driver,param,test);
+			driver.close();
+			driver.switchTo().window(param.get("currentWindowHandle"));
+			termsOfService(driver,param,test);
+			driver.close();
+			driver.switchTo().window(param.get("currentWindowHandle"));
+			antiSpamPolicy(driver,param,test);
+			driver.close();
+			driver.switchTo().window(param.get("currentWindowHandle"));
+			dataAndSecurity(driver,param,test);
+			driver.close();
+			driver.switchTo().window(param.get("currentWindowHandle"));
+			sogoButtonNavigation(driver,param,test);
+		}
+		public void sogoButtonNavigation(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			driver.findElement(By.xpath("//img[@title='Sogolytics']"));
+			click(driver, testcaseName, By.xpath("//img[@title='Sogolytics']"), testcaseName, test);
+			String actualalert = driver.getTitle();
+			System.out.println(actualalert);
+			Assert.assertEquals(actualalert, param.get("TextBox"), "Alert message is not matching with expected alert");
+		}
+		
 }
