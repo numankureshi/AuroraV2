@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
 import org.openqa.selenium.By;
@@ -93,19 +94,19 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			return totalTime;
 		}
 		
-		public double navigateToSogoPricing(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test) throws InterruptedException {
+		public double navigateToSogoPricing(WebDriver driver, HashMap<String, String> param, String URL, ExtentTest test)
+				throws InterruptedException {
 			String testcaseName = param.get("TestCaseName");
-			driver.get(URL);		
-			waitforElemPresent(driver, testcaseName, 60, pricing_static, test);
-			start = System.currentTimeMillis();		
-			click(driver, testcaseName, pricing_static, test);
+			navigateToSogoLoginPage(driver, param, URL, test);
+			waitforElemPresent(driver, testcaseName, 60, sign_up, test);
+			start = System.currentTimeMillis();
+			click(driver, testcaseName, sign_up, test);
 			waitForJStoLoad(driver, 60);
-			waitforElemPresent(driver, testcaseName, 60, pricing_static_text, test);
+			waitforElemPresent(driver, testcaseName, 60, all_packages, test);
 			end = System.currentTimeMillis();
 			double totalTime = ((end - start)) / 1000;
 			return totalTime;
 		}
-		
 		
 		public double navigateToSoGoRegistration(WebDriver driver, HashMap<String, String> param, String URL,
 				ExtentTest test) throws InterruptedException {
@@ -460,6 +461,292 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			String actualalert = driver.getTitle();
 			System.out.println(actualalert);
 			Assert.assertEquals(actualalert, param.get("TextBox"), "Alert message is not matching with expected alert");
+		}
+		
+		public void BasicAccountSignup(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			driver.findElement(By.xpath("//a[@id='pop_btn6']"));
+			click(driver, testcaseName, By.xpath("//a[@id='pop_btn6']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id='pop_btn6']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@id=\"EmailAddress6\"]"), testcaseName, test);
+			String GenerateRandomNumber = UUID.randomUUID().toString();
+			WebElement Element = driver.findElement(By.xpath("//input[@id='EmailAddress6']"));
+			String EmailAdd = GenerateRandomNumber + "@" + "gmail.com";
+	        driver.findElement(By.xpath("//input[@id='EmailAddress6']")).sendKeys(EmailAdd);
+	       	//driver.findElement(By.xpath("//input[@id='EmailAddress6']")).sendKeys("s4o44aa4g4444404st@gmail.com");
+			driver.findElement(By.xpath("//a[@id='submit6']"));
+			click(driver, testcaseName, By.xpath("//a[@id='submit6']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtfirstname']"), testcaseName, test);
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtfirstname']")).sendKeys("Mohammad");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtlastname']")).sendKeys("Numan");
+			Thread.sleep(10);
+			//waitforElemPresent(driver, testcaseName, 30, user_name, test);
+			//String username = param.get("user_name") + " - " + strDate;
+			//param.put("user_name", username);
+			//setText(driver, testcaseName, user_name, username, test);
+			WebElement Element3 = driver.findElement(By.xpath("//input[@id='txtuserId']"));
+			String Userid = "sogo_" + GenerateRandomNumber ;
+			driver.findElement(By.xpath("//input[@id='txtuserId']")).sendKeys(Userid);
+			//driver.findElement(By.xpath("//input[@id='txtuserId']")).sendKeys("sogo_4aa4s444d4df4fg4g");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtpassword']")).sendKeys("Sogosurvey@123");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtConfirmPassword']")).sendKeys("Sogosurvey@123");
+			//driver.findElement(By.xpath("//button[@id='btnNext']"));
+			Thread.sleep(1000);
+			click(driver, testcaseName, By.xpath("//button[@class='sogo-submitopt']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtCompany']"), testcaseName, test);
+			driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id=\"ddIndustrySelected\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Education ']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddProjectSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Personal Use']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddTimeZoneSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='(GMT-10:00) Hawaii']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//input[@id='pDisclaimerHelpUsCheckBox']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnSubmit']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnReady']"), testcaseName, test);
+			//driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			//driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			//driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			//click(driver, testcaseName, By.xpath("//a[text()='Continue']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Education\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvIndustrySubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//span[@id='z_h_ctl00_lblInitials1']"), testcaseName, test);
+			Thread.sleep(1000);
+			click(driver, testcaseName, By.xpath("//div[@id='z_h_ctl00_liAccountSettings']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//a[@id='SideNavigation_aCompanyInfo']"), testcaseName, test);
+			//waitforElemPresent(driver, testcaseName, 100, EmailAdd, test);
+			//System.out.println(EmailAdd);
+			//WebElement Element2 = driver.findElement(By.xpath("//input[@id='lblEmail']"));
+			String actualEmailid =  driver.findElement(By.xpath("//span[@id='lblEmail']")).getText();
+			Assert.assertEquals( actualEmailid, EmailAdd, "Email ids do not match.");		
+			
+			
+		}
+		
+		public void TrialPlusSignup(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			driver.findElement(By.xpath("//a[@id='pop_btn2']"));
+			click(driver, testcaseName, By.xpath("//a[@id='pop_btn2']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id='pop_btn6']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@id=\"EmailAddress6\"]"), testcaseName, test);
+			String GenerateRandomNumber = UUID.randomUUID().toString();
+			String EmailAdd = GenerateRandomNumber + "@" + "gmail.com";
+	        driver.findElement(By.xpath("//input[@id='EmailAddress2']")).sendKeys(EmailAdd);
+			driver.findElement(By.xpath("//a[@id='submit2']"));
+			click(driver, testcaseName, By.xpath("//a[@id='submit2']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtfirstname']"), testcaseName, test);
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtfirstname']")).sendKeys("Mohammad");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtlastname']")).sendKeys("Numan");
+			Thread.sleep(10);
+			WebElement Element3 = driver.findElement(By.xpath("//input[@id='txtuserId']"));
+			String Userid = "sogo_" + GenerateRandomNumber ;
+			driver.findElement(By.xpath("//input[@id='txtuserId']")).sendKeys(Userid);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//input[@id='txtpassword']")).sendKeys("Sogosurvey@123");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtConfirmPassword']")).sendKeys("Sogosurvey@123");
+			//driver.findElement(By.xpath("//button[@id='btnNext']"));
+			Thread.sleep(1000);
+			click(driver, testcaseName, By.xpath("//button[@class='sogo-submitopt']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtCompany']"), testcaseName, test);
+			driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id=\"ddIndustrySelected\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Education ']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddProjectSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Personal Use']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddTimeZoneSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='(GMT-10:00) Hawaii']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//input[@id='pDisclaimerHelpUsCheckBox']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnSubmit']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnReady']"), testcaseName, test);
+			//driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			//driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			//driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			//click(driver, testcaseName, By.xpath("//a[text()='Continue']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Education\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvIndustrySubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//span[@id='z_h_ctl00_lblInitials1']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@id='z_h_ctl00_liAccountSettings']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//a[@id='SideNavigation_aCompanyInfo']"), testcaseName, test);
+			String actualEmailid =  driver.findElement(By.xpath("//span[@id='lblEmail']")).getText();
+			Assert.assertEquals( actualEmailid, EmailAdd, "Email ids do not match.");	
+			
+			
+			
+		}
+		
+		public void TrialProSignup(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			driver.findElement(By.xpath("//a[@id='pop_btn3']"));
+			click(driver, testcaseName, By.xpath("//a[@id='pop_btn3']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id='pop_btn6']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@id=\"EmailAddress6\"]"), testcaseName, test);
+			String GenerateRandomNumber = UUID.randomUUID().toString();
+			String EmailAdd = GenerateRandomNumber + "@" + "gmail.com";
+	        driver.findElement(By.xpath("//input[@id='EmailAddress3']")).sendKeys(EmailAdd);
+			driver.findElement(By.xpath("//a[@id='submit3']"));
+			click(driver, testcaseName, By.xpath("//a[@id='submit3']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtfirstname']"), testcaseName, test);
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtfirstname']")).sendKeys("Mohammad");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtlastname']")).sendKeys("Numan");
+			Thread.sleep(10);
+			WebElement Element3 = driver.findElement(By.xpath("//input[@id='txtuserId']"));
+			String Userid = "sogo_" + GenerateRandomNumber ;
+			driver.findElement(By.xpath("//input[@id='txtuserId']")).sendKeys(Userid);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//input[@id='txtpassword']")).sendKeys("Sogosurvey@123");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtConfirmPassword']")).sendKeys("Sogosurvey@123");
+			//driver.findElement(By.xpath("//button[@id='btnNext']"));
+			Thread.sleep(1000);
+			click(driver, testcaseName, By.xpath("//button[@class='sogo-submitopt']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtCompany']"), testcaseName, test);
+			driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id=\"ddIndustrySelected\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Education ']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddProjectSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Personal Use']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddTimeZoneSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='(GMT-10:00) Hawaii']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//input[@id='pDisclaimerHelpUsCheckBox']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnSubmit']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnReady']"), testcaseName, test);
+			//driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			//driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			//driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			//click(driver, testcaseName, By.xpath("//a[text()='Continue']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Education\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvIndustrySubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//span[@id='z_h_ctl00_lblInitials1']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@id='z_h_ctl00_liAccountSettings']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//a[@id='SideNavigation_aCompanyInfo']"), testcaseName, test);
+			String actualEmailid =  driver.findElement(By.xpath("//span[@id='lblEmail']")).getText();
+			Assert.assertEquals( actualEmailid, EmailAdd, "Email ids do not match.");	
+			
+			
+			
+		}
+		
+		public void TrialPremiumSignup(WebDriver driver, HashMap<String, String> param, ExtentTest test) throws InterruptedException {
+			String testcaseName = param.get("TestCaseName");
+			
+			driver.findElement(By.xpath("//a[@id='pop_btn5']"));
+			click(driver, testcaseName, By.xpath("//a[@id='pop_btn5']"), testcaseName, test);
+			String GenerateRandomNumber = UUID.randomUUID().toString();
+			String EmailAdd = GenerateRandomNumber + "@" + "gmail.com";
+	        driver.findElement(By.xpath("//input[@id='EmailAddress5']")).sendKeys(EmailAdd);
+			driver.findElement(By.xpath("//a[@id='submit5']"));
+			click(driver, testcaseName, By.xpath("//a[@id='submit5']"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtfirstname']"), testcaseName, test);
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtfirstname']")).sendKeys("Mohammad");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtlastname']")).sendKeys("Numan");
+			Thread.sleep(10);
+			WebElement Element3 = driver.findElement(By.xpath("//input[@id='txtuserId']"));
+			String Userid = "sogo_" + GenerateRandomNumber ;
+			driver.findElement(By.xpath("//input[@id='txtuserId']")).sendKeys(Userid);
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//input[@id='txtpassword']")).sendKeys("Sogosurvey@123");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtConfirmPassword']")).sendKeys("Sogosurvey@123");
+			//driver.findElement(By.xpath("//button[@id='btnNext']"));
+			Thread.sleep(1000);
+			click(driver, testcaseName, By.xpath("//button[@class='sogo-submitopt']"), testcaseName, test);
+			Thread.sleep(1000);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//input[@id='txtCompany']"), testcaseName, test);
+			driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			Thread.sleep(10);
+			driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id=\"ddIndustrySelected\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Education ']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddProjectSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='Personal Use']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//span[@id='ddTimeZoneSelected']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[text()='(GMT-10:00) Hawaii']"), testcaseName, test);
+			Thread.sleep(10);
+			click(driver, testcaseName, By.xpath("//input[@id='pDisclaimerHelpUsCheckBox']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnSubmit']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@id='btnReady']"), testcaseName, test);
+			//driver.findElement(By.xpath("//input[@id='txtCompany']")).sendKeys("Sogo");
+			//driver.findElement(By.xpath("//input[@id='txtJobTitle']")).sendKeys("QA");
+			//driver.findElement(By.xpath("//input[@id='txtPhone']")).sendKeys("9988009988");
+			//click(driver, testcaseName, By.xpath("//a[text()='Continue']"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Education\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvIndustrySubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
+			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//span[@id='z_h_ctl00_lblInitials1']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//div[@id='z_h_ctl00_liAccountSettings']"), testcaseName, test);
+			click(driver, testcaseName, By.xpath("//a[@id='SideNavigation_aCompanyInfo']"), testcaseName, test);
+			String actualEmailid =  driver.findElement(By.xpath("//span[@id='lblEmail']")).getText();
+			Assert.assertEquals( actualEmailid, EmailAdd, "Email ids do not match.");	
+			
+			
+			
+			
 		}
 		
 }

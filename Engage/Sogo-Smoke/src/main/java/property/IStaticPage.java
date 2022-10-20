@@ -36,8 +36,8 @@ public interface IStaticPage {
 	String PRICING_STATIC = "(//a[contains(text(),'Pricing')])[1]";
 	WebPageElements pricing_static = new WebPageElements("Pricing on Static", "xpath", PRICING_STATIC);
 	
-	String PRICING_STATIC_TEXT = "//h1[text()='Compare and choose a plan that is right for you.']";
-	WebPageElements pricing_static_text = new WebPageElements("Compare and choose a plan that is right for you.", "xpath", PRICING_STATIC_TEXT);
+	String PRICING_STATIC_TEXT = "//h1[text()='Compare and choose the plan that’s right for you!']";
+	WebPageElements pricing_static_text = new WebPageElements("Compare and choose the plan that is right for you!", "xpath", PRICING_STATIC_TEXT);
 	
 	String TAKE_A_TOUR = "(//span[text()='Take a Tour'])[1]";
 	WebPageElements take_a_tour = new WebPageElements("Take a Tour", "xpath", TAKE_A_TOUR);
@@ -134,6 +134,12 @@ public interface IStaticPage {
 	
 	String  SOGO_TITLE = "//img[@title='Sogolytics']";
 	WebPageElements sogo_title = new WebPageElements("sogo title", "xpath", SOGO_TITLE );
+	
+	String SIGN_UP= "//div[@id='dvSignupLink']/a";
+	WebPageElements sign_up = new WebPageElements("Sign Up", "xpath", SIGN_UP);
+	
+	String ALL_PACKAGES = "//div[@class='pricing-section-package-wrapper']";
+	WebPageElements all_packages = new WebPageElements("All Packages", "xpath", ALL_PACKAGES);	
 	
 	
 	String  EYE_ICON = "//img[@id='eyeShow']";
