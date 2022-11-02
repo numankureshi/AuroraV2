@@ -526,6 +526,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -598,6 +599,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -667,6 +669,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -735,6 +738,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			//click(driver, testcaseName, By.xpath("//input[@value=\"Measure Customer Experience\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			//click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -1417,6 +1421,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@onclick='showNextStep(3)']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -1486,6 +1491,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@onclick='showNextStep(3)']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -1557,6 +1563,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@onclick='showNextStep(3)']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -1630,6 +1637,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@onclick='showNextStep(3)']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
@@ -1701,6 +1709,7 @@ public class StaticPage extends SeleniumUtils implements IStaticPage, IHomePage 
 			click(driver, testcaseName, By.xpath("//a[@id=\"dvProjectSubmitBtn\"]"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@onclick='showNextStep(3)']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//a[@id=\"btnLetsGo\"]"), testcaseName, test);
+			waitforElemPresent(driver, testcaseName, 10, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-tooltip-close']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//input[@value='End Tour']"), testcaseName, test);
 			click(driver, testcaseName, By.xpath("//div[@class='pt-next-btn fr']"), testcaseName, test);
