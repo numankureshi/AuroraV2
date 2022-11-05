@@ -278,6 +278,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -314,6 +315,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);;
 				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -350,6 +352,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);;
 				staticPage.TrialProSignup(getDriver(), param, test);
+				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -386,6 +389,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);;
 				staticPage.TrialPremiumSignup(getDriver(), param, test);
+				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -1054,6 +1058,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreatePlusPaidAccount(getDriver(), param, test);
+				staticPage.CreatePaidAccount(getDriver(), param, test);
 				
 		}
 		
@@ -1093,6 +1098,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreateProYPaidAccount(getDriver(), param, test);
+				staticPage.CreatePaidAccount(getDriver(), param, test);
 				
 		}
 		
@@ -1132,6 +1138,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreateProMPaidAccount(getDriver(), param, test);
+				staticPage.CreatePaidAccount(getDriver(), param, test);
 				
 		}
 		
@@ -1172,6 +1179,7 @@ public class LoginPage_TC extends SuiteBase {
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreatePremYPaidAccount(getDriver(), param, test);
 				
+				
 		}
 		
 		}
@@ -1210,6 +1218,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreatePremMPaidAccount(getDriver(), param, test);
+				
 				
 		}
 		
