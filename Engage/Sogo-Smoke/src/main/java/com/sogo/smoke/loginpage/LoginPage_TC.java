@@ -256,6 +256,7 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
 		
 		
 		
@@ -278,7 +279,6 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.BasicAccountSignup(getDriver(), param, test);
-				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -293,6 +293,7 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
 		
 		
 		
@@ -315,7 +316,6 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);;
 				staticPage.TrialPlusSignup(getDriver(), param, test);
-				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -330,6 +330,7 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
 		
 		
 		
@@ -352,7 +353,6 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);;
 				staticPage.TrialProSignup(getDriver(), param, test);
-				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -367,6 +367,7 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
 		
 		
 		
@@ -389,7 +390,6 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);;
 				staticPage.TrialPremiumSignup(getDriver(), param, test);
-				staticPage.TrialAccountCreation(getDriver(), param, test);
 			}
 		}
 
@@ -1036,6 +1036,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		
@@ -1058,7 +1061,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreatePlusPaidAccount(getDriver(), param, test);
-				staticPage.CreatePaidAccount(getDriver(), param, test);
+				
 				
 		}
 		
@@ -1076,6 +1079,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		
@@ -1098,7 +1104,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreateProYPaidAccount(getDriver(), param, test);
-				staticPage.CreatePaidAccount(getDriver(), param, test);
+				
 				
 		}
 		
@@ -1116,6 +1122,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		
@@ -1138,7 +1147,7 @@ public class LoginPage_TC extends SuiteBase {
 				loadBrowser();
 				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
 				staticPage.CreateProMPaidAccount(getDriver(), param, test);
-				staticPage.CreatePaidAccount(getDriver(), param, test);
+				
 				
 		}
 		
@@ -1156,6 +1165,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		
@@ -1196,7 +1208,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
-		
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		if (CaseToRun.equalsIgnoreCase("N")) {
@@ -1236,6 +1250,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		
@@ -1275,6 +1292,9 @@ public class LoginPage_TC extends SuiteBase {
 		//test
 		
 		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
 		
 		
 		
@@ -1304,6 +1324,1350 @@ public class LoginPage_TC extends SuiteBase {
 
 	}
 	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC189(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreatePremMPaidAccount(getDriver(), param, test);
+				staticPage.CancelPaidAccount(getDriver(), param, test);
+				
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC190(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreatePremYPaidAccount(getDriver(), param, test);
+				staticPage.CancelPaidAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC191(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreatePlusPaidAccount(getDriver(), param, test);
+				staticPage.CancelPaidAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC192(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreateProYPaidAccount(getDriver(), param, test);
+				staticPage.CancelPaidAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC193(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreateProMPaidAccount(getDriver(), param, test);
+				staticPage.CancelPaidAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC194(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.CancelTrialAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC195(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.CancelTrialAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC196(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialProSignup(getDriver(), param, test);
+				staticPage.CancelTrialAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC197(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPremiumSignup(getDriver(), param, test);
+				staticPage.CancelTrialAccount(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC198(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreateProMPaidAccount(getDriver(), param, test);
+				staticPage.SwitchtoYearly(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC199(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreatePremMPaidAccount(getDriver(), param, test);
+				staticPage.SwitchtoYearly(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC200(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreatePlusPaidAccount(getDriver(), param, test);
+				staticPage.UpgradetoProY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC201(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreatePlusPaidAccount(getDriver(), param, test);
+				staticPage.UpgradetoPremY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC202(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreateProYPaidAccount(getDriver(), param, test);
+				staticPage.UpgradetoPremY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC203(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreateProMPaidAccount(getDriver(), param, test);
+				staticPage.UpgradetoPremM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC204(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.CreateProMPaidAccount(getDriver(), param, test);
+				staticPage.UpgradetoPremY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC205(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPlusY(getDriver(), param, test);
+								
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC206(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoProM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC207(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoProY(getDriver(), param, test);
+								
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC208(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC209(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.BasicAccountSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC210(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPlusY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC211(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoProM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC212(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoProY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC213(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC214(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPlusSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremY(getDriver(), param, test);
+				
+				
+		}
+		
+		}
+
+	}
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC215(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialProSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoProM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC216(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialProSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoProY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC217(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialProSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC218(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialProSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC219(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPremiumSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremM(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
+	@Test(dataProvider = "SurveyPage", dataProviderClass = utility.XLSDataProvider.class, groups = "loginpage", alwaysRun = true)
+	public void Smoke_TC220(LinkedHashMap<String, String> data) throws Exception {
+		//This is to be run on QAUC only
+		TestCaseName = getData(data, "TestCaseName");
+		test = extent.createTest(TestCaseName);
+		CaseToRun = getData(data, "CaseToRun");
+		String Role = getData(data, "Role");
+		//test
+		
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("Timezone", getData(data, "Timezone"));
+		param.put("CC_number", getData(data, "CC_number"));
+		param.put("CVV", getData(data, "CVV"));
+		
+		
+		if (CaseToRun.equalsIgnoreCase("N")) {
+			System.out.println("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			testSkip = true;
+			test.skip("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+			throw new SkipException("CaseToRun = N for " + TestCaseName + "So skipping Exceution.");
+		} else {
+			for (String key : URLs.keySet()) {
+				System.out.println(URLs.get(key));
+				credentials = TestFile.getLoginCredentials("Users", Role);
+				for (int i = 0; i < credentials.size(); i++) {
+					users = credentials.get(i);
+					username = users.get("username");
+					encPassword = users.get("password");
+				}
+//				password = decryptPass.decryptUserPassword(encPassword);
+				
+				loadBrowser();
+				staticPage.navigateToSogoPricing(getDriver(), param, URLs.get(key), test);
+				staticPage.TrialPremiumSignup(getDriver(), param, test);
+				staticPage.UpgradefromTrialtoPremY(getDriver(), param, test);
+				
+		}
+		
+		}
+
+	}
 	
 	@AfterMethod(alwaysRun = true)
 	public void reporterDataResults(ITestResult Result) throws IOException {

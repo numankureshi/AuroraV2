@@ -141,6 +141,12 @@ public interface IStaticPage {
 	String ALL_PACKAGES = "//div[@class='pricing-section-package-wrapper']";
 	WebPageElements all_packages = new WebPageElements("All Packages", "xpath", ALL_PACKAGES);	
 	
+	String UPGRADE_MODAL ="//iframe[@id='frmUpgrade']";
+	WebPageElements upgrade_modal = new WebPageElements("Package Upgrade Modal", "xpath", UPGRADE_MODAL);
+	
+	
+	String  CC_FIELD = "//input[@name='ctl00$ContentPlaceHolder1$txtcardno']";
+	WebPageElements cc_field = new WebPageElements("CC Field", "xpath", CC_FIELD );
 	
 	String  EYE_ICON = "//img[@id='eyeShow']";
 	WebPageElements eye_icon = new WebPageElements("eye icon", "xpath", EYE_ICON );
